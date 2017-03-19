@@ -11,11 +11,12 @@ install:
   - git submodule init
   - git submodule update
   - cinst pretzel
-  - cd _site & git checkout master & cd..
 
 before_build:
-  - cd _site & git checkout master & cd..
-  
+  - cd _site
+  - git branch -u origin/master master 
+  - cd..
+
 build_script:
   - ps: .\pretzel.ps1
 
