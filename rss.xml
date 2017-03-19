@@ -6,8 +6,8 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sun, 19 Mar 2017 21:10:44 +00:00</pubDate>
-    <lastBuildDate>Sun, 19 Mar 2017 21:10:44 +00:00</lastBuildDate>
+    <pubDate>Sun, 19 Mar 2017 22:19:32 +00:00</pubDate>
+    <lastBuildDate>Sun, 19 Mar 2017 22:19:32 +00:00</lastBuildDate>
     
     <item>
       <title>Better error handling</title>
@@ -944,6 +944,9 @@ Which commands? Well Pretzel gives us a few. The 2 important ones for us though 
 &lt;li&gt;This Powershell creates a ps1 fiel for &lt;em&gt;build.ps1&lt;/em&gt; usually but we specified &lt;em&gt;pretzel.ps1&lt;/em&gt; so on line 43 change &lt;em&gt;build.cake&lt;/em&gt; to &lt;em&gt;pretzel.cake&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;Create a file called &lt;em&gt;pretzel.cake&lt;/em&gt; that looks like this:&lt;/li&gt;
 &lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Updated: 2017-03-19 with new &lt;em&gt;Pretzel.exe&lt;/em&gt; install path&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;script src=&quot;https://gist.github.com/dburriss/c7871549c2788c0dca507a2d24c683ed.js&quot;&gt;&lt;/script&gt;
 &lt;p&gt;With this setup we can build using &lt;code&gt;.\pretzel.ps1&lt;/code&gt; and preview locally with &lt;code&gt;.\pretzel.ps1 -target Taste&lt;/code&gt;&lt;/p&gt;
 &lt;blockquote&gt;
