@@ -211,5 +211,5 @@ In my following post I will discuss [error handling](/better-error-handling) and
 
 ## Recommended Reading
 
-1. https://fsharpforfunandprofit.com/posts/elevated-world/
-2. https://fsharpforfunandprofit.com/rop/
+1. [Elevated world](https://fsharpforfunandprofit.com/posts/elevated-world/)
+2. [Railway oriented programming](https://fsharpforfunandprofit.com/rop/)

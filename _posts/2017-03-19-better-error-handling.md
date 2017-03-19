@@ -63,7 +63,7 @@ Option<int> optInt = Option<int>.Some(1);
 // Some(1)
 ```
 
-### Apply - this part
+### Apply - just this part
 
 *Apply* unpacks a function and applies the first argument then returns an elevated function representing the result.
 
@@ -252,5 +252,5 @@ And there you have some neat validation logic. If you have any comments or sugge
 
 ## Recommended Reading
 
-1. https://fsharpforfunandprofit.com/posts/elevated-world/
-2. https://fsharpforfunandprofit.com/rop/
+1. [Elevated world](https://fsharpforfunandprofit.com/posts/elevated-world/)
+2. [Railway oriented programming](https://fsharpforfunandprofit.com/rop/)
