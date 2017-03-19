@@ -7,6 +7,62 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>http://domainbetter-error-handling/</loc>
+    <lastmod>2017-03-19T00:00:00+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
+    <loc>http://domainhonest-return-types/</loc>
+    <lastmod>2017-03-14T00:00:00+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
+    <loc>http://domainhonest-arguments/</loc>
+    <lastmod>2017-03-10T00:00:00+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
+    <loc>http://domainvisual-studio-implicit-snippet/</loc>
+    <lastmod>2017-03-08T00:00:00+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
+    <loc>http://domaincake-build/</loc>
+    <lastmod>2017-03-04T00:00:00+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
+    <loc>http://domainddd-glossary/</loc>
+    <lastmod>2017-02-14T00:00:00+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
+    <loc>http://domainvscode-tasks/</loc>
+    <lastmod>2017-02-11T00:00:00+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
+    <loc>http://domainpretezel-blog-appveyor-deployment/</loc>
+    <lastmod>2017-01-31T00:00:00+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>http://domainasp-net-5-tips-urlhelper/</loc>
     <lastmod>2016-01-18T00:00:00+01:00</lastmod>
     <changefreq>daily</changefreq>
@@ -118,12 +174,16 @@
 	
   
 	
-  
+	<url>
+		<loc>http://domain/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
 	
   
 	
 	<url>
-		<loc>http://domain/index.html</loc>
+		<loc>http://domain/recommended-reading.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
@@ -245,6 +305,316 @@
   
 	
   
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+	<url>
+		<loc>http://domain/category/programming/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/category/project-management/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/category/sysadmin/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/category/tools/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/agile/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/appveyor/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/asp-net-5/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/azure/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/cake/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/ci/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/clean-code/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/ddd/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/design-patterns/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/dnx/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/functional/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/git/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/github-pages/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/hyper-v/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/java/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/learning-csharp/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/maven/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/mvc-6/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/oop/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/osx/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/pascal/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/powershell/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/pretzel/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/programming/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/project-management/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/solid/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/tdd/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/tutorial/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/ubuntu/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/unit-testing/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/visual-studio/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/visual-studio-online/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/vs-code/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
 	
   
 </urlset>

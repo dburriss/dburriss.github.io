@@ -1,15 +1,1023 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Code Foo</title>
+  <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2017-01-30T19:24:50.1048286+01:00</updated>
+  <updated>2017-03-19T19:40:22.6697603+01:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>http://devonburriss.me/better-error-handling/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/better-error-handling/"/>
+    <title>Better error handling</title>
+    <updated>2017-03-19T00:00:00+01:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/better-error-handling/</uri>
+    </author>
+    <content type="html">&lt;p&gt;In my &lt;a href=&quot;/honest-return-types&quot;&gt;previous post&lt;/a&gt; I discussed handling &lt;code&gt;null&lt;/code&gt; and &lt;code&gt;Exception&lt;/code&gt; in the return type. In this post I will discuss returning logic errors.&lt;/p&gt;
+&lt;h1&gt;Handling errors&lt;/h1&gt;
+&lt;p&gt;There are times when valid errors can occur but are not exceptional. Validation is a common example of this and where a validation result is often the go to type. Wouldn&apos;t it be nice if we could apply the same pattern as with exceptions?&lt;/p&gt;
+&lt;h2&gt;Either: Errors or no errors&lt;/h2&gt;
+&lt;p&gt;Functional languages define a type with the following form: &lt;code&gt;Either&amp;lt;Left, Right&amp;gt;&lt;/code&gt;. &lt;code&gt;Left&lt;/code&gt; and &lt;code&gt;Right&lt;/code&gt; can be anything but in the case of error handling &lt;code&gt;Left&lt;/code&gt; is the unhappy path and &lt;code&gt;Right&lt;/code&gt; is the happy path. Let&apos;s assume we have an &lt;code&gt;Error&lt;/code&gt; type for representing errors that occurred, then using &lt;code&gt;Either&lt;/code&gt; to represent error handling could look something like this: &lt;code&gt;Either&amp;lt;IEnumerable&amp;lt;string&amp;gt;, T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;Func&amp;lt;int, int, Either&amp;lt;IEnumerable&amp;lt;string&amp;gt;, int&amp;gt;&amp;gt; divide =
+    (i, d) =&amp;gt;
+    {
+        if (d == 0)
+            return List(&amp;quot;Cannot divided by zero.&amp;quot;);
+
+        return (i / d);
+    };
+
+Either&amp;lt;IEnumerable&amp;lt;string&amp;gt;, int&amp;gt; divideByZeroResult = divide(1, 0);
+divideByZeroResult.Match(
+    Left: errors =&amp;gt; errors.ToList().ForEach(x =&amp;gt; Console.WriteLine(x)),
+    Right: i =&amp;gt; Console.WriteLine($&amp;quot;Answer is {i}&amp;quot;)
+);
+//Cannot divided by zero.
+
+Either&amp;lt;IEnumerable&amp;lt;string&amp;gt;, int&amp;gt; twoResult = divide(4, 2);
+twoResult.Match(
+    Left: errors =&amp;gt; errors.ToList().ForEach(x =&amp;gt; Console.WriteLine(x)),
+    Right: i =&amp;gt; Console.WriteLine($&amp;quot;Answer is {i}&amp;quot;)
+);
+//Answer is 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This works great but &lt;code&gt;Either&amp;lt;IEnumerable&amp;lt;string&amp;gt;, int&amp;gt;&lt;/code&gt; is quite a verbose return type definition. If we know we are always going to use &lt;code&gt;IEnumerable&amp;lt;string&amp;gt;&lt;/code&gt; as &lt;code&gt;Left&lt;/code&gt; why not specify that in the type? Before we do that, we are going to take a quick dive into some functional programming ideas.&lt;/p&gt;
+&lt;h2&gt;Functional side-bar&lt;/h2&gt;
+&lt;p&gt;Lets go through a couple concepts that will come up. Hopefully you read the previous post that introduced &lt;em&gt;Elevated types&lt;/em&gt;. Here I will quickly go through working with elevated types.&lt;/p&gt;
+&lt;h3&gt;Return: To the world of elevated types&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Return&lt;/em&gt; is raising to the world of elevated types. You have already seen examples of return already in this post. &lt;code&gt;Some&lt;/code&gt; and &lt;code&gt;None&lt;/code&gt; for &lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt; and &lt;code&gt;Left&lt;/code&gt; and &lt;code&gt;Right&lt;/code&gt; for &lt;code&gt;Either&amp;lt;L, R&amp;gt;&lt;/code&gt; are just some &lt;em&gt;return&lt;/em&gt; operations.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;//return - elevate an int to Option&amp;lt;int&amp;gt;
+Option&amp;lt;int&amp;gt; optInt = Option&amp;lt;int&amp;gt;.Some(1);
+// Some(1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Apply - just this part&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Apply&lt;/em&gt; unpacks a function and applies the first argument then returns an elevated function representing the result.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;//apply
+Func&amp;lt;int, int, int&amp;gt; add = (a, b) =&amp;gt; a + b;//function 
+Option&amp;lt;int&amp;gt; addOpt = Some(add);//elevate function
+
+var increment = addOpt.Apply(1) ;//apply: b =&amp;gt; 1 + b
+increment.Apply(5);
+// Some(6)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Map: ol&apos; switch-a-roo&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Map&lt;/em&gt; applies the function to the value contained in the elevated value and returns the elevated result. In C# terms &lt;em&gt;Map&lt;/em&gt; like LINQ&apos;s &lt;code&gt;Select&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;Func&amp;lt;int, string&amp;gt; intToString = (i) =&amp;gt; i.ToString();
+Option&amp;lt;int&amp;gt; optInt = Option&amp;lt;int&amp;gt;.Some(1);
+//map - apply function to inner value
+Option&amp;lt;string&amp;gt; optString = optInt.Map(intToString);
+// Some(&amp;quot;1&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Bind: functions in the darkness&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;... and in the darkness bind them&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Sorry that was a Lord of the Rings reference. My 2nd name is legally Aragorn (from birth), I didn&apos;t stand a chance...&lt;br /&gt;
+&lt;em&gt;Bind&lt;/em&gt; allows you to compose (bind) functions in an elevated world. It is analogous to &lt;code&gt;SelectMany&lt;/code&gt; from LINQ fame.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;Func&amp;lt;string, Option&amp;lt;int&amp;gt;&amp;gt; ifEvenInt = (s) =&amp;gt;
+{
+    int i = 0;
+    if (int.TryParse(s, out i))
+    {
+        return (i % 2 == 0) ? Some(i) : None;
+    }
+    else
+    {
+        return None;
+    }
+};
+
+Func&amp;lt;int, Option&amp;lt;int&amp;gt;&amp;gt; doubleIt = (i) =&amp;gt; Some(i * 2);
+Func&amp;lt;int, Option&amp;lt;int&amp;gt;&amp;gt; exp = (i) =&amp;gt; Some(i * i);
+
+Option&amp;lt;string&amp;gt; optString = optInt.Map(&amp;quot;2&amp;quot;);
+
+//bind - passes inner value to a function that returns an elevated result
+Option&amp;lt;int&amp;gt; eventResult = optString.Bind(ifEvenInt);
+// used to combine elevated functions
+var worked = eventResult
+    .Bind(doubleIt)
+    .Bind(exp);
+// Some(16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we changed &amp;quot;2&amp;quot; to &amp;quot;1&amp;quot; the output would be &lt;code&gt;None&lt;/code&gt; since &lt;code&gt;ifEvenInt&lt;/code&gt; would return &lt;code&gt;None&lt;/code&gt; which would short-circuit all the &lt;code&gt;Bind&lt;/code&gt; calls.&lt;/p&gt;
+&lt;h2&gt;Match: what goes up must come down&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Match&lt;/em&gt; is the yin to &lt;em&gt;Return&lt;/em&gt;&apos;s yang. Where &lt;em&gt;Return&lt;/em&gt; operations elevate values to the elevated world, &lt;em&gt;Match&lt;/em&gt; drops an elevated value back to the real world.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;//match
+Option&amp;lt;int&amp;gt; optInt = Option&amp;lt;int&amp;gt;.Some(1);
+optInt.Match(
+    Some: x =&amp;gt; Console.WriteLine(x),
+    None: () =&amp;gt; Console.WriteLine(&amp;quot;Nothing&amp;quot;)
+);
+// 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we can get to the elevated world, do what we need to do and then return back through the cupboard, let us get back to the business at hand. Validation!&lt;/p&gt;
+&lt;h2&gt;Validation: Your result (might have errors)&lt;/h2&gt;
+&lt;p&gt;So let&apos;s define a type &lt;code&gt;Validation&amp;lt;T&amp;gt;&lt;/code&gt; that is &lt;code&gt;Either&amp;lt;IEnumerable&amp;lt;Error&amp;gt;, T&amp;gt;&lt;/code&gt;? That would remove some of the verbosity of the return type as well as give a clearer semantic to the type name.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;using static F;
+
+public Validation&amp;lt;Person&amp;gt; Validate(Person person)
+{
+    if (person == null)
+        return Error(&amp;quot;Person is null&amp;quot;);
+
+    //short circuit on error
+    return Valid(person)
+        .Bind(ValidateFirstNames)
+        .Bind(ValidateLastName)
+        .Bind(ValidateEmail);
+}
+
+private Validation&amp;lt;Person&amp;gt; ValidateFirstNames(Person person)
+{
+    if (string.IsNullOrWhiteSpace(person.FirstNames))
+        return Invalid(Error($&amp;quot;{nameof(person.FirstNames)} cannot be empty&amp;quot;));
+
+    return person;
+}
+
+private Validation&amp;lt;Person&amp;gt; ValidateLastName(Person person)
+{
+    if (string.IsNullOrWhiteSpace(person.LastName))
+        return Invalid(Error($&amp;quot;{nameof(person.LastName)} cannot be empty&amp;quot;));
+
+    return person;
+}
+
+private Validation&amp;lt;Person&amp;gt; ValidateEmail(Person person)
+{
+    if (string.IsNullOrWhiteSpace((string)person.Email))
+        return Invalid(Error($&amp;quot;{nameof(person.Email)} cannot be empty&amp;quot;));
+
+    return person;
+}
+
+//usage
+var validatedPerson = service.Validate(person);
+
+validatedPerson.Match(
+    Valid: p =&amp;gt; Console.WriteLine($&amp;quot;{p.LastName}, {p.FirstNames} &amp;lt;{p.Email}&amp;gt;&amp;quot;),
+    Invalid: err =&amp;gt; err.ToList().ForEach(x =&amp;gt; Console.WriteLine(x.Message))
+);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The code above uses &lt;code&gt;Bind&lt;/code&gt; and short-circuits on the first error. This might not be the desired behaviour. What if we want to check all validations? Here is a version that does that...&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public Validation&amp;lt;Person&amp;gt; Validate(Person person)
+{
+    if (person == null)
+        return Error(&amp;quot;Person is null&amp;quot;);
+
+    //collect all errors
+    return Valid(Person.Create)
+        .Apply(ValidateFirstNames(person.FirstNames))
+        .Apply(ValidateLastName(person.LastName))
+        .Apply(ValidateEmail(person.Email));
+}
+
+Func&amp;lt;FirstNames, Validation&amp;lt;FirstNames&amp;gt;&amp;gt; ValidateFirstNames =&amp;gt; firstNames =&amp;gt;
+{
+    if (string.IsNullOrWhiteSpace(firstNames))
+        return Invalid(Error($&amp;quot;{nameof(firstNames)} cannot be empty&amp;quot;));
+
+    return firstNames;
+};
+
+Func&amp;lt;LastName, Validation&amp;lt;LastName&amp;gt;&amp;gt; ValidateLastName =&amp;gt; lastName =&amp;gt;
+{
+    if (string.IsNullOrWhiteSpace(lastName))
+        return Invalid(Error($&amp;quot;{nameof(lastName)} cannot be empty&amp;quot;));
+
+    return lastName;
+};
+
+Func&amp;lt;Email, Validation&amp;lt;Email&amp;gt;&amp;gt; ValidateEmail =&amp;gt; email =&amp;gt;
+{
+    if (string.IsNullOrWhiteSpace((string)email))
+        return Invalid(Error($&amp;quot;{nameof(email)} cannot be empty&amp;quot;));
+
+    return email;
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above code uses &lt;code&gt;Apply&lt;/code&gt; and is applicative so all errors are returned. Notice how the return result is actually a &lt;code&gt;Func&lt;/code&gt; that performs the validation.&lt;/p&gt;
+&lt;p&gt;if you don&apos;t like the &lt;code&gt;Func&lt;/code&gt; style you can continue to use the &lt;code&gt;Bind&lt;/code&gt; syntax but with the applicative nature using &lt;code&gt;Validation&lt;/code&gt; types &lt;code&gt;Join&lt;/code&gt; method...&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;//collect all errors
+return Valid(person)
+    .Join(ValidateFirstNames(person))
+    .Join(ValidateLastName(person))
+    .Join(ValidateEmail(person));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;And there you have some neat validation logic. If you have any comments or suggestions please leave them below. If you found this useful, please share it with someone who you think might also find it useful.&lt;/p&gt;
+&lt;h2&gt;Recommended Reading&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/posts/elevated-world/&quot;&gt;Elevated world&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/rop/&quot;&gt;Railway oriented programming&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://devonburriss.me/honest-return-types/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/honest-return-types/"/>
+    <title>Honest Return Types</title>
+    <updated>2017-03-14T00:00:00+01:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/honest-return-types/</uri>
+    </author>
+    <content type="html">&lt;p&gt;In &lt;a href=&quot;/honest-arguments&quot;&gt;Part 1&lt;/a&gt; we looked at ways of making your code more descriptive by using custom types instead of simple types like &lt;code&gt;string&lt;/code&gt;. In this article we will look at what your return type can tell you about a method.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Updated: 19 March 2017&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!--more--&gt;
+&lt;h1&gt;Honest Return Types&lt;/h1&gt;
+&lt;p&gt;For most of this post let us build on the example of a &lt;code&gt;Person&lt;/code&gt; repository. We are not going to dive into implementation but instead focus on the descriptiveness of the return type. Our starting point is this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public interface IQueryPerson
+{
+    Person Get(Email email);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The return type should be honest about what can happen when you call a method. Does this repository method return &lt;code&gt;null&lt;/code&gt; if no record is found? Does it throw and exception? Does it return a &lt;a href=&quot;https://martinfowler.com/eaaCatalog/specialCase.html&quot;&gt;special case&lt;/a&gt; subtype? Wouldn&apos;t it be nice if your return type could tell you this instead of you having to dig into the implementation to find out.&lt;/p&gt;
+&lt;p&gt;My 2 criteria are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A return type should be really descriptive of what the possible outcomes are&lt;/li&gt;
+&lt;li&gt;The interface for interacting with a type should make it difficult for developers to do the wrong thing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Result: A first try&lt;/h2&gt;
+&lt;p&gt;One solution is a &lt;code&gt;Result&amp;lt;T&amp;gt;&lt;/code&gt; or some such flavour. It might look something like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public class Result&amp;lt;T&amp;gt;
+{
+    public T Value { get; set; }
+    public bool IsSuccess { get; set; }
+    public IEnumerable&amp;lt;string&amp;gt; Errors { get; set; }
+    public Result()
+    {
+        Errors = new List&amp;lt;string&amp;gt;();
+    }
+
+    public Result(T value)
+    {
+        if(value == null)
+        {
+            IsSuccess = false;
+        }
+        else
+        {
+            IsSuccess = true;
+            Value = value;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This could be written in slightly different ways, with error codes instead of string for Errors, or even &lt;code&gt;Exception&lt;/code&gt;. Let&apos;s discuss the pros and cons of this.&lt;/p&gt;
+&lt;h3&gt;Pros&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;It does acknowledge that something could go wrong&lt;/li&gt;
+&lt;li&gt;Can return some error and state information without throwing an exception (read unexplicit &lt;code&gt;goto&lt;/code&gt; statement)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Cons&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;It is not descriptive about what represents a failure&lt;/li&gt;
+&lt;li&gt;Value can be accessed without checking for success&lt;/li&gt;
+&lt;li&gt;The type doesn&apos;t convey whether &lt;code&gt;null&lt;/code&gt; could still be a valid value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So it is something but doesn&apos;t really fulfill either of my criteria very well. We are going to have to take a quick sidebar and talk about representing &lt;code&gt;null&lt;/code&gt;. &lt;code&gt;Result&amp;lt;T&amp;gt;&lt;/code&gt; doesn&apos;t tell us whether we should expect &lt;code&gt;T&lt;/code&gt; to be &lt;code&gt;null&lt;/code&gt; and whether that is valid.&lt;/p&gt;
+&lt;h2&gt;Functional side-bar&lt;/h2&gt;
+&lt;p&gt;In functional terms an elevated type is like a wrapper. It is a higher level of abtraction that allows us to work with the type in a predictable way. &lt;code&gt;IEnummerable&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Exception&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Either&amp;lt;L. R&amp;gt;&lt;/code&gt;, &lt;code&gt;Validation&amp;lt;T&amp;gt;&lt;/code&gt; are all examples of elevated types.&lt;/p&gt;
+&lt;h2&gt;Option: &lt;code&gt;null&lt;/code&gt; is None&lt;/h2&gt;
+&lt;p&gt;&amp;quot;It depends&amp;quot; is something you hear a lot in development, and wouldn&apos;t it be great if a type conveyed this? &lt;code&gt;Option&lt;/code&gt; or &lt;code&gt;Maybe&lt;/code&gt; are types often found in more functional languages that highlight the fact that a value could not be present. It allows you to say that there is &lt;code&gt;Some&lt;/code&gt; value, or the value is &lt;code&gt;None&lt;/code&gt;. This is probably easier to demonstrate...&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I am using &lt;a href=&quot;https://github.com/louthy/language-ext&quot;&gt;LanguageExt&lt;/a&gt; to get some more functional types. This one is mature and fully featured but pick whatever works for you.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public Option&amp;lt;Person&amp;gt; Get(Email email)
+{
+    Person person = QueryByEmail(email);//person could be null if no matching email found in the datasource
+    return person;
+}
+
+//usage example
+var person1 = personRepository.Get(email);
+
+//print out last name if person was found otherwise print &amp;quot;Nobody&amp;quot;
+person1.Match(
+    Some: p =&amp;gt; Console.WriteLine(p.LastName),
+    None: () =&amp;gt; Console.WriteLine(&amp;quot;Nobody&amp;quot;)
+);
+
+//return fullname or Nobody if no one was found
+var person1Name = person1.Match(
+    Some: p =&amp;gt; $&amp;quot;{p.FirstNames} {p.LastName}&amp;quot;,
+    None: () =&amp;gt; &amp;quot;Nobody&amp;quot;
+);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The implementation uses &lt;code&gt;implicit&lt;/code&gt; conversion to return &lt;code&gt;None&lt;/code&gt; if the value is &lt;code&gt;null&lt;/code&gt; otherwise the &lt;code&gt;Person&lt;/code&gt; is elevated with Some.&lt;br /&gt;
+I explicitly elevate the result to demonstrate what is happening. Let&apos;s also add some error-handling as this will show a problem.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;using static LanguageExt.Prelude;
+public Option&amp;lt;Person&amp;gt; Get(Email email)
+{
+    try
+    {
+        Person person = QueryByEmail(email);
+        if(person == null)
+            return None;
+        return Some(person);
+    }
+    catch (Exception)
+    {
+        return None;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So this is looking a little better.&lt;/p&gt;
+&lt;h3&gt;Pros&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Return type is explicit about possibility of no value being returned&lt;/li&gt;
+&lt;li&gt;The API of the type encourages handling of branch between happy and unhappy path&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Cons&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;We cannot differentiate between no value and an exception&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Exception: return don&apos;t throw&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The following &lt;code&gt;Exceptional&amp;lt;T&amp;gt;&lt;/code&gt; and &lt;code&gt;Validation&amp;lt;T&amp;gt;&lt;/code&gt; types are defined in &lt;a href=&quot;https://github.com/dburriss/HonestTypes&quot;&gt;HonestTypes&lt;/a&gt;. Check the project page for installation instructions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So our type needs to be a bit more explicit about what can happen. Let&apos;s introduce an &lt;code&gt;Exceptional&amp;lt;T&amp;gt;&lt;/code&gt; type.
+This is similar to &lt;code&gt;Option&amp;lt;Person&amp;gt;&lt;/code&gt; but instead of &lt;strong&gt;Some&lt;/strong&gt; and &lt;strong&gt;None&lt;/strong&gt; it has &lt;strong&gt;Exception&lt;/strong&gt; and &lt;strong&gt;Success&lt;/strong&gt;.&lt;br /&gt;
+For those of you familiar with functional programming it is basically &lt;code&gt;Either&amp;lt;Exception, T&amp;gt;&lt;/code&gt; with left set to &lt;code&gt;Exception&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public Exceptional&amp;lt;Option&amp;lt;Person&amp;gt;&amp;gt; Get(Email email)
+{
+    try
+    {
+        Person person = QueryByEmail(email);
+        Option&amp;lt;Person&amp;gt; result = person;
+        return result;
+    }
+    catch (DbException ex)//only catch expected exceptions
+    {
+        return ex;
+    }
+}
+
+//usage
+var person1 = personRepository.Get(email);
+
+person1.Match(
+    Exception: ex =&amp;gt; Console.WriteLine($&amp;quot;Exception: {ex.Message}&amp;quot;),
+    Success: opt =&amp;gt; opt.Match(
+        None: () =&amp;gt; Console.WriteLine(&amp;quot;Person: Nobody&amp;quot;),
+        Some: p =&amp;gt; Console.WriteLine($&amp;quot;Person: {p.FirstNames} {p.LastName}&amp;quot;)
+    )
+);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;One important point in the repository implementation is you need to assign it to &lt;code&gt;Option&amp;lt;Person&amp;gt;&lt;/code&gt; before returning it which implicitly converts to &lt;code&gt;Exceptional&amp;lt;Option&amp;lt;Person&amp;gt;&amp;gt;&lt;/code&gt;.
+You can&apos;t go directly from &lt;code&gt;Person&lt;/code&gt; to &lt;code&gt;Exceptional&amp;lt;Option&amp;lt;Person&amp;gt;&amp;gt;&lt;/code&gt; unfortunately.&lt;/p&gt;
+&lt;p&gt;The difference in this implementation is in the exception handling. See how we just return the exception? The exception has an implicit conversion to the elevated type of &lt;code&gt;Exceptional&amp;lt;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Pros&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Return type is very explicit about both errors and no value&lt;/li&gt;
+&lt;li&gt;API of return type encourages good handling of code paths&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Cons&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;With the nested generics the type declaration is quite verbose&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;So with a bit of borrowing from functional programming and some added verbosity to our method signature we managed to move from an admittedly simple signature to a slightly more verbose one that is brutally honest about the possible outcomes.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;Person Get(Email email);
+Result&amp;lt;Person&amp;gt; Get(Email email);
+Option&amp;lt;Person&amp;gt; Get(Email email);
+Exceptional&amp;lt;Option&amp;lt;Person&amp;gt;&amp;gt; Get(Email email);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I hope you found something useful in this and if you did I cannot recommend enough the brilliant &lt;a href=&quot;https://www.manning.com/books/functional-programming-in-c-sharp&quot;&gt;Functional Programming in C#&lt;/a&gt; from Manning. I must warn that some of the chapters in this book are heavy going. Not because they are badly written but because as a C# and Java developer the concepts are so foreign that they take a while to sink in. Like most things worthwhile it takes effort and determination but you will be a better developer for it.&lt;/p&gt;
+&lt;p&gt;In my following post I will discuss &lt;a href=&quot;/better-error-handling&quot;&gt;error handling&lt;/a&gt; and how logic/validation errors can be represented as return types following the same criteria as in this post.&lt;/p&gt;
+&lt;h2&gt;Recommended Reading&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/posts/elevated-world/&quot;&gt;Elevated world&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/rop/&quot;&gt;Railway oriented programming&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://devonburriss.me/honest-arguments/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/honest-arguments/"/>
+    <title>Honest Arguments</title>
+    <updated>2017-03-10T00:00:00+01:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/honest-arguments/</uri>
+    </author>
+    <content type="html">&lt;p&gt;One of the benefits of statically typed languages is that we can rely on more than the method and parameter names for information on what is expected and what is returned. A well designed method should be about more than naming. Too often we give up on this type safety and expressiveness for the ease of instantiating primitives and &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h1&gt;Expressively typed parameters&lt;/h1&gt;
+&lt;p&gt;Consider the following 2 tips for message choice. To be fair I chose less than expressive names to demonstrate that even if a developer doesn&apos;t pick the best names (which they should of course try to do and should be fixed), the types of the argument provide all the intent needed. The parameter names could be &apos;l&apos;, &apos;f&apos;, and &apos;e&apos; and a developer could still infer the usage from the types.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2017/primitive-typed-method.jpg&quot; alt=&quot;primitive parameters&quot; /&gt;
+&lt;em&gt;Figure 1: Using simple type parameters&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2017/expressively-typed-method.jpg&quot; alt=&quot;expressive parameters&quot; /&gt;
+&lt;em&gt;Figure 2: Using expressive type parameters&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;So how would we represent something like a name as a type instead of a &lt;code&gt;string&lt;/code&gt; but still have it play nice with the capture in a client or storage of an instance in a database?
+The trick is with the &lt;code&gt;implicit&lt;/code&gt; or &lt;code&gt;explicit&lt;/code&gt; keywords.&lt;/p&gt;
+&lt;h2&gt;Lose the primitives (but play nice)&lt;/h2&gt;
+&lt;p&gt;For types that are always a direct conversion with no chance of failing, use the &lt;code&gt;implicit&lt;/code&gt; keyword.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public class FirstNames
+{
+    string Value { get; }
+    public FirstNames(string value) { Value = value; }
+
+    public static implicit operator string(FirstNames c)
+        =&amp;gt; c.Value;
+    public static implicit operator FirstNames(string s)
+        =&amp;gt; new FirstNames(s);
+
+    public override string ToString() =&amp;gt; Value;
+}
+
+//usage
+FirstNames name = &amp;quot;Devon Aragorn&amp;quot;;
+string nameAsString = name;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;On the other hand when you start adding a bit of behaviour into your class, there is a chance that the conversion can fail. Take for instance an &lt;code&gt;Email&lt;/code&gt; type that has some validation of the email address.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public class Email
+{
+    private const string regexPattern = @&amp;quot;\A(?:[a-z0-9!#$%&amp;amp;&apos;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;amp;&apos;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z&amp;quot;;
+    private string Value { get; }
+
+    public Email(string value)
+    {
+        if(!Regex.IsMatch(value, regexPattern, RegexOptions.IgnoreCase))
+        {
+            throw new ArgumentException($&amp;quot;{value} is not a valid email address.&amp;quot;, nameof(value));
+        }
+        Value = value;
+    }
+
+    public static explicit operator string(Email c)
+        =&amp;gt; c.Value;
+    public static explicit operator Email(string s)
+        =&amp;gt; new Email(s);
+
+    public override string ToString() =&amp;gt; Value;
+}
+
+//usage
+Email email = (Email)&amp;quot;test@test.com&amp;quot;;
+string emailAsString = (string)email;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here we are using the &lt;code&gt;explicit&lt;/code&gt; keyword because the constructor can throw an exception if the string is not a valid email address.&lt;/p&gt;
+&lt;h3&gt;Pros&lt;/h3&gt;
+&lt;p&gt;Let&apos;s list some reasons why you would want to do this with simpler types.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Using &lt;strong&gt;expressive types reveal intent&lt;/strong&gt; to consumers (other developers and future you)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Finding usage&lt;/strong&gt; of particular concepts can be done by type rather than searching text&lt;/li&gt;
+&lt;li&gt;If doing domain modelling you can now &lt;strong&gt;group behavior and data&lt;/strong&gt; to have a descriptive model&lt;/li&gt;
+&lt;li&gt;Once assigned to an expressive type they &lt;strong&gt;provide type safety&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Creation of more &lt;strong&gt;targeted extension methods&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Cons&lt;/h3&gt;
+&lt;p&gt;As with most things in programming, #ItDepends. There are some down sides to using types this way...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;More code&lt;/strong&gt; to write and maintain&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Serialization&lt;/strong&gt; requires a bit more work to do&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ORM mapping&lt;/strong&gt; could be more complicated&lt;/li&gt;
+&lt;li&gt;Implicit conversion means you lose some type safety&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let me quickly discuss a few of these cons and how they can be mitigated.&lt;/p&gt;
+&lt;h4&gt;More Code&lt;/h4&gt;
+&lt;p&gt;Not much to do about the maintainability part. I will say that these are relatively simple and are unlikely to change or have far reaching effects due to dependencies. To address the effort of actually creating these see &lt;a href=&quot;/visual-studio-implicit-snippet&quot;&gt;Visual Studio Implicit Snippet&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Serialization&lt;/h4&gt;
+&lt;p&gt;For some help easily serializing these types check out the &lt;a href=&quot;https://github.com/dburriss/HonestTypes&quot;&gt;Honest Types repository&lt;/a&gt;. That package provides a Json.NET Converter like &lt;code&gt;new SimpleJsonConverter&amp;lt;LastName, string&amp;gt;()&lt;/code&gt; that can be supplied to the settings when serializing and deserializing.&lt;/p&gt;
+&lt;h4&gt;ORM Mapping&lt;/h4&gt;
+&lt;p&gt;If you are modelling your domain (like with DDD) which is likely the case if you are using types this way, then you shouldn&apos;t be using your domain models for persistence. This tends to tie your domain models to the underlying data model and you will find the schema requirements will start leaking into your domain model. So create models for your data layer and map from them to your domain models in the repository.&lt;/p&gt;
+&lt;h2&gt;Recommended Reading&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://enterprisecraftsmanship.com/2015/03/07/functional-c-primitive-obsession/&quot;&gt;Functional C#: Primitive obsession&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://devonburriss.me/visual-studio-implicit-snippet/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/visual-studio-implicit-snippet/"/>
+    <title>Visual Studio Implicit Snippet</title>
+    <updated>2017-03-08T00:00:00+01:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/visual-studio-implicit-snippet/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Sometimes you want to create a &lt;a href=&quot;/honest-arguments&quot;&gt;descriptive type&lt;/a&gt; to better represent a concept such as an email (rather than a &lt;code&gt;string&lt;/code&gt;) but what stops you is the effort in creating this type. Here is a quick snippet to allow you to quickly generate these types reliably.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h1&gt;What will we be generating?&lt;/h1&gt;
+&lt;p&gt;What we are trying to generate is a class that ends up looking something like this.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public class LastName
+{
+    string Value { get; }
+    public LastName(string value) { Value = value; }
+
+    public static implicit operator string(LastName c)
+        =&amp;gt; c.Value;
+    public static implicit operator LastName(string s)
+        =&amp;gt; new LastName(s);
+
+    public override string ToString() =&amp;gt; Value;
+    public override int GetHashCode() =&amp;gt; Value.GetHashCode();
+    public override bool Equals(object obj)
+    {
+        if (Value == null || obj == null)
+            return false;
+
+        if (obj.GetType() == typeof(string))
+        {
+            var otherString = obj as string;
+            return string.Equals(Value, otherString, StringComparison.Ordinal);
+        }
+
+        if (obj.GetType() == this.GetType())
+        {
+            string otherString = string.Format(&amp;quot;{0}&amp;quot;, obj);
+            return string.Equals(Value, otherString, StringComparison.Ordinal);
+        }
+
+        return false;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This class will implicitly convert between &lt;code&gt;LastName&lt;/code&gt; and &lt;code&gt;string&lt;/code&gt; and compares like a value type. So two different instances of the same last name will be equivalent.&lt;/p&gt;
+&lt;h2&gt;Visual Studio Snippet&lt;/h2&gt;
+&lt;p&gt;If you are using &lt;a href=&quot;https://www.jetbrains.com/resharper/features/code_templates.html&quot;&gt;Resharper&lt;/a&gt; or another development productivity extension, creating snippets is fairly easy. In Visual Studio without a productivity extension it takes a little more effort but not much.&lt;/p&gt;
+&lt;p&gt;First you will need to create the snippet. Open up your favourite editor (&lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;I use Visual Studio Code&lt;/a&gt;) and create a file called &lt;em&gt;impl.snippet&lt;/em&gt; and save it somewhere. You will be importing it into Visual Studio later so remember where you put it. Also be aware that it will actually be copied to &lt;em&gt;C:\Users{user}\Documents\Visual Studio 2017\Code Snippets\Visual C#\My Code Snippets&lt;/em&gt; when you import it and the one you saved is not the one that Visual Studio uses. So if make changes to the original you will need to re-import it and if you edit the imported one it seems VS needs a restart.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;  
+&amp;lt;CodeSnippets  
+    xmlns=&amp;quot;http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet&amp;quot;&amp;gt;  
+    &amp;lt;CodeSnippet Format=&amp;quot;1.0.0&amp;quot;&amp;gt;  
+        &amp;lt;Header&amp;gt;  
+            &amp;lt;Title&amp;gt;Class with implicit string operator&amp;lt;/Title&amp;gt;  
+            &amp;lt;Author&amp;gt;Devon Burriss&amp;lt;/Author&amp;gt;  
+            &amp;lt;Description&amp;gt;Creates a class that can implicitly convert to and from string.&amp;lt;/Description&amp;gt;
+            &amp;lt;Shortcut&amp;gt;impl&amp;lt;/Shortcut&amp;gt;
+        &amp;lt;/Header&amp;gt;
+        &amp;lt;Imports&amp;gt;  
+            &amp;lt;Import&amp;gt;  
+                &amp;lt;Namespace&amp;gt;System&amp;lt;/Namespace&amp;gt;  
+            &amp;lt;/Import&amp;gt;  
+        &amp;lt;/Imports&amp;gt;  
+        &amp;lt;Snippet&amp;gt;
+            &amp;lt;Declarations&amp;gt;  
+                &amp;lt;Literal&amp;gt;  
+                    &amp;lt;ID&amp;gt;name&amp;lt;/ID&amp;gt;   
+                    &amp;lt;ToolTip&amp;gt;Name of the class.&amp;lt;/ToolTip&amp;gt;   
+                    &amp;lt;Default&amp;gt;MyImplicitType&amp;lt;/Default&amp;gt;   
+                &amp;lt;/Literal&amp;gt;
+            &amp;lt;/Declarations&amp;gt;
+            &amp;lt;Code Language=&amp;quot;csharp&amp;quot;&amp;gt;  
+                &amp;lt;![CDATA[
+                    public class $name$
+                    {
+                        string Value { get; }
+                        public $name$(string value) { Value = value; }
+
+                        public static implicit operator string($name$ c)
+                            =&amp;gt; c.Value;
+                        public static implicit operator $name$(string s)
+                            =&amp;gt; new $name$(s);
+
+                        public override string ToString() =&amp;gt; Value;
+                        public override int GetHashCode() =&amp;gt; Value.GetHashCode();
+                        public override bool Equals(object obj)
+                        {
+                            if (Value == null || obj == null)
+                                return false;
+
+                            if (obj.GetType() == typeof(string))
+                            {
+                                var otherString = obj as string;
+                                return string.Equals(Value, otherString, StringComparison.Ordinal);
+                            }
+
+                            if (obj.GetType() == this.GetType())
+                            {
+                                string otherString = string.Format(&amp;quot;{0}&amp;quot;, obj);
+                                return string.Equals(Value, otherString, StringComparison.Ordinal);
+                            }
+
+                            return false;
+                        }
+                    }
+                ]]&amp;gt;  
+            &amp;lt;/Code&amp;gt;  
+        &amp;lt;/Snippet&amp;gt;  
+    &amp;lt;/CodeSnippet&amp;gt;  
+&amp;lt;/CodeSnippets&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Xml file: &lt;em&gt;impl.snippet&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;&amp;lt;Header&amp;gt;&lt;/code&gt; element defines some generic information about the snippet. It is all self explanatory. I do want to just point out the &lt;code&gt;&amp;lt;Shortcut&amp;gt;&lt;/code&gt; element. This is what you will edit if you want anything other than typing &lt;strong&gt;impl&lt;/strong&gt; and then hit the &lt;strong&gt;Tab&lt;/strong&gt; button to activate the snippet.&lt;/p&gt;
+&lt;p&gt;The interesting bit is the &lt;code&gt;&amp;lt;Literal&amp;gt;&lt;/code&gt; element. It has an &lt;code&gt;&amp;lt;ID&amp;gt;&lt;/code&gt; element which is used in the snippet template to be the replacement variable. So when you hit &lt;strong&gt;Tab&lt;/strong&gt; you can type a name for the class and it will be inserted into all the relevant places.&lt;/p&gt;
+&lt;h2&gt;Import into Visual Studio&lt;/h2&gt;
+&lt;p&gt;Once you have created your snippet and saved it somewhere, go to Visual Studio (if that isn&apos;t what you used to create the snippet).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Navigate to &lt;em&gt;Tool &amp;gt; Code Snippets Manager...&lt;/em&gt; (or press Ctrl+K, Ctrl+B).&lt;/li&gt;
+&lt;li&gt;Click &lt;em&gt;Import...&lt;/em&gt; (you can choose C# language to be safe but it seems to pick it up from the snippet)&lt;/li&gt;
+&lt;li&gt;Browse to the &lt;em&gt;impl.snippet&lt;/em&gt; file you created earlier an click &lt;em&gt;Open&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Make sure &lt;strong&gt;My Coded Snippets&lt;/strong&gt; is selected and click &lt;em&gt;Finish&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And you are done. Now to create the class you can type &lt;code&gt;impl&lt;/code&gt; in any .cs file and hit &lt;strong&gt;Tab&lt;/strong&gt; and it will generate the class&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;If you find yourself creating repetitive classes, or avoiding to create classes because they are repetitive. Consider automating it to a degree by using a snippet.&lt;/p&gt;
+&lt;h2&gt;Further reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://msdn.microsoft.com/en-us/library/ms165396.aspx&quot;&gt;How to&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://msdn.microsoft.com/en-us/library/ms242312.aspx&quot;&gt;Snippet functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://msdn.microsoft.com/en-us/library/ms171418.aspx&quot;&gt;Schema Reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://devonburriss.me/cake-build/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/cake-build/"/>
+    <title>Building a Cake Script</title>
+    <updated>2017-03-04T00:00:00+01:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/cake-build/</uri>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://cakebuild.net/&quot;&gt;CAKE&lt;/a&gt; is a great automation DSL that uses C#. Not only is it comfortable for C# developers to script automation tasks in, it has a stack of built in functionality and a great ecosystem of addins that give you a great jumpstart for just about anything you would like to automate.&lt;/p&gt;
+&lt;p&gt;This is a quick tip on how to create a Visual Studio Code task that will build your Cake script. This is a great way of verifying your scripts without actually running Cake tasks.
+Also make sure you have the Visual Studio Code extension for Cake installed to give you syntax highlighting.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;Creating a tasks.json file&lt;/h2&gt;
+&lt;p&gt;Press &lt;strong&gt;Ctrl+Shift+P&lt;/strong&gt; and type &lt;strong&gt;Tasks:C&lt;/strong&gt; and hit enter or click &apos;Tasks: Configure Task Runner&apos;. If the file does not exist it will be created. If there is an existing build task be sure to replace it. Note that that this is building the cake script, not building whatever project your Cake script is probably meant to build. That being said, if you are using Cake to build something, this task described here should probably be a custom task, not the build task.&lt;/p&gt;
+&lt;h2&gt;Adding our Cake build task&lt;/h2&gt;
+&lt;p&gt;Now that we have  add the following task to the json tasks array.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+    &amp;quot;taskName&amp;quot;: &amp;quot;Build&amp;quot;,
+    &amp;quot;command&amp;quot;: &amp;quot;powershell&amp;quot;,
+    &amp;quot;isShellCommand&amp;quot;: true,
+    &amp;quot;args&amp;quot;: [&amp;quot;.\\build.ps1 -Whatif&amp;quot;],
+    &amp;quot;showOutput&amp;quot;: &amp;quot;always&amp;quot;,
+    &amp;quot;isBuildCommand&amp;quot;: true
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cake works by running a powershell script (default is &lt;em&gt;build.ps1&lt;/em&gt;) that uses Roslyn to compile the Cake file. What our script does is execute the build script and trigger a compile but without actually executing any tasks. Not even the Default one. This is done by adding the &lt;code&gt;-Whatif&lt;/code&gt; argument flag.&lt;br /&gt;
+In the example above the &lt;code&gt;isBuildCommand&lt;/code&gt; is set to &lt;strong&gt;true&lt;/strong&gt; so that &lt;strong&gt;Ctrl+Shift+B&lt;/strong&gt; can be used to build the &lt;em&gt;build.cake&lt;/em&gt; file.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Automating your builds, testing and deployment is important but don&apos;t stop there. Making sure your workspace feedback cycle is fast can also be a great way to increase productivity and decrease frustration. Hope this quick tip helps someone. Leave a comment if you have any of your own Cake tips.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://devonburriss.me/ddd-glossary/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/ddd-glossary/"/>
+    <title>Domain-Driven Design Glossary</title>
+    <updated>2017-02-14T00:00:00+01:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/ddd-glossary/</uri>
+    </author>
+    <content type="html">&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-xs-6 col-md-3&quot;&gt;
+    &lt;a href=&quot;https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=as_sl_pc_tf_mfw?&amp;linkCode=wey&amp;tag=wwwnervstucoz-20&quot; class=&quot;thumbnail&quot;&gt;
+      &lt;img src=&quot;/img/posts/2017/blue-book.jpg&quot;/&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+DDD cannot be summarized in a few paragraphs. In fact it would take a few books to cover it thoroughly. 
+Even then like anything worthwhile it requires much practice and many mistakes to start to become proficient at it.
+This is how it is with most skills that add a lot of value.
+&lt;p&gt;A good start would be reading Eric Evans&apos; &lt;a href=&quot;https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=as_sl_pc_tf_mfw?&amp;amp;linkCode=wey&amp;amp;tag=wwwnervstucoz-20&quot;&gt;Domain-Driven Design: Tackling Complexity in the Heart of Software&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It is worthwhile being familiar with some of the common terms thrown around in DDD.&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;What is DDD not?&lt;/h2&gt;
+&lt;p&gt;DDD is not:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Calling your area of work a Domain&lt;/li&gt;
+&lt;li&gt;Modelling the state of objects required into a bunch of &lt;a href=&quot;http://www.martinfowler.com/bliki/AnemicDomainModel.html&quot;&gt;anemic models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Services containing logic that act on the anemic models&lt;/li&gt;
+&lt;li&gt;A giant ball of interconnected objects where every class in your project has a reference somehow to every other&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;What is DDD?&lt;/h2&gt;
+&lt;p&gt;DDD is about modelling, and more. It encompasses common language, techniques, patterns, and architecture. It puts the focus on the business and modelling the problems you are solving. All the while giving developers techniques for minimizing the complexity and driving collaboration.
+It is about taking requirements and really mapping the business processes to the model using the same language the business uses in your code.
+It also gives us a common technical language to use for the different categories of classes we create while modelling our problem space.&lt;/p&gt;
+&lt;h2&gt;Glossary of terms&lt;/h2&gt;
+&lt;h3&gt;Ubiquitous language&lt;/h3&gt;
+&lt;p&gt;The term &lt;em&gt;Ubiquitous language&lt;/em&gt; is thrown out occasionally in DDD discussions but ironically itself is often not discussed. It is also the part often left out from the development side which means the heart of DDD is not being followed and instead some of it&apos;s technical approaches used (often incorrectly).&lt;br /&gt;
+It is the practice of &lt;strong&gt;using the terms used throughout the business within the codebase&lt;/strong&gt;, and working new terms from the modeling back into the business. Language often evolves and the codebase should evolve with the language. The essence really of DDD is that your code models the processes within the business and if you are not starting with the same language then how descriptive can it really be. If a product owner is looking at the application code he should recognise the classes, methods, and variables as models, workflows, and actions that actually occur.&lt;/p&gt;
+&lt;p&gt;It is not a one-way street however. Often the business has over-loaded terms, or a multiplicity of terms used for the same thing. Work with the them to define a glossary of terms that is used everywhere (ubiquitously).&lt;/p&gt;
+&lt;h3&gt;Bounded context&lt;/h3&gt;
+&lt;p&gt;The &lt;em&gt;Bounded context&lt;/em&gt; is the context in which the &lt;em&gt;Ubiquitous language&lt;/em&gt; and the corresponding models are valid. As developer it is a common trap to fall into to try reuse code and concepts across contexts. This is a recipe for disaster since the terms and verbs used to describe a model in one context will likely be similar but not the same. This results in blurring of the model to cater for both. This adds confusion as well as inviting changes with unintended consequences. This is especially true when a model is shared across more than one team (strongly concider whether it really is one context).&lt;/p&gt;
+&lt;h4&gt;Example&lt;/h4&gt;
+&lt;p&gt;Imagine a Product class in the Logistics domain. For tracking around the warehouse you need a barcode, for shipping you need the packaged dimensions and weight. Now think of a product for display on an e-commerce website. You need photos, description, and other specs like its actual dimensions unpacked.&lt;br /&gt;
+Why would a developer need all of this at one time? Why confuse matters? Why would the clients of the code like a scanner in the warehouse or a customer on the website need both? If all that is shared is maybe a name and a SKU, is the code sharing of 2 properties worth coupling different parts of the system? Different teams together?&lt;br /&gt;
+There are many reasons to want to keep these models seperated based on their context and few reasons to combine them. Yet it is a very common occurance in development. Why? Code re-use.&lt;br /&gt;
+Only re-use models if they are indeed the same model.&lt;/p&gt;
+&lt;h3&gt;Entities&lt;/h3&gt;
+&lt;p&gt;Entities are the classes that model the domain concepts and have identity. This usually means there is a unique primary key associated with the entity. Remember that modelling in DDD takes us back to the OOP we learned in the text books... behavior and data together. This is in antithesis to the usual &lt;a href=&quot;https://martinfowler.com/bliki/AnemicDomainModel.html&quot;&gt;anemic models&lt;/a&gt; found in most software.&lt;/p&gt;
+&lt;h3&gt;Value objects&lt;/h3&gt;
+&lt;p&gt;Value objects are much like entities except they do not have identity. Money is the quintessential example of a model that shows intent, contains rules, but does not have identity. The important part here is using types to convey meaning as well as place logic along with the data in a very obvious way.&lt;/p&gt;
+&lt;h3&gt;Aggregate&lt;/h3&gt;
+&lt;p&gt;An Aggregate is a hierarchy of objects (Entities and Value objects) that make up a consistency boundary.&lt;br /&gt;
+Why would we want to set a boundary rather than just reference any object needed?&lt;/p&gt;
+&lt;p&gt;Minimising associations helps to prevent a reference web. This can be problematic when fetching and reconstituting a hierarchy of objects into memory. Lazy loading can quickly get out of hand, alternatively null references about and conntinually need to be checked.&lt;/p&gt;
+&lt;p&gt;Let us turn the question around. What if the relationships of our object model clearly showed us the effects of change? For example, the aggregate was the scope of the transaction...&lt;/p&gt;
+&lt;h4&gt;Aggregate root&lt;/h4&gt;
+&lt;p&gt;The Aggregate Root is an Entity that all other Entities and Value Objects in the hierarchy hang off. For example if you have an Order with Order Lines and a Supplier, the &lt;code&gt;OrderRepository&lt;/code&gt; will return an Order with all &lt;code&gt;OrderLines&lt;/code&gt; and &lt;code&gt;OrderSupplier&lt;/code&gt; populated. If would not be possible to fetch an &lt;code&gt;OrderLine&lt;/code&gt; separately, nor a &lt;code&gt;OrderSupplier&lt;/code&gt;. If needed though you would provide methods on your &lt;code&gt;OrderRepository&lt;/code&gt; to fetch an order by Order Line Id or by Supplier Reference for example.&lt;/p&gt;
+&lt;h4&gt;Points to keep in mind&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Technical difficulties implementing an aggregate (like transaction issues persisting it) are usually indicative of a poorly chosen model. Put more effort refining the model rather than trying to fix a modelling problem with a technical implementation.&lt;/li&gt;
+&lt;li&gt;Access to objects from outside the aggregate must occur through the Aggregate Root.&lt;/li&gt;
+&lt;li&gt;Aggregates are always constructed in a consistent state.&lt;/li&gt;
+&lt;li&gt;The logic is usually within the aggregate to disallow consistent state or at least check its consistency.&lt;/li&gt;
+&lt;li&gt;It is better to encapsulate changes to state through method calls rather than directly mutating properties. This shows intent as well as adds an extra layer of indirection allowing implemntation changes without changing the API.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Factories&lt;/h3&gt;
+&lt;p&gt;Since an aggregate should always be in a consistent state it is important that they are constructed in a consistent state to the user. Factories provide a way to &lt;strong&gt;ensure that new instances of an aggregate always start in a consistent state&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3&gt;Repositories&lt;/h3&gt;
+&lt;p&gt;Repositories protect us from taking a data-centric view of our code. They allow us to &lt;strong&gt;persist and retrieve aggregates&lt;/strong&gt; without dealing directly with the underlying persistence. It is however important for developers to at least be aware of the underlying implementations so as not to abuse the repository from a performance or scoping way.&lt;/p&gt;
+&lt;p&gt;The abstraction of the repository is contained within the domain. This abstraction knows about the domain models within that context. More specifically it knows about the aggregate that it is returning. A repository returns an Entity (or collection of Entities) and the aggregate for wich that Entity is the Aggregate Root.&lt;/p&gt;
+&lt;p&gt;The implementation of the repository abstraction does not reside in the domain. It is a Infrastructural concern and can change. What is important though is that the repository handles mapping however the data is persisted into a fully hydrated and consistent aggregate.&lt;/p&gt;
+&lt;p&gt;The developer is free to add multiple query methods to the repository but the return results are always in terms of the Aggregate Root.&lt;/p&gt;
+&lt;h4&gt;Points to keep in mind&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;The repository abstraction is part of the domain&lt;/li&gt;
+&lt;li&gt;The repository implementation is NOT part of the domain&lt;/li&gt;
+&lt;li&gt;The repository exposes data in terms of that repository&apos;s Aggregate Root&lt;/li&gt;
+&lt;li&gt;Query methods should use the domain language&lt;/li&gt;
+&lt;li&gt;If complex queries look to encapsulate in query objects using the &lt;a href=&quot;https://www.martinfowler.com/apsupp/spec.pdf&quot;&gt;Specification&lt;/a&gt; pattern&lt;/li&gt;
+&lt;li&gt;Transaction should be controlled by the client code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Domain Service&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sometimes, it just isn&apos;t a thing.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When modeling sometimes an operation or workflow doesn&apos;t fit into the current model. Usually this just means you are not accurately capturing the model you need to represent the business problem but every now and again it is valid to place this operation in a domain service. If placing a workflow comflates your model objects maybe a service is the way to go. Services are represented by verbs rather than nouns and speak to what the DO. An important distinction from model objects is that they are completely stateless. A service will take various other domain objects and execute some action, possibly returning some result.&lt;/p&gt;
+&lt;h4&gt;Points to keep in mind&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Don&apos;t give up too quickly trying to fit an operation into the model (concider a new concept that encapsulates entities and values objects... maybe this is actual aggregate root?)&lt;/li&gt;
+&lt;li&gt;The Service is named after an activity (verb not noun)&lt;/li&gt;
+&lt;li&gt;Services are stateless&lt;/li&gt;
+&lt;li&gt;Services still use the Ubiquitous Language&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Application Service&lt;/h3&gt;
+&lt;p&gt;The application service is what presents an input for a use-case. It calls off to the domain for execution, calls any other services (like notifications) and returns. This could be something like a WebApi controller in .NET or you could choose to explicitly create an an application service.&lt;/p&gt;
+&lt;h4&gt;Points to keep in mind&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;A thin layer that receives a request and passes it to the domain to processes&lt;/li&gt;
+&lt;li&gt;Think use-case&lt;/li&gt;
+&lt;li&gt;A good place to handle transactions&lt;/li&gt;
+&lt;li&gt;Can call out to Infrastructure Services&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Infrastructure Service&lt;/h3&gt;
+&lt;p&gt;This is a technical implementation for something that performs some task such as notifications (IM, email, etc.), put messages on a bus, or retrieve some data from another system.&lt;/p&gt;
+&lt;h3&gt;Anti-corruption layer (ACL)&lt;/h3&gt;
+&lt;p&gt;An ACL is at the very least a thin translation layer between two bounded contexts. Even if both bounded contexts are well defined, and share similar models. The models in one context should not influence the models in another and without a layer in between to translate between the two corruption will creep in. If the external system a bounded context is talking to is a legacy system with a very poor model it is even more likely it will corrupt unless the ACL acts as a strong buffer.&lt;/p&gt;
+&lt;h3&gt;Modules&lt;/h3&gt;
+&lt;p&gt;Modules are simply packages or assemblies. Whatever your technology&apos;s means is of bundling built code is.&lt;/p&gt;
+&lt;h3&gt;Shared Kernel&lt;/h3&gt;
+&lt;p&gt;Sometimes a model needs to be shared across multiple Bounded Contexts. If so a Shared Kernel can be created but in a lot of cases the coupling created between the contexts and the teams is not worth it.&lt;/p&gt;
+&lt;h3&gt;Clients&lt;/h3&gt;
+&lt;p&gt;This is not really a term from the &lt;em&gt;Blue Book&lt;/em&gt; (that I remember) but I find it useful when talking about DDD and Clean Architecture. Clients are the callers of the application layer. These could be another application automated service or an application been driven by a user. Regardless the clients execute the use-cases defined in the application layer.&lt;/p&gt;
+&lt;h3&gt;Further reading&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://lostechies.com/jimmybogard/2010/02/04/strengthening-your-domain-a-primer/&quot;&gt;Strengthening your domain&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://martinfowler.com/tags/domain%20driven%20design.html&quot;&gt;Domain-Driven Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://gorodinski.com/blog/2012/04/14/services-in-domain-driven-design-ddd/&quot;&gt;Services in Domain-Driven Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=as_sl_pc_tf_mfw?&amp;amp;linkCode=wey&amp;amp;tag=wwwnervstucoz-20&quot;&gt;Domain-Driven Design: Tackling Complexity in the Heart of Software&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577/ref=pd_bxgy_14_img_2?_encoding=UTF8&amp;amp;pd_rd_i=0321834577&amp;amp;pd_rd_r=P6PNCC27GC5B7Q513JJ4&amp;amp;pd_rd_w=6neVY&amp;amp;pd_rd_wg=Rn8gy&amp;amp;psc=1&amp;amp;refRID=P6PNCC27GC5B7Q513JJ4&quot;&gt;Implementing Domain-Driven Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Applying-Domain-Driven-Design-Patterns-Examples/dp/0321268202/ref=as_sl_pc_tf_mfw?&amp;amp;linkCode=wey&amp;amp;tag=wwwnervstucoz-20&quot;&gt;Applying Domain-Driven Design Patterns Examples&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://devonburriss.me/vscode-tasks/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/vscode-tasks/"/>
+    <title>Visual Studio Code Tasks</title>
+    <updated>2017-02-11T00:00:00+01:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/vscode-tasks/</uri>
+    </author>
+    <content type="html">&lt;p&gt;I tend to try use &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt; for tasks and languages I don&apos;t currently use on a day to day basis. Over the last few weeks that has included Java and Delphi. Then today I was trying to launch my blog from VS Code and ran into an issue because Pretzel listens for a console key. The only fix I could find for this was to launch a new Powershell window. I thought this as good a time as any to post a few of these tasks.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h1&gt;Tasks&lt;/h1&gt;
+&lt;p&gt;Tasks in VS Code allow you to run commands that execute and usually feedback some status. Tasks are configured in the file &lt;em&gt;/.vscode/tasks.json&lt;/em&gt; from the workspace root. Hit &lt;strong&gt;Ctrl+Shift+P&lt;/strong&gt; and type &lt;strong&gt;Tasks:C&lt;/strong&gt; and hit enter or click &apos;Tasks: Configure Task Runner&apos;. If the file does not exist it will be created.&lt;/p&gt;
+&lt;h2&gt;Compiling a Java application&lt;/h2&gt;
+&lt;p&gt;This command uses &lt;code&gt;javac&lt;/code&gt; to compile the Java application and will report on compile errors. Note that this uses a single task (others in the post have multiple tasks in the file). It assumes &lt;code&gt;javac&lt;/code&gt; is on your PATH. I also have the &lt;strong&gt;Language Support for Java&lt;/strong&gt; extension from Red Hat installed in VS Code.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+    &amp;quot;version&amp;quot;: &amp;quot;0.1.0&amp;quot;,
+    &amp;quot;command&amp;quot;: &amp;quot;javac&amp;quot;,
+    &amp;quot;showOutput&amp;quot;: &amp;quot;silent&amp;quot;,
+    &amp;quot;isShellCommand&amp;quot;: true,
+    &amp;quot;args&amp;quot;: [&amp;quot;-d&amp;quot;,&amp;quot;${workspaceRoot}\\bin&amp;quot;,&amp;quot;${workspaceRoot}\\src\\*.java&amp;quot;],
+    &amp;quot;problemMatcher&amp;quot;: {
+        &amp;quot;owner&amp;quot;: &amp;quot;external&amp;quot;,
+        &amp;quot;fileLocation&amp;quot;: [&amp;quot;absolute&amp;quot;],
+        &amp;quot;pattern&amp;quot;: [
+        {
+            &amp;quot;regexp&amp;quot;: &amp;quot;^(.+\\.java):(\\d):(?:\\s+(error)):(?:\\s+(.*))$&amp;quot;,
+            &amp;quot;file&amp;quot;: 1,
+            &amp;quot;location&amp;quot;: 2,
+            &amp;quot;severity&amp;quot;: 3,
+            &amp;quot;message&amp;quot;: 4
+        }]
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Control Maven for a Java project&lt;/h2&gt;
+&lt;p&gt;These control different Maven phases. Note that on the &lt;code&gt;exec&lt;/code&gt; task you need to change the &lt;code&gt;me.devonburriss.App&lt;/code&gt; to the entrypoint of your application. It assumes &lt;code&gt;mvn&lt;/code&gt; is on your PATH. Not needed for this but note that I have the &lt;strong&gt;Language Support for Java&lt;/strong&gt; extension from Red Hat installed.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+    &amp;quot;version&amp;quot;: &amp;quot;0.1.0&amp;quot;,
+    &amp;quot;command&amp;quot;: &amp;quot;mvn&amp;quot;,
+    &amp;quot;isShellCommand&amp;quot;: true,
+    &amp;quot;showOutput&amp;quot;: &amp;quot;always&amp;quot;,
+    &amp;quot;suppressTaskName&amp;quot;: true,
+    &amp;quot;echoCommand&amp;quot;: true,
+    &amp;quot;tasks&amp;quot;: [
+        {
+            &amp;quot;taskName&amp;quot;: &amp;quot;verify&amp;quot;,
+            &amp;quot;args&amp;quot;: [&amp;quot;-B&amp;quot;, &amp;quot;verify&amp;quot;],
+            &amp;quot;isBuildCommand&amp;quot;: true
+        },
+        {
+            &amp;quot;taskName&amp;quot;: &amp;quot;test&amp;quot;,
+            &amp;quot;args&amp;quot;: [&amp;quot;-B&amp;quot;, &amp;quot;test&amp;quot;],
+            &amp;quot;isTestCommand&amp;quot;: true
+        },
+        {
+            &amp;quot;taskName&amp;quot;: &amp;quot;clean install&amp;quot;,
+            &amp;quot;args&amp;quot;: [&amp;quot;clean install -U&amp;quot;]
+        },
+        {
+            &amp;quot;taskName&amp;quot;: &amp;quot;exec&amp;quot;,
+            &amp;quot;args&amp;quot;: [&amp;quot;-B&amp;quot;, &amp;quot;exec:java&amp;quot;, &amp;quot;-D&amp;quot;, &amp;quot;exec.mainClass=\&amp;quot;me.devonburriss.App\&amp;quot;&amp;quot;]
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Delphi (Free Pascal) Build&lt;/h2&gt;
+&lt;p&gt;This is using the Free Pascal compiler to compile Delphi code. It assumes that &lt;code&gt;fpc&lt;/code&gt; is on your PATH. You can get it &lt;a href=&quot;http://www.freepascal.org/download.var&quot;&gt;here&lt;/a&gt;.&lt;br /&gt;
+This only compiles a single unit, not a complete project. Not needed for this to work but for syntax highlighting I have the OmniPascal extension installed.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+    &amp;quot;version&amp;quot;: &amp;quot;0.1.0&amp;quot;,
+    &amp;quot;command&amp;quot;: &amp;quot;fpc&amp;quot;,
+    &amp;quot;isShellCommand&amp;quot;: true,
+    &amp;quot;showOutput&amp;quot;: &amp;quot;always&amp;quot;,
+    &amp;quot;suppressTaskName&amp;quot;: true,
+    &amp;quot;echoCommand&amp;quot;: true,
+    &amp;quot;tasks&amp;quot;: [
+        {
+            &amp;quot;taskName&amp;quot;: &amp;quot;Compile Unit&amp;quot;,
+            &amp;quot;args&amp;quot;: [&amp;quot;-Sd&amp;quot;, &amp;quot;${file}&amp;quot;],
+            &amp;quot;isBuildCommand&amp;quot;: true
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Powershell, Cake, Pretzel blog Build&lt;/h2&gt;
+&lt;p&gt;This is one I use to call PS, which executes my Cake build and and run this blog locally. The targets for that are Bake and Taste (from Pretzel). See &lt;a href=&quot;http://devonburriss.me/pretezel-blog-appveyor-deployment/&quot;&gt;this post&lt;/a&gt; for details on that.&lt;/p&gt;
+&lt;p&gt;I use a &lt;em&gt;run.ps1&lt;/em&gt; file because I needed to launch a new Powershell window so Pretzel can wait and watch for changes.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+    &amp;quot;version&amp;quot;: &amp;quot;0.1.0&amp;quot;,
+    &amp;quot;tasks&amp;quot;: [
+        {
+            &amp;quot;taskName&amp;quot;: &amp;quot;Build&amp;quot;,
+            &amp;quot;command&amp;quot;: &amp;quot;powershell&amp;quot;,
+            &amp;quot;isShellCommand&amp;quot;: true,
+            &amp;quot;args&amp;quot;: [&amp;quot;.\\pretzel.ps1&amp;quot;],
+            &amp;quot;showOutput&amp;quot;: &amp;quot;always&amp;quot;,
+            &amp;quot;isBuildCommand&amp;quot;: true
+        },
+        {
+            &amp;quot;taskName&amp;quot;: &amp;quot;Run&amp;quot;,
+            &amp;quot;command&amp;quot;: &amp;quot;powershell&amp;quot;,
+            &amp;quot;isShellCommand&amp;quot;: false,
+            &amp;quot;args&amp;quot;: [&amp;quot;.\\run.ps1&amp;quot;],
+            &amp;quot;showOutput&amp;quot;: &amp;quot;always&amp;quot;,
+            &amp;quot;isTestCommand&amp;quot;: true
+        }
+    ]    
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Just a note that I have the Powershell extension from Microsoft for VS Code installed. Not needed for the task to run but it gives nice support for ps1 files.&lt;/p&gt;
+&lt;h2&gt;Extra: F5 Launch of Pretzel Blog&lt;/h2&gt;
+&lt;p&gt;If you want to use &lt;strong&gt;F5&lt;/strong&gt; to run the blog you can press &lt;strong&gt;Ctrl+Shift+P&lt;/strong&gt; and type &lt;strong&gt;launch&lt;/strong&gt;. If it doesn&apos;t exist a &lt;em&gt;launch.json&lt;/em&gt; file will be created.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+    &amp;quot;version&amp;quot;: &amp;quot;0.2.0&amp;quot;,
+    &amp;quot;configurations&amp;quot;: [
+        {
+            &amp;quot;type&amp;quot;: &amp;quot;PowerShell&amp;quot;,
+            &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;,
+            &amp;quot;name&amp;quot;: &amp;quot;PowerShell Launch (Script)&amp;quot;,
+            &amp;quot;script&amp;quot;: &amp;quot;${workspaceRoot}/run.ps1&amp;quot;,
+            &amp;quot;args&amp;quot;: [],
+            &amp;quot;cwd&amp;quot;: &amp;quot;${workspaceRoot}&amp;quot;        
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Where my &lt;em&gt;run.ps1&lt;/em&gt; looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;Start-Process powershell &amp;quot;.\pretzel.ps1 -target Taste -Wait&amp;quot; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;Visual Studio Code is a great editor and has plenty of extension points. If you have any great tips I would love to hear about them in the comments.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://devonburriss.me/pretezel-blog-appveyor-deployment/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/pretezel-blog-appveyor-deployment/"/>
+    <title>Deploying a Pretzel generated static site to Github Pages using Appveyor</title>
+    <updated>2017-01-31T00:00:00+01:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/pretezel-blog-appveyor-deployment/</uri>
+    </author>
+    <content type="html">&lt;h1&gt;Background&lt;/h1&gt;
+&lt;p&gt;I was using &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt; and &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; to build and host this blog up until a few days ago.
+Getting Jekyll running on Windows (more specifically Ruby) is a gamble and running it in a Docker container just led me down Ruby gem issues with my theme.&lt;br /&gt;
+Finally I decided to stick with the statically generated site but move away from Jekyll. Enter Pretzel...&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;Github Pages&lt;/h2&gt;
+&lt;p&gt;Github Pages allows you to host static websites and comes in 2 flavours. It natively supports building Jekyll source into a static site and deploying it.&lt;/p&gt;
+&lt;h3&gt;Organisation/User site&lt;/h3&gt;
+&lt;p&gt;This one runs off a separate repository with the special convention based name of &lt;code&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt; and hosts any static content (or Jekyll) that is committed to &lt;strong&gt;master&lt;/strong&gt; branch.&lt;/p&gt;
+&lt;h3&gt;Repository site&lt;/h3&gt;
+&lt;p&gt;These allow a website to be hosted per repository. Think documentation and marketing site for the product being built in that repository. These are built from a special orphaned branch named &lt;strong&gt;gh-pages&lt;/strong&gt; usually but can be set to &lt;strong&gt;master&lt;/strong&gt; or a &lt;code&gt;/docs&lt;/code&gt; folder.&lt;/p&gt;
+&lt;h2&gt;Pretzel&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Code52/pretzel&quot;&gt;Pretzel&lt;/a&gt; is a .NET based tool for generating a static, blog aware site. If you have used Jekyll, it is that without all the gem hell.&lt;br /&gt;
+Installing it locally is as easy as: &lt;code&gt;choco install pretzel&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that I used a plugin called &lt;a href=&quot;https://github.com/k94ll13nn3/Pretzel.Categories&quot;&gt;Pretzel.Categories&lt;/a&gt; to provide tag and category pages. You may need to explicitly add the dll to your repository as your global .gitignore may specify *.dll.  &apos;git add ._plugins\Pretzel.Categories.dll -f&apos;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;Approach&lt;/h1&gt;
+&lt;p&gt;Since I am no longer using Jekyll, Github pages can no longer build my site so I need to do that outside. I wanted to keep the same workflow of just being able to commit my changes and the content on the site is updated.&lt;/p&gt;
+&lt;p&gt;The solution needed to satisfy the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;develop locally and view my changes before pushing the commit&lt;/li&gt;
+&lt;li&gt;only 1 repository that represented my blog&lt;/li&gt;
+&lt;li&gt;a commit should trigger a build and deployment of the updated content&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;Solution&lt;/h1&gt;
+&lt;p&gt;Let&apos;s tackle each of these requirements one at a time. First off create a branch &lt;strong&gt;source&lt;/strong&gt;. &lt;strong&gt;master&lt;/strong&gt; will be reserved for our auto-generated content (we will get to this at the end of the post).&lt;br /&gt;
+&lt;code&gt;git checkout --orphan source&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Local development&lt;/h2&gt;
+&lt;p&gt;For local development I have a task setup in a &lt;a href=&quot;http://cakebuild.net/&quot;&gt;Cake build&lt;/a&gt; for building and running the Pretzel tool. This wouldn&apos;t give too much benefit over just command lining the 2 commands needed.
+Which commands? Well Pretzel gives us a few. The 2 important ones for us though are:
+&lt;code&gt;pretzel.exe bake&lt;/code&gt; - this will build our static website and since we provided no output folder it puts it in a folder &lt;em&gt;_sites/&lt;/em&gt;. This is important to remember later&lt;br /&gt;
+&lt;code&gt;pretzel.exe taste --port 5001&lt;/code&gt; - this will serve up the site and launch the site in the browser so you can admire your work&lt;/p&gt;
+&lt;p&gt;Why do I put these 2 simple commands in a build script? Well I have a transformation against the &lt;em&gt;_config.yml&lt;/em&gt; that will swap out my domain name and &lt;em&gt;localhost:5001&lt;/em&gt; depending on whether I am building for Debug or Release. It always use localhost when I am tasting since I don&apos;t use pretzel to serve the files.&lt;/p&gt;
+&lt;p&gt;If you are following along converting your own blog then and have not used Cake don&apos;t worry, it is super simple.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install the Powershell build script: &lt;code&gt;Invoke-WebRequest http://cakebuild.net/download/bootstrapper/windows -OutFile pretzel.ps1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;This Powershell creates a ps1 fiel for &lt;em&gt;build.ps1&lt;/em&gt; usually but we specified &lt;em&gt;pretzel.ps1&lt;/em&gt; so on line 43 change &lt;em&gt;build.cake&lt;/em&gt; to &lt;em&gt;pretzel.cake&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Create a file called &lt;em&gt;pretzel.cake&lt;/em&gt; that looks like this:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;script src=&quot;https://gist.github.com/dburriss/c7871549c2788c0dca507a2d24c683ed.js&quot;&gt;&lt;/script&gt;
+&lt;p&gt;With this setup we can build using &lt;code&gt;.\pretzel.ps1&lt;/code&gt; and preview locally with &lt;code&gt;.\pretzel.ps1 -target Taste&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you want to check-in what you have so far delete the &lt;em&gt;_sites/&lt;/em&gt; folder before adding the file to source control on the branch &lt;em&gt;source&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Single repository&lt;/h2&gt;
+&lt;p&gt;This one was a bit of a head-scratcher for me but then I remembered Github submodules. These allow you to map a folder in your repository to another repository. What I thought I would try was create an orphaned branch in my blog repository that contains the pretzel source and link the &lt;em&gt;_sites/&lt;/em&gt; folder to the &lt;strong&gt;master&lt;/strong&gt; branch which is where Github pages expects the static contents if you are not using Jekyll.&lt;/p&gt;
+&lt;h3&gt;Some quick housekeeping&lt;/h3&gt;
+&lt;p&gt;If you have run the Pretzel build but have not added anything to the Github repository (even locally) then just delete the &lt;em&gt;_sites/&lt;/em&gt; folder before continuing.&lt;br /&gt;
+If you have checked in the &lt;em&gt;_sites/&lt;/em&gt; folder run the following git command to remove it.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git rm -r _sites&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -m &amp;quot;Remove _sites (preparing for submodule)&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;you might need to remove from the index as well with &lt;code&gt;git rm -r --cached _sites&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Creating the submodule&lt;/h3&gt;
+&lt;p&gt;Next we are going to create the submodule that links back to the &lt;strong&gt;master&lt;/strong&gt; branch where the static content is expected.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that the following command uses https and not git protocol. This is important and you will get an error later in the CD process if you use git protocol.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;git submodule add -b master https://github.com/dburriss/dburriss.github.io.git _site&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -m &amp;quot;_sites submodule&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Continuous Delivery&lt;/h2&gt;
+&lt;p&gt;I use AppVeyor to pickup changes to the &lt;strong&gt;source&lt;/strong&gt; branch. It uses Choclatey to install Pretzel. It then uses Pretzel to generate the static site into &lt;em&gt;_sites/&lt;/em&gt; folder.&lt;br /&gt;
+The &lt;em&gt;_sites/&lt;/em&gt; folder you will remember is actually a submodule linked back to the &lt;strong&gt;master&lt;/strong&gt; branch of the same repository. We will push the generated changes to &lt;strong&gt;master&lt;/strong&gt;, thus updating the blog with the latest content.&lt;/p&gt;
+&lt;p&gt;Place the following &lt;em&gt;appveyor.yml&lt;/em&gt; file in the root of your &lt;strong&gt;source&lt;/strong&gt; branch.&lt;br /&gt;
+The only thing you will need to change in the &lt;em&gt;appveyor.yml&lt;/em&gt; is the url for your repository and the access token.&lt;/p&gt;
+&lt;p&gt;You can get an access token in Github by:&lt;/p&gt;
+&lt;h3&gt;Github token&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Profile pic dropdown top right&lt;/li&gt;
+&lt;li&gt;Settings&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Personal access tokens&lt;/em&gt; at the bottom of the left menu&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;See &lt;a href=&quot;https://help.github.com/articles/creating-an-access-token-for-command-line-use/&quot;&gt;here&lt;/a&gt; for detailed instructions.&lt;/p&gt;
+&lt;h3&gt;Encrypt the token&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Next in AppVeyor click on the dropdown on your username on the top right&lt;/li&gt;
+&lt;li&gt;Click Encrypt data&lt;/li&gt;
+&lt;li&gt;Paste the Github token in and press Encrypt&lt;/li&gt;
+&lt;li&gt;Copy the result into the &lt;em&gt;appveyor.yml&lt;/em&gt; on line 7&lt;/li&gt;
+&lt;/ol&gt;
+&lt;script src=&quot;https://gist.github.com/dburriss/66b4809c5e534481bdc4426c1d430765.js&quot;&gt;&lt;/script&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;And there we have it! We can commit to &lt;strong&gt;source&lt;/strong&gt; and the generated changes are committed to &lt;strong&gt;master&lt;/strong&gt;.&lt;br /&gt;
+Feel free to copy my blog at https://github.com/dburriss/dburriss.github.io&lt;/p&gt;
+&lt;p&gt;Please leave a comment if you found this useful or have any improvements.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <id>http://devonburriss.me/asp-net-5-tips-urlhelper/</id>
@@ -370,13 +1378,13 @@ Our checklist is as follows:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NOTE: In the rest of this article I talk about abstractions and usually use interface as an example. A base class is often just as valid as an interface (unless it has multiple roles since the languages I use only allow one inheritence parent). The NB part is that the rest of your application is coded against the abstraction and knows nothing about the implementation class.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;##Safety net
-Your first step should be to create some high level integration tests. This will at least give you some indication that you have broken something when you do.&lt;/p&gt;
-&lt;p&gt;##What is in a name?
-A good measure of whether a class adheres to the SRP principle is the name. If the name doesn&apos;t exactly describe what it does, or if it contains words like &apos;manager&apos;, &apos;provider&apos;, &apos;logic&apos;, &apos;handler&apos;, it probably does more than one thing. A name should tell you exactly what a class does, and a class can only have one name...
+&lt;h2&gt;Safety net&lt;/h2&gt;
+&lt;p&gt;Your first step should be to create some high level integration tests. This will at least give you some indication that you have broken something when you do.&lt;/p&gt;
+&lt;h2&gt;What is in a name?&lt;/h2&gt;
+&lt;p&gt;A good measure of whether a class adheres to the SRP principle is the name. If the name doesn&apos;t exactly describe what it does, or if it contains words like &apos;manager&apos;, &apos;provider&apos;, &apos;logic&apos;, &apos;handler&apos;, it probably does more than one thing. A name should tell you exactly what a class does, and a class can only have one name...
 See the SRP link for an example of splitting a class into it&apos;s various responsibilities.&lt;/p&gt;
-&lt;p&gt;##Role abstraction
-A good practice that can be used in conjuction with SRP is adding role interfaces to a class. Hopefully you can refactor to these roles until a class only contains the members in the abstraction but they are a start. Don&apos;t be afraid of having classes with a minimal amount of properties and/or methods on it. It means it has a very well defined role.
+&lt;h2&gt;Role abstraction&lt;/h2&gt;
+&lt;p&gt;A good practice that can be used in conjuction with SRP is adding role interfaces to a class. Hopefully you can refactor to these roles until a class only contains the members in the abstraction but they are a start. Don&apos;t be afraid of having classes with a minimal amount of properties and/or methods on it. It means it has a very well defined role.
 Even if you do not break a class into multiple classes immediately, if you can refer to them by the role interface you will have far fewer breaks in your code later when you do split it.&lt;/p&gt;
 &lt;h3&gt;Example&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;
