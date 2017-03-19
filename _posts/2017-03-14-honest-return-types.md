@@ -13,6 +13,7 @@ published: true
 
 In [Part 1](/honest-arguments) we looked at ways of making your code more descriptive by using custom types instead of simple types like `string`. In this article we will look at what your return type can tell you about a method.
 
+> Updated: 19 March 2017
 <!--more-->
 
 # Honest Return Types
@@ -78,6 +79,10 @@ This could be written in slightly different ways, with error codes instead of st
 * The type doesn't convey whether `null` could still be a valid value
 
 So it is something but doesn't really fulfill either of my criteria very well. We are going to have to take a quick sidebar and talk about representing `null`. `Result<T>` doesn't tell us whether we should expect `T` to be `null` and whether that is valid.
+
+## Functional side-bar
+
+In functional terms an elevated type is like a wrapper. It is a higher level of abtraction that allows us to work with the type in a predictable way. `IEnummerable<T>`, `Option<T>`, `Exception<T>`, `Either<L. R>`, `Validation<T>` are all examples of elevated types.
 
 ## Option: `null` is None
 
@@ -202,64 +207,9 @@ Exceptional<Option<Person>> Get(Email email);
 
 I hope you found something useful in this and if you did I cannot recommend enough the brilliant [Functional Programming in C#](https://www.manning.com/books/functional-programming-in-c-sharp) from Manning. I must warn that some of the chapters in this book are heavy going. Not because they are badly written but because as a C# and Java developer the concepts are so foreign that they take a while to sink in. Like most things worthwhile it takes effort and determination but you will be a better developer for it.
 
-## Extra
+In my following post I will discuss [error handling](/better-error-handling) and how logic/validation errors can be represented as return types following the same criteria as in this post.
 
-There are times when valid errors can occur but this are not exceptional. Validation is a common example of this and where a validation result is often the go to type. Wouldn't it be nice if we could apply the same pattern as with exceptions?
+## Recommended Reading
 
-```csharp
-using static F;
-
-public Validation<Person> Validate(Person person)
-{
-    if (person == null)
-        return Error("Person is null");
-
-    //collect all errors
-    return Valid(person)
-        .Apply(ValidateFirstNames(person))
-        .Apply(ValidateLastName(person))
-        .Apply(ValidateEmail(person));
-
-    //short circuit on error
-    return Valid(person)
-        .Bind(ValidateFirstNames)
-        .Bind(ValidateLastName)
-        .Bind(ValidateEmail);
-}
-
-private Validation<Person> ValidateFirstNames(Person person)
-{
-    if (string.IsNullOrWhiteSpace(person.FirstNames))
-        return Invalid(Error($"{nameof(person.FirstNames)} cannot be empty"));
-
-    return person;
-}
-
-private Validation<Person> ValidateLastName(Person person)
-{
-    if (string.IsNullOrWhiteSpace(person.LastName))
-        return Invalid(Error($"{nameof(person.LastName)} cannot be empty"));
-
-    return person;
-}
-
-private Validation<Person> ValidateEmail(Person person)
-{
-    if (string.IsNullOrWhiteSpace((string)person.Email))
-        return Invalid(Error($"{nameof(person.Email)} cannot be empty"));
-
-    return person;
-}
-
-//usage
-var validatedPerson = service.Validate(person);
-
-validatedPerson.Match(
-    Valid: p => Console.WriteLine($"{p.LastName}, {p.FirstNames} <{p.Email}>"),
-    Invalid: err => err.ToList().ForEach(x => Console.WriteLine(x.Message))
-);
-```
-
-I added 2 flavours. The first uses `Apply` and is applicative so all errors are returned. The second uses `Bind` and short-circuits on the first error.
-
-And there you have some neat validation logic. If you have any comments or suggestions please leave them below. If you found this useful, please share it with someone who you think might also find it useful.
+1. https://fsharpforfunandprofit.com/posts/elevated-world/
+2. https://fsharpforfunandprofit.com/rop/
