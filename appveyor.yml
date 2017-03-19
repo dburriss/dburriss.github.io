@@ -11,9 +11,6 @@ install:
   - git submodule init
   - git submodule update --remote
   - cinst pretzel
-  - cd _site
-  - git branch -u origin/master master 
-  - cd..
 
 before_build:
 
