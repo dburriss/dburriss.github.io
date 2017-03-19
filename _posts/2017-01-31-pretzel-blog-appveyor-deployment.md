@@ -67,6 +67,8 @@ If you are following along converting your own blog then and have not used Cake 
 2. This Powershell creates a ps1 fiel for *build.ps1* usually but we specified *pretzel.ps1* so on line 43 change *build.cake* to *pretzel.cake*
 3. Create a file called *pretzel.cake* that looks like this:
 
+> Updated: 2017-03-19 with new *Pretzel.exe* install path
+
 <script src="https://gist.github.com/dburriss/c7871549c2788c0dca507a2d24c683ed.js"></script>
 
 With this setup we can build using `.\pretzel.ps1` and preview locally with `.\pretzel.ps1 -target Taste`
