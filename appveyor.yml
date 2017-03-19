@@ -9,7 +9,7 @@ environment:
 
 install:
   - git submodule init
-  - git submodule update
+  - git submodule update --remote
   - cinst pretzel
 
 before_build:
