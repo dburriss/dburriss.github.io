@@ -2,6 +2,9 @@ var target = Argument("target", "Default");
 var configuration = Argument("Configuration", "Release");
 var port = Argument("Port", "5001");
 
+var installDirectory = "C:\\ProgramData\\chocolatey\\lib\\pretzel\\tools";
+var pretzelExe = installDirectory + "\\Pretzel.exe";
+
 public static void Replace(string file, string @this, string withThis)
 {
     var config = System.IO.File.ReadAllText(file, Encoding.UTF8);
@@ -38,7 +41,7 @@ Task("Bake")
     {
         Arguments = new ProcessArgumentBuilder().Append("bake")
     };
-    StartProcess("C:\\tools\\Pretzel\\Pretzel.exe", settings);
+    StartProcess(pretzelExe, settings);
 });
 
 Task("Taste")
@@ -48,7 +51,7 @@ Task("Taste")
     var settings = new ProcessSettings{
         Arguments = new ProcessArgumentBuilder().Append("taste").Append("--port " + port)
     };
-    StartProcess("C:\\tools\\Pretzel\\Pretzel.exe", settings);
+    StartProcess(pretzelExe, settings);
 });
 
 Task("Default")
