@@ -6,13 +6,13 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sun, 19 Mar 2017 19:40:22 +01:00</pubDate>
-    <lastBuildDate>Sun, 19 Mar 2017 19:40:22 +01:00</lastBuildDate>
+    <pubDate>Sun, 19 Mar 2017 21:10:44 +00:00</pubDate>
+    <lastBuildDate>Sun, 19 Mar 2017 21:10:44 +00:00</lastBuildDate>
     
     <item>
       <title>Better error handling</title>
       <link>http://devonburriss.me/better-error-handling/</link>
-      <pubDate>Sun, 19 Mar 2017 00:00:00 +01:00</pubDate>
+      <pubDate>Sun, 19 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/better-error-handling/</guid>
       <description>&lt;p&gt;In my &lt;a href=&quot;/honest-return-types&quot;&gt;previous post&lt;/a&gt; I discussed handling &lt;code&gt;null&lt;/code&gt; and &lt;code&gt;Exception&lt;/code&gt; in the return type. In this post I will discuss returning logic errors.&lt;/p&gt;
@@ -219,7 +219,7 @@ return Valid(person)
     <item>
       <title>Honest Return Types</title>
       <link>http://devonburriss.me/honest-return-types/</link>
-      <pubDate>Tue, 14 Mar 2017 00:00:00 +01:00</pubDate>
+      <pubDate>Tue, 14 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/honest-return-types/</guid>
       <description>&lt;p&gt;In &lt;a href=&quot;/honest-arguments&quot;&gt;Part 1&lt;/a&gt; we looked at ways of making your code more descriptive by using custom types instead of simple types like &lt;code&gt;string&lt;/code&gt;. In this article we will look at what your return type can tell you about a method.&lt;/p&gt;
@@ -280,7 +280,7 @@ return Valid(person)
 &lt;/ul&gt;
 &lt;p&gt;So it is something but doesn&apos;t really fulfill either of my criteria very well. We are going to have to take a quick sidebar and talk about representing &lt;code&gt;null&lt;/code&gt;. &lt;code&gt;Result&amp;lt;T&amp;gt;&lt;/code&gt; doesn&apos;t tell us whether we should expect &lt;code&gt;T&lt;/code&gt; to be &lt;code&gt;null&lt;/code&gt; and whether that is valid.&lt;/p&gt;
 &lt;h2&gt;Functional side-bar&lt;/h2&gt;
-&lt;p&gt;In functional terms an elevated type is like a wrapper. It is a higher level of abtraction that allows us to work with the type in a predictable way. &lt;code&gt;IEnummerable&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Exception&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Either&amp;lt;L. R&amp;gt;&lt;/code&gt;, &lt;code&gt;Validation&amp;lt;T&amp;gt;&lt;/code&gt; are all examples of elevated types.&lt;/p&gt;
+&lt;p&gt;In functional terms an elevated type is like a wrapper. It is a higher level of abstraction that allows us to work with the type in a predictable way. &lt;code&gt;IEnummerable&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Exception&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Either&amp;lt;L. R&amp;gt;&lt;/code&gt;, &lt;code&gt;Validation&amp;lt;T&amp;gt;&lt;/code&gt; are all examples of elevated types.&lt;/p&gt;
 &lt;h2&gt;Option: &lt;code&gt;null&lt;/code&gt; is None&lt;/h2&gt;
 &lt;p&gt;&amp;quot;It depends&amp;quot; is something you hear a lot in development, and wouldn&apos;t it be great if a type conveyed this? &lt;code&gt;Option&lt;/code&gt; or &lt;code&gt;Maybe&lt;/code&gt; are types often found in more functional languages that highlight the fact that a value could not be present. It allows you to say that there is &lt;code&gt;Some&lt;/code&gt; value, or the value is &lt;code&gt;None&lt;/code&gt;. This is probably easier to demonstrate...&lt;/p&gt;
 &lt;blockquote&gt;
@@ -398,7 +398,7 @@ Exceptional&amp;lt;Option&amp;lt;Person&amp;gt;&amp;gt; Get(Email email);
     <item>
       <title>Honest Arguments</title>
       <link>http://devonburriss.me/honest-arguments/</link>
-      <pubDate>Fri, 10 Mar 2017 00:00:00 +01:00</pubDate>
+      <pubDate>Fri, 10 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/honest-arguments/</guid>
       <description>&lt;p&gt;One of the benefits of statically typed languages is that we can rely on more than the method and parameter names for information on what is expected and what is returned. A well designed method should be about more than naming. Too often we give up on this type safety and expressiveness for the ease of instantiating primitives and &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
@@ -489,7 +489,7 @@ string emailAsString = (string)email;
     <item>
       <title>Visual Studio Implicit Snippet</title>
       <link>http://devonburriss.me/visual-studio-implicit-snippet/</link>
-      <pubDate>Wed, 08 Mar 2017 00:00:00 +01:00</pubDate>
+      <pubDate>Wed, 08 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/visual-studio-implicit-snippet/</guid>
       <description>&lt;p&gt;Sometimes you want to create a &lt;a href=&quot;/honest-arguments&quot;&gt;descriptive type&lt;/a&gt; to better represent a concept such as an email (rather than a &lt;code&gt;string&lt;/code&gt;) but what stops you is the effort in creating this type. Here is a quick snippet to allow you to quickly generate these types reliably.&lt;/p&gt;
@@ -621,7 +621,7 @@ string emailAsString = (string)email;
     <item>
       <title>Building a Cake Script</title>
       <link>http://devonburriss.me/cake-build/</link>
-      <pubDate>Sat, 04 Mar 2017 00:00:00 +01:00</pubDate>
+      <pubDate>Sat, 04 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/cake-build/</guid>
       <description>&lt;p&gt;&lt;a href=&quot;http://cakebuild.net/&quot;&gt;CAKE&lt;/a&gt; is a great automation DSL that uses C#. Not only is it comfortable for C# developers to script automation tasks in, it has a stack of built in functionality and a great ecosystem of addins that give you a great jumpstart for just about anything you would like to automate.&lt;/p&gt;
@@ -650,7 +650,7 @@ In the example above the &lt;code&gt;isBuildCommand&lt;/code&gt; is set to &lt;s
     <item>
       <title>Domain-Driven Design Glossary</title>
       <link>http://devonburriss.me/ddd-glossary/</link>
-      <pubDate>Tue, 14 Feb 2017 00:00:00 +01:00</pubDate>
+      <pubDate>Tue, 14 Feb 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/ddd-glossary/</guid>
       <description>&lt;div class=&quot;row&quot;&gt;
@@ -770,7 +770,7 @@ Why would we want to set a boundary rather than just reference any object needed
     <item>
       <title>Visual Studio Code Tasks</title>
       <link>http://devonburriss.me/vscode-tasks/</link>
-      <pubDate>Sat, 11 Feb 2017 00:00:00 +01:00</pubDate>
+      <pubDate>Sat, 11 Feb 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/vscode-tasks/</guid>
       <description>&lt;p&gt;I tend to try use &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt; for tasks and languages I don&apos;t currently use on a day to day basis. Over the last few weeks that has included Java and Delphi. Then today I was trying to launch my blog from VS Code and ran into an issue because Pretzel listens for a console key. The only fix I could find for this was to launch a new Powershell window. I thought this as good a time as any to post a few of these tasks.&lt;/p&gt;
@@ -901,7 +901,7 @@ This only compiles a single unit, not a complete project. Not needed for this to
     <item>
       <title>Deploying a Pretzel generated static site to Github Pages using Appveyor</title>
       <link>http://devonburriss.me/pretezel-blog-appveyor-deployment/</link>
-      <pubDate>Tue, 31 Jan 2017 00:00:00 +01:00</pubDate>
+      <pubDate>Tue, 31 Jan 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/pretezel-blog-appveyor-deployment/</guid>
       <description>&lt;h1&gt;Background&lt;/h1&gt;
@@ -996,7 +996,7 @@ Feel free to copy my blog at https://github.com/dburriss/dburriss.github.io&lt;/
     <item>
       <title>ASP.NET 5 Tips: UrlHelper</title>
       <link>http://devonburriss.me/asp-net-5-tips-urlhelper/</link>
-      <pubDate>Mon, 18 Jan 2016 00:00:00 +01:00</pubDate>
+      <pubDate>Mon, 18 Jan 2016 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/asp-net-5-tips-urlhelper/</guid>
       <description>&lt;blockquote&gt;
@@ -1038,7 +1038,7 @@ Please let me know below if you found this useful... or if things change :)&lt;/
     <item>
       <title>ASP.NET 5 Tips: TempData</title>
       <link>http://devonburriss.me/asp-net-5-tips-tempdata/</link>
-      <pubDate>Sun, 17 Jan 2016 00:00:00 +01:00</pubDate>
+      <pubDate>Sun, 17 Jan 2016 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/asp-net-5-tips-tempdata/</guid>
       <description>&lt;blockquote&gt;
@@ -1146,7 +1146,7 @@ public static T GetFromJson&lt;T&gt;(this ITempDataDictionary tempData, string k
     <item>
       <title>ASP.NET 5 CI from Git to Azure without Visual Studio</title>
       <link>http://devonburriss.me/aspnet-vsonline-ci/</link>
-      <pubDate>Thu, 10 Sep 2015 00:00:00 +02:00</pubDate>
+      <pubDate>Thu, 10 Sep 2015 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/aspnet-vsonline-ci/</guid>
       <description>&lt;blockquote&gt;
@@ -1216,7 +1216,7 @@ I hope this helps someone and please leave a comment below if you have any quest
     <item>
       <title>Installing Docker on Hyper-V</title>
       <link>http://devonburriss.me/installing-docker-on-hyper-v/</link>
-      <pubDate>Sat, 07 Mar 2015 00:00:00 +01:00</pubDate>
+      <pubDate>Sat, 07 Mar 2015 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/installing-docker-on-hyper-v/</guid>
       <description>&lt;p&gt;To be clear, currently Docker containers do not run on Windows. Microsoft is working with Docker to release something with feature parity but we will be lucky if we see that in 2015 (&lt;a href=&quot;http://weblogs.asp.net/scottgu/docker-and-microsoft-integrating-docker-with-windows-server-and-microsoft-azure&quot;&gt;Blogged by Scott Gu&lt;/a&gt;). So although there is a client for Windows for managing Docker containers, we will need an Ubuntu install. &lt;a href=&quot;http://devonburriss.me/installing-ubuntu-on-hyper-v/&quot;&gt;Installing Ubuntu on Hyper-V&lt;/a&gt;&lt;/p&gt;
@@ -1267,7 +1267,7 @@ Once it is running a terminal prompt will be available. Type &lt;code&gt;echo &a
     <item>
       <title>Installing Ubuntu on Hyper-V</title>
       <link>http://devonburriss.me/installing-ubuntu-on-hyper-v/</link>
-      <pubDate>Fri, 06 Mar 2015 00:00:00 +01:00</pubDate>
+      <pubDate>Fri, 06 Mar 2015 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/installing-ubuntu-on-hyper-v/</guid>
       <description>&lt;p&gt;The reason for this post is just to remind me of a few little things you need to do if you want to create a Generation 2 Ubuntu Virtual Machine on Hyper-V. When setting up the virtual machine in Hyper-V and you select Generation 2.&lt;/p&gt;
@@ -1316,7 +1316,7 @@ I managed to get past this by adding the following line at the bottom of /etc/de
     <item>
       <title>Testing the Untestable</title>
       <link>http://devonburriss.me/testing-the-untestable/</link>
-      <pubDate>Tue, 27 Jan 2015 00:00:00 +01:00</pubDate>
+      <pubDate>Tue, 27 Jan 2015 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/testing-the-untestable/</guid>
       <description>&lt;p&gt;If you have ever tried written unit tests for existing code you know it can be quite challenging. Not only is finding what to test difficult, the code usually just wont be testable. If it is code that you have written and you are at liberty to make some sweeping changes, then you can refactor toward testability. If not I still go through a technique at the end of this article for providing testable classes.&lt;/p&gt;
@@ -1497,7 +1497,7 @@ public void Scare_With2OutOf3ChildrenAsleep_ScareCalledOn2Children()
     <item>
       <title>Developer Quest II - Variables</title>
       <link>http://devonburriss.me/developer-quest-variables/</link>
-      <pubDate>Sun, 12 Oct 2014 00:00:00 +02:00</pubDate>
+      <pubDate>Sun, 12 Oct 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/developer-quest-variables/</guid>
       <description>&lt;blockquote&gt;
@@ -1667,7 +1667,7 @@ Hit &lt;strong&gt;F5&lt;/strong&gt; to run it.&lt;/p&gt;
     <item>
       <title>Developer Quest I - Getting started with C#</title>
       <link>http://devonburriss.me/developer-quest-getting-started/</link>
-      <pubDate>Thu, 09 Oct 2014 00:00:00 +02:00</pubDate>
+      <pubDate>Thu, 09 Oct 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/developer-quest-getting-started/</guid>
       <description>&lt;h2&gt;Getting Started&lt;/h2&gt;
@@ -1716,7 +1716,7 @@ If you have any questions or suggestions, please don&apos;t hesitate to leave a 
     <item>
       <title>Software development is like a piece of string</title>
       <link>http://devonburriss.me/software-development-is-like-a-piece-of-string/</link>
-      <pubDate>Fri, 03 Oct 2014 00:00:00 +02:00</pubDate>
+      <pubDate>Fri, 03 Oct 2014 00:00:00 +00:00</pubDate>
       <author></author>
       <guid>http://devonburriss.me/software-development-is-like-a-piece-of-string/</guid>
       <description>&lt;p&gt;Software like many things in life, is one of those things that the further down a path you go, the harder it is to back out. When I think of a software project I think of a piece of string. The longer the project, the longer the string.
@@ -1730,7 +1730,7 @@ If they don&apos;t force you to come back and undo them later, they slow the vel
     <item>
       <title>Testing your data repositories</title>
       <link>http://devonburriss.me/testing-your-data-repositories/</link>
-      <pubDate>Sun, 07 Sep 2014 00:00:00 +02:00</pubDate>
+      <pubDate>Sun, 07 Sep 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/testing-your-data-repositories/</guid>
       <description>&lt;blockquote&gt;
@@ -2006,7 +2006,7 @@ public class CommandQueue implements Command {
     <item>
       <title>Single Responsibility Principle</title>
       <link>http://devonburriss.me/single-respon/</link>
-      <pubDate>Fri, 05 Sep 2014 00:00:00 +02:00</pubDate>
+      <pubDate>Fri, 05 Sep 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/single-respon/</guid>
       <description>&lt;blockquote&gt;
@@ -2242,7 +2242,7 @@ public class OrderServiceAfter : IDisposable
     <item>
       <title>Estimation</title>
       <link>http://devonburriss.me/estimation/</link>
-      <pubDate>Thu, 07 Aug 2014 00:00:00 +02:00</pubDate>
+      <pubDate>Thu, 07 Aug 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/estimation/</guid>
       <description>&lt;p&gt;&lt;img src=&quot;/img/posts/2014/old-clock-800.jpg&quot; alt=&quot;retro clock&quot; /&gt;&lt;/p&gt;
@@ -2294,7 +2294,7 @@ This was for the most likely time. For the best case you get 1 day and worst cas
     <item>
       <title>The way we write code…and how we talk about it</title>
       <link>http://devonburriss.me/the-way-we-write-code/</link>
-      <pubDate>Fri, 18 Jul 2014 00:00:00 +02:00</pubDate>
+      <pubDate>Fri, 18 Jul 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/the-way-we-write-code/</guid>
       <description>&lt;blockquote&gt;

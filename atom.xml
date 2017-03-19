@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2017-03-19T19:40:22.6697603+01:00</updated>
+  <updated>2017-03-19T21:10:44.4434635+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -15,7 +15,7 @@
     <id>http://devonburriss.me/better-error-handling/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/better-error-handling/"/>
     <title>Better error handling</title>
-    <updated>2017-03-19T00:00:00+01:00</updated>
+    <updated>2017-03-19T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/better-error-handling/</uri>
@@ -225,7 +225,7 @@ return Valid(person)
     <id>http://devonburriss.me/honest-return-types/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/honest-return-types/"/>
     <title>Honest Return Types</title>
-    <updated>2017-03-14T00:00:00+01:00</updated>
+    <updated>2017-03-14T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/honest-return-types/</uri>
@@ -288,7 +288,7 @@ return Valid(person)
 &lt;/ul&gt;
 &lt;p&gt;So it is something but doesn&apos;t really fulfill either of my criteria very well. We are going to have to take a quick sidebar and talk about representing &lt;code&gt;null&lt;/code&gt;. &lt;code&gt;Result&amp;lt;T&amp;gt;&lt;/code&gt; doesn&apos;t tell us whether we should expect &lt;code&gt;T&lt;/code&gt; to be &lt;code&gt;null&lt;/code&gt; and whether that is valid.&lt;/p&gt;
 &lt;h2&gt;Functional side-bar&lt;/h2&gt;
-&lt;p&gt;In functional terms an elevated type is like a wrapper. It is a higher level of abtraction that allows us to work with the type in a predictable way. &lt;code&gt;IEnummerable&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Exception&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Either&amp;lt;L. R&amp;gt;&lt;/code&gt;, &lt;code&gt;Validation&amp;lt;T&amp;gt;&lt;/code&gt; are all examples of elevated types.&lt;/p&gt;
+&lt;p&gt;In functional terms an elevated type is like a wrapper. It is a higher level of abstraction that allows us to work with the type in a predictable way. &lt;code&gt;IEnummerable&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Exception&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;Either&amp;lt;L. R&amp;gt;&lt;/code&gt;, &lt;code&gt;Validation&amp;lt;T&amp;gt;&lt;/code&gt; are all examples of elevated types.&lt;/p&gt;
 &lt;h2&gt;Option: &lt;code&gt;null&lt;/code&gt; is None&lt;/h2&gt;
 &lt;p&gt;&amp;quot;It depends&amp;quot; is something you hear a lot in development, and wouldn&apos;t it be great if a type conveyed this? &lt;code&gt;Option&lt;/code&gt; or &lt;code&gt;Maybe&lt;/code&gt; are types often found in more functional languages that highlight the fact that a value could not be present. It allows you to say that there is &lt;code&gt;Some&lt;/code&gt; value, or the value is &lt;code&gt;None&lt;/code&gt;. This is probably easier to demonstrate...&lt;/p&gt;
 &lt;blockquote&gt;
@@ -407,7 +407,7 @@ Exceptional&amp;lt;Option&amp;lt;Person&amp;gt;&amp;gt; Get(Email email);
     <id>http://devonburriss.me/honest-arguments/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/honest-arguments/"/>
     <title>Honest Arguments</title>
-    <updated>2017-03-10T00:00:00+01:00</updated>
+    <updated>2017-03-10T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/honest-arguments/</uri>
@@ -501,7 +501,7 @@ string emailAsString = (string)email;
     <id>http://devonburriss.me/visual-studio-implicit-snippet/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/visual-studio-implicit-snippet/"/>
     <title>Visual Studio Implicit Snippet</title>
-    <updated>2017-03-08T00:00:00+01:00</updated>
+    <updated>2017-03-08T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/visual-studio-implicit-snippet/</uri>
@@ -636,7 +636,7 @@ string emailAsString = (string)email;
     <id>http://devonburriss.me/cake-build/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/cake-build/"/>
     <title>Building a Cake Script</title>
-    <updated>2017-03-04T00:00:00+01:00</updated>
+    <updated>2017-03-04T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/cake-build/</uri>
@@ -668,7 +668,7 @@ In the example above the &lt;code&gt;isBuildCommand&lt;/code&gt; is set to &lt;s
     <id>http://devonburriss.me/ddd-glossary/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/ddd-glossary/"/>
     <title>Domain-Driven Design Glossary</title>
-    <updated>2017-02-14T00:00:00+01:00</updated>
+    <updated>2017-02-14T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/ddd-glossary/</uri>
@@ -791,7 +791,7 @@ Why would we want to set a boundary rather than just reference any object needed
     <id>http://devonburriss.me/vscode-tasks/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/vscode-tasks/"/>
     <title>Visual Studio Code Tasks</title>
-    <updated>2017-02-11T00:00:00+01:00</updated>
+    <updated>2017-02-11T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/vscode-tasks/</uri>
@@ -925,7 +925,7 @@ This only compiles a single unit, not a complete project. Not needed for this to
     <id>http://devonburriss.me/pretezel-blog-appveyor-deployment/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/pretezel-blog-appveyor-deployment/"/>
     <title>Deploying a Pretzel generated static site to Github Pages using Appveyor</title>
-    <updated>2017-01-31T00:00:00+01:00</updated>
+    <updated>2017-01-31T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/pretezel-blog-appveyor-deployment/</uri>
@@ -1023,7 +1023,7 @@ Feel free to copy my blog at https://github.com/dburriss/dburriss.github.io&lt;/
     <id>http://devonburriss.me/asp-net-5-tips-urlhelper/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/asp-net-5-tips-urlhelper/"/>
     <title>ASP.NET 5 Tips: UrlHelper</title>
-    <updated>2016-01-18T00:00:00+01:00</updated>
+    <updated>2016-01-18T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/asp-net-5-tips-urlhelper/</uri>
@@ -1068,7 +1068,7 @@ Please let me know below if you found this useful... or if things change :)&lt;/
     <id>http://devonburriss.me/asp-net-5-tips-tempdata/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/asp-net-5-tips-tempdata/"/>
     <title>ASP.NET 5 Tips: TempData</title>
-    <updated>2016-01-17T00:00:00+01:00</updated>
+    <updated>2016-01-17T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/asp-net-5-tips-tempdata/</uri>
@@ -1179,7 +1179,7 @@ public static T GetFromJson&lt;T&gt;(this ITempDataDictionary tempData, string k
     <id>http://devonburriss.me/aspnet-vsonline-ci/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/aspnet-vsonline-ci/"/>
     <title>ASP.NET 5 CI from Git to Azure without Visual Studio</title>
-    <updated>2015-09-10T00:00:00+02:00</updated>
+    <updated>2015-09-10T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/aspnet-vsonline-ci/</uri>
@@ -1252,7 +1252,7 @@ I hope this helps someone and please leave a comment below if you have any quest
     <id>http://devonburriss.me/installing-docker-on-hyper-v/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/installing-docker-on-hyper-v/"/>
     <title>Installing Docker on Hyper-V</title>
-    <updated>2015-03-07T00:00:00+01:00</updated>
+    <updated>2015-03-07T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/installing-docker-on-hyper-v/</uri>
@@ -1306,7 +1306,7 @@ Once it is running a terminal prompt will be available. Type &lt;code&gt;echo &a
     <id>http://devonburriss.me/installing-ubuntu-on-hyper-v/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/installing-ubuntu-on-hyper-v/"/>
     <title>Installing Ubuntu on Hyper-V</title>
-    <updated>2015-03-06T00:00:00+01:00</updated>
+    <updated>2015-03-06T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/installing-ubuntu-on-hyper-v/</uri>
@@ -1358,7 +1358,7 @@ I managed to get past this by adding the following line at the bottom of /etc/de
     <id>http://devonburriss.me/testing-the-untestable/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/testing-the-untestable/"/>
     <title>Testing the Untestable</title>
-    <updated>2015-01-27T00:00:00+01:00</updated>
+    <updated>2015-01-27T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/testing-the-untestable/</uri>
@@ -1542,7 +1542,7 @@ public void Scare_With2OutOf3ChildrenAsleep_ScareCalledOn2Children()
     <id>http://devonburriss.me/developer-quest-variables/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/developer-quest-variables/"/>
     <title>Developer Quest II - Variables</title>
-    <updated>2014-10-12T00:00:00+02:00</updated>
+    <updated>2014-10-12T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/developer-quest-variables/</uri>
@@ -1715,7 +1715,7 @@ Hit &lt;strong&gt;F5&lt;/strong&gt; to run it.&lt;/p&gt;
     <id>http://devonburriss.me/developer-quest-getting-started/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/developer-quest-getting-started/"/>
     <title>Developer Quest I - Getting started with C#</title>
-    <updated>2014-10-09T00:00:00+02:00</updated>
+    <updated>2014-10-09T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/developer-quest-getting-started/</uri>
@@ -1767,7 +1767,7 @@ If you have any questions or suggestions, please don&apos;t hesitate to leave a 
     <id>http://devonburriss.me/software-development-is-like-a-piece-of-string/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/software-development-is-like-a-piece-of-string/"/>
     <title>Software development is like a piece of string</title>
-    <updated>2014-10-03T00:00:00+02:00</updated>
+    <updated>2014-10-03T00:00:00+00:00</updated>
     <author>
       <name></name>
       <uri>http://devonburriss.me/software-development-is-like-a-piece-of-string/</uri>
@@ -1784,7 +1784,7 @@ If they don&apos;t force you to come back and undo them later, they slow the vel
     <id>http://devonburriss.me/testing-your-data-repositories/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/testing-your-data-repositories/"/>
     <title>Testing your data repositories</title>
-    <updated>2014-09-07T00:00:00+02:00</updated>
+    <updated>2014-09-07T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/testing-your-data-repositories/</uri>
@@ -2063,7 +2063,7 @@ public class CommandQueue implements Command {
     <id>http://devonburriss.me/single-respon/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/single-respon/"/>
     <title>Single Responsibility Principle</title>
-    <updated>2014-09-05T00:00:00+02:00</updated>
+    <updated>2014-09-05T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/single-respon/</uri>
@@ -2302,7 +2302,7 @@ public class OrderServiceAfter : IDisposable
     <id>http://devonburriss.me/estimation/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/estimation/"/>
     <title>Estimation</title>
-    <updated>2014-08-07T00:00:00+02:00</updated>
+    <updated>2014-08-07T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/estimation/</uri>
@@ -2357,7 +2357,7 @@ This was for the most likely time. For the best case you get 1 day and worst cas
     <id>http://devonburriss.me/the-way-we-write-code/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/the-way-we-write-code/"/>
     <title>The way we write code…and how we talk about it</title>
-    <updated>2014-07-18T00:00:00+02:00</updated>
+    <updated>2014-07-18T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/the-way-we-write-code/</uri>
