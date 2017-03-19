@@ -82,7 +82,7 @@ So it is something but doesn't really fulfill either of my criteria very well. W
 
 ## Functional side-bar
 
-In functional terms an elevated type is like a wrapper. It is a higher level of abtraction that allows us to work with the type in a predictable way. `IEnummerable<T>`, `Option<T>`, `Exception<T>`, `Either<L. R>`, `Validation<T>` are all examples of elevated types.
+In functional terms an elevated type is like a wrapper. It is a higher level of abstraction that allows us to work with the type in a predictable way. `IEnummerable<T>`, `Option<T>`, `Exception<T>`, `Either<L. R>`, `Validation<T>` are all examples of elevated types.
 
 ## Option: `null` is None
 
