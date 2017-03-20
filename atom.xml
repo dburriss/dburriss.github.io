@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2017-03-20T09:56:23.3207674+00:00</updated>
+  <updated>2017-03-20T09:58:35.1553581+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -27,7 +27,6 @@ Currently I have a team of 10 and I am experimenting with ways of tackling these
 &lt;h2&gt;Cells&lt;/h2&gt;
 &lt;p&gt;The team is broken up into 2s. These 2 developers are responsible for keeping eachother abreast of their own progress. This is more than just an informal pairing. If possible they work in related areas. They are preferred for peer review and pair-programming. Most notably they are responsible for reporting progress for each other at the standup. See next point for details...&lt;/p&gt;
 &lt;h2&gt;Developers are chickens too&lt;/h2&gt;
-&lt;p&gt;Cell members alternate between being &lt;a href=&quot;https://en.wikipedia.org/wiki/The_Chicken_and_the_Pig&quot;&gt;chickens and pigs&lt;/a&gt;. At a standup only the pigs report on progress but will do it for the fellow cell chicken. This keeps everyone informed but the number of active participants smaller. Not only that but the nominated pig needs to at least understand what the chicken did well enough to explain it. Hat-tip to the Feynman Technique ;)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;A Pig and a Chicken are walking down the road.&lt;br /&gt;
 The Chicken says: &amp;quot;Hey Pig, I was thinking we should open a restaurant!&amp;quot;&lt;br /&gt;
@@ -35,6 +34,7 @@ Pig replies: &amp;quot;Hm, maybe, what would we call it?&amp;quot;&lt;br /&gt;
 The Chicken responds: &amp;quot;How about &apos;ham-n-eggs&apos;?&amp;quot;&lt;br /&gt;
 The Pig thinks for a moment and says: &amp;quot;No thanks. I&apos;d be committed, but you&apos;d only be involved.&amp;quot;&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;Cell members alternate between being &lt;a href=&quot;https://en.wikipedia.org/wiki/The_Chicken_and_the_Pig&quot;&gt;chickens and pigs&lt;/a&gt;. At a standup only the pigs report on progress but will do it for the fellow cell chicken. This keeps everyone informed but the number of active participants smaller. Not only that but the nominated pig needs to at least understand what the chicken did well enough to explain it. Hat-tip to the Feynman Technique ;)&lt;/p&gt;
 &lt;h2&gt;Present the plan&lt;/h2&gt;
 &lt;p&gt;Before implementing a complete story developers are encouraged to discuss how they will be implementing a given story before implementation is underway (or very far). This gives others a chance to weigh in on the implementation details and bubble up any hidden knowledge or pitfalls. I suggest a regular prompt for this, possibly straight after standup.&lt;/p&gt;
 &lt;h2&gt;Technical demos&lt;/h2&gt;
