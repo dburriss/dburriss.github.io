@@ -13,14 +13,13 @@ published: true
 
 In my [previous post](/honest-return-types) I discussed handling `null` and `Exception` in the return type. In this post I will discuss returning logic errors.
 
-
 # Handling errors
 
 There are times when valid errors can occur but are not exceptional. Validation is a common example of this and where a validation result is often the go to type. Wouldn't it be nice if we could apply the same pattern as with exceptions?
 
 ## Either: Errors or no errors
 
-Functional languages define a type with the following form: `Either<Left, Right>`. `Left` and `Right` can be anything but in the case of error handling `Left` is the unhappy path and `Right` is the happy path. Let's assume we have an `Error` type for representing errors that occurred, then using `Either` to represent error handling could look something like this: `Either<IEnumerable<string>, T>`.
+Functional languages define a type with the following form: `Either<Left, Right>`. `Left` and `Right` can be anything but in the case of error handling `Left` is the unhappy path and `Right` is the happy path. Let's assume we have an `Error` type for representing errors that occurred, then using `Either` to represent error handling could look something like this: `Either<IEnumerable<Error>, T>`. `Error` has an implicit conversion to `string` so let's work with `string` for demonstration purposes below.
 
 ```csharp
 Func<int, int, Either<IEnumerable<string>, int>> divide =
@@ -37,7 +36,7 @@ divideByZeroResult.Match(
     Left: errors => errors.ToList().ForEach(x => Console.WriteLine(x)),
     Right: i => Console.WriteLine($"Answer is {i}")
 );
-//Cannot divided by zero.
+//Cannot divide by zero.
 
 Either<IEnumerable<string>, int> twoResult = divide(4, 2);
 twoResult.Match(
@@ -99,8 +98,7 @@ Sorry that was a Lord of the Rings reference. My 2nd name is legally Aragorn (fr
 ```csharp
 Func<string, Option<int>> ifEvenInt = (s) =>
 {
-    int i = 0;
-    if (int.TryParse(s, out i))
+    if (int.TryParse(s, out int i))
     {
         return (i % 2 == 0) ? Some(i) : None;
     }
@@ -143,6 +141,8 @@ optInt.Match(
 Now that we can get to the elevated world, do what we need to do and then return back through the cupboard, let us get back to the business at hand. Validation!
 
 ## Validation: Your result (might have errors)
+
+> You can find the `Validation` type in [HonestTypes.Returns](https://github.com/dburriss/HonestTypes#return-types) package
 
 So let's define a type `Validation<T>` that is `Either<IEnumerable<Error>, T>`? That would remove some of the verbosity of the return type as well as give a clearer semantic to the type name.
 
