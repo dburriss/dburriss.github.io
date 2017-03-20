@@ -3,7 +3,9 @@ layout: page
 ---
 {% assign title = "Categories" %}
 <div>
-  <h1>{{page.category}}</h1>
+  <div class="clearfix">
+        <h1 class="pull-right">&#47;{{page.category}}&#47; &nbsp;</h1>
+    </div>
   {% for t in site.categories %}
     {% if t.Name == page.category %}
       {% for post in t.posts reverse %}

@@ -3,7 +3,9 @@ layout: page
 ---
 
 <div>
-  <h1>{{page.tag}}</h1>
+    <div class="clearfix">
+        <h1 class="pull-right">&#47;{{page.tag}}&#47; &nbsp;</h1>
+    </div>
   {% for t in site.tags %}
     {% if t.Name == page.tag %}
       {% for post in t.posts reverse %}
