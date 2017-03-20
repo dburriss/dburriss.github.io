@@ -6,8 +6,8 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Mon, 20 Mar 2017 08:22:33 +00:00</pubDate>
-    <lastBuildDate>Mon, 20 Mar 2017 08:22:33 +00:00</lastBuildDate>
+    <pubDate>Mon, 20 Mar 2017 09:26:49 +00:00</pubDate>
+    <lastBuildDate>Mon, 20 Mar 2017 09:26:49 +00:00</lastBuildDate>
     
     <item>
       <title>Big Agile Teams</title>
@@ -64,7 +64,7 @@ Currently I have a team of 10 and I am experimenting with ways of tackling these
 &lt;h1&gt;Handling errors&lt;/h1&gt;
 &lt;p&gt;There are times when valid errors can occur but are not exceptional. Validation is a common example of this and where a validation result is often the go to type. Wouldn&apos;t it be nice if we could apply the same pattern as with exceptions?&lt;/p&gt;
 &lt;h2&gt;Either: Errors or no errors&lt;/h2&gt;
-&lt;p&gt;Functional languages define a type with the following form: &lt;code&gt;Either&amp;lt;Left, Right&amp;gt;&lt;/code&gt;. &lt;code&gt;Left&lt;/code&gt; and &lt;code&gt;Right&lt;/code&gt; can be anything but in the case of error handling &lt;code&gt;Left&lt;/code&gt; is the unhappy path and &lt;code&gt;Right&lt;/code&gt; is the happy path. Let&apos;s assume we have an &lt;code&gt;Error&lt;/code&gt; type for representing errors that occurred, then using &lt;code&gt;Either&lt;/code&gt; to represent error handling could look something like this: &lt;code&gt;Either&amp;lt;IEnumerable&amp;lt;string&amp;gt;, T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Functional languages define a type with the following form: &lt;code&gt;Either&amp;lt;Left, Right&amp;gt;&lt;/code&gt;. &lt;code&gt;Left&lt;/code&gt; and &lt;code&gt;Right&lt;/code&gt; can be anything but in the case of error handling &lt;code&gt;Left&lt;/code&gt; is the unhappy path and &lt;code&gt;Right&lt;/code&gt; is the happy path. Let&apos;s assume we have an &lt;code&gt;Error&lt;/code&gt; type for representing errors that occurred, then using &lt;code&gt;Either&lt;/code&gt; to represent error handling could look something like this: &lt;code&gt;Either&amp;lt;IEnumerable&amp;lt;Error&amp;gt;, T&amp;gt;&lt;/code&gt;. &lt;code&gt;Error&lt;/code&gt; has an implicit conversion to &lt;code&gt;string&lt;/code&gt; so let&apos;s work with &lt;code&gt;string&lt;/code&gt; for demonstration purposes below.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;Func&amp;lt;int, int, Either&amp;lt;IEnumerable&amp;lt;string&amp;gt;, int&amp;gt;&amp;gt; divide =
     (i, d) =&amp;gt;
     {
@@ -79,7 +79,7 @@ divideByZeroResult.Match(
     Left: errors =&amp;gt; errors.ToList().ForEach(x =&amp;gt; Console.WriteLine(x)),
     Right: i =&amp;gt; Console.WriteLine($&amp;quot;Answer is {i}&amp;quot;)
 );
-//Cannot divided by zero.
+//Cannot divide by zero.
 
 Either&amp;lt;IEnumerable&amp;lt;string&amp;gt;, int&amp;gt; twoResult = divide(4, 2);
 twoResult.Match(
@@ -123,8 +123,7 @@ Option&amp;lt;string&amp;gt; optString = optInt.Map(intToString);
 &lt;em&gt;Bind&lt;/em&gt; allows you to compose (bind) functions in an elevated world. It is analogous to &lt;code&gt;SelectMany&lt;/code&gt; from LINQ fame.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;Func&amp;lt;string, Option&amp;lt;int&amp;gt;&amp;gt; ifEvenInt = (s) =&amp;gt;
 {
-    int i = 0;
-    if (int.TryParse(s, out i))
+    if (int.TryParse(s, out int i))
     {
         return (i % 2 == 0) ? Some(i) : None;
     }
@@ -160,6 +159,9 @@ optInt.Match(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now that we can get to the elevated world, do what we need to do and then return back through the cupboard, let us get back to the business at hand. Validation!&lt;/p&gt;
 &lt;h2&gt;Validation: Your result (might have errors)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can find the &lt;code&gt;Validation&lt;/code&gt; type in &lt;a href=&quot;https://github.com/dburriss/HonestTypes#return-types&quot;&gt;HonestTypes.Returns&lt;/a&gt; package&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;So let&apos;s define a type &lt;code&gt;Validation&amp;lt;T&amp;gt;&lt;/code&gt; that is &lt;code&gt;Either&amp;lt;IEnumerable&amp;lt;Error&amp;gt;, T&amp;gt;&lt;/code&gt;? That would remove some of the verbosity of the return type as well as give a clearer semantic to the type name.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;using static F;
 

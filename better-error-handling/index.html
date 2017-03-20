@@ -160,7 +160,7 @@
 <h1>Handling errors</h1>
 <p>There are times when valid errors can occur but are not exceptional. Validation is a common example of this and where a validation result is often the go to type. Wouldn't it be nice if we could apply the same pattern as with exceptions?</p>
 <h2>Either: Errors or no errors</h2>
-<p>Functional languages define a type with the following form: <code>Either&lt;Left, Right&gt;</code>. <code>Left</code> and <code>Right</code> can be anything but in the case of error handling <code>Left</code> is the unhappy path and <code>Right</code> is the happy path. Let's assume we have an <code>Error</code> type for representing errors that occurred, then using <code>Either</code> to represent error handling could look something like this: <code>Either&lt;IEnumerable&lt;string&gt;, T&gt;</code>.</p>
+<p>Functional languages define a type with the following form: <code>Either&lt;Left, Right&gt;</code>. <code>Left</code> and <code>Right</code> can be anything but in the case of error handling <code>Left</code> is the unhappy path and <code>Right</code> is the happy path. Let's assume we have an <code>Error</code> type for representing errors that occurred, then using <code>Either</code> to represent error handling could look something like this: <code>Either&lt;IEnumerable&lt;Error&gt;, T&gt;</code>. <code>Error</code> has an implicit conversion to <code>string</code> so let's work with <code>string</code> for demonstration purposes below.</p>
 <pre><code class="language-csharp">Func&lt;int, int, Either&lt;IEnumerable&lt;string&gt;, int&gt;&gt; divide =
     (i, d) =&gt;
     {
@@ -175,7 +175,7 @@ divideByZeroResult.Match(
     Left: errors =&gt; errors.ToList().ForEach(x =&gt; Console.WriteLine(x)),
     Right: i =&gt; Console.WriteLine($&quot;Answer is {i}&quot;)
 );
-//Cannot divided by zero.
+//Cannot divide by zero.
 
 Either&lt;IEnumerable&lt;string&gt;, int&gt; twoResult = divide(4, 2);
 twoResult.Match(
@@ -219,8 +219,7 @@ Option&lt;string&gt; optString = optInt.Map(intToString);
 <em>Bind</em> allows you to compose (bind) functions in an elevated world. It is analogous to <code>SelectMany</code> from LINQ fame.</p>
 <pre><code class="language-csharp">Func&lt;string, Option&lt;int&gt;&gt; ifEvenInt = (s) =&gt;
 {
-    int i = 0;
-    if (int.TryParse(s, out i))
+    if (int.TryParse(s, out int i))
     {
         return (i % 2 == 0) ? Some(i) : None;
     }
@@ -256,6 +255,9 @@ optInt.Match(
 </code></pre>
 <p>Now that we can get to the elevated world, do what we need to do and then return back through the cupboard, let us get back to the business at hand. Validation!</p>
 <h2>Validation: Your result (might have errors)</h2>
+<blockquote>
+<p>You can find the <code>Validation</code> type in <a href="https://github.com/dburriss/HonestTypes#return-types">HonestTypes.Returns</a> package</p>
+</blockquote>
 <p>So let's define a type <code>Validation&lt;T&gt;</code> that is <code>Either&lt;IEnumerable&lt;Error&gt;, T&gt;</code>? That would remove some of the verbosity of the return type as well as give a clearer semantic to the type name.</p>
 <pre><code class="language-csharp">using static F;
 
