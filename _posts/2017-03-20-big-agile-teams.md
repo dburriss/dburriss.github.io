@@ -26,10 +26,10 @@ The team is broken up into 2s. These 2 developers are responsible for keeping ea
 
 Cell members alternate between being [chickens and pigs](https://en.wikipedia.org/wiki/The_Chicken_and_the_Pig). At a standup only the pigs report on progress but will do it for the fellow cell chicken. This keeps everyone informed but the number of active participants smaller. Not only that but the nominated pig needs to at least understand what the chicken did well enough to explain it. Hat-tip to the Feynman Technique ;)
 
-> A Pig and a Chicken are walking down the road.
-> The Chicken says: "Hey Pig, I was thinking we should open a restaurant!"
-> Pig replies: "Hm, maybe, what would we call it?"
-> The Chicken responds: "How about 'ham-n-eggs'?"
+> A Pig and a Chicken are walking down the road.  
+> The Chicken says: "Hey Pig, I was thinking we should open a restaurant!"  
+> Pig replies: "Hm, maybe, what would we call it?"  
+> The Chicken responds: "How about 'ham-n-eggs'?"  
 > The Pig thinks for a moment and says: "No thanks. I'd be committed, but you'd only be involved."
 
 ## Present the plan
