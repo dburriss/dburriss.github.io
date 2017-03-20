@@ -4,7 +4,7 @@ title: "Estimation"
 subtitle: "Tackling the uncertainty of software estimation."
 author: "Devon Burriss"
 category: Project Management
-tags: [Project Management]
+tags: [Agile]
 comments: true
 permalink: estimation
 excerpt_separator: <!--more-->

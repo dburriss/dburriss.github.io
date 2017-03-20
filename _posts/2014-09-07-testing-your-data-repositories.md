@@ -4,7 +4,7 @@ title: "Testing your data repositories"
 subtitle: "Avoiding dependency on a data layer."
 author: "Devon Burriss"
 category: Programming
-tags: [Programming, SOLID, OOP, Java]
+tags: [Programming, SOLID, OOP, Java, TDD]
 comments: true
 permalink: testing-your-data-repositories
 published: true
