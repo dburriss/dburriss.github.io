@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <meta name="description" content="Tackling the uncertainty of software estimation.">
-    <title>Estimation - Tackling the uncertainty of software estimation.</title>
+    <meta name="description" content="Ideas on dealing with larger teams in an agile way">
+    <title>Big Agile Teams - Ideas on dealing with larger teams in an agile way</title>
 
 
-    <link rel="canonical" href="http:/devonburriss.me/estimation/">
+    <link rel="canonical" href="http:/devonburriss.me/big-agile-teams/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -128,11 +128,11 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>Estimation</h1>
+                        <h1>Big Agile Teams</h1>
                         
-                        <h2 class="subheading">Tackling the uncertainty of software estimation.</h2>
+                        <h2 class="subheading">Ideas on dealing with larger teams in an agile way</h2>
                         
-                        <span class="meta">Posted by Devon Burriss on August 07, 2014</span>
+                        <span class="meta">Posted by Devon Burriss on March 20, 2017</span>
                         
                             <hr />
                             
@@ -152,63 +152,33 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p><img src="/img/posts/2014/old-clock-800.jpg" alt="retro clock" /></p>
-<blockquote>
-<p>Tackling the uncertainty of software estimation.</p>
-</blockquote>
-<p>Most developers are horrible at estimation. Period. There are numerous reasons for this. Some of the responsibility falls outside of a developers control but there are still steps that a developer is obligated to take.</p>
-<!--more-->
-<h2>Under-estimating the complexity</h2>
-<p>Without actually writing the code a developer can never know every nuance of the problem and possible corresponding solutions. Not to mention the problems spawned from the chosen solutions. This gets better with experience but is not an exact science. Even with UML diagrams and use-cases, the devil is in the details. The best course of action for a developer here is to break the the problem down into such small subtasks that the possible problems start to expose themselves but even this is not a guarantee. Not to mention the time that this actually takes. It falls to management to ensure that developers have the time they need to make these estimates, as well as all the information to do so. It falls to the developers to insist on both of these. Even so. These are only estimates and should be seen as such and not taken by any stake-holders as commitments, unless the developer has committed to these times under no duress.</p>
-<h3>Solution: Break down tasks</h3>
-<p>As mentioned. Breaking down the tasks into easier to estimate chunks will go a long way in refining the schedule, as well as revealing hidden complexity.</p>
-<h2>Over-estimating ability</h2>
-<p>Often a problem seems simple and as a developer you would like to think you could implement a solution in minimal time. This often happens when problems emerge similar to ones we have solved before. Resist the urge to commit. Find out all the information. Break it down. Plan. Estimate. Do not let your ego get you into a position where you are sacrificing your health, family, and friends for a deadline you cannot realistically meet. And DO NOT sacrifice quality. There are no true shortcuts. What you gain in the short term you will lose over the length of the project with interest.</p>
-<h3>Solution: Planning Poker</h3>
-<p>Planning Poker (http://en.wikipedia.org/wiki/Planning_poker) is an estimation technique. The basics are such:
-Get some developers into a room.
-Discuss a task that needs implementation.
-All developers write down an estimate or hold up fingers at the same time with their estimate.
-If there are huge discrepancies the task is discussed more. Discussions and estimations are repeated until all developer estimations are similar.</p>
-<p>See: <a href="http://www.mountaingoatsoftware.com/agile/planning-poker">http://www.mountaingoatsoftware.com/agile/planning-poker</a></p>
-<h2>Handed down deadlines</h2>
-<p>Sometimes deadlines are given to you from above. As an employee you will feel pressured to accept these deadlines. It is your choice whether you accept them. In The Clean Coder, “Uncle Bob” talks about the responsibilities of developers and managers. CEOs are trying to strategically grow a business, marketing is trying to win customers, project managers are trying to meet deadlines, and as a developer you are tasked with developing a quality product for the customer. By agreeing to unrealistic deadlines, you endanger the project. The earlier problems are identified, the more chance that catastrophe can be avoided.</p>
-<h3>Solution: Team discussion of workable solution</h3>
-<p>If a deadline is immovable, the team (including the customer) need to work together toward a realistic goal. Features can be cut, overtime can be worked (within reason), and additional resources can be allocated (to a point) but the end result should always be a quality solution. Cutting corners just slows down development in the long run. A project becomes a mess. Productivity grinds to a halt. It is a chore to work on and eventually developers leave the company rather than work on the project.</p>
-<h2>PERT</h2>
-<p>[Pert] (http://en.wikipedia.org/wiki/Program_evaluation_and_review_technique_(PERT)) is an estimation technique developed by the U.S Navy for estimating projects. Combining it with planning poker should give a reasonable idea of when you can expect a task to be done. It works as follows.
-A developer will give 3 estimates for a work item (use with Planning Poker).</p>
-<p><strong>O:</strong> Optimistic estimate – this is the time to complete a task if the stars align and unicorns come down and help complete the code. In other words, the best case scenario.</p>
-<p><strong>P:</strong> Pessimistic estimate – this is the time to complete a task when you have invoked the wrath of the programming gods. So. The worst case.</p>
-<p><strong>M:</strong> Most likely estimate – this is the time that a developer usually gives.</p>
-<p>Plugging these values in we can get the time estimate for a task.</p>
-<p><strong>T = (O + 4M + P) ÷ 6</strong></p>
-<p>Banking on this value would be dangerous though. Some buffer time is usually added to estimates. Rather than just thumb-sucking a buffer time, lets calculate the variance and add that to the estimate.</p>
-<p><strong>V = (P – O) ÷ 6</strong></p>
-<p><strong>Estimate = T + V</strong></p>
-<h3>Example</h3>
-<p>Ok. So lets say that your team is asked to add a Quick Contact widget to an existing website. You get 3 developers in the room and ask for times.</p>
-<p>You get the following answers. 1, 3, and 4. In days.</p>
-<p>The 1 came from the developer who is going to be doing the work. 3 from the developer who did most of the existing widgets. 4 from the team lead. Due to the large discrepancies, discussions ensue. It turns out the widget creation process is non trivial but some functionality is inherited from existing widgets. So another round of planning poker gives the following values 3, 3 , and 4. You decide to go with 3.
-This was for the most likely time. For the best case you get 1 day and worst case is 7 days.
-<strong>T</strong> = <em>(O + 4M + P) ÷ 6</em> = <em>(1 + 12 + 7) ÷ 6 = 3.3 V</em> = <em>(P – O) ÷ 6</em> = <em>(7 – 1) ÷ 6</em> = <strong>1</strong></p>
-<p><strong>Estimate = T + V = 4.3</strong></p>
-<p>So let's schedule this for a 4.5 days.</p>
-<h3>Conclusion</h3>
-<p>So knowing our failings, and bearing in mind the goals of management, we can mitigate potential disaster by using the techniques outlined here. Estimation is never going to be an exact science but we can go a long way in making our estimates more accurate. Hope this helps. Good luck with your next project.</p>
+				<p>As a team grows it becomes more difficult to apply some agile practices effectively. SCRUM meetings like standup and retrospectives become drawn out, the number of stories becomes hard to manage, and the communication within the team can easily break down.<br />
+Currently I have a team of 10 and I am experimenting with ways of tackling these issues. Hopefully this will turn into a loose series of posts surrounding my experiences with a larger team. I won't go into the why suffice to say it is a project rather than a product but we don't want to go waterfall.</p>
+<h1>Big team tactics</h1>
+<p>Most of these tactics focus on communication of what the team is working on but there are a few process items. Some of these tactics are taken from previous smaller teams and are by no means only for large teams. By the time you have 9+ people social bonding, communication, and working memory are all suffering so these need to be focused on.</p>
+<h2>Cells</h2>
+<p>The team is broken up into 2s. These 2 developers are responsible for keeping eachother abreast of their own progress. This is more than just an informal pairing. If possible they work in related areas. They are preferred for peer review and pair-programming. Most notably they are responsible for reporting progress for each other at the standup. See next point for details...</p>
+<h2>Developers are chickens too</h2>
+<p>Cell members alternate between being <a href="https://en.wikipedia.org/wiki/The_Chicken_and_the_Pig">chickens and pigs</a>. At a standup only the pigs report on progress but will do it for the fellow cell chicken. This keeps everyone informed but the number of active participants smaller. Not only that but the nominated pig needs to at least understand what the chicken did well enough to explain it. Hat-tip to the Feynman Technique ;)</p>
+<h2>Present the plan</h2>
+<p>Before implementing a complete story developers are encouraged to discuss how they will be implementing a given story before implementation is underway (or very far). This gives others a chance to weigh in on the implementation details and bubble up any hidden knowledge or pitfalls. I suggest a regular prompt for this, possibly straight after standup.</p>
+<h2>Technical demos</h2>
+<p>This is not a stakeholder demo. Plan regular (2 weeks seems good) demos where the developers can deep-dive on what they have been working on with the others in a bit more of a formal way. One or two slides, some live demos of code and functionality, and a Q&amp;A afterward.</p>
+<h2>Dedicated learning time</h2>
+<p>It is easy for people to get lost in the group and fall behind and as a team lead it is difficult to spend time with everyone. Dedicating a regular afternoon to discussing new technologies or methodologies is good for moral as well as raising the skills of the team.</p>
+<h2>Socialize</h2>
+<p>Getting the team to bond is even more important when it is bigger. Lunching together, non-work activities, or even retrospectives can help bring together. A focus on sharing feelings at points in the retrospective can help others understand how others they are not close to in the team are feeling.</p>
+<h2>Conclusion</h2>
+<p>I hope some of these suggestions are helpful and if you have any of your own please let me know in the comments below. These are all a work in progress and I will hopefully report back in a later post.</p>
 
                 <hr>
 
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/the-way-we-write-code/" data-toggle="tooltip" data-placement="top" title="The way we write code…and how we talk about it">&larr; Previous Post</a>
+                        <a href="/check-in-check-out/" data-toggle="tooltip" data-placement="top" title="Check-in and Check-out">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/single-respon/" data-toggle="tooltip" data-placement="top" title="Single Responsibility Principle">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

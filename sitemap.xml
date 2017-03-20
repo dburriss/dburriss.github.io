@@ -7,6 +7,20 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>http://domainbig-agile-teams/</loc>
+    <lastmod>2017-03-20T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
+    <loc>http://domaincheck-in-check-out/</loc>
+    <lastmod>2017-03-20T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>http://domainbetter-error-handling/</loc>
     <lastmod>2017-03-19T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -203,6 +217,8 @@
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
+	
+  
 	
   
 	
@@ -540,14 +556,6 @@
 	
 	<url>
 		<loc>http://domain/tag/programming/index.html</loc>
-		<changefreq>daily</changefreq>
-		<priority>1.00</priority>
-	</url>
-	
-  
-	
-	<url>
-		<loc>http://domain/tag/project-management/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
