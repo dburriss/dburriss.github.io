@@ -6,8 +6,8 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Mon, 20 Mar 2017 06:59:05 +00:00</pubDate>
-    <lastBuildDate>Mon, 20 Mar 2017 06:59:05 +00:00</lastBuildDate>
+    <pubDate>Mon, 20 Mar 2017 08:22:33 +00:00</pubDate>
+    <lastBuildDate>Mon, 20 Mar 2017 08:22:33 +00:00</lastBuildDate>
     
     <item>
       <title>Big Agile Teams</title>
@@ -46,6 +46,7 @@ Currently I have a team of 10 and I am experimenting with ways of tackling these
 &lt;p&gt;if you don&apos;t measure something how can you know if it improving? It is a staple of development so why shouldn&apos;t we apply it to our meetings as well. It is really easy.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;At the start of the retrospective ask everyone to write down a single word (or phrase) that sums up there feeling about how things are going&lt;/li&gt;
+&lt;li&gt;Ask if anyone would like to share what they wrote down (can be more than one or even everybody)&lt;/li&gt;
 &lt;li&gt;Do your retrospective&lt;/li&gt;
 &lt;li&gt;Repeat step 1 at the end of the retrospective and see if anything changed&lt;/li&gt;
 &lt;/ol&gt;

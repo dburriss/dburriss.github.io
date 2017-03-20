@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2017-03-20T06:59:05.9200624+00:00</updated>
+  <updated>2017-03-20T08:22:33.1917467+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -54,6 +54,7 @@ Currently I have a team of 10 and I am experimenting with ways of tackling these
 &lt;p&gt;if you don&apos;t measure something how can you know if it improving? It is a staple of development so why shouldn&apos;t we apply it to our meetings as well. It is really easy.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;At the start of the retrospective ask everyone to write down a single word (or phrase) that sums up there feeling about how things are going&lt;/li&gt;
+&lt;li&gt;Ask if anyone would like to share what they wrote down (can be more than one or even everybody)&lt;/li&gt;
 &lt;li&gt;Do your retrospective&lt;/li&gt;
 &lt;li&gt;Repeat step 1 at the end of the retrospective and see if anything changed&lt;/li&gt;
 &lt;/ol&gt;
