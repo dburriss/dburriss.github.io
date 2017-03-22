@@ -6,8 +6,8 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Wed, 22 Mar 2017 01:22:18 +00:00</pubDate>
-    <lastBuildDate>Wed, 22 Mar 2017 01:22:18 +00:00</lastBuildDate>
+    <pubDate>Wed, 22 Mar 2017 01:29:26 +00:00</pubDate>
+    <lastBuildDate>Wed, 22 Mar 2017 01:29:26 +00:00</lastBuildDate>
     
     <item>
       <title>Agile is a Characteristic</title>
@@ -16,16 +16,16 @@
       <author>Devon Burriss</author>
       <guid>http://devonburriss.me/agile-is-a-characteristic/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html&quot;&gt;Agile is dead&lt;/a&gt;
-I see more and more posts and talks claiming that Agile is dead. Broad statements like this are obviously just for effect but even if just click-bait, the sentiment is coming from somewhere. In this post I dig into reasons to say this and why we can still have hope.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html&quot;&gt;Agile is dead&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;I see more and more posts and talks claiming that Agile is dead. Broad statements like this are obviously just for effect but even if just click-bait, the sentiment is coming from somewhere. In this post I dig into reasons to say this and why we can still have hope.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h1&gt;Agile is dead&lt;/h1&gt;
 &lt;p&gt;Let&apos;s take a look at the ways it dies and why it can never truly die.&lt;/p&gt;
 &lt;h2&gt;Still-born&lt;/h2&gt;
-&lt;p&gt;So sometimes agile was never alive at a company anyway. I have walked into companies where they declare to me &amp;quot;We tried Agile and it doesn&apos;t work&amp;quot;, or just &amp;quot;Agile sucks!&amp;quot;. When you drill into what they actually did though, agility was never there. They had no process, and no way of improving the process. They knew they needed something. So they slapped the word &amp;quot;Scrum&amp;quot; on what they did. Sometimes had a standup where people stand up and look at their toes, and then go along business as usual. Agile never drew it&apos;s first breath here...&lt;/p&gt;
+&lt;p&gt;So sometimes agile was never alive at a company anyway. I have walked into companies where they declare to me &amp;quot;We tried Agile and it doesn&apos;t work&amp;quot;, or just &amp;quot;Agile sucks!&amp;quot;. When you drill into what they actually did though, agility was never there. They had no process, and no way of improving the process. They knew they needed something. So they slapped the word &amp;quot;Scrum&amp;quot; on what they did. Occasionally they had a standup where people would stand up and look at their toes, and then go about their business as usual. Agile never drew it&apos;s first breath here...&lt;/p&gt;
 &lt;h2&gt;Lemmings&lt;/h2&gt;
-&lt;p&gt;Some young team hears about this new shiny thing that all the cool companies are doing, they grab a bunch of processes off a website and the start applying them. No matter they don&apos;t know why. No matter their are only 2 developers. They slog through for months but eventually it fades out because they don&apos;t see any value. They tried the processes without understanding the spirit of it. Hell it&apos;s not the spirit of the word... it is the actual word... Agile.&lt;/p&gt;
+&lt;p&gt;Some young team hears about this new shiny thing that all the cool companies are doing, they grab a bunch of processes off a website and the start applying them. No matter that they don&apos;t know why. No matter that there are only 2 developers. They slog through for months but eventually it fades out because they don&apos;t see any value. They tried the processes without understanding the spirit of it. Hell it&apos;s not the spirit of the word... it is the actual word... Agile.&lt;/p&gt;
 &lt;p&gt;Another flavour here is teams that actually implement SCRUM by the book. They experience moderate success and so they double down on the processes. Soon the processes become an institution unto themselves. Recipes to be applied rather than a gifted chef tasting and experimenting with a dish.&lt;/p&gt;
 &lt;p&gt;Agile has become a label now to be stuck on things like tags at an estate sale. The Sprint has changed from a fluffy cushion that protects the developers to the Great Wall of China, keeping the stakeholders out. Demos are immovable institution that represent the success or failure of a team. And cancelling a sprint because requirements have changed becomes anathema to the Agile adherents as they follow their rituals off the cliff... or is that a waterfall?&lt;/p&gt;
 &lt;h2&gt;Darwin award&lt;/h2&gt;
