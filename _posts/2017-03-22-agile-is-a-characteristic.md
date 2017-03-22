@@ -10,7 +10,8 @@ permalink: agile-is-a-characteristic
 excerpt_separator: <!--more-->
 published: true
 ---
-> [Agile is dead](https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html)
+> [Agile is dead](https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html)  
+
 I see more and more posts and talks claiming that Agile is dead. Broad statements like this are obviously just for effect but even if just click-bait, the sentiment is coming from somewhere. In this post I dig into reasons to say this and why we can still have hope.
 <!--more-->
 
@@ -20,11 +21,11 @@ Let's take a look at the ways it dies and why it can never truly die.
 
 ## Still-born
 
-So sometimes agile was never alive at a company anyway. I have walked into companies where they declare to me "We tried Agile and it doesn't work", or just "Agile sucks!". When you drill into what they actually did though, agility was never there. They had no process, and no way of improving the process. They knew they needed something. So they slapped the word "Scrum" on what they did. Sometimes had a standup where people stand up and look at their toes, and then go along business as usual. Agile never drew it's first breath here...
+So sometimes agile was never alive at a company anyway. I have walked into companies where they declare to me "We tried Agile and it doesn't work", or just "Agile sucks!". When you drill into what they actually did though, agility was never there. They had no process, and no way of improving the process. They knew they needed something. So they slapped the word "Scrum" on what they did. Occasionally they had a standup where people would stand up and look at their toes, and then go about their business as usual. Agile never drew it's first breath here...
 
 ## Lemmings
 
-Some young team hears about this new shiny thing that all the cool companies are doing, they grab a bunch of processes off a website and the start applying them. No matter they don't know why. No matter their are only 2 developers. They slog through for months but eventually it fades out because they don't see any value. They tried the processes without understanding the spirit of it. Hell it's not the spirit of the word... it is the actual word... Agile.
+Some young team hears about this new shiny thing that all the cool companies are doing, they grab a bunch of processes off a website and the start applying them. No matter that they don't know why. No matter that there are only 2 developers. They slog through for months but eventually it fades out because they don't see any value. They tried the processes without understanding the spirit of it. Hell it's not the spirit of the word... it is the actual word... Agile.
 
 Another flavour here is teams that actually implement SCRUM by the book. They experience moderate success and so they double down on the processes. Soon the processes become an institution unto themselves. Recipes to be applied rather than a gifted chef tasting and experimenting with a dish.
 
