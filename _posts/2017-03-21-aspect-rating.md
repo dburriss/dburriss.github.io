@@ -36,7 +36,7 @@ The idea is simple.
 
 What you want to focus on next is up to you. Be sure to celebrate the good but depending on the state of the team you may not want to spend too much time on it. We had 1 hour and we needed 5 to 10 minutes for the [Check-in/Check-out](/check-in-check-out). We then spent some time celebrating the good by allowing people to explain why they voted for those items.
 
-My suggestion at this point is to focus on the lowest one from here and work your way up, time permitting. Unless something is systemically wrong with the team their should be quick wins to raise things that are a 1.
+My suggestion at this point is to focus on the lowest one from here and work your way up, time permitting. Unless something is systemically wrong with the team there should be quick wins to raise things that are a 1.
 
 If things degenerate into technical discussions interject and ask to take it offline.
 
