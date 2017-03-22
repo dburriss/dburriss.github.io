@@ -6,8 +6,8 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Wed, 22 Mar 2017 01:29:26 +00:00</pubDate>
-    <lastBuildDate>Wed, 22 Mar 2017 01:29:26 +00:00</lastBuildDate>
+    <pubDate>Wed, 22 Mar 2017 08:16:24 +00:00</pubDate>
+    <lastBuildDate>Wed, 22 Mar 2017 08:16:24 +00:00</lastBuildDate>
     
     <item>
       <title>Agile is a Characteristic</title>
@@ -33,8 +33,10 @@
 &lt;h2&gt;Immortal&lt;/h2&gt;
 &lt;p&gt;So why do I believe agile will never die? At it&apos;s core, agility is a characteristic of the team developing a product, not the processes they adopt to do that. And at the core of software development is what got us to the point that software development is even a thing. Adaptability. Evolution. It is why we went from hiding in a cave from a predators stronger and faster than us to the dominant animal on the planet. More than any other animal on the planet we can look at our situation and we can improve it. Then we look at it and we improve it again. Sometimes we fail. Sometimes badly. Over the long game though we have trended to improvement. Although we borrow much from other production disciplines, ours is but an infant. And unless we fail morally and bring forth Skynet... we are going to grow up and get better. It is determined. It is in our genes...&lt;/p&gt;
 &lt;h2&gt;Recommended Reading&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;http://agilemanifesto.org/&quot;&gt;Agile Manifesto&lt;/a&gt;
-&lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S0164121216300826&quot;&gt;Challenges and success factors for large-scale agile transformations: A systematic literature review&lt;/a&gt;&lt;/p&gt;</description>
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://agilemanifesto.org/&quot;&gt;Agile Manifesto&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S0164121216300826&quot;&gt;Challenges and success factors for large-scale agile transformations: A systematic literature review&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -66,24 +68,24 @@
 &lt;img src=&quot;/img/posts/2017/aspect-rating.jpg&quot; alt=&quot;Aspect Rating Example&quot; class=&quot;img-thumbnail&quot;&gt;
 &lt;p&gt;&lt;em&gt;Aspect Rating board: Note the order is different to my recommendations&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;What you want to focus on next is up to you. Be sure to celebrate the good but depending on the state of the team you may not want to spend too much time on it. We had 1 hour and we needed 5 to 10 minutes for the &lt;a href=&quot;/check-in-check-out&quot;&gt;Check-in/Check-out&lt;/a&gt;. We then spent some time celebrating the good by allowing people to explain why they voted for those items.&lt;/p&gt;
-&lt;p&gt;My suggestion at this point is to focus on the lowest one from here and work your way up, time permitting. Unless something is systemically wrong with the team their should be quick wins to raise things that are a 1.&lt;/p&gt;
+&lt;p&gt;My suggestion at this point is to focus on the lowest one from here and work your way up, time permitting. Unless something is systemically wrong with the team there should be quick wins to raise things that are a 1.&lt;/p&gt;
 &lt;p&gt;If things degenerate into technical discussions interject and ask to take it offline.&lt;/p&gt;
 &lt;h2&gt;Aspects&lt;/h2&gt;
 &lt;p&gt;Let&apos;s walk through what each aspect is in case this isn&apos;t clear from the label.&lt;/p&gt;
 &lt;h3&gt;Direction&lt;/h3&gt;
 &lt;p&gt;This is the direction of the team. Do they know what they are building? Do they know why they are building it? Do they know how they are going to build it?&lt;/p&gt;
 &lt;h3&gt;Progress&lt;/h3&gt;
-&lt;p&gt;How does the team rate it&apos;s progress in building what it should be building? This comes after direction because if you don&apos;t know what you are building you are unlikely to feel like you are progressing toward it. This project in particular had a rocky start due to a dependence on an external party, so direction was low. Feelings of progress varied based on whether a team member was focusing on infrastructure or feature implementation.&lt;/p&gt;
+&lt;p&gt;How does the team rate its progress in building what it should be building? This comes after direction because if you don&apos;t know what you are building you are unlikely to feel like you are progressing toward it. This project in particular had a rocky start due to a dependence on an external party, so direction was low. Feelings of progress varied based on whether a team member was focusing on infrastructure or feature implementation.&lt;/p&gt;
 &lt;h3&gt;Process&lt;/h3&gt;
 &lt;p&gt;Here you are trying to find out the team&apos;s buy in to a process or feelings that the process is lacking. Again, the direction contributed but with a new team I was introducing processes as the team requested them. This is usually not a good idea unless you have an experienced agile team who are capable of raising issues proactively and self-organsing. Although a newly formed team it is comprised of experienced members so this was low risk.&lt;/p&gt;
 &lt;h3&gt;Team work&lt;/h3&gt;
-&lt;p&gt;How well does the team feel it is collaborating? Are they pair-programming? Are they stepping on each others toes? Are they aware of what each team member is doing. See my &lt;a href=&quot;/big-agile-teams&quot;&gt;post on big agile teams&lt;/a&gt; for some ideas of facilitating team communication.&lt;/p&gt;
+&lt;p&gt;How well does the team feel it is collaborating? Are they pair-programming? Are they stepping on each others toes? Are they aware of what each team member is doing? See my &lt;a href=&quot;/big-agile-teams&quot;&gt;post on big agile teams&lt;/a&gt; for some ideas of facilitating team communication.&lt;/p&gt;
 &lt;h3&gt;Learning&lt;/h3&gt;
 &lt;p&gt;Is the team challenged? Are they learning new things? This is important for cultivating an autonomous, self organising team as well as for enthusiasm.&lt;/p&gt;
 &lt;h3&gt;Enthusiasm&lt;/h3&gt;
-&lt;p&gt;Are team members excited to come to work? Excited to work on the project/product? Happy to work together? This forms a symbiotic relationship with all the others and will go down if any of the others stay down and when it does go down, all the others will drop even faster from the feedback effect. It is the canary , so what it well.&lt;/p&gt;
+&lt;p&gt;Are team members excited to come to work? Excited to work on the project/product? Happy to work together? This forms a symbiotic relationship with all the others and will go down if any of the others stay down and when it does go down, all the others will drop even faster from the feedback effect. It is the canary, so watch it well.&lt;/p&gt;
 &lt;h2&gt;Analysis&lt;/h2&gt;
-&lt;p&gt;This was from the teams first retrospective and as mentioned the direction was shaky from the start, so this was actually better thane expected from a young team (with experienced members). If anything surprises you be sure to spend a large amount of time drilling into what is going on there. From this retrospective we implemented a few more process items that showed immediate benefit. I cannot stress the significance of this enough.&lt;/p&gt;
+&lt;p&gt;This was from the team&apos;s first retrospective and as mentioned the direction was shaky from the start, so this was actually better than expected from a young team (with experienced members). If anything surprises you be sure to spend a large amount of time drilling into what is going on there. From this retrospective we implemented a few more process items that showed immediate benefit. I cannot stress the significance of this enough.&lt;/p&gt;
 &lt;p&gt;The team identified a problem, and an agile process (think demo, refinement, etc.) was introduced because the pain was felt and a balm was applied. How many things do you do and care about in your life that have no benefit to you or anyone you care about? Why should development be any different? Only solve problems that exist. Before Agile was a label, &lt;a href=&quot;agile-is-a-characteristic&quot;&gt;agile was a characteristic&lt;/a&gt; of a team.&lt;/p&gt;
 &lt;img src=&quot;/img/posts/2017/aspect-rating-2017-03-17.jpg&quot; alt=&quot;Aspect Rating Chart&quot; class=&quot;img-thumbnail&quot;&gt;
 &lt;p&gt;&lt;em&gt;Aspect Rating analysis&lt;/em&gt;&lt;/p&gt;
