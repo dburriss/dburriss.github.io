@@ -58,7 +58,7 @@ Here you are trying to find out the team's buy in to a process or feelings that 
 
 ### Team work
 
-How well does the team feel it is collaborating? Are they pair-programming? Are they stepping on each others toes? Are they aware of what each team member is doing? See my [post on big agile teams](/big-agile-teams) for some ideas of facilitating team communication.
+How well does the team feel it is collaborating? Are they pair-programming? Are they stepping on each others toes? Are they aware of what each team member is doing? It was mentioned to me by [a very astute team member](https://www.erikheemskerk.nl/) that teamwork is very difficult, if not impossible, to get right if the team does not have clear direction. See my [post on big agile teams](/big-agile-teams) for some ideas of facilitating team communication.
 
 ### Learning
 
