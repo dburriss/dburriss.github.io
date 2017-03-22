@@ -41,5 +41,5 @@ So why do I believe agile will never die? At it's core, agility is a characteris
 
 ## Recommended Reading
 
-[Agile Manifesto](http://agilemanifesto.org/)
-[Challenges and success factors for large-scale agile transformations: A systematic literature review](http://www.sciencedirect.com/science/article/pii/S0164121216300826)
+ - [Agile Manifesto](http://agilemanifesto.org/)
+ - [Challenges and success factors for large-scale agile transformations: A systematic literature review](http://www.sciencedirect.com/science/article/pii/S0164121216300826)
