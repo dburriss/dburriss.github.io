@@ -50,7 +50,7 @@ This is the direction of the team. Do they know what they are building? Do they 
 
 ### Progress
 
-How does the team rate it's progress in building what it should be building? This comes after direction because if you don't know what you are building you are unlikely to feel like you are progressing toward it. This project in particular had a rocky start due to a dependence on an external party, so direction was low. Feelings of progress varied based on whether a team member was focusing on infrastructure or feature implementation.
+How does the team rate its progress in building what it should be building? This comes after direction because if you don't know what you are building you are unlikely to feel like you are progressing toward it. This project in particular had a rocky start due to a dependence on an external party, so direction was low. Feelings of progress varied based on whether a team member was focusing on infrastructure or feature implementation.
 
 ### Process
 
@@ -58,7 +58,7 @@ Here you are trying to find out the team's buy in to a process or feelings that 
 
 ### Team work
 
-How well does the team feel it is collaborating? Are they pair-programming? Are they stepping on each others toes? Are they aware of what each team member is doing. See my [post on big agile teams](/big-agile-teams) for some ideas of facilitating team communication.
+How well does the team feel it is collaborating? Are they pair-programming? Are they stepping on each others toes? Are they aware of what each team member is doing? See my [post on big agile teams](/big-agile-teams) for some ideas of facilitating team communication.
 
 ### Learning
 
@@ -66,11 +66,11 @@ Is the team challenged? Are they learning new things? This is important for cult
 
 ### Enthusiasm
 
-Are team members excited to come to work? Excited to work on the project/product? Happy to work together? This forms a symbiotic relationship with all the others and will go down if any of the others stay down and when it does go down, all the others will drop even faster from the feedback effect. It is the canary , so what it well.
+Are team members excited to come to work? Excited to work on the project/product? Happy to work together? This forms a symbiotic relationship with all the others and will go down if any of the others stay down and when it does go down, all the others will drop even faster from the feedback effect. It is the canary, so watch it well.
 
 ## Analysis
 
-This was from the teams first retrospective and as mentioned the direction was shaky from the start, so this was actually better thane expected from a young team (with experienced members). If anything surprises you be sure to spend a large amount of time drilling into what is going on there. From this retrospective we implemented a few more process items that showed immediate benefit. I cannot stress the significance of this enough.
+This was from the team's first retrospective and as mentioned the direction was shaky from the start, so this was actually better than expected from a young team (with experienced members). If anything surprises you be sure to spend a large amount of time drilling into what is going on there. From this retrospective we implemented a few more process items that showed immediate benefit. I cannot stress the significance of this enough.
 
 The team identified a problem, and an agile process (think demo, refinement, etc.) was introduced because the pain was felt and a balm was applied. How many things do you do and care about in your life that have no benefit to you or anyone you care about? Why should development be any different? Only solve problems that exist. Before Agile was a label, [agile was a characteristic](agile-is-a-characteristic) of a team.
 
