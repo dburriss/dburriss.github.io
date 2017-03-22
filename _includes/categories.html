@@ -1,5 +1,4 @@
 <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
-<hr/>
 {% for category in site.CATEGORIES %}
     <a href="/category/{{ category.name | slugify }}">{{ category.name }}</a>
 {% endfor %}
