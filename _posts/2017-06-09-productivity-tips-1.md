@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Productivity Tips 1"
-subtitle: "When did the label become more important than the characteristic?"
+title: "Productivity Tips"
+subtitle: "Some productivity tips in 2017"
 author: "Devon Burriss"
 category: Tips
 tags: [Productivity]
 comments: true
-permalink: agile-is-a-characteristic
+permalink: productivity-tips-1
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/todo-bg.jpg"
 published: true
@@ -28,7 +28,7 @@ Ubiquitous capture. Write down anything that you aren't going to do now as soon 
 
 The list. How you capture is less important than being consistent. When trying out things I find todo lists can actually make things worse for a while before they become better. The reason for this is I am not capturing in a single place. Trying to minimize the number of mediums you use to capture tasks is important. I tried and like the idea of a notebook but I just didn't carry it around enough. I have settled on [Todoist](https://todoist.com) because I can have it open on my laptop and my phone. It also has integrations with tools I use like Slack. I will discuss this a bit more in the next section. Start off simple. Don't have too many categories/projects etc. Just capture everything that comes in.
 
-## Revue and rate
+### Revue and rate
 
 Go over your list often and prioritize it. Make sure you are doing the most important things first. Creating a habit of going through your list every morning will make sure it is current as well as keep in mind the most important things only.
 
@@ -40,7 +40,7 @@ Set reminders if you need to. I use bots in Slack to remind me to do things at s
 
 Many people find the [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) really useful. It is especially useful when you have lots of little things that can distract you. Switching focus often can kill productivity so committing to spend at least a little time focused on one thing can make a huge difference. I use an app called [Tide](http://tide.moreless.io/en/) that does the job for me. It has a timer and can play music or white noise. This is perfect for when working in a noisy environment. As I write this I am in a noisy cafe but am listening to birds chirping, which I find less distracting than multiple conversations, moving chairs, and clinking cups.
 
-## Clear you mind
+## Clear your mind
 
 Meditation has a bad reputation among many people as the pastime of hippies and mystics but it is a useful skill to develop for those who value focus and clarity of thought. There are many practices you can use to achieve different things. I will briefly touch on a few that I use. There are many others and I encourage you to explore the options. I will mention some resources at the end of this section where you can start. Also note that I will only talk from my experience so what I write might not be 100% what you might find out in the wild, or even what you may experience yourself. Meditation is about as personal as it gets as it is your consciousness observing itself.
 
