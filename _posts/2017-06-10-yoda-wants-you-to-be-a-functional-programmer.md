@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Yoda wants you to be a functional programmer"
-subtitle: "Bring balance to the force"
+subtitle: "Bring balance to the f#rce"
 author: "Devon Burriss"
 category: Programming
 tags: [Functional]
