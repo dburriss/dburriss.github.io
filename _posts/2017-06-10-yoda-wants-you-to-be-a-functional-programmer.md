@@ -9,7 +9,7 @@ comments: true
 permalink: yoda-wants-you-to-be-a-functional-programmer
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/yoda-bg.jpg"
-published: false
+published: true
 ---
 This one is just for laughs but technical writing doesn't always have to be serious.  
 I was double checking a Yoda quote for my previous post and it got me thinking about how many Yoda quotes could be applied to the functional programming (FP) paradigm.  
