@@ -34,11 +34,11 @@ When learning FP, don't bring your object-oriented baggage. Embrace that this is
 
 > ## “Always pass on what you have learned.” – Yoda
 
-Another reference to functions in FP always returning something.
+Another reference (pun intended wink wink) to functions in FP always returning something.
 
 > ## “Once you start down the dark path, forever will it dominate your destiny, consume you it will.” – Yoda
 
-This one was tough. Do I use this to how once you grok a paradigm and see it's merits, you can't unlearn that. I think instead this should be a warning against letting yourself think any one paradigm is the best or only one. 
+This one was tough. Do I use this to represent that once you grok a paradigm and see it's merits, you can't unlearn that. I think instead this should be a warning against letting yourself think any one paradigm is the best or only one that matters (I am looking at OOP). 
 
 > ## “Mind what you have learned. Save you it can.” – Yoda
 
