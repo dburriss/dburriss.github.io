@@ -3,13 +3,66 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2017-06-09T13:28:37.7668269+00:00</updated>
+  <updated>2017-06-09T15:43:25.6330746+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>http://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/"/>
+    <title>Yoda wants you to be a functional programmer</title>
+    <updated>2017-06-10T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</uri>
+    </author>
+    <content type="html">&lt;p&gt;This one is just for laughs but technical writing doesn&apos;t always have to be serious.&lt;br /&gt;
+I was double checking a Yoda quote for my previous post and it got me thinking about how many Yoda quotes could be applied to the functional programming (FP) paradigm.&lt;br /&gt;
+Star wars and programming are meant to go together.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;“Size matters not. Look at me. Judge me by my size, do you? Hmm? Hmm. And well you should not.” – Yoda&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Functional programming involves small building blocks of functions that you compose to make more specific functions and so on. The functions and the types tend to be small and stay small.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;“Do. Or do not. There is no try.” – Yoda&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Functions almost always return a value. No &lt;code&gt;void&lt;/code&gt; here.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;“Much to learn you still have…my old padawan. This is just the beginning!” – Yoda&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;FP is a new paradigm. Learning a new paradigm is way harder than learning a new language. It is a very useful tool to have in your toolbox though.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;“Truly wonderful, the mind of a child is.” – Yoda&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When learning FP, don&apos;t bring your object-oriented baggage. Embrace that this is something different.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;“Always pass on what you have learned.” – Yoda&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Another reference (pun intended wink wink) to functions in FP always returning something.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;“Once you start down the dark path, forever will it dominate your destiny, consume you it will.” – Yoda&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This one was tough. Do I use this to represent that once you grok a paradigm and see it&apos;s merits, you can&apos;t unlearn that. I think instead this should be a warning against letting yourself think any one paradigm is the best or only one that matters (I am looking at OOP).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;“Mind what you have learned. Save you it can.” – Yoda&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;FP is a new paradigm and will make you a better developer.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;“You will find only what you bring in.” – Yoda&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In FP you don&apos;t usually store state. You pass along what you need in arguments.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;“Attachment leads to jealously. The shadow of greed, that is.” – Yoda&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I could make a point here about storing state but I think it is more important to reiterate the warning about the dark side of being too attached to just one paradigm. Find balance in the force.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;So that&apos;s it for Yoda on functional programming. Hope it made you think and I hope it made you smile.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <id>http://devonburriss.me/productivity-tips-1/</id>
