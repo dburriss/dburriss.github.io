@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Agile is a Characteristic"
+title: "Productivity Tips 1"
 subtitle: "When did the label become more important than the characteristic?"
 author: "Devon Burriss"
 category: Tips
