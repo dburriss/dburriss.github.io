@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>http://domainproductivity-tips-1/</loc>
+    <lastmod>2017-06-09T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>http://domainagile-is-a-characteristic/</loc>
     <lastmod>2017-03-22T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -356,6 +363,10 @@
 	
   
 	
+  
+	
+  
+	
 	<url>
 		<loc>http://domain/category/programming/index.html</loc>
 		<changefreq>daily</changefreq>
@@ -374,6 +385,14 @@
 	
 	<url>
 		<loc>http://domain/category/sysadmin/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/category/tips/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
@@ -566,6 +585,14 @@
 	
 	<url>
 		<loc>http://domain/tag/pretzel/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/productivity/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
