@@ -22,7 +22,7 @@ Functional programming involves small building blocks of functions that you comp
 
 > ## “Do. Or do not. There is no try.” – Yoda
 
-Functions almost always return a value. No `void` here.
+Functions always return a value. No `void` here.
 
 > ## “Much to learn you still have…my old padawan. This is just the beginning!” – Yoda
 
