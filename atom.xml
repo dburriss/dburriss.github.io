@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2017-06-09T15:50:44.918824+00:00</updated>
+  <updated>2017-06-10T11:55:21.9746217+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -31,7 +31,7 @@ Star wars and programming are meant to go together.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;h2&gt;“Do. Or do not. There is no try.” – Yoda&lt;/h2&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Functions almost always return a value. No &lt;code&gt;void&lt;/code&gt; here.&lt;/p&gt;
+&lt;p&gt;Functions always return a value. No &lt;code&gt;void&lt;/code&gt; here.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;h2&gt;“Much to learn you still have…my old padawan. This is just the beginning!” – Yoda&lt;/h2&gt;
 &lt;/blockquote&gt;

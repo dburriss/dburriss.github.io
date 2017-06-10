@@ -6,8 +6,8 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Fri, 09 Jun 2017 15:50:44 +00:00</pubDate>
-    <lastBuildDate>Fri, 09 Jun 2017 15:50:44 +00:00</lastBuildDate>
+    <pubDate>Sat, 10 Jun 2017 11:55:21 +00:00</pubDate>
+    <lastBuildDate>Sat, 10 Jun 2017 11:55:21 +00:00</lastBuildDate>
     
     <item>
       <title>Yoda wants you to be a functional programmer</title>
@@ -26,7 +26,7 @@ Star wars and programming are meant to go together.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;h2&gt;“Do. Or do not. There is no try.” – Yoda&lt;/h2&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Functions almost always return a value. No &lt;code&gt;void&lt;/code&gt; here.&lt;/p&gt;
+&lt;p&gt;Functions always return a value. No &lt;code&gt;void&lt;/code&gt; here.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;h2&gt;“Much to learn you still have…my old padawan. This is just the beginning!” – Yoda&lt;/h2&gt;
 &lt;/blockquote&gt;
