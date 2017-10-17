@@ -6,7 +6,7 @@ description: "EQ is dependent on mental facilities correlated to IQ such as verb
 permalink: stop-comparing-eq-and-iq
 author: "Devon Burriss"
 category: Programming
-tags: [Functional]
+tags: [General, Productivity, Science]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
