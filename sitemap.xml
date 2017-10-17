@@ -514,6 +514,14 @@
   
 	
 	<url>
+		<loc>http://domain/tag/general/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
 		<loc>http://domain/tag/git/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
@@ -619,6 +627,14 @@
 	
 	<url>
 		<loc>http://domain/tag/programming/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/science/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
