@@ -6,7 +6,7 @@
 
 {% assign title = site.title %}
 {% assign description = site.description %}
-{% if page.title %}{% assign title = site.title %}{% endif %}
+{% if page.title %}{% assign title = page.title %}{% endif %}
 {% if page.description %}
     {% assign description = page.description %}
 {% elsif page.subtitle %}
