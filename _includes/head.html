@@ -20,6 +20,8 @@
 
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
+    <meta name="author" content="{{ site.author }}">
+
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon.png">
 
@@ -27,6 +29,10 @@
     <meta itemprop="name" content="{{ title }}">
     <meta itemprop="description" content="{{ description }}">
     <meta itemprop="image" content="{{ image | prepend: site.url }}">
+    {% if page.subtitle %}
+    <meta itemprop="datePublished" content="{{ page.date }}" id="date">
+    <meta name="headline" content="{{ title }} - {{ page.subtitle }}" />
+    {% endif %}
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="{{ description }}">
@@ -42,12 +48,7 @@
     <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}" />
     <meta property="og:image" content="{{ image | prepend: site.url }}" />
     <meta property="og:description" content="{{ description }}" />
-    <meta property="og:site_name" content="{{ site.title }}" />
-    <meta property="og:author" content="{{ site.author }}" />    
-    {% if page.subtitle %}
-    <meta property="og:headline" content="{{ title }} - {{ page.subtitle }}" />
-    <meta property="og:datePublished" content="{{ page.date }}" />
-    {% endif %}
+    <meta property="og:site_name" content="{{ site.title }}" /> 
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{ "/css/bootstrap.min.css" }}">
