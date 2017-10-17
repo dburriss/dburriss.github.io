@@ -10,11 +10,11 @@ comments: true
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>{{ page.title }}</h1>
+                        <h1 itemprop="headline">{{ page.title }}</h1>
                         {% if page.subtitle %}
                         <h2 class="subheading">{{ page.subtitle }}</h2>
                         {% endif %}
-                        <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %d, %Y" }}</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">{% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %}</span> on {{ page.date | date: "%B %d, %Y" }}</span>
                         {% if page.TAGS %}
                             <hr />
                             {% for tag in page.TAGS %}
@@ -51,6 +51,10 @@ comments: true
                     {% endif %}
                 </ul>
 
+            </div>
+
+            <div>
+                <span itemprop="headline">{{ page.title }}</span> written by <span itemprop="author" itemscope itemtype="https://schema.org/Person"><b itemprop="name">Devon Burriss</b></span>
             </div>
 
             <div class="col-lg-4 widget-column">
