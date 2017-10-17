@@ -6,6 +6,7 @@
 
 {% assign title = site.title %}
 {% assign description = site.description %}
+{% assign image = "img/explore-590.jpg" %}
 {% if page.title %}{% assign title = page.title %}{% endif %}
 {% if page.description %}
     {% assign description = page.description %}
@@ -13,28 +14,35 @@
     {% assign description = page.subtitle %}
 {% endif %}
 
+{% if page.social-img %}
+    {% assign image = page.social-img %}
+{% endif %}
+
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+    <link rel="icon" type="image/png" href="https://devonburriss.me/favicon.png">
 
-    <!-- SOCIAL META -->
-    <meta name="twitter:card" value="{{ description }}">
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="{{ title }}">
+    <meta itemprop="description" content="{{ description }}">
+    <meta itemprop="image" content="{{ image | prepend: site.url }}">
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="{{ description }}">
+    <meta name="twitter:site" content="@{{ site.twitter_username }}">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:creator" content="@{{ site.twitter_username }}">
+    <meta name="twitter:image" content="{{ image | prepend: site.url }}">
 
     <!-- Open Graph data -->
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}" />
-{% if page.social-img %}
-    <meta property="og:image" content="{{ page.social-img | prepend: site.url }}" />
-    {% else %}
-    <meta property="og:image" content="{{ 'img/posts/2017/eq-vs-iq-280.jpg' | prepend: site.url }}" />
-{% endif %}
+    <meta property="og:image" content="{{ image | prepend: site.url }}" />
     <meta property="og:description" content="{{ description }}" />
-
-    
+    <meta property="og:site_name" content="{{ site.title }}" />
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{ "/css/bootstrap.min.css" }}">
