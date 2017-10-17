@@ -163,11 +163,11 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>Testing the Untestable</h1>
+                        <h1 itemprop="headline">Testing the Untestable</h1>
                         
                         <h2 class="subheading">Testing after the fact testing hurts</h2>
                         
-                        <span class="meta">Posted by Devon Burriss on January 27, 2015</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on January 27, 2015</span>
                         
                             <hr />
                             
@@ -380,6 +380,10 @@ public void Scare_With2OutOf3ChildrenAsleep_ScareCalledOn2Children()
                     
                 </ul>
 
+            </div>
+
+            <div>
+                <span itemprop="headline">Testing the Untestable</span> written by <span itemprop="author" itemscope itemtype="https://schema.org/Person"><b itemprop="name">Devon Burriss</b></span>
             </div>
 
             <div class="col-lg-4 widget-column">
@@ -745,7 +749,9 @@ public void Scare_With2OutOf3ChildrenAsleep_ScareCalledOn2Children()
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p class="copyright text-muted">Copyright &copy; Devon Burriss 2017</p>
+                <p class="copyright text-muted" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">Copyright &copy; <a itemprop="name">Devon Burriss</a> 2017
+                <meta itemprop="logo" content=""/>
+                </p>
             </div>
         </div>
     </div>
