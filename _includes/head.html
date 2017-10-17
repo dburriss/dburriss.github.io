@@ -1,21 +1,40 @@
 <head>
-
+    <!-- META -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+{% assign title = site.title %}
+{% assign description = site.description %}
+{% if page.title %}{% assign title = site.title %}{% endif %}
 {% if page.description %}
-    <meta name="description" content="{{ page.description }}">
-    <title>{% if page.title %}{{ page.title }} - {{ page.description }}{% else %}{{ site.title }}{% endif %}</title>
+    {% assign description = page.description %}
 {% elsif page.subtitle %}
-    <meta name="description" content="{{ page.subtitle }}">
-    <title>{% if page.title %}{{ page.title }} - {{ page.subtitle }}{% else %}{{ site.title }}{% endif %}</title>
-{% else %}
-    <meta name="description" content="{{ site.description }}">
-    <title>{% if page.title %}{{ page.title }} - {{ site.description }}{% else %}{{ site.title }}{% endif %}</title>
+    {% assign description = page.subtitle %}
 {% endif %}
 
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url | replace: '//', '/' }}">
+
+    <!-- SOCIAL META -->
+    <meta name="twitter:card" value="{{ description }}">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="{{ description }}">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url | replace: '//', '/' }}" />
+{% if page.social-img %}
+    <meta property="og:image" content="{{ page.social-img | prepend: site.url }}" />
+    {% else %}
+    <meta property="og:image" content="{{ 'img/posts/2017/eq-vs-iq-280.jpg' | prepend: site.url }}" />
+{% endif %}
+    <meta property="og:description" content="{{ description }}" />
+
+    
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{ "/css/bootstrap.min.css" }}">
