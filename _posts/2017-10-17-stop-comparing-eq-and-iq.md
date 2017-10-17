@@ -60,8 +60,8 @@ As a software developer though, stop telling me I don't need to work with smart 
 
 ## Resources
 
-* http://www.psych.utoronto.ca/users/reingold/courses/intelligence/cache/1198gottfred.html
-* http://theconversation.com/what-chess-players-can-teach-us-about-intelligence-and-expertise-72898
-* https://www.researchgate.net/publication/307874653_The_relationship_between_cognitive_ability_and_chess_skill_A_comprehensive_meta-analysis
-* http://www.sciencedirect.com/science/article/pii/S1877042813017096
-* http://www.memory-key.com/research/news/correlation-between-emotional-intelligence-and-iq
+* [psych.utoronto.ca](http://www.psych.utoronto.ca/users/reingold/courses/intelligence/cache/1198gottfred.html)
+* [theconversation.com](http://theconversation.com/what-chess-players-can-teach-us-about-intelligence-and-expertise-72898)
+* [researchgate.net](https://www.researchgate.net/publication/307874653_The_relationship_between_cognitive_ability_and_chess_skill_A_comprehensive_meta-analysis)
+* [sciencedirect.com](http://www.sciencedirect.com/science/article/pii/S1877042813017096)
+* [memory-key.com](http://www.memory-key.com/research/news/correlation-between-emotional-intelligence-and-iq)
