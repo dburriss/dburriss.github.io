@@ -15,7 +15,7 @@
 
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url | replace: '//', '/' }}">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
 
     <!-- SOCIAL META -->
     <meta name="twitter:card" value="{{ description }}">
@@ -26,7 +26,7 @@
     <!-- Open Graph data -->
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url | replace: '//', '/' }}" />
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}" />
 {% if page.social-img %}
     <meta property="og:image" content="{{ page.social-img | prepend: site.url }}" />
     {% else %}
