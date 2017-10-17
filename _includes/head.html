@@ -43,6 +43,11 @@
     <meta property="og:image" content="{{ image | prepend: site.url }}" />
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:site_name" content="{{ site.title }}" />
+    <meta property="og:author" content="{{ site.author }}" />    
+    {% if page.subtitle %}
+    <meta property="og:headline" content="{{ title }} - {{ page.subtitle }}" />
+    <meta property="og:datePublished" content="{{ page.date }}" />
+    {% endif %}
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{ "/css/bootstrap.min.css" }}">
