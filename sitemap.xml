@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>http://domainmoral-behavior-is-rewarded/</loc>
+    <lastmod>2017-10-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>http://domainstop-comparing-eq-and-iq/</loc>
     <lastmod>2017-10-17T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -387,6 +394,26 @@
 	
   
 	
+  
+	
+  
+	
+	<url>
+		<loc>http://domain/category/life/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/category/moral-map/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
 	<url>
 		<loc>http://domain/category/programming/index.html</loc>
 		<changefreq>daily</changefreq>
@@ -565,6 +592,14 @@
 	
 	<url>
 		<loc>http://domain/tag/maven/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://domain/tag/morality/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
