@@ -34,6 +34,7 @@
     <meta itemprop="dateModified" content="{{ page.date }}" id="mdate">
     <meta itemprop="headline" content="{{ title }} - {{ page.subtitle }}" />
     <meta name="headline" content="{{ title }} - {{ page.subtitle }}" />
+    <meta name="mainEntityOfPage" content="{{ page.url | replace:'index.html','' | prepend: site.url }}" />
     {% endif %}
 
     <!-- Twitter Card data -->
