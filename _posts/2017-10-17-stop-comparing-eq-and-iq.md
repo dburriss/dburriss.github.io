@@ -5,7 +5,7 @@ subtitle: "Reality is a little more uncomfortable"
 description: "EQ is dependent on mental facilities correlated to IQ such as verbal comprehension, working memory, perceptual organization, & processing speed."
 permalink: stop-comparing-eq-and-iq
 author: "Devon Burriss"
-category: Programming
+category: Life
 tags: [General, Productivity, Science]
 comments: true
 excerpt_separator: <!--more-->
