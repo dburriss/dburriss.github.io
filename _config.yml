@@ -33,3 +33,18 @@ exclude:
   - pretzel.ps1
   - run.ps1
   - npm-debug.log
+
+similar_posts:
+    filter_threshold: 0.3
+    related_count: 3
+    weight:
+        categories: 0.1
+        tags: 0.3
+        title: 0.2
+        text: 1
+    stemmers:
+      - English
+    reserved:
+      - asp.net
+      - .net
+      - vs.net

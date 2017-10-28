@@ -36,12 +36,23 @@ comments: true
 
 				{{ content }}
 
-                <hr>
-
+                <hr />
+                {% if page.related.size > 0 -%}
+                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                        {% for rp in page.related -%}
+                        <li><a href="/{{rp.url}}">{{rp.title}}</a></li>
+                        {% endfor -%}
+                    </ul>
+                </section>
+                <hr />
+                {% endif -%}
+                
                 <ul class="pager">
                     {% if page.previous.url %}
                     <li class="previous">
-                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
+                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip"    data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
                     </li>
                     {% endif %}
                     {% if page.next.url %}
