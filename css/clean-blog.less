@@ -91,6 +91,11 @@ hr.small {
 			&:focus {
 				color: @white-faded;
 			}
+			&:link,
+			&:visited,
+			&:active {
+				text-decoration: none;
+			}
 		}
 		.nav {
 			li {
@@ -100,6 +105,11 @@ hr.small {
 					&:hover,
 					&:focus {
 						color: @white-faded;
+					}
+					&:link,
+					&:visited,
+					&:active {
+						text-decoration: none;
 					}
 				}
 			}
@@ -249,8 +259,12 @@ hr.small {
 		color: @gray-dark;
 		&:hover,
 		&:focus {
-			text-decoration: none;
 			color: @brand-primary;
+		}
+		&:link,
+		&:visited,
+		&:active {
+			text-decoration: none;
 		}
 		> .post-title {
 			font-size: 30px;
@@ -274,7 +288,6 @@ hr.small {
 			&:hover,
 			&:focus {
 				color: @brand-primary;
-				text-decoration: underline;
 			}
 		}
 	}
