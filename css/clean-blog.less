@@ -31,10 +31,15 @@ h6 {
 
 a {
 	color: @gray-dark;
-	text-decoration: underline;
 	&:hover,
 	&:focus {
 		color: @brand-primary;
+	}
+}
+
+li {
+	a {
+		text-decoration: underline;
 	}
 }
 
@@ -444,6 +449,7 @@ form .row:first-child .floating-label-form-group {
 	li {
 		> a,
 		> span {
+			text-decoration: none;
 			.sans-serif;
 			text-transform: uppercase;
 			font-size: 14px;
