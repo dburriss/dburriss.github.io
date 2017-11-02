@@ -21,9 +21,11 @@
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
     <meta name="author" content="{{ site.author }}">
-
+    {% if page.subtitle %}
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
-    <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon.png">
+    {% endif %}
+    <link rel="icon" type="image/png" href="{{ site.url }}img/favicon16.png" sizes="16x16">  
+    <link rel="icon" type="image/png" href="{{ site.url }}img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
     <meta itemprop="name" content="{{ title }}">
