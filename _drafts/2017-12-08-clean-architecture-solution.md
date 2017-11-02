@@ -2,7 +2,7 @@
 layout: post
 title: "A Clean Architecture Solution"
 subtitle: "dotnet new starter template for Clean Architecture"
-permalink: 2017-07-23-clean-architecture-solution.md
+permalink: clean-architecture-solution.md
 author: "Devon Burriss"
 category: Programming
 tags: [Architecture, Clean Code]
