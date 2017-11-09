@@ -8,9 +8,9 @@ tags: [Agile]
 comments: true
 permalink: estimation
 excerpt_separator: <!--more-->
+social-img: "img/posts/2014/old-clock-800.jpg"
 published: true
 ---
-![retro clock](/img/posts/2014/old-clock-800.jpg)
 
 > Tackling the uncertainty of software estimation.
 
@@ -49,7 +49,7 @@ If a deadline is immovable, the team (including the customer) need to work toget
 
 ## PERT
 
-[Pert] (http://en.wikipedia.org/wiki/Program_evaluation_and_review_technique_(PERT)) is an estimation technique developed by the U.S Navy for estimating projects. Combining it with planning poker should give a reasonable idea of when you can expect a task to be done. It works as follows. 
+[Pert](http://en.wikipedia.org/wiki/Program_evaluation_and_review_technique_(PERT)) is an estimation technique developed by the U.S Navy for estimating projects. Combining it with planning poker should give a reasonable idea of when you can expect a task to be done. It works as follows. 
 A developer will give 3 estimates for a work item (use with Planning Poker). 
 
 **O:** Optimistic estimate – this is the time to complete a task if the stars align and unicorns come down and help complete the code. In other words, the best case scenario.
