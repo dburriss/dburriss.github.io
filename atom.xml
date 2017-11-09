@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2017-11-03T06:13:48.8883682+00:00</updated>
+  <updated>2017-11-09T07:19:24.046574+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -2730,8 +2730,7 @@ public class OrderServiceAfter : IDisposable
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/estimation/</uri>
     </author>
-    <content type="html">&lt;p&gt;&lt;img src=&quot;/img/posts/2014/old-clock-800.jpg&quot; alt=&quot;retro clock&quot; /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
+    <content type="html">&lt;blockquote&gt;
 &lt;p&gt;Tackling the uncertainty of software estimation.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Most developers are horrible at estimation. Period. There are numerous reasons for this. Some of the responsibility falls outside of a developers control but there are still steps that a developer is obligated to take.&lt;/p&gt;
@@ -2754,7 +2753,7 @@ If there are huge discrepancies the task is discussed more. Discussions and esti
 &lt;h3&gt;Solution: Team discussion of workable solution&lt;/h3&gt;
 &lt;p&gt;If a deadline is immovable, the team (including the customer) need to work together toward a realistic goal. Features can be cut, overtime can be worked (within reason), and additional resources can be allocated (to a point) but the end result should always be a quality solution. Cutting corners just slows down development in the long run. A project becomes a mess. Productivity grinds to a halt. It is a chore to work on and eventually developers leave the company rather than work on the project.&lt;/p&gt;
 &lt;h2&gt;PERT&lt;/h2&gt;
-&lt;p&gt;[Pert] (http://en.wikipedia.org/wiki/Program_evaluation_and_review_technique_(PERT)) is an estimation technique developed by the U.S Navy for estimating projects. Combining it with planning poker should give a reasonable idea of when you can expect a task to be done. It works as follows.
+&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Program_evaluation_and_review_technique_(PERT)&quot;&gt;Pert&lt;/a&gt; is an estimation technique developed by the U.S Navy for estimating projects. Combining it with planning poker should give a reasonable idea of when you can expect a task to be done. It works as follows.
 A developer will give 3 estimates for a work item (use with Planning Poker).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;O:&lt;/strong&gt; Optimistic estimate – this is the time to complete a task if the stars align and unicorns come down and help complete the code. In other words, the best case scenario.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;P:&lt;/strong&gt; Pessimistic estimate – this is the time to complete a task when you have invoked the wrath of the programming gods. So. The worst case.&lt;/p&gt;
