@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2017-11-09T07:19:24.046574+00:00</updated>
+  <updated>2017-11-22T23:18:22.838232+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -20,7 +20,7 @@
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/touched-by-god/</uri>
     </author>
-    <content type="html">&lt;p&gt;In science and life, sometimes things happen that we cannot explain. Just a few hundred years ago most of what could not be explained was attributed to the supernatural. Thankfully a lot of that mystery has been peeled back, opening us up to bigger and more fundamental questions about the universe. Compared to areas like cosmology and particle physics, things like the human mind and consciousness remain relatively unexplored by science. This leaves some questions unanswered about our place in this expanding universe. In this post I explore and contrast some of my early religious spiritual experiences to my recent self-observations in mindfulness.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;In science and life, sometimes things happen that we cannot explain. Just a few hundred years ago most of what could not be explained was attributed to the supernatural. Thankfully a lot of that mystery has been peeled back, opening us up to bigger and more fundamental questions about the universe. Compared to areas like cosmology and particle physics, things like the human mind and consciousness remain relatively unexplored by science. This leaves some questions unanswered about our place in this expanding universe. In this post I explore and contrast some of my early religious spiritual experiences to my recent self-observations in mindfulness.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h2&gt;A brief history...&lt;/h2&gt;
 &lt;p&gt;I grew up in a Christian household, going to church for as far back as I can remember. As a teenager I started attending a more charismatic church with some friends, which I will go into in a bit. After school I studied computer science and physics with a few other things thrown in. After university I also spent a year studying theology part-time. It was while studying theology that I realized I believed what I was raised to believe and I should look at both the religious and scientific alternatives to my world view. &lt;em&gt;The Truth&lt;/em&gt; would of course hold up to any scrutiny.&lt;/p&gt;
@@ -50,7 +50,7 @@ I would like to compare the &amp;quot;spiritual&amp;quot; experience recounted e
 &lt;li&gt;Header photo by &lt;a href=&quot;https://unsplash.com/@grakozy&quot;&gt;Greg Rakozy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Social photo by &lt;a href=&quot;https://unsplash.com/@viniciusamano&quot;&gt;Vinicius Amano&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Content photo &lt;a href=&quot;https://unsplash.com/@kunjparekh&quot;&gt;Kunj Parekh&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;</summary>
   </entry>
   
   <entry>
@@ -62,7 +62,7 @@ I would like to compare the &amp;quot;spiritual&amp;quot; experience recounted e
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/moral-behavior-is-rewarded/</uri>
     </author>
-    <content type="html">&lt;p&gt;I don&apos;t consider myself an immoral person. Unless you count those days when I thought there was an all seeing being in the sky watching that I didn&apos;t break the archaic rules laid out by men thousands of years ago who also thought it was ok to own slaves and commit genocide. Since then I have not given too much thought to morality other than my general rule of &amp;quot;Don&apos;t be a dick&amp;quot;. A few weeks back I made a commitment to hold myself to a higher moral standard. Not only that but I laid out some experimental guidelines of rules that I would follow and a hypothesis of what I expect. Finally, I would tell people about it so they could hold me to my commitments.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;I don&apos;t consider myself an immoral person. Unless you count those days when I thought there was an all seeing being in the sky watching that I didn&apos;t break the archaic rules laid out by men thousands of years ago who also thought it was ok to own slaves and commit genocide. Since then I have not given too much thought to morality other than my general rule of &amp;quot;Don&apos;t be a dick&amp;quot;. A few weeks back I made a commitment to hold myself to a higher moral standard. Not only that but I laid out some experimental guidelines of rules that I would follow and a hypothesis of what I expect. Finally, I would tell people about it so they could hold me to my commitments.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h2&gt;Why?&lt;/h2&gt;
 &lt;p&gt;A few months back I read &lt;a href=&quot;https://www.samharris.org/books/the-moral-landscape&quot;&gt;The Moral Landscape&lt;/a&gt; by Sam Harris and was really challenged by the idea of using the wellbeing of sentient beings as a measure of morality. I found it not only compelling but also something concrete to measure myself against that didn&apos;t resort to mysticism. It is a brilliant read and I highly recommend it. My own life was silhouetted against the moral landscape. It is up to me decide just how bright to make it. I figured I would map out my path in the hope others might find it useful for their own wellbeing.&lt;/p&gt;
@@ -115,7 +115,7 @@ Not only that but in this digital age it is really easy to share or download med
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.samharris.org/&quot;&gt;Sam Harris&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Photo by Jens Lelie on &lt;a href=&quot;https://unsplash.com/photos/u0vgcIOQG08&quot;&gt;Unsplash&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;</summary>
   </entry>
   
   <entry>
@@ -127,7 +127,7 @@ Not only that but in this digital age it is really easy to share or download med
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/stop-comparing-eq-and-iq/</uri>
     </author>
-    <content type="html">&lt;p&gt;I see this comparison come up online and at work a lot. The implication being that if we want success we look for people with good EQ skills and if they have weak technical skills we can teach them. Sure. These are both skills but if everyone is good at communicating but rubbish at the technical stuff, guess what the quality is like...&lt;/p&gt;
+    <summary type="html">&lt;p&gt;I see this comparison come up online and at work a lot. The implication being that if we want success we look for people with good EQ skills and if they have weak technical skills we can teach them. Sure. These are both skills but if everyone is good at communicating but rubbish at the technical stuff, guess what the quality is like...&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;&lt;em&gt;These ideas are my own and do not represent the views of my employer.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;I realise that this post has the potential to annoy or offend. Sadly I also don&apos;t expect to change too many minds. I guess I am hoping for this to be cathartic and that it will allow me to move on without being triggered in the future (I should meditate more). The idea that general intelligence is fixed and is decided for us in a genetic lottery does not sit well with us. Including me. Although I would like to be smarter I think (with my limited intellect) that the closer you align your reality with actual reality, the less suffering you will inflict on yourself and others.&lt;/p&gt;
@@ -159,7 +159,7 @@ Not only that but in this digital age it is really easy to share or download med
 &lt;li&gt;&lt;a href=&quot;https://www.researchgate.net/publication/307874653_The_relationship_between_cognitive_ability_and_chess_skill_A_comprehensive_meta-analysis&quot;&gt;researchgate.net&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S1877042813017096&quot;&gt;sciencedirect.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.memory-key.com/research/news/correlation-between-emotional-intelligence-and-iq&quot;&gt;memory-key.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;</summary>
   </entry>
   
   <entry>
@@ -171,7 +171,7 @@ Not only that but in this digital age it is really easy to share or download med
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</uri>
     </author>
-    <content type="html">&lt;p&gt;This one is just for laughs but technical writing doesn&apos;t always have to be serious.&lt;br /&gt;
+    <summary type="html">&lt;p&gt;This one is just for laughs but technical writing doesn&apos;t always have to be serious.&lt;br /&gt;
 I was double checking a Yoda quote for my previous post and it got me thinking about how many Yoda quotes could be applied to the functional programming (FP) paradigm.&lt;br /&gt;
 Star wars and programming are meant to go together.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -212,7 +212,7 @@ Star wars and programming are meant to go together.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I could make a point here about storing state but I think it is more important to reiterate the warning about the dark side of being too attached to just one paradigm. Find balance in the force.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;So that&apos;s it for Yoda on functional programming. Hope it made you think and I hope it made you smile.&lt;/p&gt;</content>
+&lt;p&gt;So that&apos;s it for Yoda on functional programming. Hope it made you think and I hope it made you smile.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -224,7 +224,7 @@ Star wars and programming are meant to go together.&lt;/p&gt;
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/productivity-tips-1/</uri>
     </author>
-    <content type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;“Do. Or do not. There is no try.” - Yoda&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Time has become a precious commodity for me lately. Between management meetings, team meetings, and then actually trying to improve small things in process and code, it is easy to loose track of things. Even worse is that it is easy to loose track of what is important. So I am finding myself going back to some old habits that died off during different shifts in my career and apply many of them again.&lt;/p&gt;
@@ -265,7 +265,7 @@ Star wars and programming are meant to go together.&lt;/p&gt;
 &lt;p&gt;This is a real simple one but it can be very helpful to block time in your calendar to do specific important tasks. This is useful if your calendar can quickly fill up with meeting requests. I block time to just be available for my team as well as for specific tasks.&lt;/p&gt;
 &lt;p&gt;Another little tip is to not accept meetings until you have been furnished with an agenda. This allows you to determine whether you really are the best person to be at that meeting, or if invitees are missing.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Although I stated productivity comes down to focus, we explored how to increase it from multiple prongs. Techniques and tips, training, and tools. Use what works for you but please try give all of them an honest try. I would love to hear what you use to keep focused. Please let me know in the comments below.&lt;/p&gt;</content>
+&lt;p&gt;Although I stated productivity comes down to focus, we explored how to increase it from multiple prongs. Techniques and tips, training, and tools. Use what works for you but please try give all of them an honest try. I would love to hear what you use to keep focused. Please let me know in the comments below.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -277,7 +277,7 @@ Star wars and programming are meant to go together.&lt;/p&gt;
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/agile-is-a-characteristic/</uri>
     </author>
-    <content type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html&quot;&gt;Agile is dead&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I see more and more posts and talks claiming that Agile is dead. Broad statements like this are obviously just for effect but even if just click-bait, the sentiment is coming from somewhere. In this post I dig into reasons to say this and why we can still have hope.&lt;/p&gt;
@@ -298,7 +298,7 @@ Star wars and programming are meant to go together.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://agilemanifesto.org/&quot;&gt;Agile Manifesto&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S0164121216300826&quot;&gt;Challenges and success factors for large-scale agile transformations: A systematic literature review&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;</summary>
   </entry>
   
   <entry>
@@ -310,7 +310,7 @@ Star wars and programming are meant to go together.&lt;/p&gt;
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/aspect-rating/</uri>
     </author>
-    <content type="html">&lt;p&gt;I recently ran a retrospective with a team of 11 (including myself). With that many people getting focused feedback is important or meetings can drag out. I found this exercise quite useful and the rest of the team seemed to as well. See &lt;a href=&quot;/check-in-check-out&quot;&gt;this post for the Check-in/Check-out&lt;/a&gt; I ran before and after.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;I recently ran a retrospective with a team of 11 (including myself). With that many people getting focused feedback is important or meetings can drag out. I found this exercise quite useful and the rest of the team seemed to as well. See &lt;a href=&quot;/check-in-check-out&quot;&gt;this post for the Check-in/Check-out&lt;/a&gt; I ran before and after.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h1&gt;The first step is measure&lt;/h1&gt;
 &lt;p&gt;The idea is simple.&lt;/p&gt;
@@ -368,7 +368,7 @@ Star wars and programming are meant to go together.&lt;/p&gt;
 &lt;li&gt;The team really needs to get involved in discussing the aspects or this is going to be a very short meeting&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;I think I will be using this regularly to document the teams progression on these aspects. I won&apos;t use it every retrospective but maybe every 2nd or 3rd. As this is something new I am experimenting with so please note that this is early stage beta so take it with a pinch of salt. I will try report back with more data once I have more. Did you find this useful? Do you have your own methods that you use regularly for retrospectives that gives you measurable insight? Let me know in the comments below.&lt;/p&gt;</content>
+&lt;p&gt;I think I will be using this regularly to document the teams progression on these aspects. I won&apos;t use it every retrospective but maybe every 2nd or 3rd. As this is something new I am experimenting with so please note that this is early stage beta so take it with a pinch of salt. I will try report back with more data once I have more. Did you find this useful? Do you have your own methods that you use regularly for retrospectives that gives you measurable insight? Let me know in the comments below.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -380,7 +380,7 @@ Star wars and programming are meant to go together.&lt;/p&gt;
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/big-agile-teams/</uri>
     </author>
-    <content type="html">&lt;p&gt;As a team grows it becomes more difficult to apply some agile practices effectively. SCRUM meetings like standup and retrospectives become drawn out, the number of stories becomes hard to manage, and the communication within the team can easily break down.&lt;br /&gt;
+    <summary type="html">&lt;p&gt;As a team grows it becomes more difficult to apply some agile practices effectively. SCRUM meetings like standup and retrospectives become drawn out, the number of stories becomes hard to manage, and the communication within the team can easily break down.&lt;br /&gt;
 Currently I have a team of 10 and I am experimenting with ways of tackling these issues. Hopefully this will turn into a loose series of posts surrounding my experiences with a larger team. I won&apos;t go into the why suffice to say it is a project rather than a product but we don&apos;t want to go waterfall.&lt;/p&gt;
 &lt;h1&gt;Big team tactics&lt;/h1&gt;
 &lt;p&gt;Most of these tactics focus on communication of what the team is working on but there are a few process items. Some of these tactics are taken from previous smaller teams and are by no means only for large teams. By the time you have 9+ people social bonding, communication, and working memory are all suffering so these need to be focused on.&lt;/p&gt;
@@ -404,7 +404,7 @@ The Pig thinks for a moment and says: &amp;quot;No thanks. I&apos;d be committed
 &lt;h2&gt;Socialize&lt;/h2&gt;
 &lt;p&gt;Getting the team to bond is even more important when it is bigger. Lunching together, non-work activities, or even retrospectives can help bring together. A focus on sharing feelings at points in the retrospective can help others understand how others they are not close to in the team are feeling.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;I hope some of these suggestions are helpful and if you have any of your own please let me know in the comments below. These are all a work in progress and I will hopefully report back in a later post.&lt;/p&gt;</content>
+&lt;p&gt;I hope some of these suggestions are helpful and if you have any of your own please let me know in the comments below. These are all a work in progress and I will hopefully report back in a later post.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -416,7 +416,7 @@ The Pig thinks for a moment and says: &amp;quot;No thanks. I&apos;d be committed
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/check-in-check-out/</uri>
     </author>
-    <content type="html">&lt;p&gt;Someone must have thought of this before but I have not read this anywhere so I thought I would jot it down. I recently ran a retrospective that I thought went really well, and apparently so did everyone else...&lt;/p&gt;
+    <summary type="html">&lt;p&gt;Someone must have thought of this before but I have not read this anywhere so I thought I would jot it down. I recently ran a retrospective that I thought went really well, and apparently so did everyone else...&lt;/p&gt;
 &lt;h1&gt;Measure with Check-in and Check-out&lt;/h1&gt;
 &lt;p&gt;if you don&apos;t measure something how can you know if it improving? It is a staple of development so why shouldn&apos;t we apply it to our meetings as well. It is really easy.&lt;/p&gt;
 &lt;ol&gt;
@@ -426,7 +426,7 @@ The Pig thinks for a moment and says: &amp;quot;No thanks. I&apos;d be committed
 &lt;li&gt;Repeat step 1 at the end of the retrospective and see if anything changed&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Easy!&lt;/p&gt;
-&lt;img src=&quot;/img/posts/2017/check-in-out.jpg&quot; alt=&quot;Check-in-Check-out&quot; class=&quot;img-thumbnail&quot;&gt;</content>
+&lt;img src=&quot;/img/posts/2017/check-in-out.jpg&quot; alt=&quot;Check-in-Check-out&quot; class=&quot;img-thumbnail&quot;&gt;</summary>
   </entry>
   
   <entry>
@@ -438,7 +438,7 @@ The Pig thinks for a moment and says: &amp;quot;No thanks. I&apos;d be committed
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/better-error-handling/</uri>
     </author>
-    <content type="html">&lt;p&gt;In my &lt;a href=&quot;/honest-return-types&quot;&gt;previous post&lt;/a&gt; I discussed handling &lt;code&gt;null&lt;/code&gt; and &lt;code&gt;Exception&lt;/code&gt; in the return type. In this post I will discuss returning logic errors.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;In my &lt;a href=&quot;/honest-return-types&quot;&gt;previous post&lt;/a&gt; I discussed handling &lt;code&gt;null&lt;/code&gt; and &lt;code&gt;Exception&lt;/code&gt; in the return type. In this post I will discuss returning logic errors.&lt;/p&gt;
 &lt;h1&gt;Handling errors&lt;/h1&gt;
 &lt;p&gt;There are times when valid errors can occur but are not exceptional. Validation is a common example of this and where a validation result is often the go to type. Wouldn&apos;t it be nice if we could apply the same pattern as with exceptions?&lt;/p&gt;
 &lt;h2&gt;Either: Errors or no errors&lt;/h2&gt;
@@ -638,7 +638,7 @@ return Valid(person)
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/posts/elevated-world/&quot;&gt;Elevated world&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/rop/&quot;&gt;Railway oriented programming&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content>
+&lt;/ol&gt;</summary>
   </entry>
   
   <entry>
@@ -650,7 +650,7 @@ return Valid(person)
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/honest-return-types/</uri>
     </author>
-    <content type="html">&lt;p&gt;In &lt;a href=&quot;/honest-arguments&quot;&gt;Part 1&lt;/a&gt; we looked at ways of making your code more descriptive by using custom types instead of simple types like &lt;code&gt;string&lt;/code&gt;. In this article we will look at what your return type can tell you about a method.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;In &lt;a href=&quot;/honest-arguments&quot;&gt;Part 1&lt;/a&gt; we looked at ways of making your code more descriptive by using custom types instead of simple types like &lt;code&gt;string&lt;/code&gt;. In this article we will look at what your return type can tell you about a method.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Updated: 19 March 2017&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -820,7 +820,7 @@ Exceptional&amp;lt;Option&amp;lt;Person&amp;gt;&amp;gt; Get(Email email);
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/posts/elevated-world/&quot;&gt;Elevated world&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/rop/&quot;&gt;Railway oriented programming&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content>
+&lt;/ol&gt;</summary>
   </entry>
   
   <entry>
@@ -832,7 +832,7 @@ Exceptional&amp;lt;Option&amp;lt;Person&amp;gt;&amp;gt; Get(Email email);
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/honest-arguments/</uri>
     </author>
-    <content type="html">&lt;p&gt;One of the benefits of statically typed languages is that we can rely on more than the method and parameter names for information on what is expected and what is returned. A well designed method should be about more than naming. Too often we give up on this type safety and expressiveness for the ease of instantiating primitives and &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;One of the benefits of statically typed languages is that we can rely on more than the method and parameter names for information on what is expected and what is returned. A well designed method should be about more than naming. Too often we give up on this type safety and expressiveness for the ease of instantiating primitives and &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h1&gt;Expressively typed parameters&lt;/h1&gt;
 &lt;p&gt;Consider the following 2 tips for message choice. To be fair I chose less than expressive names to demonstrate that even if a developer doesn&apos;t pick the best names (which they should of course try to do and should be fixed), the types of the argument provide all the intent needed. The parameter names could be &apos;l&apos;, &apos;f&apos;, and &apos;e&apos; and a developer could still infer the usage from the types.&lt;/p&gt;
@@ -914,7 +914,7 @@ string emailAsString = (string)email;
 &lt;h4&gt;ORM Mapping&lt;/h4&gt;
 &lt;p&gt;If you are modelling your domain (like with DDD) which is likely the case if you are using types this way, then you shouldn&apos;t be using your domain models for persistence. This tends to tie your domain models to the underlying data model and you will find the schema requirements will start leaking into your domain model. So create models for your data layer and map from them to your domain models in the repository.&lt;/p&gt;
 &lt;h2&gt;Recommended Reading&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;http://enterprisecraftsmanship.com/2015/03/07/functional-c-primitive-obsession/&quot;&gt;Functional C#: Primitive obsession&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;http://enterprisecraftsmanship.com/2015/03/07/functional-c-primitive-obsession/&quot;&gt;Functional C#: Primitive obsession&lt;/a&gt;&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -926,7 +926,7 @@ string emailAsString = (string)email;
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/visual-studio-implicit-snippet/</uri>
     </author>
-    <content type="html">&lt;p&gt;Sometimes you want to create a &lt;a href=&quot;/honest-arguments&quot;&gt;descriptive type&lt;/a&gt; to better represent a concept such as an email (rather than a &lt;code&gt;string&lt;/code&gt;) but what stops you is the effort in creating this type. Here is a quick snippet to allow you to quickly generate these types reliably.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;Sometimes you want to create a &lt;a href=&quot;/honest-arguments&quot;&gt;descriptive type&lt;/a&gt; to better represent a concept such as an email (rather than a &lt;code&gt;string&lt;/code&gt;) but what stops you is the effort in creating this type. Here is a quick snippet to allow you to quickly generate these types reliably.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h1&gt;What will we be generating?&lt;/h1&gt;
 &lt;p&gt;What we are trying to generate is a class that ends up looking something like this.&lt;/p&gt;
@@ -1049,7 +1049,7 @@ string emailAsString = (string)email;
 &lt;li&gt;&lt;a href=&quot;https://msdn.microsoft.com/en-us/library/ms165396.aspx&quot;&gt;How to&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://msdn.microsoft.com/en-us/library/ms242312.aspx&quot;&gt;Snippet functions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://msdn.microsoft.com/en-us/library/ms171418.aspx&quot;&gt;Schema Reference&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;</summary>
   </entry>
   
   <entry>
@@ -1061,7 +1061,7 @@ string emailAsString = (string)email;
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/cake-build/</uri>
     </author>
-    <content type="html">&lt;p&gt;&lt;a href=&quot;http://cakebuild.net/&quot;&gt;CAKE&lt;/a&gt; is a great automation DSL that uses C#. Not only is it comfortable for C# developers to script automation tasks in, it has a stack of built in functionality and a great ecosystem of addins that give you a great jumpstart for just about anything you would like to automate.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;http://cakebuild.net/&quot;&gt;CAKE&lt;/a&gt; is a great automation DSL that uses C#. Not only is it comfortable for C# developers to script automation tasks in, it has a stack of built in functionality and a great ecosystem of addins that give you a great jumpstart for just about anything you would like to automate.&lt;/p&gt;
 &lt;p&gt;This is a quick tip on how to create a Visual Studio Code task that will build your Cake script. This is a great way of verifying your scripts without actually running Cake tasks.
 Also make sure you have the Visual Studio Code extension for Cake installed to give you syntax highlighting.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -1081,7 +1081,7 @@ Also make sure you have the Visual Studio Code extension for Cake installed to g
 &lt;p&gt;Cake works by running a powershell script (default is &lt;em&gt;build.ps1&lt;/em&gt;) that uses Roslyn to compile the Cake file. What our script does is execute the build script and trigger a compile but without actually executing any tasks. Not even the Default one. This is done by adding the &lt;code&gt;-Whatif&lt;/code&gt; argument flag.&lt;br /&gt;
 In the example above the &lt;code&gt;isBuildCommand&lt;/code&gt; is set to &lt;strong&gt;true&lt;/strong&gt; so that &lt;strong&gt;Ctrl+Shift+B&lt;/strong&gt; can be used to build the &lt;em&gt;build.cake&lt;/em&gt; file.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Automating your builds, testing and deployment is important but don&apos;t stop there. Making sure your workspace feedback cycle is fast can also be a great way to increase productivity and decrease frustration. Hope this quick tip helps someone. Leave a comment if you have any of your own Cake tips.&lt;/p&gt;</content>
+&lt;p&gt;Automating your builds, testing and deployment is important but don&apos;t stop there. Making sure your workspace feedback cycle is fast can also be a great way to increase productivity and decrease frustration. Hope this quick tip helps someone. Leave a comment if you have any of your own Cake tips.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -1093,7 +1093,7 @@ In the example above the &lt;code&gt;isBuildCommand&lt;/code&gt; is set to &lt;s
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/ddd-glossary/</uri>
     </author>
-    <content type="html">&lt;div class=&quot;row&quot;&gt;
+    <summary type="html">&lt;div class=&quot;row&quot;&gt;
   &lt;div class=&quot;col-xs-6 col-md-3&quot;&gt;
     &lt;a href=&quot;https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=as_sl_pc_tf_mfw?&amp;linkCode=wey&amp;tag=wwwnervstucoz-20&quot; class=&quot;thumbnail&quot;&gt;
       &lt;img src=&quot;/img/posts/2017/blue-book.jpg&quot;/&gt;
@@ -1204,7 +1204,7 @@ Why would we want to set a boundary rather than just reference any object needed
 &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=as_sl_pc_tf_mfw?&amp;amp;linkCode=wey&amp;amp;tag=wwwnervstucoz-20&quot;&gt;Domain-Driven Design: Tackling Complexity in the Heart of Software&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577/ref=pd_bxgy_14_img_2?_encoding=UTF8&amp;amp;pd_rd_i=0321834577&amp;amp;pd_rd_r=P6PNCC27GC5B7Q513JJ4&amp;amp;pd_rd_w=6neVY&amp;amp;pd_rd_wg=Rn8gy&amp;amp;psc=1&amp;amp;refRID=P6PNCC27GC5B7Q513JJ4&quot;&gt;Implementing Domain-Driven Design&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Applying-Domain-Driven-Design-Patterns-Examples/dp/0321268202/ref=as_sl_pc_tf_mfw?&amp;amp;linkCode=wey&amp;amp;tag=wwwnervstucoz-20&quot;&gt;Applying Domain-Driven Design Patterns Examples&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content>
+&lt;/ol&gt;</summary>
   </entry>
   
   <entry>
@@ -1216,7 +1216,7 @@ Why would we want to set a boundary rather than just reference any object needed
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/vscode-tasks/</uri>
     </author>
-    <content type="html">&lt;p&gt;I tend to try use &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt; for tasks and languages I don&apos;t currently use on a day to day basis. Over the last few weeks that has included Java and Delphi. Then today I was trying to launch my blog from VS Code and ran into an issue because Pretzel listens for a console key. The only fix I could find for this was to launch a new Powershell window. I thought this as good a time as any to post a few of these tasks.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;I tend to try use &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt; for tasks and languages I don&apos;t currently use on a day to day basis. Over the last few weeks that has included Java and Delphi. Then today I was trying to launch my blog from VS Code and ran into an issue because Pretzel listens for a console key. The only fix I could find for this was to launch a new Powershell window. I thought this as good a time as any to post a few of these tasks.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h1&gt;Tasks&lt;/h1&gt;
 &lt;p&gt;Tasks in VS Code allow you to run commands that execute and usually feedback some status. Tasks are configured in the file &lt;em&gt;/.vscode/tasks.json&lt;/em&gt; from the workspace root. Hit &lt;strong&gt;Ctrl+Shift+P&lt;/strong&gt; and type &lt;strong&gt;Tasks:C&lt;/strong&gt; and hit enter or click &apos;Tasks: Configure Task Runner&apos;. If the file does not exist it will be created.&lt;/p&gt;
@@ -1338,7 +1338,7 @@ This only compiles a single unit, not a complete project. Not needed for this to
 &lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;Start-Process powershell &amp;quot;.\pretzel.ps1 -target Taste -Wait&amp;quot; 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;Visual Studio Code is a great editor and has plenty of extension points. If you have any great tips I would love to hear about them in the comments.&lt;/p&gt;</content>
+&lt;p&gt;Visual Studio Code is a great editor and has plenty of extension points. If you have any great tips I would love to hear about them in the comments.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -1350,7 +1350,7 @@ This only compiles a single unit, not a complete project. Not needed for this to
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/pretezel-blog-appveyor-deployment/</uri>
     </author>
-    <content type="html">&lt;h1&gt;Background&lt;/h1&gt;
+    <summary type="html">&lt;h1&gt;Background&lt;/h1&gt;
 &lt;p&gt;I was using &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt; and &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; to build and host this blog up until a few days ago.
 Getting Jekyll running on Windows (more specifically Ruby) is a gamble and running it in a Docker container just led me down Ruby gem issues with my theme.&lt;br /&gt;
 Finally I decided to stick with the statically generated site but move away from Jekyll. Enter Pretzel...&lt;/p&gt;
@@ -1439,7 +1439,7 @@ The only thing you will need to change in the &lt;em&gt;appveyor.yml&lt;/em&gt; 
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;And there we have it! We can commit to &lt;strong&gt;source&lt;/strong&gt; and the generated changes are committed to &lt;strong&gt;master&lt;/strong&gt;.&lt;br /&gt;
 Feel free to copy my blog at https://github.com/dburriss/dburriss.github.io&lt;/p&gt;
-&lt;p&gt;Please leave a comment if you found this useful or have any improvements.&lt;/p&gt;</content>
+&lt;p&gt;Please leave a comment if you found this useful or have any improvements.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -1451,7 +1451,7 @@ Feel free to copy my blog at https://github.com/dburriss/dburriss.github.io&lt;/
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/asp-net-5-tips-urlhelper/</uri>
     </author>
-    <content type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Note that this is specific to the upcoming RC 2 using the dotnet CLI. Currently in RC 1 this is not an issue.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;So I was messing around with &lt;a href=&quot;https://github.com/davidfowl/dotnetcli-aspnet5&quot;&gt;David Fowl&apos;s repository&lt;/a&gt; that makes use of the new RC 2 bits that run on the new &lt;a href=&quot;https://github.com/dotnet/cli&quot;&gt;dotnet CLI&lt;/a&gt;.&lt;/p&gt;
@@ -1484,7 +1484,7 @@ public class EmailTagHelper : TagHelper
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I am guessing that this article will only be useful next month when RC 2 hits but it was great to see what is coming. I am quite liking the new CLI and with a bit of digging I have managed to get most things working, so the team seems to be making great progress toward RC 2.
-Please let me know below if you found this useful... or if things change :)&lt;/p&gt;</content>
+Please let me know below if you found this useful... or if things change :)&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -1496,7 +1496,7 @@ Please let me know below if you found this useful... or if things change :)&lt;/
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/asp-net-5-tips-tempdata/</uri>
     </author>
-    <content type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;NOTE: Handling TempData and Session is made easy with extension methods in the &lt;a href=&quot;https://www.nuget.org/packages/BetterSession.AspNet.Mvc/&quot;&gt;BetterSession&lt;/a&gt; Nuget package.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;ASPNET 5 is designed to be configurable. It starts out with almost nothing and you choose what you need. In previous versions of MVC we got TempData out the box. Not so with the new iteration.&lt;/p&gt;
@@ -1595,7 +1595,7 @@ public static T GetFromJson&lt;T&gt;(this ITempDataDictionary tempData, string k
   return default(T);
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;So hope you and future me finds this post useful. I am going to try blog little things like this as I work more with ASP.NET 5. Please let me know in the comments below if you did find it useful or if I missed anything. Also let me know if there are other topics you want me to cover.&lt;/p&gt;</content>
+&lt;p&gt;So hope you and future me finds this post useful. I am going to try blog little things like this as I work more with ASP.NET 5. Please let me know in the comments below if you did find it useful or if I missed anything. Also let me know if there are other topics you want me to cover.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -1607,7 +1607,7 @@ public static T GetFromJson&lt;T&gt;(this ITempDataDictionary tempData, string k
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/aspnet-vsonline-ci/</uri>
     </author>
-    <content type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Using Visual Studio Online Build Services for a MSBuild/xproj free deployment.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;So my laptop was in for repairs so I decided to dust off my old Macbook Pro. I upgraded to Yosemite, downloaded &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;VSCode&lt;/a&gt; and ran through the the &lt;a href=&quot;http://docs.asp.net/en/latest/getting-started/installing-on-mac.html&quot;&gt;setup for DNX&lt;/a&gt; on Mac. Very quickly I started to wonder about deploying to &lt;a href=&quot;http://azure.microsoft.com/en-us/get-started/&quot;&gt;Azure&lt;/a&gt;.&lt;/p&gt;
@@ -1668,7 +1668,7 @@ Next we setup the upload script by creating an &lt;strong&gt;Azure PowerShell&lt
 &lt;p&gt;Now you can either hit &lt;strong&gt;Queue build...&lt;/strong&gt; or if you setup CI do a push to the trigger enabled branch. Note that the triggered build can sometimes take a few minutes to be queued and takes almost 5 minutes to build and deploy even for a small test site.&lt;/p&gt;
 &lt;h3&gt;Conclusion&lt;/h3&gt;
 &lt;p&gt;Thats it for deploying to Azure with a solution developed on OSX (or Linux). Just 2 scripts really.
-I hope this helps someone and please leave a comment below if you have any questions or suggestions. Or just want to say it helped :)&lt;/p&gt;</content>
+I hope this helps someone and please leave a comment below if you have any questions or suggestions. Or just want to say it helped :)&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -1680,7 +1680,7 @@ I hope this helps someone and please leave a comment below if you have any quest
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/installing-docker-on-hyper-v/</uri>
     </author>
-    <content type="html">&lt;p&gt;To be clear, currently Docker containers do not run on Windows. Microsoft is working with Docker to release something with feature parity but we will be lucky if we see that in 2015 (&lt;a href=&quot;http://weblogs.asp.net/scottgu/docker-and-microsoft-integrating-docker-with-windows-server-and-microsoft-azure&quot;&gt;Blogged by Scott Gu&lt;/a&gt;). So although there is a client for Windows for managing Docker containers, we will need an Ubuntu install. &lt;a href=&quot;http://devonburriss.me/installing-ubuntu-on-hyper-v/&quot;&gt;Installing Ubuntu on Hyper-V&lt;/a&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;To be clear, currently Docker containers do not run on Windows. Microsoft is working with Docker to release something with feature parity but we will be lucky if we see that in 2015 (&lt;a href=&quot;http://weblogs.asp.net/scottgu/docker-and-microsoft-integrating-docker-with-windows-server-and-microsoft-azure&quot;&gt;Blogged by Scott Gu&lt;/a&gt;). So although there is a client for Windows for managing Docker containers, we will need an Ubuntu install. &lt;a href=&quot;http://devonburriss.me/installing-ubuntu-on-hyper-v/&quot;&gt;Installing Ubuntu on Hyper-V&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2015/large_h.png&quot; alt=&quot;Docker logo&quot; /&gt;&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h1&gt;Installing Docker&lt;/h1&gt;
@@ -1722,7 +1722,7 @@ You might need to &lt;code&gt;sudo reboot&lt;/code&gt;.&lt;/p&gt;
 This should now pull down the ubuntu image and start up a container running ubuntu (yes we are running Ubuntu in a kernal process on another Ubuntu - inception right?).
 The &lt;code&gt;-t&lt;/code&gt; is to assign a terminal and &lt;code&gt;-i&lt;/code&gt; is so the connection is interactive.
 Once it is running a terminal prompt will be available. Type &lt;code&gt;echo &apos;Hi&apos;&lt;/code&gt;. The Ubuntu container willl say hi back :)&lt;/p&gt;
-&lt;p&gt;So thats it. You have Docker running on a Hyper-V guest.&lt;/p&gt;</content>
+&lt;p&gt;So thats it. You have Docker running on a Hyper-V guest.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -1734,7 +1734,7 @@ Once it is running a terminal prompt will be available. Type &lt;code&gt;echo &a
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/installing-ubuntu-on-hyper-v/</uri>
     </author>
-    <content type="html">&lt;p&gt;The reason for this post is just to remind me of a few little things you need to do if you want to create a Generation 2 Ubuntu Virtual Machine on Hyper-V. When setting up the virtual machine in Hyper-V and you select Generation 2.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;The reason for this post is just to remind me of a few little things you need to do if you want to create a Generation 2 Ubuntu Virtual Machine on Hyper-V. When setting up the virtual machine in Hyper-V and you select Generation 2.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h2&gt;Create a Virtual Switch 1st&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2015/Switch1.png&quot; alt=&quot;Navigating to Virtual Switch Manager&quot; /&gt;
@@ -1774,7 +1774,7 @@ I managed to get past this by adding the following line at the bottom of /etc/de
 &lt;h4&gt;Setup:&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;This setup is valid as of Windows 8.1 running Hyper-V and installing Ubuntu 14.10 as the guest OS.&lt;/p&gt;
-&lt;/blockquote&gt;</content>
+&lt;/blockquote&gt;</summary>
   </entry>
   
   <entry>
@@ -1786,7 +1786,7 @@ I managed to get past this by adding the following line at the bottom of /etc/de
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/testing-the-untestable/</uri>
     </author>
-    <content type="html">&lt;p&gt;If you have ever tried written unit tests for existing code you know it can be quite challenging. Not only is finding what to test difficult, the code usually just wont be testable. If it is code that you have written and you are at liberty to make some sweeping changes, then you can refactor toward testability. If not I still go through a technique at the end of this article for providing testable classes.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;If you have ever tried written unit tests for existing code you know it can be quite challenging. Not only is finding what to test difficult, the code usually just wont be testable. If it is code that you have written and you are at liberty to make some sweeping changes, then you can refactor toward testability. If not I still go through a technique at the end of this article for providing testable classes.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2015/bridge-cables-resize.jpg&quot; alt=&quot;bridge cables&quot; /&gt;&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;Let&apos;s first try refactor toward testablility.
@@ -1958,7 +1958,7 @@ public void Scare_With2OutOf3ChildrenAsleep_ScareCalledOn2Children()
 &lt;blockquote&gt;
 &lt;p&gt;NOTE: A quick note on DateTime. It is a very sneaky static that leaks into code often. Try make it team policy to not use DateTime and instead use something like this suggested by &lt;a href=&quot;http://ayende.com/blog/3408/dealing-with-time-in-tests&quot;&gt;Ayenda Rahien&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Happy testing!&lt;/p&gt;</content>
+&lt;p&gt;Happy testing!&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -1970,7 +1970,7 @@ public void Scare_With2OutOf3ChildrenAsleep_ScareCalledOn2Children()
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/developer-quest-variables/</uri>
     </author>
-    <content type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Hold this for me.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;The story so far&lt;/h2&gt;
@@ -2131,7 +2131,7 @@ Hit &lt;strong&gt;F5&lt;/strong&gt; to run it.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;http://msdn.microsoft.com/en-us/library/s1ax56ch.aspx&lt;/li&gt;
 &lt;li&gt;http://www.albahari.com/valuevsreftypes.aspx&lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;</summary>
   </entry>
   
   <entry>
@@ -2143,7 +2143,7 @@ Hit &lt;strong&gt;F5&lt;/strong&gt; to run it.&lt;/p&gt;
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/developer-quest-getting-started/</uri>
     </author>
-    <content type="html">&lt;h2&gt;Getting Started&lt;/h2&gt;
+    <summary type="html">&lt;h2&gt;Getting Started&lt;/h2&gt;
 &lt;p&gt;The first thing you are going to need as a developer is an Integrated Development Environment (IDE). Technically this is not necessary, you could use a text editor and the compiler in command line but trust me, you don&apos;t want to go that route.
 Head over to http://www.visualstudio.com/downloads/download-visual-studio-vs and download Microsoft Visual Studio Express for Windows Desktop.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2014/quest-for-glory-i-so-you-want-to-be-a-hero-dos-title-73699.jpg&quot; alt=&quot;hero running from monster&quot; /&gt;&lt;/p&gt;
@@ -2183,7 +2183,7 @@ Now hit &lt;strong&gt;F5&lt;/strong&gt; again to build and run the application. 
 &lt;h2&gt;Whats Next?&lt;/h2&gt;
 &lt;p&gt;Next we will be looking at how you can capture input from the console application so you can interact with it.
 If you have any questions or suggestions, please don&apos;t hesitate to leave a comment below. Happy coding!
-&lt;a href=&quot;http://devonburriss.me/developer-quest-variables/&quot;&gt;The adventure continues here.&lt;/a&gt;&lt;/p&gt;</content>
+&lt;a href=&quot;http://devonburriss.me/developer-quest-variables/&quot;&gt;The adventure continues here.&lt;/a&gt;&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -2195,12 +2195,12 @@ If you have any questions or suggestions, please don&apos;t hesitate to leave a 
       <name></name>
       <uri>http://devonburriss.me/software-development-is-like-a-piece-of-string/</uri>
     </author>
-    <content type="html">&lt;p&gt;Software like many things in life, is one of those things that the further down a path you go, the harder it is to back out. When I think of a software project I think of a piece of string. The longer the project, the longer the string.
+    <summary type="html">&lt;p&gt;Software like many things in life, is one of those things that the further down a path you go, the harder it is to back out. When I think of a software project I think of a piece of string. The longer the project, the longer the string.
 The string is the perfect length to reach the end. Each and every time we make a poor design decision or a bad implementation we effectively add a knot in the string. One or two of these and we might still be able to stretch it to reach the end but most likely if we want to reach the end, we are going to need to unravel the knot we created.
 I see it over and over again in projects, both my own knots and the knots of colleagues. We make these knots knowingly, thinking we can come back later, or thinking they can slip by but they always hold things up somewhere.
 If they don&apos;t force you to come back and undo them later, they slow the velocity of the project, negating any time you may have saved in implementation time.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2014/yarn-800.jpg&quot; alt=&quot;library&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Bottom line. Don&apos;t take shortcuts. I am not saying it has to always be the very best implementation but it should always be something elegant. Dirty hacks always fester eventually.&lt;/p&gt;</content>
+&lt;p&gt;Bottom line. Don&apos;t take shortcuts. I am not saying it has to always be the very best implementation but it should always be something elegant. Dirty hacks always fester eventually.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -2212,7 +2212,7 @@ If they don&apos;t force you to come back and undo them later, they slow the vel
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/testing-your-data-repositories/</uri>
     </author>
-    <content type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Avoiding dependency on a data layer.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;My solution was to use an in-memory H2 database (http://www.h2database.com/html/main.html) which can be created and dropped on a per test basis. To do this I used the Command Pattern (http://en.wikipedia.org/wiki/Command_pattern) to create and then drop the table for each test. In case you are not familiar with the command pattern:&lt;/p&gt;
@@ -2479,7 +2479,7 @@ public class CommandQueue implements Command {
 	} 
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Let me know if you found this useful, or if you have a better way for testing your data persistence...&lt;/p&gt;</content>
+&lt;p&gt;Let me know if you found this useful, or if you have a better way for testing your data persistence...&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -2491,7 +2491,7 @@ public class CommandQueue implements Command {
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/single-respon/</uri>
     </author>
-    <content type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;The &lt;strong&gt;S&lt;/strong&gt; in &lt;strong&gt;SOLID&lt;/strong&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;If I had to pick one principle that had to be enforced strongly on a code base, this would be it. Most techniques for writing elegant code fall by the wayside if this principle is not followed.&lt;/p&gt;
@@ -2718,7 +2718,7 @@ public class OrderServiceAfter : IDisposable
 &lt;p&gt;&lt;strong&gt;Depth of Inheritance&lt;/strong&gt; – We are not using inheritance to solve this problem so not going to touch on this. See: [http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code-metrics-depth-of-inheritance-dit.aspx](http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code- metrics-depth-of-inheritance-dit.aspx)&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Coupling_(computer_programming)&quot;&gt;&lt;strong&gt;Class Coupling&lt;/strong&gt;&lt;/a&gt; – We dropped the coupling to other classes quite substantially. This is a very good thing. The less dependencies you class has, the less likely that it breaks due to a change elsewhere in the codebase. See: &lt;a href=&quot;http://blogs.msdn.com/b/zainnab/archive/2014/02/22/10168042.aspx&quot;&gt;http://blogs.msdn.com/b/zainnab/archive/2014/02/22/10168042.aspx&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Resources&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.objectmentor.com/resources/articles/srp.pdf&quot;&gt;http://www.objectmentor.com/resources/articles/srp.pdf&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;http://www.objectmentor.com/resources/articles/srp.pdf&quot;&gt;http://www.objectmentor.com/resources/articles/srp.pdf&lt;/a&gt;&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -2730,7 +2730,7 @@ public class OrderServiceAfter : IDisposable
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/estimation/</uri>
     </author>
-    <content type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Tackling the uncertainty of software estimation.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Most developers are horrible at estimation. Period. There are numerous reasons for this. Some of the responsibility falls outside of a developers control but there are still steps that a developer is obligated to take.&lt;/p&gt;
@@ -2772,7 +2772,7 @@ This was for the most likely time. For the best case you get 1 day and worst cas
 &lt;p&gt;&lt;strong&gt;Estimate = T + V = 4.3&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;So let&apos;s schedule this for a 4.5 days.&lt;/p&gt;
 &lt;h3&gt;Conclusion&lt;/h3&gt;
-&lt;p&gt;So knowing our failings, and bearing in mind the goals of management, we can mitigate potential disaster by using the techniques outlined here. Estimation is never going to be an exact science but we can go a long way in making our estimates more accurate. Hope this helps. Good luck with your next project.&lt;/p&gt;</content>
+&lt;p&gt;So knowing our failings, and bearing in mind the goals of management, we can mitigate potential disaster by using the techniques outlined here. Estimation is never going to be an exact science but we can go a long way in making our estimates more accurate. Hope this helps. Good luck with your next project.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
@@ -2784,7 +2784,7 @@ This was for the most likely time. For the best case you get 1 day and worst cas
       <name>Devon Burriss</name>
       <uri>http://devonburriss.me/the-way-we-write-code/</uri>
     </author>
-    <content type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;The true challenge in writing good software.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Code takes on a life of its own. As developers we pour our time and intellect into solving problems, and the manifestation of those solutions are found in the lines of code we write. Too often though, the code is controlling us as much as it is controlling the hardware it runs on. We often fail to think about how we write our code, how we structure it, or how others may view or use it. We let one line run to the next, and the code leads us.&lt;/p&gt;
@@ -2814,7 +2814,7 @@ This was for the most likely time. For the best case you get 1 day and worst cas
 &lt;h3&gt;Methodologies&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Agile&lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;</summary>
   </entry>
   
 </feed>
