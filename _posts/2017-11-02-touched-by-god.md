@@ -10,7 +10,7 @@ tags: [General, Meditation, Mindfulness, Science]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/star-watch-bg.jpg"
-social-img: "img/posts/2017/touched-by-god.jpg"
+social-img: "img/posts/2017/touched-by-god-flame.jpg"
 published: true
 ---
 
@@ -24,7 +24,7 @@ I grew up in a Christian household, going to church for as far back as I can rem
 
 ## Touched by God
 
-<img src="../img/posts/2017/touched-by-god.jpg" alt="Fire" class="img-rounded pull-left" width="280" style="margin-right: 1em;">
+<img src="../img/posts/2017/touched-by-god-flame.jpg" alt="Fire" class="img-rounded pull-left" width="280" style="margin-right: 1em;">
 For those who have never been involved in this sort of thing it is hard to explain. A meeting at a charismatic Christian event usually goes something like this. The minister will open with a prayer and a reading from the Bible. We would then launch into around 40 minutes of "Praise and Worship". This would usually start as vibrant upbeat music and end off with more emotive music. These times would often correspond with feelings of joy and awe as it felt like the Holy Spirit was among us. They could often get quite weird for the uninitiated as people would laugh uncontrollably, jump around, and speak out in "tongues"(odd sounds that only angels and those gifted with the ability could understand). The service would then continue with a short sermon and then we would go into a period of "ministry". This usually entailed people coming to the front and being prayed for while the band softly played in the background. The weirdness of the "praise and worship" is usually overshadowed in this "ministry" time for those who are not accustomed to it. People would laugh and cry uncontrollably. People would gather and pray in "tongues" for each other. People would prophesize about the future of the people standing there, and probably most extraordinary to the uninitiated people would be those "slain in the spirit". This is a phenomenon where people would fall over backward and then either just lie there basking in the magnificence of God, maybe laughing at the wonder of it, or crying as you are overwhelmed, or convulse as demons flee before the Holy Spirit.
 
 I wanted to give you a brief picture of what it is like to be in that setting. These few words do not bring the full reality of what it feels like to be involved in this. To those who have experienced it, the absolute reality of it is difficult to explain with anything other than the supernatural. There are of course psychological explanations for these effects but I instead wanted to look at them in light of a more recent experience...
