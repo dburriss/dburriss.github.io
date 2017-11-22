@@ -13,12 +13,12 @@ header-img: "img/backgrounds/stairwell-bg.jpg"
 social-img: "img/posts/2017/apple.jpg"
 published: false
 ---
-Have you ever thought you have the perfect tool for the job at work but it is not on the allowed list of languages or frameworks? At this stage you have a decision to make. Are you going to just move on and pick something that will meet less resistance or are you going to do the work to drive some change? In this post I make my case for functional programming in enterprise development, specifically **fsharp** if your current team expertise is .NET. The same arguments could be leveled for JVM based languages like Scala if your experience is in Java.
+Have you ever thought you have the perfect tool for the job at work but it is not on the allowed list of languages or frameworks? At this stage you have a decision to make. Are you going to just move on and pick something that will meet less resistance or are you going to do the work to drive some change? In this post I make my case for functional programming in enterprise development, specifically **F#** if your current team expertise is .NET. The same arguments could be leveled for JVM based languages like Scala if your experience is in Java.
 <!--more-->
 
 ## TL;DR
 
-In this post I drill down through the different reasons why a business (applies to individual developers too) should consider broadening their language range in a carefully considered way. First I argue that being open to multiple languages is can benefit your companies hiring as well as the experience pool. Secondly I argue that functional programming opens up new perspectives while increasing the correctness of your applications in less time. As a bonus functional programming filters even better in the hiring process for top developers. Lastly I make the case that if you already have .NET experience the F# is a natural choice for a functional language.
+In this post I drill down through the different reasons why a business (applies to individual developers too) should consider broadening their language range in a carefully considered way. First I argue that being open to multiple languages can benefit your companies hiring as well as the experience pool. Secondly I argue that functional programming opens up new perspectives while increasing the correctness of your applications in less time. As a bonus functional programming filters even better in the hiring process for top developers. Lastly I make the case that if you already have .NET experience the F# is a natural choice for a functional language.
 
 If this is all you are going to read I want to leave you with an excerpt from a study done over 728 projects on Github. I link to the full article at the end of the post.
 
@@ -31,19 +31,19 @@ Firstly I would like to make the case for why you should consider using differen
 
 ### Slim pickings
 
-Good developers are in short supply and the market is competitive. By opening up your hiring to other languages, or actually using multiple languages, you **expand the pool of developers by a multiple of the number of languages you are willing to consider**. This can be a huge advantage in the number of applicants you receive. Obviously sheer number of applicants is not the only concern and I will address this in a later point. The important point to buy in to here though is that a good developer in any language is a better pick that a poor or average developer in your language of choice. A language can be ramped up in fairly quickly. Experience and professionalism on the other hand is hard earned and hard to come by. Im my opinion the quality of a developer always trumps the language they use.
+Good developers are in short supply and the market is competitive. By opening up your hiring to other languages, or actually using multiple languages, you **expand the pool of developers by a multiple of the number of languages you are willing to consider**. This can be a huge advantage in the number of applicants you receive. Obviously sheer number of applicants is not the only concern and I will address this in a later point. The important point to buy in to here though is that a good developer in any language is a better pick than a poor or average developer in your language of choice. A language can be ramped up in fairly quickly. Experience and professionalism on the other hand is hard earned and hard to come by. In my opinion the quality of a developer always trumps the language they use.
 
 ### Swag
 
-Let's face it. Your reputation as a company influences who you attract. For professional, open-minded developers that are not fan boys, **a company that is focused on hiring on quality and principles is far more appealing than a company that religiously hires on technical stack**. **Polyglot** (fluent in multiple languages) is one of those **buzzwords** that started doing the rounds a while back in the programming space (in this case specific to programming languages). **Being able to use it honestly in your recruitment is a real bonus**.
+Let's face it. Your reputation as a company influences who you attract. For professional, open-minded developers that are not fan boys of a specific language, **a company that is focused on hiring on quality and principles is far more appealing than a company that religiously hires on technical stack**. **Polyglot** (fluent in multiple languages) is one of those **buzzwords** that started doing the rounds a while back in the programming space (in this case specific to programming languages). **Being able to use it honestly in your recruitment is a real bonus**.
 
 ### Skin the cat
 
-Different experience and different language features allow for different ways of solving a problem. Often just having **someone with a different background look at a problem allows them to solve the problem in a new (for the team) and elegant way**. This can have huge benefits to the team and company as a whole.
+Different experience and different language features allow for different ways of solving problems. Often just having **someone with a different background look at a problem allows them to come up with a solution in a new (for the team) and elegant way**. This can have huge benefits to the team and company as a whole.
 
 ### Mindset is key
 
-Selecting for people who pick up new languages is **selecting for people who enjoy learning new things on their own time**. This is often the number one identifier I see in hiring between average developers and awesome developers. When those languages span different programming paradigms like imperative and functional, then you have someone who is really learning by pushing their own comfort boundaries to look for better solutions. That mindset is hard to teach and one you really want on your team.
+Selecting for people who pick up new languages is **selecting for people who enjoy learning new things on their own time**. This is often the number one identifier I see in hiring between average developers and awesome developers. When those languages span different programming paradigms like imperative and functional, then you have someone who is really pushing their comfort zones to find better solutions. That mindset is hard to teach and one you really want on your team.
 
 ## An argument for functional programming
 
@@ -52,11 +52,11 @@ When I was new to software development I was always looking for new and shiny wa
 
 ### Choice of 2, take it or leave it
 
-Most of the mainstream enterprise languages out there have the concept of 'null'. This has been described as the billion dollar mistake. Functional programming has more **elegant ways of representing the absence of data** that encourages you to make unrepresentable states unrepresentable. This is of course not the sole domain of the functional paradigm (I have [written about it in the past for C#](/honest-return-types)) but null based exceptions are rare to find in functional languages and if found are usually because of interop concerns. Minimizing the chance of null removes a whole class of exceptions that can possibly occur.
+Most of the mainstream enterprise languages out there have the concept of 'null'. This has been described as the [billion dollar mistake](https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions). Functional programming has more **elegant ways of representing the absence of data** that encourages you to make unrepresentable states unrepresentable. This is of course not the sole domain of the functional paradigm (I have [written about it in the past for C#](/honest-return-types)) but null based exceptions are rare to find in functional languages and if found are usually because of interop concerns. Minimizing the chance of null removes a whole class of exceptions that can possibly occur.
 
 ### Who moved my cheese?
 
-Another point were I experienced pain was with erratic or incorrect programs due to unintended state changes. Functional programming on the other hand pushes you toward immutability. A function has an input and an output and that output does not have a reference to the input. This makes code far more predictable. **Immutability removes the a whole class of errors that can occur due to unintended side-effects**. And these are often hard to find and fix.
+Another point were I experienced pain was with erratic or incorrect programs due to unintended state changes. Functional programming on the other hand pushes you toward immutability. A function has an input and an output and that output does not have a reference to the input. This makes code far more predictable. **Immutability removes a whole class of errors that can occur due to unintended side-effects**. And these are often hard to find and fix.
 
 ### The I is an illusion
 
@@ -72,7 +72,7 @@ Since functional programming encourages purity, throwing exceptions is not somet
 
 ### Signature move
 
-I have written before about [honest arguments](/honest-arguments) and [honest return types](/honest-return-types) and it something I have witnessed make a difference in code. **Not only is the code more descriptive but correctness is reinforced by the compiler**. Functional programming brings the signatures of functions front and center. Once again, more possible errors negated.
+I have written before about [honest arguments](/honest-arguments) and [honest return types](/honest-return-types) and it is something I have witnessed make a difference in code. **Not only is the code more descriptive but correctness is reinforced by the compiler**. Functional programming brings the signatures of functions front and center. Once again, more possible errors negated.
 
 ### Expanding horizons
 
@@ -82,7 +82,7 @@ I touched on this in the section on language diversity but encouraging developer
 
 **Functional languages usually allow you to do more with less code**. This is because it is declarative rather than imperative. This means your code reads like a sentence telling you what it does rather than a list of commands telling you each and every task to do.
 
-## An argument for fsharp
+## An argument for F#
 
 <img src="../img/posts/2017/fsharp512.png" alt="fsharp" class="img-rounded pull-left" width="280" style="margin-right: 1em;">
 So hopefully by this point I have convinced you (or you have convinced your boss) that multiple languages is good. Not only that but choosing a functional first language makes good sense. My final step will be to convince you that F# should be that language.
@@ -101,11 +101,11 @@ Part of what makes C# and .NET in general great is the tooling and libraries bui
 
 ### Leading the pack
 
-F# has been ahead of the curve in the .NET ecosystem in a lot of ways. So many of the great language features since C#'s initial Java clone have been inspired by F#. Current **features like generics, `async`/`await`, auto-property initializers, exception filters, expression-bodied function members, and pattern-matching were all in F# first**.
+F# has been ahead of the curve in the .NET ecosystem in a lot of ways. So many of the great language features since C#'s initial Java clone have been inspired by F#. Current **features like generics, `async`/`await`, auto-property initializers, exception filters, expression-bodied function members, and pattern-matching were all in F# first**(or added by the creator of F#).
 
 ### Shoulders of giants
 
-Although F# has been leading the charge with Open Source for longer than probably any other Microsoft endeavour, it still has the backing of Microsoft as well as an active OSS community. F# was released by Microsoft Research in 2005 and has been on Github since 2010. It is lead by the [FSharp Foundation](http://foundation.fsharp.org/) that is dedicated to advance the language.
+Although F# has been leading the charge with Open Source for longer than probably any other Microsoft endeavour, it still has the backing of Microsoft as well as an active OSS community. F# was released by Microsoft Research in 2005 and has been on Github since 2010. It is lead by the [FSharp Foundation](http://foundation.fsharp.org/) that is dedicated to advancing the language.
 
 ## Caution
 
