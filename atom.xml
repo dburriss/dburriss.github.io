@@ -23,7 +23,7 @@ layout: nil
       <name>{{ post.author }}</name>
       <uri>{{ post.url | prepend : site.url }}</uri>
     </author>
-    <content type="html">{{ post.content | xml_escape }}</content>
+    <summary type="html">{{ post.content | xml_escape }}</summary>
   </entry>
   {% endfor %}
 </feed>
