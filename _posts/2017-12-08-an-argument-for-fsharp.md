@@ -2,22 +2,31 @@
 layout: post
 title: "An argument for functional programming"
 subtitle: "Convincing your boss to let you use fsharp at work"
-description: ""
+description: "A list of different arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular"
 permalink: an-argument-for-fsharp
 author: "Devon Burriss"
 category: Programming
 tags: [Functional, OOP]
 comments: true
 excerpt_separator: <!--more-->
-header-img: "img/backgrounds/star-watch-bg.jpg"
-social-img: "img/posts/2017/touched-by-god.jpg"
+header-img: "img/backgrounds/stairwell-bg.jpg"
+social-img: "img/posts/2017/apple.jpg"
 published: false
 ---
-Have you ever thought you have the perfect tool for the job at work but it is not on the allowed list of languages or framework? At this stage you have a decision to make. Are you going to just move on and pick something that will be less resistance or are you going to do the work to drive some change? In this post I make my case for functional programming in enterprise development, specifically **fsharp** if your current team expertise is .NET. The same arguments could be leveled for JVM based languages like Scala if your experience is in Java.
+Have you ever thought you have the perfect tool for the job at work but it is not on the allowed list of languages or frameworks? At this stage you have a decision to make. Are you going to just move on and pick something that will meet less resistance or are you going to do the work to drive some change? In this post I make my case for functional programming in enterprise development, specifically **fsharp** if your current team expertise is .NET. The same arguments could be leveled for JVM based languages like Scala if your experience is in Java.
 <!--more-->
+
+## TL;DR
+
+In this post I drill down through the different reasons why a business (applies to individual developers too) should consider broadening their language range in a carefully considered way. First I argue that being open to multiple languages is can benefit your companies hiring as well as the experience pool. Secondly I argue that functional programming opens up new perspectives while increasing the correctness of your applications in less time. As a bonus functional programming filters even better in the hiring process for top developers. Lastly I make the case that if you already have .NET experience the F# is a natural choice for a functional language.
+
+If this is all you are going to read I want to leave you with an excerpt from a study done over 728 projects on Github. I link to the full article at the end of the post.
+
+> "The data indicates that functional languages are better than procedural languages; it suggests that disallowing implicit type conversion is better than allowing it; that static typing is better than dynamic; and that managed memory usage is better than unmanaged." - A Large-Scale Study of Programming Languages and Code Quality in GitHub
+
 ## An argument for language diversity
 
-<img src="../img/posts/2017/scripts128.jpg" alt="Scrolls" class="img-rounded pull-left" width="128" style="margin-right: 1em;">
+<img src="../img/posts/2017/scrolls.jpg" alt="Scrolls" class="img-rounded pull-left" width="290" style="margin-right: 1em;">
 Firstly I would like to make the case for why you should consider using different languages in your environment. Even if you don't buy that, I will make a case for at the very least hiring outside of the language expertise you need on the job.
 
 ### Slim pickings
@@ -38,7 +47,7 @@ Selecting for people who pick up new languages is **selecting for people who enj
 
 ## An argument for functional programming
 
-<img src="../img/posts/2017/eye128.jpg" alt="Eye" class="img-rounded pull-left" width="128" style="margin-right: 1em;">
+<img src="../img/posts/2017/eye.jpg" alt="Eye" class="img-rounded pull-left" width="280" style="margin-right: 1em;">
 When I was new to software development I was always looking for new and shiny ways to do things. Waiting for that new feature. Over the years I have come to appreciate a more minimal and opinionated approach. Some tools are great for edge-cases but are often not worth the hassle they cause when used liberally where they should not be used. Minimizing language features that allow you to make mistakes increases productivity and helps you fall into the pit of success. My path to functional programming was paved in development pain and failure. How so? When something seemed painful I would look for ways to close that path in general development so the mistake was not made by me, or any other future developer again. Functional programming increases the constraints in a good way.
 
 ### Choice of 2, take it or leave it
@@ -75,14 +84,14 @@ I touched on this in the section on language diversity but encouraging developer
 
 ## An argument for fsharp
 
-<img src="../img/posts/2017/fsharp128.png" alt="fsharp" class="img-rounded pull-left" width="128" style="margin-right: 1em;">
+<img src="../img/posts/2017/fsharp512.png" alt="fsharp" class="img-rounded pull-left" width="280" style="margin-right: 1em;">
 So hopefully by this point I have convinced you (or you have convinced your boss) that multiple languages is good. Not only that but choosing a functional first language makes good sense. My final step will be to convince you that F# should be that language.
 
 ### No cold turkey necessary
 
 Although F# is a functional first language, it is actually multi-paradigm. **F# supports both functional and object oriented paradigms. It has to since it interops easily with C#**. So technically developers could code in an OOP style while they learned the F# language. This is absolutely an option and a pretty low risk way of introducing F#. The down side will be you might not reap the majority of the benefits I have mentioned thus far.
 
-## Protect the ecosystem
+### Protect the ecosystem
 
 Part of what makes C# and .NET in general great is the tooling and libraries built up around it. **Runtimes, IDEs, BCL, and library packages, they are all still available to you in F#** since it is a .NET based language.
 
@@ -98,8 +107,50 @@ F# has been ahead of the curve in the .NET ecosystem in a lot of ways. So many o
 
 Although F# has been leading the charge with Open Source for longer than probably any other Microsoft endeavour, it still has the backing of Microsoft as well as an active OSS community. F# was released by Microsoft Research in 2005 and has been on Github since 2010. It is lead by the [FSharp Foundation](http://foundation.fsharp.org/) that is dedicated to advance the language.
 
-* Is multiparadigm so can slowly ease OO developers in if you want
-- Is .NET based so .NET developers already know the base library
-- You can reuse existing investment in packages
-- Can reference between C# and F# projects both ways
-- Microsoft supporting it
+## Caution
+
+It would be remiss of me not to leave with a few cautionary points.
+
+### Learning curve
+
+Functional programming, especially with non C like languages can be pretty mind bending when you first start. I wish I could find the quote but I think it was one of the JVM functional language designers (Scala or Clojure) who said something like "sacrificing future power and expressiveness for beginner ease of use is one of the worst traps language designers can fall into". I like the sentiment but in terms of language popularity it seems to have some unfortunate downsides. Those who stick with it are die hard converts because they have realized the power but if most give up the pool of developers always only consists of the very intelligent or very determined.
+
+### Maturity of the team
+
+Language diversity requires a high level of maturity in your development team. A team lacking in maturity is more likely to pick something based on what they feel like using rather than assessing fitness of the tool for the solution. Hiring in at least one for two experienced people to lead would probably be a good idea.
+
+### Ramp up
+
+Ramping up slowly and allowing more people in the organization to get experience on low risk projects would be the safe bet.
+
+### Maturity of deployment
+
+With a new language you might need new deployment pipelines so make sure you have this sorted on a technology you are familiar with before going crazy with choices.
+
+### Pick smart
+
+Although I argue for a polyglot environment I am not making the case for ALL languages being allowed. These projects still need to be supported by the organization. Pick a small set of languages after considering a few aspects of them:
+
+1. Maturity of the language, ecosystem, and the community
+1. Popularity of the language (no point jumping on a sinking ship)
+1. Availability of developers
+1. Expected salaries (you need to be competitive)
+
+## Conclusion
+
+So I covered reasons why you should consider more languages, why one of those should be functional, and hopefully convinced you to [give F# a try](http://fsharp.org/). This actually isn't an exhaustive list. Personally, I have found other reasons why learning F# has been great. Learning F# made it easier for me to jump into even more languages. Elm for instance was super low resistance. Also F# has a bunch of really cool features like Type Providers, Computation Expressions, and more that blow your mind when you come across them.
+
+## Further Reading
+
+1. [A Large-Scale Study of Programming Languages and Code Quality in GitHub](https://cacm.acm.org/magazines/2017/10/221326-a-large-scale-study-of-programming-languages-and-code-quality-in-github/fulltext)
+1. [Comparing F# and C# with dependency networks](http://evelinag.com/blog/2014/06-09-comparing-dependency-networks/)
+1. Mark Seemann has a brilliant posts on how a [language can reduce the potential for errors](http://blog.ploeh.dk/2015/04/13/less-is-more-language-features/)
+1. Mark has an excellent talk on [falling into the pit of success](https://www.youtube.com/watch?v=US8QG9I1XW0)
+1. Scott Wlaschin has an excellent [series on low risk ways to start using F# at work](https://fsharpforfunandprofit.com/posts/low-risk-ways-to-use-fsharp-at-work/)
+
+## Credits
+
+1. Header photo by [Nicolas Hoizey](https://unsplash.com/@nhoizey)
+1. Social photo by [Michał Grosicki](https://unsplash.com/@groosheck)
+1. Scrolls photo by [Sindre Aalberg](https://unsplash.com/@sindreaalberg)
+1. Eye photo by [Amanda Dalbjörn](https://unsplash.com/@amandadalbjorn)
