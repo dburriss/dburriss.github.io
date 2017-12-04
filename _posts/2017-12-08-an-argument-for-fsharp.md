@@ -31,7 +31,7 @@ Firstly I would like to make the case for why you should consider using differen
 
 ### Slim pickings
 
-Good developers are in short supply and the market is competitive. By opening up your hiring to other languages, or actually using multiple languages, you **expand the pool of developers by a multiple of the number of languages you are willing to consider**. This can be a huge advantage in the number of applicants you receive. Obviously sheer number of applicants is not the only concern and I will address this in a later point. The important point to buy in to here though is that a good developer in any language is a better pick than a poor or average developer in your language of choice. A language can be ramped up in fairly quickly. Experience and professionalism on the other hand is hard earned and hard to come by. In my opinion the quality of a developer always trumps the language they use.
+Good developers are in short supply and the market is competitive. By opening up your hiring to other languages, or actually using multiple languages, you **expand the pool of developers by a multiple of the number of languages you are willing to consider**. This can be a huge advantage in the number of applicants you receive. Obviously sheer number of applicants is not the only concern and I will address this in a later point. The important point to buy in to here though is that a good developer in any language is a better pick than a poor or average developer in your language of choice. Language specific skills can be ramped up fairly quickly. Experience and professionalism on the other hand is hard earned and hard to come by. In my opinion the quality of a developer always trumps the language they use.
 
 ### Swag
 
@@ -43,7 +43,7 @@ Different experience and different language features allow for different ways of
 
 ### Mindset is key
 
-Selecting for people who pick up new languages is **selecting for people who enjoy learning new things on their own time**. This is often the number one identifier I see in hiring between average developers and awesome developers. When those languages span different programming paradigms like imperative and functional, then you have someone who is really pushing their comfort zones to find better solutions. That mindset is hard to teach and one you really want on your team.
+At the rate that information based industries change it is impossible knowing everything. More important is that you can acquire new skills efficiently and effectively. Selecting for people who pick up new languages is **selecting for people who actively pursue skill acquisition**. This is often the number one identifier I see in hiring between average developers and awesome developers. When those languages span different programming paradigms like imperative and functional, then you have someone who is really pushing their comfort zones to find better solutions. That mindset is hard to teach and one you really want on your team. At the very least it is someone who is willing to pick up what needs to be done on the job.
 
 ## An argument for functional programming
 
@@ -56,7 +56,7 @@ Most of the mainstream enterprise languages out there have the concept of 'null'
 
 ### Who moved my cheese?
 
-Another point were I experienced pain was with erratic or incorrect programs due to unintended state changes. Functional programming on the other hand pushes you toward immutability. A function has an input and an output and that output does not have a reference to the input. This makes code far more predictable. **Immutability removes a whole class of errors that can occur due to unintended side-effects**. And these are often hard to find and fix.
+Another point were I experienced pain was with erratic or incorrect programs due to unintended state changes. Functional programming on the other hand pushes you toward immutability. A function has an input and an output and that output does not have a reference to the input. This makes code far more predictable. **Immutability removes a whole class of errors that can occur due to unintended side-effects**, which are often hard to find and fix.
 
 ### The I is an illusion
 
@@ -85,7 +85,7 @@ I touched on this in the section on language diversity but encouraging developer
 ## An argument for F#
 
 <img src="../img/posts/2017/fsharp512.png" alt="fsharp" class="img-rounded pull-left" width="280" style="margin-right: 1em;">
-So hopefully by this point I have convinced you (or you have convinced your boss) that multiple languages is good. Not only that but choosing a functional first language makes good sense. My final step will be to convince you that F# should be that language.
+So hopefully by this point I have convinced you (or you have convinced your boss) that having multiple languages is good. Not only that but choosing a functional first language makes good sense. My final step will be to convince you that F# should be that language.
 
 ### No cold turkey necessary
 
@@ -101,19 +101,29 @@ Part of what makes C# and .NET in general great is the tooling and libraries bui
 
 ### Leading the pack
 
-F# has been ahead of the curve in the .NET ecosystem in a lot of ways. So many of the great language features since C#'s initial Java clone have been inspired by F#. Current **features like generics, `async`/`await`, auto-property initializers, exception filters, expression-bodied function members, and pattern-matching were all in F# first**(or added by the creator of F#).
+F# has been ahead of the curve in the .NET ecosystem in a lot of ways. So many of the great language features since C#'s initial Java clone have been inspired by F#. Current **features like generics, `async`/`await`, auto-property initializers, exception filters, expression-bodied function members, and pattern-matching were all in F# first**(or [worked on by the creator of F#](https://blogs.msdn.microsoft.com/dsyme/2011/03/15/netc-generics-history-some-photos-from-feb-1999/)).
 
 ### Shoulders of giants
 
 Although F# has been leading the charge with Open Source for longer than probably any other Microsoft endeavour, it still has the backing of Microsoft as well as an active OSS community. F# was released by Microsoft Research in 2005 and has been on Github since 2010. It is lead by the [FSharp Foundation](http://foundation.fsharp.org/) that is dedicated to advancing the language.
 
+Then there is the actual OSS community. There are too many to name individually but some that you will either use or stand out because of their ambition are:
+
+1. [Ionide](http://ionide.io/) - An IDE plugin for Visual Studio Code and Atom that has been ahead of Visual Studio in supporting F# features, especially with the new `netstandard` stuff
+1. [F# Data](http://fsharp.github.io/FSharp.Data/) - is a useful library for working with data from varied sources
+1. [Suave](https://suave.io/) - An ambitious and full-featured web library and server that provides a functional-first programming model for web development
+1. [Giraffe](https://github.com/dustinmoris/Giraffe) - a micro web framework that wraps the Asp.Net Core functionality for a more functional-first programming model
+1. [MBrace](mbrace.io) - provides a simple programming model that opens up cloud computing in a way that initially seems like magic
+
+This is far from an exhaustive list. The point is there are mature and well supported projects out there because the F# community is dedicated and enthusiastic. The FsAdvent Calendar initiative is a great example of this.
+
 ## Caution
 
-It would be remiss of me not to leave with a few cautionary points.
+It would be remiss of me not to leave you with a few cautionary points.
 
 ### Learning curve
 
-Functional programming, especially with non C like languages can be pretty mind bending when you first start. I wish I could find the quote but I think it was one of the JVM functional language designers (Scala or Clojure) who said something like "sacrificing future power and expressiveness for beginner ease of use is one of the worst traps language designers can fall into". I like the sentiment but in terms of language popularity it seems to have some unfortunate downsides. Those who stick with it are die hard converts because they have realized the power but if most give up the pool of developers always only consists of the very intelligent or very determined.
+Functional programming, especially with non C like languages can be pretty mind bending when you first start. I wish I could find the quote but I think it was one of the JVM functional language designers (Scala or Clojure) who said something like "sacrificing future power and expressiveness for beginner ease of use is one of the worst traps language designers can fall into". I like the sentiment but in terms of language popularity it seems to have some unfortunate downsides. However, those who stick with it and start becoming fluent are usually die hard converts because they have realized the usefulness of the paradigm. On the other hand if most give up, the pool of developers will mostly consists of the smartest or most determined.
 
 ### Maturity of the team
 
@@ -121,7 +131,7 @@ Language diversity requires a high level of maturity in your development team. A
 
 ### Ramp up
 
-Ramping up slowly and allowing more people in the organization to get experience on low risk projects would be the safe bet.
+Ramping up slowly and allowing more people in the organization to get experience on low risk projects could be a low risk way of introducing F#. [A developer could learn the syntax this way without taking the productivity hit of learning a new paradigm](https://youtu.be/qPlYbHKvk4g?t=376). Mark Seemann has talked about how he initially just did OOP with F# and slowly incorporated functional ideas. In Mark's case I think he was leaning toward functional concepts anyway. Without a push to do so a developer could remain a 100% OO programmer while using F#. Even worse, a developer doing this might then decide that F# provides no benefits. So a slow ramp up comes with it's own risks.
 
 ### Maturity of deployment
 
@@ -145,7 +155,7 @@ So I covered reasons why you should consider more languages, why one of those sh
 1. [A Large-Scale Study of Programming Languages and Code Quality in GitHub](https://cacm.acm.org/magazines/2017/10/221326-a-large-scale-study-of-programming-languages-and-code-quality-in-github/fulltext)
 1. [Comparing F# and C# with dependency networks](http://evelinag.com/blog/2014/06-09-comparing-dependency-networks/)
 1. Mark Seemann has a brilliant posts on how a [language can reduce the potential for errors](http://blog.ploeh.dk/2015/04/13/less-is-more-language-features/)
-1. Mark has an excellent talk on [falling into the pit of success](https://www.youtube.com/watch?v=US8QG9I1XW0)
+1. Mark has an excellent talk on [falling into the pit of success](https://www.youtube.com/watch?v=US8QG9I1XW0) and another on [Dependency Rejection](https://www.youtube.com/watch?v=cxs7oLGrxQ4)
 1. Scott Wlaschin has an excellent [series on low risk ways to start using F# at work](https://fsharpforfunandprofit.com/posts/low-risk-ways-to-use-fsharp-at-work/)
 
 ## Credits
