@@ -2,7 +2,7 @@
 layout: post
 title: "An argument for functional programming"
 subtitle: "Convincing your boss to let you use fsharp at work"
-description: "A list of different arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular"
+description: "Arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular"
 permalink: argument-for-fp
 author: "Devon Burriss"
 category: Programming
