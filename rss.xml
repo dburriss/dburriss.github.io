@@ -6,8 +6,17 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Mon, 04 Dec 2017 21:44:00 +00:00</pubDate>
-    <lastBuildDate>Mon, 04 Dec 2017 21:44:00 +00:00</lastBuildDate>
+    <pubDate>Fri, 08 Dec 2017 07:11:49 +00:00</pubDate>
+    <lastBuildDate>Fri, 08 Dec 2017 07:11:49 +00:00</lastBuildDate>
+    
+    <item>
+      <title>An argument for functional programming</title>
+      <link>http://devonburriss.me/argument-for-fp/</link>
+      <pubDate>Fri, 08 Dec 2017 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>http://devonburriss.me/argument-for-fp/</guid>
+      <description>A list of different arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular</description>
+    </item>
     
     <item>
       <title>Touched by God</title>

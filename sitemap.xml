@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>http://devonburriss.me/argument-for-fp/</loc>
+    <lastmod>2017-12-08T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>http://devonburriss.me/touched-by-god/</loc>
     <lastmod>2017-11-02T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -547,6 +554,14 @@
 	
 	<url>
 		<loc>http://devonburriss.me//tag/dnx/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//tag/fsharp/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
