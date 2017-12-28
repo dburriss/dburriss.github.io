@@ -3,13 +3,68 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2017-12-28T20:14:07.5786145+00:00</updated>
+  <updated>2017-12-28T20:22:49.6641413+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>http://devonburriss.me/why-i-got-hooked-on-fsharp/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/why-i-got-hooked-on-fsharp/"/>
+    <title>Why I got hooked on F#</title>
+    <updated>2017-12-28T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/why-i-got-hooked-on-fsharp/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;I have been asked a few times &amp;quot;how I got started with F#?&amp;quot; as more than a few people have found it difficult. I myself had a few false starts with it. It looked weird, I didn&apos;t know where or how to start, it was too different to OO with C style languages, and the tooling just was not as slick. I honestly think a better question is &amp;quot;Why did I start using F#?&amp;quot;&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;The WHY of it&lt;/h2&gt;
+&lt;p&gt;As I have matured as a developer I have come to appreciate coding practices that constrain my options in a way that minimizes potential errors. An infinitely flexible design is also one the allows all possible errors, known and unknown. Constraining future developers to &amp;quot;make illegal states unrepresentable&amp;quot;. I sometimes say &amp;quot;code like the future developer on this is an idiot because current you is an idiot and future you will be to&amp;quot;. To be clear, I say that to myself, about myself.&lt;/p&gt;
+&lt;p&gt;In OO we do this with constructors or factories (and hidden constructors), with encapsulation and smart APIs. This is a big part of the guidelines around aggregates in Domain-Driven design (DDD) and keeping the aggregate consistent. We have a lot of patterns and practices in OO that help with this. A LOT! In fact it is quite difficult for new developers to get up to speed with them all. And since they are often struggling with the technical implementation of features they are not worrying too much about the intricacies of the design and whether it leads future developers into the pit of success. We coach, and hopefully with good coaching they learn these things faster than we did through trial and error. I cannot help but wonder if there is a simpler way to get to well designed software than absorbing all these patterns and practices? Note I said simple, not easy.&lt;/p&gt;
+&lt;p&gt;Functional programming (FP) with its mathematical basis makes some claims about correctness. Correctness is hard to be certain of when global state is constantly in flux. FP revolves around functions, with inputs and outputs, and then same input always yielding the same output (for pure functions).&lt;/p&gt;
+&lt;p&gt;So basically the WHY can be broken down into 2 points:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Correctness of the program&lt;/li&gt;
+&lt;li&gt;Fewer concepts need to be known to develop maintainable software&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I remember reading &lt;a href=&quot;http://blog.ploeh.dk/2015/04/13/less-is-more-language-features/&quot;&gt;this article of Mark Seemann&apos;s&lt;/a&gt; and thinking this seems like a problem I have but I cannot quite relate to his conclusion. As we will see in the next section, it took me 2 years to get to a place where I could read that article and nod my head instead of scratch it.&lt;/p&gt;
+&lt;h2&gt;The HOW of it&lt;/h2&gt;
+&lt;p&gt;I was not keeping notes so these are the highlights I remember and that I think are important.&lt;/p&gt;
+&lt;p&gt;Since about 2013 I had trying to learn and apply many of the technical approaches highlighted in DDD. This lead to much more focus on types whose instance state can only be changed in a very controlled way. Not only that but the types are descriptive of the domain and do not try be too reuseable but rather represent very specific use cases.&lt;/p&gt;
+&lt;p&gt;By the time 2016 rolled around I had heard of the promises FP made and had even &amp;quot;file new project&amp;quot;&apos;ed an F# console application but with very little success. I resolved to give it a better try and started reading through &lt;a href=&quot;https://fsharpforfunandprofit.com/books/#downloadable-ebook-of-this-site&quot;&gt;fsharpforfunandprofit&lt;/a&gt; and looking at a few &lt;a href=&quot;https://www.pluralsight.com/search?q=F%23&amp;amp;categories=course&quot;&gt;Pluralsight&lt;/a&gt; videos.&lt;/p&gt;
+&lt;p&gt;Then I was contacted by &lt;a href=&quot;https://www.manning.com/&quot;&gt;Manning&lt;/a&gt; to give feedback on an early draft of &lt;a href=&quot;https://www.manning.com/books/functional-programming-in-c-sharp&quot;&gt;Functional Programming in C#&lt;/a&gt;. In it Enrico Buonanno gives a really deep introduction to functional concepts and patterns, showing both the implementation and usage of FP in C#. For me this was quite nice as I could absorb concepts without getting hung up on the syntax of some new programming language. These inspired a series of posts on Honest Types, namely &lt;a href=&quot;http://devonburriss.me/honest-arguments/&quot;&gt;Honest Argument&lt;/a&gt;, &lt;a href=&quot;http://devonburriss.me/honest-return-types/&quot;&gt;Honest Return Types&lt;/a&gt;, and &lt;a href=&quot;http://devonburriss.me/better-error-handling/&quot;&gt;Better Error Handling&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;At work my code started taking on a more functional style in C# and a few of our projects started making use of &lt;a href=&quot;https://github.com/louthy/language-ext&quot;&gt;Language Extensions&lt;/a&gt;. I have a repository demonstrating some use cases &lt;a href=&quot;https://github.com/dburriss/ElevatedExamples&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;By early 2017 I was writing small console apps in F# that would crunch some CSV files, or merge some PDF documents. These were not great and I realized that although I was getting used to F# syntax I was missing something key in how to structure my applications. The penny only dropped when watching a video from Mark Seemann on &lt;a href=&quot;https://www.youtube.com/watch?v=US8QG9I1XW0&quot;&gt;Functional architecture - The pits of success&lt;/a&gt;. Another good one released later is &lt;a href=&quot;https://www.youtube.com/watch?v=cxs7oLGrxQ4&quot;&gt;From Dependency injection to dependency rejection&lt;/a&gt;. Both of these talk about purity and composing applications so the code with dependencies on IO are on the outside. If this sounds like Clean/Onion/Hexagonal Architecture, you are absolutely right.&lt;/p&gt;
+&lt;p&gt;Now here we are at the end of 2017 and and I have just finished &lt;a href=&quot;https://fsharpforfunandprofit.com/books/#domain-modeling-made-functional-ebook-and-paper&quot;&gt;Domain Modelling Made Functional&lt;/a&gt; by Scott Wlaschin of &lt;a href=&quot;https://fsharpforfunandprofit.com/&quot;&gt;fsharpforfunandprofit&lt;/a&gt; fame. It brings together so many deep topics in such an approachable way that it is difficult to compare to any book I have read before. It doesn&apos;t assume any knowledge and yet I learned some F#, some FP, and some DDD even though I have read multiple books dedicated to each of these topics. Scott develops a feature from beginning to end in a practical way that distills and teaches the core concepts of these advanced topics without getting bogged down in theory. I realize I am sounding like a fan boy here but I would honestly recommend this book to teach FP and F# OR DDD. It teaches both brilliantly.&lt;/p&gt;
+&lt;p&gt;This December I posted [my first F# themed blog post] as part of the &lt;a href=&quot;https://sergeytihon.com/2017/10/22/f-advent-calendar-in-english-2017/&quot;&gt;FsAdvent Calendar 2017&lt;/a&gt;. I submitted &lt;a href=&quot;https://github.com/giraffe-fsharp/giraffe-template/pull/4&quot;&gt;my first PR to an F# open source project&lt;/a&gt; and now I am winding down on my 2nd FP related blog post. I am looking forward to what the next year brings and all I have to learn.&lt;/p&gt;
+&lt;h2&gt;Further Reading (posts)&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Mark Seemann has a brilliant posts on how a &lt;a href=&quot;http://blog.ploeh.dk/2015/04/13/less-is-more-language-features/&quot;&gt;language can reduce the potential for errors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Scott Wlaschin on &lt;a href=&quot;https://fsharpforfunandprofit.com/learning-fsharp/&quot;&gt;learning F#&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Further watching (videos)&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Mark has an excellent talk on &lt;a href=&quot;https://www.youtube.com/watch?v=US8QG9I1XW0&quot;&gt;falling into the pit of success&lt;/a&gt; and another on &lt;a href=&quot;https://www.youtube.com/watch?v=cxs7oLGrxQ4&quot;&gt;Dependency Rejection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://vimeo.com/162209391&quot;&gt;Designing with Capabilities&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://vimeo.com/113707214&quot;&gt;Railway oriented programming&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Recommended books&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/books/#domain-modeling-made-functional-ebook-and-paper&quot;&gt;Domain Modelling Made Functional&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/books/#downloadable-ebook-of-this-site&quot;&gt;fsharpforfunandprofit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.manning.com/books/functional-programming-in-c-sharp&quot;&gt;Functional Programming in C#&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.manning.com/books/real-world-functional-programming&quot;&gt;Real-World Functional Programming&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Header photo by [John Mark Arnold]https://unsplash.com/@johnmarkarnold)&lt;/li&gt;
+&lt;li&gt;Social photo by &lt;a href=&quot;https://unsplash.com/@groosheck&quot;&gt;Michał Grosicki&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>http://devonburriss.me/argument-for-fp/</id>
