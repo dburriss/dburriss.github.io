@@ -9,6 +9,7 @@ comments: true
 permalink: honest-return-types
 excerpt_separator: <!--more-->
 published: true
+series: "Honest Types"
 ---
 
 In [Part 1](/honest-arguments) we looked at ways of making your code more descriptive by using custom types instead of simple types like `string`. In this article we will look at what your return type can tell you about a method.

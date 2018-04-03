@@ -1,1 +1,1 @@
-Start-Process powershell ".\pretzel.ps1 -target Taste -Wait" 
+Start-Process powershell ".\pretzel.ps1 -target Taste -Wait" -RedirectStandardOutput C:\Temp\pretzel.txt

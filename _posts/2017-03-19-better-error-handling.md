@@ -9,6 +9,7 @@ comments: true
 permalink: better-error-handling
 excerpt_separator: <!--more-->
 published: true
+series: "Honest Types"
 ---
 
 In my [previous post](/honest-return-types) I discussed handling `null` and `Exception` in the return type. In this post I will discuss returning logic errors.
