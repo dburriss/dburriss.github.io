@@ -28,7 +28,7 @@ In your entry point to executing some use-case against your system it is importa
 
 > An easily understood use-case makes a great entry point for exploring a codebase
 
-Inside the method on your use-case you should strive to have a workflow describing the steps needed to complete that use-case. Try keep these steps at the same high-level of abstraction but not too high-level. Be sure to describe actual steps and and try avoid steps that do a bunch of things and all you can describe them as is `ProcessX`. If you find yourself naming a step like that it is probably worth breaking that step into smaller more meaningful steps within the use-case.
+Inside the method on your use-case you should strive to have a workflow describing the steps needed to complete that use-case. Try keep these steps at the same high-level of abstraction but not too high-level. Be sure to describe actual steps and try avoid steps that do a bunch of things and all you can describe them as is `ProcessX`. If you find yourself naming a step like that it is probably worth breaking that step into smaller more meaningful steps within the use-case.
 
 What your really want to avoid here is scattering the steps needed to complete a use-case throughout an object hierarchy.
 
