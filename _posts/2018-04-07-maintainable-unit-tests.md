@@ -36,9 +36,9 @@ public void CreatingPerson_WithValidPerson_CallsIsValid()
     var name = "Bob";
     var people = Substitute.For<IPersonRepository>();
     var validator = Substitute.For<IPersonValidator>();
-    var sut = new CreatePersonV1(people, validator);
+    var createPerson = new CreatePerson(people, validator);
 
-    sut.With(name);
+    createPerson.With(name);
 
     validator.ReceivedWithAnyArgs(1).IsValid(Arg.Any<Person>());
 }
@@ -83,7 +83,7 @@ public class CreatePerson
 }
 ```
 
-Notice how we are asserting against a dependency (`IValidator`) of the use-case (`CreatePersonV1`). Our test has structural knowledge of how `CreatePersonV1` is implemented. Let's see what happens when we want to refactor this code...
+Notice how we are asserting against a dependency (`IValidator`) of the use-case (`CreatePerson`). Our test has structural knowledge of how `CreatePerson` is implemented. Let's see what happens when we want to refactor this code...
 
 Your team has been trying to bring in some new practices like Domain-Driven Design. The team discussed it and the `Person` class represents an easy start to get used to the idea. You have been tasked with pulling behavior into the the `Person` entity and make it less anemic.
 
@@ -121,9 +121,9 @@ public void CreatePerson_WithValidName_PersistsPerson()
 {
     var name = "Bob";
     InMemoryPersonRepository people = Given.People;
-    var sut = new CreatePerson(people);
+    var createPerson = new CreatePerson(people);
 
-    sut.With(name);
+    createPerson.With(name);
 
     Assert.Equal(name, people.All().First().Name);
 }
@@ -278,6 +278,8 @@ public class InMemoryPersonRepositoryBuilder
 ```
 
 A little trick is to put an `implicit` conversion to the class you are building up. Also take a look at [Fluency](https://github.com/nrjohnstone/Fluency) for helping with the creation of builders.
+
+A final note on this point. Just because I use builders a lot does not mean I completely throw mocking frameworks out the window. I just tend to use them for things I really don't care about and really aren't likely to change. I also tend to use them within other builders rather than directly in tests.
 
 ### Accessors
 
