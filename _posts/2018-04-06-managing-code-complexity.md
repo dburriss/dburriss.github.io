@@ -95,4 +95,8 @@ From a clean architecture point of view you would use them to implement Ports an
 
 ## Tip 7: Use honest rather than simple types
 
-Create types to represent things like entity identity. [There is a whole series on this](http://devonburriss.me/honest-arguments/) but if you do nothing else don't let your codebase be littered with `Guid`, `int`, `long`, `string` or whatever else you use as entity identity or reference. When your code relies on `invoiceId` and `invoiceLineId` and etc. it becomes too easy to swap 2 integers. Not only does it help prevent silly bugs but using types a little more liberally can really help convey intent.
+Create types to represent things like entity identity. [There is a whole series on this](http://devonburriss.me/honest-arguments/) but if you do nothing else don't let your codebase be littered with `Guid`, `int`, `long`, `string` or whatever else you use as entity identity or reference. When your code relies on `invoiceId` and `invoiceLineId` and etc. it becomes too easy to swap 2 integers. Not only does it help prevent silly bugs but using types a little more liberally can really help convey intent. Finally, it makes finding all references where a type is used simple.
+
+## And we are done
+
+I hope you find some of these tips useful. If you did, I would love to hear about it. If you have questions, feel free to leave a comment. If you think I am 100% wrong, I would love to hear your reasons. Above all, let's keep learning together and happy coding!
