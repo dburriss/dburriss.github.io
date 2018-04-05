@@ -348,4 +348,4 @@ public class PersonBuilder
 
 ## Wrapping up
 
-So those are my 3 tips for making your tests more maintainable. I encourage you to give them a try. Without investing in the maintainability of your tests they can quickly become a burden rather than a boon. I have seen the practices above improve things not only in my teams but other colleagues have found converged on similar learnings with the same results. Let me know if you find this helpful, or even if there are any points you strongly disagree with. Happy coding!
+So those are my 3 tips for making your tests more maintainable. I encourage you to give them a try. Without investing in the maintainability of your tests they can quickly become a burden rather than a boon. I have seen the practices above improve things not only in my teams but other colleagues have converged on similar learnings with the same positive results. Let me know if you find this helpful, or even if there are any points you strongly disagree with. Happy coding!
