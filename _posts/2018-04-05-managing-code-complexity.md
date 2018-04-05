@@ -3,7 +3,7 @@ layout: post
 title: "Managing Code Complexity"
 subtitle: "7 tips for keeping code as simple as possible"
 description: "7 tips to address some common anti-patterns in code that hide intent"
-permalink: managing-complexity
+permalink: managing-code-complexity
 author: "Devon Burriss"
 category: Programming
 tags: [Clean Code, DDD, Design Patterns, Functional]
