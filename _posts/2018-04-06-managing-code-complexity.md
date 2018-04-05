@@ -21,7 +21,6 @@ When we write code it is often easy to get caught up in the implementation detai
 Even if you don't practice DDD (or the problem space does not warrant it) and functional programming there are a few lessons to be learned from these disciplines that can be brought into any codebase.
 
 ## Tip 1: Describe the process at your entry point
-<!-- compare with index of a book -->
 
 We have all heard the phrase "code is read many more times than it is written". What else is read a lot more than it is written? A book. Code is information dense and in any information dense book we have a Table of Contents.
 In your entry point to executing some use-case against your system it is important that there is a high-level workflow that gives an overview of the the complete use-case. This gives a developer reading from the entry point a "Table of Contents" to drill down into whatever step they need to.
