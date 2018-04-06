@@ -110,7 +110,7 @@ public class Person
 }
 ```
 
-Looking at the use-case we no longer need to inject `IValidator`. Not only is our test going to have to change, we are going to have to change the test completely because we no longer have a validator to inject as a mock. We have seen the first signs of our tests being fragile.
+Looking at the use-case, we no longer need to inject `IValidator`. Not only is what we test going to have to change, we are going to have to change the test completely because we no longer have a validator to inject as a mock. We have seen the first signs of our tests being fragile.
 
 Let's try make our test focus on the behavior we expect instead of relying on the structure of our code.
 
@@ -131,9 +131,9 @@ public void CreatePerson_WithValidName_PersistsPerson()
 
 Don't worry too much about `InMemoryPersonRepository people = Given.People;` for now, we will come back to it. All you need to know is that `InMemoryPersonRepository` implements `IPersonRepository`.
 
-Since we no longer need `IValidator` and it's implementation, we delete those. We also get to delete the test `CreatingPerson_WithValidPerson_CallsIsValid` as we have a better test now `CreatePerson_WithValidName_PersistsPerson`. Yay, less test code, better coverage!
+Since we no longer need `IValidator` and it's implementation, we delete those. We also get to delete the test `CreatingPerson_WithValidPerson_CallsIsValid` as we have a better test now `CreatePerson_WithValidName_PersistsPerson` that asserts the behavior we care about, the use-case creating and persisting a new person. Yay, less test code, better coverage!
 
-At this point you might be saying "Wait! Unit tests are supposed to test one method, on one class". No! A unit is whatever you need it to be. I am by no means saying write no tests for your small implementation details, just make sure you are comfortable deleting them if things change. With our focus on behavior tests we can delete those detailed of tests freely and still be covered. In-fact I often just delete the tests after I am done developing the component as I just used TDD for fast feedback loop on the design and implementation. Remember test code is still code that needs maintenance so the more coverage for less the better.
+At this point you might be saying "Wait! Unit tests are supposed to test one method, on one class". No! A unit is whatever you need it to be. I am by no means saying write no tests for your small implementation details, just make sure you are comfortable deleting them if things change. With our focus on behavior tests we can delete those detailed tests freely and still be covered. In-fact, I often just delete the tests after I am done developing the component as I just used TDD for fast feedback loop on the design and implementation. Remember that test code is still code that needs maintenance so the more coverage for less the better.
 
 So back to the code. What does our use-case look like now?
 
@@ -161,7 +161,7 @@ public class CreatePerson
 }
 ```
 
-Thats ok. We got rid of a dependency and moved some logic to our `Person` entity but we can do better. On reviewing your pull request someone in the team pointed out something important. You should be aiming to make unrepresentable states unrepresentable. The business doesn't allow saving a person without a name so let's make it so in the code.
+Thats ok. We got rid of a dependency and moved some logic to our `Person` entity but we can do better. On reviewing your pull request someone in the team pointed out something important. You should be aiming to make unrepresentable states unrepresentable. The business doesn't allow saving a person without a name so let's make it so that we can't create an invalid `Person`.
 
 ```csharp
 // person entity
@@ -283,7 +283,7 @@ A final note on this point. Just because I use builders a lot does not mean I co
 
 ### Accessors
 
-Not sure what else to call these but it is useful to have a static class that makes access to builders and other types you would use in setup. Typically I have `Given` and `A`.
+Not sure what else to call these but it is useful to have a static class that makes access to builders and other types you would use in setup simple. Typically I have `Given` and `A`.
 
 ```csharp
 /// <summary>
@@ -348,4 +348,4 @@ public class PersonBuilder
 
 ## Wrapping up
 
-So those are my 3 tips for making your tests more maintainable. I encourage you to give them a try. Without investing in the maintainability of your tests they can quickly become a burden rather than a boon. I have seen the practices above improve things not only in my teams but other colleagues have converged on similar learnings with the same positive results. Let me know if you find this helpful, or even if there are any points you strongly disagree with. Happy coding!
+So those are my 3 tips for making your tests more maintainable. I encourage you to give them a try. Without investing in the maintainability of your tests they can quickly become a burden rather than a boon. I have seen the practices above improve things not only in my teams but other colleagues have converged on similar learnings with the same positive results. Let me know if you find this helpful, or even if there are any points you strongly disagree with. I would love to discuss in the comments. Happy coding!
