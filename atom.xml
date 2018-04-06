@@ -3,13 +3,84 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-04-05T22:39:08.300342+00:00</updated>
+  <updated>2018-04-06T06:29:59.0292297+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>http://devonburriss.me/managing-code-complexity/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/managing-code-complexity/"/>
+    <title>Managing Code Complexity</title>
+    <updated>2018-04-06T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/managing-code-complexity/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;When we write code it is often easy to get caught up in the implementation details. Communicating intent is imperative to making code understandable, and keeping code understandable is important for handling complexity.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;Even if you don&apos;t practice DDD (or the problem space does not warrant it) and functional programming there are a few lessons to be learned from these disciplines that can be brought into any codebase.&lt;/p&gt;
+&lt;h2&gt;Tip 1: Describe the workflow at your entry point&lt;/h2&gt;
+&lt;p&gt;We have all heard the phrase &amp;quot;code is read many more times than it is written&amp;quot;. What else is read a lot more than it is written? A book. Code is information dense and in any information dense book we have a Table of Contents.
+In your entry point to executing some use-case against your system it is important that there is a high-level workflow that gives an overview of the the complete use-case. This gives a developer reading from the entry point a &amp;quot;Table of Contents&amp;quot; to drill down into whatever step they need to.&lt;/p&gt;
+&lt;p&gt;In this context a workflow is the steps needed to do the work of the use-case. This entry point could be a controller or a program main. A pattern we use at work is to create a use-case specific class with a &lt;code&gt;Do()&lt;/code&gt; or &lt;code&gt;Execute()&lt;/code&gt; method on it. Play around with the naming though. I like the class to describe the use-case while the method that causes execution to say something about the command coming in as a parameter eg. &lt;code&gt;new CalculateSomething().For(command.SomeNumber)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/use-case.jpg&quot; alt=&quot;use-case&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An easily understood use-case makes a great entry point for exploring a codebase&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Inside the method on your use-case you should strive to lay out the code in the steps needed to complete that use-case. Try keep these steps at the same high-level of abstraction but not too high-level. What do I mean by too high? Be sure to describe actual meaningful steps that avoid steps that doing multiple things and all you can describe them is as &lt;code&gt;ProcessX&lt;/code&gt;. If you find yourself naming a step like that it is probably worth breaking that step into smaller more meaningful steps within the use-case.&lt;/p&gt;
+&lt;p&gt;What you really want to avoid here is scattering the steps needed to complete a use-case throughout an object hierarchy.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/logic-stack.jpg&quot; alt=&quot;scattered logic&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sprinkling important application logic throughout a hierarchy makes it difficult to reason about&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;By spreading the workflow through the hierarchy it is really difficult to see at a glance what the workflow does and then drill down from there into how. It also makes it difficult to compose in new functionality. If it is within the hierarchy you will often find yourself putting code for new features in weird places because that is where the data is available in the call chain.&lt;/p&gt;
+&lt;h2&gt;Tip 2: Prefer a longer workflow to a deep dependency chain&lt;/h2&gt;
+&lt;p&gt;This one builds on the previous tip but where the previous tip focused on describing a workflow at the entry point, this one is more about cognitive load. Each step allows you to step into it and see the details. Each of these steps might itself have a few dependencies as well as mini-workflows captured in each of those dependencies. This is just a rule-of-thumb but if the depth of a single steps dependency hierarchy exceeds the width of the steps in a workflow, at least ask the question of whether that should maybe be 2 steps.&lt;/p&gt;
+&lt;p&gt;Why is this important? You do not want to have to dive very deep to understand what happens in a single step. Remember that the entry point gives a complete overview of all high-level steps. If a hierarchy is too deep if might become hard to reason about. This is of course just a rule-of-thumb and any single step could of course warrant a deep hierarchy to implement it well.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/etl-workflow.jpg&quot; alt=&quot;scattered logic&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As a rule-of-thumb; keep your workflow longer than it is deep&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Tip 3: Make your external dependencies visible&lt;/h2&gt;
+&lt;p&gt;External dependencies like databases, files, and/or webservices make things difficult to reason about if they are nested deep in the dependency hierarchy where it is often unclear that they are being called. Not only that but it forces excessive use of abstractions purely for testing, which causes test induced damage to the code.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/deeply-nested-dep.jpg&quot; alt=&quot;deeply nested external dependencies&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Deeply nested external dependencies make code more difficult to reason about and test&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;By making your external dependencies part of the high-level workflow you communicate the dependencies clearly. This makes it clear what is required for the system as a whole but also what data is needed to complete the use-case. This might mean thinking a little differently about the problem. Instead of querying for something the moment you need it, you might try fetch it at the start. You might say that seems wasteful as some validation might fail. That argument could be turned around though and it could be argued that there is no point in validating input if the external dependencies needed to complete a use-case are not available.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/highlight-dependencies.jpg&quot; alt=&quot;highlight dependencies&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Make your external dependency calls clear in your high-level workflow&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Tip 4: Push your external dependencies to the boundary&lt;/h2&gt;
+&lt;p&gt;Obviously every use-case is different but if at all possible push your external dependencies to the beginning and the end of your workflow. This is taking a page out of functional programming where purity matters. What is meant by purity? Basically we strive to have all functions results be determined only by the value of the arguments passed in. This makes functions easy to reason about as well as easy to test.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/dependencies-on-boundary.jpg&quot; alt=&quot;dependencies on the boundary&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Calls to databases, files, and webservices should be pushed to the boundary of the workflow&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I highly recommend watching &lt;a href=&quot;https://www.youtube.com/watch?v=cxs7oLGrxQ4&quot;&gt;From Dependency injection to dependency rejection by Mark Seemann&lt;/a&gt; to see a detailed discussion on the topic.&lt;/p&gt;
+&lt;h2&gt;Tip 5: Bring business concepts up, push technical implementations down&lt;/h2&gt;
+&lt;p&gt;Keep checking that you have important code that shows the details of business logic as close to the root of the object hierarchy as possible. The business logic is what developers should see first, while the implementation details are deep or at least on the boundary of the workflow.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/business-concepts-up.jpg&quot; alt=&quot;business concepts up implementation detail down&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Favour business concepts further up the dependency hierarchy and implementation details lower down&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Tip 6: Use abstraction judiciously&lt;/h2&gt;
+&lt;p&gt;Abstractions are something you want at the seams of your application modules/components. Obviously you can use them elsewhere, certain design patterns call for them. The important thing is to use them where needed and not by default.&lt;/p&gt;
+&lt;p&gt;From a clean architecture point of view you would use them to implement Ports and Adapters as a nice way of keeping your domain logic clean of implementation details. Abstractions are part of your domain, implementations are specific and live in specific infrastructure dedicated to that implementation.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/abstractions.jpg&quot; alt=&quot;abstractions&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Place abstractions at the seams&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Tip 7: Use honest rather than simple types&lt;/h2&gt;
+&lt;p&gt;Create types to represent things like entity identity. &lt;a href=&quot;http://devonburriss.me/honest-arguments/&quot;&gt;There is a whole series on this&lt;/a&gt; but if you do nothing else don&apos;t let your codebase be littered with &lt;code&gt;Guid&lt;/code&gt;, &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;long&lt;/code&gt;, &lt;code&gt;string&lt;/code&gt; or whatever else you use as entity identity or reference. When your code relies on &lt;code&gt;invoiceId&lt;/code&gt; and &lt;code&gt;invoiceLineId&lt;/code&gt; and etc. it becomes too easy to swap 2 integers. Not only does it help prevent silly bugs but using types a little more liberally can really help convey intent. Finally, it makes finding all references where a type is used simple.&lt;/p&gt;
+&lt;h2&gt;And we are done&lt;/h2&gt;
+&lt;p&gt;I hope you find some of these tips useful. If you did, I would love to hear about it. If you have questions, feel free to leave a comment. If you think I am 100% wrong, I would love to hear your reasons. Above all, let&apos;s keep learning together and happy coding!&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>http://devonburriss.me/why-i-got-hooked-on-fsharp/</id>
