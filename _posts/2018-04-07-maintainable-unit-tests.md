@@ -11,7 +11,7 @@ comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/vents-bg.jpg"
 social-img: "img/posts/2018/bridge-cables-500.jpg"
-published: false
+published: true
 ---
 Although having a good collection of unit tests makes you feel safe and free to refactor, a bad collection of tests can make you scared to refactor. How so? A single change to application code can cause a cascade of failing tests. Here are some tips for avoiding (or fighting back) from that situation.
 <!--more-->
@@ -20,11 +20,11 @@ Although having a good collection of unit tests makes you feel safe and free to 
 
 ## Tip 1: Test behavior not structure
 
-The behavior of the system is what the business cares about and it is what you should care about as well from a verification point of view. If requirements change drastically then changes to the system are expected, including the tests. The promise of good unit test coverage is that you can refactor with confidence that your tests will catch any regressions in behavior. However if you are testing the structure of your application rather than the behavior, refactoring will be difficult since you want to change the structure of your code but your tests are asserting that structure! Worse, your test suite might not even test the behavior but you have confidence in them because of the sheer volume.
+The behavior of the system is what the business cares about and it is what you should care about as well from a verification point of view. If requirements change drastically then changes to the system are expected, including the tests. The promise of good unit test coverage is that you can refactor with confidence that your tests will catch any regressions in behavior. However if you are testing the structure of your application rather than the behavior, refactoring will be difficult since you want to change the structure of your code but your tests are asserting that structure! Worse, your test suite might not even test the behavior but you have confidence in them because of the sheer volume of structural tests.
 
 If you test the behavior of the system from the outside you are free to change implementation and your tests remain valid. I am not necessarily talking about integration style tests but actual unit tests whose entry point is a natural boundary. At work we have use-case classes that form this natural entry-point into any functionality.
 
-So let's look at an example of structural testing, and see the what happens when we try make a change to the implementation details.
+So let's look at an example of structural testing, and see the what happens when we try make a change to the implementation details. As an example we have a test against a `CreatePerson` use-case that creates a `Person` class and persists it if it is a valid person object. The initial design takes in an `IValidator` to determine whether the person is valid.
 
 ```csharp
 // tests
@@ -85,7 +85,7 @@ public class CreatePerson
 
 Notice how we are asserting against a dependency (`IValidator`) of the use-case (`CreatePerson`). Our test has structural knowledge of how `CreatePerson` is implemented. Let's see what happens when we want to refactor this code...
 
-Your team has been trying to bring in some new practices like Domain-Driven Design. The team discussed it and the `Person` class represents an easy start to get used to the idea. You have been tasked with pulling behavior into the the `Person` entity and make it less anemic.
+Your team has been trying to bring in some new practices like Domain-Driven Design. The team discussed it and the `Person` class represents an easy start learning. You have been tasked with pulling behavior into the the `Person` entity and make it less anemic.
 
 As a first try you move the validation logic into the `Person` class.
 
@@ -279,7 +279,7 @@ public class InMemoryPersonRepositoryBuilder
 
 A little trick is to put an `implicit` conversion to the class you are building up. Also take a look at [Fluency](https://github.com/nrjohnstone/Fluency) for helping with the creation of builders.
 
-A final note on this point. Just because I use builders a lot does not mean I completely throw mocking frameworks out the window. I just tend to use them for things I really don't care about and really aren't likely to change. I also tend to use them within other builders rather than directly in tests.
+A final note on this point. Just because I use builders a lot does not mean I completely throw mocking frameworks out the window. I just tend to use mocking frameworks for things I really don't care about and really aren't likely to change. I also tend to use them within other builders rather than directly in tests. This gives way more control over the grammar that you use to setup your tests.
 
 ### Accessors
 
