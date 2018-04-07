@@ -19,42 +19,42 @@
     
 
 
-    <title>Managing Code Complexity</title>
-    <meta name="description" content="7 tips to address some common anti-patterns in code that hide intent">
+    <title>3 tips for more maintainable unit tests</title>
+    <meta name="description" content="Highlights some tips for making test more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details.">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="http://devonburriss.me/managing-code-complexity/">
+    <link rel="canonical" href="http://devonburriss.me/maintainable-unit-tests/">
     
     <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Managing Code Complexity">
-    <meta itemprop="description" content="7 tips to address some common anti-patterns in code that hide intent">
-    <meta itemprop="image" content="http://devonburriss.me/img/posts/2018/yarn-500.jpg">
+    <meta itemprop="name" content="3 tips for more maintainable unit tests">
+    <meta itemprop="description" content="Highlights some tips for making test more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details.">
+    <meta itemprop="image" content="http://devonburriss.me/img/posts/2018/bridge-cables-500.jpg">
     
-    <meta itemprop="datePublished" content="4/6/2018 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="4/6/2018 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="Managing Code Complexity - 7 tips for keeping code as simple as possible" />
-    <meta itemprop="mainEntityOfPage" content="http://devonburriss.me/managing-code-complexity/" />
-    <meta name="headline" content="Managing Code Complexity - 7 tips for keeping code as simple as possible" />
+    <meta itemprop="datePublished" content="4/7/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="4/7/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="3 tips for more maintainable unit tests - Avoid having to fix dozens of tests every time you make a significant code change" />
+    <meta itemprop="mainEntityOfPage" content="http://devonburriss.me/maintainable-unit-tests/" />
+    <meta name="headline" content="3 tips for more maintainable unit tests - Avoid having to fix dozens of tests every time you make a significant code change" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Managing Code Complexity">
-    <meta name="twitter:description" content="7 tips to address some common anti-patterns in code that hide intent">
+    <meta name="twitter:title" content="3 tips for more maintainable unit tests">
+    <meta name="twitter:description" content="Highlights some tips for making test more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details.">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="http://devonburriss.me/img/posts/2018/yarn-500.jpg">
+    <meta name="twitter:image" content="http://devonburriss.me/img/posts/2018/bridge-cables-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Managing Code Complexity" />
+    <meta property="og:title" content="3 tips for more maintainable unit tests" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="http://devonburriss.me/managing-code-complexity/" />
-    <meta property="og:image" content="http://devonburriss.me/img/posts/2018/yarn-500.jpg" />
-    <meta property="og:description" content="7 tips to address some common anti-patterns in code that hide intent" />
+    <meta property="og:url" content="http://devonburriss.me/maintainable-unit-tests/" />
+    <meta property="og:image" content="http://devonburriss.me/img/posts/2018/bridge-cables-500.jpg" />
+    <meta property="og:description" content="Highlights some tips for making test more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details." />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -156,27 +156,23 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('http://devonburriss.me/img/backgrounds/hole-bg.jpg')">
+<header class="intro-header" style="background-image: url('http://devonburriss.me/img/backgrounds/vents-bg.jpg')">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>Managing Code Complexity</h1>
+                        <h1>3 tips for more maintainable unit tests</h1>
                         
-                        <h2 class="subheading">7 tips for keeping code as simple as possible</h2>
+                        <h2 class="subheading">Avoid having to fix dozens of tests every time you make a significant code change</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on April 06, 2018</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on April 07, 2018</span>
                         
                             <hr />
                             
                                 <a href="/tag/clean-code" class="label label-default">Clean Code</a>
                             
-                                <a href="/tag/ddd" class="label label-default">DDD</a>
-                            
-                                <a href="/tag/design-patterns" class="label label-default">Design Patterns</a>
-                            
-                                <a href="/tag/functional" class="label label-default">Functional</a>
+                                <a href="/tag/tdd" class="label label-default">TDD</a>
                             
                         
                     <div>
@@ -192,79 +188,296 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>When we write code it is often easy to get caught up in the implementation details. Communicating intent is imperative to making code understandable, and keeping code understandable is important for handling complexity.</p>
+				<p>Although having a good collection of unit tests makes you feel safe and free to refactor, a bad collection of tests can make you scared to refactor. How so? A single change to application code can cause a cascade of failing tests. Here are some tips for avoiding (or fighting back) from that situation.</p>
 <!--more-->
-<p>Even if you don't practice DDD (or the problem space does not warrant it) and functional programming there are a few lessons to be learned from these disciplines that can be brought into any codebase.</p>
-<h2>Tip 1: Describe the workflow at your entry point</h2>
-<p>We have all heard the phrase &quot;code is read many more times than it is written&quot;. What else is read a lot more than it is written? A book. Code is information dense and in any information dense book we have a Table of Contents.
-In your entry point to executing some use-case against your system it is important that there is a high-level workflow that gives an overview of the the complete use-case. This gives a developer reading from the entry point a &quot;Table of Contents&quot; to drill down into whatever step they need to.</p>
-<p>In this context a workflow is the steps needed to do the work of the use-case. This entry point could be a controller or a program main. A pattern we use at work is to create a use-case specific class with a <code>Do()</code> or <code>Execute()</code> method on it. Play around with the naming though. I like the class to describe the use-case while the method that causes execution to say something about the command coming in as a parameter eg. <code>new CalculateSomething().For(command.SomeNumber)</code>.</p>
-<p><img src="/img/posts/2018/use-case.jpg" alt="use-case" /></p>
 <blockquote>
-<p>An easily understood use-case makes a great entry point for exploring a codebase</p>
+<p>Important! This post contains example code. Don't copy/paste into production code.</p>
 </blockquote>
-<p>Inside the method on your use-case you should strive to lay out the code in the steps needed to complete that use-case. Try keep these steps at the same high-level of abstraction but not too high-level. What do I mean by too high? Be sure to describe actual meaningful steps that avoid steps that doing multiple things and all you can describe them is as <code>ProcessX</code>. If you find yourself naming a step like that it is probably worth breaking that step into smaller more meaningful steps within the use-case.</p>
-<p>What you really want to avoid here is scattering the steps needed to complete a use-case throughout an object hierarchy.</p>
-<p><img src="/img/posts/2018/logic-stack.jpg" alt="scattered logic" /></p>
-<blockquote>
-<p>Sprinkling important application logic throughout a hierarchy makes it difficult to reason about</p>
-</blockquote>
-<p>By spreading the workflow through the hierarchy it is really difficult to see at a glance what the workflow does and then drill down from there into how. It also makes it difficult to compose in new functionality. If it is within the hierarchy you will often find yourself putting code for new features in weird places because that is where the data is available in the call chain.</p>
-<h2>Tip 2: Prefer a longer workflow to a deep dependency chain</h2>
-<p>This one builds on the previous tip but where the previous tip focused on describing a workflow at the entry point, this one is more about cognitive load. Each step allows you to step into it and see the details. Each of these steps might itself have a few dependencies as well as mini-workflows captured in each of those dependencies. This is just a rule-of-thumb but if the depth of a single steps dependency hierarchy exceeds the width of the steps in a workflow, at least ask the question of whether that should maybe be 2 steps.</p>
-<p>Why is this important? You do not want to have to dive very deep to understand what happens in a single step. Remember that the entry point gives a complete overview of all high-level steps. If a hierarchy is too deep if might become hard to reason about. This is of course just a rule-of-thumb and any single step could of course warrant a deep hierarchy to implement it well.</p>
-<p><img src="/img/posts/2018/etl-workflow.jpg" alt="scattered logic" /></p>
-<blockquote>
-<p>As a rule-of-thumb; keep your workflow longer than it is deep</p>
-</blockquote>
-<h2>Tip 3: Make your external dependencies visible</h2>
-<p>External dependencies like databases, files, and/or webservices make things difficult to reason about if they are nested deep in the dependency hierarchy where it is often unclear that they are being called. Not only that but it forces excessive use of abstractions purely for testing, which causes test induced damage to the code.</p>
-<p><img src="/img/posts/2018/deeply-nested-dep.jpg" alt="deeply nested external dependencies" /></p>
-<blockquote>
-<p>Deeply nested external dependencies make code more difficult to reason about and test</p>
-</blockquote>
-<p>By making your external dependencies part of the high-level workflow you communicate the dependencies clearly. This makes it clear what is required for the system as a whole but also what data is needed to complete the use-case. This might mean thinking a little differently about the problem. Instead of querying for something the moment you need it, you might try fetch it at the start. You might say that seems wasteful as some validation might fail. That argument could be turned around though and it could be argued that there is no point in validating input if the external dependencies needed to complete a use-case are not available.</p>
-<p><img src="/img/posts/2018/highlight-dependencies.jpg" alt="highlight dependencies" /></p>
-<blockquote>
-<p>Make your external dependency calls clear in your high-level workflow</p>
-</blockquote>
-<h2>Tip 4: Push your external dependencies to the boundary</h2>
-<p>Obviously every use-case is different but if at all possible push your external dependencies to the beginning and the end of your workflow. This is taking a page out of functional programming where purity matters. What is meant by purity? Basically we strive to have all functions results be determined only by the value of the arguments passed in. This makes functions easy to reason about as well as easy to test.</p>
-<p><img src="/img/posts/2018/dependencies-on-boundary.jpg" alt="dependencies on the boundary" /></p>
-<blockquote>
-<p>Calls to databases, files, and webservices should be pushed to the boundary of the workflow</p>
-</blockquote>
-<p>I highly recommend watching <a href="https://www.youtube.com/watch?v=cxs7oLGrxQ4">From Dependency injection to dependency rejection by Mark Seemann</a> to see a detailed discussion on the topic.</p>
-<h2>Tip 5: Bring business concepts up, push technical implementations down</h2>
-<p>Keep checking that you have important code that shows the details of business logic as close to the root of the object hierarchy as possible. The business logic is what developers should see first, while the implementation details are deep or at least on the boundary of the workflow.</p>
-<p><img src="/img/posts/2018/business-concepts-up.jpg" alt="business concepts up implementation detail down" /></p>
-<blockquote>
-<p>Favour business concepts further up the dependency hierarchy and implementation details lower down</p>
-</blockquote>
-<h2>Tip 6: Use abstraction judiciously</h2>
-<p>Abstractions are something you want at the seams of your application modules/components. Obviously you can use them elsewhere, certain design patterns call for them. The important thing is to use them where needed and not by default.</p>
-<p>From a clean architecture point of view you would use them to implement Ports and Adapters as a nice way of keeping your domain logic clean of implementation details. Abstractions are part of your domain, implementations are specific and live in specific infrastructure dedicated to that implementation.</p>
-<p><img src="/img/posts/2018/abstractions.jpg" alt="abstractions" /></p>
-<blockquote>
-<p>Place abstractions at the seams</p>
-</blockquote>
-<h2>Tip 7: Use honest rather than simple types</h2>
-<p>Create types to represent things like entity identity. <a href="http://devonburriss.me/honest-arguments/">There is a whole series on this</a> but if you do nothing else don't let your codebase be littered with <code>Guid</code>, <code>int</code>, <code>long</code>, <code>string</code> or whatever else you use as entity identity or reference. When your code relies on <code>invoiceId</code> and <code>invoiceLineId</code> and etc. it becomes too easy to swap 2 integers. Not only does it help prevent silly bugs but using types a little more liberally can really help convey intent. Finally, it makes finding all references where a type is used simple.</p>
-<h2>And we are done</h2>
-<p>I hope you find some of these tips useful. If you did, I would love to hear about it. If you have questions, feel free to leave a comment. If you think I am 100% wrong, I would love to hear your reasons. Above all, let's keep learning together and happy coding!</p>
+<h2>Tip 1: Test behavior not structure</h2>
+<p>The behavior of the system is what the business cares about and it is what you should care about as well from a verification point of view. If requirements change drastically then changes to the system are expected, including the tests. The promise of good unit test coverage is that you can refactor with confidence that your tests will catch any regressions in behavior. However if you are testing the structure of your application rather than the behavior, refactoring will be difficult since you want to change the structure of your code but your tests are asserting that structure! Worse, your test suite might not even test the behavior but you have confidence in them because of the sheer volume of structural tests.</p>
+<p>If you test the behavior of the system from the outside you are free to change implementation and your tests remain valid. I am not necessarily talking about integration style tests but actual unit tests whose entry point is a natural boundary. At work we have use-case classes that form this natural entry-point into any functionality.</p>
+<p>So let's look at an example of structural testing, and see the what happens when we try make a change to the implementation details. As an example we have a test against a <code>CreatePerson</code> use-case that creates a <code>Person</code> class and persists it if it is a valid person object. The initial design takes in an <code>IValidator</code> to determine whether the person is valid.</p>
+<pre><code class="language-csharp">// tests
+// test for invalid name omitted...
+
+[Fact]
+public void CreatingPerson_WithValidPerson_CallsIsValid()
+{
+    var name = &quot;Bob&quot;;
+    var people = Substitute.For&lt;IPersonRepository&gt;();
+    var validator = Substitute.For&lt;IPersonValidator&gt;();
+    var createPerson = new CreatePerson(people, validator);
+
+    createPerson.With(name);
+
+    validator.ReceivedWithAnyArgs(1).IsValid(Arg.Any&lt;Person&gt;());
+}
+
+// anemic domain entity
+public class Person
+{
+    public Person(Guid id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
+
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+}
+
+// use-case
+public class CreatePerson
+{
+    private readonly IPersonRepository personRepository;
+    private readonly IPersonValidator personValidator;
+
+    public CreatePerson(IPersonRepository personRepository, IPersonValidator personValidator)
+    {
+        this.personRepository = personRepository;
+        this.personValidator = personValidator;
+    }
+
+    public void With(string name)
+    {
+        var person = new Person(Guid.NewGuid(), name);
+        if (personValidator.IsValid(person))
+        {
+            personRepository.Create(person);
+        }
+        else
+        {
+            throw new ArgumentException(nameof(name));
+        }
+    }
+}
+</code></pre>
+<p>Notice how we are asserting against a dependency (<code>IValidator</code>) of the use-case (<code>CreatePerson</code>). Our test has structural knowledge of how <code>CreatePerson</code> is implemented. Let's see what happens when we want to refactor this code...</p>
+<p>Your team has been trying to bring in some new practices like Domain-Driven Design. The team discussed it and the <code>Person</code> class represents an easy start learning. You have been tasked with pulling behavior into the the <code>Person</code> entity and make it less anemic.</p>
+<p>As a first try you move the validation logic into the <code>Person</code> class.</p>
+<pre><code class="language-csharp">public class Person
+{
+    public Person(Guid id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
+
+    public bool IsValid()
+    {
+        if (Id == Guid.Empty) return false;
+        if (string.IsNullOrEmpty(Name)) return false;
+        return true;
+    }
+
+    public Guid Id { get; }
+    public string Name { get; }
+}
+</code></pre>
+<p>Looking at the use-case, we no longer need to inject <code>IValidator</code>. Not only is what we test going to have to change, we are going to have to change the test completely because we no longer have a validator to inject as a mock. We have seen the first signs of our tests being fragile.</p>
+<p>Let's try make our test focus on the behavior we expect instead of relying on the structure of our code.</p>
+<pre><code class="language-csharp">// test for invalid name omitted...
+[Fact]
+public void CreatePerson_WithValidName_PersistsPerson()
+{
+    var name = &quot;Bob&quot;;
+    InMemoryPersonRepository people = Given.People;
+    var createPerson = new CreatePerson(people);
+
+    createPerson.With(name);
+
+    Assert.Equal(name, people.All().First().Name);
+}
+</code></pre>
+<p>Don't worry too much about <code>InMemoryPersonRepository people = Given.People;</code> for now, we will come back to it. All you need to know is that <code>InMemoryPersonRepository</code> implements <code>IPersonRepository</code>.</p>
+<p>Since we no longer need <code>IValidator</code> and it's implementation, we delete those. We also get to delete the test <code>CreatingPerson_WithValidPerson_CallsIsValid</code> as we have a better test now <code>CreatePerson_WithValidName_PersistsPerson</code> that asserts the behavior we care about, the use-case creating and persisting a new person. Yay, less test code, better coverage!</p>
+<p>At this point you might be saying &quot;Wait! Unit tests are supposed to test one method, on one class&quot;. No! A unit is whatever you need it to be. I am by no means saying write no tests for your small implementation details, just make sure you are comfortable deleting them if things change. With our focus on behavior tests we can delete those detailed tests freely and still be covered. In-fact, I often just delete the tests after I am done developing the component as I just used TDD for fast feedback loop on the design and implementation. Remember that test code is still code that needs maintenance so the more coverage for less the better.</p>
+<p>So back to the code. What does our use-case look like now?</p>
+<pre><code class="language-csharp">public class CreatePerson
+{
+    private readonly IPersonRepository personRepository;
+    public CreatePerson(IPersonRepository personRepository)
+    {
+        this.personRepository = personRepository;
+    }
+
+    public void With(string name)
+    {
+        var person = new Person(Guid.NewGuid(), name);
+        if (person.IsValid())
+        {
+            personRepository.Create(person);
+        }
+        else
+        {
+            throw new ArgumentException(nameof(name));
+        }
+    }
+}
+</code></pre>
+<p>Thats ok. We got rid of a dependency and moved some logic to our <code>Person</code> entity but we can do better. On reviewing your pull request someone in the team pointed out something important. You should be aiming to make unrepresentable states unrepresentable. The business doesn't allow saving a person without a name so let's make it so that we can't create an invalid <code>Person</code>.</p>
+<pre><code class="language-csharp">// person entity
+public class Person
+{
+    public Person(Guid id, string name)
+    {
+        if (id == Guid.Empty) throw new ArgumentException(nameof(id));
+        if (string.IsNullOrEmpty(name)) throw new ArgumentException(nameof(name));
+
+        Id = id;
+        Name = name;
+    }
+
+    public Guid Id { get; }
+    public string Name { get; }
+}
+// use-case
+public class CreatePerson
+{
+    private readonly IPersonRepository personRepository;
+    public CreatePerson(IPersonRepository personRepository)
+    {
+        this.personRepository = personRepository;
+    }
+
+    public void With(string name)
+    {
+        var person = new Person(Guid.NewGuid(), name);
+        personRepository.Create(person);
+    }
+}
+</code></pre>
+<p>Look at that! We refactored the implementation without having to update our test. It still passes without any changes.</p>
+<p>This was a contrived example to illustrate the point but I hope this tip helps you write more maintainable tests.</p>
+<h2>Tips 2: Use in-memory dependencies</h2>
+<p>You have already seen <code>InMemoryPersonRepository</code> so this tip should be less verbose to explain. The claim is simply that the maintainability of your tests can be increased by using in-memory versions of your dependencies a little more and using mocking frameworks a little less.</p>
+<p>I find in-memory versions of something like a repository that speaks to a database preferable to mocking frameworks for a few reasons:</p>
+<ol>
+<li>They tend to be easier to update than a mocking framework, especially if creation of the mocks is done in every test or fixture</li>
+<li>Coupled with some tooling (see next tip) they lead to far easier setup and readability</li>
+<li>They are simple to understand</li>
+<li>Great debugging tool</li>
+</ol>
+<p>On the down side, they do take a little time to create.</p>
+<p>Let's take a quick look at what the one looks like for our code so far:</p>
+<pre><code class="language-csharp">public class InMemoryPersonRepository : IPersonRepository
+{
+    private IDictionary&lt;Guid, Person&gt; data;
+
+    public InMemoryPersonRepository(IDictionary&lt;Guid, Person&gt; data)
+    {
+        this.data = data;
+    }
+
+    public IReadOnlyCollection&lt;Person&gt; All()
+    {
+        return new List&lt;Person&gt;(data.Values);
+    }
+
+    public void Create(Person person)
+    {
+        data.Add(person.Id, person);
+    }
+}
+</code></pre>
+<p>Super simple! Put in the work and give it a try, it may not be as sexy as a mocking framework but it really will help make your test suite more manageable.</p>
+<h2>Tip 3: Build up test tooling</h2>
+<p>Test tooling in this context means utility classes to make readability and maintainability of the tests easier. A big part of this is about making your tests clear about the setup while still keeping it concise.</p>
+<p>Let's discuss a few helpers you should have in any project...</p>
+<h3>In-memory dependencies</h3>
+<p>This was already discussed above. I can't stress enough how much this improves maintenance and simplifies reasoning about tests.</p>
+<h3>Builders</h3>
+<p>Builders can be used as an easy way to setup test data. They are a great way of simultaneously avoiding dozens of different setup methods for your tests and a way to make it clear what the actual setup of your test is without diving into some setup method that looks like all the other setup methods.</p>
+<pre><code class="language-csharp">public class InMemoryPersonRepositoryBuilder
+{
+    IDictionary&lt;Guid, Person&gt; data = new Dictionary&lt;Guid, Person&gt;();
+    
+    public InMemoryPersonRepositoryBuilder With(params PersonBuilder[] people)
+    {
+        foreach (Person p in people)
+        {
+            data.Add(p.Id, p);
+        }
+        return this;
+    }
+
+    public InMemoryPersonRepository Build()
+    {
+        return new InMemoryPersonRepository(data);
+    }
+
+    public static implicit operator InMemoryPersonRepository(InMemoryPersonRepositoryBuilder builder)
+        =&gt; builder.Build();
+}
+</code></pre>
+<p>A little trick is to put an <code>implicit</code> conversion to the class you are building up. Also take a look at <a href="https://github.com/nrjohnstone/Fluency">Fluency</a> for helping with the creation of builders.</p>
+<p>A final note on this point. Just because I use builders a lot does not mean I completely throw mocking frameworks out the window. I just tend to use mocking frameworks for things I really don't care about and really aren't likely to change. I also tend to use them within other builders rather than directly in tests. This gives way more control over the grammar that you use to setup your tests.</p>
+<h3>Accessors</h3>
+<p>Not sure what else to call these but it is useful to have a static class that makes access to builders and other types you would use in setup simple. Typically I have <code>Given</code> and <code>A</code>.</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// Handles creation of instances useful to testing like entites, value objects, settings, etc.
+/// &lt;/summary&gt;
+public static class A
+{
+    public static PersonBuilder Person =&gt; new PersonBuilder();
+}
+
+/// &lt;summary&gt;
+/// Handles the creation of builders that build external services for testing
+/// &lt;/summary&gt;
+public static class Given
+{
+    public static InMemoryPersonRepositoryBuilder People =&gt; new InMemoryPersonRepositoryBuilder();
+}
+</code></pre>
+<p>This allows me to write some very concise setup code. For example if I needed to populate my person repository with 3 random people I could do so like this:</p>
+<pre><code class="language-csharp">InMemoryPersonRepository people = Given.People.With(A.Person, A.Person, A.Person);
+// if i wanted another with a specific name
+people.Create(A.Person.With(name: &quot;Bob&quot;));
+</code></pre>
+<p>For completeness the <code>PersonBuilder</code> implementation:</p>
+<pre><code class="language-csharp">public class PersonBuilder
+{
+    private Guid id;
+    private string name;
+
+    public PersonBuilder()
+    {
+        id = Guid.NewGuid();
+        name = $&quot;name {Guid.NewGuid()}&quot;;
+    }
+
+    public PersonBuilder With(Guid id)
+    {
+        this.id = id;
+        return this;
+    }
+
+    public PersonBuilder With(string name)
+    {
+        this.name = name;
+        return this;
+    }
+
+    public Person Build()
+    {
+        return new Person(id, name);
+    }
+
+    public static implicit operator Person(PersonBuilder builder) =&gt; builder.Build();
+}
+</code></pre>
+<h2>Wrapping up</h2>
+<p>So those are my 3 tips for making your tests more maintainable. I encourage you to give them a try. Without investing in the maintainability of your tests they can quickly become a burden rather than a boon. I have seen the practices above improve things not only in my teams but other colleagues have converged on similar learnings with the same positive results. Let me know if you find this helpful, or even if there are any points you strongly disagree with. I would love to discuss in the comments. Happy coding!</p>
 
                 <hr />
                                 
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/why-i-got-hooked-on-fsharp/" data-toggle="tooltip"    data-placement="top" title="Why I got hooked on F#">&larr; Previous Post</a>
+                        <a href="/managing-code-complexity/" data-toggle="tooltip"    data-placement="top" title="Managing Code Complexity">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/maintainable-unit-tests/" data-toggle="tooltip" data-placement="top" title="3 tips for more maintainable unit tests">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

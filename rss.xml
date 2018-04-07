@@ -6,8 +6,17 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Fri, 06 Apr 2018 06:29:59 +00:00</pubDate>
-    <lastBuildDate>Fri, 06 Apr 2018 06:29:59 +00:00</lastBuildDate>
+    <pubDate>Sat, 07 Apr 2018 04:46:20 +00:00</pubDate>
+    <lastBuildDate>Sat, 07 Apr 2018 04:46:20 +00:00</lastBuildDate>
+    
+    <item>
+      <title>3 tips for more maintainable unit tests</title>
+      <link>http://devonburriss.me/maintainable-unit-tests/</link>
+      <pubDate>Sat, 07 Apr 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>http://devonburriss.me/maintainable-unit-tests/</guid>
+      <description>Highlights some tips for making test more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details.</description>
+    </item>
     
     <item>
       <title>Managing Code Complexity</title>

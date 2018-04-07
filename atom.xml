@@ -3,13 +3,305 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-04-06T06:29:59.0292297+00:00</updated>
+  <updated>2018-04-07T04:46:20.4443411+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>http://devonburriss.me/maintainable-unit-tests/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/maintainable-unit-tests/"/>
+    <title>3 tips for more maintainable unit tests</title>
+    <updated>2018-04-07T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/maintainable-unit-tests/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;Although having a good collection of unit tests makes you feel safe and free to refactor, a bad collection of tests can make you scared to refactor. How so? A single change to application code can cause a cascade of failing tests. Here are some tips for avoiding (or fighting back) from that situation.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Important! This post contains example code. Don&apos;t copy/paste into production code.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Tip 1: Test behavior not structure&lt;/h2&gt;
+&lt;p&gt;The behavior of the system is what the business cares about and it is what you should care about as well from a verification point of view. If requirements change drastically then changes to the system are expected, including the tests. The promise of good unit test coverage is that you can refactor with confidence that your tests will catch any regressions in behavior. However if you are testing the structure of your application rather than the behavior, refactoring will be difficult since you want to change the structure of your code but your tests are asserting that structure! Worse, your test suite might not even test the behavior but you have confidence in them because of the sheer volume of structural tests.&lt;/p&gt;
+&lt;p&gt;If you test the behavior of the system from the outside you are free to change implementation and your tests remain valid. I am not necessarily talking about integration style tests but actual unit tests whose entry point is a natural boundary. At work we have use-case classes that form this natural entry-point into any functionality.&lt;/p&gt;
+&lt;p&gt;So let&apos;s look at an example of structural testing, and see the what happens when we try make a change to the implementation details. As an example we have a test against a &lt;code&gt;CreatePerson&lt;/code&gt; use-case that creates a &lt;code&gt;Person&lt;/code&gt; class and persists it if it is a valid person object. The initial design takes in an &lt;code&gt;IValidator&lt;/code&gt; to determine whether the person is valid.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;// tests
+// test for invalid name omitted...
+
+[Fact]
+public void CreatingPerson_WithValidPerson_CallsIsValid()
+{
+    var name = &amp;quot;Bob&amp;quot;;
+    var people = Substitute.For&amp;lt;IPersonRepository&amp;gt;();
+    var validator = Substitute.For&amp;lt;IPersonValidator&amp;gt;();
+    var createPerson = new CreatePerson(people, validator);
+
+    createPerson.With(name);
+
+    validator.ReceivedWithAnyArgs(1).IsValid(Arg.Any&amp;lt;Person&amp;gt;());
+}
+
+// anemic domain entity
+public class Person
+{
+    public Person(Guid id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
+
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+}
+
+// use-case
+public class CreatePerson
+{
+    private readonly IPersonRepository personRepository;
+    private readonly IPersonValidator personValidator;
+
+    public CreatePerson(IPersonRepository personRepository, IPersonValidator personValidator)
+    {
+        this.personRepository = personRepository;
+        this.personValidator = personValidator;
+    }
+
+    public void With(string name)
+    {
+        var person = new Person(Guid.NewGuid(), name);
+        if (personValidator.IsValid(person))
+        {
+            personRepository.Create(person);
+        }
+        else
+        {
+            throw new ArgumentException(nameof(name));
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice how we are asserting against a dependency (&lt;code&gt;IValidator&lt;/code&gt;) of the use-case (&lt;code&gt;CreatePerson&lt;/code&gt;). Our test has structural knowledge of how &lt;code&gt;CreatePerson&lt;/code&gt; is implemented. Let&apos;s see what happens when we want to refactor this code...&lt;/p&gt;
+&lt;p&gt;Your team has been trying to bring in some new practices like Domain-Driven Design. The team discussed it and the &lt;code&gt;Person&lt;/code&gt; class represents an easy start learning. You have been tasked with pulling behavior into the the &lt;code&gt;Person&lt;/code&gt; entity and make it less anemic.&lt;/p&gt;
+&lt;p&gt;As a first try you move the validation logic into the &lt;code&gt;Person&lt;/code&gt; class.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public class Person
+{
+    public Person(Guid id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
+
+    public bool IsValid()
+    {
+        if (Id == Guid.Empty) return false;
+        if (string.IsNullOrEmpty(Name)) return false;
+        return true;
+    }
+
+    public Guid Id { get; }
+    public string Name { get; }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Looking at the use-case, we no longer need to inject &lt;code&gt;IValidator&lt;/code&gt;. Not only is what we test going to have to change, we are going to have to change the test completely because we no longer have a validator to inject as a mock. We have seen the first signs of our tests being fragile.&lt;/p&gt;
+&lt;p&gt;Let&apos;s try make our test focus on the behavior we expect instead of relying on the structure of our code.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;// test for invalid name omitted...
+[Fact]
+public void CreatePerson_WithValidName_PersistsPerson()
+{
+    var name = &amp;quot;Bob&amp;quot;;
+    InMemoryPersonRepository people = Given.People;
+    var createPerson = new CreatePerson(people);
+
+    createPerson.With(name);
+
+    Assert.Equal(name, people.All().First().Name);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Don&apos;t worry too much about &lt;code&gt;InMemoryPersonRepository people = Given.People;&lt;/code&gt; for now, we will come back to it. All you need to know is that &lt;code&gt;InMemoryPersonRepository&lt;/code&gt; implements &lt;code&gt;IPersonRepository&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Since we no longer need &lt;code&gt;IValidator&lt;/code&gt; and it&apos;s implementation, we delete those. We also get to delete the test &lt;code&gt;CreatingPerson_WithValidPerson_CallsIsValid&lt;/code&gt; as we have a better test now &lt;code&gt;CreatePerson_WithValidName_PersistsPerson&lt;/code&gt; that asserts the behavior we care about, the use-case creating and persisting a new person. Yay, less test code, better coverage!&lt;/p&gt;
+&lt;p&gt;At this point you might be saying &amp;quot;Wait! Unit tests are supposed to test one method, on one class&amp;quot;. No! A unit is whatever you need it to be. I am by no means saying write no tests for your small implementation details, just make sure you are comfortable deleting them if things change. With our focus on behavior tests we can delete those detailed tests freely and still be covered. In-fact, I often just delete the tests after I am done developing the component as I just used TDD for fast feedback loop on the design and implementation. Remember that test code is still code that needs maintenance so the more coverage for less the better.&lt;/p&gt;
+&lt;p&gt;So back to the code. What does our use-case look like now?&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public class CreatePerson
+{
+    private readonly IPersonRepository personRepository;
+    public CreatePerson(IPersonRepository personRepository)
+    {
+        this.personRepository = personRepository;
+    }
+
+    public void With(string name)
+    {
+        var person = new Person(Guid.NewGuid(), name);
+        if (person.IsValid())
+        {
+            personRepository.Create(person);
+        }
+        else
+        {
+            throw new ArgumentException(nameof(name));
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thats ok. We got rid of a dependency and moved some logic to our &lt;code&gt;Person&lt;/code&gt; entity but we can do better. On reviewing your pull request someone in the team pointed out something important. You should be aiming to make unrepresentable states unrepresentable. The business doesn&apos;t allow saving a person without a name so let&apos;s make it so that we can&apos;t create an invalid &lt;code&gt;Person&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;// person entity
+public class Person
+{
+    public Person(Guid id, string name)
+    {
+        if (id == Guid.Empty) throw new ArgumentException(nameof(id));
+        if (string.IsNullOrEmpty(name)) throw new ArgumentException(nameof(name));
+
+        Id = id;
+        Name = name;
+    }
+
+    public Guid Id { get; }
+    public string Name { get; }
+}
+// use-case
+public class CreatePerson
+{
+    private readonly IPersonRepository personRepository;
+    public CreatePerson(IPersonRepository personRepository)
+    {
+        this.personRepository = personRepository;
+    }
+
+    public void With(string name)
+    {
+        var person = new Person(Guid.NewGuid(), name);
+        personRepository.Create(person);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Look at that! We refactored the implementation without having to update our test. It still passes without any changes.&lt;/p&gt;
+&lt;p&gt;This was a contrived example to illustrate the point but I hope this tip helps you write more maintainable tests.&lt;/p&gt;
+&lt;h2&gt;Tips 2: Use in-memory dependencies&lt;/h2&gt;
+&lt;p&gt;You have already seen &lt;code&gt;InMemoryPersonRepository&lt;/code&gt; so this tip should be less verbose to explain. The claim is simply that the maintainability of your tests can be increased by using in-memory versions of your dependencies a little more and using mocking frameworks a little less.&lt;/p&gt;
+&lt;p&gt;I find in-memory versions of something like a repository that speaks to a database preferable to mocking frameworks for a few reasons:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;They tend to be easier to update than a mocking framework, especially if creation of the mocks is done in every test or fixture&lt;/li&gt;
+&lt;li&gt;Coupled with some tooling (see next tip) they lead to far easier setup and readability&lt;/li&gt;
+&lt;li&gt;They are simple to understand&lt;/li&gt;
+&lt;li&gt;Great debugging tool&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;On the down side, they do take a little time to create.&lt;/p&gt;
+&lt;p&gt;Let&apos;s take a quick look at what the one looks like for our code so far:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public class InMemoryPersonRepository : IPersonRepository
+{
+    private IDictionary&amp;lt;Guid, Person&amp;gt; data;
+
+    public InMemoryPersonRepository(IDictionary&amp;lt;Guid, Person&amp;gt; data)
+    {
+        this.data = data;
+    }
+
+    public IReadOnlyCollection&amp;lt;Person&amp;gt; All()
+    {
+        return new List&amp;lt;Person&amp;gt;(data.Values);
+    }
+
+    public void Create(Person person)
+    {
+        data.Add(person.Id, person);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Super simple! Put in the work and give it a try, it may not be as sexy as a mocking framework but it really will help make your test suite more manageable.&lt;/p&gt;
+&lt;h2&gt;Tip 3: Build up test tooling&lt;/h2&gt;
+&lt;p&gt;Test tooling in this context means utility classes to make readability and maintainability of the tests easier. A big part of this is about making your tests clear about the setup while still keeping it concise.&lt;/p&gt;
+&lt;p&gt;Let&apos;s discuss a few helpers you should have in any project...&lt;/p&gt;
+&lt;h3&gt;In-memory dependencies&lt;/h3&gt;
+&lt;p&gt;This was already discussed above. I can&apos;t stress enough how much this improves maintenance and simplifies reasoning about tests.&lt;/p&gt;
+&lt;h3&gt;Builders&lt;/h3&gt;
+&lt;p&gt;Builders can be used as an easy way to setup test data. They are a great way of simultaneously avoiding dozens of different setup methods for your tests and a way to make it clear what the actual setup of your test is without diving into some setup method that looks like all the other setup methods.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public class InMemoryPersonRepositoryBuilder
+{
+    IDictionary&amp;lt;Guid, Person&amp;gt; data = new Dictionary&amp;lt;Guid, Person&amp;gt;();
+    
+    public InMemoryPersonRepositoryBuilder With(params PersonBuilder[] people)
+    {
+        foreach (Person p in people)
+        {
+            data.Add(p.Id, p);
+        }
+        return this;
+    }
+
+    public InMemoryPersonRepository Build()
+    {
+        return new InMemoryPersonRepository(data);
+    }
+
+    public static implicit operator InMemoryPersonRepository(InMemoryPersonRepositoryBuilder builder)
+        =&amp;gt; builder.Build();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A little trick is to put an &lt;code&gt;implicit&lt;/code&gt; conversion to the class you are building up. Also take a look at &lt;a href=&quot;https://github.com/nrjohnstone/Fluency&quot;&gt;Fluency&lt;/a&gt; for helping with the creation of builders.&lt;/p&gt;
+&lt;p&gt;A final note on this point. Just because I use builders a lot does not mean I completely throw mocking frameworks out the window. I just tend to use mocking frameworks for things I really don&apos;t care about and really aren&apos;t likely to change. I also tend to use them within other builders rather than directly in tests. This gives way more control over the grammar that you use to setup your tests.&lt;/p&gt;
+&lt;h3&gt;Accessors&lt;/h3&gt;
+&lt;p&gt;Not sure what else to call these but it is useful to have a static class that makes access to builders and other types you would use in setup simple. Typically I have &lt;code&gt;Given&lt;/code&gt; and &lt;code&gt;A&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;/// &amp;lt;summary&amp;gt;
+/// Handles creation of instances useful to testing like entites, value objects, settings, etc.
+/// &amp;lt;/summary&amp;gt;
+public static class A
+{
+    public static PersonBuilder Person =&amp;gt; new PersonBuilder();
+}
+
+/// &amp;lt;summary&amp;gt;
+/// Handles the creation of builders that build external services for testing
+/// &amp;lt;/summary&amp;gt;
+public static class Given
+{
+    public static InMemoryPersonRepositoryBuilder People =&amp;gt; new InMemoryPersonRepositoryBuilder();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This allows me to write some very concise setup code. For example if I needed to populate my person repository with 3 random people I could do so like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;InMemoryPersonRepository people = Given.People.With(A.Person, A.Person, A.Person);
+// if i wanted another with a specific name
+people.Create(A.Person.With(name: &amp;quot;Bob&amp;quot;));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For completeness the &lt;code&gt;PersonBuilder&lt;/code&gt; implementation:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public class PersonBuilder
+{
+    private Guid id;
+    private string name;
+
+    public PersonBuilder()
+    {
+        id = Guid.NewGuid();
+        name = $&amp;quot;name {Guid.NewGuid()}&amp;quot;;
+    }
+
+    public PersonBuilder With(Guid id)
+    {
+        this.id = id;
+        return this;
+    }
+
+    public PersonBuilder With(string name)
+    {
+        this.name = name;
+        return this;
+    }
+
+    public Person Build()
+    {
+        return new Person(id, name);
+    }
+
+    public static implicit operator Person(PersonBuilder builder) =&amp;gt; builder.Build();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Wrapping up&lt;/h2&gt;
+&lt;p&gt;So those are my 3 tips for making your tests more maintainable. I encourage you to give them a try. Without investing in the maintainability of your tests they can quickly become a burden rather than a boon. I have seen the practices above improve things not only in my teams but other colleagues have converged on similar learnings with the same positive results. Let me know if you find this helpful, or even if there are any points you strongly disagree with. I would love to discuss in the comments. Happy coding!&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>http://devonburriss.me/managing-code-complexity/</id>
