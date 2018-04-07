@@ -2,7 +2,7 @@
 layout: post
 title: "3 tips for more maintainable unit tests"
 subtitle: "Avoid having to fix dozens of tests every time you make a significant code change"
-description: "Highlights some tips for making test more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details."
+description: "Highlights some tips for making tests more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details."
 permalink: maintainable-unit-tests
 author: "Devon Burriss"
 category: Programming
