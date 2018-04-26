@@ -3,13 +3,52 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-04-26T06:10:26.9645186+00:00</updated>
+  <updated>2018-04-26T07:20:24.7386738+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>http://devonburriss.me/leader-archetypes/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/leader-archetypes/"/>
+    <title>Leader Archetypes</title>
+    <updated>2018-04-26T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/leader-archetypes/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;Why do we follow people? Why only some people? Character, situation, and value-alignment seem to jump out as obvious factors but what configuration of these allows us to suspend our own self-absorption to work toward a common goal? Are there archetypes that represent what leaders do to get people to follow them?&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;Leadership is by no means something I have devoted a lot of time to compared to more technical learnings. Even when I have read up on leadership it has been either very specific to development teams or in a general life sense like &amp;quot;Seven Habits of Highly Effective People&amp;quot;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So take the following with a pinch of salt. They are observations from Life not Leadership.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;These are three archetypes of leaders I have formulated for myself. This is based purely on introspection and observation of peers so I am sure someone more knowledgeable in leadership could point out all the depth of knowledge that I have missed.&lt;/p&gt;
+&lt;h2&gt;Napoleon&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2018/napoleon-bonaparte-400.jpg&quot; alt=&quot;Napoleon Bonaparte&quot; class=&quot;img-rounded pull-left&quot; width=&quot;300&quot; style=&quot;margin-right: 1em;&quot;&gt; Skilled. Napoleon Bonaparte was a skilled military leader. It is what brought him up to the opportunity to be emperor and it is what makes him memorable. People believed in him because he had repeatedly shown his ability to win wars. He used his skill to conquer most of Europe.&lt;/p&gt;
+&lt;p&gt;It seems people will follow if you have shown demonstrable skill in a field that they care about. Said skill provides authority in the field of expertise but that authority does seem to bleed out into other areas. This is not entirely illogical as competence in one area means at least the capacity for competence in other areas. As humans we do over estimate that competence, which is known as the &lt;a href=&quot;https://en.wikipedia.org/wiki/Authority_bias&quot;&gt;Authority bias&lt;/a&gt;. The quintessential example here is weighting the opinion of a doctor more than someone else on a field that is not medicine.&lt;/p&gt;
+&lt;p&gt;In tech this is a known issue with competence in software development often leading to more management type roles. Regardless of how equipped the individual is to lead people, their competence as a developer will influence how willing people are to follow their lead.&lt;/p&gt;
+&lt;h2&gt;Robin Hood&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2018/robin-hood-400.jpg&quot; alt=&quot;Robin Hood&quot; class=&quot;img-rounded pull-right&quot; width=&quot;300&quot; style=&quot;margin-left: 1em;&quot;&gt;Protect. In legend Robin Hood fought injustice for the people. As a leadership style this can be effective in growing influence. In the legend Robin fought for the people but the people also loved and protected him.&lt;/p&gt;
+&lt;p&gt;As a leader if you are seen as serving your team by fighting for their happiness, freedom to operate independently, and freedom from hardships, you will earn respect. That influence in turn can be used to resolve conflicts, multiply productivity, and lead in directions you see as beneficial.&lt;/p&gt;
+&lt;p&gt;There are of course consequences of taking this style too far. As a leader it will often put you at odds with others in an organization, including your boss if you have one. It can lead to &lt;a href=&quot;https://en.wikipedia.org/wiki/In-group_favoritism&quot;&gt;In-group favoritism&lt;/a&gt; within the team. Related to this it can have a tribal effect where the team is seen as an outsider (outlaws if you wish), this is exacerbated by the In-group favoritism. Finally, if done very poorly it could result in coddling of the team. This is easy enough to mitigate by favouring teaching members of the team to do things themselves rather than doing it for them.&lt;/p&gt;
+&lt;h2&gt;Martin Luther King Jr&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2018/martin-luther-king-jr-400.jpg&quot; alt=&quot;Martin Luther King Jr&quot; class=&quot;img-rounded pull-left&quot; width=&quot;300&quot; style=&quot;margin-right: 1em;&quot;&gt; Inspire. Martin Luther King Jr inspired people to mobilize for a cause. He was charismatic. He had a vision of what he wanted. He used that charisma to mobilize people into action. He inspired people to believe vision could become reality.&lt;/p&gt;
+&lt;p&gt;There are many charismatic leaders to pick from but Martin was my first choice because it wasn&apos;t just about speaking in a way that inspired others. His vision was shared by those that had to live with the inequality and those who saw the inequality and wanted it to change. His message and methods were moral (non-violent protest). And then of course his speeches were inspiring. Inspiration is more than just charisma. It is about a vision that is clear and shared by others. Martin didn&apos;t use his charisma to convince people of his vision. It was their vision too and he inspired them to make it a reality.&lt;/p&gt;
+&lt;p&gt;In tech charisma is a rare thing but Martin didn&apos;t just give speeches. He gave speeches at protests he had helped organize. He created an environment where people could come together to work toward their shared vision. Is charisma really the most important element in making meaningful change then?&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;One final point. I don&apos;t think fitting into just one of these archetypes would make an effective leader. These are just archetypes I have noticed over the years that when in play cause people to follow. An effective leader would probably fit into one of these but have strong elements of the others. That mix is what allows counteracting the ill effects of some styles.
+And one final time: This is not my area of expertise...but I have run these archetypes past a few people and they seem to find it useful. Probably because they think me a competent software developer ;)&lt;/p&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Social image &lt;a href=&quot;https://unsplash.com/@jwimmerli&quot;&gt;Jean Wimmerlin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Napoleon and MLK Jr photo from &lt;a href=&quot;https://pixabay.com/&quot;&gt;Pixabay&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Bow and Arrow photo by &lt;a href=&quot;https://unsplash.com/@zoltantasi&quot;&gt;Zoltan Tasi&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>http://devonburriss.me/maintainable-unit-tests/</id>

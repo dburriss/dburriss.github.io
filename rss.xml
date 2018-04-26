@@ -6,8 +6,17 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Thu, 26 Apr 2018 06:10:26 +00:00</pubDate>
-    <lastBuildDate>Thu, 26 Apr 2018 06:10:26 +00:00</lastBuildDate>
+    <pubDate>Thu, 26 Apr 2018 07:20:24 +00:00</pubDate>
+    <lastBuildDate>Thu, 26 Apr 2018 07:20:24 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Leader Archetypes</title>
+      <link>http://devonburriss.me/leader-archetypes/</link>
+      <pubDate>Thu, 26 Apr 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>http://devonburriss.me/leader-archetypes/</guid>
+      <description>A description of three archetypes of leaders with some pros and cons of styles</description>
+    </item>
     
     <item>
       <title>3 tips for more maintainable unit tests</title>
