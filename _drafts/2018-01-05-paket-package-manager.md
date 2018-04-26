@@ -2,7 +2,7 @@
 layout: post
 title: "Dynamite comes in a small Paket"
 subtitle: "Why you should consider using Paket package manager"
-description: "A short overview of the value add that Paket brings"
+description: "A short overview of the value add that Paket package manager brings"
 permalink: dynamite-paket
 author: "Devon Burriss"
 category: Tools
