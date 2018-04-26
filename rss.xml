@@ -6,8 +6,8 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Mon, 09 Apr 2018 09:58:05 +00:00</pubDate>
-    <lastBuildDate>Mon, 09 Apr 2018 09:58:05 +00:00</lastBuildDate>
+    <pubDate>Thu, 26 Apr 2018 05:21:54 +00:00</pubDate>
+    <lastBuildDate>Thu, 26 Apr 2018 05:21:54 +00:00</lastBuildDate>
     
     <item>
       <title>3 tips for more maintainable unit tests</title>
