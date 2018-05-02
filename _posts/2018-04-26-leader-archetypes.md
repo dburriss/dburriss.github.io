@@ -5,7 +5,7 @@ subtitle: "Some thoughts on why people would follow certain styles of leadership
 description: "A description of three archetypes of leaders with some pros and cons of styles"
 permalink: leader-archetypes
 author: "Devon Burriss"
-category: Life
+category: Leadership
 tags: [General]
 comments: true
 excerpt_separator: <!--more-->
