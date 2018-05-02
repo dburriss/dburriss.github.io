@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Employees are like cars not petrol"
-subtitle: ""
-description: ""
+subtitle: "Musings about what it takes to keep talent"
+description: "What is it about a company culture that attracts and keeps talent?"
 permalink: employees-are-like-cars-not-petrol
 author: "Devon Burriss"
 category: Leadership
@@ -27,11 +27,11 @@ As you work you slowly use up the petrol in the tank. What are you burning? New 
 
 ## Driver: The broke student
 
-Were you ever a broke student with a car the was likely to break down if it didn't run out of petrol first? I was. I would fill up the tank with just enough petrol to get me to my next destination.
+Were you ever a broke student with a car that was likely to break down if it didn't run out of petrol first? I was. I would fill up the tank with just enough petrol to get me to my next destination.
 
 ![Student tank trajectory](/img/posts/2018/student-tank.jpg)
 
-In this model moments come along that refill the tank a little but they are blips in the downward trend. The consumption of the resource is still greater than sum of the top-ups. Completion of big projects, moves to a new challenge, and promotions, all add some fuel but the problem is these are not sustainable as big refuels that come along. There are so many projects, moves, and promotions available and what if there are just a few failures? These could easily wipe out any gains.
+In this model moments come along that refill the tank a little but they are blips in the downward trend. The consumption of the resource is still greater than the sum of the top-ups. Completion of big projects, moves to a new challenge, and promotions, all add some fuel but the problem is these are not sustainable as big refuels that come along. There are so many projects, moves, and promotions available and what if there are just a few failures? These could easily wipe out any gains.
 
 ## Driver: The responsible car owner
 
