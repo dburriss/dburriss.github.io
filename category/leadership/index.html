@@ -12,47 +12,36 @@
 
 
 
-    
 
 
 
-
-    <title>Developer Quest II - Variables</title>
-    <meta name="description" content="Trial by reference">
+    <title>Devon Burriss' Blog</title>
+    <meta name="description" content="Mostly explorations in code">
     <meta name="author" content="Devon Burriss">
-    
-    <link rel="canonical" href="http://devonburriss.me/developer-quest-variables/">
     
     <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Developer Quest II - Variables">
-    <meta itemprop="description" content="Trial by reference">
+    <meta itemprop="name" content="Devon Burriss' Blog">
+    <meta itemprop="description" content="Mostly explorations in code">
     <meta itemprop="image" content="http://devonburriss.me/img/explore-590.jpg">
-    
-    <meta itemprop="datePublished" content="10/12/2014 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="10/12/2014 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="Developer Quest II - Variables - Trial by reference" />
-    <meta itemprop="mainEntityOfPage" content="http://devonburriss.me/developer-quest-variables/" />
-    <meta name="headline" content="Developer Quest II - Variables - Trial by reference" />
-
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Developer Quest II - Variables">
-    <meta name="twitter:description" content="Trial by reference">
+    <meta name="twitter:title" content="Devon Burriss' Blog">
+    <meta name="twitter:description" content="Mostly explorations in code">
     <meta name="twitter:creator" content="@DevonBurriss">
     <meta name="twitter:image" content="http://devonburriss.me/img/explore-590.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Developer Quest II - Variables" />
+    <meta property="og:title" content="Devon Burriss' Blog" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="http://devonburriss.me/developer-quest-variables/" />
+    <meta property="og:url" content="http://devonburriss.me//category/leadership/" />
     <meta property="og:image" content="http://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Trial by reference" />
+    <meta property="og:description" content="Mostly explorations in code" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -153,224 +142,62 @@
 </nav>
 
 
-    <!-- Post Header -->
-<header class="intro-header" style="background-image: url('http://devonburriss.me/img/backgrounds/explore-bg.jpg')">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="frame">
-                        <h1>Developer Quest II - Variables</h1>
-                        
-                        <h2 class="subheading">Trial by reference</h2>
-                        
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 12, 2014</span>
-                        
-                            <hr />
-                            
-                                <a href="/tag/programming" class="label label-default">Programming</a>
-                            
-                                <a href="/tag/learning-csharp" class="label label-default">Learning c#</a>
-                            
-                                <a href="/tag/tutorial" class="label label-default">Tutorial</a>
-                            
-                        
-                    <div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Page Header -->
+
+<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 ">
 
-				<blockquote>
-<p>Hold this for me.</p>
-</blockquote>
-<h2>The story so far</h2>
-<p>Lets go over what we have so far from <a href="http://devonburriss.me/developer-quest-getting-started/">Part 1</a> and touch on some terminology. We have a <strong>namespace</strong> called DeveloperQuest1. Namespaces are a way of grouping an application or parts of it. Specifically its used in the grouping of the Types that make up an application.
-Then we have a <strong>class</strong> called <strong>Program</strong>. <strong>class</strong> is the keyword used to define a Reference Type in C#. We will explore it in more detail later in this tutorial. Then we have the first <em>member</em> of Program. <em>Main</em> is the <strong>method</strong> that is run when a console application starts. Methods are ways of grouping behaviour in a program that can be executed.</p>
-<p><img src="/img/posts/2014/gfs_36744_2_2.jpg" alt="hero enters town" /></p>
-<!--more-->
-<h2>Variables</h2>
-<p>Writing things to the screen is great but to make programming useful we need to be able to take input from somewhere, store it, manipulate it and possible then show it or save it.
-You can think of variables as the buckets that we store values in while we are using them in the program.
-We get 2 main categories of variables. <strong>Value Types</strong> and <strong>Reference Types</strong>. So every variable has a unique <strong>Type</strong> that falls into one of these 2 categories but is always a <strong>Type</strong>.</p>
-<h3>Value Types</h3>
-<p>Value types fall into 2 main sub-categories :</p>
-<ul>
-<li>struct</li>
-<li>enumeration</li>
-</ul>
-<p>Structs in turn fall into further categories of</p>
-<ul>
-<li>Numeric</li>
-<li>boolean</li>
-<li>user-defined</li>
-</ul>
-<p>I just mention this so you are aware of it when we go through examples. If it doesn't make much sense right now, don't worry about it.
-So let's see an example of using a numeric value type</p>
-<pre><code class="language-csharp">
-int myNumber = 1;
-</code></pre>
-<p>This assigns the number <em>1</em> to the 'bucket' named <em>myNumber</em>. The default for an <em>int</em> is zero.
-There are numerous types of numeric value types that vary in terms of the size of the number they can hold as well as the precision.
-Next are boolean values. The valid options here are either true or false. The default being <em>false</em>.</p>
-<pre><code class="language-csharp">
-bool isHero = true;
-</code></pre>
-<p>For the full list see here: http://msdn.microsoft.com/en-us/library/bfft1t3c.aspx</p>
-<p>Finally a <strong>struct</strong>. Structs are complex values. These can be used to store groups of values together logically. You will see that these seem a lot like reference types but differ in how they are handled in the program.</p>
-<ul>
-<li>In the Solution Explorer <strong>Right-click</strong> on the C# Console Project DeveloperQuest1</li>
-<li>Expand <strong>Add</strong></li>
-<li>Click <strong>Class...</strong></li>
-<li>Name the class <strong>Hero</strong></li>
-<li>Click <strong>Ok</strong>
-<img src="/images/posts/2014/code-change2.jpg" alt="new class image" /></li>
-</ul>
-<p>This will create a new <strong>class</strong> (will discuss later).</p>
-<ul>
-<li>Change the <strong>class</strong> keyword to a <strong>struct</strong> and add the folowing 2 <em>fields</em>.</li>
-<li>Save the changes</li>
-</ul>
-<p>It should look like this now:</p>
-<pre><code class="language-csharp">
-public struct Hero
-{
-    public int Health;
-    public string Name;
-}
-</code></pre>
-<blockquote>
-<p><strong>string</strong> is used to store text. It is a reference type but is handled in a special way.</p>
-</blockquote>
-<p><img src="/img/posts/2014/so-far-1.jpg" alt="structure of application" /></p>
-<p>You will see shortly when we explore reference types how similar they look to a <strong>struct</strong>.
-The key characteristic to understand about value types is that they always point to their own 'bucket'.
-This can be demonstrated with the following example.
-Change your Main <em>method</em> to match the code below.
-Notice the <strong>using</strong> statement at the top now. This is the <em>System</em> namespace and allows us to remove <em>System</em> from in front of <strong>Console</strong>. This is because <strong>Console</strong> is a <strong>class</strong> in the <em>System</em> namepspace. This makes your code simpler to work with.</p>
-<pre><code class="language-csharp">
-using System;
-namespace DeveloperQuest1
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            System.Console.WriteLine("So you want to be a C# developer?");
+<!-- Main Content -->
+<div class="container-fluid">
+	<div class="row">
+        
+		<div class="col-lg-9">
+			
+<div>
+  <div class="clearfix">
+        <h1 class="pull-right">&#47;Leadership&#47; &nbsp;</h1>
+    </div>
+  
+    
+      
+      <div class="post-preview ">
+          <a href="/leader-archetypes/">
+              <h2 class="post-title">            Leader Archetypes
+              </h2>
+              
+          </a>
+          <p class="post-meta">Posted by Devon Burriss' Blog on April 26, 2018</p>
+          
+              
+                  <a href="/tag/general"><span class="label label-default">General</span></a>
+              
+          
+      </div>
+      <hr>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+</div>
+		</div>
 
-            Hero hero1 = new Hero(){
-                Health = 10,
-                Name = "Bob"
-            };
-
-            Hero hero2 = hero1;
-            hero2.Name = "Ted";
-			Type heroType = hero1.GetType();
-
-            Console.WriteLine("Hero 1 is " + hero1.Name);
-            Console.WriteLine("Hero 2 is " + hero2.Name);
-            Console.WriteLine("Type is " + heroType.Name);
-            Console.WriteLine("Is value type: " + heroType.IsValueType);
-
-            Console.ReadKey();
-        }
-    }
-}
-</code></pre>
-<p>Run the application by hitting <strong>F5</strong>.</p>
-<h4>Output should be:</h4>
-<pre><code>		Hero 1 is Bob
-		Hero 2 is Ted
-		Type is Hero
-		Is value type: True
-</code></pre>
-<p>So <em>hero1</em> and <em>hero2</em> represent 2 unique values. Changing one does not effect the other.</p>
-<h3>Reference Types</h3>
-<p>Reference types, as the name alludes to, can reference the same 'bucket'.
-Rather than the <em>struct</em> keyword, a reference Type uses <em>class</em>. Usually you will create a <strong>class</strong> and the <em>members</em> of the <strong>class</strong> are comprised of value and reference types. <strong>Members</strong> can be <em>fields</em>, <em>properties</em>, or <em>methods</em> on a Type. <em>Name</em> and <em>Health</em> on <strong>Hero</strong> above are examples of <em>fields</em>.</p>
-<p>Let's change the Hero Type from a <em>value</em> type to a <em>reference</em> type.</p>
-<ul>
-<li>Open the <em>Hero.cs</em> by double-clicking it in the Solution Explorer, or click on the tab if it is still open from when you created it.</li>
-<li>Change <strong>struct</strong> back to <strong>class</strong></li>
-<li>Save</li>
-<li>Hit <strong>F5</strong> to run the application</li>
-</ul>
-<h4>Output should be:</h4>
-<pre><code>		Hero 1 is Ted
-		Hero 2 is Ted
-		Type is Hero
-		Is value type: False
-</code></pre>
-<p>So <em>hero1</em> and <em>hero2</em> both point to the same 'bucket' now. Changing one will change the other. Because <em>hero2</em> points at <em>hero1</em>, when we changed 2, 1 was also changed because they are the same thing actually. This is the essential difference between a reference type and a value type. Hopefully the names make sense now?</p>
-<h3>Using our new found knowledge</h3>
-<p>We have a reference type that represents our hero. Let's add functionality to the program so we can give our hero a name.
-Change the program to match the following.</p>
-<pre><code class="language-csharp">
-using System;
-namespace DeveloperQuest1
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Hero hero = new Hero();
-            hero.Health = 10;
-            Console.WriteLine("So you want to be a C# developer?");
-            Console.WriteLine("What is your hero's name?");
-            hero.Name = Console.ReadLine();
-
-            Console.WriteLine("Your adventure begins " + hero.Name);
-			//to pause program
-            Console.ReadKey();
-        }
-    }
-}
-</code></pre>
-<p>So on line 1 we have the <em>using</em> statement that imports the <em>System</em> namespace to we can use it throughout our code without explicitly referencing it all the time.
-Our program is in the <em>DeveloperQuest1</em> namespace.
-It contains a <strong>Type</strong> called <strong>Program</strong> (which uses the <strong>class</strong> keyword and is such a reference type).
-It contains a <em>method</em> called <strong>Main</strong> which is run by default by a console application. We will explore the arguments passed in as <strong>args</strong> in a later tutorial.
-The 1st statement in the Main method declares a new <strong>Hero</strong> using the <strong>new</strong> keyword.
-We then assign a value of 10 to the hero's <strong>Health</strong> <em>field</em>.
-We then write to the Console asking for the hero's name and read it into the <strong>Name</strong> <em>field</em> on the hero. This is done using a <em>method</em> on <strong>Console</strong> called <em>ReadLine</em> which reads everything you type in until you hit <em>Enter</em>.
-We then write out to the console the name we stored on the hero.
-Lastly we still have the <em>ReadKey</em> call which pauses the application. Above it I show the use of comments. These are ignored by the program but can be used by you to leave instructional text. Use only when something is unclear.
-Hit <strong>F5</strong> to run it.</p>
-<h2>Summary</h2>
-<p>In this tutorial we explored the Type categories you get in C# and how to create and use them. In the following tutorial we will dive into <em>classes</em> and the various <em>members</em> you can have on them.</p>
-<h3>Further Reading and References</h3>
-<ul>
-<li>http://msdn.microsoft.com/en-us/library/s1ax56ch.aspx</li>
-<li>http://www.albahari.com/valuevsreftypes.aspx</li>
-</ul>
-
-                <hr />
-                                
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/developer-quest-getting-started/" data-toggle="tooltip"    data-placement="top" title="Developer Quest I - Getting started with C#">&larr; Previous Post</a>
-                    </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/testing-the-untestable/" data-toggle="tooltip" data-placement="top" title="Testing the Untestable">Next Post &rarr;</a>
-                    </li>
-                    
-                </ul>
-
-            </div>
-
-            <div class="col-lg-4 widget-column">
-           
-                                <ul class="list-inline text-center">
+         <div class="col-lg-3 widget-column">
+            
+                            <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -412,7 +239,7 @@ Hit <strong>F5</strong> to run it.</p>
                 </ul>
 
 
-                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/leadership">Leadership</a>
 
@@ -430,8 +257,8 @@ Hit <strong>F5</strong> to run it.</p>
 
     <a class="badge badge-info" href="/category/tools">Tools</a>
 
-                <hr />
-                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+            <hr />
+            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -670,13 +497,24 @@ Hit <strong>F5</strong> to run it.</p>
 </a>
 
 </div>
-            
-            </div>
+            <hr />
+            <h3>About me</h3>
+<div>
+    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+        <img class="img-rounded pull-right" src="http://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
+        <meta itemprop="url" content="http://devonburriss.me/img/avatar.jpg">
         </div>
+        <meta itemprop="name" content="Devon Burriss">
     </div>
-</article>
+    <p align="justify">
+        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
+    </p>
+</div>
 
-<hr>
+        </div>
+	</div>
+</div>
     
                     <ul class="list-inline text-center">
                     <li>
