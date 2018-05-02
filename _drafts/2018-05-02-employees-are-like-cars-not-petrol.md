@@ -5,7 +5,7 @@ subtitle: ""
 description: ""
 permalink: employees-are-like-cars-not-petrol
 author: "Devon Burriss"
-category: Programming
+category: Leadership
 tags: [General]
 comments: true
 excerpt_separator: <!--more-->
@@ -43,9 +43,17 @@ The lesson here, and the whole point of this flaky analogue is that if you want 
 
 ## Conclusion
 
-TODO
+People apparently quit managers not companies. While I think this is true I don't think it is always personal. The bottom line is management is custodian of the environment and culture. Although everyone is responsible to a certain extent, it is management's job to ensure it is heading in the right direction and to step in and take action if it is not.
 
-People apparently quit managers not companies. Whether it is the person or the company the bottom line is management is custodian of the environment and culture. Although everyone is responsible to a certain extent, it is managements job to ensure it is heading in the right direction.
+DON'T let frustration linger with no solution
+DO empower people to solve their own problems
 
-- people complaining about small things is symptomatic of bigger problems.
-- having issues that hang around and are not acknowledged publicly fester and drain trust
+DON'T think of employees as resources that just churn out value with no input
+DO set aside time and encourage learning and personal growth
+
+DON'T tell people how to do their job
+DO give a vision for what the business wants to achieve strategically
+
+Perks, events, money. These are not what keep people happy. If people are complaining about these things then chances are the culture is so bad that that is the only thing your employees have to hold on to. They are symptoms and make sure you are ignoring them only if you are addressing their more pressing cultural and environmental issues.
+
+Do you have your own DOs or DON'Ts for building or tearing down company culture. I would love to hear them.
