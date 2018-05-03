@@ -6,8 +6,17 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Wed, 02 May 2018 20:52:52 +00:00</pubDate>
-    <lastBuildDate>Wed, 02 May 2018 20:52:52 +00:00</lastBuildDate>
+    <pubDate>Thu, 03 May 2018 06:28:20 +00:00</pubDate>
+    <lastBuildDate>Thu, 03 May 2018 06:28:20 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Employees are like cars not petrol</title>
+      <link>http://devonburriss.me/employees-are-like-cars-not-petrol/</link>
+      <pubDate>Thu, 03 May 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>http://devonburriss.me/employees-are-like-cars-not-petrol/</guid>
+      <description>What is it about a company culture that attracts and keeps talent?</description>
+    </item>
     
     <item>
       <title>Leader Archetypes</title>
