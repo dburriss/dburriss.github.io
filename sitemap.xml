@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>http://devonburriss.me/simple-trick-to-be-a-better-leader/</loc>
+    <lastmod>2018-05-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>http://devonburriss.me/employees-are-like-cars-not-petrol/</loc>
     <lastmod>2018-05-03T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -701,6 +708,14 @@
 	
 	<url>
 		<loc>http://devonburriss.me//tag/learning-csharp/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//tag/life/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
