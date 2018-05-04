@@ -11,7 +11,7 @@ comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/superman-bg.jpg"
 social-img: "img/posts/2018/team-500.jpg"
-published: false
+published: true
 ---
 If you are a leader, many things are expected from you. Skill. Vision. Charisma. There are other characteristics that don't always come to mind when thinking of leadership. Loyalty inspires loyalty. Calmness under pressure. Trust inspires trust. Many of the characteristics are quite hard to quantify and difficult to learn. Some people just seem to be born with them and others grow into it, being shaped by their experiences.
 <!--more-->
