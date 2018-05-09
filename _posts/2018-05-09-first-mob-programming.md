@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Mobbing a story"
-subtitle: "Leasons learned from a teams first few mob programming sessions"
+subtitle: "Lessons learned from a team's first few mob programming sessions"
 description: "Mob programming is a great agile way to increase learning in a team. Here are 6 lessons learned during a mob programming session."
 permalink: first-mob-programming
 author: "Devon Burriss"
