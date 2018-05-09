@@ -59,3 +59,8 @@ The team did comment on certain parts of the activity being more engaging than o
 
 Mob programming is a great activity for working more as a team and for those who have not pair-programmed before, participating without driving might make them more open to pair programming. It is also awesome for sharing knowledge throughout the team. The benefits will pay for the momentary drop in productivity due to parallelizing work. If you approach it in an agile way with continual feedback you can find ways to make it work for you. Just be sure to be accepting toward one another. Have you tried mob programming? If not, give it a go in your team. You do it regularly?
 Please share your experiences!
+
+## Credits
+
+1. Background image by [Hudson Hintze](https://unsplash.com/@hudsonhintze)
+1. Social image by [Tim Marshall](https://unsplash.com/@timmarshall)
