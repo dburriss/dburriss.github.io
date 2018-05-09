@@ -10,7 +10,7 @@ tags: [General, Productivity, Science]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
-social-img: "img/posts/2017/eq-vs-iq-280.jpg"
+social-img: "/img/posts/2017/eq-vs-iq-280.jpg"
 published: true
 ---
 

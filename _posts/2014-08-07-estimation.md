@@ -8,7 +8,7 @@ tags: [Agile]
 comments: true
 permalink: estimation
 excerpt_separator: <!--more-->
-social-img: "img/posts/2014/old-clock-800.jpg"
+social-img: "/img/posts/2014/old-clock-800.jpg"
 published: true
 ---
 
