@@ -31,25 +31,25 @@ Set a timer for 25 minutes (or whatever time you think works). Once a timer runs
 
 Another thing to check every few sessions is energy levels. If people run out of steam, engagement will drop and the benefits of mob programming dwindle.
 
-## Park when needed
+### Park when needed
 
 One thing we noticed very early on was that we would often go off on tangents that had very little to do with the story we were implementing. As an example we touched on the [style chosen to write the unit tests](/maintainable-unit-tests). This is a worthwhile discussion to have and it is important that the whole team understands and is on-board. On the other hand if we engaged on every topic, we would never complete the story. We decided that if any topic that was not directly related to the story could not be resolved in a few sentences, it should be parked. We wrote down the topic on a sticky note to discuss later and moved on.
 
-## Have a roadmap
+### Have a roadmap
 
 This was a fairly complicated problem in an existing codebase that not everybody was familiar with. At times we would lose track of what the current task was. On reflecting we decided it was useful to have a clear goal of what we were currently trying to achieve. We did this by drawing out the tasks that needed doing, their dependencies, and ticking off what had been done. The blue magnet is the task currently being worked on.
 
 ![mob todo list](/img/posts/2018/mob-todo.jpg)
 
-## Avoid backseat driving
+### Avoid backseat driving
 
 We found it nonconstructive to have everyone shouting instructions at the driver. Instead we would discuss a problem and decide on a direction. The driver would then implement what was decided on with the team helping out as necessary.
 
-## Be courteous to other drivers
+### Be courteous to other drivers
 
 Criticizing the developer driving does not lead to a constructive environment to mob program in. Remember at some stage you should drive too.
 
-## Pit-stop early and often
+### Pit-stop early and often
 
 Be sure to commit early and often. Whenever a test passes, a new direction is chosen, a refactor is done. Commit it. We learned the hard way what happens if you do a refactoring and then want to back out of it.
 
