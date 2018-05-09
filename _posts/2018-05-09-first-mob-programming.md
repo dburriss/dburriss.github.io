@@ -9,8 +9,8 @@ category: Programming
 tags: [Agile,General]
 comments: true
 excerpt_separator: <!--more-->
-header-img: "img/backgrounds/bulb-bg.jpg"
-social-img: "img/explore-590.jpg"
+header-img: "img/backgrounds/silhouette-bg.jpg"
+social-img: "img/posts/2018/hands-500.jpg"
 published: false
 ---
 Mob programming can be a great way of sharing knowledge, building ownership, as well as a way of getting a story done with everyone checking it. Although this can be slower because of everyone having an opinion, I do strongly believe that it results in a higher quality implementation with a greater chance of being functionally correct and bug free. I thought it would be helpful to share our learnings while completing a fairly complex story using mob programming.
@@ -47,7 +47,7 @@ We found it nonconstructive to have everyone shouting instructions at the driver
 
 Criticizing the developer driving does not lead to a constructive environment to mob program in. Remember at some stage you should drive too.
 
-### Pitstop early and often
+### Pit-stop early and often
 
 Be sure to commit early and often. Whenever a test passes, a new direction is chosen, a refactor is done. Commit it. We learned the hard way what happens if you do a refactoring and then want to back out of it.
 
