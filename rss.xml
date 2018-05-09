@@ -6,8 +6,17 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Wed, 09 May 2018 18:30:00 +00:00</pubDate>
-    <lastBuildDate>Wed, 09 May 2018 18:30:00 +00:00</lastBuildDate>
+    <pubDate>Wed, 09 May 2018 20:02:44 +00:00</pubDate>
+    <lastBuildDate>Wed, 09 May 2018 20:02:44 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Mobbing a story</title>
+      <link>http://devonburriss.me/first-mob-programming/</link>
+      <pubDate>Wed, 09 May 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>http://devonburriss.me/first-mob-programming/</guid>
+      <description>Mob programming is a great agile way to increase learning in a team. Here are 6 lessons learned during a mob programming session.</description>
+    </item>
     
     <item>
       <title>This one trick will make you a better leader</title>
