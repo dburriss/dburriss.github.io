@@ -28,7 +28,7 @@ Could this be easier? Of course but how?
 
 What if there was a light at the top of the hill? This would help some. For one we would know for sure if we were heading in the right direction. We would have a feeling for whether we were getting closer and how far we have to go. We could use it to determine how thick the undergrowth is by the amount of light that shines through, helping us decide on a direction of approach.
 
-Does this light help us in actually walking? In doing the actual work of moving forward? Not really. It is still dark in the forest, there is still no path, and you are still tripping over those god-damn roots!
+Does this light help us in actually walking? In doing the actual work of moving forward? Not really. It is still dark in the forest, there is still no path, and you are still tripping over those damn roots!
 
 What if a friend appears with a torch? He has been up the hill before and he has a good idea of the best route with the least resistance up the hill. Does this help? Immensely! The going is still slow but you can now see where you are going. You have someone to warn you of roots. You can even see the roots. And you can catch each other when you stumble. You can even carry the torch for a while...
 
