@@ -3,13 +3,74 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-05-09T21:44:24.1038612+00:00</updated>
+  <updated>2018-05-29T20:58:46.0113806+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>http://devonburriss.me/the-torch-bearer/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/the-torch-bearer/"/>
+    <title>The torch bearer</title>
+    <updated>2018-05-29T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/the-torch-bearer/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;Software development can be a complicated process as the complexity of systems grow and the number of people involved increases, especially when these things happen quickly. This is when clear direction is important. Equally, if not more important is the experience and maturity of the teams building the software. Their ability to learn and adapt to the challenges that arise from the growing complexity will depend on mindset and the ability to work together. If a whole team can grow to understand the driving forces delivering the right software in the right way, it can be epic. So... STORY TIME!&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;A walk in the dark&lt;/h2&gt;
+&lt;p&gt;Imagine trying to walk to the top of a densely forested hill in the dark with no path to follow. Even if you know where you should be going, finding your way would be nearly impossible.&lt;/p&gt;
+&lt;p&gt;You goal is simple, get to the top of the hill. Easier said than done. As you stumble around in the dark, trying to head up the hill, you constantly run into obstacles. You trip over roots that you cannot see and have to push your way through brush and trees that seem to have a will of their own to hold you back. Why is there no path up the hill? Has no one gone this way before?&lt;/p&gt;
+&lt;p&gt;As you persist you trip and fall, sliding downward, losing elevation in seconds that you worked what seemed like hours to gain.&lt;/p&gt;
+&lt;p&gt;Could this be easier? Of course but how?&lt;/p&gt;
+&lt;p&gt;What if there was a light at the top of the hill? This would help some. For one we would know for sure if we were heading in the right direction. We would have a feeling for whether we were getting closer and how far we have to go. We could use it to determine how thick the undergrowth is by the amount of light that shines through, helping us decide on a direction of approach.&lt;/p&gt;
+&lt;p&gt;Does this light help us in actually walking? In doing the actual work of moving forward? Not really. It is still dark in the forest, there is still no path, and you are still tripping over those damn roots!&lt;/p&gt;
+&lt;p&gt;What if a friend appears with a torch? He has been up the hill before and he has a good idea of the best route with the least resistance up the hill. Does this help? Immensely! The going is still slow but you can now see where you are going. You have someone to warn you of roots. You can even see the roots. And you can catch each other when you stumble. You can even carry the torch for a while...&lt;/p&gt;
+&lt;h2&gt;So what the heck does this have to do with software development?&lt;/h2&gt;
+&lt;p&gt;For those of you who have been on some tough software development projects, the analogue is probably quite obvious.&lt;/p&gt;
+&lt;h3&gt;Goal: Get to the top of the hill&lt;/h3&gt;
+&lt;p&gt;In business having a clear goal is important but a goal tells you the what you want to achieve, not necessarily how you are going to achieve it. Blindly following the gradient up means you are probably moving toward your goal but it does little in informing how to achieve it.&lt;/p&gt;
+&lt;h3&gt;Vision: Follow the light&lt;/h3&gt;
+&lt;p&gt;Having a clear vision of how a goal is going to be achieved is important. It sets a light on top of the hill to be followed. Again it does little in terms of the &lt;em&gt;how&lt;/em&gt; but it gives anyone working toward it a clear sense of moving in the right direction.&lt;/p&gt;
+&lt;h3&gt;Experience: A friend to help find the way&lt;/h3&gt;
+&lt;p&gt;The most innovative goals. The clearest vision. None of these are worth anything if execution fails. From this you may think my analogue is about Team Leads or Architects who tell development teams how to execute. It is not. The torch bearer shows you the way by walking with you. Guiding, teaching, catching, and learning too. If you want to change the software that teams build you need to change the culture of the teams that build the software.&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;If you remake awful software from scratch without changing the culture that created it: you&amp;#39;ll remake awful software&lt;/p&gt;&amp;mdash; Romeu Moura (@malk_zameth) &lt;a href=&quot;https://twitter.com/malk_zameth/status/654710109214371841?ref_src=twsrc%5Etfw&quot;&gt;October 15, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Goals, visions, speeches, manifestos, and tech radars. These things are all useful. They give a direction. They light a fire on top of a hill. They do not however really help people get to the top of the hill. That is done by building people up. Making sure teams have the skills, the collaborative environment, the mentors and experience available to find the path in the dark.&lt;/p&gt;
+&lt;p&gt;Although I like thinking software development is like engineering, mostly it is like a long hike in the wilderness.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sometimes it is boring...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/bored.jpg&quot; alt=&quot;bored me&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sometimes you see amazing things...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/reflection.jpg&quot; alt=&quot;reflecting pond&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sometimes you get lost along the way...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/wilderness.jpg&quot; alt=&quot;view of mountains&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;so its good to have someone with experience...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/old-man-daly.jpg&quot; alt=&quot;view of mountains&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;and its easier if you bring some friends.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/friends.jpg&quot; alt=&quot;view of mountains&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I hope your path is challenging and fun, not lonely, and well lit.&lt;/p&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Social photo by &lt;a href=&quot;https://unsplash.com/@viniciusamano&quot;&gt;Vinicius Amano&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Header photo by &lt;a href=&quot;https://unsplash.com/@worldsbetweenlines&quot;&gt;Patrick Hendry&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://twitter.com/malk_zameth&quot;&gt;Romeu Moura&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+  </entry>
   
   <entry>
     <id>http://devonburriss.me/first-mob-programming/</id>

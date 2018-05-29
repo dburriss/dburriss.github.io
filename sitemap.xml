@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>http://devonburriss.me/the-torch-bearer/</loc>
+    <lastmod>2018-05-29T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>http://devonburriss.me/first-mob-programming/</loc>
     <lastmod>2018-05-09T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -314,6 +321,20 @@
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
 	
   
 	
@@ -849,6 +870,14 @@
 	
 	<url>
 		<loc>http://devonburriss.me//tag/tdd/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//tag/team-lead/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
