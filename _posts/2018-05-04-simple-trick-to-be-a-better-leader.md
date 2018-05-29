@@ -6,7 +6,7 @@ description: "Leadership requires many ingredients but applying this one thing c
 permalink: simple-trick-to-be-a-better-leader
 author: "Devon Burriss"
 category: Leadership
-tags: [General, Life, Meditation, Mindfulness, Morality]
+tags: [General, Life, Meditation, Mindfulness, Morality, Team Lead]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/superman-bg.jpg"

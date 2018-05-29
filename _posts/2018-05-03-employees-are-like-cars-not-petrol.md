@@ -6,7 +6,7 @@ description: "What is it about a company culture that attracts and keeps talent?
 permalink: employees-are-like-cars-not-petrol
 author: "Devon Burriss"
 category: Leadership
-tags: [General]
+tags: [General, Life, Team Lead]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"

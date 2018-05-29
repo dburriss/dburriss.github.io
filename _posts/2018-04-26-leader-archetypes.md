@@ -6,7 +6,7 @@ description: "A description of three archetypes of leaders with some pros and co
 permalink: leader-archetypes
 author: "Devon Burriss"
 category: Leadership
-tags: [General]
+tags: [General, Life, Team Lead]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
