@@ -20,7 +20,7 @@ Software development can be a complicated process as the complexity of systems g
 
 Imagine trying to walk to the top of a densely forested hill in the dark with no path to follow. Even if you know where you should be going, finding your way would be nearly impossible.
 
-You goal is simple, get to the top of the hill. Easier said than done. As you stumble around in the dark, trying to head up the hill, you constantly run into obstacles. You trip over roots that you cannot see and have to push your way through brush and trees that seem to have a will of their own to hold you back. Why is there no path up the hill? Has no one gone this way before?
+Your goal is simple, get to the top of the hill. Easier said than done. As you stumble around in the dark, trying to head up the hill, you constantly run into obstacles. You trip over roots that you cannot see and have to push your way through brush and trees that seem to have a will of their own to hold you back. Why is there no path up the hill? Has no one gone this way before?
 
 As you persist you trip and fall, sliding downward, losing elevation in seconds that you worked what seemed like hours to gain.
 
@@ -77,7 +77,7 @@ Although I like thinking software development is like engineering, mostly it is 
 
 ![view of mountains](/img/posts/2018/friends.jpg)
 
-I hope your path is challenging and fun, not lonely, and well lit.
+I hope your path is challenging and fun, that you meet good people along the way, and that it is well lit.
 
 ## Credits
 
