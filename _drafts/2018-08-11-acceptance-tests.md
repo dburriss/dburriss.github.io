@@ -1,16 +1,16 @@
 ---
 layout: post
-title: ""
-subtitle: ""
-description: ""
+title: "Writing readable Acceptance tests"
+subtitle: "A story about getting Acceptance tests just right"
+description: "Tips and examples on improving the readability of your acceptance/behavior tests"
 permalink: acceptance-tests
 author: "Devon Burriss"
 category: Programming
 tags: [Testing,ATDD,BDD,TDD]
 comments: true
 excerpt_separator: <!--more-->
-header-img: "img/backgrounds/bulb-bg.jpg"
-social-img: "img/explore-590.jpg"
+header-img: "img/backgrounds/cottage-bg.jpg"
+social-img: "img/posts/2018/forest-girl-500.jpg"
 published: false
 ---
 
@@ -178,3 +178,8 @@ So our first takeaway was that Acceptance tests and BDD in particular are a mean
 Then in writing behavior tests we want to focus on capturing scenarios that are meaningful to stakeholders and accurately capture the mental model they have of the system. By structuring the tests in such a way we not only make it easier for our stakeholders to understand but we also make it much more likely that we grow our understanding of the system as we see it from a usage perspective rather than an technical implementation perspective.
 
 I hope you found this useful. If you have any thoughts on Acceptance testing, BDD, and/or writing good tests, I would love to hear from you in the comments below.
+
+## Credits
+
+1. Background image by [Peter Kleinau](https://unsplash.com/@nepumuk)
+2. Social image by [Hanna Postova](https://unsplash.com/@annapostovaya)
