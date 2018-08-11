@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+    <title>Writing readable Acceptance tests</title>
+    <meta name="description" content="Tips and examples on improving the readability of your acceptance/behavior tests">
+    <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="http://devonburriss.me/acceptance-tests/">
+    
+    <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon16.png" sizes="16x16">  
+    <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon32.png" sizes="32x32">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Writing readable Acceptance tests">
+    <meta itemprop="description" content="Tips and examples on improving the readability of your acceptance/behavior tests">
+    <meta itemprop="image" content="http://devonburriss.me/img/posts/2018/forest-girl-500.jpg">
+    
+    <meta itemprop="datePublished" content="8/11/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="8/11/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Writing readable Acceptance tests - A story about getting Acceptance tests just right" />
+    <meta itemprop="mainEntityOfPage" content="http://devonburriss.me/acceptance-tests/" />
+    <meta name="headline" content="Writing readable Acceptance tests - A story about getting Acceptance tests just right" />
+
+    
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary_large_image">
+    <meta name="twitter:site" content="@DevonBurriss">
+    <meta name="twitter:title" content="Writing readable Acceptance tests">
+    <meta name="twitter:description" content="Tips and examples on improving the readability of your acceptance/behavior tests">
+    <meta name="twitter:creator" content="@DevonBurriss">
+    <meta name="twitter:image" content="http://devonburriss.me/img/posts/2018/forest-girl-500.jpg">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Writing readable Acceptance tests" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://devonburriss.me/acceptance-tests/" />
+    <meta property="og:image" content="http://devonburriss.me/img/posts/2018/forest-girl-500.jpg" />
+    <meta property="og:description" content="Tips and examples on improving the readability of your acceptance/behavior tests" />
+    <meta property="og:site_name" content="Devon Burriss' Blog" /> 
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    
+
+    <!-- Code Highlight -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.4.0/styles/default.min.css" />
+    
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Devon Burriss' Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/recommended-reading.html">Recommended Reading</a>
+                </li>
+                <!--
+				
+                <li>
+                    <a href="/atom.xml">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/index.html">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/recommended-reading.html">Recommended Reading</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/rss.xml">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/sitemap.xml">this is a post</a>
+                </li>
+				
+                -->
+                <li>
+                    <a href="/rss.xml">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-rss fa-stack-1x"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('http://devonburriss.me/img/backgrounds/cottage-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Writing readable Acceptance tests</h1>
+                        
+                        <h2 class="subheading">A story about getting Acceptance tests just right</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on August 11, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/testing" class="label label-default">Testing</a>
+                            
+                                <a href="/tag/atdd" class="label label-default">ATDD</a>
+                            
+                                <a href="/tag/bdd" class="label label-default">BDD</a>
+                            
+                                <a href="/tag/tdd" class="label label-default">TDD</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
+
+				<p>Acceptance tests can be a great way of making sure you are building the right thing. When used in in a way that uses natural language it also serves as a collaboration tool with stakeholders to define what should be built before it is built. This can save a great deal of development time in making sure you don't build the wrong thing and also has the added benefit of growing a developers domain knowledge as he or she collaborates with a stakeholder in fleshing out and verifying the acceptance tests. Recently we invested a fair amount of time in a team here at work iterating on the style of the acceptance tests. We figured if the goal is to allow developers and stakeholders to collaborate, then making sure the tests makes sense to both parties is important. In this post I will share some of the experiences I have gained over the years, more specifically showing how we applied this to improving our acceptance tests in my current domain. As always though this was a collaborative effort within the team.</p>
+<h2>A brief introduction</h2>
+<blockquote>
+<p>You probably want to skip to the next section if you already have experience with the Gherkin language.</p>
+</blockquote>
+<p>Acceptance or behavior tests come in many different forms but probably the most common is those described in the <a href="https://docs.cucumber.io/gherkin/reference/">Gherkin</a> language which is a domain specific language for writing easily readable specifications that can be executed. The most common keywords used are:</p>
+<blockquote>
+<p><code>Feature</code>: provide a high-level description of a software feature, and to group related scenarios<br />
+<code>Scenario</code>: a concrete example that illustrates a business rule. Consists of one or more steps (Given, When, Then, Examples)<br />
+<code>Given</code>: describe the initial state of a system<br />
+<code>When</code>: describe events or actions that occur in or against the system<br />
+<code>Then</code>: describe the expected outcome of the <code>When</code> actions against the system</p>
+</blockquote>
+<p>The Gherkin language has many different runners such as <a href="https://docs.cucumber.io/">Cucumber</a>, <a href="https://specflow.org/">Specflow</a>, and <a href="http://behat.org/">Behat</a> for whatever your programming language of choice is. Using Gherkin is not the only way of writing behavior oriented tests. Many developers just use standard testing frameworks or more low level ones oriented toward behavior testing. Personally I think if you are committed to working on the tests collaboratively with stakeholders it is difficult to overestimate the benefits of a format that is readable to non-developers.</p>
+<h3>Acceptance tests vs Behavior Driven Development (BDD)</h3>
+<p>Although this is not the focus of this post I did want to mention the difference here in my mind. BDD is the practice of defining specification of how a system should behave and automating the execution of those specifications. Defining the specification of what needs to be built requires deliberate discovery of requirements, which requires collaboration between stakeholders and developers. By discovering the unknowns upfront development is more productive, with less surprises and rework throughout the development life-cycle.</p>
+<p>Acceptance tests can be an integral artifact from the process of BDD. In my mind Acceptance tests are simply the tests that answer these simple questions: &quot;What must the feature do?&quot;, &quot;Is it done?&quot;, and &quot;Can I deploy it?&quot;. In a perfect world with perfect confidence in your acceptance tests, they are the gate for continuous delivery of features. Once they are passing the feature is in production.</p>
+<h2>Lost in the woods</h2>
+<p>Once you sit down to write an Acceptance test you start to realise there are many ways you can write them. What classifies as a feature? What level of abstraction do I write against? How specific do I make my scenarios? Black-box tests or not?</p>
+<p>I will attempt to answer these quickly before showing you the evolution of our acceptance tests, although I suspect some of my answers will fall short considering how different team's stories can be.</p>
+<p><em>What classifies as a feature?</em> This is a single piece of functionality that can be shipped independently from others. This is often difficult to determine because sometimes just because a feature is independently shippable doesn't always make sense for it to be shipped. In the examples to follow we experienced this because although different <em>types of Purchase Agreements</em> have different behavior and can be independently shipped, until we covered a certain subset of all types it didn't make sense for us to release. A helpful question here might be <em>Could X be broken while Y is still considered correct?</em> Then it quite possibly could be a feature.</p>
+<p><em>What level of abstraction do I write against?</em> In a way, this one is easy. The very highest. The one the business operates and talks at. <a href="http://devonburriss.me/managing-code-complexity/">Hopefully your code is written at this level of abstraction at the entry point as well</a>. Your acceptance tests should not be mentioning things in your code or implementation details that are not going to make sense to business stakeholders. The easiest way to check this is to ask a business stakeholder to read your test. Or better yet, co-write them.</p>
+<p><em>How specific do I make my scenarios?</em> My advice here would be to make them pretty damn specific. What you are aiming for is an example that has the makings of a real life scenario that a stakeholder would be tackling. You are looking for a couple scenarios that collectively catch most permutations in the system. I don't think it is necessary to capture EVERY permutation through your scenarios. Other lower-cost forms of testing can catch these if necessary. <code>Examples</code> can also go a long way in covering permutations if you feel you need them and in a way that doesn't get too verbose. Use these judiciously though. If the test is no longer going to make sense to a stakeholder, prefer a lower cost test like a unit test to check permutations.</p>
+<p><em>Black-box tests or not?</em> I use the term <strong>Black-box</strong> to describe a test that doesn't know anything about the internals of your code. A black-box acceptance test would exercise the code through a UI, REST API, or command line and then observe the results in a database, message queue, logs, or console output. This has some pros and cons. Firstly you are really exercising your system like any other client would so you can have a lot of confidence that the system is working as a whole. The downside is that measuring the effects can be quite challenging and the tests can often take quite long to run, as well as be complex to setup. Whether you want to do this depends on the cost to benefit ratio. In the past where the core of a system was to orchestrate between many systems, I thought it important to verify that these interaction happened correctly. In that case a black-box test makes sense. For the examples I am going to show later in this post the major complexity was in the numerical calculations of the value of the agreement. Here we chose to execute against elements in the code without a running application because what we cared about was documenting and verifying the workings of these calculations. The most value was in being able to write and execute these in a shorter feedback loop. It did mean we missed some complexity related to persisting the stream of calculations and these needed to be covered by other tests.</p>
+<h2>Waxing lyrical like Goldilocks</h2>
+<p>As mentioned in the introduction we really wanted to make sure that our acceptance tests were understandable by stakeholders and developers alike. We also really wanted these acceptance tests to serve as documentation in the future for how these calculations worked as we discovered in requirements gathering that this knowledge didn't reside in any one person's head.</p>
+<p>So scenarios needed to be descriptive enough to really demonstrate how a calculation is done without each scenario being too dense with information. As it turned out this took some refinement.</p>
+<p>As a quick introduction to the domain. In the contract management team we handle agreements with suppliers for an e-commerce company. Based on purchases or sales we might get money off the price of certain products purchased for stock, or sold on the website.
+If an agreement is a fixed amount per product sold with a factor of 10, then selling 3 is worth 3 units x 10 EUR = 30 EUR.
+Simple right?</p>
+<h3>Too simple</h3>
+<p>The first iteration was optimized for ease of duplication for the developer. A lot of the details of the agreement are hidden. What I particularly dislike about this style is how hard it is to pick out the details that matter. There is some magic around it being <code>agreement1</code> possibly? See what you think of the first iteration...</p>
+<pre><code class="language-Gherkin">Feature: FixedAmountAgreement
+
+Scenario: Purchase agreement limited to 2 product limitations is finalized (factor is 10, agreement runs for 5 days -&gt; 2 euros per day -&gt; 1 euro per target)
+    Given Purchase agreement with id agreement1, starting yesterday and ending 3 days in the future, of type fixed amount, with status approved, with factor 10, and limitations
+    | Type    | Name                     | Id   |
+    | Product | Samsung Galaxy S8 Zwart  | P1   |
+    | Product | Samsung Galaxy S8 Zilver | P2   |
+    When the allocation process runs for the Purchase agreement
+    Then the total allocated value for each day per product is 1
+</code></pre>
+<p>Is it easy for you to reason about what that scenario is? It is more about what data is used than what the actual scenario is.</p>
+<h3>Too complex</h3>
+<p>Another trap that is easy to fall into is trying to test too much in a single scenario. This is similar to doing TDD with data driven tests ie. <code>[Theory]</code> with <code>[InlineData]</code> when using xUnit in .NET. Here we really loose any meaning in the scenario.</p>
+<pre><code class="language-Gherkin">Feature: SellInAgreement
+
+Scenario Outline: Purchase agreement limited to 2 product limitations is finalized
+    Given Purchase agreement with id agreement1, starting yesterday and ending tomorrow, of type &lt;Type&gt;, with status &lt;Status&gt;, with factor 2, and limitations
+    | Type    | Name                     | Id   |
+    | Product | Samsung Galaxy S8 Zwart  | P1   |
+    | Product | Samsung Galaxy S8 Zilver | P2   |
+    Given a purchase delivery verified yesterday with products
+    | PurchaseDeliveryLineId | ProductId    | Quantity | Price |
+    | PD1                    | P1           | 15       | 300   |
+    | PD2                    | P2           | 10       | 280   |
+    When the allocation process runs for the Purchase agreement
+    Then the total allocated value on delivery line 1 is &lt;DeliveryLine1Value&gt;
+    And the total allocated value on delivery line 2 is &lt;DeliveryLine2Value&gt;
+
+Examples:
+| Status                  | Type                               | DeliveryLine1Value | DeliveryLine2Value |
+| approved                | percentage of purchased amount     | 90                 | 56                 |
+| invoiced                | percentage of purchased amount     | 90                 | 56                 |
+| waiting for credit note | percentage of purchased amount     | 90                 | 56                 |
+| pending invoice         | percentage of purchased amount     | 90                 | 56                 |
+| pending approval        | percentage of purchased amount     | 0                  | 0                  |
+| rejected                | percentage of purchased amount     | 0                  | 0                  |
+| deleted                 | percentage of purchased amount     | 0                  | 0                  |
+| approved                | fixed amount per product purchased | 30                 | 20                 |
+| invoiced                | fixed amount per product purchased | 30                 | 20                 |
+| waiting for credit note | fixed amount per product purchased | 30                 | 20                 |
+| pending invoice         | fixed amount per product purchased | 30                 | 20                 |
+| pending approval        | fixed amount per product purchased | 0                  | 0                  |
+| rejected                | fixed amount per product purchased | 0                  | 0                  |
+| deleted                 | fixed amount per product purchased | 0                  | 0                  |
+</code></pre>
+<p>This one gives me little information on a scenario because it is really many scenarios. This is great for test coverage with a single test. It fails to document the behavior of the system in a way that makes it easy to reason about the characteristics of the system.</p>
+<h3>Just right</h3>
+<p>The problem with both structures so far is they do not represent how a user of the system would reason about calculating the value of the agreement. Let's step through it and then try write a test with that mental model.</p>
+<p>A user will have an agreement that they want to calculate. At any given time that agreement will apply to some deliveries on products defined in the agreement. When something happens to an agreement it will effect the calculation in a specific way. For example, if the start date of an agreement moves so the agreement runs for longer, then it is likely that more deliveries will fall within the running period of that agreement.</p>
+<p>Ok so with this mental model of how a user would approach calculating the value of an agreement, can we write a test that mimics that...</p>
+<pre><code class="language-Gherkin">Feature: Fixed Amount Sell-in Purchase Agreement
+
+Background:
+    Given a fixed amount sell-in Purchase agreement
+    | Name      | Value                             |
+    | Starting  | 2017-01-05                        |
+    | Ending    | 2017-02-25                        |
+    | Type      | FixedAmountPerProductPurchased    |
+    | Status    | Approved                          |
+    | Factor    | 10                                |
+    | Product   | P1                                |
+    | Product   | P2                                |
+    | Product   | P3                                |
+
+ Scenario: Agreement start date is moved backwards so more purchase delivery lines are allocated against
+    Given the following purchase delivery lines exist
+    | Purchase Delivery Line Id | Product   | Quantity | Price | Verification date |
+    | PD1                         | P1      | 3        | 100   | 01-01-2017        |
+    | PD2                         | P2      | 6        | 110   | 05-01-2017        |
+    | PD3                         | P3      | 10       | 210   | 05-01-2017        |
+    And existing allocations for the agreement
+    | Purchase Delivery Line Id | Product   | AllocatedValue |
+    | PD2                         | P2      | 60             |
+    | PD3                         | P3      | 100            |
+    When the Purchase agreement start date changes to 2017-01-01
+    And allocations are calculated for the Purchase agreement
+    Then the following purchase delivery lines are allocated against
+    | Purchase Delivery Line Id | Product   | AllocatedValue |
+    | PD1                       | P1        | 30             |
+    And the total allocated value for the Purchase agreement is 190
+</code></pre>
+<p>So that <em>agreement has some terms that effect the value</em> of it. These terms <em>mostly wont change across scenarios</em>. If they do <em>we want to highlight only the changes</em>. In the setup then we want to <em>show only what matters for the scenario</em>. We also want to <em>highlight behavior</em> and the <em>end result</em>.</p>
+<h4>Breakdown of the recipe</h4>
+<p>So we use <code>Background</code> to define the status quo across scenarios. It doesn't mean some of these values won't change but we only mention what does. This background can then be held constant across multiple scenarios. This allows us to still be explicit about the status of the agreement without needing to be verbose in EVERY scenario about it. It allows the reader to reuse the information across scenarios. It also means we only need to mention CHANGES.</p>
+<p>Our <code>Scenario</code> can now be quite explicit about what will change. This allows us to document behavior way more explicitly than the previous tests while still having explicit information available to the reader if needed in the <code>Background</code>.</p>
+<p>The <code>Given</code> steps allow us to define setup that is relevant to each <code>Scenario</code> only.</p>
+<p><code>When</code> steps will now typically define the actions that make a <code>Scenario</code> unique. This could of course be in the <code>Given</code> setup or a combination of both but typically it is the <code>When</code> that makes the scenario interesting.</p>
+<p>Finally the <code>Then</code> steps allow us to define what happened in the system and what the final result is.</p>
+<p>Do you see the focus on the actual scenario here? Did this convey more of what the business actually considers? I think so.</p>
+<h2>Summary</h2>
+<p>So our first takeaway was that Acceptance tests and BDD in particular are a means of driving and documenting the expected behavior of the system while engaging with stakeholders.</p>
+<p>Then in writing behavior tests we want to focus on capturing scenarios that are meaningful to stakeholders and accurately capture the mental model they have of the system. By structuring the tests in such a way we not only make it easier for our stakeholders to understand but we also make it much more likely that we grow our understanding of the system. Any technique that allows developers to gain insight into the users perspective is worth more than just test coverage. Software development at its core is about learning a problem space. Writing code is the easy part.</p>
+<p>I hope you found this useful. If you have any thoughts on Acceptance testing, BDD, and/or writing good tests, I would love to hear from you in the comments below.</p>
+<h2>Credits</h2>
+<ol>
+<li>Background image by <a href="https://unsplash.com/@nepumuk">Peter Kleinau</a></li>
+<li>Social image by <a href="https://unsplash.com/@annapostovaya">Hanna Postova</a></li>
+</ol>
+
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/maintainable-unit-tests/">3 tips for more maintainable unit tests</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/the-torch-bearer/" data-toggle="tooltip"    data-placement="top" title="The torch bearer">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
+                    <li>
+                        <a href="/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/DevonBurriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dburriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+
+    <a class="badge badge-info" href="/category/leadership">Leadership</a>
+
+    <a class="badge badge-info" href="/category/life">Life</a>
+
+    <a class="badge badge-info" href="/category/moral-map">Moral Map</a>
+
+    <a class="badge badge-info" href="/category/programming">Programming</a>
+
+    <a class="badge badge-info" href="/category/project-management">Project Management</a>
+
+    <a class="badge badge-info" href="/category/sysadmin">SysAdmin</a>
+
+    <a class="badge badge-info" href="/category/tips">Tips</a>
+
+    <a class="badge badge-info" href="/category/tools">Tools</a>
+
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+<div class="well">
+
+
+<a class="badge badge-info" href="/tag/agile/" style="font-size: 80%">
+    <span class="site-tag">                
+        Agile
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/appveyor/" style="font-size: 80%">
+    <span class="site-tag">                
+        AppVeyor
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/asp-net-5/" style="font-size: 80%">
+    <span class="site-tag">                
+        ASP.NET 5
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/atdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        ATDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/azure/" style="font-size: 80%">
+    <span class="site-tag">                
+        Azure
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/bdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        BDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/cake/" style="font-size: 80%">
+    <span class="site-tag">                
+        Cake
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ci/" style="font-size: 80%">
+    <span class="site-tag">                
+        CI
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/clean-code/" style="font-size: 80%">
+    <span class="site-tag">                
+        Clean Code
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ddd/" style="font-size: 80%">
+    <span class="site-tag">                
+        DDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/design-patterns/" style="font-size: 80%">
+    <span class="site-tag">                
+        Design Patterns
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/dnx/" style="font-size: 80%">
+    <span class="site-tag">                
+        DNX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/fsharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        F#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/functional/" style="font-size: 80%">
+    <span class="site-tag">                
+        Functional
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/general/" style="font-size: 80%">
+    <span class="site-tag">                
+        General
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/git/" style="font-size: 80%">
+    <span class="site-tag">                
+        Git
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/github-pages/" style="font-size: 80%">
+    <span class="site-tag">                
+        Github Pages
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/hyper-v/" style="font-size: 80%">
+    <span class="site-tag">                
+        Hyper V
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/java/" style="font-size: 80%">
+    <span class="site-tag">                
+        Java
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/learning-csharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        Learning c#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/life/" style="font-size: 80%">
+    <span class="site-tag">                
+        Life
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/maven/" style="font-size: 80%">
+    <span class="site-tag">                
+        Maven
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/meditation/" style="font-size: 80%">
+    <span class="site-tag">                
+        Meditation
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/mindfulness/" style="font-size: 80%">
+    <span class="site-tag">                
+        Mindfulness
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/morality/" style="font-size: 80%">
+    <span class="site-tag">                
+        Morality
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/mvc-6/" style="font-size: 80%">
+    <span class="site-tag">                
+        MVC 6
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/oop/" style="font-size: 80%">
+    <span class="site-tag">                
+        OOP
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/osx/" style="font-size: 80%">
+    <span class="site-tag">                
+        OSX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/pascal/" style="font-size: 80%">
+    <span class="site-tag">                
+        Pascal
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/powershell/" style="font-size: 80%">
+    <span class="site-tag">                
+        Powershell
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/pretzel/" style="font-size: 80%">
+    <span class="site-tag">                
+        Pretzel
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/productivity/" style="font-size: 80%">
+    <span class="site-tag">                
+        Productivity
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/programming/" style="font-size: 80%">
+    <span class="site-tag">                
+        Programming
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/science/" style="font-size: 80%">
+    <span class="site-tag">                
+        Science
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/solid/" style="font-size: 80%">
+    <span class="site-tag">                
+        SOLID
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/tdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        TDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/team-lead/" style="font-size: 80%">
+    <span class="site-tag">                
+        Team Lead
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/testing/" style="font-size: 80%">
+    <span class="site-tag">                
+        Testing
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/tutorial/" style="font-size: 80%">
+    <span class="site-tag">                
+        Tutorial
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ubuntu/" style="font-size: 80%">
+    <span class="site-tag">                
+        Ubuntu
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/unit-testing/" style="font-size: 80%">
+    <span class="site-tag">                
+        Unit Testing
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/visual-studio/" style="font-size: 80%">
+    <span class="site-tag">                
+        Visual Studio
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/visual-studio-online/" style="font-size: 80%">
+    <span class="site-tag">                
+        Visual Studio Online
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/vs-code/" style="font-size: 80%">
+    <span class="site-tag">                
+        VS Code
+    </span>
+</a>
+
+</div>
+            
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+    
+                    <ul class="list-inline text-center">
+                    <li>
+                        <a href="/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/DevonBurriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dburriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+    
+    <div class="container-fluid">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'devonburriss'; // required: replace example with your forum shortname
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+    <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+        if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+        }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/devonburriss/get_num_replies.js' + query + '"></' + 'script>');
+    })();
+    //]]>
+    </script>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p class="copyright text-muted">Copyright &copy; 
+                <a href="/about.html">Devon Burriss</a> 2018
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+
+    <script src="//cdn.jsdelivr.net/highlight.js/9.4.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45750611-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+
+</html>
