@@ -12,36 +12,49 @@
 
 
 
+    
 
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly explorations in code">
+    
+
+
+    <title>The Page Module Model with F# and Canopy</title>
+    <meta name="description" content="Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="http://devonburriss.me/page-module-model/">
     
     <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly explorations in code">
-    <meta itemprop="image" content="http://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="The Page Module Model with F# and Canopy">
+    <meta itemprop="description" content="Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain">
+    <meta itemprop="image" content="http://devonburriss.me/img/posts/2018/frame-500.jpg">
+    
+    <meta itemprop="datePublished" content="8/12/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="8/12/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="The Page Module Model with F# and Canopy - Its like testing with the Page Object Model but way way cooler" />
+    <meta itemprop="mainEntityOfPage" content="http://devonburriss.me/page-module-model/" />
+    <meta name="headline" content="The Page Module Model with F# and Canopy - Its like testing with the Page Object Model but way way cooler" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly explorations in code">
+    <meta name="twitter:title" content="The Page Module Model with F# and Canopy">
+    <meta name="twitter:description" content="Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="http://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="http://devonburriss.me/img/posts/2018/frame-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="The Page Module Model with F# and Canopy" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="http://devonburriss.me//tag/hyper-v/" />
-    <meta property="og:image" content="http://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly explorations in code" />
+    <meta property="og:url" content="http://devonburriss.me/page-module-model/" />
+    <meta property="og:image" content="http://devonburriss.me/img/posts/2018/frame-500.jpg" />
+    <meta property="og:description" content="Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -142,154 +155,191 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('http://devonburriss.me/img/backgrounds/hole-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>The Page Module Model with F# and Canopy</h1>
+                        
+                        <h2 class="subheading">Its like testing with the Page Object Model but way way cooler</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on August 12, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/canopy" class="label label-default">Canopy</a>
+                            
+                                <a href="/tag/functional" class="label label-default">Functional</a>
+                            
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
+                                <a href="/tag/testing" class="label label-default">Testing</a>
+                            
+                                <a href="/tag/bdd" class="label label-default">BDD</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			<div>
-    <div class="clearfix">
-        <h1 class="pull-right">&#47;Hyper-V&#47; &nbsp;</h1>
-    </div>
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      
-      <div class="post-preview ">
-          <a href="/installing-docker-on-hyper-v/">
-              <h2 class="post-title">            Installing Docker on Hyper-V
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on March 07, 2015</p>
-          
-              
-                 <a href="/tag/hyper-v"><span class="label label-default">Hyper-V</span></a>
-              
-                 <a href="/tag/ubuntu"><span class="label label-default">Ubuntu</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/installing-ubuntu-on-hyper-v/">
-              <h2 class="post-title">            Installing Ubuntu on Hyper-V
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on March 06, 2015</p>
-          
-              
-                 <a href="/tag/hyper-v"><span class="label label-default">Hyper-V</span></a>
-              
-                 <a href="/tag/ubuntu"><span class="label label-default">Ubuntu</span></a>
-              
-          
-      </div>
-      <hr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-</div>
-		</div>
+				<p>In the past I have done some UI testing with Selenium. I quickly adopted the Page Object Model (POM) for this kind of testing to ease readability, maintenance, and re-use across tests. Recently I needed to look into doing some UI testing and I decided to use <a href="https://lefthandedgoat.github.io/canopy/">Canopy</a> to abstract away working with Selenium. Although Canopy has some great helpers around Selenium I still found myself wanting to abstract away elements on each page and the pages themselves. Enter the Page Module Model (PMM)...</p>
+<!--more-->
+<p>So full disclosure... I doubt PMM is a thing. I didn't even try search for it until writing the previous sentence. It isn't. Yet... It is similar to the POM except using <code>module</code>s because I am using F#.</p>
+<h2>What is the page object model?</h2>
+<p>The POM is simple. We encapsulate interactions with pages and elements on the site with objects. Here is an example of an <a href="https://github.com/dburriss/UiMatic">old POM framework I wrote years ago</a>.</p>
+<pre><code class="language-csharp">[Url(key: &quot;home&quot;)]
+public class GoogleHomePage : Page
+{
+    [Selector(name: &quot;q&quot;)]
+    public IInput SearchBox { get; set; }
 
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+    public GoogleHomePage(IDriver driver) : base(driver)
+    {}
+}
+</code></pre>
+<p>We can then use this class to instantiate an object that we interact with instead of interacting with Selenium directly.</p>
+<pre><code class="language-csharp">using (IDriver driver = GetDriver(target, config))
+{
+    //create page model for test
+    var homePage = Page.Create&lt;GoogleHomePage&gt;(driver);
+    //tell browser to navigate to it
+    homePage.Go&lt;GoogleHomePage&gt;();
+    //fill a value into the text box
+    homePage.SearchBox.Value = &quot;TEST&quot;;
+    //an example of interacting with the config if needed. This gets expected title from config. 
+    var expectedTitle = config.GetPageSetting(&quot;home&quot;).Title;
+    //check the titles match
+    Assert.Equal(expectedTitle, homePage.Title);
+}
+</code></pre>
+<p>If you have ever written tests against Selenium directly I am sure you can agree that is cleaner.</p>
+<h2>Writing tests in F# and Canopy with Page Module Model</h2>
+<blockquote>
+<p>You can find the <a href="https://github.com/dburriss/PageModuleModelExample">source code for this example on Github</a></p>
+</blockquote>
+<p>So what would the Page Object Model look like with static functions on a <code>module</code>? Pretty cool actually...</p>
+<pre><code class="language-fsharp">&quot;No laptops are free&quot; &amp;&amp;&amp; fun _ -&gt;
+    HomePage.searchFor &quot;Laptops&quot;
+    let results = SearchResultsPage.results()
+    test &lt;@ results |&gt; List.forall (fun x -&gt; x.Price &gt; 0m) @&gt;
+</code></pre>
+<p>We can keep the tests really concise and describe what we want to happen. Here we search for &quot;Laptops&quot;, get the search results, and then check that the price is not 0 on any items. We will dive a little deeper into how this is done in the next section.</p>
+<p>This style also allows us to easily define simple smoke tests to run before getting into the the more functional tests. A smoke test is an easy quick test of something basic. The idea being that <em>&quot;Where there is smoke there is fire&quot;</em>, so if a smoke test fails, it is not worth proceeding with the more feature rich tests.</p>
+<pre><code class="language-fsharp">context &quot;Smoke tests&quot;
+skipAllTestsOnFailure &lt;- true
+&quot;home page loads&quot; &amp;&amp;&amp; fun _ -&gt; displayed HomePage.homePageBanner
+&quot;search box available&quot; &amp;&amp;&amp; fun _ -&gt; displayed Header.searchBox
+&quot;cart is available&quot; &amp;&amp;&amp; fun _ -&gt; displayed Header.basketButton
+</code></pre>
+<p>We use the <code>skipAllTestsOnFailure &lt;- true</code> to make sure we skip any other tests if the any smoke tests fails.</p>
+<h2>The building blocks for composition</h2>
+<p>I usually build a page that I need and then start extracting the reusable functions out into modules from there. Most sites will have some kind of header/navigation. Here is what I needed in a header for the tests I wrote for this post.</p>
+<pre><code class="language-fsharp">module Header =
+    //selectors
+    let searchBox = &quot;#search_query&quot;
+    let basketButton = &quot;a[href=\&quot;/winkelmandje\&quot;]&quot;
+
+    //actions
+    let searchFor term =
+        searchBox &lt;&lt; term
+        press enter
+</code></pre>
+<p>Here we define some selectors and a simple function that allows us to use the search functionality.</p>
+<p>If possible to modify the HTML I recommend putting <code>data-test-xyz</code> style attributes on your elements to allow you to easily query elements. Unfortunately I did not have the luxury to do so even if the front-end developers would let a back-end developer like me near it. Probably wise :)</p>
+<p>Let's look at something a bit more complex. The following module represents search results on a page.</p>
+<pre><code class="language-fsharp">module SearchResults =
+    open OpenQA.Selenium
+
+    type SearchResultElement = {
+        ProductId:string
+        El:IWebElement
+        Name:string
+        Price:decimal
+        IsAvailable:bool
+    }
+
+    let private toPrice (s:string) = s.Split(&quot;,&quot;).[0] |&gt; decimal
+    let private getOrderButton itemEl = itemEl |&gt; elementWithin @&quot;.product__order-button&quot;
+    let private isOrderButton (orderBtnEl:IWebElement) =
+        orderBtnEl
+        |&gt; getAttrValue &quot;class&quot;
+        |&gt; fun s -&gt; s.Split(&quot; &quot;)
+        |&gt; Array.contains @&quot;action--order&quot;
+
+    let items () =
+        let rowEls = element (sData &quot;component&quot; &quot;products&quot;)
+                    |&gt; elementsWithin &quot;.card&quot;
+        let getId itemEl = itemEl |&gt; elementWithin &quot;a&quot; |&gt; getDataAttrValue &quot;productid&quot;
+        let getTitle itemEl = itemEl |&gt; elementWithin &quot;a&quot; |&gt; getAttrValue &quot;title&quot;
+        let getPrice itemEl = itemEl |&gt; elementWithin @&quot;.product__sales-price&quot; |&gt; read |&gt; toPrice
+
+        rowEls
+        |&gt; List.map (fun itemEl -&gt;
+                                {
+                                    ProductId = itemEl |&gt; getId
+                                    El = itemEl
+                                    Name = itemEl |&gt; getTitle
+                                    Price = itemEl |&gt; getPrice
+                                    IsAvailable = itemEl |&gt; getOrderButton |&gt; isOrderButton
+                                })
+</code></pre>
+<p>This is a bit complex because of the poor selector options available to me in the HTML but still not too bad. I want to draw attention to the <code>SearchResultElement</code> record. I parse the HTML to a record rather than constantly interacting with <code>IWebElement</code>. You saw this in the test for a 0 price where I was able to easily check the <code>Price</code> field.</p>
+<p>Note: I make use of some helpers here like <code>getDataAttrValue</code> that are in the <code>Selectors.fs module</code> which you can checkout in the source if you like.</p>
+<h2>The Page Module</h2>
+<p>With these building blocks the actual page <code>module</code> can end up being quite simple.</p>
+<pre><code class="language-fsharp">module SearchResultsPage =
+    open Elements
+    open canopy.classic
+
+    let uri = &quot;https://www.coolblue.nl/zoeken&quot; //should use settings or relative urls
+    let verifyOn() = on uri
+    let searchFor term = Header.searchFor term
+    let results() = SearchResults.items()
+</code></pre>
+<p>With the page we can now group functionality on a module that makes semantic sense and compose our functions from the building blocks we have already defined.</p>
+<h2>Summary</h2>
+<p><img src="/img/posts/2018/ui-testing.jpg" alt="UI testing with Canopy" /></p>
+<p>In this post we saw how the Page Object Model can be modelled in a more functional way, using building blocks to construct pages. We also saw how we can transform interesting elements of the page into records that give us type safety and intellisense.</p>
+<p>Lastly, we saw how concise the combination of F# and Canopy can make our UI tests.</p>
+<h2>Credits</h2>
+<p>Social image by <a href="https://unsplash.com/@reinhartjulian">Reinhart Julian</a></p>
+
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/acceptance-tests/">Writing readable Acceptance tests</a></li>
+                                                <li><a href="/argument-for-fp/">An argument for functional programming</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/acceptance-tests/" data-toggle="tooltip"    data-placement="top" title="Writing readable Acceptance tests">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -331,7 +381,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/leadership">Leadership</a>
 
@@ -349,8 +399,8 @@
 
     <a class="badge badge-info" href="/category/tools">Tools</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -625,24 +675,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="http://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="http://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>

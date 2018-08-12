@@ -176,30 +176,33 @@
     <div class="post-preview jumbotron">
         
         <h1 class="post-title">            
-            <a href="/acceptance-tests/">Writing readable Acceptance tests</a>
+            <a href="/page-module-model/">The Page Module Model with F# and Canopy</a>
         </h1>
         
         <em class="post-subtitle">
-            A story about getting Acceptance tests just right
+            Its like testing with the Page Object Model but way way cooler
         </em>
         
-        <p class="post-meta">Posted by Devon Burriss on August 11, 2018</p>
+        <p class="post-meta">Posted by Devon Burriss on August 12, 2018</p>
         
+            
+                <a href="/tag/canopy"><span class="label label-default">Canopy</span></a>
+            
+                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
+            
+                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
             
                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
             
-                <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
-            
                 <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
             
-                <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-            
         
         
-            <img src="img/posts/2018/forest-girl-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
+            <img src="img/posts/2018/frame-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         
-        <p align="justify"><p>Acceptance tests can be a great way of making sure you are building the right thing. When used in in a way that uses natural language it also serves as a collaboration tool with stakeholders to define what should be built before it is built. This can save a great deal of development time in making sure you don't build the wrong thing and also has the added benefit of growing a developers domain knowledge as he or she collaborates with a stakeholder in fleshing out and verifying the acceptance tests. Recently we invested a fair amount of time in a team here at work iterating on the style of the acceptance tests. We figured if the goal is to allow developers and stakeholders to collaborate, then making sure the tests makes sense to both parties is important. In this post I will share some of the experiences I have gained over the years, more specifically showing how we applied this to improving our acceptance tests in my current domain. As always though this was a collaborative effort within the team.</p></p>
-        <p class="text-left"><a class="btn btn-primary btn-lg" href="/acceptance-tests/" role="button">Read more</a></p>
+        <p align="justify"><p>In the past I have done some UI testing with Selenium. I quickly adopted the Page Object Model (POM) for this kind of testing to ease readability, maintenance, and re-use across tests. Recently I needed to look into doing some UI testing and I decided to use <a href="https://lefthandedgoat.github.io/canopy/">Canopy</a> to abstract away working with Selenium. Although Canopy has some great helpers around Selenium I still found myself wanting to abstract away elements on each page and the pages themselves. Enter the Page Module Model (PMM)...</p>
+</p></p>
+        <p class="text-left"><a class="btn btn-primary btn-lg" href="/page-module-model/" role="button">Read more</a></p>
     </div>
     <div class="clearfix"></div>
     <hr>
@@ -216,6 +219,131 @@
 
     
 
+     
+        
+     
+        
+        
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+    
+
+    <div class="post-preview ">
+        
+            
+        
+         <img src="img/posts/2018/forest-girl-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+
+        <a href="/acceptance-tests/">
+            <h2 class="post-title">            Writing readable Acceptance tests
+            </h2>
+            
+            
+            <h3 class="post-subtitle">
+                A story about getting Acceptance tests just right
+            </h3>
+            
+        </a>
+        <p class="post-meta">Posted by Devon Burriss' Blog on August 11, 2018</p>
+        
+            
+                <a href="/tag/testing"><span class="label label-default">Testing</span></a>
+            
+                <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
+            
+                <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
+            
+                <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
+            
+        
+    </div>
+    <hr>
+    
+
+
+
+
+    
+
+     
+        
      
         
      
@@ -341,6 +469,8 @@
         
      
         
+     
+        
         
         
      
@@ -454,6 +584,8 @@
 
     
 
+     
+        
      
         
      
@@ -589,6 +721,8 @@
         
      
         
+     
+        
         
         
      
@@ -698,6 +832,8 @@
 
     
 
+     
+        
      
         
      
@@ -831,6 +967,8 @@
         
      
         
+     
+        
         
         
      
@@ -934,6 +1072,8 @@
 
     
 
+     
+        
      
         
      
@@ -1073,6 +1213,8 @@
         
      
         
+     
+        
         
         
      
@@ -1159,125 +1301,6 @@
         
             
                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="img/posts/2017/apple.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/argument-for-fp/">
-            <h2 class="post-title">            An argument for functional programming
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Convincing your boss to let you use fsharp at work
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on December 08, 2017</p>
-        
-            
-                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-            
-                <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-            
-                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
             
         
     </div>
@@ -1404,6 +1427,12 @@
 <a class="badge badge-info" href="/tag/cake/" style="font-size: 80%">
     <span class="site-tag">                
         Cake
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/canopy/" style="font-size: 80%">
+    <span class="site-tag">                
+        Canopy
     </span>
 </a>
 

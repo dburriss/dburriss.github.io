@@ -3,13 +3,145 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-08-11T21:04:33.5372486+00:00</updated>
+  <updated>2018-08-12T13:24:56.5042231+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>http://devonburriss.me/page-module-model/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/page-module-model/"/>
+    <title>The Page Module Model with F# and Canopy</title>
+    <updated>2018-08-12T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/page-module-model/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;In the past I have done some UI testing with Selenium. I quickly adopted the Page Object Model (POM) for this kind of testing to ease readability, maintenance, and re-use across tests. Recently I needed to look into doing some UI testing and I decided to use &lt;a href=&quot;https://lefthandedgoat.github.io/canopy/&quot;&gt;Canopy&lt;/a&gt; to abstract away working with Selenium. Although Canopy has some great helpers around Selenium I still found myself wanting to abstract away elements on each page and the pages themselves. Enter the Page Module Model (PMM)...&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;So full disclosure... I doubt PMM is a thing. I didn&apos;t even try search for it until writing the previous sentence. It isn&apos;t. Yet... It is similar to the POM except using &lt;code&gt;module&lt;/code&gt;s because I am using F#.&lt;/p&gt;
+&lt;h2&gt;What is the page object model?&lt;/h2&gt;
+&lt;p&gt;The POM is simple. We encapsulate interactions with pages and elements on the site with objects. Here is an example of an &lt;a href=&quot;https://github.com/dburriss/UiMatic&quot;&gt;old POM framework I wrote years ago&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;[Url(key: &amp;quot;home&amp;quot;)]
+public class GoogleHomePage : Page
+{
+    [Selector(name: &amp;quot;q&amp;quot;)]
+    public IInput SearchBox { get; set; }
+
+    public GoogleHomePage(IDriver driver) : base(driver)
+    {}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can then use this class to instantiate an object that we interact with instead of interacting with Selenium directly.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;using (IDriver driver = GetDriver(target, config))
+{
+    //create page model for test
+    var homePage = Page.Create&amp;lt;GoogleHomePage&amp;gt;(driver);
+    //tell browser to navigate to it
+    homePage.Go&amp;lt;GoogleHomePage&amp;gt;();
+    //fill a value into the text box
+    homePage.SearchBox.Value = &amp;quot;TEST&amp;quot;;
+    //an example of interacting with the config if needed. This gets expected title from config. 
+    var expectedTitle = config.GetPageSetting(&amp;quot;home&amp;quot;).Title;
+    //check the titles match
+    Assert.Equal(expectedTitle, homePage.Title);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you have ever written tests against Selenium directly I am sure you can agree that is cleaner.&lt;/p&gt;
+&lt;h2&gt;Writing tests in F# and Canopy with Page Module Model&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can find the &lt;a href=&quot;https://github.com/dburriss/PageModuleModelExample&quot;&gt;source code for this example on Github&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So what would the Page Object Model look like with static functions on a &lt;code&gt;module&lt;/code&gt;? Pretty cool actually...&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;&amp;quot;No laptops are free&amp;quot; &amp;amp;&amp;amp;&amp;amp; fun _ -&amp;gt;
+    HomePage.searchFor &amp;quot;Laptops&amp;quot;
+    let results = SearchResultsPage.results()
+    test &amp;lt;@ results |&amp;gt; List.forall (fun x -&amp;gt; x.Price &amp;gt; 0m) @&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can keep the tests really concise and describe what we want to happen. Here we search for &amp;quot;Laptops&amp;quot;, get the search results, and then check that the price is not 0 on any items. We will dive a little deeper into how this is done in the next section.&lt;/p&gt;
+&lt;p&gt;This style also allows us to easily define simple smoke tests to run before getting into the the more functional tests. A smoke test is an easy quick test of something basic. The idea being that &lt;em&gt;&amp;quot;Where there is smoke there is fire&amp;quot;&lt;/em&gt;, so if a smoke test fails, it is not worth proceeding with the more feature rich tests.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;context &amp;quot;Smoke tests&amp;quot;
+skipAllTestsOnFailure &amp;lt;- true
+&amp;quot;home page loads&amp;quot; &amp;amp;&amp;amp;&amp;amp; fun _ -&amp;gt; displayed HomePage.homePageBanner
+&amp;quot;search box available&amp;quot; &amp;amp;&amp;amp;&amp;amp; fun _ -&amp;gt; displayed Header.searchBox
+&amp;quot;cart is available&amp;quot; &amp;amp;&amp;amp;&amp;amp; fun _ -&amp;gt; displayed Header.basketButton
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We use the &lt;code&gt;skipAllTestsOnFailure &amp;lt;- true&lt;/code&gt; to make sure we skip any other tests if the any smoke tests fails.&lt;/p&gt;
+&lt;h2&gt;The building blocks for composition&lt;/h2&gt;
+&lt;p&gt;I usually build a page that I need and then start extracting the reusable functions out into modules from there. Most sites will have some kind of header/navigation. Here is what I needed in a header for the tests I wrote for this post.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;module Header =
+    //selectors
+    let searchBox = &amp;quot;#search_query&amp;quot;
+    let basketButton = &amp;quot;a[href=\&amp;quot;/winkelmandje\&amp;quot;]&amp;quot;
+
+    //actions
+    let searchFor term =
+        searchBox &amp;lt;&amp;lt; term
+        press enter
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here we define some selectors and a simple function that allows us to use the search functionality.&lt;/p&gt;
+&lt;p&gt;If possible to modify the HTML I recommend putting &lt;code&gt;data-test-xyz&lt;/code&gt; style attributes on your elements to allow you to easily query elements. Unfortunately I did not have the luxury to do so even if the front-end developers would let a back-end developer like me near it. Probably wise :)&lt;/p&gt;
+&lt;p&gt;Let&apos;s look at something a bit more complex. The following module represents search results on a page.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;module SearchResults =
+    open OpenQA.Selenium
+
+    type SearchResultElement = {
+        ProductId:string
+        El:IWebElement
+        Name:string
+        Price:decimal
+        IsAvailable:bool
+    }
+
+    let private toPrice (s:string) = s.Split(&amp;quot;,&amp;quot;).[0] |&amp;gt; decimal
+    let private getOrderButton itemEl = itemEl |&amp;gt; elementWithin @&amp;quot;.product__order-button&amp;quot;
+    let private isOrderButton (orderBtnEl:IWebElement) =
+        orderBtnEl
+        |&amp;gt; getAttrValue &amp;quot;class&amp;quot;
+        |&amp;gt; fun s -&amp;gt; s.Split(&amp;quot; &amp;quot;)
+        |&amp;gt; Array.contains @&amp;quot;action--order&amp;quot;
+
+    let items () =
+        let rowEls = element (sData &amp;quot;component&amp;quot; &amp;quot;products&amp;quot;)
+                    |&amp;gt; elementsWithin &amp;quot;.card&amp;quot;
+        let getId itemEl = itemEl |&amp;gt; elementWithin &amp;quot;a&amp;quot; |&amp;gt; getDataAttrValue &amp;quot;productid&amp;quot;
+        let getTitle itemEl = itemEl |&amp;gt; elementWithin &amp;quot;a&amp;quot; |&amp;gt; getAttrValue &amp;quot;title&amp;quot;
+        let getPrice itemEl = itemEl |&amp;gt; elementWithin @&amp;quot;.product__sales-price&amp;quot; |&amp;gt; read |&amp;gt; toPrice
+
+        rowEls
+        |&amp;gt; List.map (fun itemEl -&amp;gt;
+                                {
+                                    ProductId = itemEl |&amp;gt; getId
+                                    El = itemEl
+                                    Name = itemEl |&amp;gt; getTitle
+                                    Price = itemEl |&amp;gt; getPrice
+                                    IsAvailable = itemEl |&amp;gt; getOrderButton |&amp;gt; isOrderButton
+                                })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is a bit complex because of the poor selector options available to me in the HTML but still not too bad. I want to draw attention to the &lt;code&gt;SearchResultElement&lt;/code&gt; record. I parse the HTML to a record rather than constantly interacting with &lt;code&gt;IWebElement&lt;/code&gt;. You saw this in the test for a 0 price where I was able to easily check the &lt;code&gt;Price&lt;/code&gt; field.&lt;/p&gt;
+&lt;p&gt;Note: I make use of some helpers here like &lt;code&gt;getDataAttrValue&lt;/code&gt; that are in the &lt;code&gt;Selectors.fs module&lt;/code&gt; which you can checkout in the source if you like.&lt;/p&gt;
+&lt;h2&gt;The Page Module&lt;/h2&gt;
+&lt;p&gt;With these building blocks the actual page &lt;code&gt;module&lt;/code&gt; can end up being quite simple.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;module SearchResultsPage =
+    open Elements
+    open canopy.classic
+
+    let uri = &amp;quot;https://www.coolblue.nl/zoeken&amp;quot; //should use settings or relative urls
+    let verifyOn() = on uri
+    let searchFor term = Header.searchFor term
+    let results() = SearchResults.items()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With the page we can now group functionality on a module that makes semantic sense and compose our functions from the building blocks we have already defined.&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/ui-testing.jpg&quot; alt=&quot;UI testing with Canopy&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;In this post we saw how the Page Object Model can be modelled in a more functional way, using building blocks to construct pages. We also saw how we can transform interesting elements of the page into records that give us type safety and intellisense.&lt;/p&gt;
+&lt;p&gt;Lastly, we saw how concise the combination of F# and Canopy can make our UI tests.&lt;/p&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;p&gt;Social image by &lt;a href=&quot;https://unsplash.com/@reinhartjulian&quot;&gt;Reinhart Julian&lt;/a&gt;&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>http://devonburriss.me/acceptance-tests/</id>
