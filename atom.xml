@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-08-12T13:24:56.5042231+00:00</updated>
+  <updated>2018-08-13T07:02:05.2725362+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -36,18 +36,23 @@ public class GoogleHomePage : Page
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can then use this class to instantiate an object that we interact with instead of interacting with Selenium directly.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;using (IDriver driver = GetDriver(target, config))
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;[Theory]
+[InlineData(TestTarget.Chrome)]
+public void Title_OnGoogleHomePageUsingConfig_IsGoogle(TestTarget target)
 {
-    //create page model for test
-    var homePage = Page.Create&amp;lt;GoogleHomePage&amp;gt;(driver);
-    //tell browser to navigate to it
-    homePage.Go&amp;lt;GoogleHomePage&amp;gt;();
-    //fill a value into the text box
-    homePage.SearchBox.Value = &amp;quot;TEST&amp;quot;;
-    //an example of interacting with the config if needed. This gets expected title from config. 
-    var expectedTitle = config.GetPageSetting(&amp;quot;home&amp;quot;).Title;
-    //check the titles match
-    Assert.Equal(expectedTitle, homePage.Title);
+    using (IDriver driver = GetDriver(target, config))
+    {
+        //create page model for test
+        var homePage = Page.Create&amp;lt;GoogleHomePage&amp;gt;(driver);
+        //tell browser to navigate to it
+        homePage.Go&amp;lt;GoogleHomePage&amp;gt;();
+        //fill a value into the text box
+        homePage.SearchBox.Value = &amp;quot;TEST&amp;quot;;
+        //an example of interacting with the config if needed. This gets expected title from config. 
+        var expectedTitle = config.GetPageSetting(&amp;quot;home&amp;quot;).Title;
+        //check the titles match
+        Assert.Equal(expectedTitle, homePage.Title);
+    }
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If you have ever written tests against Selenium directly I am sure you can agree that is cleaner.&lt;/p&gt;

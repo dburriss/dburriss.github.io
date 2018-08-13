@@ -67,7 +67,7 @@
     
 
     <!-- Code Highlight -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.4.0/styles/default.min.css" />
+    <link rel="stylesheet" charset="UTF-8" href="/css/highlight/atom-one-light.css">
     
     <!-- Custom Fonts -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -210,18 +210,23 @@ public class GoogleHomePage : Page
 }
 </code></pre>
 <p>We can then use this class to instantiate an object that we interact with instead of interacting with Selenium directly.</p>
-<pre><code class="language-csharp">using (IDriver driver = GetDriver(target, config))
+<pre><code class="language-csharp">[Theory]
+[InlineData(TestTarget.Chrome)]
+public void Title_OnGoogleHomePageUsingConfig_IsGoogle(TestTarget target)
 {
-    //create page model for test
-    var homePage = Page.Create&lt;GoogleHomePage&gt;(driver);
-    //tell browser to navigate to it
-    homePage.Go&lt;GoogleHomePage&gt;();
-    //fill a value into the text box
-    homePage.SearchBox.Value = &quot;TEST&quot;;
-    //an example of interacting with the config if needed. This gets expected title from config. 
-    var expectedTitle = config.GetPageSetting(&quot;home&quot;).Title;
-    //check the titles match
-    Assert.Equal(expectedTitle, homePage.Title);
+    using (IDriver driver = GetDriver(target, config))
+    {
+        //create page model for test
+        var homePage = Page.Create&lt;GoogleHomePage&gt;(driver);
+        //tell browser to navigate to it
+        homePage.Go&lt;GoogleHomePage&gt;();
+        //fill a value into the text box
+        homePage.SearchBox.Value = &quot;TEST&quot;;
+        //an example of interacting with the config if needed. This gets expected title from config. 
+        var expectedTitle = config.GetPageSetting(&quot;home&quot;).Title;
+        //check the titles match
+        Assert.Equal(expectedTitle, homePage.Title);
+    }
 }
 </code></pre>
 <p>If you have ever written tests against Selenium directly I am sure you can agree that is cleaner.</p>
@@ -782,7 +787,7 @@ skipAllTestsOnFailure &lt;- true
 <script src="/js/clean-blog.min.js "></script>
 
 
-    <script src="//cdn.jsdelivr.net/highlight.js/9.4.0/highlight.min.js"></script>
+    <script src="/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
     
     
