@@ -64,7 +64,7 @@ Simple right?
 
 The first iteration was optimized for ease of duplication for the developer. A lot of the details of the agreement are hidden. What I particularly dislike about this style is how hard it is to pick out the details that matter. There is some magic around it being `agreement1` possibly? See what you think of the first iteration...
 
-```Gherkin
+```gherkin
 Feature: FixedAmountAgreement
 
 Scenario: Purchase agreement limited to 2 product limitations is finalized (factor is 10, agreement runs for 5 days -> 2 euros per day -> 1 euro per target)
@@ -82,7 +82,7 @@ Is it easy for you to reason about what that scenario is? It is more about what 
 
 Another trap that is easy to fall into is trying to test too much in a single scenario. This is similar to doing TDD with data driven tests ie. `[Theory]` with `[InlineData]` when using xUnit in .NET. Here we really loose any meaning in the scenario.
 
-```Gherkin
+```gherkin
 Feature: SellInAgreement
 
 Scenario Outline: Purchase agreement limited to 2 product limitations is finalized
@@ -126,7 +126,7 @@ A user will have an agreement that they want to calculate. At any given time tha
 
 Ok so with this mental model of how a user would approach calculating the value of an agreement, can we write a test that mimics that...
 
-```Gherkin
+```gherkin
 Feature: Fixed Amount Sell-in Purchase Agreement
 
 Background:
