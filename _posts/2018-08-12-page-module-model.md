@@ -36,18 +36,23 @@ public class GoogleHomePage : Page
 We can then use this class to instantiate an object that we interact with instead of interacting with Selenium directly.
 
 ```csharp
-using (IDriver driver = GetDriver(target, config))
+[Theory]
+[InlineData(TestTarget.Chrome)]
+public void Title_OnGoogleHomePageUsingConfig_IsGoogle(TestTarget target)
 {
-    //create page model for test
-    var homePage = Page.Create<GoogleHomePage>(driver);
-    //tell browser to navigate to it
-    homePage.Go<GoogleHomePage>();
-    //fill a value into the text box
-    homePage.SearchBox.Value = "TEST";
-    //an example of interacting with the config if needed. This gets expected title from config. 
-    var expectedTitle = config.GetPageSetting("home").Title;
-    //check the titles match
-    Assert.Equal(expectedTitle, homePage.Title);
+    using (IDriver driver = GetDriver(target, config))
+    {
+        //create page model for test
+        var homePage = Page.Create<GoogleHomePage>(driver);
+        //tell browser to navigate to it
+        homePage.Go<GoogleHomePage>();
+        //fill a value into the text box
+        homePage.SearchBox.Value = "TEST";
+        //an example of interacting with the config if needed. This gets expected title from config. 
+        var expectedTitle = config.GetPageSetting("home").Title;
+        //check the titles match
+        Assert.Equal(expectedTitle, homePage.Title);
+    }
 }
 ```
 
