@@ -12,36 +12,49 @@
 
 
 
+    
 
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly explorations in code">
+    
+
+
+    <title>Anatomy of an automated test suite</title>
+    <meta name="description" content="Comparing structure and function of various test types to tease out what we really care to verify">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="http://devonburriss.me/anatomy-of-automated-testing/">
     
     <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly explorations in code">
-    <meta itemprop="image" content="http://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="Anatomy of an automated test suite">
+    <meta itemprop="description" content="Comparing structure and function of various test types to tease out what we really care to verify">
+    <meta itemprop="image" content="http://devonburriss.me/img/posts/2018/pyramid-500.jpg">
+    
+    <meta itemprop="datePublished" content="8/13/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="8/13/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Anatomy of an automated test suite - Looking at the parts and functions of various automated test types" />
+    <meta itemprop="mainEntityOfPage" content="http://devonburriss.me/anatomy-of-automated-testing/" />
+    <meta name="headline" content="Anatomy of an automated test suite - Looking at the parts and functions of various automated test types" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly explorations in code">
+    <meta name="twitter:title" content="Anatomy of an automated test suite">
+    <meta name="twitter:description" content="Comparing structure and function of various test types to tease out what we really care to verify">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="http://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="http://devonburriss.me/img/posts/2018/pyramid-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="Anatomy of an automated test suite" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="http://devonburriss.me//category/programming/" />
-    <meta property="og:image" content="http://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly explorations in code" />
+    <meta property="og:url" content="http://devonburriss.me/anatomy-of-automated-testing/" />
+    <meta property="og:image" content="http://devonburriss.me/img/posts/2018/pyramid-500.jpg" />
+    <meta property="og:description" content="Comparing structure and function of various test types to tease out what we really care to verify" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -142,452 +155,112 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('http://devonburriss.me/img/backgrounds/pyramids-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Anatomy of an automated test suite</h1>
+                        
+                        <h2 class="subheading">Looking at the parts and functions of various automated test types</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on August 13, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/testing" class="label label-default">Testing</a>
+                            
+                                <a href="/tag/atdd" class="label label-default">ATDD</a>
+                            
+                                <a href="/tag/bdd" class="label label-default">BDD</a>
+                            
+                                <a href="/tag/tdd" class="label label-default">TDD</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			
-<div>
-  <div class="clearfix">
-        <h1 class="pull-right">&#47;Programming&#47; &nbsp;</h1>
-    </div>
-  
-    
-  
-    
-  
-    
-  
-    
-      
-      <div class="post-preview ">
-          <a href="/anatomy-of-automated-testing/">
-              <h2 class="post-title">            Anatomy of an automated test suite
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 13, 2018</p>
-          
-              
-                  <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                  <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
-              
-                  <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-                  <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/page-module-model/">
-              <h2 class="post-title">            The Page Module Model with F# and Canopy
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 12, 2018</p>
-          
-              
-                  <a href="/tag/canopy"><span class="label label-default">Canopy</span></a>
-              
-                  <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-              
-                  <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-              
-                  <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                  <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/acceptance-tests/">
-              <h2 class="post-title">            Writing readable Acceptance tests
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 11, 2018</p>
-          
-              
-                  <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                  <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
-              
-                  <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-                  <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/first-mob-programming/">
-              <h2 class="post-title">            Mobbing a story
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on May 09, 2018</p>
-          
-              
-                  <a href="/tag/agile"><span class="label label-default">Agile</span></a>
-              
-                  <a href="/tag/general"><span class="label label-default">General</span></a>
-              
-                  <a href="/tag/productivity"><span class="label label-default">Productivity</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/maintainable-unit-tests/">
-              <h2 class="post-title">            3 tips for more maintainable unit tests
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on April 07, 2018</p>
-          
-              
-                  <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-              
-                  <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/managing-code-complexity/">
-              <h2 class="post-title">            Managing Code Complexity
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on April 06, 2018</p>
-          
-              
-                  <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-              
-                  <a href="/tag/ddd"><span class="label label-default">DDD</span></a>
-              
-                  <a href="/tag/design-patterns"><span class="label label-default">Design Patterns</span></a>
-              
-                  <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/why-i-got-hooked-on-fsharp/">
-              <h2 class="post-title">            Why I got hooked on F#
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on December 28, 2017</p>
-          
-              
-                  <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/argument-for-fp/">
-              <h2 class="post-title">            An argument for functional programming
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on December 08, 2017</p>
-          
-              
-                  <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-              
-                  <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-                  <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/yoda-wants-you-to-be-a-functional-programmer/">
-              <h2 class="post-title">            Yoda wants you to be a functional programmer
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on June 10, 2017</p>
-          
-              
-                  <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/better-error-handling/">
-              <h2 class="post-title">            Better error handling
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on March 19, 2017</p>
-          
-              
-                  <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-              
-                  <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-                  <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/honest-return-types/">
-              <h2 class="post-title">            Honest Return Types
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on March 14, 2017</p>
-          
-              
-                  <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-              
-                  <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-                  <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/honest-arguments/">
-              <h2 class="post-title">            Honest Arguments
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on March 10, 2017</p>
-          
-              
-                  <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-              
-                  <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/asp-net-5-tips-urlhelper/">
-              <h2 class="post-title">            ASP.NET 5 Tips: UrlHelper
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on January 18, 2016</p>
-          
-              
-                  <a href="/tag/asp-net-5"><span class="label label-default">ASP.NET 5</span></a>
-              
-                  <a href="/tag/mvc-6"><span class="label label-default">MVC 6</span></a>
-              
-                  <a href="/tag/dnx"><span class="label label-default">DNX</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/asp-net-5-tips-tempdata/">
-              <h2 class="post-title">            ASP.NET 5 Tips: TempData
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on January 17, 2016</p>
-          
-              
-                  <a href="/tag/asp-net-5"><span class="label label-default">ASP.NET 5</span></a>
-              
-                  <a href="/tag/mvc-6"><span class="label label-default">MVC 6</span></a>
-              
-                  <a href="/tag/dnx"><span class="label label-default">DNX</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/testing-the-untestable/">
-              <h2 class="post-title">            Testing the Untestable
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on January 27, 2015</p>
-          
-              
-                  <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                  <a href="/tag/unit-testing"><span class="label label-default">Unit Testing</span></a>
-              
-                  <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/developer-quest-variables/">
-              <h2 class="post-title">            Developer Quest II - Variables
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on October 12, 2014</p>
-          
-              
-                  <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                  <a href="/tag/learning-csharp"><span class="label label-default">Learning c#</span></a>
-              
-                  <a href="/tag/tutorial"><span class="label label-default">Tutorial</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/developer-quest-getting-started/">
-              <h2 class="post-title">            Developer Quest I - Getting started with C#
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on October 09, 2014</p>
-          
-              
-                  <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                  <a href="/tag/learning-csharp"><span class="label label-default">Learning c#</span></a>
-              
-                  <a href="/tag/tutorial"><span class="label label-default">Tutorial</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/software-development-is-like-a-piece-of-string/">
-              <h2 class="post-title">            Software development is like a piece of string
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on October 03, 2014</p>
-          
-              
-                  <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                  <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-              
-                  <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/testing-your-data-repositories/">
-              <h2 class="post-title">            Testing your data repositories
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on September 07, 2014</p>
-          
-              
-                  <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                  <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-              
-                  <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-                  <a href="/tag/java"><span class="label label-default">Java</span></a>
-              
-                  <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/single-respon/">
-              <h2 class="post-title">            Single Responsibility Principle
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on September 05, 2014</p>
-          
-              
-                  <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                  <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-              
-                  <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/the-way-we-write-code/">
-              <h2 class="post-title">            The way we write code…and how we talk about it
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on July 18, 2014</p>
-          
-              
-                  <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-              
-                  <a href="/tag/agile"><span class="label label-default">Agile</span></a>
-              
-                  <a href="/tag/design-patterns"><span class="label label-default">Design Patterns</span></a>
-              
-                  <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-                  <a href="/tag/ddd"><span class="label label-default">DDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-</div>
-		</div>
+				<p>Unit, integration, end-to-end, acceptance, UI tests, and more. With so many types of automated tests is it no wonder that we so often disagree on whether something is an acceptance test or an integration test? Or maybe an end-to-end test? What if instead of thinking about the structure of the test, what it tested, we instead considered the question that the test is answering...</p>
+<!--more-->
+<h2>A quick note on the test pyramid</h2>
+<p>For some reason the test pyramid comes up when talking about what tests to write. The test pyramid gives us an indication of the relative return on investment of writing certain types of tests. The cost of writing and maintaining UI tests is usually quite high, thus diminishing their value as a verification of correctness. Unit tests on the other hand should be pretty quick to write, easy to maintain, and so give more value over UI tests. Therefore we should have a relatively large number of unit tests compared to UI tests.</p>
+<p>In this image I use <em>Service</em> to encompass integration, end-to-end, acceptance tests, etc.</p>
+<p><img src="/img/posts/2018/test-pyramid.jpg" alt="Test Pyramid" /></p>
+<p>If we had a way that made <a href="/page-module-model/">UI tests easy to write and maintain</a>, they would switch places in the test pyramid. They might then provide more value relative to the cost of creation and maintenance.</p>
+<h2>Practices around testing</h2>
+<p>Let us take a look at some of the testing practices around and what they focus on. This will give us a good indication of what questions we can ask of our tests.</p>
+<p>First up we have <strong>Test-Driven Development</strong>. A lot can be written about TDD and half of it would be disagreed with by half its practitioners half of the time. I will try stay away from questions of what to mock and the granularity of the tests. I have <a href="/maintainable-unit-tests/">written about my thoughts on maintainable unit tests</a> already though. The practice of writing tests first, then making them pass, and then refactoring; gives fast and incremental feedback on both progress and the design of your code. While making functional progress a test suite is being built up that proves that what you have implemented is working as expected by you as the developer.</p>
+<p><strong>Behavior-Driven Design</strong> builds on top of the idea of TDD but with a focus on capturing requirements in an automated way that fosters domain understanding and collaboration with stakeholders.</p>
+<p>It really isn't clear to me that the 2 need to be separate practices. BDD is just TDD practiced by developers with a <a href="/acceptance-tests/">focus on domain knowledge and stakeholder collaboration</a>. From the other side, TDD has become what developers do when they are not focusing on stakeholder collaboration. This was not its original intent.</p>
+<p>Honestly though I do find the distinction a little bit useful in thinking about the kind of tests I am writing just because it allows me to as questions about the quality of what was built and the functional correctness.</p>
+<p><img src="/img/posts/2018/test-quadrant.jpg" alt="Test Quadrant" /></p>
+<p>So for the sake of comparison we will make the distinction that unit tests are an artifact of TDD and acceptance tests are an artifact of BDD. Don't get too attached to this idea, it is just useful for the upcoming discussion.</p>
+<h2>Asking the right questions</h2>
+<p>I promised some questions to be asked to give a different perspective on the types of tests. What if instead of thinking about tests in terms of how they were written (xUnit and C# vs Gherkin) we thought about them in terms of questions directed at the test?</p>
+<p><em>Do I understand the problem?<br />
+Is my feature ready to ship?<br />
+Does it behave as expected?</em><br />
+Check the <strong>Acceptance tests</strong>. It passed? Ship the feature.</p>
+<p><em>Am I confident I built it well?<br />
+Does my code handle exceptions correctly?<br />
+Is my codes API intuitive to use?</em><br />
+Check your <strong>Unit tests</strong>. Passes. I can am confident in the code. I can refactor with confidence.</p>
+<p><em>Does my data access work against a real database?<br />
+Do my API calls work as expected?<br />
+Are my message queues configured correctly?</em><br />
+Check the <strong>Integration tests</strong>. Passes. I am confident that I won't have surprises when the system runs. I will find integration problems quickly.</p>
+<p>There are other types of tests like <strong>Consumer-driven contracts</strong> and <strong>UI tests</strong> that might be useful to you and I am sure you can come up with the questions if they matter to you. The point is that dividing your tests based on how they are implemented is less useful than distinguishing what answers each group of tests is good at giving.</p>
+<h2>Summary</h2>
+<p>In this post I suggested that instead of looking at tests based on what they test or how they are implemented, it is more useful to ask what questions they can answer. For example:<br />
+<strong>Acceptance tests</strong> answer <em>Did I build the right thing?</em> and <em>Can I ship it?</em>.<br />
+<strong>Unit tests</strong> give me confidence on <em>Did I build it right?</em>.<br />
+<strong>Integration tests</strong> tell me <em>Can these components communicate?</em> I especially like checking across process boundaries here.</p>
+<p>Hopefully by this point I have convinced you to think about your tests in terms of the questions they answer and the actions you will take from those questions.</p>
+<p>One last thing. Much of the gain in TDD is that unit tests gives you rapid feedback. As long as you have good trustworthy acceptance tests, deleting unit tests if they are causing any issues should be completely acceptable. They already gave a large amount of their benefit in the design and verification process.</p>
+<p>I hope you found this useful. If so I would love to hear your thoughts on the different types of testing.</p>
+<h2>Credits</h2>
+<ul>
+<li>Background photo by [Stijn te Strake](- https://unsplash.com/@stijntestrake)</li>
+<li>Social photo by <a href="https://unsplash.com/@tentides">Jeremy Bishop</a></li>
+</ul>
 
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/acceptance-tests/">Writing readable Acceptance tests</a></li>
+                                                <li><a href="/maintainable-unit-tests/">3 tips for more maintainable unit tests</a></li>
+                                                <li><a href="/page-module-model/">The Page Module Model with F# and Canopy</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/page-module-model/" data-toggle="tooltip"    data-placement="top" title="The Page Module Model with F# and Canopy">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -629,7 +302,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/leadership">Leadership</a>
 
@@ -647,8 +320,8 @@
 
     <a class="badge badge-info" href="/category/tools">Tools</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -923,24 +596,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="http://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="http://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>

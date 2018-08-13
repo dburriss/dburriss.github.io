@@ -6,8 +6,17 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Mon, 13 Aug 2018 09:04:29 +00:00</pubDate>
-    <lastBuildDate>Mon, 13 Aug 2018 09:04:29 +00:00</lastBuildDate>
+    <pubDate>Mon, 13 Aug 2018 13:01:05 +00:00</pubDate>
+    <lastBuildDate>Mon, 13 Aug 2018 13:01:05 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Anatomy of an automated test suite</title>
+      <link>http://devonburriss.me/anatomy-of-automated-testing/</link>
+      <pubDate>Mon, 13 Aug 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>http://devonburriss.me/anatomy-of-automated-testing/</guid>
+      <description>Comparing structure and function of various test types to tease out what we really care to verify</description>
+    </item>
     
     <item>
       <title>The Page Module Model with F# and Canopy</title>
