@@ -224,7 +224,7 @@ If an agreement is a fixed amount per product sold with a factor of 10, then sel
 Simple right?</p>
 <h3>Too simple</h3>
 <p>The first iteration was optimized for ease of duplication for the developer. A lot of the details of the agreement are hidden. What I particularly dislike about this style is how hard it is to pick out the details that matter. There is some magic around it being <code>agreement1</code> possibly? See what you think of the first iteration...</p>
-<pre><code class="language-Gherkin">Feature: FixedAmountAgreement
+<pre><code class="language-gherkin">Feature: FixedAmountAgreement
 
 Scenario: Purchase agreement limited to 2 product limitations is finalized (factor is 10, agreement runs for 5 days -&gt; 2 euros per day -&gt; 1 euro per target)
     Given Purchase agreement with id agreement1, starting yesterday and ending 3 days in the future, of type fixed amount, with status approved, with factor 10, and limitations
@@ -237,7 +237,7 @@ Scenario: Purchase agreement limited to 2 product limitations is finalized (fact
 <p>Is it easy for you to reason about what that scenario is? It is more about what data is used than what the actual scenario is.</p>
 <h3>Too complex</h3>
 <p>Another trap that is easy to fall into is trying to test too much in a single scenario. This is similar to doing TDD with data driven tests ie. <code>[Theory]</code> with <code>[InlineData]</code> when using xUnit in .NET. Here we really loose any meaning in the scenario.</p>
-<pre><code class="language-Gherkin">Feature: SellInAgreement
+<pre><code class="language-gherkin">Feature: SellInAgreement
 
 Scenario Outline: Purchase agreement limited to 2 product limitations is finalized
     Given Purchase agreement with id agreement1, starting yesterday and ending tomorrow, of type &lt;Type&gt;, with status &lt;Status&gt;, with factor 2, and limitations
@@ -274,7 +274,7 @@ Examples:
 <p>The problem with both structures so far is they do not represent how a user of the system would reason about calculating the value of the agreement. Let's step through it and then try write a test with that mental model.</p>
 <p>A user will have an agreement that they want to calculate. At any given time that agreement will apply to some deliveries on products defined in the agreement. When something happens to an agreement it will effect the calculation in a specific way. For example, if the start date of an agreement moves so the agreement runs for longer, then it is likely that more deliveries will fall within the running period of that agreement.</p>
 <p>Ok so with this mental model of how a user would approach calculating the value of an agreement, can we write a test that mimics that...</p>
-<pre><code class="language-Gherkin">Feature: Fixed Amount Sell-in Purchase Agreement
+<pre><code class="language-gherkin">Feature: Fixed Amount Sell-in Purchase Agreement
 
 Background:
     Given a fixed amount sell-in Purchase agreement

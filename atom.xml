@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-08-13T07:02:05.2725362+00:00</updated>
+  <updated>2018-08-13T09:04:29.3677112+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -189,7 +189,7 @@ If an agreement is a fixed amount per product sold with a factor of 10, then sel
 Simple right?&lt;/p&gt;
 &lt;h3&gt;Too simple&lt;/h3&gt;
 &lt;p&gt;The first iteration was optimized for ease of duplication for the developer. A lot of the details of the agreement are hidden. What I particularly dislike about this style is how hard it is to pick out the details that matter. There is some magic around it being &lt;code&gt;agreement1&lt;/code&gt; possibly? See what you think of the first iteration...&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-Gherkin&quot;&gt;Feature: FixedAmountAgreement
+&lt;pre&gt;&lt;code class=&quot;language-gherkin&quot;&gt;Feature: FixedAmountAgreement
 
 Scenario: Purchase agreement limited to 2 product limitations is finalized (factor is 10, agreement runs for 5 days -&amp;gt; 2 euros per day -&amp;gt; 1 euro per target)
     Given Purchase agreement with id agreement1, starting yesterday and ending 3 days in the future, of type fixed amount, with status approved, with factor 10, and limitations
@@ -202,7 +202,7 @@ Scenario: Purchase agreement limited to 2 product limitations is finalized (fact
 &lt;p&gt;Is it easy for you to reason about what that scenario is? It is more about what data is used than what the actual scenario is.&lt;/p&gt;
 &lt;h3&gt;Too complex&lt;/h3&gt;
 &lt;p&gt;Another trap that is easy to fall into is trying to test too much in a single scenario. This is similar to doing TDD with data driven tests ie. &lt;code&gt;[Theory]&lt;/code&gt; with &lt;code&gt;[InlineData]&lt;/code&gt; when using xUnit in .NET. Here we really loose any meaning in the scenario.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-Gherkin&quot;&gt;Feature: SellInAgreement
+&lt;pre&gt;&lt;code class=&quot;language-gherkin&quot;&gt;Feature: SellInAgreement
 
 Scenario Outline: Purchase agreement limited to 2 product limitations is finalized
     Given Purchase agreement with id agreement1, starting yesterday and ending tomorrow, of type &amp;lt;Type&amp;gt;, with status &amp;lt;Status&amp;gt;, with factor 2, and limitations
@@ -239,7 +239,7 @@ Examples:
 &lt;p&gt;The problem with both structures so far is they do not represent how a user of the system would reason about calculating the value of the agreement. Let&apos;s step through it and then try write a test with that mental model.&lt;/p&gt;
 &lt;p&gt;A user will have an agreement that they want to calculate. At any given time that agreement will apply to some deliveries on products defined in the agreement. When something happens to an agreement it will effect the calculation in a specific way. For example, if the start date of an agreement moves so the agreement runs for longer, then it is likely that more deliveries will fall within the running period of that agreement.&lt;/p&gt;
 &lt;p&gt;Ok so with this mental model of how a user would approach calculating the value of an agreement, can we write a test that mimics that...&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-Gherkin&quot;&gt;Feature: Fixed Amount Sell-in Purchase Agreement
+&lt;pre&gt;&lt;code class=&quot;language-gherkin&quot;&gt;Feature: Fixed Amount Sell-in Purchase Agreement
 
 Background:
     Given a fixed amount sell-in Purchase agreement
