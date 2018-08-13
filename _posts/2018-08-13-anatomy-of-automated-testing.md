@@ -78,5 +78,5 @@ I hope you found this useful. If so I would love to hear your thoughts on the di
 
 ## Credits
 
-- Background photo by [Stijn te Strake](- https://unsplash.com/@stijntestrake)
+- Background photo by [Stijn te Strake](https://unsplash.com/@stijntestrake)
 - Social photo by [Jeremy Bishop](https://unsplash.com/@tentides)
