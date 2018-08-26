@@ -3,7 +3,7 @@ layout: post
 title: "Better error handling"
 subtitle: "Part 3 of Designing clear method signatures"
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Clean Code, OOP, Functional]
 comments: true
 permalink: better-error-handling

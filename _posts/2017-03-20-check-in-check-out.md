@@ -3,7 +3,7 @@ layout: post
 title: "Check-in and Check-out"
 subtitle: "Measuring the perceived effectiveness of a retrospective"
 author: "Devon Burriss"
-category: Project Management
+category: Agile
 tags: [Agile]
 comments: true
 permalink: check-in-check-out

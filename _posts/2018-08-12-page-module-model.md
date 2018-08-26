@@ -5,7 +5,7 @@ subtitle: "Its like testing with the Page Object Model but way way cooler"
 description: "Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain"
 permalink: page-module-model
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Canopy,Functional,F#,Testing,BDD]
 comments: true
 excerpt_separator: <!--more-->

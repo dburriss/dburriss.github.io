@@ -2,7 +2,7 @@
 layout: post
 title: "Software development is like a piece of string"
 description: "With knots."
-category: Programming
+category: Software Development
 tags: [Programming, SOLID, OOP]
 comments: true
 permalink: software-development-is-like-a-piece-of-string

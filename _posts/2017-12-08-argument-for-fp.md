@@ -5,7 +5,7 @@ subtitle: "Convincing your boss to let you use fsharp at work"
 description: "Arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular"
 permalink: argument-for-fp
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Functional, OOP, F#]
 comments: true
 excerpt_separator: <!--more-->

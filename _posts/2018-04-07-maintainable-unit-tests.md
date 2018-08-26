@@ -5,7 +5,7 @@ subtitle: "Avoid having to fix dozens of tests every time you make a significant
 description: "Highlights some tips for making tests more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details."
 permalink: maintainable-unit-tests
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Clean Code, TDD]
 comments: true
 excerpt_separator: <!--more-->

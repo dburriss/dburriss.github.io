@@ -5,7 +5,7 @@ subtitle: "A story about getting Acceptance tests just right"
 description: "Tips and examples on improving the readability of your acceptance/behavior tests"
 permalink: acceptance-tests
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Testing,ATDD,BDD,TDD]
 comments: true
 excerpt_separator: <!--more-->

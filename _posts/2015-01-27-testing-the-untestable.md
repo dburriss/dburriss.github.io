@@ -3,8 +3,8 @@ layout: post
 title: "Testing the Untestable"
 subtitle: "Testing after the fact testing hurts"
 author: "Devon Burriss"
-category: Programming
-tags: [Programming, Unit Testing , TDD]
+category: Software Development
+tags: [Testing,Programming, Unit Testing , TDD]
 comments: true
 permalink: testing-the-untestable
 excerpt_separator: <!--more-->

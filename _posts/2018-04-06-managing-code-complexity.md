@@ -5,7 +5,7 @@ subtitle: "7 tips for keeping code as simple as possible"
 description: "7 tips to address some common anti-patterns in code that hide intent"
 permalink: managing-code-complexity
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Clean Code, DDD, Design Patterns, Functional]
 comments: true
 excerpt_separator: <!--more-->

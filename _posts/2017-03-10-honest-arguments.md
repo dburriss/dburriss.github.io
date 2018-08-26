@@ -3,7 +3,7 @@ layout: post
 title: "Honest Arguments"
 subtitle: "Part 1 of Designing clear method signatures"
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Clean Code, OOP]
 comments: true
 permalink: honest-arguments

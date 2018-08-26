@@ -3,7 +3,7 @@ layout: post
 title: "Productivity Tips"
 subtitle: "Some productivity tips in 2017"
 author: "Devon Burriss"
-category: Tips
+category: Life
 tags: [Productivity, Morality, Meditation, Mindfulness]
 comments: true
 permalink: productivity-tips-1

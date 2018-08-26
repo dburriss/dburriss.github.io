@@ -3,7 +3,7 @@ layout: post
 title: "Developer Quest II - Variables"
 subtitle: "Trial by reference"
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Programming, Learning c#, Tutorial]
 comments: true
 permalink: developer-quest-variables

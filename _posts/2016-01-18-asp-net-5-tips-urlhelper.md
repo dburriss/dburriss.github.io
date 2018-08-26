@@ -3,7 +3,7 @@ layout: post
 title: "ASP.NET 5 Tips: UrlHelper"
 subtitle: "ASPNET Core TagHelpers."
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [ASP.NET 5, MVC 6, DNX]
 comments: true
 permalink: asp-net-5-tips-urlhelper

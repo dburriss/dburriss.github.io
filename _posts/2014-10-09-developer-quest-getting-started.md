@@ -3,7 +3,7 @@ layout: post
 title: "Developer Quest I - Getting started with C#"
 subtitle: "So you want to be a C# developer?"
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Programming, Learning c#, Tutorial]
 comments: true
 permalink: developer-quest-getting-started

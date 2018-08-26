@@ -3,8 +3,8 @@ layout: post
 title: "Domain-Driven Design Glossary"
 subtitle: "Summary of the main terms in Domain-Driven Design"
 author: "Devon Burriss"
-category: Project Management
-tags: [DDD]
+category: Software Development
+tags: [DDD, Modeling]
 comments: true
 permalink: ddd-glossary
 excerpt_separator: <!--more-->

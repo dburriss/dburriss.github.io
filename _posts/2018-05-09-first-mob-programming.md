@@ -5,7 +5,7 @@ subtitle: "Lessons learned from a team's first few mob programming sessions"
 description: "Mob programming is a great agile way to increase learning in a team. Here are 6 lessons learned during a mob programming session."
 permalink: first-mob-programming
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Agile,General,Productivity]
 comments: true
 excerpt_separator: <!--more-->

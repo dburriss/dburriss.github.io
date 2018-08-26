@@ -3,7 +3,7 @@ layout: post
 title: "Single Responsibility Principle"
 subtitle: "The S in SOLID."
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Programming, SOLID, OOP]
 comments: true
 permalink: single-respon

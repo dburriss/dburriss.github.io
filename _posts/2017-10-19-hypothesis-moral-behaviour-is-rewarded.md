@@ -5,7 +5,7 @@ subtitle: "Self experimentation and subjective observations on morality"
 description: "This is an initial hypothesis and description of a commitment I have made to moral integrity in my work and personal life."
 permalink: moral-behavior-is-rewarded
 author: "Devon Burriss"
-category: Moral Map
+category: Life
 tags: [General, Morality, Science]
 comments: true
 excerpt_separator: <!--more-->

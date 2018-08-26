@@ -3,7 +3,7 @@ layout: post
 title: "Honest Return Types"
 subtitle: "Part 2 of Designing clear method signatures"
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Clean Code, OOP, Functional]
 comments: true
 permalink: honest-return-types

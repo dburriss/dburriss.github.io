@@ -5,7 +5,7 @@ subtitle: "Looking at the parts and functions of various automated test types"
 description: "Comparing structure and function of various test types to tease out what we really care to verify"
 permalink: anatomy-of-automated-testing
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Testing,ATDD,BDD,TDD]
 comments: true
 excerpt_separator: <!--more-->

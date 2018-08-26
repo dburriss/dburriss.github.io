@@ -3,7 +3,7 @@ layout: post
 title: "Yoda wants you to be a functional programmer"
 subtitle: "Bring balance to the f#rce"
 author: "Devon Burriss"
-category: Programming
+category: Software Development
 tags: [Functional]
 comments: true
 permalink: yoda-wants-you-to-be-a-functional-programmer

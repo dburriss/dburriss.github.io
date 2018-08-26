@@ -3,7 +3,7 @@ layout: post
 title: "Aspect Rating"
 subtitle: "Measuring the different aspects of a team"
 author: "Devon Burriss"
-category: Project Management
+category: Agile
 tags: [Agile]
 comments: true
 permalink: aspect-rating

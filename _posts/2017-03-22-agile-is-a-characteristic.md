@@ -3,7 +3,7 @@ layout: post
 title: "Agile is a Characteristic"
 subtitle: "When did the label become more important than the characteristic?"
 author: "Devon Burriss"
-category: Project Management
+category: Agile
 tags: [Agile]
 comments: true
 permalink: agile-is-a-characteristic
