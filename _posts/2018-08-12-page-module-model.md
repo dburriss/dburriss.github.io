@@ -83,7 +83,7 @@ skipAllTestsOnFailure <- true
 "cart is available" &&& fun _ -> displayed Header.basketButton
 ```
 
-We use the `skipAllTestsOnFailure <- true` to make sure we skip any other tests if the any smoke tests fails.
+We use the `skipAllTestsOnFailure <- true` to make sure we skip any other tests if any smoke tests fails.
 
 ## The building blocks for composition
 
