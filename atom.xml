@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-08-13T13:01:05.9171623+00:00</updated>
+  <updated>2018-09-06T07:26:52.5775403+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -60,7 +60,7 @@ Check the &lt;strong&gt;Integration tests&lt;/strong&gt;. Passes. I am confident
 &lt;p&gt;I hope you found this useful. If so I would love to hear your thoughts on the different types of testing.&lt;/p&gt;
 &lt;h2&gt;Credits&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Background photo by [Stijn te Strake](- https://unsplash.com/@stijntestrake)&lt;/li&gt;
+&lt;li&gt;Background photo by &lt;a href=&quot;https://unsplash.com/@stijntestrake&quot;&gt;Stijn te Strake&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Social photo by &lt;a href=&quot;https://unsplash.com/@tentides&quot;&gt;Jeremy Bishop&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary>
   </entry>
@@ -128,7 +128,7 @@ skipAllTestsOnFailure &amp;lt;- true
 &amp;quot;search box available&amp;quot; &amp;amp;&amp;amp;&amp;amp; fun _ -&amp;gt; displayed Header.searchBox
 &amp;quot;cart is available&amp;quot; &amp;amp;&amp;amp;&amp;amp; fun _ -&amp;gt; displayed Header.basketButton
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We use the &lt;code&gt;skipAllTestsOnFailure &amp;lt;- true&lt;/code&gt; to make sure we skip any other tests if the any smoke tests fails.&lt;/p&gt;
+&lt;p&gt;We use the &lt;code&gt;skipAllTestsOnFailure &amp;lt;- true&lt;/code&gt; to make sure we skip any other tests if any smoke tests fails.&lt;/p&gt;
 &lt;h2&gt;The building blocks for composition&lt;/h2&gt;
 &lt;p&gt;I usually build a page that I need and then start extracting the reusable functions out into modules from there. Most sites will have some kind of header/navigation. Here is what I needed in a header for the tests I wrote for this post.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;module Header =

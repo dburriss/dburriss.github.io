@@ -743,6 +743,28 @@
 	
   
 	
+  
+	
+  
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//category/agile/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//category/devops/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
 	<url>
 		<loc>http://devonburriss.me//category/leadership/index.html</loc>
 		<changefreq>daily</changefreq>
@@ -753,14 +775,6 @@
 	
 	<url>
 		<loc>http://devonburriss.me//category/life/index.html</loc>
-		<changefreq>daily</changefreq>
-		<priority>1.00</priority>
-	</url>
-	
-  
-	
-	<url>
-		<loc>http://devonburriss.me//category/moral-map/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
@@ -784,15 +798,7 @@
   
 	
 	<url>
-		<loc>http://devonburriss.me//category/sysadmin/index.html</loc>
-		<changefreq>daily</changefreq>
-		<priority>1.00</priority>
-	</url>
-	
-  
-	
-	<url>
-		<loc>http://devonburriss.me//category/tips/index.html</loc>
+		<loc>http://devonburriss.me//category/software-development/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
@@ -801,6 +807,14 @@
 	
 	<url>
 		<loc>http://devonburriss.me//category/tools/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//category/virtualization/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
@@ -1001,6 +1015,14 @@
 	
 	<url>
 		<loc>http://devonburriss.me//tag/mindfulness/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//tag/modeling/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
