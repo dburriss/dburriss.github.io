@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Functional-structural impedance mismatch"
+title: "The functional-structural impedance mismatch"
 subtitle: "Exploring the possibility of unifying our functional and structural models"
 description: "When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of understanding a system, and to change a system, you need to understand it."
 permalink: functional-structural-impedance-mismatch
