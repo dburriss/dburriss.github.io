@@ -20,7 +20,7 @@ In this post I want to explore the way we think about, document, and design syst
 
 ## A quick look at history
 
-In the 1950s well defined function model diagrams started being used in *systems engineering*, evolving from business process diagrams developed and used in the previous century. In the 1960s these were used by NASA to visualize the time sequence fo space missions and from there they developed into various usages in software development. See the resources at the end if you are interested in the details of this progression but I will move forward quickly here. By the 1990s object-oriented programming started gathering more widespread popularity, exploding when Java arrived on the scene. With it grew the popularity of UML and in particular the structural diagrams that describe how we build our OO systems. I remember many weeks drawing both behavioral and structural diagrams for my university projects in the early 90s and since then class diagrams have served as the staple for most diagrams I see for how software is built.
+In the 1950s well defined function model diagrams started being used in *systems engineering*, evolving from business process diagrams developed and used in the previous century. In the 1960s these were used by NASA to visualize the time sequence of space missions, and from there they developed into various usages in software development. See the resources at the end if you are interested in the details of this progression but I will move forward quickly here. By the 1990s object-oriented programming started gathering more widespread popularity, exploding when Java arrived on the scene. With it grew the popularity of UML and in particular the structural diagrams that describe how we build our OO systems. I remember many weeks drawing both behavioral and structural diagrams for my university projects in the early 90s and since then class diagrams have served as the staple for most diagrams I see for how software is built.
 
 Why is this important? I think it is influential in why almost any diagram on how to build, or how a system is built, is a structural diagram describing state. The type of diagram is not a problem in and of itself. Diagramming the structure of an application is important. I myself am a big fan of the low ceremony, high contextual information of [Simon Brown's C4 model](https://c4model.com/). State with behavior is how OOP developers think about software, and so is how we document.
 
@@ -60,35 +60,34 @@ Here is what some of the new joiners to the team had to say about the refactored
 
 > ...my first impression looking at the code was that it had a flow that I could easily follow without having to know the state of objects. I could figure out, looking at the code, that one function result led to another function in a particular flow until you reach an end result... - Bruno Lamarao
 
-> When I just joined the team we did some mob programming on the project. Being able to sit down without having opened the project and start typing, just shows that the behavior/flow of the program was very easy to reason about. - Thomas Bouman
+> When I just joined the team we did some mob programming on the project. Being able to sit down without having opened the project before and start adding features, just shows that the behavior/flow of the program was very easy to reason about. - Thomas Bouman
 
-This stood out to me. It is not often I had that feeling about code and it was not something I heard often from other developers. It confirmed the suspicion I had that this may be a better way of modeling software. I am wary of silver bullets so it is possible that some systems are just better as a pure state based model. A very simple CRUD based application may fall into this camp but as soon as we have more complex functionality I think it is worth modeling it to match our mental model of how it functions.
+This stood out to me. It is not often I had that feeling about code and it was not something I heard often from other developers. It confirmed the suspicion I had that this may be a better way of modeling software. I am wary of silver bullets so it is possible that some systems are just better as a pure state based model. A very simple CRUD based application probably falls into this camp. As soon as we have more complex functionality though, I think it is worth modeling it to match our mental model of how it functions.
 
 ### Why do I think this is better?
 
 #### A single model
 
-As I have already mentioned, the functional model is not matched by the structural model. The importance of this cannot be overstated. To know the structure of the software you only need to know what it does functionally and vice versa to look at the structure is to look at what a system functionally does.
+As I have already mentioned, the functional model now matches the structural model. The importance of this cannot be overstated. To know the structure of the software you only need to know what it does functionally and vice versa, to look at the structure is to look at what the system functionally does.
 
 #### Entry point tells a story
 
-I mentioned this in my [tips for managing code complexity](/managing-code-complexity/) but having an entry point into your code that describes the functioning of a feature at a single abstraction level gives developers a great way to understand where they need to dive into the code to make changes.
+I mentioned this in my [tips for managing code complexity](/managing-code-complexity/) but having an entry point into your code that describes the functioning of a feature is a giant win. Each step should be at the same abstraction level, giving developers a great way to understand where they need to dive into the code to make changes.
 
 ![entry point](/img/posts/2018/use-case.jpg)
 
 #### Solving the trouble with Liskov Substitution Principle
 
-Good abstractions are hard to find and even harder to maintain. As a system evolves, a previously good abstraction can start to become awkward. Even finding good abstractions in the first place is difficult, especially when you have a model that is used liberally throughout your application. 
+Good abstractions are hard to discover and even harder to maintain. As a system evolves, a previously good abstraction can start to become awkward. When you have a model that is used liberally throughout an application, a good abstraction is almost impossible to discover.
 
 ![monolithic model](/img/posts/2018/big-model.jpg)
 
-And here in lies the key. By constraining a model to be used within a certain application flow, or even within a step in that flow, we limit the dependency on it to accomplish something in the system. 
+And here in lies the key. By constraining a model to be used within a certain application flow, or even within a step in that flow, we limit the dependencies on it.
+Where before we had a model that is monolithic and used throughout the software application, now we constrain our model and any resulting abstractions to only servicing a single step in our feature flow.
 
 ![Small steps small models](/img/posts/2018/small-model-steps.jpg)
 
-Where before we had a model that is monolithic and used throughout the software application, now we constrain our model and any needed abstractions to only servicing a single step in our feature flow.
-
-This means we only need to concern ourselves with a model that satisfies a small subsection of the functionality instead of all functionality within a an application. This is far, far easier to reason about.
+This means we only need to concern ourselves with a model that satisfies a small subsection of the functionality instead of all functionality within an application. This is far, far easier to reason about.
 
 > WARNING: This does some with one overhead. Class explosion! In a high ceremony language like C# or Java, this can be quite a high initial cost indeed. I do recommend not optimizing for the initial extra cost of creating a few more files.
 
@@ -105,3 +104,8 @@ What do you think? Are you already writing your applications this way? Will you 
 ## Resources
 
 1. [Function model](https://en.wikipedia.org/wiki/Function_model)
+
+## Credit
+
+1. Social image by [Sharon Pittaway](https://unsplash.com/@sharonp)
+1. Refactoring marathon [Duncan Roosma](https://twitter.com/Viper128)
