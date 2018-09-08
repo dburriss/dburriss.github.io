@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+    <title>The Functional-structural impedance mismatch</title>
+    <meta name="description" content="When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of understanding a system, and to change a system, you need to understand it.">
+    <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="http://devonburriss.me/functional-structural-impedance-mismatch/">
+    
+    <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon16.png" sizes="16x16">  
+    <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon32.png" sizes="32x32">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="The Functional-structural impedance mismatch">
+    <meta itemprop="description" content="When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of understanding a system, and to change a system, you need to understand it.">
+    <meta itemprop="image" content="http://devonburriss.me/img/posts/2018/bulb-500.jpg">
+    
+    <meta itemprop="datePublished" content="9/8/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="9/8/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="The Functional-structural impedance mismatch - Exploring the possibility of unifying our functional and structural models" />
+    <meta itemprop="mainEntityOfPage" content="http://devonburriss.me/functional-structural-impedance-mismatch/" />
+    <meta name="headline" content="The Functional-structural impedance mismatch - Exploring the possibility of unifying our functional and structural models" />
+
+    
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary_large_image">
+    <meta name="twitter:site" content="@DevonBurriss">
+    <meta name="twitter:title" content="The Functional-structural impedance mismatch">
+    <meta name="twitter:description" content="When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of understanding a system, and to change a system, you need to understand it.">
+    <meta name="twitter:creator" content="@DevonBurriss">
+    <meta name="twitter:image" content="http://devonburriss.me/img/posts/2018/bulb-500.jpg">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="The Functional-structural impedance mismatch" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://devonburriss.me/functional-structural-impedance-mismatch/" />
+    <meta property="og:image" content="http://devonburriss.me/img/posts/2018/bulb-500.jpg" />
+    <meta property="og:description" content="When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of understanding a system, and to change a system, you need to understand it." />
+    <meta property="og:site_name" content="Devon Burriss' Blog" /> 
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    
+
+    <!-- Code Highlight -->
+    <link rel="stylesheet" charset="UTF-8" href="/css/highlight/atom-one-light.css">
+    
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Devon Burriss' Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/recommended-reading.html">Recommended Reading</a>
+                </li>
+                <!--
+				
+                <li>
+                    <a href="/atom.xml">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/index.html">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/recommended-reading.html">Recommended Reading</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/rss.xml">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/sitemap.xml">this is a post</a>
+                </li>
+				
+                -->
+                <li>
+                    <a href="/rss.xml">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-rss fa-stack-1x"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('http://devonburriss.me/img/backgrounds/bulb-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>The Functional-structural impedance mismatch</h1>
+                        
+                        <h2 class="subheading">Exploring the possibility of unifying our functional and structural models</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on September 08, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/ddd" class="label label-default">DDD</a>
+                            
+                                <a href="/tag/oop" class="label label-default">OOP</a>
+                            
+                                <a href="/tag/functional-modeling" class="label label-default">Functional Modeling</a>
+                            
+                                <a href="/tag/architecture" class="label label-default">Architecture</a>
+                            
+                                <a href="/tag/modeling" class="label label-default">Modeling</a>
+                            
+                                <a href="/tag/temporal-modeling" class="label label-default">Temporal Modeling</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
+
+				<p>When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of maintaining a system, for to change a system you must first understand it.</p>
+<!--more-->
+<p>In this post I want to explore the way we think about, document, and design systems; taking a brief tour through history on this topic and pose a question about whether we are doing it in a way that makes sense. This question brings up something I have started calling <em>the functional-structural impedance mismatch</em>. I will go through some experiences trying to minimize this mismatch and hopefully convince you to try it yourself.</p>
+<h2>A quick look at history</h2>
+<p>In the 1950s well defined function model diagrams started being used in <em>systems engineering</em>, evolving from business process diagrams developed and used in the previous century. In the 1960s these were used by NASA to visualize the time sequence of space missions, and from there they developed into various usages in software development. See the resources at the end if you are interested in the details of this progression but I will move forward quickly here. By the 1990s object-oriented programming started gathering more widespread popularity, exploding when Java arrived on the scene. With it grew the popularity of UML and in particular the structural diagrams that describe how we build our OO systems. I remember many weeks drawing both behavioral and structural diagrams for my university projects in the early 90s and since then class diagrams have served as the staple for most diagrams I see for how software is built.</p>
+<p>Why is this important? I think it is influential in why almost any diagram on how to build, or how a system is built, is a structural diagram describing state. The type of diagram is not a problem in and of itself. Diagramming the structure of an application is important. I myself am a big fan of the low ceremony, high contextual information of <a href="https://c4model.com/">Simon Brown's C4 model</a>. State with behavior is how OOP developers think about software, and so is how we document.</p>
+<h2>Describing behavior</h2>
+<p>Regardless of what discipline you come from, most people can gain a fair amount of information from a well drawn flow chart. Flow charts are pretty great behavioral diagrams that tell you how a system accomplishes something, regardless of whether that system is physical or digital. What is great about these kind of diagrams is that they give you an indication of how a system accomplishes something <em>through time</em>. They are very intuitive for us to understand how a system behaves. And if you think about it, understanding how a system behaves (or should behave) is one of the most important things we as a developer need to know to maintain and enhance a software system.</p>
+<p><img src="/img/posts/2018/functional-process.jpg" alt="Allocation flow chart" /></p>
+<p>Above is an excerpt from a simple flow chart describing the process of calculating the value of an agreement based on sales depending on the type of the agreement.</p>
+<h2>A state based structure</h2>
+<p>So let us take a look at what this flow diagram typically translates to when built by object-oriented programmers that are accustomed to modeling state.</p>
+<blockquote>
+<p>This is a simplified diagram of a real application I worked on. This is by no means me shitting on how something was built. There are always opportunities to learn how to improve things. This one was unique as we took the time to refactor it (as we will see in a bit).</p>
+</blockquote>
+<!-- ![Allocation flow chart](/img/posts/2018/functional-process.jpg)
+![Allocation object structure](/img/posts/2018/object-structure.jpg) -->
+<img src="../img/posts/2018/functional-process.jpg" alt="Fire" class="img-rounded pull-left" width="500" style="margin-right: 1em;">
+<img src="../img/posts/2018/object-structure.jpg" alt="Fire" class="img-rounded pull-left" width="500" style="margin-right: 1em;">
+<div class='clearfix'></div>
+I think the resulting structure of the important classes are quite standard. I also do not think that it is crystal clear how and where each component relates to the process. It is not too hard to guess because this has been simplified and this is a pretty small system. When digging into this system though is was already difficult to reason about where what is done.
+<h2>A functional structure</h2>
+<p>So the team agreed we need to try improve the structure of the existing code. Over the next couple weeks the system was refactored structurally to look like this:</p>
+<img src="../img/posts/2018/functional-process.jpg" alt="Fire" class="img-rounded pull-left" width="500" style="margin-right: 1em;">
+<img src="../img/posts/2018/functional-structure.jpg" alt="Fire" class="img-rounded pull-left" width="500" style="margin-right: 1em;">
+<div class='clearfix'></div>
+As you can see, visually this is far more in line with the functional flow diagram. This really did improve the team's ability to reason about the code, especially for new team members joining after development had progressed quite far.
+<h2>Discussion</h2>
+<p>Here is what some of the new joiners to the team had to say about the refactored code:</p>
+<blockquote>
+<p>...my first impression looking at the code was that it had a flow that I could easily follow without having to know the state of objects. I could figure out, looking at the code, that one function result led to another function in a particular flow until you reach an end result... - Bruno Lamarao</p>
+</blockquote>
+<blockquote>
+<p>When I just joined the team we did some mob programming on the project. Being able to sit down without having opened the project before and start adding features, just shows that the behavior/flow of the program was very easy to reason about. - Thomas Bouman</p>
+</blockquote>
+<p>This stood out to me. It is not often I had that feeling about code and it was not something I heard often from other developers. It confirmed the suspicion I had that this may be a better way of modeling software. I am wary of silver bullets so it is possible that some systems are just better as a pure state based model. A very simple CRUD based application probably falls into this camp. As soon as we have more complex functionality though, I think it is worth modeling it to match our mental model of how it functions.</p>
+<h3>Why do I think this is better?</h3>
+<h4>A single model</h4>
+<p>As I have already mentioned, the functional model now matches the structural model. The importance of this cannot be overstated. To know the structure of the software you only need to know what it does functionally and vice versa, to look at the structure is to look at what the system functionally does.</p>
+<h4>Entry point tells a story</h4>
+<p>I mentioned this in my <a href="/managing-code-complexity/">tips for managing code complexity</a> but having an entry point into your code that describes the functioning of a feature is a giant win. Each step should be at the same abstraction level, giving developers a great way to understand where they need to dive into the code to make changes.</p>
+<p><img src="/img/posts/2018/use-case.jpg" alt="entry point" /></p>
+<h4>Solving the trouble with Liskov Substitution Principle</h4>
+<p>Good abstractions are hard to discover and even harder to maintain. As a system evolves, a previously good abstraction can start to become awkward. When you have a model that is used liberally throughout an application, a good abstraction is almost impossible to discover.</p>
+<p><img src="/img/posts/2018/big-model.jpg" alt="monolithic model" /></p>
+<p>And here in lies the key. By constraining a model to be used within a certain application flow, or even within a step in that flow, we limit the dependencies on it.
+Where before we had a model that is monolithic and used throughout the software application, now we constrain our model and any resulting abstractions to only servicing a single step in our feature flow.</p>
+<p><img src="/img/posts/2018/small-model-steps.jpg" alt="Small steps small models" /></p>
+<p>This means we only need to concern ourselves with a model that satisfies a small subsection of the functionality instead of all functionality within an application. This is far, far easier to reason about.</p>
+<blockquote>
+<p>WARNING: This does some with one overhead. Class explosion! In a high ceremony language like C# or Java, this can be quite a high initial cost indeed. I do recommend not optimizing for the initial extra cost of creating a few more files.</p>
+</blockquote>
+<h2>Conclusion</h2>
+<p>So far I have avoided talking about functional programming. The functional used in this article is with regard to behavior rather than functions in the usual FP sense. They are indeed related though as this style of designing applications is what you naturally tend toward following an FP approach. I avoided mentioning FP till this point though because I think that an OO paradigm programmer can benefit from applying this style of design without buying into FP. Who knows? It may be your gateway drug :)</p>
+<p>In future articles I hope to demonstrate some more practical examples of developing applications this way, so keep a lookout for those ([follow on Twitter)(https://twitter.com/DevonBurriss)).</p>
+<p>In the meantime if you are interested I suggest you check out Scott Wlaschin's excellent book <a href="https://pragprog.com/book/swdddf/domain-modeling-made-functional">Domain modeling made functional</a> where he demonstrates a lot of these concepts in a FP way with F#.</p>
+<p>What do you think? Are you already writing your applications this way? Will you try it? Does <em>functional-structural impedance mismatch</em> as an idea make sense?</p>
+<h2>Resources</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Function_model">Function model</a></li>
+</ol>
+<h2>Credit</h2>
+<ol>
+<li>Social image by <a href="https://unsplash.com/@sharonp">Sharon Pittaway</a></li>
+<li>Refactoring marathon <a href="https://twitter.com/Viper128">Duncan Roosma</a></li>
+</ol>
+
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/ddd-glossary/">Domain-Driven Design Glossary</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/anatomy-of-automated-testing/" data-toggle="tooltip"    data-placement="top" title="Anatomy of an automated test suite">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
+                    <li>
+                        <a href="/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/DevonBurriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dburriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+
+    <a class="badge badge-info" href="/category/agile">Agile</a>
+
+    <a class="badge badge-info" href="/category/devops">DevOps</a>
+
+    <a class="badge badge-info" href="/category/leadership">Leadership</a>
+
+    <a class="badge badge-info" href="/category/life">Life</a>
+
+    <a class="badge badge-info" href="/category/modeling">Modeling</a>
+
+    <a class="badge badge-info" href="/category/programming">Programming</a>
+
+    <a class="badge badge-info" href="/category/project-management">Project Management</a>
+
+    <a class="badge badge-info" href="/category/software-development">Software Development</a>
+
+    <a class="badge badge-info" href="/category/tools">Tools</a>
+
+    <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
+
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+<div class="well">
+
+
+<a class="badge badge-info" href="/tag/agile/" style="font-size: 80%">
+    <span class="site-tag">                
+        Agile
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/appveyor/" style="font-size: 80%">
+    <span class="site-tag">                
+        AppVeyor
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/architecture/" style="font-size: 80%">
+    <span class="site-tag">                
+        Architecture
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/asp-net-5/" style="font-size: 80%">
+    <span class="site-tag">                
+        ASP.NET 5
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/atdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        ATDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/azure/" style="font-size: 80%">
+    <span class="site-tag">                
+        Azure
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/bdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        BDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/cake/" style="font-size: 80%">
+    <span class="site-tag">                
+        Cake
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/canopy/" style="font-size: 80%">
+    <span class="site-tag">                
+        Canopy
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ci/" style="font-size: 80%">
+    <span class="site-tag">                
+        CI
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/clean-code/" style="font-size: 80%">
+    <span class="site-tag">                
+        Clean Code
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ddd/" style="font-size: 80%">
+    <span class="site-tag">                
+        DDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/design-patterns/" style="font-size: 80%">
+    <span class="site-tag">                
+        Design Patterns
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/dnx/" style="font-size: 80%">
+    <span class="site-tag">                
+        DNX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/fsharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        F#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/functional/" style="font-size: 80%">
+    <span class="site-tag">                
+        Functional
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/functional-modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Functional Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/general/" style="font-size: 80%">
+    <span class="site-tag">                
+        General
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/git/" style="font-size: 80%">
+    <span class="site-tag">                
+        Git
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/github-pages/" style="font-size: 80%">
+    <span class="site-tag">                
+        Github Pages
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/hyper-v/" style="font-size: 80%">
+    <span class="site-tag">                
+        Hyper V
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/java/" style="font-size: 80%">
+    <span class="site-tag">                
+        Java
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/learning-csharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        Learning c#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/life/" style="font-size: 80%">
+    <span class="site-tag">                
+        Life
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/maven/" style="font-size: 80%">
+    <span class="site-tag">                
+        Maven
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/meditation/" style="font-size: 80%">
+    <span class="site-tag">                
+        Meditation
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/mindfulness/" style="font-size: 80%">
+    <span class="site-tag">                
+        Mindfulness
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/morality/" style="font-size: 80%">
+    <span class="site-tag">                
+        Morality
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/mvc-6/" style="font-size: 80%">
+    <span class="site-tag">                
+        MVC 6
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/oop/" style="font-size: 80%">
+    <span class="site-tag">                
+        OOP
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/osx/" style="font-size: 80%">
+    <span class="site-tag">                
+        OSX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/pascal/" style="font-size: 80%">
+    <span class="site-tag">                
+        Pascal
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/powershell/" style="font-size: 80%">
+    <span class="site-tag">                
+        Powershell
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/pretzel/" style="font-size: 80%">
+    <span class="site-tag">                
+        Pretzel
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/productivity/" style="font-size: 80%">
+    <span class="site-tag">                
+        Productivity
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/programming/" style="font-size: 80%">
+    <span class="site-tag">                
+        Programming
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/science/" style="font-size: 80%">
+    <span class="site-tag">                
+        Science
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/solid/" style="font-size: 80%">
+    <span class="site-tag">                
+        SOLID
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/tdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        TDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/team-lead/" style="font-size: 80%">
+    <span class="site-tag">                
+        Team Lead
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/temporal-modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Temporal Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/testing/" style="font-size: 80%">
+    <span class="site-tag">                
+        Testing
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/tutorial/" style="font-size: 80%">
+    <span class="site-tag">                
+        Tutorial
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ubuntu/" style="font-size: 80%">
+    <span class="site-tag">                
+        Ubuntu
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/unit-testing/" style="font-size: 80%">
+    <span class="site-tag">                
+        Unit Testing
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/visual-studio/" style="font-size: 80%">
+    <span class="site-tag">                
+        Visual Studio
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/visual-studio-online/" style="font-size: 80%">
+    <span class="site-tag">                
+        Visual Studio Online
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/vs-code/" style="font-size: 80%">
+    <span class="site-tag">                
+        VS Code
+    </span>
+</a>
+
+</div>
+            
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+    
+                    <ul class="list-inline text-center">
+                    <li>
+                        <a href="/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/DevonBurriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dburriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+    
+    <div class="container-fluid">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'devonburriss'; // required: replace example with your forum shortname
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+    <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+        if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+        }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/devonburriss/get_num_replies.js' + query + '"></' + 'script>');
+    })();
+    //]]>
+    </script>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p class="copyright text-muted">Copyright &copy; 
+                <a href="/about.html">Devon Burriss</a> 2018
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+
+    <script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45750611-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+
+</html>

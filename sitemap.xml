@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>http://devonburriss.me/functional-structural-impedance-mismatch/</loc>
+    <lastmod>2018-09-08T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>http://devonburriss.me/anatomy-of-automated-testing/</loc>
     <lastmod>2018-08-13T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -788,6 +795,14 @@
   
 	
 	<url>
+		<loc>http://devonburriss.me//category/modeling/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
 		<loc>http://devonburriss.me//category/programming/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
@@ -837,6 +852,14 @@
 	
 	<url>
 		<loc>http://devonburriss.me//tag/appveyor/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//tag/architecture/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
@@ -941,6 +964,14 @@
 	
 	<url>
 		<loc>http://devonburriss.me//tag/functional/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//tag/functional-modeling/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
@@ -1133,6 +1164,14 @@
 	
 	<url>
 		<loc>http://devonburriss.me//tag/team-lead/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//tag/temporal-modeling/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>

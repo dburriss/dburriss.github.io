@@ -6,8 +6,17 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sat, 08 Sep 2018 20:21:58 +00:00</pubDate>
-    <lastBuildDate>Sat, 08 Sep 2018 20:21:58 +00:00</lastBuildDate>
+    <pubDate>Sat, 08 Sep 2018 21:41:12 +00:00</pubDate>
+    <lastBuildDate>Sat, 08 Sep 2018 21:41:12 +00:00</lastBuildDate>
+    
+    <item>
+      <title>The Functional-structural impedance mismatch</title>
+      <link>http://devonburriss.me/functional-structural-impedance-mismatch/</link>
+      <pubDate>Sat, 08 Sep 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>http://devonburriss.me/functional-structural-impedance-mismatch/</guid>
+      <description>When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of understanding a system, and to change a system, you need to understand it.</description>
+    </item>
     
     <item>
       <title>Anatomy of an automated test suite</title>
