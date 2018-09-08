@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-09-08T21:41:12.1757636+00:00</updated>
+  <updated>2018-09-08T21:43:50.7254954+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -14,7 +14,7 @@
   <entry>
     <id>http://devonburriss.me/functional-structural-impedance-mismatch/</id>
     <link type="text/html" rel="alternate" href="http://devonburriss.me/functional-structural-impedance-mismatch/"/>
-    <title>The Functional-structural impedance mismatch</title>
+    <title>The functional-structural impedance mismatch</title>
     <updated>2018-09-08T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
