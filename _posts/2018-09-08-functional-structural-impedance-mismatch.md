@@ -26,7 +26,7 @@ Why is this important? I think it is influential in why almost any diagram on ho
 
 ## Describing behavior
 
-Regardless of what discipline you come from, most people can gain a fair amount of information from a well drawn flow chart. Flow charts are pretty great behavioral diagrams that tell you how a system accomplishes something, regardless of whether that system is physical or digital. What is great about these kind of diagrams is that they give you an indication of how a system accomplishes something *through time*. They are very intuitive for us to understand how a system behaves. And if you think about it, understanding how a system behaves (or should behave) is one of the most important things we as a developer need to know to maintain and enhance a software system.
+Regardless of what discipline you come from, most people can gain a fair amount of information from a well drawn flow chart. Flow charts are pretty great behavioral diagrams that tell you how a system accomplishes something, regardless of whether that system is physical or digital. What is great about these kinds of diagrams is that they give you an indication of how a system accomplishes something *through time*. They are very intuitive for us to understand how a system behaves. And if you think about it, understanding how a system behaves (or should behave) is one of the most important things we as developers need to know to maintain and enhance a software system.
 
 ![Allocation flow chart](/img/posts/2018/functional-process.jpg)
 
@@ -40,17 +40,17 @@ So let us take a look at what this flow diagram typically translates to when bui
 
 <!-- ![Allocation flow chart](/img/posts/2018/functional-process.jpg)
 ![Allocation object structure](/img/posts/2018/object-structure.jpg) -->
-<img src="../img/posts/2018/functional-process.jpg" alt="Fire" class="img-rounded pull-left" width="500" style="margin-right: 1em;">
-<img src="../img/posts/2018/object-structure.jpg" alt="Fire" class="img-rounded pull-left" width="500" style="margin-right: 1em;">
+<img src="../img/posts/2018/functional-process.jpg" alt="Fire" class="img-rounded pull-left" width="510" style="margin-right: 1em;">
+<img src="../img/posts/2018/object-structure.jpg" alt="Fire" class="img-rounded pull-left" width="510" style="margin-right: 1em;">
 <div class='clearfix'></div>
 I think the resulting structure of the important classes are quite standard. I also do not think that it is crystal clear how and where each component relates to the process. It is not too hard to guess because this has been simplified and this is a pretty small system. When digging into this system though is was already difficult to reason about where what is done.
 
 ## A functional structure
 
-So the team agreed we need to try improve the structure of the existing code. Over the next couple weeks the system was refactored structurally to look like this:
+So the team agreed that we need to try improve the structure of the existing code. Over the next couple weeks the system was refactored structurally to look like this:
 
-<img src="../img/posts/2018/functional-process.jpg" alt="Fire" class="img-rounded pull-left" width="500" style="margin-right: 1em;">
-<img src="../img/posts/2018/functional-structure.jpg" alt="Fire" class="img-rounded pull-left" width="500" style="margin-right: 1em;">
+<img src="../img/posts/2018/functional-process.jpg" alt="Fire" class="img-rounded pull-left" width="510" style="margin-right: 1em;">
+<img src="../img/posts/2018/functional-structure.jpg" alt="Fire" class="img-rounded pull-left" width="510" style="margin-right: 1em;">
 <div class='clearfix'></div>
 As you can see, visually this is far more in line with the functional flow diagram. This really did improve the team's ability to reason about the code, especially for new team members joining after development had progressed quite far.
 
