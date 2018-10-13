@@ -6,8 +6,17 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sun, 09 Sep 2018 09:12:43 +00:00</pubDate>
-    <lastBuildDate>Sun, 09 Sep 2018 09:12:43 +00:00</lastBuildDate>
+    <pubDate>Sat, 13 Oct 2018 20:34:57 +00:00</pubDate>
+    <lastBuildDate>Sat, 13 Oct 2018 20:34:57 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Functional modeling</title>
+      <link>http://devonburriss.me/functional-modeling/</link>
+      <pubDate>Sat, 13 Oct 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>http://devonburriss.me/functional-modeling/</guid>
+      <description>As OOP developers it is often far too easy for us to try create a model that captures every state. This is almost always a poor abstraction. What if instead of trying to model every possible state at rest we modeled the change of state over time? This article explores what that might look like.</description>
+    </item>
     
     <item>
       <title>The functional-structural impedance mismatch</title>

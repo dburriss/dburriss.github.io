@@ -3,13 +3,75 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-09-09T09:12:43.8214907+00:00</updated>
+  <updated>2018-10-13T20:34:57.845528+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>http://devonburriss.me/functional-modeling/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/functional-modeling/"/>
+    <title>Functional modeling</title>
+    <updated>2018-10-13T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/functional-modeling/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;In my &lt;a href=&quot;/functional-structural-impedance-mismatch&quot;&gt;previous post&lt;/a&gt; I introduced the idea of a structural model in the code that closely matches what a use-case should do functionally. Just as an ubiquitous language helps us tie concepts in our code, so a functional model helps us capture the functioning of a use-case. In this post I will go into this idea in a little more detail, giving some tips on how to get started.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I am not explicitly talking about functional programming in this article although any familiar with it will see it&apos;s influences. Even if you do not embrace FP, the concepts from it that I mention here can be applied to the benefit of your codebase.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As an example we are looking at a real life project where we are allocating monetary amounts to sales or purchases based on agreements we have with suppliers.
+Let&apos;s start with a deeper look at the example that was used in the previous post:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/functional-structure.jpg&quot; alt=&quot;Allocation functional structure&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;This was a very simplified view of the components involved for calculating the amounts to be allocated to an agreement due to sales or inbound orders. It also still shows the structural components involved. As an exercise I mapped out the calls that are made while completing a use-cae. This style is borrowed from Simon Brown&apos;s &lt;a href=&quot;https://c4model.com&quot;&gt;C4 Model&lt;/a&gt; but with a focus on function rather than structure.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/functional-model.jpg&quot; alt=&quot;Allocation functional structure&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;And here is the top the entry point for this use-case.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;return await TryGetAgreement(agreementId)
+            .Bind(agreement =&amp;gt; 
+                    _agreementSupportedValidator.IsSupported(agreement).ToAsync())
+            .Bind(supportedAgreement =&amp;gt; 
+                    TryCreateAgreementWithHistory(supportedAgreement).ToAsync())
+            .Bind(agreementWithHistory =&amp;gt; 
+                    AllocationPathfinder(agreementWithHistory).ToAsync())
+            .Map(allocationResult =&amp;gt; 
+                    AllocationsFilter.Filter(allocationResult))
+            .Bind(newAllocationResult =&amp;gt; 
+                    TryStoreAllocations(newAllocationResult).ToAsync())
+            .Try();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Although I am the first to admit that this style is not too pretty in C#, once you get used to the &lt;a href=&quot;https://github.com/louthy/language-ext&quot;&gt;Functional Language Extensions&lt;/a&gt; like &lt;code&gt;Bind&lt;/code&gt;, &lt;code&gt;Map&lt;/code&gt;, and &lt;code&gt;Try&lt;/code&gt;, it really reads like what it does at this level of abstraction.&lt;/p&gt;
+&lt;p&gt;So why would we want to write code like this?&lt;/p&gt;
+&lt;h2&gt;High level description of process&lt;/h2&gt;
+&lt;p&gt;When exploring a codebase it is always nice to find the entry point to a feature that describes what happens at a single abstraction level. Too often each step is wrapped in some infected factory or manager that conveys very little intent and quickly become a class quagmire.&lt;/p&gt;
+&lt;h2&gt;Maps well to Event Storming&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.eventstorming.com/&quot;&gt;Event Storming&lt;/a&gt; is becoming increasingly more popular as a means of learning a domain. By it&apos;s very nature Event Storming is a time based rather than a state based model and it can be quite difficult&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/es-legend.jpg&quot; alt=&quot;Event Storming legend&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;Focus on doing&lt;/h2&gt;
+&lt;p&gt;Following on from the previous point but true of every level of the codebase, bringing the functional process forward into plain view is simpler when focusing on what is being done, rather than on the doer. we now move from modeling stateful doers to modeling the state between transformations over time. This is way more inline with how the business thinks in terms of getting work done.&lt;/p&gt;
+&lt;h2&gt;Testability (unit tests)&lt;/h2&gt;
+&lt;p&gt;If you are able to constrain external IO to the beginning and end of your flows you will have simple input/output functions in between. This sort of code is a lot more testable than those that have many dependencies. You can now concentrate on just testing the output from a certain input without worrying about injecting mocked dependencies.&lt;/p&gt;
+&lt;h2&gt;Composability&lt;/h2&gt;
+&lt;p&gt;Often in business we have branching flows. Too often this results in bad abstractions that try to handle every branch, even those not yet added by the business. A far more maintainable way to handle these is to reuse that which is common and compose it with specific implementations when things branch. This usually results in cleaner code that is far more future proof than using inheritance.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post we went into a little more detail of what code may look like if we started modeling the flow of events throw time even within small the use-cases. We looked briefly at what this could look like and reasons it might be worth trying. The keys to implementing this well is to;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Chain steps at a single abstraction level that make sense, allowing developers to dive only to the depth needed to understand what is needed&lt;/li&gt;
+&lt;li&gt;Instead of trying to come up with an abstraction that captures every state, model the states between transitions&lt;/li&gt;
+&lt;li&gt;Capture the domain language in both the states and the functions that transition from state to state&lt;/li&gt;
+&lt;li&gt;Push dependencies to the outside to increase testability and how easy it is to reason about the system&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you are interested in really drilling into this and learn functional programming a highly recommend &lt;a href=&quot;https://pragprog.com/book/swdddf/domain-modeling-made-functional&quot;&gt;Scott Wlaschin&apos;s Domain Modeling made Functional&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;What do you think? If you have any ideas please leave a comment or reach out on Twitter &lt;a href=&quot;https://twitter.com/DevonBurriss&quot;&gt;@DevonBurriss&lt;/a&gt;. You also may be interested in my &lt;a href=&quot;/functional-structural-impedance-mismatch&quot;&gt;previous article on the differences between structural and functional modeling&lt;/a&gt; and my &lt;a href=&quot;/managing-code-complexity&quot;&gt;tips for managing code complexity&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Function_model&quot;&gt;Function model&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>http://devonburriss.me/functional-structural-impedance-mismatch/</id>

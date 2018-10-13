@@ -12,36 +12,49 @@
 
 
 
+    
 
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly explorations in code">
+    
+
+
+    <title>Functional modeling</title>
+    <meta name="description" content="As OOP developers it is often far too easy for us to try create a model that captures every state. This is almost always a poor abstraction. What if instead of trying to model every possible state at rest we modeled the change of state over time? This article explores what that might look like.">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="http://devonburriss.me/functional-modeling/">
     
     <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly explorations in code">
-    <meta itemprop="image" content="http://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="Functional modeling">
+    <meta itemprop="description" content="As OOP developers it is often far too easy for us to try create a model that captures every state. This is almost always a poor abstraction. What if instead of trying to model every possible state at rest we modeled the change of state over time? This article explores what that might look like.">
+    <meta itemprop="image" content="http://devonburriss.me/img/posts/2018/functional-model-500.jpg">
+    
+    <meta itemprop="datePublished" content="10/13/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="10/13/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Functional modeling - The benefits of focusing on function rather than state" />
+    <meta itemprop="mainEntityOfPage" content="http://devonburriss.me/functional-modeling/" />
+    <meta name="headline" content="Functional modeling - The benefits of focusing on function rather than state" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly explorations in code">
+    <meta name="twitter:title" content="Functional modeling">
+    <meta name="twitter:description" content="As OOP developers it is often far too easy for us to try create a model that captures every state. This is almost always a poor abstraction. What if instead of trying to model every possible state at rest we modeled the change of state over time? This article explores what that might look like.">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="http://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="http://devonburriss.me/img/posts/2018/functional-model-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="Functional modeling" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="http://devonburriss.me//tag/functional-modeling/" />
-    <meta property="og:image" content="http://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly explorations in code" />
+    <meta property="og:url" content="http://devonburriss.me/functional-modeling/" />
+    <meta property="og:image" content="http://devonburriss.me/img/posts/2018/functional-model-500.jpg" />
+    <meta property="og:description" content="As OOP developers it is often far too easy for us to try create a model that captures every state. This is almost always a poor abstraction. What if instead of trying to model every possible state at rest we modeled the change of state over time? This article explores what that might look like." />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -142,178 +155,123 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('http://devonburriss.me/img/backgrounds/bulb-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Functional modeling</h1>
+                        
+                        <h2 class="subheading">The benefits of focusing on function rather than state</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 13, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/ddd" class="label label-default">DDD</a>
+                            
+                                <a href="/tag/oop" class="label label-default">OOP</a>
+                            
+                                <a href="/tag/functional-modeling" class="label label-default">Functional Modeling</a>
+                            
+                                <a href="/tag/architecture" class="label label-default">Architecture</a>
+                            
+                                <a href="/tag/modeling" class="label label-default">Modeling</a>
+                            
+                                <a href="/tag/temporal-modeling" class="label label-default">Temporal Modeling</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			<div>
-    <div class="clearfix">
-        <h1 class="pull-right">&#47;Functional Modeling&#47; &nbsp;</h1>
-    </div>
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      
-      <div class="post-preview ">
-          <a href="/functional-modeling/">
-              <h2 class="post-title">            Functional modeling
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on October 13, 2018</p>
-          
-              
-                 <a href="/tag/ddd"><span class="label label-default">DDD</span></a>
-              
-                 <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-                 <a href="/tag/functional-modeling"><span class="label label-default">Functional Modeling</span></a>
-              
-                 <a href="/tag/architecture"><span class="label label-default">Architecture</span></a>
-              
-                 <a href="/tag/modeling"><span class="label label-default">Modeling</span></a>
-              
-                 <a href="/tag/temporal-modeling"><span class="label label-default">Temporal Modeling</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/functional-structural-impedance-mismatch/">
-              <h2 class="post-title">            The functional-structural impedance mismatch
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on September 08, 2018</p>
-          
-              
-                 <a href="/tag/ddd"><span class="label label-default">DDD</span></a>
-              
-                 <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-                 <a href="/tag/functional-modeling"><span class="label label-default">Functional Modeling</span></a>
-              
-                 <a href="/tag/architecture"><span class="label label-default">Architecture</span></a>
-              
-                 <a href="/tag/modeling"><span class="label label-default">Modeling</span></a>
-              
-                 <a href="/tag/temporal-modeling"><span class="label label-default">Temporal Modeling</span></a>
-              
-          
-      </div>
-      <hr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-</div>
-		</div>
+				<p>In my <a href="/functional-structural-impedance-mismatch">previous post</a> I introduced the idea of a structural model in the code that closely matches what a use-case should do functionally. Just as an ubiquitous language helps us tie concepts in our code, so a functional model helps us capture the functioning of a use-case. In this post I will go into this idea in a little more detail, giving some tips on how to get started.</p>
+<!--more-->
+<blockquote>
+<p>I am not explicitly talking about functional programming in this article although any familiar with it will see it's influences. Even if you do not embrace FP, the concepts from it that I mention here can be applied to the benefit of your codebase.</p>
+</blockquote>
+<p>As an example we are looking at a real life project where we are allocating monetary amounts to sales or purchases based on agreements we have with suppliers.
+Let's start with a deeper look at the example that was used in the previous post:</p>
+<p><img src="/img/posts/2018/functional-structure.jpg" alt="Allocation functional structure" /></p>
+<p>This was a very simplified view of the components involved for calculating the amounts to be allocated to an agreement due to sales or inbound orders. It also still shows the structural components involved. As an exercise I mapped out the calls that are made while completing a use-cae. This style is borrowed from Simon Brown's <a href="https://c4model.com">C4 Model</a> but with a focus on function rather than structure.</p>
+<p><img src="/img/posts/2018/functional-model.jpg" alt="Allocation functional structure" /></p>
+<p>And here is the top the entry point for this use-case.</p>
+<pre><code class="language-csharp">return await TryGetAgreement(agreementId)
+            .Bind(agreement =&gt; 
+                    _agreementSupportedValidator.IsSupported(agreement).ToAsync())
+            .Bind(supportedAgreement =&gt; 
+                    TryCreateAgreementWithHistory(supportedAgreement).ToAsync())
+            .Bind(agreementWithHistory =&gt; 
+                    AllocationPathfinder(agreementWithHistory).ToAsync())
+            .Map(allocationResult =&gt; 
+                    AllocationsFilter.Filter(allocationResult))
+            .Bind(newAllocationResult =&gt; 
+                    TryStoreAllocations(newAllocationResult).ToAsync())
+            .Try();
+</code></pre>
+<p>Although I am the first to admit that this style is not too pretty in C#, once you get used to the <a href="https://github.com/louthy/language-ext">Functional Language Extensions</a> like <code>Bind</code>, <code>Map</code>, and <code>Try</code>, it really reads like what it does at this level of abstraction.</p>
+<p>So why would we want to write code like this?</p>
+<h2>High level description of process</h2>
+<p>When exploring a codebase it is always nice to find the entry point to a feature that describes what happens at a single abstraction level. Too often each step is wrapped in some infected factory or manager that conveys very little intent and quickly become a class quagmire.</p>
+<h2>Maps well to Event Storming</h2>
+<p><a href="https://www.eventstorming.com/">Event Storming</a> is becoming increasingly more popular as a means of learning a domain. By it's very nature Event Storming is a time based rather than a state based model and it can be quite difficult</p>
+<p><img src="/img/posts/2018/es-legend.jpg" alt="Event Storming legend" /></p>
+<h2>Focus on doing</h2>
+<p>Following on from the previous point but true of every level of the codebase, bringing the functional process forward into plain view is simpler when focusing on what is being done, rather than on the doer. we now move from modeling stateful doers to modeling the state between transformations over time. This is way more inline with how the business thinks in terms of getting work done.</p>
+<h2>Testability (unit tests)</h2>
+<p>If you are able to constrain external IO to the beginning and end of your flows you will have simple input/output functions in between. This sort of code is a lot more testable than those that have many dependencies. You can now concentrate on just testing the output from a certain input without worrying about injecting mocked dependencies.</p>
+<h2>Composability</h2>
+<p>Often in business we have branching flows. Too often this results in bad abstractions that try to handle every branch, even those not yet added by the business. A far more maintainable way to handle these is to reuse that which is common and compose it with specific implementations when things branch. This usually results in cleaner code that is far more future proof than using inheritance.</p>
+<h2>Conclusion</h2>
+<p>In this post we went into a little more detail of what code may look like if we started modeling the flow of events throw time even within small the use-cases. We looked briefly at what this could look like and reasons it might be worth trying. The keys to implementing this well is to;</p>
+<ol>
+<li>Chain steps at a single abstraction level that make sense, allowing developers to dive only to the depth needed to understand what is needed</li>
+<li>Instead of trying to come up with an abstraction that captures every state, model the states between transitions</li>
+<li>Capture the domain language in both the states and the functions that transition from state to state</li>
+<li>Push dependencies to the outside to increase testability and how easy it is to reason about the system</li>
+</ol>
+<p>If you are interested in really drilling into this and learn functional programming a highly recommend <a href="https://pragprog.com/book/swdddf/domain-modeling-made-functional">Scott Wlaschin's Domain Modeling made Functional</a>.</p>
+<p>What do you think? If you have any ideas please leave a comment or reach out on Twitter <a href="https://twitter.com/DevonBurriss">@DevonBurriss</a>. You also may be interested in my <a href="/functional-structural-impedance-mismatch">previous article on the differences between structural and functional modeling</a> and my <a href="/managing-code-complexity">tips for managing code complexity</a>.</p>
+<h2>Resources</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Function_model">Function model</a></li>
+</ol>
 
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/functional-structural-impedance-mismatch/">The functional-structural impedance mismatch</a></li>
+                                                <li><a href="/ddd-glossary/">Domain-Driven Design Glossary</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/functional-structural-impedance-mismatch/" data-toggle="tooltip"    data-placement="top" title="The functional-structural impedance mismatch">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -355,7 +313,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/agile">Agile</a>
 
@@ -377,8 +335,8 @@
 
     <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -677,24 +635,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="http://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="http://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>
