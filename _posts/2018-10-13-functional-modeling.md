@@ -10,7 +10,7 @@ tags: [DDD,OOP,Functional Modeling,Architecture, Modeling, Temporal Modeling]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
-social-img: "/img/posts/2018/functional-model-500.jpg"
+social-img: "img/posts/2018/functional-model-500.jpg"
 published: true
 ---
 
