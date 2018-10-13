@@ -10,7 +10,7 @@ tags: [DDD,OOP,Functional Modeling,Architecture, Modeling, Temporal Modeling]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
-social-img: "img/posts/2018/bulb-500.jpg"
+social-img: "/img/posts/2018/bulb-500.jpg"
 published: true
 ---
 When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of maintaining a system, for to change a system you must first understand it.

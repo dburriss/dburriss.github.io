@@ -10,7 +10,7 @@ tags: [General, Morality, Science]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
-social-img: "img/posts/2017/path-split.jpg"
+social-img: "/img/posts/2017/path-split.jpg"
 published: true
 ---
 

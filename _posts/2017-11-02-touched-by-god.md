@@ -10,7 +10,7 @@ tags: [General, Meditation, Mindfulness, Science]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/star-watch-bg.jpg"
-social-img: "img/posts/2017/touched-by-god-flame.jpg"
+social-img: "/img/posts/2017/touched-by-god-flame.jpg"
 published: true
 ---
 

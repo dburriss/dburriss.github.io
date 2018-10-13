@@ -10,7 +10,7 @@ tags: [Functional, OOP, F#]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stairwell-bg.jpg"
-social-img: "img/posts/2017/apple.jpg"
+social-img: "/img/posts/2017/apple.jpg"
 published: true
 ---
 

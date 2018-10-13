@@ -10,7 +10,7 @@ tags: [Testing,ATDD,BDD,TDD]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/cottage-bg.jpg"
-social-img: "img/posts/2018/forest-girl-500.jpg"
+social-img: "/img/posts/2018/forest-girl-500.jpg"
 published: true
 ---
 
