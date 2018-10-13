@@ -47,7 +47,7 @@ I think the resulting structure of the important classes are quite standard. I a
 
 ## A functional structure
 
-So the team agreed we need to try improve the structure of the existing code. Over the next couple weeks the system was refactored structurally to look like this:
+So the team agreed that we need to try improve the structure of the existing code. Over the next couple weeks the system was refactored structurally to look like this:
 
 <img src="../img/posts/2018/functional-process.jpg" alt="Fire" class="img-rounded pull-left" width="510" style="margin-right: 1em;">
 <img src="../img/posts/2018/functional-structure.jpg" alt="Fire" class="img-rounded pull-left" width="510" style="margin-right: 1em;">
