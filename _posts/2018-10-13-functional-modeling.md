@@ -24,7 +24,7 @@ Let's start with a deeper look at the example that was used in the previous post
 
 ![Allocation functional structure](/img/posts/2018/functional-structure.jpg)
 
-This was a very simplified view of the components involved for calculating the amounts to be allocated to an agreement due to sales or inbound orders. It also still shows the structural components involved. As an exercise I mapped out the calls that are made while completing a use-cae. This style is borrowed from Simon Brown's [C4 Model](https://c4model.com) but with a focus on function rather than structure.
+This was a very simplified view of the components involved for calculating the amounts to be allocated to an agreement due to sales or inbound orders. It also still shows the structural components involved. As an exercise I mapped out the calls that are made while completing a use-case. This style is borrowed from Simon Brown's [C4 Model](https://c4model.com) but with a focus on function rather than structure.
 
 ![Allocation functional structure](/img/posts/2018/functional-model.jpg)
 
@@ -73,7 +73,7 @@ Often in business we have branching flows. Too often this results in bad abstrac
 
 ## Conclusion
 
-In this post we went into a little more detail of what code may look like if we started modeling the flow of events throw time even within small the use-cases. We looked briefly at what this could look like and reasons it might be worth trying. The keys to implementing this well is to;
+In this post we went into a little more detail of what code may look like if we started modeling the flow of events through time even within small the use-cases. We looked briefly at what this could look like and reasons it might be worth trying. The keys to implementing this well is to;
 
 1. Chain steps at a single abstraction level that make sense, allowing developers to dive only to the depth needed to understand what is needed
 1. Instead of trying to come up with an abstraction that captures every state, model the states between transitions
