@@ -204,7 +204,7 @@
 <p>As an example we are looking at a real life project where we are allocating monetary amounts to sales or purchases based on agreements we have with suppliers.
 Let's start with a deeper look at the example that was used in the previous post:</p>
 <p><img src="/img/posts/2018/functional-structure.jpg" alt="Allocation functional structure" /></p>
-<p>This was a very simplified view of the components involved for calculating the amounts to be allocated to an agreement due to sales or inbound orders. It also still shows the structural components involved. As an exercise I mapped out the calls that are made while completing a use-cae. This style is borrowed from Simon Brown's <a href="https://c4model.com">C4 Model</a> but with a focus on function rather than structure.</p>
+<p>This was a very simplified view of the components involved for calculating the amounts to be allocated to an agreement due to sales or inbound orders. It also still shows the structural components involved. As an exercise I mapped out the calls that are made while completing a use-case. This style is borrowed from Simon Brown's <a href="https://c4model.com">C4 Model</a> but with a focus on function rather than structure.</p>
 <p><img src="/img/posts/2018/functional-model.jpg" alt="Allocation functional structure" /></p>
 <p>And here is the top the entry point for this use-case.</p>
 <pre><code class="language-csharp">return await TryGetAgreement(agreementId)
@@ -234,7 +234,7 @@ Let's start with a deeper look at the example that was used in the previous post
 <h2>Composability</h2>
 <p>Often in business we have branching flows. Too often this results in bad abstractions that try to handle every branch, even those not yet added by the business. A far more maintainable way to handle these is to reuse that which is common and compose it with specific implementations when things branch. This usually results in cleaner code that is far more future proof than using inheritance.</p>
 <h2>Conclusion</h2>
-<p>In this post we went into a little more detail of what code may look like if we started modeling the flow of events throw time even within small the use-cases. We looked briefly at what this could look like and reasons it might be worth trying. The keys to implementing this well is to;</p>
+<p>In this post we went into a little more detail of what code may look like if we started modeling the flow of events through time even within small the use-cases. We looked briefly at what this could look like and reasons it might be worth trying. The keys to implementing this well is to;</p>
 <ol>
 <li>Chain steps at a single abstraction level that make sense, allowing developers to dive only to the depth needed to understand what is needed</li>
 <li>Instead of trying to come up with an abstraction that captures every state, model the states between transitions</li>

@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-10-13T21:02:44.1877033+00:00</updated>
+  <updated>2018-10-14T15:42:24.819772+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -28,7 +28,7 @@
 &lt;p&gt;As an example we are looking at a real life project where we are allocating monetary amounts to sales or purchases based on agreements we have with suppliers.
 Let&apos;s start with a deeper look at the example that was used in the previous post:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2018/functional-structure.jpg&quot; alt=&quot;Allocation functional structure&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;This was a very simplified view of the components involved for calculating the amounts to be allocated to an agreement due to sales or inbound orders. It also still shows the structural components involved. As an exercise I mapped out the calls that are made while completing a use-cae. This style is borrowed from Simon Brown&apos;s &lt;a href=&quot;https://c4model.com&quot;&gt;C4 Model&lt;/a&gt; but with a focus on function rather than structure.&lt;/p&gt;
+&lt;p&gt;This was a very simplified view of the components involved for calculating the amounts to be allocated to an agreement due to sales or inbound orders. It also still shows the structural components involved. As an exercise I mapped out the calls that are made while completing a use-case. This style is borrowed from Simon Brown&apos;s &lt;a href=&quot;https://c4model.com&quot;&gt;C4 Model&lt;/a&gt; but with a focus on function rather than structure.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2018/functional-model.jpg&quot; alt=&quot;Allocation functional structure&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;And here is the top the entry point for this use-case.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;return await TryGetAgreement(agreementId)
@@ -58,7 +58,7 @@ Let&apos;s start with a deeper look at the example that was used in the previous
 &lt;h2&gt;Composability&lt;/h2&gt;
 &lt;p&gt;Often in business we have branching flows. Too often this results in bad abstractions that try to handle every branch, even those not yet added by the business. A far more maintainable way to handle these is to reuse that which is common and compose it with specific implementations when things branch. This usually results in cleaner code that is far more future proof than using inheritance.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;In this post we went into a little more detail of what code may look like if we started modeling the flow of events throw time even within small the use-cases. We looked briefly at what this could look like and reasons it might be worth trying. The keys to implementing this well is to;&lt;/p&gt;
+&lt;p&gt;In this post we went into a little more detail of what code may look like if we started modeling the flow of events through time even within small the use-cases. We looked briefly at what this could look like and reasons it might be worth trying. The keys to implementing this well is to;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Chain steps at a single abstraction level that make sense, allowing developers to dive only to the depth needed to understand what is needed&lt;/li&gt;
 &lt;li&gt;Instead of trying to come up with an abstraction that captures every state, model the states between transitions&lt;/li&gt;
