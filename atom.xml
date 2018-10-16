@@ -3,13 +3,92 @@
   <title>Devon Burriss' Blog</title>
   <link href="http://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-10-14T15:42:24.819772+00:00</updated>
+  <updated>2018-10-16T06:04:43.5658853+00:00</updated>
   <id>http://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>http://devonburriss.me/up-and-running-with-paket/</id>
+    <link type="text/html" rel="alternate" href="http://devonburriss.me/up-and-running-with-paket/"/>
+    <title>Up and running with PAKET</title>
+    <updated>2018-10-16T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>http://devonburriss.me/up-and-running-with-paket/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://fsprojects.github.io/Paket/&quot;&gt;Paket&lt;/a&gt; is an awesome dependency manager for .NET. Comparing it to Nuget is both the easiest way to explain the basics of it and also a massive disservice to Paket. In this post I want to share some tips to make working with Paket even more awesome.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;The biggest problem with working with Paket has nothing to do with Paket, or it&apos;s differences with Nuget. The biggest issue is the ecosystem is geared toward making using Nuget really easy. The tooling is all geared such that Nuget is embedded in your project whether you like it or not. So let&apos;s see how we can make working with Paket as smooth as possible.&lt;/p&gt;
+&lt;h2&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;If you just want the commands to have Paket up and running in a folder fast:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;# Download Paket exe into .paket folder
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command &amp;quot;iex (Invoke-WebRequest &apos;https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1&apos;)&amp;quot;
+# Most NB this creates &apos;paket.dependencies&apos; file
+.\.paket\paket.exe init
+# At this point add some lines to &apos;paket.dependencies&apos;. Downloads dependencies.
+.\.paket\paket.exe install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Install fast&lt;/h2&gt;
+&lt;p&gt;So as I mentioned, Nuget is there by default. Paket is not. You can &lt;a href=&quot;https://fsprojects.github.io/Paket/getting-started.html#Downloading-Paket-s-Bootstrapper&quot;&gt;install Paket manually&lt;/a&gt; but I wanted to provide another option. Let&apos;s create a Powershell script to install Paket with a single line.&lt;/p&gt;
+&lt;h3&gt;One liner&lt;/h3&gt;
+&lt;p&gt;To work with Paket you need the binary available. Usually this is in a folder named &lt;em&gt;.paket&lt;/em&gt; in the root of your solution. I have created &lt;a href=&quot;https://gist.github.com/dburriss/b4075863873b5871d34e32ab1ae42baa&quot;&gt;a Gist file&lt;/a&gt; that you can download and execute with a single line that will do just that.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;PowerShell -NoProfile -ExecutionPolicy Bypass -Command &amp;quot;iex (Invoke-WebRequest &apos;https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1&apos;)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Part of the family&lt;/h3&gt;
+&lt;p&gt;If you find yourself needing to setup Paket often as can happen if you are using F# fsx scripting files often, you may want to create an easier to remember command. The easiest way to do this is to add a function call to your Powershell profile.&lt;/p&gt;
+&lt;p&gt;Navigate to &lt;em&gt;&amp;quot;C:\Users\ &amp;lt; your username &amp;gt;\Documents\WindowsPowerShell&amp;quot;&lt;/em&gt; and add the following function.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;function New-Paket {
+    New-Item -ItemType directory -Path &amp;quot;.paket&amp;quot;
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    $tag = (Invoke-WebRequest -Uri https://api.github.com/repos/fsprojects/Paket/releases | ConvertFrom-Json)[0].tag_name
+    $uri = &amp;quot; https://github.com/fsprojects/Paket/releases/download/&amp;quot; + $tag + &amp;quot;/paket.bootstrapper.exe&amp;quot;
+    Invoke-WebRequest $uri  -OutFile .paket/paket.exe
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can reload your profile to make the command available in an already open console with &lt;code&gt;&amp;amp; $profile&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This will allow you to install paket with a simple &lt;code&gt;New-Paket&lt;/code&gt; Powershell command.&lt;/p&gt;
+&lt;h2&gt;Adding dependencies&lt;/h2&gt;
+&lt;p&gt;Once you have Paket binary installed you can initialize by typing &lt;code&gt;.\.paket\paket.exe init&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This creates a &lt;em&gt;paket.dependencies&lt;/em&gt; file. This is where you place all the dependencies your solution uses. As an example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;source https://www.nuget.org/api/v2
+nuget NETStandard.Library
+nuget canopy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To download the referenced packages execute &lt;code&gt;.\.paket\paket.exe install&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: a &lt;em&gt;paket.lock&lt;/em&gt; file is generated to ensure you get the same version every time. This should be committed to source control.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At this point you have enough to work with Paket when using it with FSX script files.&lt;/p&gt;
+&lt;p&gt;You can reference them like so in your fsx files:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;#r &amp;quot;packages/Selenium.WebDriver/lib/netstandard2.0/WebDriver.dll&amp;quot;
+#r &amp;quot;packages/canopy/lib/netstandard2.0/canopy.dll&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Check out the &lt;a href=&quot;https://fsprojects.github.io/Paket/reference-from-repl.html&quot;&gt;Paket FSI documentation&lt;/a&gt; for an alternative way to get going in a script file.&lt;/p&gt;
+&lt;h2&gt;Going further&lt;/h2&gt;
+&lt;p&gt;When using Paket with projects (csproj/fsproj) there are a few more things to know. Most important is that in each project folder you need a &lt;em&gt;paket.references&lt;/em&gt; file. This describes which dependencies from the &lt;em&gt;paket.dependencies&lt;/em&gt; file it are used in any given project.&lt;/p&gt;
+&lt;p&gt;Something important to note here is that the &lt;em&gt;csproj/fsproj&lt;/em&gt; files need to reference &lt;em&gt;.paket/paket.targets&lt;/em&gt;. This usually looks something like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;Import Project=&amp;quot;..\..\.paket\Paket.Restore.targets&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And the project file now no longer needs to reference nuget packages.&lt;/p&gt;
+&lt;p&gt;If you have an existing project you want to convert from Nuget to Paket there is a handy command for just that &lt;code&gt;.\.paket\paket.exe convert-from-nuget&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you want more details on how Paket works I recommend &lt;a href=&quot;https://cockneycoder.wordpress.com/2017/08/07/getting-started-with-paket-part-1/&quot;&gt;Isaac&apos;s introduction to Paket&lt;/a&gt; and of course the &lt;a href=&quot;https://fsprojects.github.io/Paket/&quot;&gt;Paket documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Paket can do more than pull in Nuget packages. It can pull files from disk, git, and entire repositories.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Paket is an awesome replacement for Nuget and in this article we looked at how you can get up and running fast as well as make sure it is as easy as possible to get Paket quickly every time you need it.&lt;/p&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Header image &lt;a href=&quot;https://unsplash.com/@vtrsnts&quot;&gt;Vitor Santos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Social image &lt;a href=&quot;https://unsplash.com/@moonshinechild&quot;&gt;Kira auf der Heide&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>http://devonburriss.me/functional-modeling/</id>

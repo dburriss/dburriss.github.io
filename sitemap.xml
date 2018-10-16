@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>http://devonburriss.me/up-and-running-with-paket/</loc>
+    <lastmod>2018-10-16T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>http://devonburriss.me/functional-modeling/</loc>
     <lastmod>2018-10-13T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -775,6 +782,10 @@
 	
   
 	
+  
+	
+  
+	
 	<url>
 		<loc>http://devonburriss.me//category/agile/index.html</loc>
 		<changefreq>daily</changefreq>
@@ -905,6 +916,14 @@
 	
 	<url>
 		<loc>http://devonburriss.me//tag/bdd/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//tag/csharp/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
@@ -1096,6 +1115,14 @@
   
 	
 	<url>
+		<loc>http://devonburriss.me//tag/nuget/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
 		<loc>http://devonburriss.me//tag/oop/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
@@ -1105,6 +1132,14 @@
 	
 	<url>
 		<loc>http://devonburriss.me//tag/osx/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>http://devonburriss.me//tag/paket/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>

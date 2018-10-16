@@ -6,8 +6,17 @@
     <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sun, 14 Oct 2018 15:42:24 +00:00</pubDate>
-    <lastBuildDate>Sun, 14 Oct 2018 15:42:24 +00:00</lastBuildDate>
+    <pubDate>Tue, 16 Oct 2018 06:04:43 +00:00</pubDate>
+    <lastBuildDate>Tue, 16 Oct 2018 06:04:43 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Up and running with PAKET</title>
+      <link>http://devonburriss.me/up-and-running-with-paket/</link>
+      <pubDate>Tue, 16 Oct 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>http://devonburriss.me/up-and-running-with-paket/</guid>
+      <description>Instructions on getting up and running fast with Paket dependency manager</description>
+    </item>
     
     <item>
       <title>Functional modeling</title>

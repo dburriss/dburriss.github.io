@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+    <title>Up and running with PAKET</title>
+    <meta name="description" content="Instructions on getting up and running fast with Paket dependency manager">
+    <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="http://devonburriss.me/up-and-running-with-paket/">
+    
+    <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon16.png" sizes="16x16">  
+    <link rel="icon" type="image/png" href="http://devonburriss.me/img/favicon32.png" sizes="32x32">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Up and running with PAKET">
+    <meta itemprop="description" content="Instructions on getting up and running fast with Paket dependency manager">
+    <meta itemprop="image" content="http://devonburriss.me/img/posts/2018/package-500.jpg">
+    
+    <meta itemprop="datePublished" content="10/16/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="10/16/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Up and running with PAKET - The fastest ways to get going with PAKET dependency manager" />
+    <meta itemprop="mainEntityOfPage" content="http://devonburriss.me/up-and-running-with-paket/" />
+    <meta name="headline" content="Up and running with PAKET - The fastest ways to get going with PAKET dependency manager" />
+
+    
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary_large_image">
+    <meta name="twitter:site" content="@DevonBurriss">
+    <meta name="twitter:title" content="Up and running with PAKET">
+    <meta name="twitter:description" content="Instructions on getting up and running fast with Paket dependency manager">
+    <meta name="twitter:creator" content="@DevonBurriss">
+    <meta name="twitter:image" content="http://devonburriss.me/img/posts/2018/package-500.jpg">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Up and running with PAKET" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://devonburriss.me/up-and-running-with-paket/" />
+    <meta property="og:image" content="http://devonburriss.me/img/posts/2018/package-500.jpg" />
+    <meta property="og:description" content="Instructions on getting up and running fast with Paket dependency manager" />
+    <meta property="og:site_name" content="Devon Burriss' Blog" /> 
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    
+
+    <!-- Code Highlight -->
+    <link rel="stylesheet" charset="UTF-8" href="/css/highlight/atom-one-light.css">
+    
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Devon Burriss' Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/recommended-reading.html">Recommended Reading</a>
+                </li>
+                <!--
+				
+                <li>
+                    <a href="/atom.xml">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/index.html">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/recommended-reading.html">Recommended Reading</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/rss.xml">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/sitemap.xml">this is a post</a>
+                </li>
+				
+                -->
+                <li>
+                    <a href="/rss.xml">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-rss fa-stack-1x"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('http://devonburriss.me/img/backgrounds/stuff-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Up and running with PAKET</h1>
+                        
+                        <h2 class="subheading">The fastest ways to get going with PAKET dependency manager</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 16, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/paket" class="label label-default">Paket</a>
+                            
+                                <a href="/tag/nuget" class="label label-default">Nuget</a>
+                            
+                                <a href="/tag/powershell" class="label label-default">Powershell</a>
+                            
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
+                                <a href="/tag/csharp" class="label label-default">C#</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
+
+				<p><a href="https://fsprojects.github.io/Paket/">Paket</a> is an awesome dependency manager for .NET. Comparing it to Nuget is both the easiest way to explain the basics of it and also a massive disservice to Paket. In this post I want to share some tips to make working with Paket even more awesome.</p>
+<!--more-->
+<p>The biggest problem with working with Paket has nothing to do with Paket, or it's differences with Nuget. The biggest issue is the ecosystem is geared toward making using Nuget really easy. The tooling is all geared such that Nuget is embedded in your project whether you like it or not. So let's see how we can make working with Paket as smooth as possible.</p>
+<h2>TL;DR</h2>
+<p>If you just want the commands to have Paket up and running in a folder fast:</p>
+<pre><code class="language-powershell"># Download Paket exe into .paket folder
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command &quot;iex (Invoke-WebRequest 'https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1')&quot;
+# Most NB this creates 'paket.dependencies' file
+.\.paket\paket.exe init
+# At this point add some lines to 'paket.dependencies'. Downloads dependencies.
+.\.paket\paket.exe install
+</code></pre>
+<h2>Install fast</h2>
+<p>So as I mentioned, Nuget is there by default. Paket is not. You can <a href="https://fsprojects.github.io/Paket/getting-started.html#Downloading-Paket-s-Bootstrapper">install Paket manually</a> but I wanted to provide another option. Let's create a Powershell script to install Paket with a single line.</p>
+<h3>One liner</h3>
+<p>To work with Paket you need the binary available. Usually this is in a folder named <em>.paket</em> in the root of your solution. I have created <a href="https://gist.github.com/dburriss/b4075863873b5871d34e32ab1ae42baa">a Gist file</a> that you can download and execute with a single line that will do just that.</p>
+<pre><code class="language-powershell">PowerShell -NoProfile -ExecutionPolicy Bypass -Command &quot;iex (Invoke-WebRequest 'https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1')&quot;
+</code></pre>
+<h3>Part of the family</h3>
+<p>If you find yourself needing to setup Paket often as can happen if you are using F# fsx scripting files often, you may want to create an easier to remember command. The easiest way to do this is to add a function call to your Powershell profile.</p>
+<p>Navigate to <em>&quot;C:\Users\ &lt; your username &gt;\Documents\WindowsPowerShell&quot;</em> and add the following function.</p>
+<pre><code class="language-powershell">function New-Paket {
+    New-Item -ItemType directory -Path &quot;.paket&quot;
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    $tag = (Invoke-WebRequest -Uri https://api.github.com/repos/fsprojects/Paket/releases | ConvertFrom-Json)[0].tag_name
+    $uri = &quot; https://github.com/fsprojects/Paket/releases/download/&quot; + $tag + &quot;/paket.bootstrapper.exe&quot;
+    Invoke-WebRequest $uri  -OutFile .paket/paket.exe
+}
+</code></pre>
+<blockquote>
+<p>You can reload your profile to make the command available in an already open console with <code>&amp; $profile</code></p>
+</blockquote>
+<p>This will allow you to install paket with a simple <code>New-Paket</code> Powershell command.</p>
+<h2>Adding dependencies</h2>
+<p>Once you have Paket binary installed you can initialize by typing <code>.\.paket\paket.exe init</code>.</p>
+<p>This creates a <em>paket.dependencies</em> file. This is where you place all the dependencies your solution uses. As an example:</p>
+<pre><code class="language-yaml">source https://www.nuget.org/api/v2
+nuget NETStandard.Library
+nuget canopy
+</code></pre>
+<p>To download the referenced packages execute <code>.\.paket\paket.exe install</code>.</p>
+<blockquote>
+<p>Note: a <em>paket.lock</em> file is generated to ensure you get the same version every time. This should be committed to source control.</p>
+</blockquote>
+<p>At this point you have enough to work with Paket when using it with FSX script files.</p>
+<p>You can reference them like so in your fsx files:</p>
+<pre><code class="language-fsharp">#r &quot;packages/Selenium.WebDriver/lib/netstandard2.0/WebDriver.dll&quot;
+#r &quot;packages/canopy/lib/netstandard2.0/canopy.dll&quot;
+</code></pre>
+<p>Check out the <a href="https://fsprojects.github.io/Paket/reference-from-repl.html">Paket FSI documentation</a> for an alternative way to get going in a script file.</p>
+<h2>Going further</h2>
+<p>When using Paket with projects (csproj/fsproj) there are a few more things to know. Most important is that in each project folder you need a <em>paket.references</em> file. This describes which dependencies from the <em>paket.dependencies</em> file it are used in any given project.</p>
+<p>Something important to note here is that the <em>csproj/fsproj</em> files need to reference <em>.paket/paket.targets</em>. This usually looks something like this:</p>
+<pre><code class="language-xml">&lt;Import Project=&quot;..\..\.paket\Paket.Restore.targets&quot; /&gt;
+</code></pre>
+<p>And the project file now no longer needs to reference nuget packages.</p>
+<p>If you have an existing project you want to convert from Nuget to Paket there is a handy command for just that <code>.\.paket\paket.exe convert-from-nuget</code>.</p>
+<p>If you want more details on how Paket works I recommend <a href="https://cockneycoder.wordpress.com/2017/08/07/getting-started-with-paket-part-1/">Isaac's introduction to Paket</a> and of course the <a href="https://fsprojects.github.io/Paket/">Paket documentation</a>.</p>
+<blockquote>
+<p>Paket can do more than pull in Nuget packages. It can pull files from disk, git, and entire repositories.</p>
+</blockquote>
+<h2>Conclusion</h2>
+<p>Paket is an awesome replacement for Nuget and in this article we looked at how you can get up and running fast as well as make sure it is as easy as possible to get Paket quickly every time you need it.</p>
+<h2>Credits</h2>
+<ol>
+<li>Header image <a href="https://unsplash.com/@vtrsnts">Vitor Santos</a></li>
+<li>Social image <a href="https://unsplash.com/@moonshinechild">Kira auf der Heide</a></li>
+</ol>
+
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/functional-modeling/" data-toggle="tooltip"    data-placement="top" title="Functional modeling">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
+                    <li>
+                        <a href="/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/DevonBurriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dburriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+
+    <a class="badge badge-info" href="/category/agile">Agile</a>
+
+    <a class="badge badge-info" href="/category/devops">DevOps</a>
+
+    <a class="badge badge-info" href="/category/leadership">Leadership</a>
+
+    <a class="badge badge-info" href="/category/life">Life</a>
+
+    <a class="badge badge-info" href="/category/modeling">Modeling</a>
+
+    <a class="badge badge-info" href="/category/programming">Programming</a>
+
+    <a class="badge badge-info" href="/category/project-management">Project Management</a>
+
+    <a class="badge badge-info" href="/category/software-development">Software Development</a>
+
+    <a class="badge badge-info" href="/category/tools">Tools</a>
+
+    <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
+
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+<div class="well">
+
+
+<a class="badge badge-info" href="/tag/agile/" style="font-size: 80%">
+    <span class="site-tag">                
+        Agile
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/appveyor/" style="font-size: 80%">
+    <span class="site-tag">                
+        AppVeyor
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/architecture/" style="font-size: 80%">
+    <span class="site-tag">                
+        Architecture
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/asp-net-5/" style="font-size: 80%">
+    <span class="site-tag">                
+        ASP.NET 5
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/atdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        ATDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/azure/" style="font-size: 80%">
+    <span class="site-tag">                
+        Azure
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/bdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        BDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/csharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        C#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/cake/" style="font-size: 80%">
+    <span class="site-tag">                
+        Cake
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/canopy/" style="font-size: 80%">
+    <span class="site-tag">                
+        Canopy
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ci/" style="font-size: 80%">
+    <span class="site-tag">                
+        CI
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/clean-code/" style="font-size: 80%">
+    <span class="site-tag">                
+        Clean Code
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ddd/" style="font-size: 80%">
+    <span class="site-tag">                
+        DDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/design-patterns/" style="font-size: 80%">
+    <span class="site-tag">                
+        Design Patterns
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/dnx/" style="font-size: 80%">
+    <span class="site-tag">                
+        DNX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/fsharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        F#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/functional/" style="font-size: 80%">
+    <span class="site-tag">                
+        Functional
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/functional-modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Functional Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/general/" style="font-size: 80%">
+    <span class="site-tag">                
+        General
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/git/" style="font-size: 80%">
+    <span class="site-tag">                
+        Git
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/github-pages/" style="font-size: 80%">
+    <span class="site-tag">                
+        Github Pages
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/hyper-v/" style="font-size: 80%">
+    <span class="site-tag">                
+        Hyper V
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/java/" style="font-size: 80%">
+    <span class="site-tag">                
+        Java
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/learning-csharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        Learning c#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/life/" style="font-size: 80%">
+    <span class="site-tag">                
+        Life
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/maven/" style="font-size: 80%">
+    <span class="site-tag">                
+        Maven
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/meditation/" style="font-size: 80%">
+    <span class="site-tag">                
+        Meditation
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/mindfulness/" style="font-size: 80%">
+    <span class="site-tag">                
+        Mindfulness
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/morality/" style="font-size: 80%">
+    <span class="site-tag">                
+        Morality
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/mvc-6/" style="font-size: 80%">
+    <span class="site-tag">                
+        MVC 6
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/nuget/" style="font-size: 80%">
+    <span class="site-tag">                
+        Nuget
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/oop/" style="font-size: 80%">
+    <span class="site-tag">                
+        OOP
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/osx/" style="font-size: 80%">
+    <span class="site-tag">                
+        OSX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/paket/" style="font-size: 80%">
+    <span class="site-tag">                
+        Paket
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/pascal/" style="font-size: 80%">
+    <span class="site-tag">                
+        Pascal
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/powershell/" style="font-size: 80%">
+    <span class="site-tag">                
+        Powershell
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/pretzel/" style="font-size: 80%">
+    <span class="site-tag">                
+        Pretzel
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/productivity/" style="font-size: 80%">
+    <span class="site-tag">                
+        Productivity
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/programming/" style="font-size: 80%">
+    <span class="site-tag">                
+        Programming
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/science/" style="font-size: 80%">
+    <span class="site-tag">                
+        Science
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/solid/" style="font-size: 80%">
+    <span class="site-tag">                
+        SOLID
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/tdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        TDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/team-lead/" style="font-size: 80%">
+    <span class="site-tag">                
+        Team Lead
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/temporal-modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Temporal Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/testing/" style="font-size: 80%">
+    <span class="site-tag">                
+        Testing
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/tutorial/" style="font-size: 80%">
+    <span class="site-tag">                
+        Tutorial
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ubuntu/" style="font-size: 80%">
+    <span class="site-tag">                
+        Ubuntu
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/unit-testing/" style="font-size: 80%">
+    <span class="site-tag">                
+        Unit Testing
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/visual-studio/" style="font-size: 80%">
+    <span class="site-tag">                
+        Visual Studio
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/visual-studio-online/" style="font-size: 80%">
+    <span class="site-tag">                
+        Visual Studio Online
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/vs-code/" style="font-size: 80%">
+    <span class="site-tag">                
+        VS Code
+    </span>
+</a>
+
+</div>
+            
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+    
+                    <ul class="list-inline text-center">
+                    <li>
+                        <a href="/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/DevonBurriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dburriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+    
+    <div class="container-fluid">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'devonburriss'; // required: replace example with your forum shortname
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+    <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+        if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+        }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/devonburriss/get_num_replies.js' + query + '"></' + 'script>');
+    })();
+    //]]>
+    </script>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p class="copyright text-muted">Copyright &copy; 
+                <a href="/about.html">Devon Burriss</a> 2018
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+
+    <script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45750611-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+
+</html>
