@@ -81,6 +81,8 @@ let name = "Devon" |> StringBuilder.initWith
 printfn "Name: %s" name
 ```
 
+We use `#load "path/to/script.fsx"` to make it available and then `open NameOfFileWithoutExtension` to import it. So each script file is then treated as a `module`.
+
 Executing it we would see the following:
 
 > &gt; fsi .\samples\print-name.fsx  
@@ -117,6 +119,8 @@ Executing it we would see the following:
 
 > &gt; fsi .\samples\print-name.fsx devon burriss developer  
 > &gt; Name: DEVON BURRISS (DEVELOPER)
+
+You could of course also access the arguments as a zero based array `fsi.CommandLineArgs.[0]` or loop through them.
 
 ### Referencing DLLs
 
