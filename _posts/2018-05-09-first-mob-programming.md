@@ -10,7 +10,7 @@ tags: [Agile,General,Productivity]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "/img/backgrounds/silhouette-bg.jpg"
-social-img: "/img/posts/2018/hands-500.jpg"
+social-img: "img/posts/2018/hands-500.jpg"
 published: true
 ---
 Mob programming can be a great way of sharing knowledge, building ownership, as well as a way of getting a story done with everyone checking it. Although this can be slower because of everyone having an opinion, I do strongly believe that it results in a higher quality implementation with a greater chance of being functionally correct and bug free. I thought it would be helpful to share our learnings while completing a fairly complex story using mob programming.

@@ -10,7 +10,7 @@ tags: [General, Life, Team Lead]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dark-bg.jpg"
-social-img: "/img/posts/2017/touched-by-god-flame.jpg"
+social-img: "img/posts/2017/touched-by-god-flame.jpg"
 published: true
 ---
 Software development can be a complicated process as the complexity of systems grow and the number of people involved increases, especially when these things happen quickly. This is when clear direction is important. Equally, if not more important is the experience and maturity of the teams building the software. Their ability to learn and adapt to the challenges that arise from the growing complexity will depend on mindset and the ability to work together. If a whole team can grow to understand the driving forces delivering the right software in the right way, it can be epic. So... STORY TIME!

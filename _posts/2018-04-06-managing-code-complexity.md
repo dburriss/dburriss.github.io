@@ -10,7 +10,7 @@ tags: [Clean Code, DDD, Design Patterns, Functional]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
-social-img: "/img/posts/2018/yarn-500.jpg"
+social-img: "img/posts/2018/yarn-500.jpg"
 published: true
 ---
 

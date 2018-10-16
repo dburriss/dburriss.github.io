@@ -10,7 +10,7 @@ tags: [General, Life, Team Lead]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
-social-img: "/img/posts/2018/lion-500.jpg"
+social-img: "img/posts/2018/lion-500.jpg"
 published: true
 ---
 

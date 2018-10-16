@@ -3,7 +3,7 @@ layout: page
 description: "Mostly just adventures in code."
 paginate: 10
 header-img: "img/backgrounds/explore-bg.jpg"
-social-img: "/img/explore-590.jpg"
+social-img: "img/explore-590.jpg"
 ---
 {% assign featured_shown = false %}
 {% if paginator.page == 1 %}
@@ -27,7 +27,7 @@ social-img: "/img/explore-590.jpg"
             {% endfor %}
         {% endif %}
         {%if post.social-img %}
-            <img src="{{ post.social-img }}" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
+            <img src="{{ post.social-img | prepend: site.baseurl }}" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         {% endif %}
         <p align="justify">{{ post.excerpt }}</p>
         <p class="text-left"><a class="btn btn-primary btn-lg" href="{{ post.url | prepend: site.baseurl }}" role="button">Read more</a></p>
@@ -54,7 +54,7 @@ social-img: "/img/explore-590.jpg"
         {%else%}
             {% assign current_post_social = page.social-img %}
         {% endif %}
-         <img src="{{ current_post_social }}" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+         <img src="{{ current_post_social | prepend: site.baseurl }}" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
 
         <a href="{{ post.url | prepend: site.baseurl }}">
             <h2 class="post-title">            {{ post.title }}
