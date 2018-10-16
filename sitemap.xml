@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>https://devonburriss.me/fsharp-scripting/</loc>
+    <lastmod>2018-10-17T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>https://devonburriss.me/up-and-running-with-paket/</loc>
     <lastmod>2018-10-16T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -786,6 +793,12 @@
 	
   
 	
+  
+	
+  
+	
+  
+	
 	<url>
 		<loc>https://devonburriss.me//category/agile/index.html</loc>
 		<changefreq>daily</changefreq>
@@ -988,6 +1001,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//tag/fsharp/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/fsx/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>

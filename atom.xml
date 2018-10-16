@@ -3,13 +3,119 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-16T18:04:10.4974407+00:00</updated>
+  <updated>2018-10-16T21:34:20.0983934+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/fsharp-scripting/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/fsharp-scripting/"/>
+    <title>F# Scripts</title>
+    <updated>2018-10-17T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/fsharp-scripting/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;Using F# scripts is something I only started doing after dabbling in F# for quite a while. This is unfortunate because they are a really fast and easy way of throwing some code together and thus a really good way to learn F#. This post is for anyone getting started with F# scripting.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Check out the &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/get-started/install-fsharp?tabs=windows&quot;&gt;documentation for installing F#&lt;/a&gt;. The easiest way is to install F# as part of Visual Studio. You may still need to add FSI.exe to your &lt;strong&gt;PATH&lt;/strong&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharp.org/use/windows/&quot;&gt;Instructions for Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharp.org/use/mac/&quot;&gt;Instructions for MacOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharp.org/use/linux/&quot;&gt;Instructions for Linux&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;F# Interactive&lt;/h2&gt;
+&lt;p&gt;FSI allows you to execute F# code in an interactive console. Just type &lt;code&gt;fsi.exe&lt;/code&gt; on Windows or &lt;code&gt;fsharpi&lt;/code&gt; on Linux/Mac.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;&amp;gt; let x = 1;;
+val x : int = 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: Each expression needs to end with &lt;code&gt;;;&lt;/code&gt; in the interactive window.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To get help: &lt;code&gt;#help;;&lt;/code&gt;&lt;br /&gt;
+To quit: &lt;code&gt;#quit;;&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Scripting&lt;/h2&gt;
+&lt;p&gt;So entering code directly into fsi is ok for trying simple things out but what about more complex code. That is where &lt;code&gt;.fsx&lt;/code&gt; files come in.&lt;/p&gt;
+&lt;p&gt;Imagine we have a file called &lt;em&gt;print-name.fsx&lt;/em&gt; with the following content:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let name = &amp;quot;Devon&amp;quot;
+printfn &amp;quot;Name: %s&amp;quot; name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Executing it we would see the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;gt; fsi .\samples\print-name.fsx&lt;br /&gt;
+&amp;gt; Name: Devon&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Including other fsx files&lt;/h3&gt;
+&lt;p&gt;You can load other fsx files into a script. If we have &lt;code&gt;Strings.fsx&lt;/code&gt; containing the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let toUpper (s:string) = s.ToUpper()
+let toLower (s:string) = s.ToLower()
+let replace (oldValue:string) (newValue:string) (s:string) = s.Replace(oldValue,newValue)
+
+module StringBuilder =
+    open System.Text
+    let init() = new StringBuilder()
+    let initWith(s:string) = new StringBuilder(s)
+    let append (s:string) (sb:StringBuilder) = sb.Append(s)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can now use it in our script file like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;#load &amp;quot;Strings.fsx&amp;quot;
+open Strings
+let name = &amp;quot;Devon&amp;quot; |&amp;gt; StringBuilder.initWith
+            |&amp;gt; StringBuilder.append &amp;quot; Burriss&amp;quot;
+            |&amp;gt; string |&amp;gt; toUpper
+printfn &amp;quot;Name: %s&amp;quot; name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Executing it we would see the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;gt; fsi .\samples\print-name.fsx&lt;br /&gt;
+&amp;gt; Name: DEVON BURRISS&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Taking Arguments&lt;/h3&gt;
+&lt;p&gt;It is possible to pass arguments into a script file. They are available in a field &lt;code&gt;fsi.CommandLineArgs&lt;/code&gt;. Let&apos;s change our script one more time to demonstrate the usage. The arguments come through as an array so we pattern match on the number of elements to decide what to print.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: The first element of the array is always the name of the script the arguments are passed into&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;#load &amp;quot;Strings.fsx&amp;quot;
+open Strings
+let stringWithSpace x = x |&amp;gt; string |&amp;gt; (sprintf &amp;quot; %s&amp;quot;)
+let name first = first |&amp;gt; toUpper
+let nameAndLastName first last = first |&amp;gt; StringBuilder.initWith |&amp;gt; StringBuilder.append last |&amp;gt; stringWithSpace |&amp;gt; toUpper
+let nameAndLastNameWithOccupation first last occ = 
+    first |&amp;gt; StringBuilder.initWith 
+    |&amp;gt; StringBuilder.append &amp;quot; &amp;quot; 
+    |&amp;gt; StringBuilder.append last 
+    |&amp;gt; StringBuilder.append (sprintf &amp;quot; (%s)&amp;quot; occ)
+    |&amp;gt; string |&amp;gt; toUpper
+
+match fsi.CommandLineArgs with
+| [|scriptName;|] -&amp;gt; failwith (sprintf &amp;quot;At least a name required for %s&amp;quot; scriptName)
+| [|_;firstName|] -&amp;gt; name firstName |&amp;gt; printfn &amp;quot;Name: %s&amp;quot;
+| [|_;firstName; lastName|] -&amp;gt; nameAndLastName firstName lastName |&amp;gt; printfn &amp;quot;Name: %s&amp;quot;
+| [|_;firstName; lastName; occ|] -&amp;gt; nameAndLastNameWithOccupation firstName lastName occ |&amp;gt; printfn &amp;quot;Name: %s&amp;quot;
+| _ -&amp;gt; failwith (sprintf &amp;quot;Too many arguments %A&amp;quot; (fsi.CommandLineArgs |&amp;gt; Array.tail))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Executing it we would see the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;gt; fsi .\samples\print-name.fsx devon burriss developer&lt;br /&gt;
+&amp;gt; Name: DEVON BURRISS (DEVELOPER)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Referencing DLLs&lt;/h3&gt;
+&lt;p&gt;You can reference DLLs using &lt;code&gt;#r &amp;quot;path/to/file.dll&amp;quot;&lt;/code&gt;. If you want to pull down DLLs from Nuget, check out &lt;a href=&quot;/up-and-running-with-paket&quot;&gt;my article on using Paket dependency manager&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/fsharp-interactive/&quot;&gt;FSI Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://brandewinder.com/2016/02/06/10-fsharp-scripting-tips/&quot;&gt;10 Tips for Productive F# Scripting&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Social Image by &lt;a href=&quot;https://unsplash.com/@0628fromchina&quot;&gt;yifei chen&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/up-and-running-with-paket/</id>

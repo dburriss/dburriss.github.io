@@ -12,47 +12,36 @@
 
 
 
-    
 
 
 
-
-    <title>Honest Arguments</title>
-    <meta name="description" content="Part 1 of Designing clear method signatures">
+    <title>Devon Burriss' Blog</title>
+    <meta name="description" content="Mostly explorations in code">
     <meta name="author" content="Devon Burriss">
-    
-    <link rel="canonical" href="https://devonburriss.me/honest-arguments/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Honest Arguments">
-    <meta itemprop="description" content="Part 1 of Designing clear method signatures">
+    <meta itemprop="name" content="Devon Burriss' Blog">
+    <meta itemprop="description" content="Mostly explorations in code">
     <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
-    
-    <meta itemprop="datePublished" content="3/10/2017 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="3/10/2017 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="Honest Arguments - Part 1 of Designing clear method signatures" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/honest-arguments/" />
-    <meta name="headline" content="Honest Arguments - Part 1 of Designing clear method signatures" />
-
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Honest Arguments">
-    <meta name="twitter:description" content="Part 1 of Designing clear method signatures">
+    <meta name="twitter:title" content="Devon Burriss' Blog">
+    <meta name="twitter:description" content="Mostly explorations in code">
     <meta name="twitter:creator" content="@DevonBurriss">
     <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Honest Arguments" />
+    <meta property="og:title" content="Devon Burriss' Blog" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/honest-arguments/" />
+    <meta property="og:url" content="https://devonburriss.me//tag/fsx/" />
     <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Part 1 of Designing clear method signatures" />
+    <meta property="og:description" content="Mostly explorations in code" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -153,152 +142,155 @@
 </nav>
 
 
-    <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/explore-bg.jpg')">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="frame">
-                        <h1>Honest Arguments</h1>
-                        
-                        <h2 class="subheading">Part 1 of Designing clear method signatures</h2>
-                        
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on March 10, 2017</span>
-                        
-                            <hr />
-                            
-                                <a href="/tag/clean-code" class="label label-default">Clean Code</a>
-                            
-                                <a href="/tag/oop" class="label label-default">OOP</a>
-                            
-                        
-                    <div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Page Header -->
+
+<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 ">
 
-				<p>One of the benefits of statically typed languages is that we can rely on more than the method and parameter names for information on what is expected and what is returned. A well designed method should be about more than naming. Too often we give up on this type safety and expressiveness for the ease of instantiating primitives and <code>string</code>.</p>
-<!--more-->
-<h1>Expressively typed parameters</h1>
-<p>Consider the following 2 tips for message choice. To be fair I chose less than expressive names to demonstrate that even if a developer doesn't pick the best names (which they should of course try to do and should be fixed), the types of the argument provide all the intent needed. The parameter names could be 'l', 'f', and 'e' and a developer could still infer the usage from the types.</p>
-<p><img src="/img/posts/2017/primitive-typed-method.jpg" alt="primitive parameters" />
-<em>Figure 1: Using simple type parameters</em></p>
-<p><img src="/img/posts/2017/expressively-typed-method.jpg" alt="expressive parameters" />
-<em>Figure 2: Using expressive type parameters</em></p>
-<p>So how would we represent something like a name as a type instead of a <code>string</code> but still have it play nice with the capture in a client or storage of an instance in a database?
-The trick is with the <code>implicit</code> or <code>explicit</code> keywords.</p>
-<h2>Lose the primitives (but play nice)</h2>
-<p>For types that are always a direct conversion with no chance of failing, use the <code>implicit</code> keyword.</p>
-<pre><code class="language-csharp">public class FirstNames
-{
-    string Value { get; }
-    public FirstNames(string value) { Value = value; }
+<!-- Main Content -->
+<div class="container-fluid">
+	<div class="row">
+        
+		<div class="col-lg-9">
+			<div>
+    <div class="clearfix">
+        <h1 class="pull-right">&#47;FSX&#47; &nbsp;</h1>
+    </div>
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+      <div class="post-preview ">
+          <a href="/fsharp-scripting/">
+              <h2 class="post-title">            F# Scripts
+              </h2>
+              
+          </a>
+          <p class="post-meta">Posted by Devon Burriss' Blog on October 17, 2018</p>
+          
+              
+                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
+              
+                 <a href="/tag/fsx"><span class="label label-default">FSX</span></a>
+              
+          
+      </div>
+      <hr>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+</div>
+		</div>
 
-    public static implicit operator string(FirstNames c)
-        =&gt; c.Value;
-    public static implicit operator FirstNames(string s)
-        =&gt; new FirstNames(s);
-
-    public override string ToString() =&gt; Value;
-}
-
-//usage
-FirstNames name = &quot;Devon Aragorn&quot;;
-string nameAsString = name;
-</code></pre>
-<p>On the other hand when you start adding a bit of behaviour into your class, there is a chance that the conversion can fail. Take for instance an <code>Email</code> type that has some validation of the email address.</p>
-<pre><code class="language-csharp">public class Email
-{
-    private const string regexPattern = @&quot;\A(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z&quot;;
-    private string Value { get; }
-
-    public Email(string value)
-    {
-        if(!Regex.IsMatch(value, regexPattern, RegexOptions.IgnoreCase))
-        {
-            throw new ArgumentException($&quot;{value} is not a valid email address.&quot;, nameof(value));
-        }
-        Value = value;
-    }
-
-    public static explicit operator string(Email c)
-        =&gt; c.Value;
-    public static explicit operator Email(string s)
-        =&gt; new Email(s);
-
-    public override string ToString() =&gt; Value;
-}
-
-//usage
-Email email = (Email)&quot;test@test.com&quot;;
-string emailAsString = (string)email;
-</code></pre>
-<p>Here we are using the <code>explicit</code> keyword because the constructor can throw an exception if the string is not a valid email address.</p>
-<h3>Pros</h3>
-<p>Let's list some reasons why you would want to do this with simpler types.</p>
-<ul>
-<li>Using <strong>expressive types reveal intent</strong> to consumers (other developers and future you)</li>
-<li><strong>Finding usage</strong> of particular concepts can be done by type rather than searching text</li>
-<li>If doing domain modelling you can now <strong>group behavior and data</strong> to have a descriptive model</li>
-<li>Once assigned to an expressive type they <strong>provide type safety</strong></li>
-<li>Creation of more <strong>targeted extension methods</strong></li>
-</ul>
-<h3>Cons</h3>
-<p>As with most things in programming, #ItDepends. There are some down sides to using types this way...</p>
-<ul>
-<li><strong>More code</strong> to write and maintain</li>
-<li><strong>Serialization</strong> requires a bit more work to do</li>
-<li><strong>ORM mapping</strong> could be more complicated</li>
-<li>Implicit conversion means you lose some type safety</li>
-</ul>
-<p>Let me quickly discuss a few of these cons and how they can be mitigated.</p>
-<h4>More Code</h4>
-<p>Not much to do about the maintainability part. I will say that these are relatively simple and are unlikely to change or have far reaching effects due to dependencies. To address the effort of actually creating these see <a href="/visual-studio-implicit-snippet">Visual Studio Implicit Snippet</a>.</p>
-<h4>Serialization</h4>
-<p>For some help easily serializing these types check out the <a href="https://github.com/dburriss/HonestTypes">Honest Types repository</a>. That package provides a Json.NET Converter like <code>new SimpleJsonConverter&lt;LastName, string&gt;()</code> that can be supplied to the settings when serializing and deserializing.</p>
-<h4>ORM Mapping</h4>
-<p>If you are modelling your domain (like with DDD) which is likely the case if you are using types this way, then you shouldn't be using your domain models for persistence. This tends to tie your domain models to the underlying data model and you will find the schema requirements will start leaking into your domain model. So create models for your data layer and map from them to your domain models in the repository.</p>
-<h2>Recommended Reading</h2>
-<p><a href="http://enterprisecraftsmanship.com/2015/03/07/functional-c-primitive-obsession/">Functional C#: Primitive obsession</a></p>
-
-                <hr />
-                                <section class="related">
-                    <h4>You may be interested in</h4>
-                    <ul>
-                                                <li><a href="/honest-return-types/">Honest Return Types</a></li>
-                                                <li><a href="/better-error-handling/">Better error handling</a></li>
-                                                <li><a href="/maintainable-unit-tests/">3 tips for more maintainable unit tests</a></li>
-                                            </ul>
-                </section>
-                <hr />
-                                
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/visual-studio-implicit-snippet/" data-toggle="tooltip"    data-placement="top" title="Visual Studio Implicit Snippet">&larr; Previous Post</a>
-                    </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/honest-return-types/" data-toggle="tooltip" data-placement="top" title="Honest Return Types">Next Post &rarr;</a>
-                    </li>
-                    
-                </ul>
-
-            </div>
-
-            <div class="col-lg-4 widget-column">
-           
-                                <ul class="list-inline text-center">
+         <div class="col-lg-3 widget-column">
+            
+                            <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -340,7 +332,7 @@ string emailAsString = (string)email;
                 </ul>
 
 
-                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/agile">Agile</a>
 
@@ -362,8 +354,8 @@ string emailAsString = (string)email;
 
     <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
 
-                <hr />
-                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+            <hr />
+            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -692,13 +684,24 @@ string emailAsString = (string)email;
 </a>
 
 </div>
-            
-            </div>
+            <hr />
+            <h3>About me</h3>
+<div>
+    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+        <img class="img-rounded pull-right" src="https://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
+        <meta itemprop="url" content="https://devonburriss.me/img/avatar.jpg">
         </div>
+        <meta itemprop="name" content="Devon Burriss">
     </div>
-</article>
+    <p align="justify">
+        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
+    </p>
+</div>
 
-<hr>
+        </div>
+	</div>
+</div>
     
                     <ul class="list-inline text-center">
                     <li>

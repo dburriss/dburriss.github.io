@@ -16,43 +16,45 @@
 
 
 
+    
 
-    <title>Honest Arguments</title>
-    <meta name="description" content="Part 1 of Designing clear method signatures">
+
+    <title>F# Scripts</title>
+    <meta name="description" content="Start exploring code faster by running F# as a fsx script file">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="https://devonburriss.me/honest-arguments/">
+    <link rel="canonical" href="https://devonburriss.me/fsharp-scripting/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Honest Arguments">
-    <meta itemprop="description" content="Part 1 of Designing clear method signatures">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="F# Scripts">
+    <meta itemprop="description" content="Start exploring code faster by running F# as a fsx script file">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/script-500.jpg">
     
-    <meta itemprop="datePublished" content="3/10/2017 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="3/10/2017 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="Honest Arguments - Part 1 of Designing clear method signatures" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/honest-arguments/" />
-    <meta name="headline" content="Honest Arguments - Part 1 of Designing clear method signatures" />
+    <meta itemprop="datePublished" content="10/17/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="10/17/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="F# Scripts - Exploring running F# from a fsx script file" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/fsharp-scripting/" />
+    <meta name="headline" content="F# Scripts - Exploring running F# from a fsx script file" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Honest Arguments">
-    <meta name="twitter:description" content="Part 1 of Designing clear method signatures">
+    <meta name="twitter:title" content="F# Scripts">
+    <meta name="twitter:description" content="Start exploring code faster by running F# as a fsx script file">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/script-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Honest Arguments" />
+    <meta property="og:title" content="F# Scripts" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/honest-arguments/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Part 1 of Designing clear method signatures" />
+    <meta property="og:url" content="https://devonburriss.me/fsharp-scripting/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/script-500.jpg" />
+    <meta property="og:description" content="Start exploring code faster by running F# as a fsx script file" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -154,23 +156,23 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/explore-bg.jpg')">
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/vents-bg.jpg')">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>Honest Arguments</h1>
+                        <h1>F# Scripts</h1>
                         
-                        <h2 class="subheading">Part 1 of Designing clear method signatures</h2>
+                        <h2 class="subheading">Exploring running F# from a fsx script file</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on March 10, 2017</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 17, 2018</span>
                         
                             <hr />
                             
-                                <a href="/tag/clean-code" class="label label-default">Clean Code</a>
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
                             
-                                <a href="/tag/oop" class="label label-default">OOP</a>
+                                <a href="/tag/fsx" class="label label-default">FSX</a>
                             
                         
                     <div>
@@ -186,111 +188,110 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>One of the benefits of statically typed languages is that we can rely on more than the method and parameter names for information on what is expected and what is returned. A well designed method should be about more than naming. Too often we give up on this type safety and expressiveness for the ease of instantiating primitives and <code>string</code>.</p>
+				<p>Using F# scripts is something I only started doing after dabbling in F# for quite a while. This is unfortunate because they are a really fast and easy way of throwing some code together and thus a really good way to learn F#. This post is for anyone getting started with F# scripting.</p>
 <!--more-->
-<h1>Expressively typed parameters</h1>
-<p>Consider the following 2 tips for message choice. To be fair I chose less than expressive names to demonstrate that even if a developer doesn't pick the best names (which they should of course try to do and should be fixed), the types of the argument provide all the intent needed. The parameter names could be 'l', 'f', and 'e' and a developer could still infer the usage from the types.</p>
-<p><img src="/img/posts/2017/primitive-typed-method.jpg" alt="primitive parameters" />
-<em>Figure 1: Using simple type parameters</em></p>
-<p><img src="/img/posts/2017/expressively-typed-method.jpg" alt="expressive parameters" />
-<em>Figure 2: Using expressive type parameters</em></p>
-<p>So how would we represent something like a name as a type instead of a <code>string</code> but still have it play nice with the capture in a client or storage of an instance in a database?
-The trick is with the <code>implicit</code> or <code>explicit</code> keywords.</p>
-<h2>Lose the primitives (but play nice)</h2>
-<p>For types that are always a direct conversion with no chance of failing, use the <code>implicit</code> keyword.</p>
-<pre><code class="language-csharp">public class FirstNames
-{
-    string Value { get; }
-    public FirstNames(string value) { Value = value; }
-
-    public static implicit operator string(FirstNames c)
-        =&gt; c.Value;
-    public static implicit operator FirstNames(string s)
-        =&gt; new FirstNames(s);
-
-    public override string ToString() =&gt; Value;
-}
-
-//usage
-FirstNames name = &quot;Devon Aragorn&quot;;
-string nameAsString = name;
+<h2>Installation</h2>
+<p>Check out the <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/get-started/install-fsharp?tabs=windows">documentation for installing F#</a>. The easiest way is to install F# as part of Visual Studio. You may still need to add FSI.exe to your <strong>PATH</strong>.</p>
+<ol>
+<li><a href="https://fsharp.org/use/windows/">Instructions for Windows</a></li>
+<li><a href="https://fsharp.org/use/mac/">Instructions for MacOS</a></li>
+<li><a href="https://fsharp.org/use/linux/">Instructions for Linux</a></li>
+</ol>
+<h2>F# Interactive</h2>
+<p>FSI allows you to execute F# code in an interactive console. Just type <code>fsi.exe</code> on Windows or <code>fsharpi</code> on Linux/Mac.</p>
+<pre><code class="language-fsharp">&gt; let x = 1;;
+val x : int = 1
 </code></pre>
-<p>On the other hand when you start adding a bit of behaviour into your class, there is a chance that the conversion can fail. Take for instance an <code>Email</code> type that has some validation of the email address.</p>
-<pre><code class="language-csharp">public class Email
-{
-    private const string regexPattern = @&quot;\A(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z&quot;;
-    private string Value { get; }
-
-    public Email(string value)
-    {
-        if(!Regex.IsMatch(value, regexPattern, RegexOptions.IgnoreCase))
-        {
-            throw new ArgumentException($&quot;{value} is not a valid email address.&quot;, nameof(value));
-        }
-        Value = value;
-    }
-
-    public static explicit operator string(Email c)
-        =&gt; c.Value;
-    public static explicit operator Email(string s)
-        =&gt; new Email(s);
-
-    public override string ToString() =&gt; Value;
-}
-
-//usage
-Email email = (Email)&quot;test@test.com&quot;;
-string emailAsString = (string)email;
+<blockquote>
+<p>Note: Each expression needs to end with <code>;;</code> in the interactive window.</p>
+</blockquote>
+<p>To get help: <code>#help;;</code><br />
+To quit: <code>#quit;;</code></p>
+<h2>Scripting</h2>
+<p>So entering code directly into fsi is ok for trying simple things out but what about more complex code. That is where <code>.fsx</code> files come in.</p>
+<p>Imagine we have a file called <em>print-name.fsx</em> with the following content:</p>
+<pre><code class="language-fsharp">let name = &quot;Devon&quot;
+printfn &quot;Name: %s&quot; name
 </code></pre>
-<p>Here we are using the <code>explicit</code> keyword because the constructor can throw an exception if the string is not a valid email address.</p>
-<h3>Pros</h3>
-<p>Let's list some reasons why you would want to do this with simpler types.</p>
-<ul>
-<li>Using <strong>expressive types reveal intent</strong> to consumers (other developers and future you)</li>
-<li><strong>Finding usage</strong> of particular concepts can be done by type rather than searching text</li>
-<li>If doing domain modelling you can now <strong>group behavior and data</strong> to have a descriptive model</li>
-<li>Once assigned to an expressive type they <strong>provide type safety</strong></li>
-<li>Creation of more <strong>targeted extension methods</strong></li>
-</ul>
-<h3>Cons</h3>
-<p>As with most things in programming, #ItDepends. There are some down sides to using types this way...</p>
-<ul>
-<li><strong>More code</strong> to write and maintain</li>
-<li><strong>Serialization</strong> requires a bit more work to do</li>
-<li><strong>ORM mapping</strong> could be more complicated</li>
-<li>Implicit conversion means you lose some type safety</li>
-</ul>
-<p>Let me quickly discuss a few of these cons and how they can be mitigated.</p>
-<h4>More Code</h4>
-<p>Not much to do about the maintainability part. I will say that these are relatively simple and are unlikely to change or have far reaching effects due to dependencies. To address the effort of actually creating these see <a href="/visual-studio-implicit-snippet">Visual Studio Implicit Snippet</a>.</p>
-<h4>Serialization</h4>
-<p>For some help easily serializing these types check out the <a href="https://github.com/dburriss/HonestTypes">Honest Types repository</a>. That package provides a Json.NET Converter like <code>new SimpleJsonConverter&lt;LastName, string&gt;()</code> that can be supplied to the settings when serializing and deserializing.</p>
-<h4>ORM Mapping</h4>
-<p>If you are modelling your domain (like with DDD) which is likely the case if you are using types this way, then you shouldn't be using your domain models for persistence. This tends to tie your domain models to the underlying data model and you will find the schema requirements will start leaking into your domain model. So create models for your data layer and map from them to your domain models in the repository.</p>
-<h2>Recommended Reading</h2>
-<p><a href="http://enterprisecraftsmanship.com/2015/03/07/functional-c-primitive-obsession/">Functional C#: Primitive obsession</a></p>
+<p>Executing it we would see the following:</p>
+<blockquote>
+<p>&gt; fsi .\samples\print-name.fsx<br />
+&gt; Name: Devon</p>
+</blockquote>
+<h3>Including other fsx files</h3>
+<p>You can load other fsx files into a script. If we have <code>Strings.fsx</code> containing the following code:</p>
+<pre><code class="language-fsharp">let toUpper (s:string) = s.ToUpper()
+let toLower (s:string) = s.ToLower()
+let replace (oldValue:string) (newValue:string) (s:string) = s.Replace(oldValue,newValue)
 
-                <hr />
-                                <section class="related">
-                    <h4>You may be interested in</h4>
-                    <ul>
-                                                <li><a href="/honest-return-types/">Honest Return Types</a></li>
-                                                <li><a href="/better-error-handling/">Better error handling</a></li>
-                                                <li><a href="/maintainable-unit-tests/">3 tips for more maintainable unit tests</a></li>
-                                            </ul>
-                </section>
+module StringBuilder =
+    open System.Text
+    let init() = new StringBuilder()
+    let initWith(s:string) = new StringBuilder(s)
+    let append (s:string) (sb:StringBuilder) = sb.Append(s)
+</code></pre>
+<p>We can now use it in our script file like so:</p>
+<pre><code class="language-fsharp">#load &quot;Strings.fsx&quot;
+open Strings
+let name = &quot;Devon&quot; |&gt; StringBuilder.initWith
+            |&gt; StringBuilder.append &quot; Burriss&quot;
+            |&gt; string |&gt; toUpper
+printfn &quot;Name: %s&quot; name
+</code></pre>
+<p>Executing it we would see the following:</p>
+<blockquote>
+<p>&gt; fsi .\samples\print-name.fsx<br />
+&gt; Name: DEVON BURRISS</p>
+</blockquote>
+<h3>Taking Arguments</h3>
+<p>It is possible to pass arguments into a script file. They are available in a field <code>fsi.CommandLineArgs</code>. Let's change our script one more time to demonstrate the usage. The arguments come through as an array so we pattern match on the number of elements to decide what to print.</p>
+<blockquote>
+<p>Note: The first element of the array is always the name of the script the arguments are passed into</p>
+</blockquote>
+<pre><code class="language-fsharp">#load &quot;Strings.fsx&quot;
+open Strings
+let stringWithSpace x = x |&gt; string |&gt; (sprintf &quot; %s&quot;)
+let name first = first |&gt; toUpper
+let nameAndLastName first last = first |&gt; StringBuilder.initWith |&gt; StringBuilder.append last |&gt; stringWithSpace |&gt; toUpper
+let nameAndLastNameWithOccupation first last occ = 
+    first |&gt; StringBuilder.initWith 
+    |&gt; StringBuilder.append &quot; &quot; 
+    |&gt; StringBuilder.append last 
+    |&gt; StringBuilder.append (sprintf &quot; (%s)&quot; occ)
+    |&gt; string |&gt; toUpper
+
+match fsi.CommandLineArgs with
+| [|scriptName;|] -&gt; failwith (sprintf &quot;At least a name required for %s&quot; scriptName)
+| [|_;firstName|] -&gt; name firstName |&gt; printfn &quot;Name: %s&quot;
+| [|_;firstName; lastName|] -&gt; nameAndLastName firstName lastName |&gt; printfn &quot;Name: %s&quot;
+| [|_;firstName; lastName; occ|] -&gt; nameAndLastNameWithOccupation firstName lastName occ |&gt; printfn &quot;Name: %s&quot;
+| _ -&gt; failwith (sprintf &quot;Too many arguments %A&quot; (fsi.CommandLineArgs |&gt; Array.tail))
+</code></pre>
+<p>Executing it we would see the following:</p>
+<blockquote>
+<p>&gt; fsi .\samples\print-name.fsx devon burriss developer<br />
+&gt; Name: DEVON BURRISS (DEVELOPER)</p>
+</blockquote>
+<h3>Referencing DLLs</h3>
+<p>You can reference DLLs using <code>#r &quot;path/to/file.dll&quot;</code>. If you want to pull down DLLs from Nuget, check out <a href="/up-and-running-with-paket">my article on using Paket dependency manager</a>.</p>
+<h2>Resources</h2>
+<ol>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/fsharp-interactive/">FSI Documentation</a></li>
+<li><a href="http://brandewinder.com/2016/02/06/10-fsharp-scripting-tips/">10 Tips for Productive F# Scripting</a></li>
+</ol>
+<h2>Credits</h2>
+<ol>
+<li>Social Image by <a href="https://unsplash.com/@0628fromchina">yifei chen</a></li>
+</ol>
+
                 <hr />
                                 
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/visual-studio-implicit-snippet/" data-toggle="tooltip"    data-placement="top" title="Visual Studio Implicit Snippet">&larr; Previous Post</a>
+                        <a href="/up-and-running-with-paket/" data-toggle="tooltip"    data-placement="top" title="Up and running with PAKET">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/honest-return-types/" data-toggle="tooltip" data-placement="top" title="Honest Return Types">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
