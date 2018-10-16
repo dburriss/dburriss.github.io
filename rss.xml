@@ -2,415 +2,415 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
     <title>Devon Burriss' Blog</title>
-    <link>http://devonburriss.me/</link>
-    <atom:link href="http://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
+    <link>https://devonburriss.me/</link>
+    <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Tue, 16 Oct 2018 06:04:43 +00:00</pubDate>
-    <lastBuildDate>Tue, 16 Oct 2018 06:04:43 +00:00</lastBuildDate>
+    <pubDate>Tue, 16 Oct 2018 06:33:26 +00:00</pubDate>
+    <lastBuildDate>Tue, 16 Oct 2018 06:33:26 +00:00</lastBuildDate>
     
     <item>
       <title>Up and running with PAKET</title>
-      <link>http://devonburriss.me/up-and-running-with-paket/</link>
+      <link>https://devonburriss.me/up-and-running-with-paket/</link>
       <pubDate>Tue, 16 Oct 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/up-and-running-with-paket/</guid>
+      <guid>https://devonburriss.me/up-and-running-with-paket/</guid>
       <description>Instructions on getting up and running fast with Paket dependency manager</description>
     </item>
     
     <item>
       <title>Functional modeling</title>
-      <link>http://devonburriss.me/functional-modeling/</link>
+      <link>https://devonburriss.me/functional-modeling/</link>
       <pubDate>Sat, 13 Oct 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/functional-modeling/</guid>
+      <guid>https://devonburriss.me/functional-modeling/</guid>
       <description>As OOP developers it is often far too easy for us to try create a model that captures every state. This is almost always a poor abstraction. What if instead of trying to model every possible state at rest we modeled the change of state over time? This article explores what that might look like.</description>
     </item>
     
     <item>
       <title>The functional-structural impedance mismatch</title>
-      <link>http://devonburriss.me/functional-structural-impedance-mismatch/</link>
+      <link>https://devonburriss.me/functional-structural-impedance-mismatch/</link>
       <pubDate>Sat, 08 Sep 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/functional-structural-impedance-mismatch/</guid>
+      <guid>https://devonburriss.me/functional-structural-impedance-mismatch/</guid>
       <description>When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of understanding a system, and to change a system, you need to understand it.</description>
     </item>
     
     <item>
       <title>Anatomy of an automated test suite</title>
-      <link>http://devonburriss.me/anatomy-of-automated-testing/</link>
+      <link>https://devonburriss.me/anatomy-of-automated-testing/</link>
       <pubDate>Mon, 13 Aug 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/anatomy-of-automated-testing/</guid>
+      <guid>https://devonburriss.me/anatomy-of-automated-testing/</guid>
       <description>Comparing structure and function of various test types to tease out what we really care to verify</description>
     </item>
     
     <item>
       <title>The Page Module Model with F# and Canopy</title>
-      <link>http://devonburriss.me/page-module-model/</link>
+      <link>https://devonburriss.me/page-module-model/</link>
       <pubDate>Sun, 12 Aug 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/page-module-model/</guid>
+      <guid>https://devonburriss.me/page-module-model/</guid>
       <description>Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain</description>
     </item>
     
     <item>
       <title>Writing readable Acceptance tests</title>
-      <link>http://devonburriss.me/acceptance-tests/</link>
+      <link>https://devonburriss.me/acceptance-tests/</link>
       <pubDate>Sat, 11 Aug 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/acceptance-tests/</guid>
+      <guid>https://devonburriss.me/acceptance-tests/</guid>
       <description>Tips and examples on improving the readability of your acceptance/behavior tests</description>
     </item>
     
     <item>
       <title>The torch bearer</title>
-      <link>http://devonburriss.me/the-torch-bearer/</link>
+      <link>https://devonburriss.me/the-torch-bearer/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/the-torch-bearer/</guid>
+      <guid>https://devonburriss.me/the-torch-bearer/</guid>
       <description>Software leadership is about high level direction but it is also about making sure the teams doing the development have the skills and experience to successfully execute what is being asked of them.</description>
     </item>
     
     <item>
       <title>Mobbing a story</title>
-      <link>http://devonburriss.me/first-mob-programming/</link>
+      <link>https://devonburriss.me/first-mob-programming/</link>
       <pubDate>Wed, 09 May 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/first-mob-programming/</guid>
+      <guid>https://devonburriss.me/first-mob-programming/</guid>
       <description>Mob programming is a great agile way to increase learning in a team. Here are 6 lessons learned during a mob programming session.</description>
     </item>
     
     <item>
       <title>This one trick will make you a better leader</title>
-      <link>http://devonburriss.me/simple-trick-to-be-a-better-leader/</link>
+      <link>https://devonburriss.me/simple-trick-to-be-a-better-leader/</link>
       <pubDate>Fri, 04 May 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/simple-trick-to-be-a-better-leader/</guid>
+      <guid>https://devonburriss.me/simple-trick-to-be-a-better-leader/</guid>
       <description>Leadership requires many ingredients but applying this one thing can increase loyalty, trust, as well as increase your calmness under pressure.</description>
     </item>
     
     <item>
       <title>Employees are like cars not petrol</title>
-      <link>http://devonburriss.me/employees-are-like-cars-not-petrol/</link>
+      <link>https://devonburriss.me/employees-are-like-cars-not-petrol/</link>
       <pubDate>Thu, 03 May 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/employees-are-like-cars-not-petrol/</guid>
+      <guid>https://devonburriss.me/employees-are-like-cars-not-petrol/</guid>
       <description>What is it about a company culture that attracts and keeps talent?</description>
     </item>
     
     <item>
       <title>Leader Archetypes</title>
-      <link>http://devonburriss.me/leader-archetypes/</link>
+      <link>https://devonburriss.me/leader-archetypes/</link>
       <pubDate>Thu, 26 Apr 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/leader-archetypes/</guid>
+      <guid>https://devonburriss.me/leader-archetypes/</guid>
       <description>A description of three archetypes of leaders with some pros and cons of styles</description>
     </item>
     
     <item>
       <title>3 tips for more maintainable unit tests</title>
-      <link>http://devonburriss.me/maintainable-unit-tests/</link>
+      <link>https://devonburriss.me/maintainable-unit-tests/</link>
       <pubDate>Sat, 07 Apr 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/maintainable-unit-tests/</guid>
+      <guid>https://devonburriss.me/maintainable-unit-tests/</guid>
       <description>Highlights some tips for making tests more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details.</description>
     </item>
     
     <item>
       <title>Managing Code Complexity</title>
-      <link>http://devonburriss.me/managing-code-complexity/</link>
+      <link>https://devonburriss.me/managing-code-complexity/</link>
       <pubDate>Fri, 06 Apr 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/managing-code-complexity/</guid>
+      <guid>https://devonburriss.me/managing-code-complexity/</guid>
       <description>7 tips to address some common anti-patterns in code that hide intent</description>
     </item>
     
     <item>
       <title>Why I got hooked on F#</title>
-      <link>http://devonburriss.me/why-i-got-hooked-on-fsharp/</link>
+      <link>https://devonburriss.me/why-i-got-hooked-on-fsharp/</link>
       <pubDate>Thu, 28 Dec 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/why-i-got-hooked-on-fsharp/</guid>
+      <guid>https://devonburriss.me/why-i-got-hooked-on-fsharp/</guid>
       <description>A short overview of my ongoing efforts to learn functional programming, specifically F#</description>
     </item>
     
     <item>
       <title>An argument for functional programming</title>
-      <link>http://devonburriss.me/argument-for-fp/</link>
+      <link>https://devonburriss.me/argument-for-fp/</link>
       <pubDate>Fri, 08 Dec 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/argument-for-fp/</guid>
+      <guid>https://devonburriss.me/argument-for-fp/</guid>
       <description>Arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular</description>
     </item>
     
     <item>
       <title>Touched by God</title>
-      <link>http://devonburriss.me/touched-by-god/</link>
+      <link>https://devonburriss.me/touched-by-god/</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/touched-by-god/</guid>
+      <guid>https://devonburriss.me/touched-by-god/</guid>
       <description>Thoughts on my experiences in charismatic churches and the stillness of my own mind.</description>
     </item>
     
     <item>
       <title>Hypothesis: Moral behavior is rewarded</title>
-      <link>http://devonburriss.me/moral-behavior-is-rewarded/</link>
+      <link>https://devonburriss.me/moral-behavior-is-rewarded/</link>
       <pubDate>Thu, 19 Oct 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/moral-behavior-is-rewarded/</guid>
+      <guid>https://devonburriss.me/moral-behavior-is-rewarded/</guid>
       <description>This is an initial hypothesis and description of a commitment I have made to moral integrity in my work and personal life.</description>
     </item>
     
     <item>
       <title>Stop comparing EQ and IQ</title>
-      <link>http://devonburriss.me/stop-comparing-eq-and-iq/</link>
+      <link>https://devonburriss.me/stop-comparing-eq-and-iq/</link>
       <pubDate>Tue, 17 Oct 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/stop-comparing-eq-and-iq/</guid>
+      <guid>https://devonburriss.me/stop-comparing-eq-and-iq/</guid>
       <description>EQ is dependent on mental facilities correlated to IQ such as verbal comprehension, working memory, perceptual organization, &amp; processing speed.</description>
     </item>
     
     <item>
       <title>Yoda wants you to be a functional programmer</title>
-      <link>http://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</link>
+      <link>https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</link>
       <pubDate>Sat, 10 Jun 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</guid>
+      <guid>https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Productivity Tips</title>
-      <link>http://devonburriss.me/productivity-tips-1/</link>
+      <link>https://devonburriss.me/productivity-tips-1/</link>
       <pubDate>Fri, 09 Jun 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/productivity-tips-1/</guid>
+      <guid>https://devonburriss.me/productivity-tips-1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Agile is a Characteristic</title>
-      <link>http://devonburriss.me/agile-is-a-characteristic/</link>
+      <link>https://devonburriss.me/agile-is-a-characteristic/</link>
       <pubDate>Wed, 22 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/agile-is-a-characteristic/</guid>
+      <guid>https://devonburriss.me/agile-is-a-characteristic/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Aspect Rating</title>
-      <link>http://devonburriss.me/aspect-rating/</link>
+      <link>https://devonburriss.me/aspect-rating/</link>
       <pubDate>Tue, 21 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/aspect-rating/</guid>
+      <guid>https://devonburriss.me/aspect-rating/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Big Agile Teams</title>
-      <link>http://devonburriss.me/big-agile-teams/</link>
+      <link>https://devonburriss.me/big-agile-teams/</link>
       <pubDate>Mon, 20 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/big-agile-teams/</guid>
+      <guid>https://devonburriss.me/big-agile-teams/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Check-in and Check-out</title>
-      <link>http://devonburriss.me/check-in-check-out/</link>
+      <link>https://devonburriss.me/check-in-check-out/</link>
       <pubDate>Mon, 20 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/check-in-check-out/</guid>
+      <guid>https://devonburriss.me/check-in-check-out/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Better error handling</title>
-      <link>http://devonburriss.me/better-error-handling/</link>
+      <link>https://devonburriss.me/better-error-handling/</link>
       <pubDate>Sun, 19 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/better-error-handling/</guid>
+      <guid>https://devonburriss.me/better-error-handling/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Honest Return Types</title>
-      <link>http://devonburriss.me/honest-return-types/</link>
+      <link>https://devonburriss.me/honest-return-types/</link>
       <pubDate>Tue, 14 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/honest-return-types/</guid>
+      <guid>https://devonburriss.me/honest-return-types/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Honest Arguments</title>
-      <link>http://devonburriss.me/honest-arguments/</link>
+      <link>https://devonburriss.me/honest-arguments/</link>
       <pubDate>Fri, 10 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/honest-arguments/</guid>
+      <guid>https://devonburriss.me/honest-arguments/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Visual Studio Implicit Snippet</title>
-      <link>http://devonburriss.me/visual-studio-implicit-snippet/</link>
+      <link>https://devonburriss.me/visual-studio-implicit-snippet/</link>
       <pubDate>Wed, 08 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/visual-studio-implicit-snippet/</guid>
+      <guid>https://devonburriss.me/visual-studio-implicit-snippet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Building a Cake Script</title>
-      <link>http://devonburriss.me/cake-build/</link>
+      <link>https://devonburriss.me/cake-build/</link>
       <pubDate>Sat, 04 Mar 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/cake-build/</guid>
+      <guid>https://devonburriss.me/cake-build/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Domain-Driven Design Glossary</title>
-      <link>http://devonburriss.me/ddd-glossary/</link>
+      <link>https://devonburriss.me/ddd-glossary/</link>
       <pubDate>Tue, 14 Feb 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/ddd-glossary/</guid>
+      <guid>https://devonburriss.me/ddd-glossary/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Visual Studio Code Tasks</title>
-      <link>http://devonburriss.me/vscode-tasks/</link>
+      <link>https://devonburriss.me/vscode-tasks/</link>
       <pubDate>Sat, 11 Feb 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/vscode-tasks/</guid>
+      <guid>https://devonburriss.me/vscode-tasks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Deploying a Pretzel generated static site to Github Pages using Appveyor</title>
-      <link>http://devonburriss.me/pretezel-blog-appveyor-deployment/</link>
+      <link>https://devonburriss.me/pretezel-blog-appveyor-deployment/</link>
       <pubDate>Tue, 31 Jan 2017 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/pretezel-blog-appveyor-deployment/</guid>
+      <guid>https://devonburriss.me/pretezel-blog-appveyor-deployment/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ASP.NET 5 Tips: UrlHelper</title>
-      <link>http://devonburriss.me/asp-net-5-tips-urlhelper/</link>
+      <link>https://devonburriss.me/asp-net-5-tips-urlhelper/</link>
       <pubDate>Mon, 18 Jan 2016 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/asp-net-5-tips-urlhelper/</guid>
+      <guid>https://devonburriss.me/asp-net-5-tips-urlhelper/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ASP.NET 5 Tips: TempData</title>
-      <link>http://devonburriss.me/asp-net-5-tips-tempdata/</link>
+      <link>https://devonburriss.me/asp-net-5-tips-tempdata/</link>
       <pubDate>Sun, 17 Jan 2016 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/asp-net-5-tips-tempdata/</guid>
+      <guid>https://devonburriss.me/asp-net-5-tips-tempdata/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ASP.NET 5 CI from Git to Azure without Visual Studio</title>
-      <link>http://devonburriss.me/aspnet-vsonline-ci/</link>
+      <link>https://devonburriss.me/aspnet-vsonline-ci/</link>
       <pubDate>Thu, 10 Sep 2015 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/aspnet-vsonline-ci/</guid>
+      <guid>https://devonburriss.me/aspnet-vsonline-ci/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Installing Docker on Hyper-V</title>
-      <link>http://devonburriss.me/installing-docker-on-hyper-v/</link>
+      <link>https://devonburriss.me/installing-docker-on-hyper-v/</link>
       <pubDate>Sat, 07 Mar 2015 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/installing-docker-on-hyper-v/</guid>
+      <guid>https://devonburriss.me/installing-docker-on-hyper-v/</guid>
       <description>Installing Docker on Windows</description>
     </item>
     
     <item>
       <title>Installing Ubuntu on Hyper-V</title>
-      <link>http://devonburriss.me/installing-ubuntu-on-hyper-v/</link>
+      <link>https://devonburriss.me/installing-ubuntu-on-hyper-v/</link>
       <pubDate>Fri, 06 Mar 2015 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/installing-ubuntu-on-hyper-v/</guid>
+      <guid>https://devonburriss.me/installing-ubuntu-on-hyper-v/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Testing the Untestable</title>
-      <link>http://devonburriss.me/testing-the-untestable/</link>
+      <link>https://devonburriss.me/testing-the-untestable/</link>
       <pubDate>Tue, 27 Jan 2015 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/testing-the-untestable/</guid>
+      <guid>https://devonburriss.me/testing-the-untestable/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Developer Quest II - Variables</title>
-      <link>http://devonburriss.me/developer-quest-variables/</link>
+      <link>https://devonburriss.me/developer-quest-variables/</link>
       <pubDate>Sun, 12 Oct 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/developer-quest-variables/</guid>
+      <guid>https://devonburriss.me/developer-quest-variables/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Developer Quest I - Getting started with C#</title>
-      <link>http://devonburriss.me/developer-quest-getting-started/</link>
+      <link>https://devonburriss.me/developer-quest-getting-started/</link>
       <pubDate>Thu, 09 Oct 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/developer-quest-getting-started/</guid>
+      <guid>https://devonburriss.me/developer-quest-getting-started/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Software development is like a piece of string</title>
-      <link>http://devonburriss.me/software-development-is-like-a-piece-of-string/</link>
+      <link>https://devonburriss.me/software-development-is-like-a-piece-of-string/</link>
       <pubDate>Fri, 03 Oct 2014 00:00:00 +00:00</pubDate>
       <author></author>
-      <guid>http://devonburriss.me/software-development-is-like-a-piece-of-string/</guid>
+      <guid>https://devonburriss.me/software-development-is-like-a-piece-of-string/</guid>
       <description>With knots.</description>
     </item>
     
     <item>
       <title>Testing your data repositories</title>
-      <link>http://devonburriss.me/testing-your-data-repositories/</link>
+      <link>https://devonburriss.me/testing-your-data-repositories/</link>
       <pubDate>Sun, 07 Sep 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/testing-your-data-repositories/</guid>
+      <guid>https://devonburriss.me/testing-your-data-repositories/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Single Responsibility Principle</title>
-      <link>http://devonburriss.me/single-respon/</link>
+      <link>https://devonburriss.me/single-respon/</link>
       <pubDate>Fri, 05 Sep 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/single-respon/</guid>
+      <guid>https://devonburriss.me/single-respon/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Estimation</title>
-      <link>http://devonburriss.me/estimation/</link>
+      <link>https://devonburriss.me/estimation/</link>
       <pubDate>Thu, 07 Aug 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/estimation/</guid>
+      <guid>https://devonburriss.me/estimation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The way we write code…and how we talk about it</title>
-      <link>http://devonburriss.me/the-way-we-write-code/</link>
+      <link>https://devonburriss.me/the-way-we-write-code/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>http://devonburriss.me/the-way-we-write-code/</guid>
+      <guid>https://devonburriss.me/the-way-we-write-code/</guid>
       <description></description>
     </item>
     

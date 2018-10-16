@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Devon Burriss' Blog</title>
-  <link href="http://devonburriss.me/"/>
-  <link type="application/atom+xml" rel="self" href="http://devonburriss.me/atom.xml"/>
-  <updated>2018-10-16T06:04:43.5658853+00:00</updated>
-  <id>http://devonburriss.me/</id>
+  <link href="https://devonburriss.me/"/>
+  <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
+  <updated>2018-10-16T06:33:26.1340367+00:00</updated>
+  <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
@@ -12,13 +12,13 @@
 
   
   <entry>
-    <id>http://devonburriss.me/up-and-running-with-paket/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/up-and-running-with-paket/"/>
+    <id>https://devonburriss.me/up-and-running-with-paket/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/up-and-running-with-paket/"/>
     <title>Up and running with PAKET</title>
     <updated>2018-10-16T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/up-and-running-with-paket/</uri>
+      <uri>https://devonburriss.me/up-and-running-with-paket/</uri>
     </author>
     <summary type="html">&lt;p&gt;&lt;a href=&quot;https://fsprojects.github.io/Paket/&quot;&gt;Paket&lt;/a&gt; is an awesome dependency manager for .NET. Comparing it to Nuget is both the easiest way to explain the basics of it and also a massive disservice to Paket. In this post I want to share some tips to make working with Paket even more awesome.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -91,13 +91,13 @@ nuget canopy
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/functional-modeling/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/functional-modeling/"/>
+    <id>https://devonburriss.me/functional-modeling/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/functional-modeling/"/>
     <title>Functional modeling</title>
     <updated>2018-10-13T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/functional-modeling/</uri>
+      <uri>https://devonburriss.me/functional-modeling/</uri>
     </author>
     <summary type="html">&lt;p&gt;In my &lt;a href=&quot;/functional-structural-impedance-mismatch&quot;&gt;previous post&lt;/a&gt; I introduced the idea of a structural model in the code that closely matches what a use-case should do functionally. Just as an ubiquitous language helps us tie concepts in our code, so a functional model helps us capture the functioning of a use-case. In this post I will go into this idea in a little more detail, giving some tips on how to get started.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -153,13 +153,13 @@ Let&apos;s start with a deeper look at the example that was used in the previous
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/functional-structural-impedance-mismatch/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/functional-structural-impedance-mismatch/"/>
+    <id>https://devonburriss.me/functional-structural-impedance-mismatch/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/functional-structural-impedance-mismatch/"/>
     <title>The functional-structural impedance mismatch</title>
     <updated>2018-09-08T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/functional-structural-impedance-mismatch/</uri>
+      <uri>https://devonburriss.me/functional-structural-impedance-mismatch/</uri>
     </author>
     <summary type="html">&lt;p&gt;When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of maintaining a system, for to change a system you must first understand it.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -230,13 +230,13 @@ Where before we had a model that is monolithic and used throughout the software 
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/anatomy-of-automated-testing/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/anatomy-of-automated-testing/"/>
+    <id>https://devonburriss.me/anatomy-of-automated-testing/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/anatomy-of-automated-testing/"/>
     <title>Anatomy of an automated test suite</title>
     <updated>2018-08-13T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/anatomy-of-automated-testing/</uri>
+      <uri>https://devonburriss.me/anatomy-of-automated-testing/</uri>
     </author>
     <summary type="html">&lt;p&gt;Unit, integration, end-to-end, acceptance, UI tests, and more. With so many types of automated tests is it no wonder that we so often disagree on whether something is an acceptance test or an integration test? Or maybe an end-to-end test? What if instead of thinking about the structure of the test, what it tested, we instead considered the question that the test is answering...&lt;/p&gt;
 &lt;!--more--&gt;
@@ -284,13 +284,13 @@ Check the &lt;strong&gt;Integration tests&lt;/strong&gt;. Passes. I am confident
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/page-module-model/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/page-module-model/"/>
+    <id>https://devonburriss.me/page-module-model/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/page-module-model/"/>
     <title>The Page Module Model with F# and Canopy</title>
     <updated>2018-08-12T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/page-module-model/</uri>
+      <uri>https://devonburriss.me/page-module-model/</uri>
     </author>
     <summary type="html">&lt;p&gt;In the past I have done some UI testing with Selenium. I quickly adopted the Page Object Model (POM) for this kind of testing to ease readability, maintenance, and re-use across tests. Recently I needed to look into doing some UI testing and I decided to use &lt;a href=&quot;https://lefthandedgoat.github.io/canopy/&quot;&gt;Canopy&lt;/a&gt; to abstract away working with Selenium. Although Canopy has some great helpers around Selenium I still found myself wanting to abstract away elements on each page and the pages themselves. Enter the Page Module Model (PMM)...&lt;/p&gt;
 &lt;!--more--&gt;
@@ -421,13 +421,13 @@ skipAllTestsOnFailure &amp;lt;- true
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/acceptance-tests/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/acceptance-tests/"/>
+    <id>https://devonburriss.me/acceptance-tests/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/acceptance-tests/"/>
     <title>Writing readable Acceptance tests</title>
     <updated>2018-08-11T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/acceptance-tests/</uri>
+      <uri>https://devonburriss.me/acceptance-tests/</uri>
     </author>
     <summary type="html">&lt;p&gt;Acceptance tests can be a great way of making sure you are building the right thing. When used in in a way that uses natural language it also serves as a collaboration tool with stakeholders to define what should be built before it is built. This can save a great deal of development time in making sure you don&apos;t build the wrong thing and also has the added benefit of growing a developers domain knowledge as he or she collaborates with a stakeholder in fleshing out and verifying the acceptance tests. Recently we invested a fair amount of time in a team here at work iterating on the style of the acceptance tests. We figured if the goal is to allow developers and stakeholders to collaborate, then making sure the tests makes sense to both parties is important. In this post I will share some of the experiences I have gained over the years, more specifically showing how we applied this to improving our acceptance tests in my current domain. As always though this was a collaborative effort within the team.&lt;/p&gt;
 &lt;h2&gt;A brief introduction&lt;/h2&gt;
@@ -562,13 +562,13 @@ Background:
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/the-torch-bearer/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/the-torch-bearer/"/>
+    <id>https://devonburriss.me/the-torch-bearer/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/the-torch-bearer/"/>
     <title>The torch bearer</title>
     <updated>2018-05-29T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/the-torch-bearer/</uri>
+      <uri>https://devonburriss.me/the-torch-bearer/</uri>
     </author>
     <summary type="html">&lt;p&gt;Software development can be a complicated process as the complexity of systems grow and the number of people involved increases, especially when these things happen quickly. This is when clear direction is important. Equally, if not more important is the experience and maturity of the teams building the software. Their ability to learn and adapt to the challenges that arise from the growing complexity will depend on mindset and the ability to work together. If a whole team can grow to understand the driving forces delivering the right software in the right way, it can be epic. So... STORY TIME!&lt;/p&gt;
 &lt;!--more--&gt;
@@ -623,13 +623,13 @@ Background:
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/first-mob-programming/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/first-mob-programming/"/>
+    <id>https://devonburriss.me/first-mob-programming/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/first-mob-programming/"/>
     <title>Mobbing a story</title>
     <updated>2018-05-09T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/first-mob-programming/</uri>
+      <uri>https://devonburriss.me/first-mob-programming/</uri>
     </author>
     <summary type="html">&lt;p&gt;Mob programming can be a great way of sharing knowledge, building ownership, as well as a way of getting a story done with everyone checking it. Although this can be slower because of everyone having an opinion, I do strongly believe that it results in a higher quality implementation with a greater chance of being functionally correct and bug free. I thought it would be helpful to share our learnings while completing a fairly complex story using mob programming.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -664,13 +664,13 @@ Please share your experiences!&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/simple-trick-to-be-a-better-leader/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/simple-trick-to-be-a-better-leader/"/>
+    <id>https://devonburriss.me/simple-trick-to-be-a-better-leader/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/simple-trick-to-be-a-better-leader/"/>
     <title>This one trick will make you a better leader</title>
     <updated>2018-05-04T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/simple-trick-to-be-a-better-leader/</uri>
+      <uri>https://devonburriss.me/simple-trick-to-be-a-better-leader/</uri>
     </author>
     <summary type="html">&lt;p&gt;If you are a leader, many things are expected from you. Skill. Vision. Charisma. There are other characteristics that don&apos;t always come to mind when thinking of leadership. Loyalty inspires loyalty. Calmness under pressure. Trust inspires trust. Many of the characteristics are quite hard to quantify and difficult to learn. Some people just seem to be born with them and others grow into it, being shaped by their experiences.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -713,13 +713,13 @@ Please share your experiences!&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/employees-are-like-cars-not-petrol/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/employees-are-like-cars-not-petrol/"/>
+    <id>https://devonburriss.me/employees-are-like-cars-not-petrol/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/employees-are-like-cars-not-petrol/"/>
     <title>Employees are like cars not petrol</title>
     <updated>2018-05-03T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/employees-are-like-cars-not-petrol/</uri>
+      <uri>https://devonburriss.me/employees-are-like-cars-not-petrol/</uri>
     </author>
     <summary type="html">&lt;p&gt;You may have had the experience before that the company you work for sees you as a resource. A number on a spreadsheet. Did you feel motivated to work there? Did you stay there for a long time? Did you feel loyalty? Probably not...&lt;/p&gt;
 &lt;p&gt;I want to float a really bad analogue but hopefully it will make my point. Petrol (or diesel/electricity) is a resource, employees are more like cars.&lt;/p&gt;
@@ -754,13 +754,13 @@ DO give a vision for what the business wants to achieve strategically&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/leader-archetypes/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/leader-archetypes/"/>
+    <id>https://devonburriss.me/leader-archetypes/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/leader-archetypes/"/>
     <title>Leader Archetypes</title>
     <updated>2018-04-26T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/leader-archetypes/</uri>
+      <uri>https://devonburriss.me/leader-archetypes/</uri>
     </author>
     <summary type="html">&lt;p&gt;Why do we follow people? Why only some people? Character, situation, and value-alignment seem to jump out as obvious factors but what configuration of these allows us to suspend our own self-absorption to work toward a common goal? Are there archetypes that represent what leaders do to get people to follow them?&lt;/p&gt;
 &lt;!--more--&gt;
@@ -793,13 +793,13 @@ And one final time: This is not my area of expertise...but I have run these arch
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/maintainable-unit-tests/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/maintainable-unit-tests/"/>
+    <id>https://devonburriss.me/maintainable-unit-tests/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/maintainable-unit-tests/"/>
     <title>3 tips for more maintainable unit tests</title>
     <updated>2018-04-07T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/maintainable-unit-tests/</uri>
+      <uri>https://devonburriss.me/maintainable-unit-tests/</uri>
     </author>
     <summary type="html">&lt;p&gt;Although having a good collection of unit tests makes you feel safe and free to refactor, a bad collection of tests can make you scared to refactor. How so? A single change to application code can cause a cascade of failing tests. Here are some tips for avoiding (or fighting back) from that situation.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -1085,13 +1085,13 @@ people.Create(A.Person.With(name: &amp;quot;Bob&amp;quot;));
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/managing-code-complexity/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/managing-code-complexity/"/>
+    <id>https://devonburriss.me/managing-code-complexity/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/managing-code-complexity/"/>
     <title>Managing Code Complexity</title>
     <updated>2018-04-06T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/managing-code-complexity/</uri>
+      <uri>https://devonburriss.me/managing-code-complexity/</uri>
     </author>
     <summary type="html">&lt;p&gt;When we write code it is often easy to get caught up in the implementation details. Communicating intent is imperative to making code understandable, and keeping code understandable is important for handling complexity.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -1156,13 +1156,13 @@ In your entry point to executing some use-case against your system it is importa
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/why-i-got-hooked-on-fsharp/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/why-i-got-hooked-on-fsharp/"/>
+    <id>https://devonburriss.me/why-i-got-hooked-on-fsharp/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/why-i-got-hooked-on-fsharp/"/>
     <title>Why I got hooked on F#</title>
     <updated>2017-12-28T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/why-i-got-hooked-on-fsharp/</uri>
+      <uri>https://devonburriss.me/why-i-got-hooked-on-fsharp/</uri>
     </author>
     <summary type="html">&lt;p&gt;I have been asked a few times &amp;quot;how I got started with F#?&amp;quot; as more than a few people have found it difficult. I myself had a few false starts with it. It looked weird, I didn&apos;t know where or how to start, it was too different to OO with C style languages, and the tooling just was not as slick. I honestly think a better question is &amp;quot;Why did I start using F#?&amp;quot;&lt;/p&gt;
 &lt;!--more--&gt;
@@ -1210,13 +1210,13 @@ In your entry point to executing some use-case against your system it is importa
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/argument-for-fp/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/argument-for-fp/"/>
+    <id>https://devonburriss.me/argument-for-fp/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/argument-for-fp/"/>
     <title>An argument for functional programming</title>
     <updated>2017-12-08T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/argument-for-fp/</uri>
+      <uri>https://devonburriss.me/argument-for-fp/</uri>
     </author>
     <summary type="html">&lt;p&gt;Have you ever thought you have the perfect tool for the job at work but it is not on the allowed list of languages or frameworks? At this stage you have a decision to make. Are you going to just move on and pick something that will meet less resistance or are you going to do the work to drive some change? In this post I make my case for functional programming in enterprise development, specifically &lt;strong&gt;F#&lt;/strong&gt; if your current team expertise is .NET. The same arguments could be leveled for JVM based languages like Scala if your experience is in Java.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1319,13 +1319,13 @@ So hopefully by this point I have convinced you (or you have convinced your boss
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/touched-by-god/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/touched-by-god/"/>
+    <id>https://devonburriss.me/touched-by-god/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/touched-by-god/"/>
     <title>Touched by God</title>
     <updated>2017-11-02T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/touched-by-god/</uri>
+      <uri>https://devonburriss.me/touched-by-god/</uri>
     </author>
     <summary type="html">&lt;p&gt;In science and life, sometimes things happen that we cannot explain. Just a few hundred years ago most of what could not be explained was attributed to the supernatural. Thankfully a lot of that mystery has been peeled back, opening us up to bigger and more fundamental questions about the universe. Compared to areas like cosmology and particle physics, things like the human mind and consciousness remain relatively unexplored by science. This leaves some questions unanswered about our place in this expanding universe. In this post I explore and contrast some of my early religious spiritual experiences to my recent self-observations in mindfulness.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -1361,13 +1361,13 @@ I would like to compare the &amp;quot;spiritual&amp;quot; experience recounted e
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/moral-behavior-is-rewarded/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/moral-behavior-is-rewarded/"/>
+    <id>https://devonburriss.me/moral-behavior-is-rewarded/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/moral-behavior-is-rewarded/"/>
     <title>Hypothesis: Moral behavior is rewarded</title>
     <updated>2017-10-19T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/moral-behavior-is-rewarded/</uri>
+      <uri>https://devonburriss.me/moral-behavior-is-rewarded/</uri>
     </author>
     <summary type="html">&lt;p&gt;I don&apos;t consider myself an immoral person. Unless you count those days when I thought there was an all seeing being in the sky watching that I didn&apos;t break the archaic rules laid out by men thousands of years ago who also thought it was ok to own slaves and commit genocide. Since then I have not given too much thought to morality other than my general rule of &amp;quot;Don&apos;t be a dick&amp;quot;. A few weeks back I made a commitment to hold myself to a higher moral standard. Not only that but I laid out some experimental guidelines of rules that I would follow and a hypothesis of what I expect. Finally, I would tell people about it so they could hold me to my commitments.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -1426,13 +1426,13 @@ Not only that but in this digital age it is really easy to share or download med
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/stop-comparing-eq-and-iq/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/stop-comparing-eq-and-iq/"/>
+    <id>https://devonburriss.me/stop-comparing-eq-and-iq/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/stop-comparing-eq-and-iq/"/>
     <title>Stop comparing EQ and IQ</title>
     <updated>2017-10-17T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/stop-comparing-eq-and-iq/</uri>
+      <uri>https://devonburriss.me/stop-comparing-eq-and-iq/</uri>
     </author>
     <summary type="html">&lt;p&gt;I see this comparison come up online and at work a lot. The implication being that if we want success we look for people with good EQ skills and if they have weak technical skills we can teach them. Sure. These are both skills but if everyone is good at communicating but rubbish at the technical stuff, guess what the quality is like...&lt;/p&gt;
 &lt;!--more--&gt;
@@ -1470,13 +1470,13 @@ Not only that but in this digital age it is really easy to share or download med
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/"/>
+    <id>https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/"/>
     <title>Yoda wants you to be a functional programmer</title>
     <updated>2017-06-10T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</uri>
+      <uri>https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</uri>
     </author>
     <summary type="html">&lt;p&gt;This one is just for laughs but technical writing doesn&apos;t always have to be serious.&lt;br /&gt;
 I was double checking a Yoda quote for my previous post and it got me thinking about how many Yoda quotes could be applied to the functional programming (FP) paradigm.&lt;br /&gt;
@@ -1523,13 +1523,13 @@ Star wars and programming are meant to go together.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/productivity-tips-1/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/productivity-tips-1/"/>
+    <id>https://devonburriss.me/productivity-tips-1/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/productivity-tips-1/"/>
     <title>Productivity Tips</title>
     <updated>2017-06-09T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/productivity-tips-1/</uri>
+      <uri>https://devonburriss.me/productivity-tips-1/</uri>
     </author>
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;“Do. Or do not. There is no try.” - Yoda&lt;/p&gt;
@@ -1576,13 +1576,13 @@ Star wars and programming are meant to go together.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/agile-is-a-characteristic/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/agile-is-a-characteristic/"/>
+    <id>https://devonburriss.me/agile-is-a-characteristic/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/agile-is-a-characteristic/"/>
     <title>Agile is a Characteristic</title>
     <updated>2017-03-22T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/agile-is-a-characteristic/</uri>
+      <uri>https://devonburriss.me/agile-is-a-characteristic/</uri>
     </author>
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html&quot;&gt;Agile is dead&lt;/a&gt;&lt;/p&gt;
@@ -1609,13 +1609,13 @@ Star wars and programming are meant to go together.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/aspect-rating/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/aspect-rating/"/>
+    <id>https://devonburriss.me/aspect-rating/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/aspect-rating/"/>
     <title>Aspect Rating</title>
     <updated>2017-03-21T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/aspect-rating/</uri>
+      <uri>https://devonburriss.me/aspect-rating/</uri>
     </author>
     <summary type="html">&lt;p&gt;I recently ran a retrospective with a team of 11 (including myself). With that many people getting focused feedback is important or meetings can drag out. I found this exercise quite useful and the rest of the team seemed to as well. See &lt;a href=&quot;/check-in-check-out&quot;&gt;this post for the Check-in/Check-out&lt;/a&gt; I ran before and after.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -1679,13 +1679,13 @@ Star wars and programming are meant to go together.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/big-agile-teams/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/big-agile-teams/"/>
+    <id>https://devonburriss.me/big-agile-teams/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/big-agile-teams/"/>
     <title>Big Agile Teams</title>
     <updated>2017-03-20T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/big-agile-teams/</uri>
+      <uri>https://devonburriss.me/big-agile-teams/</uri>
     </author>
     <summary type="html">&lt;p&gt;As a team grows it becomes more difficult to apply some agile practices effectively. SCRUM meetings like standup and retrospectives become drawn out, the number of stories becomes hard to manage, and the communication within the team can easily break down.&lt;br /&gt;
 Currently I have a team of 10 and I am experimenting with ways of tackling these issues. Hopefully this will turn into a loose series of posts surrounding my experiences with a larger team. I won&apos;t go into the why suffice to say it is a project rather than a product but we don&apos;t want to go waterfall.&lt;/p&gt;
@@ -1715,13 +1715,13 @@ The Pig thinks for a moment and says: &amp;quot;No thanks. I&apos;d be committed
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/check-in-check-out/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/check-in-check-out/"/>
+    <id>https://devonburriss.me/check-in-check-out/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/check-in-check-out/"/>
     <title>Check-in and Check-out</title>
     <updated>2017-03-20T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/check-in-check-out/</uri>
+      <uri>https://devonburriss.me/check-in-check-out/</uri>
     </author>
     <summary type="html">&lt;p&gt;Someone must have thought of this before but I have not read this anywhere so I thought I would jot it down. I recently ran a retrospective that I thought went really well, and apparently so did everyone else...&lt;/p&gt;
 &lt;h1&gt;Measure with Check-in and Check-out&lt;/h1&gt;
@@ -1737,13 +1737,13 @@ The Pig thinks for a moment and says: &amp;quot;No thanks. I&apos;d be committed
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/better-error-handling/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/better-error-handling/"/>
+    <id>https://devonburriss.me/better-error-handling/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/better-error-handling/"/>
     <title>Better error handling</title>
     <updated>2017-03-19T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/better-error-handling/</uri>
+      <uri>https://devonburriss.me/better-error-handling/</uri>
     </author>
     <summary type="html">&lt;p&gt;In my &lt;a href=&quot;/honest-return-types&quot;&gt;previous post&lt;/a&gt; I discussed handling &lt;code&gt;null&lt;/code&gt; and &lt;code&gt;Exception&lt;/code&gt; in the return type. In this post I will discuss returning logic errors.&lt;/p&gt;
 &lt;h1&gt;Handling errors&lt;/h1&gt;
@@ -1949,13 +1949,13 @@ return Valid(person)
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/honest-return-types/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/honest-return-types/"/>
+    <id>https://devonburriss.me/honest-return-types/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/honest-return-types/"/>
     <title>Honest Return Types</title>
     <updated>2017-03-14T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/honest-return-types/</uri>
+      <uri>https://devonburriss.me/honest-return-types/</uri>
     </author>
     <summary type="html">&lt;p&gt;In &lt;a href=&quot;/honest-arguments&quot;&gt;Part 1&lt;/a&gt; we looked at ways of making your code more descriptive by using custom types instead of simple types like &lt;code&gt;string&lt;/code&gt;. In this article we will look at what your return type can tell you about a method.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2131,13 +2131,13 @@ Exceptional&amp;lt;Option&amp;lt;Person&amp;gt;&amp;gt; Get(Email email);
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/honest-arguments/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/honest-arguments/"/>
+    <id>https://devonburriss.me/honest-arguments/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/honest-arguments/"/>
     <title>Honest Arguments</title>
     <updated>2017-03-10T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/honest-arguments/</uri>
+      <uri>https://devonburriss.me/honest-arguments/</uri>
     </author>
     <summary type="html">&lt;p&gt;One of the benefits of statically typed languages is that we can rely on more than the method and parameter names for information on what is expected and what is returned. A well designed method should be about more than naming. Too often we give up on this type safety and expressiveness for the ease of instantiating primitives and &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -2225,13 +2225,13 @@ string emailAsString = (string)email;
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/visual-studio-implicit-snippet/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/visual-studio-implicit-snippet/"/>
+    <id>https://devonburriss.me/visual-studio-implicit-snippet/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/visual-studio-implicit-snippet/"/>
     <title>Visual Studio Implicit Snippet</title>
     <updated>2017-03-08T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/visual-studio-implicit-snippet/</uri>
+      <uri>https://devonburriss.me/visual-studio-implicit-snippet/</uri>
     </author>
     <summary type="html">&lt;p&gt;Sometimes you want to create a &lt;a href=&quot;/honest-arguments&quot;&gt;descriptive type&lt;/a&gt; to better represent a concept such as an email (rather than a &lt;code&gt;string&lt;/code&gt;) but what stops you is the effort in creating this type. Here is a quick snippet to allow you to quickly generate these types reliably.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -2360,13 +2360,13 @@ string emailAsString = (string)email;
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/cake-build/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/cake-build/"/>
+    <id>https://devonburriss.me/cake-build/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/cake-build/"/>
     <title>Building a Cake Script</title>
     <updated>2017-03-04T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/cake-build/</uri>
+      <uri>https://devonburriss.me/cake-build/</uri>
     </author>
     <summary type="html">&lt;p&gt;&lt;a href=&quot;http://cakebuild.net/&quot;&gt;CAKE&lt;/a&gt; is a great automation DSL that uses C#. Not only is it comfortable for C# developers to script automation tasks in, it has a stack of built in functionality and a great ecosystem of addins that give you a great jumpstart for just about anything you would like to automate.&lt;/p&gt;
 &lt;p&gt;This is a quick tip on how to create a Visual Studio Code task that will build your Cake script. This is a great way of verifying your scripts without actually running Cake tasks.
@@ -2392,13 +2392,13 @@ In the example above the &lt;code&gt;isBuildCommand&lt;/code&gt; is set to &lt;s
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/ddd-glossary/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/ddd-glossary/"/>
+    <id>https://devonburriss.me/ddd-glossary/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/ddd-glossary/"/>
     <title>Domain-Driven Design Glossary</title>
     <updated>2017-02-14T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/ddd-glossary/</uri>
+      <uri>https://devonburriss.me/ddd-glossary/</uri>
     </author>
     <summary type="html">&lt;div class=&quot;row&quot;&gt;
   &lt;div class=&quot;col-xs-6 col-md-3&quot;&gt;
@@ -2515,13 +2515,13 @@ Why would we want to set a boundary rather than just reference any object needed
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/vscode-tasks/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/vscode-tasks/"/>
+    <id>https://devonburriss.me/vscode-tasks/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/vscode-tasks/"/>
     <title>Visual Studio Code Tasks</title>
     <updated>2017-02-11T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/vscode-tasks/</uri>
+      <uri>https://devonburriss.me/vscode-tasks/</uri>
     </author>
     <summary type="html">&lt;p&gt;I tend to try use &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt; for tasks and languages I don&apos;t currently use on a day to day basis. Over the last few weeks that has included Java and Delphi. Then today I was trying to launch my blog from VS Code and ran into an issue because Pretzel listens for a console key. The only fix I could find for this was to launch a new Powershell window. I thought this as good a time as any to post a few of these tasks.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -2649,13 +2649,13 @@ This only compiles a single unit, not a complete project. Not needed for this to
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/pretezel-blog-appveyor-deployment/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/pretezel-blog-appveyor-deployment/"/>
+    <id>https://devonburriss.me/pretezel-blog-appveyor-deployment/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/pretezel-blog-appveyor-deployment/"/>
     <title>Deploying a Pretzel generated static site to Github Pages using Appveyor</title>
     <updated>2017-01-31T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/pretezel-blog-appveyor-deployment/</uri>
+      <uri>https://devonburriss.me/pretezel-blog-appveyor-deployment/</uri>
     </author>
     <summary type="html">&lt;h1&gt;Background&lt;/h1&gt;
 &lt;p&gt;I was using &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt; and &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; to build and host this blog up until a few days ago.
@@ -2750,13 +2750,13 @@ Feel free to copy my blog at https://github.com/dburriss/dburriss.github.io&lt;/
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/asp-net-5-tips-urlhelper/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/asp-net-5-tips-urlhelper/"/>
+    <id>https://devonburriss.me/asp-net-5-tips-urlhelper/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/asp-net-5-tips-urlhelper/"/>
     <title>ASP.NET 5 Tips: UrlHelper</title>
     <updated>2016-01-18T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/asp-net-5-tips-urlhelper/</uri>
+      <uri>https://devonburriss.me/asp-net-5-tips-urlhelper/</uri>
     </author>
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Note that this is specific to the upcoming RC 2 using the dotnet CLI. Currently in RC 1 this is not an issue.&lt;/p&gt;
@@ -2795,13 +2795,13 @@ Please let me know below if you found this useful... or if things change :)&lt;/
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/asp-net-5-tips-tempdata/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/asp-net-5-tips-tempdata/"/>
+    <id>https://devonburriss.me/asp-net-5-tips-tempdata/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/asp-net-5-tips-tempdata/"/>
     <title>ASP.NET 5 Tips: TempData</title>
     <updated>2016-01-17T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/asp-net-5-tips-tempdata/</uri>
+      <uri>https://devonburriss.me/asp-net-5-tips-tempdata/</uri>
     </author>
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;NOTE: Handling TempData and Session is made easy with extension methods in the &lt;a href=&quot;https://www.nuget.org/packages/BetterSession.AspNet.Mvc/&quot;&gt;BetterSession&lt;/a&gt; Nuget package.&lt;/p&gt;
@@ -2906,13 +2906,13 @@ public static T GetFromJson&lt;T&gt;(this ITempDataDictionary tempData, string k
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/aspnet-vsonline-ci/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/aspnet-vsonline-ci/"/>
+    <id>https://devonburriss.me/aspnet-vsonline-ci/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/aspnet-vsonline-ci/"/>
     <title>ASP.NET 5 CI from Git to Azure without Visual Studio</title>
     <updated>2015-09-10T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/aspnet-vsonline-ci/</uri>
+      <uri>https://devonburriss.me/aspnet-vsonline-ci/</uri>
     </author>
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Using Visual Studio Online Build Services for a MSBuild/xproj free deployment.&lt;/p&gt;
@@ -2979,13 +2979,13 @@ I hope this helps someone and please leave a comment below if you have any quest
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/installing-docker-on-hyper-v/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/installing-docker-on-hyper-v/"/>
+    <id>https://devonburriss.me/installing-docker-on-hyper-v/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/installing-docker-on-hyper-v/"/>
     <title>Installing Docker on Hyper-V</title>
     <updated>2015-03-07T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/installing-docker-on-hyper-v/</uri>
+      <uri>https://devonburriss.me/installing-docker-on-hyper-v/</uri>
     </author>
     <summary type="html">&lt;p&gt;To be clear, currently Docker containers do not run on Windows. Microsoft is working with Docker to release something with feature parity but we will be lucky if we see that in 2015 (&lt;a href=&quot;http://weblogs.asp.net/scottgu/docker-and-microsoft-integrating-docker-with-windows-server-and-microsoft-azure&quot;&gt;Blogged by Scott Gu&lt;/a&gt;). So although there is a client for Windows for managing Docker containers, we will need an Ubuntu install. &lt;a href=&quot;http://devonburriss.me/installing-ubuntu-on-hyper-v/&quot;&gt;Installing Ubuntu on Hyper-V&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2015/large_h.png&quot; alt=&quot;Docker logo&quot; /&gt;&lt;/p&gt;
@@ -3033,13 +3033,13 @@ Once it is running a terminal prompt will be available. Type &lt;code&gt;echo &a
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/installing-ubuntu-on-hyper-v/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/installing-ubuntu-on-hyper-v/"/>
+    <id>https://devonburriss.me/installing-ubuntu-on-hyper-v/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/installing-ubuntu-on-hyper-v/"/>
     <title>Installing Ubuntu on Hyper-V</title>
     <updated>2015-03-06T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/installing-ubuntu-on-hyper-v/</uri>
+      <uri>https://devonburriss.me/installing-ubuntu-on-hyper-v/</uri>
     </author>
     <summary type="html">&lt;p&gt;The reason for this post is just to remind me of a few little things you need to do if you want to create a Generation 2 Ubuntu Virtual Machine on Hyper-V. When setting up the virtual machine in Hyper-V and you select Generation 2.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -3085,13 +3085,13 @@ I managed to get past this by adding the following line at the bottom of /etc/de
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/testing-the-untestable/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/testing-the-untestable/"/>
+    <id>https://devonburriss.me/testing-the-untestable/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/testing-the-untestable/"/>
     <title>Testing the Untestable</title>
     <updated>2015-01-27T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/testing-the-untestable/</uri>
+      <uri>https://devonburriss.me/testing-the-untestable/</uri>
     </author>
     <summary type="html">&lt;p&gt;If you have ever tried written unit tests for existing code you know it can be quite challenging. Not only is finding what to test difficult, the code usually just wont be testable. If it is code that you have written and you are at liberty to make some sweeping changes, then you can refactor toward testability. If not I still go through a technique at the end of this article for providing testable classes.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2015/bridge-cables-resize.jpg&quot; alt=&quot;bridge cables&quot; /&gt;&lt;/p&gt;
@@ -3269,13 +3269,13 @@ public void Scare_With2OutOf3ChildrenAsleep_ScareCalledOn2Children()
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/developer-quest-variables/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/developer-quest-variables/"/>
+    <id>https://devonburriss.me/developer-quest-variables/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/developer-quest-variables/"/>
     <title>Developer Quest II - Variables</title>
     <updated>2014-10-12T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/developer-quest-variables/</uri>
+      <uri>https://devonburriss.me/developer-quest-variables/</uri>
     </author>
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Hold this for me.&lt;/p&gt;
@@ -3442,13 +3442,13 @@ Hit &lt;strong&gt;F5&lt;/strong&gt; to run it.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/developer-quest-getting-started/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/developer-quest-getting-started/"/>
+    <id>https://devonburriss.me/developer-quest-getting-started/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/developer-quest-getting-started/"/>
     <title>Developer Quest I - Getting started with C#</title>
     <updated>2014-10-09T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/developer-quest-getting-started/</uri>
+      <uri>https://devonburriss.me/developer-quest-getting-started/</uri>
     </author>
     <summary type="html">&lt;h2&gt;Getting Started&lt;/h2&gt;
 &lt;p&gt;The first thing you are going to need as a developer is an Integrated Development Environment (IDE). Technically this is not necessary, you could use a text editor and the compiler in command line but trust me, you don&apos;t want to go that route.
@@ -3494,13 +3494,13 @@ If you have any questions or suggestions, please don&apos;t hesitate to leave a 
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/software-development-is-like-a-piece-of-string/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/software-development-is-like-a-piece-of-string/"/>
+    <id>https://devonburriss.me/software-development-is-like-a-piece-of-string/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/software-development-is-like-a-piece-of-string/"/>
     <title>Software development is like a piece of string</title>
     <updated>2014-10-03T00:00:00+00:00</updated>
     <author>
       <name></name>
-      <uri>http://devonburriss.me/software-development-is-like-a-piece-of-string/</uri>
+      <uri>https://devonburriss.me/software-development-is-like-a-piece-of-string/</uri>
     </author>
     <summary type="html">&lt;p&gt;Software like many things in life, is one of those things that the further down a path you go, the harder it is to back out. When I think of a software project I think of a piece of string. The longer the project, the longer the string.
 The string is the perfect length to reach the end. Each and every time we make a poor design decision or a bad implementation we effectively add a knot in the string. One or two of these and we might still be able to stretch it to reach the end but most likely if we want to reach the end, we are going to need to unravel the knot we created.
@@ -3511,13 +3511,13 @@ If they don&apos;t force you to come back and undo them later, they slow the vel
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/testing-your-data-repositories/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/testing-your-data-repositories/"/>
+    <id>https://devonburriss.me/testing-your-data-repositories/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/testing-your-data-repositories/"/>
     <title>Testing your data repositories</title>
     <updated>2014-09-07T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/testing-your-data-repositories/</uri>
+      <uri>https://devonburriss.me/testing-your-data-repositories/</uri>
     </author>
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Avoiding dependency on a data layer.&lt;/p&gt;
@@ -3790,13 +3790,13 @@ public class CommandQueue implements Command {
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/single-respon/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/single-respon/"/>
+    <id>https://devonburriss.me/single-respon/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/single-respon/"/>
     <title>Single Responsibility Principle</title>
     <updated>2014-09-05T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/single-respon/</uri>
+      <uri>https://devonburriss.me/single-respon/</uri>
     </author>
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;The &lt;strong&gt;S&lt;/strong&gt; in &lt;strong&gt;SOLID&lt;/strong&gt;.&lt;/p&gt;
@@ -4029,13 +4029,13 @@ public class OrderServiceAfter : IDisposable
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/estimation/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/estimation/"/>
+    <id>https://devonburriss.me/estimation/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/estimation/"/>
     <title>Estimation</title>
     <updated>2014-08-07T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/estimation/</uri>
+      <uri>https://devonburriss.me/estimation/</uri>
     </author>
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Tackling the uncertainty of software estimation.&lt;/p&gt;
@@ -4083,13 +4083,13 @@ This was for the most likely time. For the best case you get 1 day and worst cas
   </entry>
   
   <entry>
-    <id>http://devonburriss.me/the-way-we-write-code/</id>
-    <link type="text/html" rel="alternate" href="http://devonburriss.me/the-way-we-write-code/"/>
+    <id>https://devonburriss.me/the-way-we-write-code/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/the-way-we-write-code/"/>
     <title>The way we write code…and how we talk about it</title>
     <updated>2014-07-18T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>http://devonburriss.me/the-way-we-write-code/</uri>
+      <uri>https://devonburriss.me/the-way-we-write-code/</uri>
     </author>
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;The true challenge in writing good software.&lt;/p&gt;
