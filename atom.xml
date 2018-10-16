@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-16T21:34:20.0983934+00:00</updated>
+  <updated>2018-10-16T21:43:50.5597967+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -70,6 +70,7 @@ let name = &amp;quot;Devon&amp;quot; |&amp;gt; StringBuilder.initWith
             |&amp;gt; string |&amp;gt; toUpper
 printfn &amp;quot;Name: %s&amp;quot; name
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We use &lt;code&gt;#load &amp;quot;path/to/script.fsx&amp;quot;&lt;/code&gt; to make it available and then &lt;code&gt;open NameOfFileWithoutExtension&lt;/code&gt; to import it. So each script file is then treated as a &lt;code&gt;module&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Executing it we would see the following:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&amp;gt; fsi .\samples\print-name.fsx&lt;br /&gt;
@@ -104,6 +105,7 @@ match fsi.CommandLineArgs with
 &lt;p&gt;&amp;gt; fsi .\samples\print-name.fsx devon burriss developer&lt;br /&gt;
 &amp;gt; Name: DEVON BURRISS (DEVELOPER)&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;You could of course also access the arguments as a zero based array &lt;code&gt;fsi.CommandLineArgs.[0]&lt;/code&gt; or loop through them.&lt;/p&gt;
 &lt;h3&gt;Referencing DLLs&lt;/h3&gt;
 &lt;p&gt;You can reference DLLs using &lt;code&gt;#r &amp;quot;path/to/file.dll&amp;quot;&lt;/code&gt;. If you want to pull down DLLs from Nuget, check out &lt;a href=&quot;/up-and-running-with-paket&quot;&gt;my article on using Paket dependency manager&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Resources&lt;/h2&gt;

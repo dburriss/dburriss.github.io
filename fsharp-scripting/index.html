@@ -238,6 +238,7 @@ let name = &quot;Devon&quot; |&gt; StringBuilder.initWith
             |&gt; string |&gt; toUpper
 printfn &quot;Name: %s&quot; name
 </code></pre>
+<p>We use <code>#load &quot;path/to/script.fsx&quot;</code> to make it available and then <code>open NameOfFileWithoutExtension</code> to import it. So each script file is then treated as a <code>module</code>.</p>
 <p>Executing it we would see the following:</p>
 <blockquote>
 <p>&gt; fsi .\samples\print-name.fsx<br />
@@ -272,6 +273,7 @@ match fsi.CommandLineArgs with
 <p>&gt; fsi .\samples\print-name.fsx devon burriss developer<br />
 &gt; Name: DEVON BURRISS (DEVELOPER)</p>
 </blockquote>
+<p>You could of course also access the arguments as a zero based array <code>fsi.CommandLineArgs.[0]</code> or loop through them.</p>
 <h3>Referencing DLLs</h3>
 <p>You can reference DLLs using <code>#r &quot;path/to/file.dll&quot;</code>. If you want to pull down DLLs from Nuget, check out <a href="/up-and-running-with-paket">my article on using Paket dependency manager</a>.</p>
 <h2>Resources</h2>
