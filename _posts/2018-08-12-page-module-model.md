@@ -6,7 +6,7 @@ description: "Using F#, Canopy (Selenium) and the Page Object(Module) Model to t
 permalink: page-module-model
 author: "Devon Burriss"
 category: Software Development
-tags: [Canopy,Functional,F#,Testing,BDD]
+tags: [Canopy,Functional,F#,Testing,BDD,Selenium]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
