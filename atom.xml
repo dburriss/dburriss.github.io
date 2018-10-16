@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-16T06:33:26.1340367+00:00</updated>
+  <updated>2018-10-16T13:19:06.7266981+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -40,7 +40,7 @@ PowerShell -NoProfile -ExecutionPolicy Bypass -Command &amp;quot;iex (Invoke-Web
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Part of the family&lt;/h3&gt;
 &lt;p&gt;If you find yourself needing to setup Paket often as can happen if you are using F# fsx scripting files often, you may want to create an easier to remember command. The easiest way to do this is to add a function call to your Powershell profile.&lt;/p&gt;
-&lt;p&gt;Navigate to &lt;em&gt;&amp;quot;C:\Users\ &amp;lt; your username &amp;gt;\Documents\WindowsPowerShell&amp;quot;&lt;/em&gt; and add the following function.&lt;/p&gt;
+&lt;p&gt;Edit &lt;em&gt;&amp;quot;C:\Users\ &amp;lt; your username &amp;gt;\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1&amp;quot;&lt;/em&gt; on Windows or &lt;em&gt;~/.config/powershell/profile.ps1&lt;/em&gt; on Mac and add the following function:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;function New-Paket {
     New-Item -ItemType directory -Path &amp;quot;.paket&amp;quot;
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -83,6 +83,12 @@ nuget canopy
 &lt;/blockquote&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Paket is an awesome replacement for Nuget and in this article we looked at how you can get up and running fast as well as make sure it is as easy as possible to get Paket quickly every time you need it.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-windows?view=powershell-6&quot;&gt;Installing Powershell on Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6&quot;&gt;Installing Powershell on Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-macos?view=powershell-6&quot;&gt;Installing Powershell on MacOS&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2&gt;Credits&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Header image &lt;a href=&quot;https://unsplash.com/@vtrsnts&quot;&gt;Vitor Santos&lt;/a&gt;&lt;/li&gt;

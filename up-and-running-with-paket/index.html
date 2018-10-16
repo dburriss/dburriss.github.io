@@ -214,7 +214,7 @@ PowerShell -NoProfile -ExecutionPolicy Bypass -Command &quot;iex (Invoke-WebRequ
 </code></pre>
 <h3>Part of the family</h3>
 <p>If you find yourself needing to setup Paket often as can happen if you are using F# fsx scripting files often, you may want to create an easier to remember command. The easiest way to do this is to add a function call to your Powershell profile.</p>
-<p>Navigate to <em>&quot;C:\Users\ &lt; your username &gt;\Documents\WindowsPowerShell&quot;</em> and add the following function.</p>
+<p>Edit <em>&quot;C:\Users\ &lt; your username &gt;\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1&quot;</em> on Windows or <em>~/.config/powershell/profile.ps1</em> on Mac and add the following function:</p>
 <pre><code class="language-powershell">function New-Paket {
     New-Item -ItemType directory -Path &quot;.paket&quot;
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -257,6 +257,12 @@ nuget canopy
 </blockquote>
 <h2>Conclusion</h2>
 <p>Paket is an awesome replacement for Nuget and in this article we looked at how you can get up and running fast as well as make sure it is as easy as possible to get Paket quickly every time you need it.</p>
+<h2>Resources</h2>
+<ol>
+<li><a href="https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-windows?view=powershell-6">Installing Powershell on Windows</a></li>
+<li><a href="https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6">Installing Powershell on Linux</a></li>
+<li><a href="https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-macos?view=powershell-6">Installing Powershell on MacOS</a></li>
+</ol>
 <h2>Credits</h2>
 <ol>
 <li>Header image <a href="https://unsplash.com/@vtrsnts">Vitor Santos</a></li>
