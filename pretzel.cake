@@ -15,7 +15,7 @@ public static void Replace(string file, string @this, string withThis)
 public static void Prepare(ICakeContext context, string configuration = null)
 {
     configuration = configuration ?? context.Argument<string>("Configuration");
-    var url = context.Argument<string>("Url", "http://devonburriss.me/");
+    var url = context.Argument<string>("Url", "https://devonburriss.me/");
     var port = context.Argument<string>("Port", "5001");
     var file = "./_config.yml";
     var localhost = "http://localhost:" + port + "/";    
