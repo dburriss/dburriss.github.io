@@ -46,7 +46,7 @@ PowerShell -NoProfile -ExecutionPolicy Bypass -Command "iex (Invoke-WebRequest '
 
 If you find yourself needing to setup Paket often as can happen if you are using F# fsx scripting files often, you may want to create an easier to remember command. The easiest way to do this is to add a function call to your Powershell profile.
 
-Navigate to *"C:\Users\ &lt; your username &gt;\Documents\WindowsPowerShell"* and add the following function.
+Edit *"C:\Users\ &lt; your username &gt;\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"* on Windows or *~/.config/powershell/profile.ps1* on Mac and add the following function:
 
 ```powershell
 function New-Paket {
@@ -110,6 +110,12 @@ If you want more details on how Paket works I recommend [Isaac's introduction to
 ## Conclusion
 
 Paket is an awesome replacement for Nuget and in this article we looked at how you can get up and running fast as well as make sure it is as easy as possible to get Paket quickly every time you need it.
+
+## Resources
+
+1. [Installing Powershell on Windows](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-windows?view=powershell-6)
+1. [Installing Powershell on Linux](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6)
+1. [Installing Powershell on MacOS](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-macos?view=powershell-6)
 
 ## Credits
 
