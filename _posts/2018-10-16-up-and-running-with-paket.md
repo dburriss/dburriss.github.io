@@ -15,7 +15,7 @@ published: true
 ---
 [Paket](https://fsprojects.github.io/Paket/) is an awesome dependency manager for .NET. Comparing it to Nuget is both the easiest way to explain the basics of it and also a massive disservice to Paket. In this post I want to share some tips to make working with Paket even more awesome.
 <!--more-->
-The biggest problem with working with Paket has nothing to do with Paket itself, or even it's differences with Nuget. The biggest issue is that the ecosystem is geared to make using Nuget really easy. The tooling is all geared such that Nuget is embedded in your project whether you like it or not. So let's see how we can make working with Paket as smooth as possible. This ease isn't a bad thing, it just means the barrier to entry for something better seems high. Let us see what we can do about that.
+The biggest problem with working with Paket has nothing to do with Paket itself, or even its differences with Nuget. The biggest issue is that the ecosystem is geared to make using Nuget really easy. The tooling is all geared such that Nuget is embedded in your project whether you like it or not. So let's see how we can make working with Paket as smooth as possible. This ease isn't a bad thing, it just means the barrier to entry for something better seems high. Let us see what we can do about that.
 
 ## TL;DR
 
