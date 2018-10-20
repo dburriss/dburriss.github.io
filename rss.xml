@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Wed, 17 Oct 2018 09:55:24 +00:00</pubDate>
-    <lastBuildDate>Wed, 17 Oct 2018 09:55:24 +00:00</lastBuildDate>
+    <pubDate>Sat, 20 Oct 2018 11:33:52 +00:00</pubDate>
+    <lastBuildDate>Sat, 20 Oct 2018 11:33:52 +00:00</lastBuildDate>
+    
+    <item>
+      <title>How to F#</title>
+      <link>https://devonburriss.me/how-to-fsharp-pt-1/</link>
+      <pubDate>Fri, 19 Oct 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/how-to-fsharp-pt-1/</guid>
+      <description>In part 1 of this series we will look at assigning values and at some of the common types used when programming</description>
+    </item>
     
     <item>
       <title>F# Scripts</title>

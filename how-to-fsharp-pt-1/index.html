@@ -12,36 +12,49 @@
 
 
 
+    
 
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly explorations in code">
+    
+
+
+    <title>How to F#</title>
+    <meta name="description" content="In part 1 of this series we will look at assigning values and at some of the common types used when programming">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-1/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly explorations in code">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="How to F#">
+    <meta itemprop="description" content="In part 1 of this series we will look at assigning values and at some of the common types used when programming">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2017/apple.jpg">
+    
+    <meta itemprop="datePublished" content="10/19/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="10/19/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="How to F# - Part 1: Assigning and types" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-1/" />
+    <meta name="headline" content="How to F# - Part 1: Assigning and types" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly explorations in code">
+    <meta name="twitter:title" content="How to F#">
+    <meta name="twitter:description" content="In part 1 of this series we will look at assigning values and at some of the common types used when programming">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2017/apple.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="How to F#" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me//tag/hyper-v/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly explorations in code" />
+    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-1/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2017/apple.jpg" />
+    <meta property="og:description" content="In part 1 of this series we will look at assigning values and at some of the common types used when programming" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -142,174 +155,164 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/todo-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>How to F#</h1>
+                        
+                        <h2 class="subheading">Part 1: Assigning and types</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 19, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/functional" class="label label-default">Functional</a>
+                            
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
+                                <a href="/tag/net" class="label label-default">.NET</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			<div>
-    <div class="clearfix">
-        <h1 class="pull-right">&#47;Hyper-V&#47; &nbsp;</h1>
-    </div>
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      
-      <div class="post-preview ">
-          <a href="/installing-docker-on-hyper-v/">
-              <h2 class="post-title">            Installing Docker on Hyper-V
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on March 07, 2015</p>
-          
-              
-                 <a href="/tag/hyper-v"><span class="label label-default">Hyper-V</span></a>
-              
-                 <a href="/tag/ubuntu"><span class="label label-default">Ubuntu</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/installing-ubuntu-on-hyper-v/">
-              <h2 class="post-title">            Installing Ubuntu on Hyper-V
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on March 06, 2015</p>
-          
-              
-                 <a href="/tag/hyper-v"><span class="label label-default">Hyper-V</span></a>
-              
-                 <a href="/tag/ubuntu"><span class="label label-default">Ubuntu</span></a>
-              
-          
-      </div>
-      <hr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-</div>
-		</div>
+				<p>Over the last few weeks I have been showing various people with different levels of programming experience how to use F#. This post is the first in a series on the basics of programming with F#. In this one we cover assigning values and the different types those values can take on.</p>
+<h2>Introduction</h2>
+<p>F# is a functional first language that allows for interoperation with other the .NET ecosystem. This means you can use it mixed in a solution with other .NET languages like C# and VB, you can use all available Nuget packages, and you can reuse your knowledge of the existing base class library (BCL) if you are already a .NET developer. To achieve this interoperation F# allows you to program in an object oriented paradigm if you would like but it will often feel a bit clunky compared to the functional paradigm. Hence the &quot;functional first&quot;.</p>
+<h2>Warning</h2>
+<p>I will be covering a lot of ground in as concise a way as possible. In a lot of ways this is &quot;just enough to be dangerous&quot;. That been said learning a programming language is much like learning a spoken language. The best thing you can do is use it even if you feel stupid doing so.</p>
+<h2>Syntax</h2>
+<p>Depending on your background, one of the first things to stand out with F# is its lack of curly braces. F# uses the whitespece indentation to determine the scope of something. We will see this in a future article when we deal with functions.</p>
+<h3>Assigning value</h3>
+<p>We can assign values in F# using the <code>let</code> keyword. Since F# is a functional first language even functions can be assigned with the <code>let</code> keyword. Do not worry too much about what the examples below mean, some of it will be covered later.</p>
+<pre><code class="language-fsharp">// the number 1 assigned to i
+let i = 1
+// a string assigned to `lowerTxt`
+let lowerTxt = &quot;i like to shout&quot;
+// assign a function that takes a string and changes it to uppercase
+let toUpper (s:string) = s.ToUpper()
+// assign value from the result of a function
+let upperTxt = toUpper lowerTxt
+</code></pre>
+<p>In other languages these values would often be called <em>variables</em>. In F# values are immutable (cannot be changed), so they are not variable. You have to mark values that you want to be mutable with the <code>mutable</code> keyword but I recommend not doing this unless you are performance tuning. Usually it is a sign you are not doing things functionally.</p>
+<h3>Commonly used types</h3>
+<p>First lets touch on some common data types. Types define the type of data we can store in a value.</p>
+<h4>Simple</h4>
+<p><code>string</code> represents text in a program. When used in a program a <code>string</code> is defined like this with quotations <code>&quot;Some text in my program&quot;</code>. We saw usage of it above. It is often prudent to wrap OO .NET string methods in your own since the F# compiler struggles to work out the types of methods in the .NET library. Or any OO style methods for that matter.</p>
+<p><code>int</code> defines whole numbers.</p>
+<p><code>decimal</code> is a good choice for money when you need cents.</p>
+<p><code>DateTime</code> and <code>DateTimeOffset</code> represent both a date and time component. The latter incorporates a timezone offset.</p>
+<p><code>unit</code> this is a special type that represents nothing. Later we will see how a function that makes some changes like printing some values, then it may not need to return anything. In this case a type <code>Unit</code> will be returned.</p>
+<h4>Complex</h4>
+<p>Sometimes you want to capture data together in a way that pulls together simple types to represent a single coherent idea. In F# we can use classes as in C# but sticking with simplicity and immutability, a better option is F#'s record type.</p>
+<pre><code class="language-fsharp">// define a type
+type Person = {
+    Name:string
+    Birth:DateTime
+}
 
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+// create an instance of that type
+let devon = {
+    Name = &quot;Devon&quot;
+    Birth = DateTime.Parse(&quot;2121/01/01&quot;)
+}
+</code></pre>
+<p>Above we defined a new type called <code>Person</code> and then created an instance of that type assigned to a value called <code>devon</code>.
+Even though a value is immutable, F# does provide an easy way to create a new value from an old value while updating the fields.</p>
+<pre><code class="language-fsharp">let devonBurriss = { devon with Name = &quot;Devon Burriss&quot; }
+</code></pre>
+<h4>Tuple</h4>
+<p>Another common type in functional programming is a <strong>Tuple</strong>. A simple tuple is represented as <code>Tuple&lt;T1,T2&gt;</code>, meaning it has 2 values inside of type <code>T1</code> and <code>T2</code>. So tuples are kind of like record types without the named fields. In F# we define a tuple type like this <code>bool * int</code> and we would create an instance of that type like so <code>let myTuple = (true,99)</code>. Tuples are often useful as intermediary values between functions.</p>
+<pre><code class="language-fsharp">//create a tuple of type bool * int
+let myTuple = (true,99)
+// use the fst function to get the first value in the tuple
+let b1 = fst myTuple
+// use the snd function to get the second value in the tuple
+let n1 = myTuple |&gt; snd
+// use pattern matching to get the values
+let (b,n) = myTuple
+//val b : bool = true
+//val n : int = 99
+</code></pre>
+<h4>Collections</h4>
+<p>Dealing with a collection of elements of the same type is a common occurrence in programming. Whether a sequence of numbers or a list of people, you need a way to work with them. Although you can of course use the .NET collection types in F#, F# has some built-in types that make it easier to interact with collections in a more functional way. These types are <code>List</code>, <code>Array</code>, and <code>Seq</code>. Most of the functions for dealing with all these types are shared across all of them.</p>
+<p>Examples:</p>
+<pre><code class="language-fsharp">let lstFst = List.head [1;2;3] // 1
+let arrFst = Array.head [|1;2;3|] // 1
+let seqFst = Seq.head (seq { yield 1; yield 2; yield 3})
+</code></pre>
+<p>As you can see, the same function is available for getting the first element of the collection on each of the relevant modules.</p>
+<p>So why are there 3 different collection types that seem so similar?</p>
+<p><code>list</code> is the go to collection for me when working with in-memory data. It is an immutable collection so encourages functional best practices. This data structure is optimized for iterating through it and accessing the first element of the list (under the hood it is a linked list). Being a native F# data structure it allows superior pattern matching compared to other data types. This is actually quite common in functional programming where we often interact with a list as <code>head::tail</code> (pattern matching) where head is the first element in a list and tail is the rest of the list.</p>
+<p><code>array</code> is a good choice if you need random access to elements in the collection. Is an alias for <em>BCL</em> <code>Array</code>.</p>
+<pre><code class="language-fsharp">let j = Array.get [|1;2;3|] // val: j = 2
+</code></pre>
+<p><code>seq</code> is a lazily evaluated collection and so can represent an infinite list. This can be memory saving as each element is evaluated as needed. Is an alias for the <em>BCL</em> <code>IEnumerable</code>.</p>
+<p>Two other F# data structures worth mentioning now is <code>map</code> and <code>ResizeArray</code>. <code>map</code> gives us a key-value dictionary that is often quite useful as a lookup:</p>
+<pre><code class="language-fsharp">let funcFirstLangs = Map.ofList [(&quot;csharp&quot;,false);(&quot;fsharp&quot;,true)]
+let isFuncFirst = Map.find &quot;fsharp&quot; funcFirstLangs // val: isFuncFirst = true
+</code></pre>
+<p><code>ResizeArray</code> is usually of interest when working with C# as it is an alias for <code>List</code>.</p>
+<h4>Discriminated Unions</h4>
+<p>The last type I want to touch on is Discriminated Unions (DU or sum types). DUs allow you to define a type which may be one of many types. Let me try explain by example.</p>
+<pre><code class="language-fsharp">type Rating =
+| Skipped
+| RemindLater of DateTime
+| JustVote of int
+| VoteWithComment of int*string
+
+let vote = VoteWithComment (5,&quot;This is the best application every!!!! Worth every cent!&quot;)
+</code></pre>
+<p>Here we are defining a <strong>DU</strong> type <code>Rating</code> that represents a rating of a mobile application. Although each of the 4 cases contains different information, any case will be of type <code>Rating</code>. We will explore this more in a later post when we tackle pattern matching.</p>
+<h2>Conclusion</h2>
+<p>So that is the end of the first entry into how to use F# We covered how to assign values and took a whirlwind tour of some of the different types that those values could be. In future installments we will dive into some more advanced topics of working with these values as well as explore the idea of functional programming. I hope you found this interesting and are excited for the next installment. If anything was unclear I would really appreciate your feedback so I can improve this for the next reader who may come along.</p>
+<h2>Resources</h2>
+<ol>
+<li><a href="https://fsharp.org/learn.html">Learn F# resources</a></li>
+<li><a href="http://dungpa.github.io/fsharp-cheatsheet/">Cheatsheet</a></li>
+<li><a href="https://fsharpforfunandprofit.com/posts/list-module-functions/">fsharp for fun and profit</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Algebraic_data_type">Algebraic data types</a></li>
+</ol>
+
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/argument-for-fp/">An argument for functional programming</a></li>
+                                                <li><a href="/why-i-got-hooked-on-fsharp/">Why I got hooked on F#</a></li>
+                                                <li><a href="/fsharp-scripting/">F# Scripts</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/fsharp-scripting/" data-toggle="tooltip"    data-placement="top" title="F# Scripts">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -351,7 +354,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/agile">Agile</a>
 
@@ -371,8 +374,8 @@
 
     <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -707,24 +710,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="https://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="https://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>

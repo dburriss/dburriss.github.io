@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>https://devonburriss.me/how-to-fsharp-pt-1/</loc>
+    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>https://devonburriss.me/fsharp-scripting/</loc>
     <lastmod>2018-10-17T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -840,14 +847,6 @@
   
 	
 	<url>
-		<loc>https://devonburriss.me//category/programming/index.html</loc>
-		<changefreq>daily</changefreq>
-		<priority>1.00</priority>
-	</url>
-	
-  
-	
-	<url>
 		<loc>https://devonburriss.me//category/project-management/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
@@ -873,6 +872,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//category/virtualization/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/net/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>

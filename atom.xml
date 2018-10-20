@@ -3,13 +3,121 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-17T09:55:24.8810684+00:00</updated>
+  <updated>2018-10-20T11:33:52.0238865+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/how-to-fsharp-pt-1/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-1/"/>
+    <title>How to F#</title>
+    <updated>2018-10-19T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/how-to-fsharp-pt-1/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;Over the last few weeks I have been showing various people with different levels of programming experience how to use F#. This post is the first in a series on the basics of programming with F#. In this one we cover assigning values and the different types those values can take on.&lt;/p&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;F# is a functional first language that allows for interoperation with other the .NET ecosystem. This means you can use it mixed in a solution with other .NET languages like C# and VB, you can use all available Nuget packages, and you can reuse your knowledge of the existing base class library (BCL) if you are already a .NET developer. To achieve this interoperation F# allows you to program in an object oriented paradigm if you would like but it will often feel a bit clunky compared to the functional paradigm. Hence the &amp;quot;functional first&amp;quot;.&lt;/p&gt;
+&lt;h2&gt;Warning&lt;/h2&gt;
+&lt;p&gt;I will be covering a lot of ground in as concise a way as possible. In a lot of ways this is &amp;quot;just enough to be dangerous&amp;quot;. That been said learning a programming language is much like learning a spoken language. The best thing you can do is use it even if you feel stupid doing so.&lt;/p&gt;
+&lt;h2&gt;Syntax&lt;/h2&gt;
+&lt;p&gt;Depending on your background, one of the first things to stand out with F# is its lack of curly braces. F# uses the whitespece indentation to determine the scope of something. We will see this in a future article when we deal with functions.&lt;/p&gt;
+&lt;h3&gt;Assigning value&lt;/h3&gt;
+&lt;p&gt;We can assign values in F# using the &lt;code&gt;let&lt;/code&gt; keyword. Since F# is a functional first language even functions can be assigned with the &lt;code&gt;let&lt;/code&gt; keyword. Do not worry too much about what the examples below mean, some of it will be covered later.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// the number 1 assigned to i
+let i = 1
+// a string assigned to `lowerTxt`
+let lowerTxt = &amp;quot;i like to shout&amp;quot;
+// assign a function that takes a string and changes it to uppercase
+let toUpper (s:string) = s.ToUpper()
+// assign value from the result of a function
+let upperTxt = toUpper lowerTxt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In other languages these values would often be called &lt;em&gt;variables&lt;/em&gt;. In F# values are immutable (cannot be changed), so they are not variable. You have to mark values that you want to be mutable with the &lt;code&gt;mutable&lt;/code&gt; keyword but I recommend not doing this unless you are performance tuning. Usually it is a sign you are not doing things functionally.&lt;/p&gt;
+&lt;h3&gt;Commonly used types&lt;/h3&gt;
+&lt;p&gt;First lets touch on some common data types. Types define the type of data we can store in a value.&lt;/p&gt;
+&lt;h4&gt;Simple&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;string&lt;/code&gt; represents text in a program. When used in a program a &lt;code&gt;string&lt;/code&gt; is defined like this with quotations &lt;code&gt;&amp;quot;Some text in my program&amp;quot;&lt;/code&gt;. We saw usage of it above. It is often prudent to wrap OO .NET string methods in your own since the F# compiler struggles to work out the types of methods in the .NET library. Or any OO style methods for that matter.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;int&lt;/code&gt; defines whole numbers.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;decimal&lt;/code&gt; is a good choice for money when you need cents.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;DateTime&lt;/code&gt; and &lt;code&gt;DateTimeOffset&lt;/code&gt; represent both a date and time component. The latter incorporates a timezone offset.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;unit&lt;/code&gt; this is a special type that represents nothing. Later we will see how a function that makes some changes like printing some values, then it may not need to return anything. In this case a type &lt;code&gt;Unit&lt;/code&gt; will be returned.&lt;/p&gt;
+&lt;h4&gt;Complex&lt;/h4&gt;
+&lt;p&gt;Sometimes you want to capture data together in a way that pulls together simple types to represent a single coherent idea. In F# we can use classes as in C# but sticking with simplicity and immutability, a better option is F#&apos;s record type.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// define a type
+type Person = {
+    Name:string
+    Birth:DateTime
+}
+
+// create an instance of that type
+let devon = {
+    Name = &amp;quot;Devon&amp;quot;
+    Birth = DateTime.Parse(&amp;quot;2121/01/01&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Above we defined a new type called &lt;code&gt;Person&lt;/code&gt; and then created an instance of that type assigned to a value called &lt;code&gt;devon&lt;/code&gt;.
+Even though a value is immutable, F# does provide an easy way to create a new value from an old value while updating the fields.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let devonBurriss = { devon with Name = &amp;quot;Devon Burriss&amp;quot; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Tuple&lt;/h4&gt;
+&lt;p&gt;Another common type in functional programming is a &lt;strong&gt;Tuple&lt;/strong&gt;. A simple tuple is represented as &lt;code&gt;Tuple&amp;lt;T1,T2&amp;gt;&lt;/code&gt;, meaning it has 2 values inside of type &lt;code&gt;T1&lt;/code&gt; and &lt;code&gt;T2&lt;/code&gt;. So tuples are kind of like record types without the named fields. In F# we define a tuple type like this &lt;code&gt;bool * int&lt;/code&gt; and we would create an instance of that type like so &lt;code&gt;let myTuple = (true,99)&lt;/code&gt;. Tuples are often useful as intermediary values between functions.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;//create a tuple of type bool * int
+let myTuple = (true,99)
+// use the fst function to get the first value in the tuple
+let b1 = fst myTuple
+// use the snd function to get the second value in the tuple
+let n1 = myTuple |&amp;gt; snd
+// use pattern matching to get the values
+let (b,n) = myTuple
+//val b : bool = true
+//val n : int = 99
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Collections&lt;/h4&gt;
+&lt;p&gt;Dealing with a collection of elements of the same type is a common occurrence in programming. Whether a sequence of numbers or a list of people, you need a way to work with them. Although you can of course use the .NET collection types in F#, F# has some built-in types that make it easier to interact with collections in a more functional way. These types are &lt;code&gt;List&lt;/code&gt;, &lt;code&gt;Array&lt;/code&gt;, and &lt;code&gt;Seq&lt;/code&gt;. Most of the functions for dealing with all these types are shared across all of them.&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let lstFst = List.head [1;2;3] // 1
+let arrFst = Array.head [|1;2;3|] // 1
+let seqFst = Seq.head (seq { yield 1; yield 2; yield 3})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, the same function is available for getting the first element of the collection on each of the relevant modules.&lt;/p&gt;
+&lt;p&gt;So why are there 3 different collection types that seem so similar?&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;list&lt;/code&gt; is the go to collection for me when working with in-memory data. It is an immutable collection so encourages functional best practices. This data structure is optimized for iterating through it and accessing the first element of the list (under the hood it is a linked list). Being a native F# data structure it allows superior pattern matching compared to other data types. This is actually quite common in functional programming where we often interact with a list as &lt;code&gt;head::tail&lt;/code&gt; (pattern matching) where head is the first element in a list and tail is the rest of the list.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;array&lt;/code&gt; is a good choice if you need random access to elements in the collection. Is an alias for &lt;em&gt;BCL&lt;/em&gt; &lt;code&gt;Array&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let j = Array.get [|1;2;3|] // val: j = 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;seq&lt;/code&gt; is a lazily evaluated collection and so can represent an infinite list. This can be memory saving as each element is evaluated as needed. Is an alias for the &lt;em&gt;BCL&lt;/em&gt; &lt;code&gt;IEnumerable&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Two other F# data structures worth mentioning now is &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;ResizeArray&lt;/code&gt;. &lt;code&gt;map&lt;/code&gt; gives us a key-value dictionary that is often quite useful as a lookup:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let funcFirstLangs = Map.ofList [(&amp;quot;csharp&amp;quot;,false);(&amp;quot;fsharp&amp;quot;,true)]
+let isFuncFirst = Map.find &amp;quot;fsharp&amp;quot; funcFirstLangs // val: isFuncFirst = true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;ResizeArray&lt;/code&gt; is usually of interest when working with C# as it is an alias for &lt;code&gt;List&lt;/code&gt;.&lt;/p&gt;
+&lt;h4&gt;Discriminated Unions&lt;/h4&gt;
+&lt;p&gt;The last type I want to touch on is Discriminated Unions (DU or sum types). DUs allow you to define a type which may be one of many types. Let me try explain by example.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;type Rating =
+| Skipped
+| RemindLater of DateTime
+| JustVote of int
+| VoteWithComment of int*string
+
+let vote = VoteWithComment (5,&amp;quot;This is the best application every!!!! Worth every cent!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here we are defining a &lt;strong&gt;DU&lt;/strong&gt; type &lt;code&gt;Rating&lt;/code&gt; that represents a rating of a mobile application. Although each of the 4 cases contains different information, any case will be of type &lt;code&gt;Rating&lt;/code&gt;. We will explore this more in a later post when we tackle pattern matching.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;So that is the end of the first entry into how to use F# We covered how to assign values and took a whirlwind tour of some of the different types that those values could be. In future installments we will dive into some more advanced topics of working with these values as well as explore the idea of functional programming. I hope you found this interesting and are excited for the next installment. If anything was unclear I would really appreciate your feedback so I can improve this for the next reader who may come along.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharp.org/learn.html&quot;&gt;Learn F# resources&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://dungpa.github.io/fsharp-cheatsheet/&quot;&gt;Cheatsheet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/posts/list-module-functions/&quot;&gt;fsharp for fun and profit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Algebraic_data_type&quot;&gt;Algebraic data types&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/fsharp-scripting/</id>
