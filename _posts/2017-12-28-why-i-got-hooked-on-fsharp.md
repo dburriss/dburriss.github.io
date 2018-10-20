@@ -5,8 +5,8 @@ subtitle: "My path to embracing functional programming"
 description: "A short overview of my ongoing efforts to learn functional programming, specifically F#"
 permalink: why-i-got-hooked-on-fsharp
 author: "Devon Burriss"
-category: Programming
-tags: [Functional]
+category: Software Development
+tags: [Functional,F#]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/tree-bg.jpg"
@@ -49,7 +49,6 @@ By early 2017 I was writing small console apps in F# that would crunch some CSV 
 Now here we are at the end of 2017 and and I have just finished [Domain Modelling Made Functional](https://fsharpforfunandprofit.com/books/#domain-modeling-made-functional-ebook-and-paper) by Scott Wlaschin of [fsharpforfunandprofit](https://fsharpforfunandprofit.com/) fame. It brings together so many deep topics in such an approachable way that it is difficult to compare to any book I have read before. It doesn't assume any knowledge and yet I learned some F#, some FP, and some DDD even though I have read multiple books dedicated to each of these topics. Scott develops a feature from beginning to end in a practical way that distills and teaches the core concepts of these advanced topics without getting bogged down in theory. I realize I am sounding like a fan boy here but I would honestly recommend this book to teach FP and F# OR DDD. It teaches both brilliantly.
 
 This December I posted [my first F# themed blog post](/argument-for-fp/) as part of the [FsAdvent Calendar 2017](https://sergeytihon.com/2017/10/22/f-advent-calendar-in-english-2017/). I submitted [my first PR to an F# open source project](https://github.com/giraffe-fsharp/giraffe-template/pull/4) and now I am winding down on my 2nd FP related blog post. I am looking forward to what the next year brings and all I have to learn.
-
 
 ## Further Reading (posts)
 
