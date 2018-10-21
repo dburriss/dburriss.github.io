@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-20T11:33:52.0238865+00:00</updated>
+  <updated>2018-10-21T14:40:25.9055032+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -22,7 +22,7 @@
     </author>
     <summary type="html">&lt;p&gt;Over the last few weeks I have been showing various people with different levels of programming experience how to use F#. This post is the first in a series on the basics of programming with F#. In this one we cover assigning values and the different types those values can take on.&lt;/p&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;F# is a functional first language that allows for interoperation with other the .NET ecosystem. This means you can use it mixed in a solution with other .NET languages like C# and VB, you can use all available Nuget packages, and you can reuse your knowledge of the existing base class library (BCL) if you are already a .NET developer. To achieve this interoperation F# allows you to program in an object oriented paradigm if you would like but it will often feel a bit clunky compared to the functional paradigm. Hence the &amp;quot;functional first&amp;quot;.&lt;/p&gt;
+&lt;p&gt;F# is a functional first language that allows for interoperation with the rest of the .NET ecosystem. This means you can use it mixed in a solution with other .NET languages like C# and VB, you can use all available Nuget packages, and you can reuse your knowledge of the existing base class library (BCL) if you are already a .NET developer. To achieve this interoperation F# allows you to program in an object oriented paradigm if you would like but it will often feel a bit clunky compared to the functional paradigm. Hence the &amp;quot;functional first&amp;quot;.&lt;/p&gt;
 &lt;h2&gt;Warning&lt;/h2&gt;
 &lt;p&gt;I will be covering a lot of ground in as concise a way as possible. In a lot of ways this is &amp;quot;just enough to be dangerous&amp;quot;. That been said learning a programming language is much like learning a spoken language. The best thing you can do is use it even if you feel stupid doing so.&lt;/p&gt;
 &lt;h2&gt;Syntax&lt;/h2&gt;
