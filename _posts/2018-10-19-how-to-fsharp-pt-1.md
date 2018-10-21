@@ -17,7 +17,7 @@ Over the last few weeks I have been showing various people with different levels
 
 ## Introduction
 
-F# is a functional first language that allows for interoperation with other the .NET ecosystem. This means you can use it mixed in a solution with other .NET languages like C# and VB, you can use all available Nuget packages, and you can reuse your knowledge of the existing base class library (BCL) if you are already a .NET developer. To achieve this interoperation F# allows you to program in an object oriented paradigm if you would like but it will often feel a bit clunky compared to the functional paradigm. Hence the "functional first".
+F# is a functional first language that allows for interoperation with the rest of the .NET ecosystem. This means you can use it mixed in a solution with other .NET languages like C# and VB, you can use all available Nuget packages, and you can reuse your knowledge of the existing base class library (BCL) if you are already a .NET developer. To achieve this interoperation F# allows you to program in an object oriented paradigm if you would like but it will often feel a bit clunky compared to the functional paradigm. Hence the "functional first".
 
 ## Warning
 
