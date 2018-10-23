@@ -94,7 +94,7 @@ Another common type in functional programming is a **Tuple**. A simple tuple is 
 let myTuple = (true,99)
 // use the fst function to get the first value in the tuple
 let b1 = fst myTuple
-// use the snd function to get the second value in the tuple
+// use the snd function to get the second value in the tuple, with pipe forward operator
 let n1 = myTuple |> snd
 // use pattern matching to get the values
 let (b,n) = myTuple
@@ -156,6 +156,8 @@ Here we are defining a **DU** type `Rating` that represents a rating of a mobile
 ## Conclusion
 
 So that is the end of the first entry into how to use F# We covered how to assign values and took a whirlwind tour of some of the different types that those values could be. In future installments we will dive into some more advanced topics of working with these values as well as explore the idea of functional programming. I hope you found this interesting and are excited for the next installment. If anything was unclear I would really appreciate your feedback so I can improve this for the next reader who may come along.
+
+[Next How to F# - Part 2 - Understanding and working with Functions](/how-to-fsharp-pt-2)
 
 ## Resources
 
