@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-21T14:40:25.9055032+00:00</updated>
+  <updated>2018-10-23T14:10:24.4025878+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -14,7 +14,7 @@
   <entry>
     <id>https://devonburriss.me/how-to-fsharp-pt-1/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-1/"/>
-    <title>How to F#</title>
+    <title>How to F# - Part 1</title>
     <updated>2018-10-19T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>

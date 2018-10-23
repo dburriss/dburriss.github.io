@@ -6,11 +6,11 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sun, 21 Oct 2018 14:40:25 +00:00</pubDate>
-    <lastBuildDate>Sun, 21 Oct 2018 14:40:25 +00:00</lastBuildDate>
+    <pubDate>Tue, 23 Oct 2018 14:10:24 +00:00</pubDate>
+    <lastBuildDate>Tue, 23 Oct 2018 14:10:24 +00:00</lastBuildDate>
     
     <item>
-      <title>How to F#</title>
+      <title>How to F# - Part 1</title>
       <link>https://devonburriss.me/how-to-fsharp-pt-1/</link>
       <pubDate>Fri, 19 Oct 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
