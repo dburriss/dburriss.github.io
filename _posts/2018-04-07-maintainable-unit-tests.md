@@ -6,7 +6,7 @@ description: "Highlights some tips for making tests more resilient by focusing o
 permalink: maintainable-unit-tests
 author: "Devon Burriss"
 category: Software Development
-tags: [Clean Code, TDD]
+tags: [Clean Code,TDD,Testing]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/vents-bg.jpg"
