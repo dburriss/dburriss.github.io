@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "How to F#"
-subtitle: "Part 1: Assigning and types"
+title: "How to F# - Part 1"
+subtitle: "Assigning values and getting to know types"
 description: "In part 1 of this series we will look at assigning values and at some of the common types used when programming"
 permalink: how-to-fsharp-pt-1
 author: "Devon Burriss"
