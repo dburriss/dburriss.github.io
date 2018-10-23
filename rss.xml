@@ -6,8 +6,26 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Tue, 23 Oct 2018 14:10:24 +00:00</pubDate>
-    <lastBuildDate>Tue, 23 Oct 2018 14:10:24 +00:00</lastBuildDate>
+    <pubDate>Tue, 23 Oct 2018 18:52:06 +00:00</pubDate>
+    <lastBuildDate>Tue, 23 Oct 2018 18:52:06 +00:00</lastBuildDate>
+    
+    <item>
+      <title>How to F# - Part 3</title>
+      <link>https://devonburriss.me/how-to-fsharp-pt-3/</link>
+      <pubDate>Wed, 24 Oct 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/how-to-fsharp-pt-3/</guid>
+      <description>In part 3 we will dive deeper into functions exploring different techniques for working with them</description>
+    </item>
+    
+    <item>
+      <title>How to F# - Part 2</title>
+      <link>https://devonburriss.me/how-to-fsharp-pt-2/</link>
+      <pubDate>Tue, 23 Oct 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/how-to-fsharp-pt-2/</guid>
+      <description>In part 2 of this series we will look at what gives functional programming its name, functions</description>
+    </item>
     
     <item>
       <title>How to F# - Part 1</title>

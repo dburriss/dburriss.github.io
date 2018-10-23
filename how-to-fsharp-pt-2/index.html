@@ -19,42 +19,42 @@
     
 
 
-    <title>An argument for functional programming</title>
-    <meta name="description" content="Arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular">
+    <title>How to F# - Part 2</title>
+    <meta name="description" content="In part 2 of this series we will look at what gives functional programming its name, functions">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="https://devonburriss.me/argument-for-fp/">
+    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-2/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="An argument for functional programming">
-    <meta itemprop="description" content="Arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular">
-    <meta itemprop="image" content="https://devonburriss.me/img/posts/2017/apple.jpg">
+    <meta itemprop="name" content="How to F# - Part 2">
+    <meta itemprop="description" content="In part 2 of this series we will look at what gives functional programming its name, functions">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/footprint-500.jpg">
     
-    <meta itemprop="datePublished" content="12/8/2017 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="12/8/2017 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="An argument for functional programming - Convincing your boss to let you use fsharp at work" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/argument-for-fp/" />
-    <meta name="headline" content="An argument for functional programming - Convincing your boss to let you use fsharp at work" />
+    <meta itemprop="datePublished" content="10/23/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="10/23/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="How to F# - Part 2 - Putting the function in Functional Programming" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-2/" />
+    <meta name="headline" content="How to F# - Part 2 - Putting the function in Functional Programming" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="An argument for functional programming">
-    <meta name="twitter:description" content="Arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular">
+    <meta name="twitter:title" content="How to F# - Part 2">
+    <meta name="twitter:description" content="In part 2 of this series we will look at what gives functional programming its name, functions">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2017/apple.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/footprint-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="An argument for functional programming" />
+    <meta property="og:title" content="How to F# - Part 2" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/argument-for-fp/" />
-    <meta property="og:image" content="https://devonburriss.me/img/posts/2017/apple.jpg" />
-    <meta property="og:description" content="Arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular" />
+    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-2/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/footprint-500.jpg" />
+    <meta property="og:description" content="In part 2 of this series we will look at what gives functional programming its name, functions" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -156,25 +156,25 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/stairwell-bg.jpg')">
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/hole-bg.jpg')">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>An argument for functional programming</h1>
+                        <h1>How to F# - Part 2</h1>
                         
-                        <h2 class="subheading">Convincing your boss to let you use fsharp at work</h2>
+                        <h2 class="subheading">Putting the function in Functional Programming</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on December 08, 2017</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 23, 2018</span>
                         
                             <hr />
                             
                                 <a href="/tag/functional" class="label label-default">Functional</a>
                             
-                                <a href="/tag/oop" class="label label-default">OOP</a>
-                            
                                 <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
+                                <a href="/tag/net" class="label label-default">.NET</a>
                             
                         
                     <div>
@@ -190,112 +190,77 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>Have you ever thought you have the perfect tool for the job at work but it is not on the allowed list of languages or frameworks? At this stage you have a decision to make. Are you going to just move on and pick something that will meet less resistance or are you going to do the work to drive some change? In this post I make my case for functional programming in enterprise development, specifically <strong>F#</strong> if your current team expertise is .NET. The same arguments could be leveled for JVM based languages like Scala if your experience is in Java.</p>
+				<p>In the <a href="/how-to-fsharp-pt-1">previous post</a> we looked at assigning values and the different types that those values could be. In this second installment we will be looking at functional programmings namesake: <em>functions</em>.</p>
+<h2>Introduction</h2>
+<p>Functional programming as a paradigm is quite a hard thing to pin down, just like other paradigms. In object-oriented programming the one thing that really isn't up for debate though is that the general idea is that we have an object (whatever that may mean to you) and we represent data and behavior in these objects. In functional programming then it will come as no surprise that <em>functions</em> are first class citizens and that we accomplish our goals by transforming data using these functions.</p>
+<p>What is a function though?</p>
+<h2>A brief reminder about mathematics</h2>
+<p>Do not worry, I will not be going into deep mathematics theory here. I instead want to remind you of some mathematics you probably touched on in school just to show you that this isn't necessarily something completely new to you. Secondly, it will show that functional programming has roots that go far deeper than computer programming. Do not worry though if you didn't like this stuff at school, I promise this is way more <code>fun</code>.</p>
+<p>In mathematical terms a function is a process that associates each element <em>x</em> of a set <strong>X</strong> to another value <em>y</em> which is of set <strong>Y</strong>. Let us call this process <em>f</em>. Then we have an expression:</p>
+<pre><code class="language-fsharp">y = f(x)
+</code></pre>
+<p>This is usually read as &quot;let <em>y</em> equal <em>f</em> of <em>x</em>&quot;.</p>
+<p>The set <strong>X</strong> of possible values of <em>x</em> is known as the <strong>domain</strong>. The set <strong>Y</strong> of possible outputs <em>y</em> is known as the <strong>codomain</strong>. To label the parts of the expression, <em>x</em> is the <strong>argument</strong> and the value of the function is the output.</p>
+<p>So how would we accurately define a specific function?</p>
 <blockquote>
-<p>This post is part of <a href="https://sergeytihon.com/2017/10/22/f-advent-calendar-in-english-2017/">FsAdvent Calendar 2017</a></p>
+<p>let <em>f</em>: R → R be the function defined by the equation <em>f(x) = x<sup>2</sup></em>, valid for all real values of x</p>
 </blockquote>
-<!--more-->
-<h2>TL;DR</h2>
-<p>In this post I drill down through the different reasons why a business (applies to individual developers too) should consider broadening their language range in a carefully considered way. First I argue that being open to multiple languages can benefit your companies hiring as well as the experience pool. Secondly I argue that functional programming opens up new perspectives while increasing the correctness of your applications in less time. As a bonus functional programming filters even better in the hiring process for top developers. Lastly I make the case that if you already have .NET experience the F# is a natural choice for a functional language.</p>
-<p>If this is all you are going to read I want to leave you with an excerpt from a study done over 728 projects on Github. I link to the full article at the end of the post.</p>
+<p>Notice how we have the <code>Domain -&gt; Codomain</code> defined using <code>-&gt;</code>. We will come back to this a little later.</p>
+<p>One last thing. Remember common functions like <code>sin</code> and <code>cos</code>? It is common to write them as <code>cos x</code>, without the the brackets as long as this does not lead to any ambiguity in the meaning. So now that we have had a little mathematics refresher, let us see if this brings us any insight into F# functions.</p>
+<p>Mathematics done!</p>
+<h2>Defining functions in F#</h2>
+<p>In the <a href="/how-to-fsharp-pt-1">previous post we looked at assigning values</a>. F# being a functional-first language means that we can treat functions like any other value.</p>
+<pre><code class="language-fsharp">// int -&gt; int
+let f x = x*x
+let y = f 3 //val y : int = 9
+</code></pre>
+<p>So above we define function <em>f</em> that takes argument <em>x</em>. Then we pass <code>3</code> as the argument and assign that to value <code>y</code>.</p>
+<p>Another way to define functions in F# is to use the <code>fun</code> keyword. Let us define the same function again, this time as function <em>g</em>:</p>
+<pre><code class="language-fsharp">// int -&gt; int
+let g = fun x -&gt; x*x
+let z = g 3 //val z : int = 9
+</code></pre>
+<p>This way makes it way more explicit that <code>g</code> is simply just another value that is assigned to. Note that this way of defining functions using <code>fun</code> is common when using functions once off inline, say for filtering a collection. We will see this in more detail in a later post when we dive deeper into collections.</p>
+<h2>Understand functions</h2>
+<h3>Signatures</h3>
+<p>In the above code I put the signature of the function in a comment above it. The signature describes what types a function take in and what it returns. So for our function above we have <code>int -&gt; int</code>. This means our function takes a single <code>int</code> as an argument and then returns an <code>int</code>.</p>
+<p>A function always has an input and an output. In F# (and all programming languages I know of) a function can have multiple arguments. Say for example we had a <code>writeToFile</code> function that took a <code>boolean</code> for whether to overwrite the file if it exists, and a <code>string</code> with the content of the file. The signature for <code>writeToFile</code> would then be <code>bool -&gt; string -&gt; unit</code>. Now what is this <code>unit</code> type? It was mentioned in the previous post as the type that represents nothing. As already mentioned, functions must always have an input and an output, so if a function has no meaningful value to return, we return <code>unit</code>.</p>
+<p>Do you see a similarity here? Types define the possible values that are possible. So for a signature <code>int -&gt; int</code>, our <strong>domain</strong> is all possible numbers allowed by the type <code>int</code> numbers and our <strong>codomain</strong> is also all possible <code>int</code> values. Pretty cool right?</p>
+<h3>Inference</h3>
+<p>In the previous function definitions you may have noticed we defined no types but the F# compiler inferred that the type of <em>x</em> was <code>int</code>. This is because we used the multiplication <code>(*)</code> operator on it. Most of the time the compiler does a pretty good job of working out the type. This keeps our code clean from boilerplate cruft. To be sure though, if you are used to a language like Java or C#, this will take a bit of getting used to. My tip is to pay close attention to the signatures. Any IDE will display this all the time or at least on mouse over.</p>
+<p>If you prefer to be explicit or in those cases where the compiler needs some help to determine the type, you can easily define the types explicitly.</p>
+<pre><code class="language-fsharp">let f (x:int) = x*x         // define argument type
+let f x : int = x*x         // define only return type
+let f (x:int) : int = x*x   // define argument type and return type
+</code></pre>
+<p>The argument type is specified with <code>(x:int)</code>. The parenthesis are needed to disambiguate the argument type from the return type.</p>
+<p>Just a quick style note. Mostly in F# code the types are left off unless needed.</p>
+<p>I wanted to highlight another way of defining functions, and that is by defining a type signature.</p>
+<pre><code class="language-fsharp">type Unary: int -&gt; int
+let increment : Unary = fun x = x + 1
+let decrement : Unary = fun x = x - 1
+</code></pre>
 <blockquote>
-<p>&quot;The data indicates that functional languages are better than procedural languages; it suggests that disallowing implicit type conversion is better than allowing it; that static typing is better than dynamic; and that managed memory usage is better than unmanaged.&quot; - A Large-Scale Study of Programming Languages and Code Quality in GitHub</p>
+<p>A unary function is one that takes only one argument</p>
 </blockquote>
-<h2>An argument for language diversity</h2>
-<img src="../img/posts/2017/scrolls.jpg" alt="Scrolls" class="img-rounded pull-left" width="290" style="margin-right: 1em;">
-Firstly I would like to make the case for why you should consider using different languages in your environment. Even if you don't buy that, I will make a case for at the very least hiring outside of the language expertise you need on the job.
-<h3>Slim pickings</h3>
-<p>Good developers are in short supply and the market is competitive. By opening up your hiring to other languages, or actually using multiple languages, you <strong>expand the pool of developers by a multiple of the number of languages you are willing to consider</strong>. This can be a huge advantage in the number of applicants you receive. Obviously sheer number of applicants is not the only concern and I will address this in a later point. The important point to buy in to here though is that a good developer in any language is a better pick than a poor or average developer in your language of choice. Language specific skills can be ramped up fairly quickly. Experience and professionalism on the other hand is hard earned and hard to come by. In my opinion the quality of a developer always trumps the language they use.</p>
-<h3>Swag</h3>
-<p>Let's face it. Your reputation as a company influences who you attract. For professional, open-minded developers that are not fan boys of a specific language, <strong>a company that is focused on hiring on quality and principles is far more appealing than a company that religiously hires on technical stack</strong>. <strong>Polyglot</strong> (fluent in multiple languages) is one of those <strong>buzzwords</strong> that started doing the rounds a while back in the programming space (in this case specific to programming languages). <strong>Being able to use it honestly in your recruitment is a real bonus</strong>.</p>
-<h3>Skin the cat</h3>
-<p>Different experience and different language features allow for different ways of solving problems. Often just having <strong>someone with a different background look at a problem allows them to come up with a solution in a new (for the team) and elegant way</strong>. This can have huge benefits to the team and company as a whole.</p>
-<h3>Mindset is key</h3>
-<p>At the rate that information based industries change it is impossible knowing everything. More important is that you can acquire new skills efficiently and effectively. Selecting for people who pick up new languages is <strong>selecting for people who actively pursue skill acquisition</strong>. This is often the number one identifier I see in hiring between average developers and awesome developers. When those languages span different programming paradigms like imperative and functional, then you have someone who is really pushing their comfort zones to find better solutions. That mindset is hard to teach and one you really want on your team. At the very least it is someone who is willing to pick up what needs to be done on the job.</p>
-<h2>An argument for functional programming</h2>
-<img src="../img/posts/2017/eye.jpg" alt="Eye" class="img-rounded pull-left" width="280" style="margin-right: 1em;">
-When I was new to software development I was always looking for new and shiny ways to do things. Waiting for that new feature. Over the years I have come to appreciate a more minimal and opinionated approach. Some tools are great for edge-cases but are often not worth the hassle they cause when used liberally where they should not be used. Minimizing language features that allow you to make mistakes increases productivity and helps you fall into the pit of success. My path to functional programming was paved in development pain and failure. How so? When something seemed painful I would look for ways to close that path in general development so the mistake was not made by me, or any other future developer again. Functional programming increases the constraints in a good way.
-<h3>Choice of 2, take it or leave it</h3>
-<p>Most of the mainstream enterprise languages out there have the concept of 'null'. This has been described as the <a href="https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions">billion dollar mistake</a>. Functional programming has more <strong>elegant ways of representing the absence of data</strong> that encourages you to make unrepresentable states unrepresentable. This is of course not the sole domain of the functional paradigm (I have <a href="/honest-return-types">written about it in the past for C#</a>) but null based exceptions are rare to find in functional languages and if found are usually because of interop concerns. Minimizing the chance of null removes a whole class of exceptions that can possibly occur.</p>
-<h3>Who moved my cheese?</h3>
-<p>Another point were I experienced pain was with erratic or incorrect programs due to unintended state changes. Functional programming on the other hand pushes you toward immutability. A function has an input and an output and that output does not have a reference to the input. This makes code far more predictable. <strong>Immutability removes a whole class of errors that can occur due to unintended side-effects</strong>, which are often hard to find and fix.</p>
-<h3>The I is an illusion</h3>
-<p>In the age of cloud computing, auto-scaling, and concurrency, <strong>not having state means concurrency becomes almost as simple as concurrent</strong> since there is no state to lock around. This makes functional programming great for scale as it keeps things simple for the developer. As a developer you don't need to be an expert in concurrency to get it right. Again, a whole host of concurrency bugs are not representable (in state).</p>
-<h3>Purity matters</h3>
-<p>Functional programming values something called purity. This is basically the characteristic that you pass something into a function and get something out, and no state has been mutated inside. So for each input value you will always get the same output value. Valuing purity means code that is not pure is pushed to the boundaries of the application, which is good. <strong>Purity ensures that the bulk of your codebase is easily testable</strong>.</p>
-<h3>The new goto</h3>
-<p>Since functional programming encourages purity, throwing exceptions is not something you regularly do. It only happens in exceptional cases. Functional languages make this less <a href="/better-error-handling">clunky than doing it in an OO first language like C#</a>. What this means for code is <strong>there are no breaks in control flow so it is easier to reason about</strong>. Easier to reason about means easier to maintain and less bugs.</p>
-<h3>Signature move</h3>
-<p>I have written before about <a href="/honest-arguments">honest arguments</a> and <a href="/honest-return-types">honest return types</a> and it is something I have witnessed make a difference in code. <strong>Not only is the code more descriptive but correctness is reinforced by the compiler</strong>. Functional programming brings the signatures of functions front and center. Once again, more possible errors negated.</p>
-<h3>Expanding horizons</h3>
-<p>I touched on this in the section on language diversity but encouraging developers to learn <strong>a new paradigm equips them with more tools in the toolbox</strong>. I am not talking about a new framework or pattern but a new perspective at looking at a problem. A new perspective may yield a better solution to a problem.</p>
-<h3>Short and sweet</h3>
-<p><strong>Functional languages usually allow you to do more with less code</strong>. This is because it is declarative rather than imperative. This means your code reads like a sentence telling you what it does rather than a list of commands telling you each and every task to do.</p>
-<h2>An argument for F#</h2>
-<img src="../img/posts/2017/fsharp512.png" alt="fsharp" class="img-rounded pull-left" width="280" style="margin-right: 1em;">
-So hopefully by this point I have convinced you (or you have convinced your boss) that having multiple languages is good. Not only that but choosing a functional first language makes good sense. My final step will be to convince you that F# should be that language.
-<h3>No cold turkey necessary</h3>
-<p>Although F# is a functional first language, it is actually multi-paradigm. <strong>F# supports both functional and object oriented paradigms. It has to since it interops easily with C#</strong>. So technically developers could code in an OOP style while they learned the F# language. This is absolutely an option and a pretty low risk way of introducing F#. The down side will be you might not reap the majority of the benefits I have mentioned thus far.</p>
-<h3>Protect the ecosystem</h3>
-<p>Part of what makes C# and .NET in general great is the tooling and libraries built up around it. <strong>Runtimes, IDEs, BCL, and library packages, they are all still available to you in F#</strong> since it is a .NET based language.</p>
-<h3>Protect the investment</h3>
-<p><strong>Your existing investment in libraries and business logic can be re-used as is without a re-write</strong>. You might want to write a small functional wrapper around them to make them fit in the new functional paradigm but that is a nice to have. This means your current code is re-usable and future code can still be written in whatever a team is comfortable in and still interop in the same solution.</p>
-<h3>Leading the pack</h3>
-<p>F# has been ahead of the curve in the .NET ecosystem in a lot of ways. So many of the great language features since C#'s initial Java clone have been inspired by F#. Current <strong>features like generics, <code>async</code>/<code>await</code>, auto-property initializers, exception filters, expression-bodied function members, and pattern-matching were all in F# first</strong>(or <a href="https://blogs.msdn.microsoft.com/dsyme/2011/03/15/netc-generics-history-some-photos-from-feb-1999/">worked on by the creator of F#</a>).</p>
-<h3>Shoulders of giants</h3>
-<p>Although F# has been leading the charge with Open Source for longer than probably any other Microsoft endeavour, it still has the backing of Microsoft as well as an active OSS community. F# was released by Microsoft Research in 2005 and has been on Github since 2010. It is lead by the <a href="http://foundation.fsharp.org/">FSharp Foundation</a> that is dedicated to advancing the language.</p>
-<p>Then there is the actual OSS community. There are too many to name individually but some that you will either use or stand out because of their ambition are:</p>
-<ol>
-<li><a href="http://ionide.io/">Ionide</a> - An IDE plugin for Visual Studio Code and Atom that has been ahead of Visual Studio in supporting F# features, especially with the new <code>netstandard</code> stuff</li>
-<li><a href="http://fsharp.github.io/FSharp.Data/">F# Data</a> - is a useful library for working with data from varied sources</li>
-<li><a href="https://suave.io/">Suave</a> - An ambitious and full-featured web library and server that provides a functional-first programming model for web development</li>
-<li><a href="https://github.com/dustinmoris/Giraffe">Giraffe</a> - a micro web framework that wraps the Asp.Net Core functionality for a more functional-first programming model</li>
-<li><a href="mbrace.io">MBrace</a> - provides a simple programming model that opens up cloud computing in a way that initially seems like magic</li>
-</ol>
-<p>This is far from an exhaustive list. The point is there are mature and well supported projects out there because the F# community is dedicated and enthusiastic. The FsAdvent Calendar initiative is a great example of this.</p>
-<h2>Caution</h2>
-<p>It would be remiss of me not to leave you with a few cautionary points.</p>
-<h3>Learning curve</h3>
-<p>Functional programming, especially with non C like languages can be pretty mind bending when you first start. I wish I could find the quote but I think it was one of the JVM functional language designers (Scala or Clojure) who said something like &quot;sacrificing future power and expressiveness for beginner ease of use is one of the worst traps language designers can fall into&quot;. I like the sentiment but in terms of language popularity it seems to have some unfortunate downsides. However, those who stick with it and start becoming fluent are usually die hard converts because they have realized the usefulness of the paradigm. On the other hand if most give up, the pool of developers will mostly consists of the smartest or most determined.</p>
-<h3>Maturity of the team</h3>
-<p>Language diversity requires a high level of maturity in your development team. A team lacking in maturity is more likely to pick something based on what they feel like using rather than assessing fitness of the tool for the solution. Hiring in at least one for two experienced people to lead would probably be a good idea.</p>
-<h3>Ramp up</h3>
-<p>Ramping up slowly and allowing more people in the organization to get experience on low risk projects could be a low risk way of introducing F#. <a href="https://youtu.be/qPlYbHKvk4g?t=376">A developer could learn the syntax this way without taking the productivity hit of learning a new paradigm</a>. Mark Seemann has talked about how he initially just did OOP with F# and slowly incorporated functional ideas. In Mark's case I think he was leaning toward functional concepts anyway. Without a push to do so a developer could remain a 100% OO programmer while using F#. Even worse, a developer doing this might then decide that F# provides no benefits. So a slow ramp up comes with it's own risks.</p>
-<h3>Maturity of deployment</h3>
-<p>With a new language you might need new deployment pipelines so make sure you have this sorted on a technology you are familiar with before going crazy with choices.</p>
-<h3>Pick smart</h3>
-<p>Although I argue for a polyglot environment I am not making the case for ALL languages being allowed. These projects still need to be supported by the organization. Pick a small set of languages after considering a few aspects of them:</p>
-<ol>
-<li>Maturity of the language, ecosystem, and the community</li>
-<li>Popularity of the language (no point jumping on a sinking ship)</li>
-<li>Availability of developers</li>
-<li>Expected salaries (you need to be competitive)</li>
-</ol>
+<p>So we define a <strong>Unary</strong> function as one that take in a single number and returns a number, and then we have multiple implementations of that type.</p>
 <h2>Conclusion</h2>
-<p>So I covered reasons why you should consider more languages, why one of those should be functional, and hopefully convinced you to <a href="http://fsharp.org/">give F# a try</a>. This actually isn't an exhaustive list. Personally, I have found other reasons why learning F# has been great. Learning F# made it easier for me to jump into even more languages. Elm for instance was super low resistance. Also F# has a bunch of really cool features like Type Providers, Computation Expressions, and more that blow your mind when you come across them.</p>
-<h2>Further Reading</h2>
+<p>In this post we introduced some of the core ideas behind functions. We learned how to define them and how to read a functions signature. We also touched on what the compiler can do for you by inferring the types, and how you can be explicit about the types.</p>
+<p>In the next post we will dive deeper into <a href="/how-to-fsharp-pt-3">Working with Functions and getting them to work for you</a>.</p>
+<h2>Resources</h2>
 <ol>
-<li><a href="https://cacm.acm.org/magazines/2017/10/221326-a-large-scale-study-of-programming-languages-and-code-quality-in-github/fulltext">A Large-Scale Study of Programming Languages and Code Quality in GitHub</a></li>
-<li><a href="http://evelinag.com/blog/2014/06-09-comparing-dependency-networks/">Comparing F# and C# with dependency networks</a></li>
-<li>Mark Seemann has a brilliant posts on how a <a href="http://blog.ploeh.dk/2015/04/13/less-is-more-language-features/">language can reduce the potential for errors</a></li>
-<li>Mark has an excellent talk on <a href="https://www.youtube.com/watch?v=US8QG9I1XW0">falling into the pit of success</a> and another on <a href="https://www.youtube.com/watch?v=cxs7oLGrxQ4">Dependency Rejection</a></li>
-<li>Scott Wlaschin has an excellent <a href="https://fsharpforfunandprofit.com/posts/low-risk-ways-to-use-fsharp-at-work/">series on low risk ways to start using F# at work</a></li>
-</ol>
-<h2>Credits</h2>
-<ol>
-<li>Header photo by <a href="https://unsplash.com/@nhoizey">Nicolas Hoizey</a></li>
-<li>Social photo by <a href="https://unsplash.com/@groosheck">Michał Grosicki</a></li>
-<li>Scrolls photo by <a href="https://unsplash.com/@sindreaalberg">Sindre Aalberg</a></li>
-<li>Eye photo by <a href="https://unsplash.com/@amandadalbjorn">Amanda Dalbjörn</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Function_(mathematics)">Mathematics functions</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Programming_paradigm">Programming paradigms</a></li>
+<li><a href="https://fsharpforfunandprofit.com/posts/function-signatures/">Function signature</a></li>
 </ol>
 
                 <hr />
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
-                                                <li><a href="/why-i-got-hooked-on-fsharp/">Why I got hooked on F#</a></li>
                                                 <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
-                                                <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
+                                                <li><a href="/how-to-fsharp-pt-3/">How to F# - Part 3</a></li>
+                                                <li><a href="/why-i-got-hooked-on-fsharp/">Why I got hooked on F#</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -303,12 +268,12 @@ So hopefully by this point I have convinced you (or you have convinced your boss
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/touched-by-god/" data-toggle="tooltip"    data-placement="top" title="Touched by God">&larr; Previous Post</a>
+                        <a href="/how-to-fsharp-pt-1/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 1">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/why-i-got-hooked-on-fsharp/" data-toggle="tooltip" data-placement="top" title="Why I got hooked on F#">Next Post &rarr;</a>
+                        <a href="/how-to-fsharp-pt-3/" data-toggle="tooltip" data-placement="top" title="How to F# - Part 3">Next Post &rarr;</a>
                     </li>
                     
                 </ul>

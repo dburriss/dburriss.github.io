@@ -241,7 +241,7 @@ Even though a value is immutable, F# does provide an easy way to create a new va
 let myTuple = (true,99)
 // use the fst function to get the first value in the tuple
 let b1 = fst myTuple
-// use the snd function to get the second value in the tuple
+// use the snd function to get the second value in the tuple, with pipe forward operator
 let n1 = myTuple |&gt; snd
 // use pattern matching to get the values
 let (b,n) = myTuple
@@ -280,6 +280,7 @@ let vote = VoteWithComment (5,&quot;This is the best application every!!!! Worth
 <p>Here we are defining a <strong>DU</strong> type <code>Rating</code> that represents a rating of a mobile application. Although each of the 4 cases contains different information, any case will be of type <code>Rating</code>. We will explore this more in a later post when we tackle pattern matching.</p>
 <h2>Conclusion</h2>
 <p>So that is the end of the first entry into how to use F# We covered how to assign values and took a whirlwind tour of some of the different types that those values could be. In future installments we will dive into some more advanced topics of working with these values as well as explore the idea of functional programming. I hope you found this interesting and are excited for the next installment. If anything was unclear I would really appreciate your feedback so I can improve this for the next reader who may come along.</p>
+<p><a href="/how-to-fsharp-pt-2">Next How to F# - Part 2 - Understanding and working with Functions</a></p>
 <h2>Resources</h2>
 <ol>
 <li><a href="https://fsharp.org/learn.html">Learn F# resources</a></li>
@@ -292,9 +293,9 @@ let vote = VoteWithComment (5,&quot;This is the best application every!!!! Worth
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
+                                                <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
+                                                <li><a href="/how-to-fsharp-pt-3/">How to F# - Part 3</a></li>
                                                 <li><a href="/argument-for-fp/">An argument for functional programming</a></li>
-                                                <li><a href="/why-i-got-hooked-on-fsharp/">Why I got hooked on F#</a></li>
-                                                <li><a href="/fsharp-scripting/">F# Scripts</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -305,6 +306,10 @@ let vote = VoteWithComment (5,&quot;This is the best application every!!!! Worth
                         <a href="/fsharp-scripting/" data-toggle="tooltip"    data-placement="top" title="F# Scripts">&larr; Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/how-to-fsharp-pt-2/" data-toggle="tooltip" data-placement="top" title="How to F# - Part 2">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 

@@ -3,13 +3,202 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-23T14:10:24.4025878+00:00</updated>
+  <updated>2018-10-23T18:52:06.4442508+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/how-to-fsharp-pt-3/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-3/"/>
+    <title>How to F# - Part 3</title>
+    <updated>2018-10-24T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/how-to-fsharp-pt-3/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;/how-to-fsharp-pt-2&quot;&gt;Previously&lt;/a&gt; we began exploring some theory behind functions. In this post we will look at practical techniques for working with functions.&lt;/p&gt;
+&lt;h2&gt;Working with functions&lt;/h2&gt;
+&lt;p&gt;Using functions is unsurprisingly the bread and butter of functional programming, let us see if we can define a slightly more complex function without butting into too many new concepts. We are going to define a function that cleans up an input &lt;code&gt;string&lt;/code&gt; and then saves it to disk.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// some helper string functions
+// string -&amp;gt; string
+let trim (s:string) = s.Trim()
+
+// string -&amp;gt; string -&amp;gt; unit
+let write path content =
+    let sanitized = trim content
+    File.WriteAllText(path, sanitized)
+
+// use the write function
+write &amp;quot;/path/to/file.txt&amp;quot; &amp;quot;Some text to write to file&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is our first multi-line function and let us go through a few things that may not have been immediately obvious from the single line function. Firstly, note that the body of the function is defined by the indent. For the function the size of the indent does not matter, as long as it is the same throughout the scope. We will dive into this a bit more when we touch on scope in a later post on control flow. Secondly, the value of the last expression is what is returned from the function, in this case &lt;code&gt;unit&lt;/code&gt;. You didn&apos;t need to explicitly use &lt;code&gt;return&lt;/code&gt; like in many other languages. This is because functions ALWAYS return something so the compiler can assume that the last expression result is the return.&lt;/p&gt;
+&lt;p&gt;A big part of the flexibility of functional programming comes from being able to easily tie functions together in interesting ways to build up more complex functionality. Let us apply this idea to the &lt;code&gt;write&lt;/code&gt; function. We are going to pass a function into the &lt;code&gt;write&lt;/code&gt; function that will do the sanitization, thus allowing the client of the function to decide what &amp;quot;sanitized&amp;quot; means.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// (&apos;a -&amp;gt; string) -&amp;gt; string -&amp;gt; string -&amp;gt; unit
+let write sanitizer path content =
+    let sanitized = sanitizer content
+    File.WriteAllText(path, sanitized)
+
+// use the write function
+write trim &amp;quot;/path/to/file.txt&amp;quot; &amp;quot;Some text to write to file&amp;quot;
+write (fun (s:string) -&amp;gt; s.Substring(0, 140)) &amp;quot;/path/to/file.txt&amp;quot; &amp;quot;Some text to write to file&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;See how we just passed the &lt;code&gt;trim&lt;/code&gt; function in as an argument? This of course could be any function as we see in the second usage.
+Ok but this signature &lt;code&gt;(&apos;a -&amp;gt; string) -&amp;gt; string -&amp;gt; string -&amp;gt; unit&lt;/code&gt; is getting a bit more hairy, so lets break it down. &lt;code&gt;(&apos;a -&amp;gt; string)&lt;/code&gt; is the signature for the &lt;code&gt;sanitizer&lt;/code&gt; function we are now passing into the &lt;code&gt;write&lt;/code&gt; function. The F# compiler has inferred that the function doesn&apos;t need to be of type &lt;code&gt;string -&amp;gt; string&lt;/code&gt; for our &lt;code&gt;write&lt;/code&gt; function to work. As long as the &lt;code&gt;sanitizer&lt;/code&gt; function returns &lt;code&gt;string&lt;/code&gt;, the input can be of any type. This is a generic parameter then and in F# a generic parameter is indicated with a leading &lt;code&gt;&apos;&lt;/code&gt;. So &lt;code&gt;(&apos;a -&amp;gt; string)&lt;/code&gt; indicates a function that takes any type and returns a &lt;code&gt;string&lt;/code&gt;. The rest of the signature &lt;code&gt;string -&amp;gt; string -&amp;gt; unit&lt;/code&gt; then remains the same representing the &lt;em&gt;path&lt;/em&gt;, &lt;em&gt;content&lt;/em&gt;, and return value type.&lt;/p&gt;
+&lt;h3&gt;Currying&lt;/h3&gt;
+&lt;p&gt;Now is the time to introduce &lt;em&gt;currying&lt;/em&gt;. This has nothing to do with food but instead is a technique named after &lt;a href=&quot;https://en.wikipedia.org/wiki/Haskell_Curry&quot;&gt;Haskell Curry&lt;/a&gt;. &lt;em&gt;Currying&lt;/em&gt; is the technique of taking a function that takes multiple arguments and evaluating it as a sequence of single argument functions. If that doesn&apos;t make sense, don&apos;t worry, it is easier to understand from examples.&lt;/p&gt;
+&lt;p&gt;We made our &lt;code&gt;write&lt;/code&gt; function more flexible by allowing for a &lt;code&gt;sanitizer&lt;/code&gt; function to be passed in but now every time we want to use it we need to supply that sanitizer function. What if in an area of my code &lt;em&gt;sanitizing&lt;/em&gt; always means &lt;em&gt;trim&lt;/em&gt; the string? What if it was expected that we always do this before saving a &lt;code&gt;string&lt;/code&gt; to disk? Well then we can define a new function by &lt;em&gt;currying&lt;/em&gt; &lt;code&gt;write&lt;/code&gt; with an argument.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// string -&amp;gt; string -&amp;gt; unit
+let sanitzedWrite = write trim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we have a new function &lt;code&gt;sanitzedWrite&lt;/code&gt; with the &lt;code&gt;trim&lt;/code&gt; function baked in.&lt;br /&gt;
+Note how we are back to our previous signature of &lt;code&gt;string -&amp;gt; string -&amp;gt; unit&lt;/code&gt; just like before we introduced the &lt;code&gt;sanitizer&lt;/code&gt; argument. We are able to optimize for our needs and still leave options open for when &lt;code&gt;write&lt;/code&gt; is needed without the &lt;code&gt;trim&lt;/code&gt;. Let us look at that case next.&lt;/p&gt;
+&lt;h3&gt;Identity&lt;/h3&gt;
+&lt;p&gt;This seems like a good time to introduce a concept whose value may not be immediately obvious. It is the idea of &lt;em&gt;identity&lt;/em&gt;. I will not go into any theory on monoids, monads, or any category theory, there is an &lt;a href=&quot;http://blog.ploeh.dk/2017/10/04/from-design-patterns-to-category-theory/&quot;&gt;awesome series from Mark Seemann that covers this&lt;/a&gt;. Suffice to say &lt;em&gt;identity&lt;/em&gt; is a function that does nothing.&lt;/p&gt;
+&lt;p&gt;The easiest way to explain &lt;em&gt;identity&lt;/em&gt; is with examples:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The &lt;em&gt;identity&lt;/em&gt; for addition is 0 : 5 + 0 = 5&lt;/li&gt;
+&lt;li&gt;The &lt;em&gt;identity&lt;/em&gt; for multiplication is 1 : 2 * 1 = 2&lt;/li&gt;
+&lt;li&gt;The &lt;em&gt;identity&lt;/em&gt; for &lt;code&gt;string&lt;/code&gt; is &amp;quot;&amp;quot; : &amp;quot;hello&amp;quot; + &amp;quot;&amp;quot; = &amp;quot;hello&amp;quot;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In F# &lt;strong&gt;identity&lt;/strong&gt; is defined by the function &lt;code&gt;id&lt;/code&gt; which has the signature &lt;code&gt;&apos;a -&amp;gt; &apos;a&lt;/code&gt;. &amp;quot;So what&amp;quot;? you may ask. How could something that does nothing ever be useful? Well thankfully we have a useful example at hand already (it is almost like I planned it).&lt;/p&gt;
+&lt;p&gt;Imagine we have another section of our code that needs to write content to a file but has no rules about sanitization. It just needs to write the content as is.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// string -&amp;gt; string -&amp;gt; unit
+let justWrite = write id
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Of course we could have just put in our own function &lt;code&gt;fun x -&amp;gt; x&lt;/code&gt; in there but this is actually quite a common situation when you are passing functions around to extend functionality, so a functional language like F# provides an easy way to do this.&lt;/p&gt;
+&lt;h3&gt;Piping&lt;/h3&gt;
+&lt;p&gt;Hopefully now you are starting to feel a bit more comfortable with F# functions. One thing you will start noticing about functional code is the way it tends to flow. When everything has an input and an output, you tend to start organizing your code into these workflows that chain functions together. This can lead to some really readable code once you wrap your head around the idea. This is made possible by an operator in the language that allows you to do this in a really interesting and useful way. It is the &lt;em&gt;forward pipe operator&lt;/em&gt; &lt;code&gt;|&amp;gt;&lt;/code&gt; which passes the result of the function on the left to the function on the right.&lt;/p&gt;
+&lt;p&gt;Again let us look at some examples to try clarify. I will give multiple examples, first without &lt;code&gt;|&amp;gt;&lt;/code&gt;, followed by with.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// trim a string
+let trimmed1 = trim &amp;quot; some text &amp;quot;
+let trimmed2 = &amp;quot;  some text &amp;quot; |&amp;gt; trim
+
+// get first value of a tuple
+let name1 = fst (&amp;quot;Devon&amp;quot;,37)
+let name2 = (&amp;quot;Devon&amp;quot;,37) |&amp;gt; fst
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So what does this have to do with pipelines? Let us try use this to chain a workflow together.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;Console.ReadLine()              // read a line in from the console
+|&amp;gt; toUpper                      // convert the string to uppercase
+|&amp;gt; trim                         // trim the string
+|&amp;gt; justWrite &amp;quot;/to/some/file.txt&amp;quot;// write it without trim since we already trimmed
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Above you see a workflow where the input from the previous step is used as the argument to the following. We read in some &lt;code&gt;string&lt;/code&gt;, uppercase it, trim it, and then write it to file. I think that is some pretty descriptive code, don&apos;t you?&lt;/p&gt;
+&lt;p&gt;Note that &lt;em&gt;currying&lt;/em&gt; comes in quite useful when wanting to use &lt;code&gt;|&amp;gt;&lt;/code&gt; since you need the result of the function to line up with that of the function argument to the right of the &lt;code&gt;|&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Composition&lt;/h3&gt;
+&lt;p&gt;Another concept that will seem very similar is composing functions together with the &lt;em&gt;forward composition operator&lt;/em&gt; &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;. This operator allows you to take a function whose output matches the input of another function and compose those 2 together to for a new function.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// int -&amp;gt; int
+let inc x = x + 1
+
+// int -&amp;gt; string
+let intToString (x:int) = x |&amp;gt; string
+
+// int -&amp;gt; string
+let incrementedString = inc &amp;gt;&amp;gt; intToString
+
+1 |&amp;gt; incrementedString // val it : string = &amp;quot;2&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So if we applied this to our previous workflow we could summarize the middle step:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let prepareString = toUpper &amp;gt;&amp;gt; trim
+
+Console.ReadLine()
+|&amp;gt; prepareString
+|&amp;gt; justWrite &amp;quot;/to/some/file.txt&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Interop with .NET OO style&lt;/h3&gt;
+&lt;p&gt;You may have noticed a few signatures of functions that seemed to look a little different. When using the .NET library, it can look a little different to the functional first code. This is because the .NET BCL is an object-oriented (OO) code base. F# can talk to it fine but it is a different paradigm. For example you can see when calling &lt;code&gt;File.WriteAllText(path, content)&lt;/code&gt; it looks a lot like how it would look in C#. Another thing you may have noticed is that when defining functions that work with &lt;code&gt;string&lt;/code&gt;s I usually am explicit about the type in the signature eg. &lt;code&gt;let trim (s:string) = s.Trim()&lt;/code&gt;. This is because F# can need to help inferring the type when dealing with objects of types coming from the OO side of .NET. &lt;code&gt;string&lt;/code&gt; seems to be the most common offender here. It is something to keep in mind. When dealing with &lt;code&gt;string&lt;/code&gt; or other types from the .NET BCL it is often worth writing little functional wrappers around them like you see with &lt;code&gt;trim&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;To close off this post I wanted to mention something important to consider when writing your own functions, and that is the idea of &lt;em&gt;purity&lt;/em&gt;. A &lt;strong&gt;pure&lt;/strong&gt; function is a function that has no internal dependencies that could change the output. As an example, our &lt;code&gt;trim&lt;/code&gt; function &lt;code&gt;let trim (s:string) = s.Trim()&lt;/code&gt; will give the same output for the same input every single time. Compare this to &lt;code&gt;File.ReadAllText(&amp;quot;/path/to/file.txt&amp;quot;)&lt;/code&gt;. With &lt;code&gt;ReadAllText&lt;/code&gt; the file could change at any time if the underlying file contents changes even though the same path was used as input. This is NOT a pure function.&lt;/p&gt;
+&lt;p&gt;Pure functions are easier to reason about and easier to test and so should be favoured. In the example above we pushed our impure functions to the beginning and end of the workflow and had our pure functions in the middle. This is generally a good pattern to follow.&lt;/p&gt;
+&lt;p&gt;So we covered quite a lot in this post and there is plenty more that could be said about functions but I think you have enough now to start working with them yourself. Didn&apos;t I tell you it would be &lt;code&gt;fun&lt;/code&gt;? As always I appreciate any suggestions or questions, and please share this series with anyone you think might get value from it.&lt;/p&gt;
+&lt;p&gt;The next article will be out soon on Control Flow.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/symbol-and-operator-reference/&quot;&gt;Symbol reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Social image by &lt;a href=&quot;https://unsplash.com/@markusspiske&quot;&gt;Markus Spiske&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
+  
+  <entry>
+    <id>https://devonburriss.me/how-to-fsharp-pt-2/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-2/"/>
+    <title>How to F# - Part 2</title>
+    <updated>2018-10-23T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/how-to-fsharp-pt-2/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;In the &lt;a href=&quot;/how-to-fsharp-pt-1&quot;&gt;previous post&lt;/a&gt; we looked at assigning values and the different types that those values could be. In this second installment we will be looking at functional programmings namesake: &lt;em&gt;functions&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Functional programming as a paradigm is quite a hard thing to pin down, just like other paradigms. In object-oriented programming the one thing that really isn&apos;t up for debate though is that the general idea is that we have an object (whatever that may mean to you) and we represent data and behavior in these objects. In functional programming then it will come as no surprise that &lt;em&gt;functions&lt;/em&gt; are first class citizens and that we accomplish our goals by transforming data using these functions.&lt;/p&gt;
+&lt;p&gt;What is a function though?&lt;/p&gt;
+&lt;h2&gt;A brief reminder about mathematics&lt;/h2&gt;
+&lt;p&gt;Do not worry, I will not be going into deep mathematics theory here. I instead want to remind you of some mathematics you probably touched on in school just to show you that this isn&apos;t necessarily something completely new to you. Secondly, it will show that functional programming has roots that go far deeper than computer programming. Do not worry though if you didn&apos;t like this stuff at school, I promise this is way more &lt;code&gt;fun&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In mathematical terms a function is a process that associates each element &lt;em&gt;x&lt;/em&gt; of a set &lt;strong&gt;X&lt;/strong&gt; to another value &lt;em&gt;y&lt;/em&gt; which is of set &lt;strong&gt;Y&lt;/strong&gt;. Let us call this process &lt;em&gt;f&lt;/em&gt;. Then we have an expression:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;y = f(x)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is usually read as &amp;quot;let &lt;em&gt;y&lt;/em&gt; equal &lt;em&gt;f&lt;/em&gt; of &lt;em&gt;x&lt;/em&gt;&amp;quot;.&lt;/p&gt;
+&lt;p&gt;The set &lt;strong&gt;X&lt;/strong&gt; of possible values of &lt;em&gt;x&lt;/em&gt; is known as the &lt;strong&gt;domain&lt;/strong&gt;. The set &lt;strong&gt;Y&lt;/strong&gt; of possible outputs &lt;em&gt;y&lt;/em&gt; is known as the &lt;strong&gt;codomain&lt;/strong&gt;. To label the parts of the expression, &lt;em&gt;x&lt;/em&gt; is the &lt;strong&gt;argument&lt;/strong&gt; and the value of the function is the output.&lt;/p&gt;
+&lt;p&gt;So how would we accurately define a specific function?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;let &lt;em&gt;f&lt;/em&gt;: R → R be the function defined by the equation &lt;em&gt;f(x) = x&lt;sup&gt;2&lt;/sup&gt;&lt;/em&gt;, valid for all real values of x&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Notice how we have the &lt;code&gt;Domain -&amp;gt; Codomain&lt;/code&gt; defined using &lt;code&gt;-&amp;gt;&lt;/code&gt;. We will come back to this a little later.&lt;/p&gt;
+&lt;p&gt;One last thing. Remember common functions like &lt;code&gt;sin&lt;/code&gt; and &lt;code&gt;cos&lt;/code&gt;? It is common to write them as &lt;code&gt;cos x&lt;/code&gt;, without the the brackets as long as this does not lead to any ambiguity in the meaning. So now that we have had a little mathematics refresher, let us see if this brings us any insight into F# functions.&lt;/p&gt;
+&lt;p&gt;Mathematics done!&lt;/p&gt;
+&lt;h2&gt;Defining functions in F#&lt;/h2&gt;
+&lt;p&gt;In the &lt;a href=&quot;/how-to-fsharp-pt-1&quot;&gt;previous post we looked at assigning values&lt;/a&gt;. F# being a functional-first language means that we can treat functions like any other value.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// int -&amp;gt; int
+let f x = x*x
+let y = f 3 //val y : int = 9
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So above we define function &lt;em&gt;f&lt;/em&gt; that takes argument &lt;em&gt;x&lt;/em&gt;. Then we pass &lt;code&gt;3&lt;/code&gt; as the argument and assign that to value &lt;code&gt;y&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Another way to define functions in F# is to use the &lt;code&gt;fun&lt;/code&gt; keyword. Let us define the same function again, this time as function &lt;em&gt;g&lt;/em&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// int -&amp;gt; int
+let g = fun x -&amp;gt; x*x
+let z = g 3 //val z : int = 9
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This way makes it way more explicit that &lt;code&gt;g&lt;/code&gt; is simply just another value that is assigned to. Note that this way of defining functions using &lt;code&gt;fun&lt;/code&gt; is common when using functions once off inline, say for filtering a collection. We will see this in more detail in a later post when we dive deeper into collections.&lt;/p&gt;
+&lt;h2&gt;Understand functions&lt;/h2&gt;
+&lt;h3&gt;Signatures&lt;/h3&gt;
+&lt;p&gt;In the above code I put the signature of the function in a comment above it. The signature describes what types a function take in and what it returns. So for our function above we have &lt;code&gt;int -&amp;gt; int&lt;/code&gt;. This means our function takes a single &lt;code&gt;int&lt;/code&gt; as an argument and then returns an &lt;code&gt;int&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A function always has an input and an output. In F# (and all programming languages I know of) a function can have multiple arguments. Say for example we had a &lt;code&gt;writeToFile&lt;/code&gt; function that took a &lt;code&gt;boolean&lt;/code&gt; for whether to overwrite the file if it exists, and a &lt;code&gt;string&lt;/code&gt; with the content of the file. The signature for &lt;code&gt;writeToFile&lt;/code&gt; would then be &lt;code&gt;bool -&amp;gt; string -&amp;gt; unit&lt;/code&gt;. Now what is this &lt;code&gt;unit&lt;/code&gt; type? It was mentioned in the previous post as the type that represents nothing. As already mentioned, functions must always have an input and an output, so if a function has no meaningful value to return, we return &lt;code&gt;unit&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Do you see a similarity here? Types define the possible values that are possible. So for a signature &lt;code&gt;int -&amp;gt; int&lt;/code&gt;, our &lt;strong&gt;domain&lt;/strong&gt; is all possible numbers allowed by the type &lt;code&gt;int&lt;/code&gt; numbers and our &lt;strong&gt;codomain&lt;/strong&gt; is also all possible &lt;code&gt;int&lt;/code&gt; values. Pretty cool right?&lt;/p&gt;
+&lt;h3&gt;Inference&lt;/h3&gt;
+&lt;p&gt;In the previous function definitions you may have noticed we defined no types but the F# compiler inferred that the type of &lt;em&gt;x&lt;/em&gt; was &lt;code&gt;int&lt;/code&gt;. This is because we used the multiplication &lt;code&gt;(*)&lt;/code&gt; operator on it. Most of the time the compiler does a pretty good job of working out the type. This keeps our code clean from boilerplate cruft. To be sure though, if you are used to a language like Java or C#, this will take a bit of getting used to. My tip is to pay close attention to the signatures. Any IDE will display this all the time or at least on mouse over.&lt;/p&gt;
+&lt;p&gt;If you prefer to be explicit or in those cases where the compiler needs some help to determine the type, you can easily define the types explicitly.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let f (x:int) = x*x         // define argument type
+let f x : int = x*x         // define only return type
+let f (x:int) : int = x*x   // define argument type and return type
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The argument type is specified with &lt;code&gt;(x:int)&lt;/code&gt;. The parenthesis are needed to disambiguate the argument type from the return type.&lt;/p&gt;
+&lt;p&gt;Just a quick style note. Mostly in F# code the types are left off unless needed.&lt;/p&gt;
+&lt;p&gt;I wanted to highlight another way of defining functions, and that is by defining a type signature.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;type Unary: int -&amp;gt; int
+let increment : Unary = fun x = x + 1
+let decrement : Unary = fun x = x - 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A unary function is one that takes only one argument&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So we define a &lt;strong&gt;Unary&lt;/strong&gt; function as one that take in a single number and returns a number, and then we have multiple implementations of that type.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post we introduced some of the core ideas behind functions. We learned how to define them and how to read a functions signature. We also touched on what the compiler can do for you by inferring the types, and how you can be explicit about the types.&lt;/p&gt;
+&lt;p&gt;In the next post we will dive deeper into &lt;a href=&quot;/how-to-fsharp-pt-3&quot;&gt;Working with Functions and getting them to work for you&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Function_(mathematics)&quot;&gt;Mathematics functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Programming_paradigm&quot;&gt;Programming paradigms&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/posts/function-signatures/&quot;&gt;Function signature&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/how-to-fsharp-pt-1/</id>
@@ -71,7 +260,7 @@ Even though a value is immutable, F# does provide an easy way to create a new va
 let myTuple = (true,99)
 // use the fst function to get the first value in the tuple
 let b1 = fst myTuple
-// use the snd function to get the second value in the tuple
+// use the snd function to get the second value in the tuple, with pipe forward operator
 let n1 = myTuple |&amp;gt; snd
 // use pattern matching to get the values
 let (b,n) = myTuple
@@ -110,6 +299,7 @@ let vote = VoteWithComment (5,&amp;quot;This is the best application every!!!! W
 &lt;p&gt;Here we are defining a &lt;strong&gt;DU&lt;/strong&gt; type &lt;code&gt;Rating&lt;/code&gt; that represents a rating of a mobile application. Although each of the 4 cases contains different information, any case will be of type &lt;code&gt;Rating&lt;/code&gt;. We will explore this more in a later post when we tackle pattern matching.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;So that is the end of the first entry into how to use F# We covered how to assign values and took a whirlwind tour of some of the different types that those values could be. In future installments we will dive into some more advanced topics of working with these values as well as explore the idea of functional programming. I hope you found this interesting and are excited for the next installment. If anything was unclear I would really appreciate your feedback so I can improve this for the next reader who may come along.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/how-to-fsharp-pt-2&quot;&gt;Next How to F# - Part 2 - Understanding and working with Functions&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Resources&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://fsharp.org/learn.html&quot;&gt;Learn F# resources&lt;/a&gt;&lt;/li&gt;
