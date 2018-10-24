@@ -3,13 +3,164 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-23T18:52:06.4442508+00:00</updated>
+  <updated>2018-10-24T18:30:30.2621701+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/how-to-fsharp-pt-4/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-4/"/>
+    <title>How to F# - Part 4</title>
+    <updated>2018-10-25T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/how-to-fsharp-pt-4/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;In the &lt;a href=&quot;/how-to-fsharp-pt-3&quot;&gt;last post&lt;/a&gt; we finished off our dive into functions. In this post we will look at control flow. How do we make a branching decision? How do we loop through something until some condition is met?&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;I am going to try keep this post short. The reason for this is that although you will invariably need to use control flow expressions in your code, they are stylistically not very functional and there are usually more functional ways to achieve the same thing. We explore those more functional techniques in this and future posts.&lt;/p&gt;
+&lt;h2&gt;If then else&lt;/h2&gt;
+&lt;p&gt;Other than&lt;code&gt;match&lt;/code&gt; (covered later), &lt;code&gt;if&lt;/code&gt; is probably the next most useful control flow expression we will touch on in this post. The &lt;code&gt;if&lt;/code&gt; expression takes a &lt;code&gt;bool&lt;/code&gt; and if &lt;code&gt;true&lt;/code&gt; proceeds with the &lt;code&gt;then&lt;/code&gt; body. Usually there is an &lt;code&gt;else&lt;/code&gt; and we will go through when that is necessary.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let b = true
+if (b) then printfn &amp;quot;Is true&amp;quot; else printfn &amp;quot;Is false&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above will print out &lt;em&gt;Is true&lt;/em&gt;, and not print &lt;em&gt;Is false&lt;/em&gt;.&lt;br /&gt;
+Maybe we don&apos;t want to print out anything if the value is &lt;code&gt;false&lt;/code&gt;. We can do this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let b = true
+if (b) then printfn &amp;quot;Is true&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now if you changed &lt;code&gt;let b = false&lt;/code&gt;, nothing would be printed.&lt;/p&gt;
+&lt;p&gt;What if we wanted to &lt;strong&gt;return a value&lt;/strong&gt; based on some condition though without an &lt;code&gt;else&lt;/code&gt;?&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let v = if(b) then 1 // &amp;lt;- Error: This &apos;if&apos; expression is missing an &apos;else&apos; branch.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At least the error message is pretty clear about what the problem is. With the print example we were returning &lt;code&gt;unit&lt;/code&gt; so it didn&apos;t matter if nothing was returned. Here the expression has to return a value because we are assigning that value.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let v = if(b) then 1 else 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So depending on whether &lt;code&gt;b&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;, &lt;code&gt;v&lt;/code&gt; will have a value of &lt;code&gt;1&lt;/code&gt; or &lt;code&gt;0&lt;/code&gt; respectively.&lt;/p&gt;
+&lt;p&gt;Lets take a look at something a bit more complex:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let divideBy d n = n/d
+let numerator = 10
+let denominator = 2
+
+let j = if(denominator &amp;lt;&amp;gt; 0) then 
+            printfn &amp;quot;Dividing by %i, not 0&amp;quot; denominator
+            let x = numerator |&amp;gt; divideBy denominator
+            printfn &amp;quot;The answer is %i&amp;quot; x
+            x
+        else
+            printfn &amp;quot;Dividing by 0&amp;quot;
+            0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that we don&apos;t have to assign this to a value, here &lt;code&gt;j&lt;/code&gt; but it would be pretty pointless to return a value and not use it. The compiler will give you a warning at this point &lt;em&gt;The result of this expression has type &apos;int&apos; and is implicitly ignored. Consider using &apos;ignore&apos; to discard this value explicitly, e.g. &apos;expr |&amp;gt; ignore&apos;, or &apos;let&apos; to bind the result to a name, e.g. &apos;let result = expr&apos;.&lt;/em&gt;&lt;br /&gt;
+This is asking us to call &lt;code&gt;ignore()&lt;/code&gt; in each branch of the &lt;code&gt;if&lt;/code&gt; expression.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We can have multiple lines in either branch, organized by indentation. Just like functions the last expression is what is returned as the value of the &lt;code&gt;if-else&lt;/code&gt; expression for each branch.&lt;/p&gt;
+&lt;h3&gt;Scope&lt;/h3&gt;
+&lt;p&gt;In the previous post I mentioned scope. This is a good opportunity to demonstrate scope. Check out the assigning of the &lt;code&gt;denominator&lt;/code&gt; value below.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let divideBy d n = n/d
+let numerator = 10
+let denominator = 0
+
+if(denominator &amp;lt;&amp;gt; 0) then 
+    printfn &amp;quot;Dividing by %i, not 0&amp;quot; denominator
+    let x = numerator |&amp;gt; divideBy denominator
+    printfn &amp;quot;The answer is %i&amp;quot; x
+    x
+else
+    printfn &amp;quot;Dividing by 0&amp;quot;
+    let denominator = 1
+    printfn &amp;quot;Instead by %i, not 0&amp;quot; denominator
+    let x = numerator |&amp;gt; divideBy denominator
+    printfn &amp;quot;The answer is %i&amp;quot; x
+    x
+
+printfn &amp;quot;Denominator is %i&amp;quot; denominator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above prints out the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;Dividing by 0
+Instead by 1, not 0
+The answer is 10
+Denominator is 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice here how we set a value for &lt;code&gt;denominator&lt;/code&gt; within the &lt;code&gt;else&lt;/code&gt; branch that shadows the outside one. Once we are back to the scope outside the if, &lt;code&gt;denominator&lt;/code&gt; is back to &lt;code&gt;0&lt;/code&gt;, even though it was set to &lt;code&gt;1&lt;/code&gt; in the &lt;code&gt;else&lt;/code&gt; branch. It was &lt;code&gt;1&lt;/code&gt; for the scope of the &lt;code&gt;else&lt;/code&gt; branch of the expression as it was set in that scope.&lt;/p&gt;
+&lt;h3&gt;If / elseif / else&lt;/h3&gt;
+&lt;p&gt;It is (maybe) worth mentioning that you can have more than 2 branches by using &lt;code&gt;elif&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;if(x = 1) then printfn &amp;quot;x is 1&amp;quot;
+elif (x = 2) then printfn &amp;quot;x is 2&amp;quot;
+else printfn &amp;quot;x is not 1 or 2&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We will briefly cover &lt;code&gt;match&lt;/code&gt; next and even when &lt;strong&gt;if / else&lt;/strong&gt; seems a cleaner solution, once you are using &lt;code&gt;elif&lt;/code&gt; you almost certainly should be using &lt;code&gt;match&lt;/code&gt; instead.&lt;/p&gt;
+&lt;h2&gt;Match&lt;/h2&gt;
+&lt;p&gt;We will hopefully cover pattern matching in more detail in a later entry but no coverage of functional control flow is complete without &lt;code&gt;match&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Lets re-write the previous example using &lt;code&gt;match&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;match x with
+| 1 -&amp;gt; printfn &amp;quot;x is 1&amp;quot;
+| 2 -&amp;gt; printfn &amp;quot;x is 2&amp;quot;
+| _ -&amp;gt; printfn &amp;quot;x is not 1 or 2&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that &lt;code&gt;_&lt;/code&gt; is a catch-all, like else is.
+This is a much cleaner and more functional way to do control flow. A nice benefit here is that the compiler gives you a warning if you are not matching exhaustively on all options of the matched value.&lt;/p&gt;
+&lt;p&gt;We will hopefully circle around to &lt;code&gt;match&lt;/code&gt; again when covering pattern matching as &lt;code&gt;match&lt;/code&gt; is far more powerful than demonstrated here.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/match-expressions&quot;&gt;Microsoft docs&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;for..in&lt;/h2&gt;
+&lt;p&gt;If you need to loop through an entire collection and do something you could use the &lt;code&gt;for pattern in enumerable-expression do body-expression&lt;/code&gt; syntax. This is like &lt;code&gt;foreach&lt;/code&gt; in many other languages. Lets see what that looks like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let numbers = [1..10]
+for x in numbers do
+    printf &amp;quot;%i &amp;quot; x
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Output: 1 2 3 4 5 6 7 8 9 10&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;See how you can easily create a range of values using &lt;code&gt;start..finish&lt;/code&gt; syntax. We use this to define &lt;code&gt;numbers&lt;/code&gt;. Then for each element of the list we print the value which is in &lt;code&gt;x&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We will hopefully cover collections in an upcoming post but for interest sake lets see how this would be done in a more functional way.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let numbers = [1..10]
+numbers |&amp;gt; List.iter (printf &amp;quot;%i &amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Unsurprisingly the functional approach is to call the &lt;code&gt;iter&lt;/code&gt; function on the &lt;code&gt;List&lt;/code&gt; module. This &lt;code&gt;iter&lt;/code&gt; function has the signature &lt;code&gt;(&apos;T -&amp;gt; unit) -&amp;gt; &apos;T list -&amp;gt; unit&lt;/code&gt;. Lets break that down:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;(&apos;T -&amp;gt; unit)&lt;/code&gt;: a function defining the action to take for each element in the list&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&apos;T list&lt;/code&gt;: the list to iterate through&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unit&lt;/code&gt;: returns unit so this function is designed to iterate through a function and do something, not return a value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are many more functions for working with lists in the &lt;code&gt;List&lt;/code&gt; module and matching ones for &lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Seq&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-for-in-expression&quot;&gt;Microsoft docs&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;for..to&lt;/h2&gt;
+&lt;p&gt;While &lt;code&gt;for..in&lt;/code&gt; is for iterating over a collection, &lt;code&gt;for..to&lt;/code&gt; allows you to iterate from a start value to another. This is like a &lt;code&gt;for&lt;/code&gt; loop in other languages.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let ns = [|1..10..100|]
+for i=0 to ((Array.length ns)/2) do
+    printf &amp;quot;%i &amp;quot; (Array.get ns i)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Output: 1 11 21 31 41 51&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In our example we have an array that has numbers 1 to a 100 in increments of 10. We only iterate through half the list.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-for-to-expression&quot;&gt;Microsoft docs&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;while&lt;/h2&gt;
+&lt;p&gt;What if we want to iterate until a certain condition is true? The following code gets a random number until that number is &lt;code&gt;7&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let random = new System.Random()
+let aNumber() = random.Next(1,10)
+let mutable n = 0
+while (n &amp;lt;&amp;gt; 7) do
+    printf &amp;quot;%i &amp;quot; n
+    n &amp;lt;- aNumber()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Output: 0 9 9 1 6 5 2 2 6 6 2 6 6 1 2 3 6 8 8 1 3 2 2&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We kept going through the &lt;code&gt;while&lt;/code&gt; loop until &lt;code&gt;aNumber()&lt;/code&gt; returned &lt;code&gt;7&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-while-do-expression&quot;&gt;Microsoft docs&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post we looked at ways to represent branching logic and ways to iterate over values. Remember that much of this is a very imperative approach and as such is not used a lot in the function paradigm. We looked at some functional techniques for dealing with branching and looping and will continue this in future articles.&lt;/p&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://unsplash.com/@spacexuan&quot;&gt;Crystal Kwok&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/how-to-fsharp-pt-3/</id>
@@ -115,7 +266,7 @@ Console.ReadLine()
 &lt;p&gt;To close off this post I wanted to mention something important to consider when writing your own functions, and that is the idea of &lt;em&gt;purity&lt;/em&gt;. A &lt;strong&gt;pure&lt;/strong&gt; function is a function that has no internal dependencies that could change the output. As an example, our &lt;code&gt;trim&lt;/code&gt; function &lt;code&gt;let trim (s:string) = s.Trim()&lt;/code&gt; will give the same output for the same input every single time. Compare this to &lt;code&gt;File.ReadAllText(&amp;quot;/path/to/file.txt&amp;quot;)&lt;/code&gt;. With &lt;code&gt;ReadAllText&lt;/code&gt; the file could change at any time if the underlying file contents changes even though the same path was used as input. This is NOT a pure function.&lt;/p&gt;
 &lt;p&gt;Pure functions are easier to reason about and easier to test and so should be favoured. In the example above we pushed our impure functions to the beginning and end of the workflow and had our pure functions in the middle. This is generally a good pattern to follow.&lt;/p&gt;
 &lt;p&gt;So we covered quite a lot in this post and there is plenty more that could be said about functions but I think you have enough now to start working with them yourself. Didn&apos;t I tell you it would be &lt;code&gt;fun&lt;/code&gt;? As always I appreciate any suggestions or questions, and please share this series with anyone you think might get value from it.&lt;/p&gt;
-&lt;p&gt;The next article will be out soon on Control Flow.&lt;/p&gt;
+&lt;p&gt;In the next article we look at &lt;a href=&quot;/how-to-fsharp-pt-4&quot;&gt;Control Flow&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Resources&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/symbol-and-operator-reference/&quot;&gt;Symbol reference&lt;/a&gt;&lt;/li&gt;

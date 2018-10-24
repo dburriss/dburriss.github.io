@@ -19,42 +19,42 @@
     
 
 
-    <title>F# Scripts</title>
-    <meta name="description" content="Start exploring code faster by running F# as a fsx script file">
+    <title>How to F# - Part 4</title>
+    <meta name="description" content="In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="https://devonburriss.me/fsharp-scripting/">
+    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-4/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="F# Scripts">
-    <meta itemprop="description" content="Start exploring code faster by running F# as a fsx script file">
-    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/script-500.jpg">
+    <meta itemprop="name" content="How to F# - Part 4">
+    <meta itemprop="description" content="In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/pipes-500.jpg">
     
-    <meta itemprop="datePublished" content="10/17/2018 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="10/17/2018 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="F# Scripts - Exploring running F# from a fsx script file" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/fsharp-scripting/" />
-    <meta name="headline" content="F# Scripts - Exploring running F# from a fsx script file" />
+    <meta itemprop="datePublished" content="10/25/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="10/25/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="How to F# - Part 4 - Making decisions with control flow" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-4/" />
+    <meta name="headline" content="How to F# - Part 4 - Making decisions with control flow" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="F# Scripts">
-    <meta name="twitter:description" content="Start exploring code faster by running F# as a fsx script file">
+    <meta name="twitter:title" content="How to F# - Part 4">
+    <meta name="twitter:description" content="In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/script-500.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/pipes-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="F# Scripts" />
+    <meta property="og:title" content="How to F# - Part 4" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/fsharp-scripting/" />
-    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/script-500.jpg" />
-    <meta property="og:description" content="Start exploring code faster by running F# as a fsx script file" />
+    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-4/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/pipes-500.jpg" />
+    <meta property="og:description" content="In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -156,23 +156,25 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/vents-bg.jpg')">
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/path-bg.jpg')">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>F# Scripts</h1>
+                        <h1>How to F# - Part 4</h1>
                         
-                        <h2 class="subheading">Exploring running F# from a fsx script file</h2>
+                        <h2 class="subheading">Making decisions with control flow</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 17, 2018</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 25, 2018</span>
                         
                             <hr />
                             
+                                <a href="/tag/functional" class="label label-default">Functional</a>
+                            
                                 <a href="/tag/fsharp" class="label label-default">F#</a>
                             
-                                <a href="/tag/fsx" class="label label-default">FSX</a>
+                                <a href="/tag/net" class="label label-default">.NET</a>
                             
                         
                     <div>
@@ -188,110 +190,153 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>Using F# scripts is something I only started doing after dabbling in F# for quite a while. This is unfortunate because they are a really fast and easy way of throwing some code together and thus a really good way to learn F#. This post is for anyone getting started with F# scripting.</p>
+				<p>In the <a href="/how-to-fsharp-pt-3">last post</a> we finished off our dive into functions. In this post we will look at control flow. How do we make a branching decision? How do we loop through something until some condition is met?</p>
 <!--more-->
-<h2>Installation</h2>
-<p>Check out the <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/get-started/install-fsharp?tabs=windows">documentation for installing F#</a>. The easiest way is to install F# as part of Visual Studio. You may still need to add FSI.exe to your <strong>PATH</strong>.</p>
-<ol>
-<li><a href="https://fsharp.org/use/windows/">Instructions for Windows</a></li>
-<li><a href="https://fsharp.org/use/mac/">Instructions for MacOS</a></li>
-<li><a href="https://fsharp.org/use/linux/">Instructions for Linux</a></li>
-</ol>
-<h2>F# Interactive</h2>
-<p>FSI allows you to execute F# code in an interactive console. Just type <code>fsi.exe</code> on Windows or <code>fsharpi</code> on Linux/Mac.</p>
-<pre><code class="language-fsharp">&gt; let x = 1;;
-val x : int = 1
+<p>I am going to try keep this post short. The reason for this is that although you will invariably need to use control flow expressions in your code, they are stylistically not very functional and there are usually more functional ways to achieve the same thing. We explore those more functional techniques in this and future posts.</p>
+<h2>If then else</h2>
+<p>Other than<code>match</code> (covered later), <code>if</code> is probably the next most useful control flow expression we will touch on in this post. The <code>if</code> expression takes a <code>bool</code> and if <code>true</code> proceeds with the <code>then</code> body. Usually there is an <code>else</code> and we will go through when that is necessary.</p>
+<pre><code class="language-fsharp">let b = true
+if (b) then printfn &quot;Is true&quot; else printfn &quot;Is false&quot;
 </code></pre>
-<blockquote>
-<p>Note: Each expression needs to end with <code>;;</code> in the interactive window.</p>
-</blockquote>
-<p>To get help: <code>#help;;</code><br />
-To quit: <code>#quit;;</code></p>
-<h2>Scripting</h2>
-<p>So entering code directly into fsi is ok for trying simple things out but what about more complex code. That is where <code>.fsx</code> files come in.</p>
-<p>Imagine we have a file called <em>print-name.fsx</em> with the following content:</p>
-<pre><code class="language-fsharp">let name = &quot;Devon&quot;
-printfn &quot;Name: %s&quot; name
+<p>The above will print out <em>Is true</em>, and not print <em>Is false</em>.<br />
+Maybe we don't want to print out anything if the value is <code>false</code>. We can do this:</p>
+<pre><code class="language-fsharp">let b = true
+if (b) then printfn &quot;Is true&quot;
 </code></pre>
-<p>Executing it we would see the following:</p>
-<blockquote>
-<p>&gt; fsi .\samples\print-name.fsx<br />
-&gt; Name: Devon</p>
-</blockquote>
-<h3>Including other fsx files</h3>
-<p>You can load other fsx files into a script. If we have <code>Strings.fsx</code> containing the following code:</p>
-<pre><code class="language-fsharp">let toUpper (s:string) = s.ToUpper()
-let toLower (s:string) = s.ToLower()
-let replace (oldValue:string) (newValue:string) (s:string) = s.Replace(oldValue,newValue)
+<p>Now if you changed <code>let b = false</code>, nothing would be printed.</p>
+<p>What if we wanted to <strong>return a value</strong> based on some condition though without an <code>else</code>?</p>
+<pre><code class="language-fsharp">let v = if(b) then 1 // &lt;- Error: This 'if' expression is missing an 'else' branch.
+</code></pre>
+<p>At least the error message is pretty clear about what the problem is. With the print example we were returning <code>unit</code> so it didn't matter if nothing was returned. Here the expression has to return a value because we are assigning that value.</p>
+<pre><code class="language-fsharp">let v = if(b) then 1 else 0
+</code></pre>
+<p>So depending on whether <code>b</code> is <code>true</code> or <code>false</code>, <code>v</code> will have a value of <code>1</code> or <code>0</code> respectively.</p>
+<p>Lets take a look at something a bit more complex:</p>
+<pre><code class="language-fsharp">let divideBy d n = n/d
+let numerator = 10
+let denominator = 2
 
-module StringBuilder =
-    open System.Text
-    let init() = new StringBuilder()
-    let initWith(s:string) = new StringBuilder(s)
-    let append (s:string) (sb:StringBuilder) = sb.Append(s)
+let j = if(denominator &lt;&gt; 0) then 
+            printfn &quot;Dividing by %i, not 0&quot; denominator
+            let x = numerator |&gt; divideBy denominator
+            printfn &quot;The answer is %i&quot; x
+            x
+        else
+            printfn &quot;Dividing by 0&quot;
+            0
 </code></pre>
-<p>We can now use it in our script file like so:</p>
-<pre><code class="language-fsharp">#load &quot;Strings.fsx&quot;
-open Strings
-let name = &quot;Devon&quot; |&gt; StringBuilder.initWith
-            |&gt; StringBuilder.append &quot; Burriss&quot;
-            |&gt; string |&gt; toUpper
-printfn &quot;Name: %s&quot; name
-</code></pre>
-<p>We use <code>#load &quot;path/to/script.fsx&quot;</code> to make it available and then <code>open NameOfFileWithoutExtension</code> to import it. So each script file is then treated as a <code>module</code>.</p>
-<p>Executing it we would see the following:</p>
 <blockquote>
-<p>&gt; fsi .\samples\print-name.fsx<br />
-&gt; Name: DEVON BURRISS</p>
+<p>Note that we don't have to assign this to a value, here <code>j</code> but it would be pretty pointless to return a value and not use it. The compiler will give you a warning at this point <em>The result of this expression has type 'int' and is implicitly ignored. Consider using 'ignore' to discard this value explicitly, e.g. 'expr |&gt; ignore', or 'let' to bind the result to a name, e.g. 'let result = expr'.</em><br />
+This is asking us to call <code>ignore()</code> in each branch of the <code>if</code> expression.</p>
 </blockquote>
-<h3>Taking Arguments</h3>
-<p>It is possible to pass arguments into a script file. They are available in a field <code>fsi.CommandLineArgs</code>. Let's change our script one more time to demonstrate the usage. The arguments come through as an array so we pattern match on the number of elements to decide what to print.</p>
-<blockquote>
-<p>Note: The first element of the array is always the name of the script the arguments are passed into</p>
-</blockquote>
-<pre><code class="language-fsharp">#load &quot;Strings.fsx&quot;
-open Strings
-let stringWithSpace x = x |&gt; string |&gt; (sprintf &quot; %s&quot;)
-let name first = first |&gt; toUpper
-let nameAndLastName first last = first |&gt; StringBuilder.initWith |&gt; StringBuilder.append last |&gt; stringWithSpace |&gt; toUpper
-let nameAndLastNameWithOccupation first last occ = 
-    first |&gt; StringBuilder.initWith 
-    |&gt; StringBuilder.append &quot; &quot; 
-    |&gt; StringBuilder.append last 
-    |&gt; StringBuilder.append (sprintf &quot; (%s)&quot; occ)
-    |&gt; string |&gt; toUpper
+<p>We can have multiple lines in either branch, organized by indentation. Just like functions the last expression is what is returned as the value of the <code>if-else</code> expression for each branch.</p>
+<h3>Scope</h3>
+<p>In the previous post I mentioned scope. This is a good opportunity to demonstrate scope. Check out the assigning of the <code>denominator</code> value below.</p>
+<pre><code class="language-fsharp">let divideBy d n = n/d
+let numerator = 10
+let denominator = 0
 
-match fsi.CommandLineArgs with
-| [|scriptName;|] -&gt; failwith (sprintf &quot;At least a name required for %s&quot; scriptName)
-| [|_;firstName|] -&gt; name firstName |&gt; printfn &quot;Name: %s&quot;
-| [|_;firstName; lastName|] -&gt; nameAndLastName firstName lastName |&gt; printfn &quot;Name: %s&quot;
-| [|_;firstName; lastName; occ|] -&gt; nameAndLastNameWithOccupation firstName lastName occ |&gt; printfn &quot;Name: %s&quot;
-| _ -&gt; failwith (sprintf &quot;Too many arguments %A&quot; (fsi.CommandLineArgs |&gt; Array.tail))
+if(denominator &lt;&gt; 0) then 
+    printfn &quot;Dividing by %i, not 0&quot; denominator
+    let x = numerator |&gt; divideBy denominator
+    printfn &quot;The answer is %i&quot; x
+    x
+else
+    printfn &quot;Dividing by 0&quot;
+    let denominator = 1
+    printfn &quot;Instead by %i, not 0&quot; denominator
+    let x = numerator |&gt; divideBy denominator
+    printfn &quot;The answer is %i&quot; x
+    x
+
+printfn &quot;Denominator is %i&quot; denominator
 </code></pre>
-<p>Executing it we would see the following:</p>
+<p>The above prints out the following:</p>
+<pre><code class="language-text">Dividing by 0
+Instead by 1, not 0
+The answer is 10
+Denominator is 0
+</code></pre>
+<p>Notice here how we set a value for <code>denominator</code> within the <code>else</code> branch that shadows the outside one. Once we are back to the scope outside the if, <code>denominator</code> is back to <code>0</code>, even though it was set to <code>1</code> in the <code>else</code> branch. It was <code>1</code> for the scope of the <code>else</code> branch of the expression as it was set in that scope.</p>
+<h3>If / elseif / else</h3>
+<p>It is (maybe) worth mentioning that you can have more than 2 branches by using <code>elif</code>.</p>
+<pre><code class="language-fsharp">if(x = 1) then printfn &quot;x is 1&quot;
+elif (x = 2) then printfn &quot;x is 2&quot;
+else printfn &quot;x is not 1 or 2&quot;
+</code></pre>
+<p>We will briefly cover <code>match</code> next and even when <strong>if / else</strong> seems a cleaner solution, once you are using <code>elif</code> you almost certainly should be using <code>match</code> instead.</p>
+<h2>Match</h2>
+<p>We will hopefully cover pattern matching in more detail in a later entry but no coverage of functional control flow is complete without <code>match</code>.</p>
+<p>Lets re-write the previous example using <code>match</code>:</p>
+<pre><code class="language-fsharp">match x with
+| 1 -&gt; printfn &quot;x is 1&quot;
+| 2 -&gt; printfn &quot;x is 2&quot;
+| _ -&gt; printfn &quot;x is not 1 or 2&quot;
+</code></pre>
+<p>Note that <code>_</code> is a catch-all, like else is.
+This is a much cleaner and more functional way to do control flow. A nice benefit here is that the compiler gives you a warning if you are not matching exhaustively on all options of the matched value.</p>
+<p>We will hopefully circle around to <code>match</code> again when covering pattern matching as <code>match</code> is far more powerful than demonstrated here.</p>
+<p><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/match-expressions">Microsoft docs</a></p>
+<h2>for..in</h2>
+<p>If you need to loop through an entire collection and do something you could use the <code>for pattern in enumerable-expression do body-expression</code> syntax. This is like <code>foreach</code> in many other languages. Lets see what that looks like:</p>
+<pre><code class="language-fsharp">let numbers = [1..10]
+for x in numbers do
+    printf &quot;%i &quot; x
+</code></pre>
 <blockquote>
-<p>&gt; fsi .\samples\print-name.fsx devon burriss developer<br />
-&gt; Name: DEVON BURRISS (DEVELOPER)</p>
+<p>Output: 1 2 3 4 5 6 7 8 9 10</p>
 </blockquote>
-<p>You could of course also access the arguments as a zero based array <code>fsi.CommandLineArgs.[0]</code> or loop through them.</p>
-<h3>Referencing DLLs</h3>
-<p>You can reference DLLs using <code>#r &quot;path/to/file.dll&quot;</code>. If you want to pull down DLLs from Nuget, check out <a href="/up-and-running-with-paket">my article on using Paket dependency manager</a>.</p>
-<h2>Resources</h2>
-<ol>
-<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/fsharp-interactive/">FSI Documentation</a></li>
-<li><a href="http://brandewinder.com/2016/02/06/10-fsharp-scripting-tips/">10 Tips for Productive F# Scripting</a></li>
-</ol>
+<p>See how you can easily create a range of values using <code>start..finish</code> syntax. We use this to define <code>numbers</code>. Then for each element of the list we print the value which is in <code>x</code>.</p>
+<p>We will hopefully cover collections in an upcoming post but for interest sake lets see how this would be done in a more functional way.</p>
+<pre><code class="language-fsharp">let numbers = [1..10]
+numbers |&gt; List.iter (printf &quot;%i &quot;)
+</code></pre>
+<p>Unsurprisingly the functional approach is to call the <code>iter</code> function on the <code>List</code> module. This <code>iter</code> function has the signature <code>('T -&gt; unit) -&gt; 'T list -&gt; unit</code>. Lets break that down:</p>
+<ul>
+<li><code>('T -&gt; unit)</code>: a function defining the action to take for each element in the list</li>
+<li><code>'T list</code>: the list to iterate through</li>
+<li><code>unit</code>: returns unit so this function is designed to iterate through a function and do something, not return a value</li>
+</ul>
+<p>There are many more functions for working with lists in the <code>List</code> module and matching ones for <code>Array</code> and <code>Seq</code>.</p>
+<p><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-for-in-expression">Microsoft docs</a></p>
+<h2>for..to</h2>
+<p>While <code>for..in</code> is for iterating over a collection, <code>for..to</code> allows you to iterate from a start value to another. This is like a <code>for</code> loop in other languages.</p>
+<pre><code class="language-fsharp">let ns = [|1..10..100|]
+for i=0 to ((Array.length ns)/2) do
+    printf &quot;%i &quot; (Array.get ns i)
+</code></pre>
+<blockquote>
+<p>Output: 1 11 21 31 41 51</p>
+</blockquote>
+<p>In our example we have an array that has numbers 1 to a 100 in increments of 10. We only iterate through half the list.</p>
+<p><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-for-to-expression">Microsoft docs</a></p>
+<h2>while</h2>
+<p>What if we want to iterate until a certain condition is true? The following code gets a random number until that number is <code>7</code>.</p>
+<pre><code class="language-fsharp">let random = new System.Random()
+let aNumber() = random.Next(1,10)
+let mutable n = 0
+while (n &lt;&gt; 7) do
+    printf &quot;%i &quot; n
+    n &lt;- aNumber()
+</code></pre>
+<blockquote>
+<p>Output: 0 9 9 1 6 5 2 2 6 6 2 6 6 1 2 3 6 8 8 1 3 2 2</p>
+</blockquote>
+<p>We kept going through the <code>while</code> loop until <code>aNumber()</code> returned <code>7</code>.</p>
+<p><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-while-do-expression">Microsoft docs</a></p>
+<h2>Conclusion</h2>
+<p>In this post we looked at ways to represent branching logic and ways to iterate over values. Remember that much of this is a very imperative approach and as such is not used a lot in the function paradigm. We looked at some functional techniques for dealing with branching and looping and will continue this in future articles.</p>
 <h2>Credits</h2>
 <ol>
-<li>Social Image by <a href="https://unsplash.com/@0628fromchina">yifei chen</a></li>
+<li><a href="https://unsplash.com/@spacexuan">Crystal Kwok</a></li>
 </ol>
 
                 <hr />
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
-                                                <li><a href="/how-to-fsharp-pt-4/">How to F# - Part 4</a></li>
                                                 <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
+                                                <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
                                                 <li><a href="/how-to-fsharp-pt-3/">How to F# - Part 3</a></li>
                                             </ul>
                 </section>
@@ -300,13 +345,9 @@ match fsi.CommandLineArgs with
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/up-and-running-with-paket/" data-toggle="tooltip"    data-placement="top" title="Up and running with PAKET">&larr; Previous Post</a>
+                        <a href="/how-to-fsharp-pt-3/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 3">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/how-to-fsharp-pt-1/" data-toggle="tooltip" data-placement="top" title="How to F# - Part 1">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

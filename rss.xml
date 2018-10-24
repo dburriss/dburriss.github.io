@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Tue, 23 Oct 2018 18:52:06 +00:00</pubDate>
-    <lastBuildDate>Tue, 23 Oct 2018 18:52:06 +00:00</lastBuildDate>
+    <pubDate>Wed, 24 Oct 2018 18:30:30 +00:00</pubDate>
+    <lastBuildDate>Wed, 24 Oct 2018 18:30:30 +00:00</lastBuildDate>
+    
+    <item>
+      <title>How to F# - Part 4</title>
+      <link>https://devonburriss.me/how-to-fsharp-pt-4/</link>
+      <pubDate>Thu, 25 Oct 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/how-to-fsharp-pt-4/</guid>
+      <description>In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections</description>
+    </item>
     
     <item>
       <title>How to F# - Part 3</title>

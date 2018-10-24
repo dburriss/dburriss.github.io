@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>https://devonburriss.me/how-to-fsharp-pt-4/</loc>
+    <lastmod>2018-10-25T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>https://devonburriss.me/how-to-fsharp-pt-3/</loc>
     <lastmod>2018-10-24T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -391,6 +398,10 @@
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
+	
+  
+	
+  
 	
   
 	

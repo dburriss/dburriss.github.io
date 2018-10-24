@@ -285,7 +285,7 @@ Console.ReadLine()
 <p>To close off this post I wanted to mention something important to consider when writing your own functions, and that is the idea of <em>purity</em>. A <strong>pure</strong> function is a function that has no internal dependencies that could change the output. As an example, our <code>trim</code> function <code>let trim (s:string) = s.Trim()</code> will give the same output for the same input every single time. Compare this to <code>File.ReadAllText(&quot;/path/to/file.txt&quot;)</code>. With <code>ReadAllText</code> the file could change at any time if the underlying file contents changes even though the same path was used as input. This is NOT a pure function.</p>
 <p>Pure functions are easier to reason about and easier to test and so should be favoured. In the example above we pushed our impure functions to the beginning and end of the workflow and had our pure functions in the middle. This is generally a good pattern to follow.</p>
 <p>So we covered quite a lot in this post and there is plenty more that could be said about functions but I think you have enough now to start working with them yourself. Didn't I tell you it would be <code>fun</code>? As always I appreciate any suggestions or questions, and please share this series with anyone you think might get value from it.</p>
-<p>The next article will be out soon on Control Flow.</p>
+<p>In the next article we look at <a href="/how-to-fsharp-pt-4">Control Flow</a>.</p>
 <h2>Resources</h2>
 <ol>
 <li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/symbol-and-operator-reference/">Symbol reference</a></li>
@@ -301,7 +301,7 @@ Console.ReadLine()
                     <ul>
                                                 <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
                                                 <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
-                                                <li><a href="/why-i-got-hooked-on-fsharp/">Why I got hooked on F#</a></li>
+                                                <li><a href="/how-to-fsharp-pt-4/">How to F# - Part 4</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -312,6 +312,10 @@ Console.ReadLine()
                         <a href="/how-to-fsharp-pt-2/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 2">&larr; Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/how-to-fsharp-pt-4/" data-toggle="tooltip" data-placement="top" title="How to F# - Part 4">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 
