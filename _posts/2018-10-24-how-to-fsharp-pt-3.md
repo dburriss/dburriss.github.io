@@ -154,7 +154,7 @@ Pure functions are easier to reason about and easier to test and so should be fa
 
 So we covered quite a lot in this post and there is plenty more that could be said about functions but I think you have enough now to start working with them yourself. Didn't I tell you it would be `fun`? As always I appreciate any suggestions or questions, and please share this series with anyone you think might get value from it.
 
-The next article will be out soon on Control Flow.
+In the next article we look at [Control Flow](/how-to-fsharp-pt-4).
 
 ## Resources
 

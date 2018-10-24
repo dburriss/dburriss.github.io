@@ -1,6 +1,8 @@
 let toUpper (s:string) = s.ToUpper()
 let toLower (s:string) = s.ToLower()
 let replace (oldValue:string) (newValue:string) (s:string) = s.Replace(oldValue,newValue)
+let trim (s:string) = s.Trim()
+
 
 module StringBuilder =
     open System.Text
