@@ -176,14 +176,14 @@
     <div class="post-preview jumbotron">
         
         <h1 class="post-title">            
-            <a href="/how-to-fsharp-pt-4/">How to F# - Part 4</a>
+            <a href="/how-to-fsharp-pt-5/">How to F# - Part 5</a>
         </h1>
         
         <em class="post-subtitle">
-            Making decisions with control flow
+            Making magic with Pattern Matching
         </em>
         
-        <p class="post-meta">Posted by Devon Burriss on October 25, 2018</p>
+        <p class="post-meta">Posted by Devon Burriss on October 26, 2018</p>
         
             
                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
@@ -194,11 +194,11 @@
             
         
         
-            <img src="/img/posts/2018/pipes-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
+            <img src="/img/posts/2018/rubiks-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         
-        <p align="justify"><p>In the <a href="/how-to-fsharp-pt-3">last post</a> we finished off our dive into functions. In this post we will look at control flow. How do we make a branching decision? How do we loop through something until some condition is met?</p>
+        <p align="justify"><p>In the <a href="/how-to-fsharp-pt-4">previous post</a> we looked at language features that allowed us to control the flow of our applications. In this post we will look at Pattern Matching, which allows for some very powerful control flow, as well as some neat deconstruction of values.</p>
 </p></p>
-        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-4/" role="button">Read more</a></p>
+        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-5/" role="button">Read more</a></p>
     </div>
     <div class="clearfix"></div>
     <hr>
@@ -215,6 +215,149 @@
 
     
 
+     
+        
+     
+        
+        
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+    
+
+    <div class="post-preview ">
+        
+            
+        
+         <img src="/img/posts/2018/pipes-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+
+        <a href="/how-to-fsharp-pt-4/">
+            <h2 class="post-title">            How to F# - Part 4
+            </h2>
+            
+            
+            <h3 class="post-subtitle">
+                Making decisions with control flow
+            </h3>
+            
+        </a>
+        <p class="post-meta">Posted by Devon Burriss' Blog on October 25, 2018</p>
+        
+            
+                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
+            
+                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
+            
+                <a href="/tag/net"><span class="label label-default">.NET</span></a>
+            
+        
+    </div>
+    <hr>
+    
+
+
+
+
+    
+
+     
+        
      
         
      
@@ -360,6 +503,8 @@
         
      
         
+     
+        
         
         
      
@@ -493,6 +638,8 @@
 
     
 
+     
+        
      
         
      
@@ -642,6 +789,8 @@
         
      
         
+     
+        
         
         
      
@@ -769,6 +918,8 @@
 
     
 
+     
+        
      
         
      
@@ -926,6 +1077,8 @@
         
      
         
+     
+        
         
         
      
@@ -1057,6 +1210,8 @@
 
     
 
+     
+        
      
         
      
@@ -1220,6 +1375,8 @@
         
      
         
+     
+        
         
         
      
@@ -1332,151 +1489,6 @@
                 <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
             
                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/posts/2018/frame-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/page-module-model/">
-            <h2 class="post-title">            The Page Module Model with F# and Canopy
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Its like testing with the Page Object Model but way way cooler
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on August 12, 2018</p>
-        
-            
-                <a href="/tag/canopy"><span class="label label-default">Canopy</span></a>
-            
-                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-            
-                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-            
-                <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-            
-                <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-            
-                <a href="/tag/selenium"><span class="label label-default">Selenium</span></a>
             
         
     </div>

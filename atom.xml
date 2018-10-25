@@ -3,13 +3,178 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-24T18:30:30.2621701+00:00</updated>
+  <updated>2018-10-25T22:22:15.0037667+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/how-to-fsharp-pt-5/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-5/"/>
+    <title>How to F# - Part 5</title>
+    <updated>2018-10-26T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/how-to-fsharp-pt-5/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;In the &lt;a href=&quot;/how-to-fsharp-pt-4&quot;&gt;previous post&lt;/a&gt; we looked at language features that allowed us to control the flow of our applications. In this post we will look at Pattern Matching, which allows for some very powerful control flow, as well as some neat deconstruction of values.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;In this post we will look at a few ways of deconstructing values and end with an in-depth look at &lt;code&gt;match&lt;/code&gt; again.&lt;/p&gt;
+&lt;h2&gt;Deconstructing a tuple&lt;/h2&gt;
+&lt;p&gt;Lets ease into pattern matching by looking at deconstructing a tuple. Remember a tuple is a little like a record except it has no named accessor fields. We have the &lt;code&gt;fst&lt;/code&gt; and &lt;code&gt;snd&lt;/code&gt; functions that get the value for you but if you have more than 2 elements in your tuple you are on your own. Lets refresh by looking at an example from &lt;a href=&quot;/how-to-fsharp-pt-1&quot;&gt;part 1&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;//create a tuple of type bool * int
+let myTuple = (true,99)
+// use the fst function to get the first value in the tuple
+let b1 = fst myTuple
+// use the snd function to get the second value in the tuple, with pipe forward operator
+let n1 = myTuple |&amp;gt; snd
+// use pattern matching to get the values
+let (b,n) = myTuple
+//val b : bool = true
+//val n : int = 99
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice how on the last line &lt;code&gt;let (b,n) = myTuple&lt;/code&gt; we deconstruct the tuple to individual values. This is a form of pattern matching. The pattern on the left matches the pattern of a tuple that is being assigned to it so F# is able to assign the respective elements from the tuple to each of those elements.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let tripleThreat = (true,99,&amp;quot;str&amp;quot;)
+let (b2,n2,s1) = tripleThreat
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you would expect, when you add more elements the pattern on the left needs to match.&lt;/p&gt;
+&lt;h2&gt;Function arguments&lt;/h2&gt;
+&lt;p&gt;Lets drill into this a bit more. We can use it to assign values while deconstructing a tuple but what if we want to accept a tuple argument into a function and we only care about the deconstructed values.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// bool * int  -&amp;gt; unit
+let takeATup1 tup =
+    let x = fst tup
+    let y = snd tup
+    if(x) then printfn &amp;quot;%i&amp;quot; (y + 1) else printfn &amp;quot;%i&amp;quot; (y - 1)
+
+let takeATup2 (x,y) =
+    if(x) then printfn &amp;quot;%i&amp;quot; (y + 1) else printfn &amp;quot;%i&amp;quot; (y - 1)
+
+let myTuple = (true,99)
+takeATup1 myTuple
+takeATup2 myTuple
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Output: 100&lt;br /&gt;
+Output: 100&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In &lt;code&gt;takeATup1&lt;/code&gt; we accept the argument as a tuple value. In &lt;code&gt;takeATup2&lt;/code&gt; we pattern match on it to be able to get straight to its constituent elements. So it is possible to deconstruct a tuple in the argument. Wouldn&apos;t it be useful if we could deconstruct other types?&lt;/p&gt;
+&lt;h2&gt;Sum type&lt;/h2&gt;
+&lt;p&gt;A common pattern in F# is to create specific types to document your code a little better using the type system. Say we had an &lt;code&gt;int&lt;/code&gt; that uniquely identifies a row in a spreadsheet table. We could just make it an &lt;code&gt;int&lt;/code&gt;, or we could create a special type to represent what it is. Doing this in F# is super easy. Then whenever we need to get that &lt;code&gt;int&lt;/code&gt; out to use it, we simply extract it using the same deconstruction technique we saw earlier.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;type Id = | RowId of int
+
+let getRow (RowId rid) =
+    printfn &amp;quot;%i&amp;quot; rid
+    (rid,true)
+
+let i = RowId 1
+let row = getRow i
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Output: 1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Did you notice how, like with tuples, the pattern matches what is used to construct the value in the first place?&lt;/p&gt;
+&lt;h2&gt;Product type&lt;/h2&gt;
+&lt;p&gt;As one last example before we switch to &lt;code&gt;match&lt;/code&gt;, you can do the same kind of deconstruction with record types.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;
+type Person = { Name:string; BirthYear:int }
+
+let p1 = { Name = &amp;quot;Devon&amp;quot;; BirthYear = 2120 }
+
+let sayHello { Name = name; BirthYear = _ } =
+    printfn &amp;quot;Hello %s&amp;quot; name
+
+sayHello p1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Output: Hello Devon&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Again it looks like we are constructing the value in the argument. One thing of note is that I used the wildcard symbol &lt;code&gt;_&lt;/code&gt; to show that we don&apos;t care about the value of &lt;code&gt;BirthDate&lt;/code&gt; within the scope of this function.&lt;/p&gt;
+&lt;h2&gt;Match expression (revisited)&lt;/h2&gt;
+&lt;p&gt;We covered &lt;code&gt;match&lt;/code&gt; in &lt;a href=&quot;/how-to-fsharp-pt-4&quot;&gt;part 4&lt;/a&gt; but are going to revisit it with our new-found knowledge of pattern matching.&lt;/p&gt;
+&lt;p&gt;To dip our toes in lets create a function that takes a &lt;code&gt;bool&lt;/code&gt; and an &lt;code&gt;int&lt;/code&gt; and if the first argument is &lt;code&gt;true&lt;/code&gt;, then it increments the second argument else it decrements it.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// bool -&amp;gt; int -&amp;gt; int
+let incDec t n  = 
+    match (t,n) with
+    | (true,x) -&amp;gt; x + 1
+    | (false,x) -&amp;gt; x - 1
+
+printfn &amp;quot;%i&amp;quot; (incDec true 10)
+printfn &amp;quot;%i&amp;quot; (incDec false 10)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Output: 11&lt;br /&gt;
+Output: 9&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Note how we created a tuple in the input expression of the &lt;code&gt;match&lt;/code&gt; and then pattern match for the different options.&lt;/p&gt;
+&lt;p&gt;Before we move on lets highlight some other patterns and features. Let us add 2 more constraints to out function.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If the value is &lt;code&gt;1&lt;/code&gt; we ignore the boolean and just return &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;If the value is less than or equal to &lt;code&gt;0&lt;/code&gt; we will return &lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let incDec t n  =
+    match (t,n) with
+    | (_,1) -&amp;gt; 1
+    | (_,x) when x &amp;lt;= 0 -&amp;gt; 0
+    | (true,x) -&amp;gt; x + 1
+    | (false,x) -&amp;gt; x - 1
+
+printfn &amp;quot;%i&amp;quot; (incDec true 10)
+printfn &amp;quot;%i&amp;quot; (incDec false 10)
+printfn &amp;quot;%i&amp;quot; (incDec false 1)
+printfn &amp;quot;%i&amp;quot; (incDec false -5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Output: 11&lt;br /&gt;
+Output: 9&lt;br /&gt;
+Output: 1&lt;br /&gt;
+Output: 0&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A few things to note here. Firstly, we used the wildcard &lt;code&gt;_&lt;/code&gt; to indicate that we don&apos;t care about the value of the boolean. It will match the first element whether &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. Secondly, we used a condition with the &lt;code&gt;when&lt;/code&gt; keyword. This requires that the pattern is matched AND that the condition is then met. Thirdly, the order matters here. If we had added the 2 new cases at the end of the &lt;code&gt;match&lt;/code&gt; they would never be hit.&lt;/p&gt;
+&lt;h2&gt;Active Patterns&lt;/h2&gt;
+&lt;p&gt;Active Patterns is a really cool feature that can be used to simplify the &lt;code&gt;match&lt;/code&gt; cases by wrapping up some pattern matching into named partitions. I am going to cover partial active patterns here, as I have found them the most useful.&lt;/p&gt;
+&lt;p&gt;To demonstrate the usage of partial active patterns we are going to code up a little game called FizzBuzz. How it works is you increment numbers saying the number unless:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The number is divisible by 3, then you say &lt;em&gt;Fizz&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;The number is divisible by 5, then you say &lt;em&gt;Buzz&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;The number is divisible by both 3 and 5, then you say &lt;em&gt;FizzBuzz&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// define partial active patterns
+let (|Fizz|_|) i = if ((i%3) = 0) then Some() else None
+let (|Buzz|_|) i = if ((i%5) = 0) then Some() else None
+// use partial active patterns
+let fizzbuzz i = 
+    match i with
+    | Fizz -&amp;gt; printf &amp;quot;Fizz &amp;quot;
+    | Buzz -&amp;gt; printf &amp;quot;Buzz &amp;quot;
+    | Fizz &amp;amp; Buzz -&amp;gt; printf &amp;quot;FizzBuzz &amp;quot;
+    | x -&amp;gt; printf &amp;quot;%i &amp;quot; x
+// run fizz buzz for numbers 1 to 20
+[1..20] |&amp;gt; List.iter fizzbuzz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Output: 1 2 fizz 4 buzz fizz 7 8 fizz buzz 11 fizz 13 14 fizz 16 17 fizz 19 buzz&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;They are called partial active patterns because in the definition &lt;code&gt;|Fizz|_|&lt;/code&gt; they have the wildcard &lt;code&gt;_&lt;/code&gt; that allows for a match to not occur. We indicate that the match happened by returning &lt;code&gt;Some&lt;/code&gt; and it did not by returning &lt;code&gt;None&lt;/code&gt;. We will encounter &lt;code&gt;Some&lt;/code&gt; again in a later post when we tackle handling no data.&lt;/p&gt;
+&lt;p&gt;Notice how for &amp;quot;FizzBuzz&amp;quot; we used &lt;code&gt;&amp;amp;&lt;/code&gt; to check it matched both.&lt;/p&gt;
+&lt;p&gt;I want to point out something that may not be clear. If we wanted to pattern match and deconstruct the value in the match we could do that by sending the value back with &lt;code&gt;Some(i)&lt;/code&gt;. Then the case would look like this &lt;code&gt;| Fizz x -&amp;gt; printf &amp;quot;Fizz(%x) &amp;quot; x&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;These take some playing around with to get comfortable with but once you are they are great for cleaning up your &lt;code&gt;match&lt;/code&gt; and making them more descriptive.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Today we looked into various ways you can use pattern matching to both get values and branch your application logic. We also explored partial active patterns by writing an implementation of the FizzBuzz game.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Pattern_matching&quot;&gt;Pattern Matching on Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching&quot;&gt;Pattern Matching on MS docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/posts/match-expression/&quot;&gt;Match Expressions for fun and profit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/active-patterns&quot;&gt;Active Patterns&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Social image by&lt;a href=&quot;https://unsplash.com/@olav_ahrens&quot;&gt;Olav Ahrens Røtne&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/how-to-fsharp-pt-4/</id>
@@ -155,7 +320,7 @@ while (n &amp;lt;&amp;gt; 7) do
 &lt;p&gt;We kept going through the &lt;code&gt;while&lt;/code&gt; loop until &lt;code&gt;aNumber()&lt;/code&gt; returned &lt;code&gt;7&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-while-do-expression&quot;&gt;Microsoft docs&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;In this post we looked at ways to represent branching logic and ways to iterate over values. Remember that much of this is a very imperative approach and as such is not used a lot in the function paradigm. We looked at some functional techniques for dealing with branching and looping and will continue this in future articles.&lt;/p&gt;
+&lt;p&gt;In this post we looked at ways to represent branching logic and ways to iterate over values. Remember that much of this is a very imperative approach and as such is not used a lot in the function paradigm. We looked at some functional techniques for dealing with branching and looping and will continue this in future articles. Next up we look at &lt;a href=&quot;/how-to-fsharp-pt-5&quot;&gt;Pattern Matching&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Credits&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://unsplash.com/@spacexuan&quot;&gt;Crystal Kwok&lt;/a&gt;&lt;/li&gt;

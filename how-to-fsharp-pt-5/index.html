@@ -19,42 +19,42 @@
     
 
 
-    <title>How to F# - Part 2</title>
-    <meta name="description" content="In part 2 of this series we will look at what gives functional programming its name, functions">
+    <title>How to F# - Part 5</title>
+    <meta name="description" content="">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-2/">
+    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-5/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="How to F# - Part 2">
-    <meta itemprop="description" content="In part 2 of this series we will look at what gives functional programming its name, functions">
-    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/footprint-500.jpg">
+    <meta itemprop="name" content="How to F# - Part 5">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/rubiks-500.jpg">
     
-    <meta itemprop="datePublished" content="10/23/2018 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="10/23/2018 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="How to F# - Part 2 - Putting the function in Functional Programming" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-2/" />
-    <meta name="headline" content="How to F# - Part 2 - Putting the function in Functional Programming" />
+    <meta itemprop="datePublished" content="10/26/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="10/26/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="How to F# - Part 5 - Making magic with Pattern Matching" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-5/" />
+    <meta name="headline" content="How to F# - Part 5 - Making magic with Pattern Matching" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="How to F# - Part 2">
-    <meta name="twitter:description" content="In part 2 of this series we will look at what gives functional programming its name, functions">
+    <meta name="twitter:title" content="How to F# - Part 5">
+    <meta name="twitter:description" content="">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/footprint-500.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/rubiks-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="How to F# - Part 2" />
+    <meta property="og:title" content="How to F# - Part 5" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-2/" />
-    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/footprint-500.jpg" />
-    <meta property="og:description" content="In part 2 of this series we will look at what gives functional programming its name, functions" />
+    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-5/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/rubiks-500.jpg" />
+    <meta property="og:description" content="" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -162,11 +162,11 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>How to F# - Part 2</h1>
+                        <h1>How to F# - Part 5</h1>
                         
-                        <h2 class="subheading">Putting the function in Functional Programming</h2>
+                        <h2 class="subheading">Making magic with Pattern Matching</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 23, 2018</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 26, 2018</span>
                         
                             <hr />
                             
@@ -190,77 +190,168 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>In the <a href="/how-to-fsharp-pt-1">previous post</a> we looked at assigning values and the different types that those values could be. In this second installment we will be looking at functional programmings namesake: <em>functions</em>.</p>
-<h2>Introduction</h2>
-<p>Functional programming as a paradigm is quite a hard thing to pin down, just like other paradigms. In object-oriented programming the one thing that really isn't up for debate though is that the general idea is that we have an object (whatever that may mean to you) and we represent data and behavior in these objects. In functional programming then it will come as no surprise that <em>functions</em> are first class citizens and that we accomplish our goals by transforming data using these functions.</p>
-<p>What is a function though?</p>
-<h2>A brief reminder about mathematics</h2>
-<p>Do not worry, I will not be going into deep mathematics theory here. I instead want to remind you of some mathematics you probably touched on in school just to show you that this isn't necessarily something completely new to you. Secondly, it will show that functional programming has roots that go far deeper than computer programming. Do not worry though if you didn't like this stuff at school, I promise this is way more <code>fun</code>.</p>
-<p>In mathematical terms a function is a process that associates each element <em>x</em> of a set <strong>X</strong> to another value <em>y</em> which is of set <strong>Y</strong>. Let us call this process <em>f</em>. Then we have an expression:</p>
-<pre><code class="language-fsharp">y = f(x)
+				<p>In the <a href="/how-to-fsharp-pt-4">previous post</a> we looked at language features that allowed us to control the flow of our applications. In this post we will look at Pattern Matching, which allows for some very powerful control flow, as well as some neat deconstruction of values.</p>
+<!--more-->
+<p>In this post we will look at a few ways of deconstructing values and end with an in-depth look at <code>match</code> again.</p>
+<h2>Deconstructing a tuple</h2>
+<p>Lets ease into pattern matching by looking at deconstructing a tuple. Remember a tuple is a little like a record except it has no named accessor fields. We have the <code>fst</code> and <code>snd</code> functions that get the value for you but if you have more than 2 elements in your tuple you are on your own. Lets refresh by looking at an example from <a href="/how-to-fsharp-pt-1">part 1</a>:</p>
+<pre><code class="language-fsharp">//create a tuple of type bool * int
+let myTuple = (true,99)
+// use the fst function to get the first value in the tuple
+let b1 = fst myTuple
+// use the snd function to get the second value in the tuple, with pipe forward operator
+let n1 = myTuple |&gt; snd
+// use pattern matching to get the values
+let (b,n) = myTuple
+//val b : bool = true
+//val n : int = 99
 </code></pre>
-<p>This is usually read as &quot;let <em>y</em> equal <em>f</em> of <em>x</em>&quot;.</p>
-<p>The set <strong>X</strong> of possible values of <em>x</em> is known as the <strong>domain</strong>. The set <strong>Y</strong> of possible outputs <em>y</em> is known as the <strong>codomain</strong>. To label the parts of the expression, <em>x</em> is the <strong>argument</strong> and the value of the function is the output.</p>
-<p>So how would we accurately define a specific function?</p>
-<blockquote>
-<p>let <em>f</em>: R → R be the function defined by the equation <em>f(x) = x<sup>2</sup></em>, valid for all real values of x</p>
-</blockquote>
-<p>Notice how we have the <code>Domain -&gt; Codomain</code> defined using <code>-&gt;</code>. We will come back to this a little later.</p>
-<p>One last thing. Remember common functions like <code>sin</code> and <code>cos</code>? It is common to write them as <code>cos x</code>, without the the brackets as long as this does not lead to any ambiguity in the meaning. So now that we have had a little mathematics refresher, let us see if this brings us any insight into F# functions.</p>
-<p>Mathematics done!</p>
-<h2>Defining functions in F#</h2>
-<p>In the <a href="/how-to-fsharp-pt-1">previous post we looked at assigning values</a>. F# being a functional-first language means that we can treat functions like any other value.</p>
-<pre><code class="language-fsharp">// int -&gt; int
-let f x = x*x
-let y = f 3 //val y : int = 9
+<p>Notice how on the last line <code>let (b,n) = myTuple</code> we deconstruct the tuple to individual values. This is a form of pattern matching. The pattern on the left matches the pattern of a tuple that is being assigned to it so F# is able to assign the respective elements from the tuple to each of those elements.</p>
+<pre><code class="language-fsharp">let tripleThreat = (true,99,&quot;str&quot;)
+let (b2,n2,s1) = tripleThreat
 </code></pre>
-<p>So above we define function <em>f</em> that takes argument <em>x</em>. Then we pass <code>3</code> as the argument and assign that to value <code>y</code>.</p>
-<p>Another way to define functions in F# is to use the <code>fun</code> keyword. Let us define the same function again, this time as function <em>g</em>:</p>
-<pre><code class="language-fsharp">// int -&gt; int
-let g = fun x -&gt; x*x
-let z = g 3 //val z : int = 9
-</code></pre>
-<p>This way makes it way more explicit that <code>g</code> is simply just another value that is assigned to. Note that this way of defining functions using <code>fun</code> is common when using functions once off inline, say for filtering a collection. We will see this in more detail in a later post when we dive deeper into collections.</p>
-<h2>Understand functions</h2>
-<h3>Signatures</h3>
-<p>In the above code I put the signature of the function in a comment above it. The signature describes what types a function take in and what it returns. So for our function above we have <code>int -&gt; int</code>. This means our function takes a single <code>int</code> as an argument and then returns an <code>int</code>.</p>
-<p>A function always has an input and an output. In F# (and all programming languages I know of) a function can have multiple arguments. Say for example we had a <code>writeToFile</code> function that took a <code>boolean</code> for whether to overwrite the file if it exists, and a <code>string</code> with the content of the file. The signature for <code>writeToFile</code> would then be <code>bool -&gt; string -&gt; unit</code>. Now what is this <code>unit</code> type? It was mentioned in the previous post as the type that represents nothing. As already mentioned, functions must always have an input and an output, so if a function has no meaningful value to return, we return <code>unit</code>.</p>
-<p>Do you see a similarity here? Types define the possible values that are possible. So for a signature <code>int -&gt; int</code>, our <strong>domain</strong> is all possible numbers allowed by the type <code>int</code> numbers and our <strong>codomain</strong> is also all possible <code>int</code> values. Pretty cool right?</p>
-<h3>Inference</h3>
-<p>In the previous function definitions you may have noticed we defined no types but the F# compiler inferred that the type of <em>x</em> was <code>int</code>. This is because we used the multiplication <code>(*)</code> operator on it. Most of the time the compiler does a pretty good job of working out the type. This keeps our code clean from boilerplate cruft. To be sure though, if you are used to a language like Java or C#, this will take a bit of getting used to. My tip is to pay close attention to the signatures. Any IDE will display this all the time or at least on mouse over.</p>
-<p>If you prefer to be explicit or in those cases where the compiler needs some help to determine the type, you can easily define the types explicitly.</p>
-<pre><code class="language-fsharp">let f (x:int) = x*x         // define argument type
-let f x : int = x*x         // define only return type
-let f (x:int) : int = x*x   // define argument type and return type
-</code></pre>
-<p>The argument type is specified with <code>(x:int)</code>. The parenthesis are needed to disambiguate the argument type from the return type.</p>
-<p>Just a quick style note. Mostly in F# code the types are left off unless needed.</p>
-<p>I wanted to highlight another way of defining functions, and that is by defining a type signature.</p>
-<pre><code class="language-fsharp">type Unary: int -&gt; int
-let increment : Unary = fun x = x + 1
-let decrement : Unary = fun x = x - 1
+<p>As you would expect, when you add more elements the pattern on the left needs to match.</p>
+<h2>Function arguments</h2>
+<p>Lets drill into this a bit more. We can use it to assign values while deconstructing a tuple but what if we want to accept a tuple argument into a function and we only care about the deconstructed values.</p>
+<pre><code class="language-fsharp">// bool * int  -&gt; unit
+let takeATup1 tup =
+    let x = fst tup
+    let y = snd tup
+    if(x) then printfn &quot;%i&quot; (y + 1) else printfn &quot;%i&quot; (y - 1)
+
+let takeATup2 (x,y) =
+    if(x) then printfn &quot;%i&quot; (y + 1) else printfn &quot;%i&quot; (y - 1)
+
+let myTuple = (true,99)
+takeATup1 myTuple
+takeATup2 myTuple
 </code></pre>
 <blockquote>
-<p>A unary function is one that takes only one argument</p>
+<p>Output: 100<br />
+Output: 100</p>
 </blockquote>
-<p>So we define a <strong>Unary</strong> function as one that take in a single number and returns a number, and then we have multiple implementations of that type.</p>
+<p>In <code>takeATup1</code> we accept the argument as a tuple value. In <code>takeATup2</code> we pattern match on it to be able to get straight to its constituent elements. So it is possible to deconstruct a tuple in the argument. Wouldn't it be useful if we could deconstruct other types?</p>
+<h2>Sum type</h2>
+<p>A common pattern in F# is to create specific types to document your code a little better using the type system. Say we had an <code>int</code> that uniquely identifies a row in a spreadsheet table. We could just make it an <code>int</code>, or we could create a special type to represent what it is. Doing this in F# is super easy. Then whenever we need to get that <code>int</code> out to use it, we simply extract it using the same deconstruction technique we saw earlier.</p>
+<pre><code class="language-fsharp">type Id = | RowId of int
+
+let getRow (RowId rid) =
+    printfn &quot;%i&quot; rid
+    (rid,true)
+
+let i = RowId 1
+let row = getRow i
+</code></pre>
+<blockquote>
+<p>Output: 1</p>
+</blockquote>
+<p>Did you notice how, like with tuples, the pattern matches what is used to construct the value in the first place?</p>
+<h2>Product type</h2>
+<p>As one last example before we switch to <code>match</code>, you can do the same kind of deconstruction with record types.</p>
+<pre><code class="language-fsharp">
+type Person = { Name:string; BirthYear:int }
+
+let p1 = { Name = &quot;Devon&quot;; BirthYear = 2120 }
+
+let sayHello { Name = name; BirthYear = _ } =
+    printfn &quot;Hello %s&quot; name
+
+sayHello p1
+</code></pre>
+<blockquote>
+<p>Output: Hello Devon</p>
+</blockquote>
+<p>Again it looks like we are constructing the value in the argument. One thing of note is that I used the wildcard symbol <code>_</code> to show that we don't care about the value of <code>BirthDate</code> within the scope of this function.</p>
+<h2>Match expression (revisited)</h2>
+<p>We covered <code>match</code> in <a href="/how-to-fsharp-pt-4">part 4</a> but are going to revisit it with our new-found knowledge of pattern matching.</p>
+<p>To dip our toes in lets create a function that takes a <code>bool</code> and an <code>int</code> and if the first argument is <code>true</code>, then it increments the second argument else it decrements it.</p>
+<pre><code class="language-fsharp">// bool -&gt; int -&gt; int
+let incDec t n  = 
+    match (t,n) with
+    | (true,x) -&gt; x + 1
+    | (false,x) -&gt; x - 1
+
+printfn &quot;%i&quot; (incDec true 10)
+printfn &quot;%i&quot; (incDec false 10)
+</code></pre>
+<blockquote>
+<p>Output: 11<br />
+Output: 9</p>
+</blockquote>
+<p>Note how we created a tuple in the input expression of the <code>match</code> and then pattern match for the different options.</p>
+<p>Before we move on lets highlight some other patterns and features. Let us add 2 more constraints to out function.</p>
+<ol>
+<li>If the value is <code>1</code> we ignore the boolean and just return <code>1</code></li>
+<li>If the value is less than or equal to <code>0</code> we will return <code>0</code></li>
+</ol>
+<pre><code class="language-fsharp">let incDec t n  =
+    match (t,n) with
+    | (_,1) -&gt; 1
+    | (_,x) when x &lt;= 0 -&gt; 0
+    | (true,x) -&gt; x + 1
+    | (false,x) -&gt; x - 1
+
+printfn &quot;%i&quot; (incDec true 10)
+printfn &quot;%i&quot; (incDec false 10)
+printfn &quot;%i&quot; (incDec false 1)
+printfn &quot;%i&quot; (incDec false -5)
+</code></pre>
+<blockquote>
+<p>Output: 11<br />
+Output: 9<br />
+Output: 1<br />
+Output: 0</p>
+</blockquote>
+<p>A few things to note here. Firstly, we used the wildcard <code>_</code> to indicate that we don't care about the value of the boolean. It will match the first element whether <code>true</code> or <code>false</code>. Secondly, we used a condition with the <code>when</code> keyword. This requires that the pattern is matched AND that the condition is then met. Thirdly, the order matters here. If we had added the 2 new cases at the end of the <code>match</code> they would never be hit.</p>
+<h2>Active Patterns</h2>
+<p>Active Patterns is a really cool feature that can be used to simplify the <code>match</code> cases by wrapping up some pattern matching into named partitions. I am going to cover partial active patterns here, as I have found them the most useful.</p>
+<p>To demonstrate the usage of partial active patterns we are going to code up a little game called FizzBuzz. How it works is you increment numbers saying the number unless:</p>
+<ol>
+<li>The number is divisible by 3, then you say <em>Fizz</em></li>
+<li>The number is divisible by 5, then you say <em>Buzz</em></li>
+<li>The number is divisible by both 3 and 5, then you say <em>FizzBuzz</em></li>
+</ol>
+<pre><code class="language-fsharp">// define partial active patterns
+let (|Fizz|_|) i = if ((i%3) = 0) then Some() else None
+let (|Buzz|_|) i = if ((i%5) = 0) then Some() else None
+// use partial active patterns
+let fizzbuzz i = 
+    match i with
+    | Fizz -&gt; printf &quot;Fizz &quot;
+    | Buzz -&gt; printf &quot;Buzz &quot;
+    | Fizz &amp; Buzz -&gt; printf &quot;FizzBuzz &quot;
+    | x -&gt; printf &quot;%i &quot; x
+// run fizz buzz for numbers 1 to 20
+[1..20] |&gt; List.iter fizzbuzz
+</code></pre>
+<blockquote>
+<p>Output: 1 2 fizz 4 buzz fizz 7 8 fizz buzz 11 fizz 13 14 fizz 16 17 fizz 19 buzz</p>
+</blockquote>
+<p>They are called partial active patterns because in the definition <code>|Fizz|_|</code> they have the wildcard <code>_</code> that allows for a match to not occur. We indicate that the match happened by returning <code>Some</code> and it did not by returning <code>None</code>. We will encounter <code>Some</code> again in a later post when we tackle handling no data.</p>
+<p>Notice how for &quot;FizzBuzz&quot; we used <code>&amp;</code> to check it matched both.</p>
+<p>I want to point out something that may not be clear. If we wanted to pattern match and deconstruct the value in the match we could do that by sending the value back with <code>Some(i)</code>. Then the case would look like this <code>| Fizz x -&gt; printf &quot;Fizz(%x) &quot; x</code>.</p>
+<p>These take some playing around with to get comfortable with but once you are they are great for cleaning up your <code>match</code> and making them more descriptive.</p>
 <h2>Conclusion</h2>
-<p>In this post we introduced some of the core ideas behind functions. We learned how to define them and how to read a functions signature. We also touched on what the compiler can do for you by inferring the types, and how you can be explicit about the types.</p>
-<p>In the next post we will dive deeper into <a href="/how-to-fsharp-pt-3">Working with Functions and getting them to work for you</a>.</p>
+<p>Today we looked into various ways you can use pattern matching to both get values and branch your application logic. We also explored partial active patterns by writing an implementation of the FizzBuzz game.</p>
 <h2>Resources</h2>
 <ol>
-<li><a href="https://en.wikipedia.org/wiki/Function_(mathematics)">Mathematics functions</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Programming_paradigm">Programming paradigms</a></li>
-<li><a href="https://fsharpforfunandprofit.com/posts/function-signatures/">Function signature</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Pattern_matching">Pattern Matching on Wikipedia</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching">Pattern Matching on MS docs</a></li>
+<li><a href="https://fsharpforfunandprofit.com/posts/match-expression/">Match Expressions for fun and profit</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/active-patterns">Active Patterns</a></li>
+</ol>
+<h2>Credits</h2>
+<ol>
+<li>Social image by<a href="https://unsplash.com/@olav_ahrens">Olav Ahrens Røtne</a></li>
 </ol>
 
                 <hr />
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
+                                                <li><a href="/how-to-fsharp-pt-4/">How to F# - Part 4</a></li>
                                                 <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
-                                                <li><a href="/how-to-fsharp-pt-3/">How to F# - Part 3</a></li>
-                                                <li><a href="/how-to-fsharp-pt-5/">How to F# - Part 5</a></li>
+                                                <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -268,13 +359,9 @@ let decrement : Unary = fun x = x - 1
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/how-to-fsharp-pt-1/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 1">&larr; Previous Post</a>
+                        <a href="/how-to-fsharp-pt-4/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 4">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/how-to-fsharp-pt-3/" data-toggle="tooltip" data-placement="top" title="How to F# - Part 3">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
