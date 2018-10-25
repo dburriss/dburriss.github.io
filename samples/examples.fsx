@@ -108,3 +108,62 @@ let mutable n = 0
 while (n <> 7) do
     printf "%i " n
     n <- aNumber()
+
+let tripleThreat = (true,99,"str")
+let (b2,n2,s1) = tripleThreat
+
+let myTuple = (true,99)
+let (b1,n1) = myTuple
+
+
+let takeATup1 tup =
+    let x = fst tup
+    let y = snd tup
+    if(x) then printfn "%i" (y + 1) else printfn "%i" (y - 1)
+let takeATup2 (x,y) =
+    if(x) then printfn "%i" (y + 1) else printfn "%i" (y - 1)
+
+takeATup2 myTuple
+
+type Id = | RowId of int
+
+let getRow (RowId rid) =
+    printfn "%i" rid
+    (rid,true)
+
+let i = RowId 1
+let row = getRow i
+
+type Person = { Name:string; BirthYear:int }
+
+let p1 = { Name = "Devon"; BirthYear = 2120 }
+
+let sayHello { Name = name; BirthYear = _ } =
+    printfn "Hello %s" name
+
+sayHello p1
+
+let incDec t n  = 
+    match (t,n) with
+    | (_,1) -> 1
+    | (_,x) when x <= 0 -> 0
+    | (true,x) -> x + 1
+    | (false,x) -> x - 1
+
+printfn "%i" (incDec true 10)
+printfn "%i" (incDec false 10)
+printfn "%i" (incDec false 1)
+printfn "%i" (incDec false -5)
+
+// define partial active patterns
+let (|Fizz|_|) i = if ((i%3) = 0) then Some() else None
+let (|Buzz|_|) i = if ((i%5) = 0) then Some() else None
+// use partial active patterns
+let fizzbuzz i = 
+    match i with
+    | Fizz -> printf "Fizz "
+    | Buzz -> printf "Buzz "
+    | Fizz & Buzz -> printf "FizzBuzz "
+    | x -> printf "%i " x
+// run fizz buzz for numbers 1 to 20
+[1..20] |> List.iter fizzbuzz

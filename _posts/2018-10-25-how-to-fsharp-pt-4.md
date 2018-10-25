@@ -208,7 +208,7 @@ We kept going through the `while` loop until `aNumber()` returned `7`.
 
 ## Conclusion
 
-In this post we looked at ways to represent branching logic and ways to iterate over values. Remember that much of this is a very imperative approach and as such is not used a lot in the function paradigm. We looked at some functional techniques for dealing with branching and looping and will continue this in future articles.
+In this post we looked at ways to represent branching logic and ways to iterate over values. Remember that much of this is a very imperative approach and as such is not used a lot in the function paradigm. We looked at some functional techniques for dealing with branching and looping and will continue this in future articles. Next up we look at [Pattern Matching](/how-to-fsharp-pt-5).
 
 ## Credits
 
