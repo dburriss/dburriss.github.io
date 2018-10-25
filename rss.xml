@@ -6,8 +6,8 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Thu, 25 Oct 2018 22:22:15 +00:00</pubDate>
-    <lastBuildDate>Thu, 25 Oct 2018 22:22:15 +00:00</lastBuildDate>
+    <pubDate>Thu, 25 Oct 2018 22:29:37 +00:00</pubDate>
+    <lastBuildDate>Thu, 25 Oct 2018 22:29:37 +00:00</lastBuildDate>
     
     <item>
       <title>How to F# - Part 5</title>
@@ -15,7 +15,7 @@
       <pubDate>Fri, 26 Oct 2018 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/how-to-fsharp-pt-5/</guid>
-      <description></description>
+      <description>In this post we explore the magic of pattern matching including value deconstruction, match expressions, and active patterns</description>
     </item>
     
     <item>
