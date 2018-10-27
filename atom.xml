@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-25T22:29:37.847192+00:00</updated>
+  <updated>2018-10-27T09:08:56.1257877+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -147,15 +147,15 @@ let (|Buzz|_|) i = if ((i%5) = 0) then Some() else None
 // use partial active patterns
 let fizzbuzz i = 
     match i with
-    | Fizz -&amp;gt; printf &amp;quot;Fizz &amp;quot;
-    | Buzz -&amp;gt; printf &amp;quot;Buzz &amp;quot;
-    | Fizz &amp;amp; Buzz -&amp;gt; printf &amp;quot;FizzBuzz &amp;quot;
-    | x -&amp;gt; printf &amp;quot;%i &amp;quot; x
+    | Fizz &amp;amp; Buzz -&amp;gt; printf &amp;quot;Fizz Buzz, &amp;quot;
+    | Fizz -&amp;gt; printf &amp;quot;Fizz, &amp;quot;
+    | Buzz -&amp;gt; printf &amp;quot;Buzz, &amp;quot;
+    | x -&amp;gt; printf &amp;quot;%i, &amp;quot; x
 // run fizz buzz for numbers 1 to 20
 [1..20] |&amp;gt; List.iter fizzbuzz
 &lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Output: 1 2 fizz 4 buzz fizz 7 8 fizz buzz 11 fizz 13 14 fizz 16 17 fizz 19 buzz&lt;/p&gt;
+&lt;p&gt;Output: 1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, Fizz Buzz, 16, 17, Fizz, 19, Buzz,&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;They are called partial active patterns because in the definition &lt;code&gt;|Fizz|_|&lt;/code&gt; they have the wildcard &lt;code&gt;_&lt;/code&gt; that allows for a match to not occur. We indicate that the match happened by returning &lt;code&gt;Some&lt;/code&gt; and it did not by returning &lt;code&gt;None&lt;/code&gt;. We will encounter &lt;code&gt;Some&lt;/code&gt; again in a later post when we tackle handling no data.&lt;/p&gt;
 &lt;p&gt;Notice how for &amp;quot;FizzBuzz&amp;quot; we used &lt;code&gt;&amp;amp;&lt;/code&gt; to check it matched both.&lt;/p&gt;
