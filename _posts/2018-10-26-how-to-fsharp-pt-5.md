@@ -193,6 +193,8 @@ These take some playing around with to get comfortable with but once you are the
 
 Today we looked into various ways you can use pattern matching to both get values and branch your application logic. We also explored partial active patterns by writing an implementation of the FizzBuzz game.
 
+Next up we deal with [handling the absence of data](/how-to-fsharp-pt-6).
+
 ## Resources
 
 1. [Pattern Matching on Wikipedia](https://en.wikipedia.org/wiki/Pattern_matching)
@@ -202,4 +204,4 @@ Today we looked into various ways you can use pattern matching to both get value
 
 ## Credits
 
-1. Social image by[Olav Ahrens Røtne](https://unsplash.com/@olav_ahrens)
+1. Social image by [Olav Ahrens Røtne](https://unsplash.com/@olav_ahrens)
