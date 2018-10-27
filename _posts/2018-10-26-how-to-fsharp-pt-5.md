@@ -171,15 +171,15 @@ let (|Buzz|_|) i = if ((i%5) = 0) then Some() else None
 // use partial active patterns
 let fizzbuzz i = 
     match i with
-    | Fizz -> printf "Fizz "
-    | Buzz -> printf "Buzz "
-    | Fizz & Buzz -> printf "FizzBuzz "
-    | x -> printf "%i " x
+    | Fizz & Buzz -> printf "Fizz Buzz, "
+    | Fizz -> printf "Fizz, "
+    | Buzz -> printf "Buzz, "
+    | x -> printf "%i, " x
 // run fizz buzz for numbers 1 to 20
 [1..20] |> List.iter fizzbuzz
 ```
 
-> Output: 1 2 fizz 4 buzz fizz 7 8 fizz buzz 11 fizz 13 14 fizz 16 17 fizz 19 buzz
+> Output: 1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, Fizz Buzz, 16, 17, Fizz, 19, Buzz,
 
 They are called partial active patterns because in the definition `|Fizz|_|` they have the wildcard `_` that allows for a match to not occur. We indicate that the match happened by returning `Some` and it did not by returning `None`. We will encounter `Some` again in a later post when we tackle handling no data.
 
