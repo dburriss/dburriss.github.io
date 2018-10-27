@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sat, 27 Oct 2018 09:08:56 +00:00</pubDate>
-    <lastBuildDate>Sat, 27 Oct 2018 09:08:56 +00:00</lastBuildDate>
+    <pubDate>Sat, 27 Oct 2018 21:28:49 +00:00</pubDate>
+    <lastBuildDate>Sat, 27 Oct 2018 21:28:49 +00:00</lastBuildDate>
+    
+    <item>
+      <title>How to F# - Part 6</title>
+      <link>https://devonburriss.me/how-to-fsharp-pt-6/</link>
+      <pubDate>Sat, 27 Oct 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/how-to-fsharp-pt-6/</guid>
+      <description>In Part 6 we explore ways of handling cases where data is not there with Maybe, and how to wrap null into this way of working with data</description>
+    </item>
     
     <item>
       <title>How to F# - Part 5</title>

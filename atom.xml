@@ -3,13 +3,107 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-27T09:08:56.1257877+00:00</updated>
+  <updated>2018-10-27T21:28:49.3912241+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/how-to-fsharp-pt-6/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-6/"/>
+    <title>How to F# - Part 6</title>
+    <updated>2018-10-27T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/how-to-fsharp-pt-6/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;Sometimes when dealing with data, the value you are expecting does not exist. Functional programming has a common abstraction for dealing with this called &lt;strong&gt;Maybe&lt;/strong&gt;. In F# this abstraction is known as &lt;code&gt;option&lt;/code&gt;.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;Rather than just diving into the functional way of handling no data lets briefly dive into how non-functional languages typically handle the absence of data, namely &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;What is the problem with null?&lt;/h2&gt;
+&lt;p&gt;So what problem are we solving by abstracting what it means to have data or not? Well lets look at how things are typically handled in most popular languages. In languages like Java, C#, and Javascript &lt;code&gt;null&lt;/code&gt; represents the intentional absence of any object. So why is this a problem? Firstly, &lt;code&gt;null&lt;/code&gt; carries no information about the type of data that was expected. Was it a missing &lt;code&gt;string&lt;/code&gt; or a &lt;code&gt;Person&lt;/code&gt; object? If &lt;code&gt;null&lt;/code&gt; is all you have, you by definition have NOTHING! The other problem is in the handling of it. You need to explicitly handle any case where a value may be &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;// Problem 1: Need to check for null
+if(!string.IsNullOrEmpty(email))
+{
+    SendEmail(email);
+} else ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This means you code can become littered with &lt;code&gt;null&lt;/code&gt; checks and if you forget to check and a &lt;code&gt;null&lt;/code&gt; sneaks through, you code will throw some kind of &lt;code&gt;NullReferenceException&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;// Problem 2: If you do not application can blow up
+var fullname = firstname + &amp;quot; &amp;quot; + lastname; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If &lt;code&gt;firstname&lt;/code&gt; or &lt;code&gt;lastname&lt;/code&gt; is &lt;code&gt;null&lt;/code&gt;, this statement will throw an exception and possibly crash our application.&lt;/p&gt;
+&lt;p&gt;The strategies for mitigating these problems are to try catch all &lt;code&gt;null&lt;/code&gt;s at the boundaries of your application and to use the &lt;a href=&quot;https://martinfowler.com/eaaCatalog/specialCase.html&quot;&gt;Null Object/Special Case&lt;/a&gt; pattern. We won&apos;t go into these but my main criticism is the noise it adds to the code.&lt;/p&gt;
+&lt;h2&gt;Maybe this is here&lt;/h2&gt;
+&lt;p&gt;The nice thing about the &lt;code&gt;Maybe&lt;/code&gt; abstraction is it is generic, unlike the &lt;strong&gt;Special Case&lt;/strong&gt; and in general can be much more elegant, saving you from repeatedly checking for &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;As mentioned before, in F# the &lt;strong&gt;Maybe&lt;/strong&gt; abstraction (known as a Monad in functional programming theory) is an &lt;code&gt;option&lt;/code&gt;. To see how it works we are going to define a function that takes a name as &lt;code&gt;string option&lt;/code&gt; and turns it into an email.&lt;/p&gt;
+&lt;p&gt;First, lets briefly discuss what &lt;code&gt;option&lt;/code&gt; actually is. &lt;code&gt;option&lt;/code&gt; can have one of 2 values : &lt;strong&gt;Some of &apos;T&lt;/strong&gt; OR &lt;strong&gt;None&lt;/strong&gt;. We can optionally have some value of type &lt;code&gt;&apos;T&lt;/code&gt;, else we will have &lt;code&gt;None&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Below we see how we define a value with &lt;code&gt;Some&lt;/code&gt; or &lt;code&gt;None&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let fname1 = Some &amp;quot;Brandon&amp;quot;
+let fname2 = None
+//string option -&amp;gt; string option
+let makeEmail name = Option.map (fun n -&amp;gt; sprintf &amp;quot;%s@acme.com&amp;quot; n) name
+let email1 = makeEmail fname1
+let email2 = makeEmail fname2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;val email1 : string option = Some &amp;quot;Brandon@acme.com&amp;quot;
+val email2 : string option = None&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;Option.map&lt;/code&gt; has a signature of &lt;code&gt;(&apos;T -&amp;gt; &apos;U) -&amp;gt; &apos;T option -&amp;gt; &apos;U option&lt;/code&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;(&apos;T -&amp;gt; &apos;U)&lt;/code&gt; - a function that maps from &lt;code&gt;&apos;T&lt;/code&gt; to &lt;code&gt;&apos;U&lt;/code&gt;. This is a generic function so in our case it is a function of &lt;code&gt;string -&amp;gt; string&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&apos;T option&lt;/code&gt; - the input value to map. In our case &lt;code&gt;&apos;T&lt;/code&gt; will be &lt;code&gt;string&lt;/code&gt; that is the name&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&apos;U option&lt;/code&gt; - the return value of type &lt;code&gt;&apos;U&lt;/code&gt; will be the email &lt;code&gt;string&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Alternatives&lt;/h2&gt;
+&lt;p&gt;What if we wanted to have a fallback email incase no name was supplied? That is simple enough:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;//string option -&amp;gt; string option
+let makeEmail name =
+    name
+    |&amp;gt; Option.orElse (Some &amp;quot;info&amp;quot;)
+    |&amp;gt; Option.map (fun n -&amp;gt; sprintf &amp;quot;%s@acme.com&amp;quot; n)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We have changed to a pipeline style now where the &lt;code&gt;string option&lt;/code&gt; is piped through &lt;code&gt;Option.orElse&lt;/code&gt; which. If the value is &lt;code&gt;Some&lt;/code&gt; it passes through, if it is &lt;code&gt;None&lt;/code&gt; it gets the value of &lt;code&gt;Some(&amp;quot;info&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Running again we would get the following value for &lt;code&gt;email2&lt;/code&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;val email2 : string option = Some &amp;quot;info@acme.com&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Handling null&lt;/h2&gt;
+&lt;p&gt;What if we are getting values from a database but always wrapping them in &lt;code&gt;Some&lt;/code&gt;. Then we would be getting values of &lt;code&gt;Some(null)&lt;/code&gt;. We could convert the &lt;code&gt;Some(null)&lt;/code&gt; to &lt;code&gt;None&lt;/code&gt; using &lt;code&gt;Option.bind&lt;/code&gt;. This has a signature &lt;code&gt;(&apos;T -&amp;gt; &apos;U option) -&amp;gt; &apos;U option&lt;/code&gt;. So we would pass it a function of &lt;code&gt;string -&amp;gt; string option&lt;/code&gt;, which you can see below is the &lt;code&gt;sanitizeString&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;//string option -&amp;gt; string
+let makeEmail name = 
+    let sanitizeString s = null |&amp;gt; (fun x -&amp;gt; if (box x = null) then None else Some(x))
+    name
+    |&amp;gt; Option.bind sanitizeString
+    |&amp;gt; Option.orElse (Some &amp;quot;info&amp;quot;)
+    |&amp;gt; Option.map (fun n -&amp;gt; sprintf &amp;quot;%s@acme.com&amp;quot; n)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally, what if we are dealing with data that comes from a C# library and we had not wrapped them in &lt;code&gt;Some&lt;/code&gt;? Values could be &lt;code&gt;null&lt;/code&gt;. Lets ease out &lt;code&gt;makeEmail&lt;/code&gt; constraints a bit and just accept &lt;code&gt;string&lt;/code&gt;, we will then transform it directly to an &lt;code&gt;option&lt;/code&gt; type. Unfortunately since databases and other languages make &lt;code&gt;null&lt;/code&gt; an acceptable value we often do still have to deal with it when stepping outside our process.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;//string -&amp;gt; string
+let makeEmail name = 
+    let sanitizeString (s:string) = null |&amp;gt; (fun x -&amp;gt; if (box x = null) then None else Some(x))
+    name
+    |&amp;gt; Option.bind sanitizeString
+    |&amp;gt; Option.orElse (Some &amp;quot;info&amp;quot;)
+    |&amp;gt; Option.map (fun n -&amp;gt; sprintf &amp;quot;%s@acme.com&amp;quot; n)
+    |&amp;gt; Option.get
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the above example I also then returned the contained values, so a &lt;code&gt;string&lt;/code&gt; instead of &lt;code&gt;string option&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now at this point you might ask what is the point of using option and I would tend to agree. This is after all, demo code. I just wanted to point out how to sanitize a possible &lt;code&gt;null&lt;/code&gt; value and then use &lt;code&gt;Option.get&lt;/code&gt; to get the &lt;code&gt;&apos;T&lt;/code&gt; value. In this case &lt;code&gt;string&lt;/code&gt;. &lt;code&gt;get&lt;/code&gt; will throw a &lt;code&gt;ArgumentException&lt;/code&gt; if passed a &lt;code&gt;None&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;We really just scratched the surface of the functions available on &lt;code&gt;Option&lt;/code&gt; but I hope you have seen how it can be used to represent the absence of data. Although when dealing with the outside world (outside your application process) you are still forced to think about the possibility of &lt;code&gt;null&lt;/code&gt;, &lt;code&gt;Option&lt;/code&gt; has some major advantages over its OO counterparts. For one there is a lot less branching logic. The &lt;code&gt;Option&lt;/code&gt; functions will often just handle &lt;code&gt;None&lt;/code&gt; elegantly. This is a particular challenge of the &lt;strong&gt;Special case&lt;/strong&gt; approach which requires you to think about a specific implementation for every type that can be &lt;code&gt;null&lt;/code&gt; and think about what a no operation means.&lt;/p&gt;
+&lt;p&gt;The most important function to understand here though would have to be &lt;code&gt;map&lt;/code&gt;. We will see &lt;code&gt;map&lt;/code&gt; over and over in different modules. It allows you to operate in the abstraction you are in without leaving that abstraction but still manipulate the data contained within.&lt;/p&gt;
+&lt;p&gt;Next up we will finally be diving into collections.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/values/null-values&quot;&gt;Null Values&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/options&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/how-to-fsharp-pt-5/</id>
@@ -163,6 +257,7 @@ let fizzbuzz i =
 &lt;p&gt;These take some playing around with to get comfortable with but once you are they are great for cleaning up your &lt;code&gt;match&lt;/code&gt; and making them more descriptive.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Today we looked into various ways you can use pattern matching to both get values and branch your application logic. We also explored partial active patterns by writing an implementation of the FizzBuzz game.&lt;/p&gt;
+&lt;p&gt;Next up we deal with &lt;a href=&quot;/how-to-fsharp-pt-6&quot;&gt;handling the absence of data&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Resources&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Pattern_matching&quot;&gt;Pattern Matching on Wikipedia&lt;/a&gt;&lt;/li&gt;
@@ -172,7 +267,7 @@ let fizzbuzz i =
 &lt;/ol&gt;
 &lt;h2&gt;Credits&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;Social image by&lt;a href=&quot;https://unsplash.com/@olav_ahrens&quot;&gt;Olav Ahrens Røtne&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Social image by &lt;a href=&quot;https://unsplash.com/@olav_ahrens&quot;&gt;Olav Ahrens Røtne&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</summary>
   </entry>
   

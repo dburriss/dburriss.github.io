@@ -19,42 +19,42 @@
     
 
 
-    <title>How to F# - Part 2</title>
-    <meta name="description" content="In part 2 of this series we will look at what gives functional programming its name, functions">
+    <title>How to F# - Part 6</title>
+    <meta name="description" content="In Part 6 we explore ways of handling cases where data is not there with Maybe, and how to wrap null into this way of working with data">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-2/">
+    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-6/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="How to F# - Part 2">
-    <meta itemprop="description" content="In part 2 of this series we will look at what gives functional programming its name, functions">
-    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/footprint-500.jpg">
+    <meta itemprop="name" content="How to F# - Part 6">
+    <meta itemprop="description" content="In Part 6 we explore ways of handling cases where data is not there with Maybe, and how to wrap null into this way of working with data">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/frame-500.jpg">
     
-    <meta itemprop="datePublished" content="10/23/2018 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="10/23/2018 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="How to F# - Part 2 - Putting the function in Functional Programming" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-2/" />
-    <meta name="headline" content="How to F# - Part 2 - Putting the function in Functional Programming" />
+    <meta itemprop="datePublished" content="10/27/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="10/27/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="How to F# - Part 6 - Handling data that is not there" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-6/" />
+    <meta name="headline" content="How to F# - Part 6 - Handling data that is not there" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="How to F# - Part 2">
-    <meta name="twitter:description" content="In part 2 of this series we will look at what gives functional programming its name, functions">
+    <meta name="twitter:title" content="How to F# - Part 6">
+    <meta name="twitter:description" content="In Part 6 we explore ways of handling cases where data is not there with Maybe, and how to wrap null into this way of working with data">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/footprint-500.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/frame-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="How to F# - Part 2" />
+    <meta property="og:title" content="How to F# - Part 6" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-2/" />
-    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/footprint-500.jpg" />
-    <meta property="og:description" content="In part 2 of this series we will look at what gives functional programming its name, functions" />
+    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-6/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/frame-500.jpg" />
+    <meta property="og:description" content="In Part 6 we explore ways of handling cases where data is not there with Maybe, and how to wrap null into this way of working with data" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -162,11 +162,11 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>How to F# - Part 2</h1>
+                        <h1>How to F# - Part 6</h1>
                         
-                        <h2 class="subheading">Putting the function in Functional Programming</h2>
+                        <h2 class="subheading">Handling data that is not there</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 23, 2018</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 27, 2018</span>
                         
                             <hr />
                             
@@ -190,77 +190,97 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>In the <a href="/how-to-fsharp-pt-1">previous post</a> we looked at assigning values and the different types that those values could be. In this second installment we will be looking at functional programmings namesake: <em>functions</em>.</p>
-<h2>Introduction</h2>
-<p>Functional programming as a paradigm is quite a hard thing to pin down, just like other paradigms. In object-oriented programming the one thing that really isn't up for debate though is that the general idea is that we have an object (whatever that may mean to you) and we represent data and behavior in these objects. In functional programming then it will come as no surprise that <em>functions</em> are first class citizens and that we accomplish our goals by transforming data using these functions.</p>
-<p>What is a function though?</p>
-<h2>A brief reminder about mathematics</h2>
-<p>Do not worry, I will not be going into deep mathematics theory here. I instead want to remind you of some mathematics you probably touched on in school just to show you that this isn't necessarily something completely new to you. Secondly, it will show that functional programming has roots that go far deeper than computer programming. Do not worry though if you didn't like this stuff at school, I promise this is way more <code>fun</code>.</p>
-<p>In mathematical terms a function is a process that associates each element <em>x</em> of a set <strong>X</strong> to another value <em>y</em> which is of set <strong>Y</strong>. Let us call this process <em>f</em>. Then we have an expression:</p>
-<pre><code class="language-fsharp">y = f(x)
+				<p>Sometimes when dealing with data, the value you are expecting does not exist. Functional programming has a common abstraction for dealing with this called <strong>Maybe</strong>. In F# this abstraction is known as <code>option</code>.</p>
+<!--more-->
+<p>Rather than just diving into the functional way of handling no data lets briefly dive into how non-functional languages typically handle the absence of data, namely <code>null</code>.</p>
+<h2>What is the problem with null?</h2>
+<p>So what problem are we solving by abstracting what it means to have data or not? Well lets look at how things are typically handled in most popular languages. In languages like Java, C#, and Javascript <code>null</code> represents the intentional absence of any object. So why is this a problem? Firstly, <code>null</code> carries no information about the type of data that was expected. Was it a missing <code>string</code> or a <code>Person</code> object? If <code>null</code> is all you have, you by definition have NOTHING! The other problem is in the handling of it. You need to explicitly handle any case where a value may be <code>null</code>.</p>
+<pre><code class="language-csharp">// Problem 1: Need to check for null
+if(!string.IsNullOrEmpty(email))
+{
+    SendEmail(email);
+} else ...
 </code></pre>
-<p>This is usually read as &quot;let <em>y</em> equal <em>f</em> of <em>x</em>&quot;.</p>
-<p>The set <strong>X</strong> of possible values of <em>x</em> is known as the <strong>domain</strong>. The set <strong>Y</strong> of possible outputs <em>y</em> is known as the <strong>codomain</strong>. To label the parts of the expression, <em>x</em> is the <strong>argument</strong> and the value of the function is the output.</p>
-<p>So how would we accurately define a specific function?</p>
-<blockquote>
-<p>let <em>f</em>: R → R be the function defined by the equation <em>f(x) = x<sup>2</sup></em>, valid for all real values of x</p>
-</blockquote>
-<p>Notice how we have the <code>Domain -&gt; Codomain</code> defined using <code>-&gt;</code>. We will come back to this a little later.</p>
-<p>One last thing. Remember common functions like <code>sin</code> and <code>cos</code>? It is common to write them as <code>cos x</code>, without the the brackets as long as this does not lead to any ambiguity in the meaning. So now that we have had a little mathematics refresher, let us see if this brings us any insight into F# functions.</p>
-<p>Mathematics done!</p>
-<h2>Defining functions in F#</h2>
-<p>In the <a href="/how-to-fsharp-pt-1">previous post we looked at assigning values</a>. F# being a functional-first language means that we can treat functions like any other value.</p>
-<pre><code class="language-fsharp">// int -&gt; int
-let f x = x*x
-let y = f 3 //val y : int = 9
+<p>This means you code can become littered with <code>null</code> checks and if you forget to check and a <code>null</code> sneaks through, you code will throw some kind of <code>NullReferenceException</code>.</p>
+<pre><code class="language-csharp">// Problem 2: If you do not application can blow up
+var fullname = firstname + &quot; &quot; + lastname; 
 </code></pre>
-<p>So above we define function <em>f</em> that takes argument <em>x</em>. Then we pass <code>3</code> as the argument and assign that to value <code>y</code>.</p>
-<p>Another way to define functions in F# is to use the <code>fun</code> keyword. Let us define the same function again, this time as function <em>g</em>:</p>
-<pre><code class="language-fsharp">// int -&gt; int
-let g = fun x -&gt; x*x
-let z = g 3 //val z : int = 9
-</code></pre>
-<p>This way makes it way more explicit that <code>g</code> is simply just another value that is assigned to. Note that this way of defining functions using <code>fun</code> is common when using functions once off inline, say for filtering a collection. We will see this in more detail in a later post when we dive deeper into collections.</p>
-<h2>Understand functions</h2>
-<h3>Signatures</h3>
-<p>In the above code I put the signature of the function in a comment above it. The signature describes what types a function take in and what it returns. So for our function above we have <code>int -&gt; int</code>. This means our function takes a single <code>int</code> as an argument and then returns an <code>int</code>.</p>
-<p>A function always has an input and an output. In F# (and all programming languages I know of) a function can have multiple arguments. Say for example we had a <code>writeToFile</code> function that took a <code>boolean</code> for whether to overwrite the file if it exists, and a <code>string</code> with the content of the file. The signature for <code>writeToFile</code> would then be <code>bool -&gt; string -&gt; unit</code>. Now what is this <code>unit</code> type? It was mentioned in the previous post as the type that represents nothing. As already mentioned, functions must always have an input and an output, so if a function has no meaningful value to return, we return <code>unit</code>.</p>
-<p>Do you see a similarity here? Types define the possible values that are possible. So for a signature <code>int -&gt; int</code>, our <strong>domain</strong> is all possible numbers allowed by the type <code>int</code> numbers and our <strong>codomain</strong> is also all possible <code>int</code> values. Pretty cool right?</p>
-<h3>Inference</h3>
-<p>In the previous function definitions you may have noticed we defined no types but the F# compiler inferred that the type of <em>x</em> was <code>int</code>. This is because we used the multiplication <code>(*)</code> operator on it. Most of the time the compiler does a pretty good job of working out the type. This keeps our code clean from boilerplate cruft. To be sure though, if you are used to a language like Java or C#, this will take a bit of getting used to. My tip is to pay close attention to the signatures. Any IDE will display this all the time or at least on mouse over.</p>
-<p>If you prefer to be explicit or in those cases where the compiler needs some help to determine the type, you can easily define the types explicitly.</p>
-<pre><code class="language-fsharp">let f (x:int) = x*x         // define argument type
-let f x : int = x*x         // define only return type
-let f (x:int) : int = x*x   // define argument type and return type
-</code></pre>
-<p>The argument type is specified with <code>(x:int)</code>. The parenthesis are needed to disambiguate the argument type from the return type.</p>
-<p>Just a quick style note. Mostly in F# code the types are left off unless needed.</p>
-<p>I wanted to highlight another way of defining functions, and that is by defining a type signature.</p>
-<pre><code class="language-fsharp">type Unary: int -&gt; int
-let increment : Unary = fun x = x + 1
-let decrement : Unary = fun x = x - 1
+<p>If <code>firstname</code> or <code>lastname</code> is <code>null</code>, this statement will throw an exception and possibly crash our application.</p>
+<p>The strategies for mitigating these problems are to try catch all <code>null</code>s at the boundaries of your application and to use the <a href="https://martinfowler.com/eaaCatalog/specialCase.html">Null Object/Special Case</a> pattern. We won't go into these but my main criticism is the noise it adds to the code.</p>
+<h2>Maybe this is here</h2>
+<p>The nice thing about the <code>Maybe</code> abstraction is it is generic, unlike the <strong>Special Case</strong> and in general can be much more elegant, saving you from repeatedly checking for <code>null</code>.</p>
+<p>As mentioned before, in F# the <strong>Maybe</strong> abstraction (known as a Monad in functional programming theory) is an <code>option</code>. To see how it works we are going to define a function that takes a name as <code>string option</code> and turns it into an email.</p>
+<p>First, lets briefly discuss what <code>option</code> actually is. <code>option</code> can have one of 2 values : <strong>Some of 'T</strong> OR <strong>None</strong>. We can optionally have some value of type <code>'T</code>, else we will have <code>None</code>.</p>
+<p>Below we see how we define a value with <code>Some</code> or <code>None</code></p>
+<pre><code class="language-fsharp">let fname1 = Some &quot;Brandon&quot;
+let fname2 = None
+//string option -&gt; string option
+let makeEmail name = Option.map (fun n -&gt; sprintf &quot;%s@acme.com&quot; n) name
+let email1 = makeEmail fname1
+let email2 = makeEmail fname2
 </code></pre>
 <blockquote>
-<p>A unary function is one that takes only one argument</p>
+<p>val email1 : string option = Some &quot;Brandon@acme.com&quot;
+val email2 : string option = None</p>
 </blockquote>
-<p>So we define a <strong>Unary</strong> function as one that take in a single number and returns a number, and then we have multiple implementations of that type.</p>
+<p><code>Option.map</code> has a signature of <code>('T -&gt; 'U) -&gt; 'T option -&gt; 'U option</code>.</p>
+<ol>
+<li><code>('T -&gt; 'U)</code> - a function that maps from <code>'T</code> to <code>'U</code>. This is a generic function so in our case it is a function of <code>string -&gt; string</code></li>
+<li><code>'T option</code> - the input value to map. In our case <code>'T</code> will be <code>string</code> that is the name</li>
+<li><code>'U option</code> - the return value of type <code>'U</code> will be the email <code>string</code></li>
+</ol>
+<h2>Alternatives</h2>
+<p>What if we wanted to have a fallback email incase no name was supplied? That is simple enough:</p>
+<pre><code class="language-fsharp">//string option -&gt; string option
+let makeEmail name =
+    name
+    |&gt; Option.orElse (Some &quot;info&quot;)
+    |&gt; Option.map (fun n -&gt; sprintf &quot;%s@acme.com&quot; n)
+</code></pre>
+<p>We have changed to a pipeline style now where the <code>string option</code> is piped through <code>Option.orElse</code> which. If the value is <code>Some</code> it passes through, if it is <code>None</code> it gets the value of <code>Some(&quot;info&quot;)</code>.</p>
+<p>Running again we would get the following value for <code>email2</code>:</p>
+<blockquote>
+<p>val email2 : string option = Some &quot;info@acme.com&quot;</p>
+</blockquote>
+<h2>Handling null</h2>
+<p>What if we are getting values from a database but always wrapping them in <code>Some</code>. Then we would be getting values of <code>Some(null)</code>. We could convert the <code>Some(null)</code> to <code>None</code> using <code>Option.bind</code>. This has a signature <code>('T -&gt; 'U option) -&gt; 'U option</code>. So we would pass it a function of <code>string -&gt; string option</code>, which you can see below is the <code>sanitizeString</code> function.</p>
+<pre><code class="language-fsharp">//string option -&gt; string
+let makeEmail name = 
+    let sanitizeString s = null |&gt; (fun x -&gt; if (box x = null) then None else Some(x))
+    name
+    |&gt; Option.bind sanitizeString
+    |&gt; Option.orElse (Some &quot;info&quot;)
+    |&gt; Option.map (fun n -&gt; sprintf &quot;%s@acme.com&quot; n)
+</code></pre>
+<p>Finally, what if we are dealing with data that comes from a C# library and we had not wrapped them in <code>Some</code>? Values could be <code>null</code>. Lets ease out <code>makeEmail</code> constraints a bit and just accept <code>string</code>, we will then transform it directly to an <code>option</code> type. Unfortunately since databases and other languages make <code>null</code> an acceptable value we often do still have to deal with it when stepping outside our process.</p>
+<pre><code class="language-fsharp">//string -&gt; string
+let makeEmail name = 
+    let sanitizeString (s:string) = null |&gt; (fun x -&gt; if (box x = null) then None else Some(x))
+    name
+    |&gt; Option.bind sanitizeString
+    |&gt; Option.orElse (Some &quot;info&quot;)
+    |&gt; Option.map (fun n -&gt; sprintf &quot;%s@acme.com&quot; n)
+    |&gt; Option.get
+</code></pre>
+<p>In the above example I also then returned the contained values, so a <code>string</code> instead of <code>string option</code>.</p>
+<p>Now at this point you might ask what is the point of using option and I would tend to agree. This is after all, demo code. I just wanted to point out how to sanitize a possible <code>null</code> value and then use <code>Option.get</code> to get the <code>'T</code> value. In this case <code>string</code>. <code>get</code> will throw a <code>ArgumentException</code> if passed a <code>None</code>.</p>
 <h2>Conclusion</h2>
-<p>In this post we introduced some of the core ideas behind functions. We learned how to define them and how to read a functions signature. We also touched on what the compiler can do for you by inferring the types, and how you can be explicit about the types.</p>
-<p>In the next post we will dive deeper into <a href="/how-to-fsharp-pt-3">Working with Functions and getting them to work for you</a>.</p>
+<p>We really just scratched the surface of the functions available on <code>Option</code> but I hope you have seen how it can be used to represent the absence of data. Although when dealing with the outside world (outside your application process) you are still forced to think about the possibility of <code>null</code>, <code>Option</code> has some major advantages over its OO counterparts. For one there is a lot less branching logic. The <code>Option</code> functions will often just handle <code>None</code> elegantly. This is a particular challenge of the <strong>Special case</strong> approach which requires you to think about a specific implementation for every type that can be <code>null</code> and think about what a no operation means.</p>
+<p>The most important function to understand here though would have to be <code>map</code>. We will see <code>map</code> over and over in different modules. It allows you to operate in the abstraction you are in without leaving that abstraction but still manipulate the data contained within.</p>
+<p>Next up we will finally be diving into collections.</p>
 <h2>Resources</h2>
 <ol>
-<li><a href="https://en.wikipedia.org/wiki/Function_(mathematics)">Mathematics functions</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Programming_paradigm">Programming paradigms</a></li>
-<li><a href="https://fsharpforfunandprofit.com/posts/function-signatures/">Function signature</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/values/null-values">Null Values</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/options">Option</a></li>
 </ol>
 
                 <hr />
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
-                                                <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
                                                 <li><a href="/how-to-fsharp-pt-3/">How to F# - Part 3</a></li>
-                                                <li><a href="/how-to-fsharp-pt-5/">How to F# - Part 5</a></li>
+                                                <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
+                                                <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -268,13 +288,9 @@ let decrement : Unary = fun x = x - 1
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/how-to-fsharp-pt-1/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 1">&larr; Previous Post</a>
+                        <a href="/how-to-fsharp-pt-5/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 5">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/how-to-fsharp-pt-3/" data-toggle="tooltip" data-placement="top" title="How to F# - Part 3">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

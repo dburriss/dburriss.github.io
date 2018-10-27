@@ -176,14 +176,14 @@
     <div class="post-preview jumbotron">
         
         <h1 class="post-title">            
-            <a href="/how-to-fsharp-pt-5/">How to F# - Part 5</a>
+            <a href="/how-to-fsharp-pt-6/">How to F# - Part 6</a>
         </h1>
         
         <em class="post-subtitle">
-            Making magic with Pattern Matching
+            Handling data that is not there
         </em>
         
-        <p class="post-meta">Posted by Devon Burriss on October 26, 2018</p>
+        <p class="post-meta">Posted by Devon Burriss on October 27, 2018</p>
         
             
                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
@@ -194,11 +194,11 @@
             
         
         
-            <img src="/img/posts/2018/rubiks-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
+            <img src="/img/posts/2018/frame-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         
-        <p align="justify"><p>In the <a href="/how-to-fsharp-pt-4">previous post</a> we looked at language features that allowed us to control the flow of our applications. In this post we will look at Pattern Matching, which allows for some very powerful control flow, as well as some neat deconstruction of values.</p>
+        <p align="justify"><p>Sometimes when dealing with data, the value you are expecting does not exist. Functional programming has a common abstraction for dealing with this called <strong>Maybe</strong>. In F# this abstraction is known as <code>option</code>.</p>
 </p></p>
-        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-5/" role="button">Read more</a></p>
+        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-6/" role="button">Read more</a></p>
     </div>
     <div class="clearfix"></div>
     <hr>
@@ -215,6 +215,151 @@
 
     
 
+     
+        
+     
+        
+        
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+    
+
+    <div class="post-preview ">
+        
+            
+        
+         <img src="/img/posts/2018/rubiks-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+
+        <a href="/how-to-fsharp-pt-5/">
+            <h2 class="post-title">            How to F# - Part 5
+            </h2>
+            
+            
+            <h3 class="post-subtitle">
+                Making magic with Pattern Matching
+            </h3>
+            
+        </a>
+        <p class="post-meta">Posted by Devon Burriss' Blog on October 26, 2018</p>
+        
+            
+                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
+            
+                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
+            
+                <a href="/tag/net"><span class="label label-default">.NET</span></a>
+            
+        
+    </div>
+    <hr>
+    
+
+
+
+
+    
+
+     
+        
      
         
      
@@ -356,6 +501,8 @@
 
     
 
+     
+        
      
         
      
@@ -505,6 +652,8 @@
         
      
         
+     
+        
         
         
      
@@ -638,6 +787,8 @@
 
     
 
+     
+        
      
         
      
@@ -791,6 +942,8 @@
         
      
         
+     
+        
         
         
      
@@ -918,6 +1071,8 @@
 
     
 
+     
+        
      
         
      
@@ -1063,6 +1218,8 @@
 
     
 
+     
+        
      
         
      
@@ -1228,6 +1385,8 @@
         
      
         
+     
+        
         
         
      
@@ -1346,149 +1505,6 @@
                 <a href="/tag/modeling"><span class="label label-default">Modeling</span></a>
             
                 <a href="/tag/temporal-modeling"><span class="label label-default">Temporal Modeling</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/posts/2018/pyramid-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/anatomy-of-automated-testing/">
-            <h2 class="post-title">            Anatomy of an automated test suite
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Looking at the parts and functions of various automated test types
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on August 13, 2018</p>
-        
-            
-                <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-            
-                <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
-            
-                <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-            
-                <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
             
         
     </div>
