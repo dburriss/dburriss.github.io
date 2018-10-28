@@ -195,14 +195,62 @@
 <p>So lets go through a few common actions you would want to do on a collection. We will use <code>list</code> as an example through most of this post but what we learn applies to <code>array</code> and <code>seq</code> as well. Before we do that though let us briefly touch on the <code>map</code> type again.</p>
 <h2>All the beautiful people (Creating data)</h2>
 <p>To work with lists we will need some data. Often data comes in the form of tables we need to join together. We will start simple though. Lets create 2 <code>map</code>s with numbers corresponding to the first names for the 1st and second names for the other.</p>
-<p>| # | First name    | # | Last name |
+<div class="table-responsive"><table class="table table-hover">
+<thead>
+<tr>
+<th>#</th>
+<th>First name</th>
+<th>#</th>
+<th>Last name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Sue</td>
+<td>1</td>
+<td>Ali</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bob</td>
+<td>2</td>
+<td>Khan</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Neo</td>
+<td>3</td>
+<td>Jacobs</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Fen</td>
+<td>4</td>
+<td>Jensen</td>
+</tr>
+<tr>
+<td>5</td>
+<td>An Si</td>
+<td>5</td>
+<td>Wu</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Jan</td>
+<td>6</td>
+<td>Lee</td>
+</tr>
+</tbody>
+</table></div>
+<!-- | # | First name    | # | Last name |
 |---|---------------|---|-----------|
 | 1 | Sue           | 1 | Ali       |
 | 2 | Bob           | 2 | Khan      |
 | 3 | Neo           | 3 | Jacobs    |
 | 4 | Fen           | 4 | Jensen    |
 | 5 | An Si         | 5 | Wu        |
-| 6 | Jan           | 6 | Lee       |</p>
+| 6 | Jan           | 6 | Lee       | -->
 <p>We will use these to generate a list of people later.</p>
 <pre><code class="language-fsharp">let fNames = [ (1, &quot;Sue&quot;); (2, &quot;Bob&quot;); (3, &quot;Neo&quot;); (4, &quot;Fen&quot;); (5, &quot;An Si&quot; ); (6, &quot;Jan&quot;)] |&gt; Map.ofList
 let lNames = [ (1, &quot;Ali&quot;); (2, &quot;Khan&quot;); (3, &quot;Jacobs&quot;); (4, &quot;Jensen&quot;); (5, &quot;Wu&quot; ); (6, &quot;Lee&quot;)] |&gt; Map.ofList

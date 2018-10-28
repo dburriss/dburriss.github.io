@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-28T12:28:23.921017+00:00</updated>
+  <updated>2018-10-28T12:39:03.1778083+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -25,14 +25,62 @@
 &lt;p&gt;So lets go through a few common actions you would want to do on a collection. We will use &lt;code&gt;list&lt;/code&gt; as an example through most of this post but what we learn applies to &lt;code&gt;array&lt;/code&gt; and &lt;code&gt;seq&lt;/code&gt; as well. Before we do that though let us briefly touch on the &lt;code&gt;map&lt;/code&gt; type again.&lt;/p&gt;
 &lt;h2&gt;All the beautiful people (Creating data)&lt;/h2&gt;
 &lt;p&gt;To work with lists we will need some data. Often data comes in the form of tables we need to join together. We will start simple though. Lets create 2 &lt;code&gt;map&lt;/code&gt;s with numbers corresponding to the first names for the 1st and second names for the other.&lt;/p&gt;
-&lt;p&gt;| # | First name    | # | Last name |
+&lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-hover&quot;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#&lt;/th&gt;
+&lt;th&gt;First name&lt;/th&gt;
+&lt;th&gt;#&lt;/th&gt;
+&lt;th&gt;Last name&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Sue&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Ali&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;Bob&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;Khan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;Neo&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;Jacobs&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;Fen&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;Jensen&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;An Si&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;Wu&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;Jan&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;Lee&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;!-- | # | First name    | # | Last name |
 |---|---------------|---|-----------|
 | 1 | Sue           | 1 | Ali       |
 | 2 | Bob           | 2 | Khan      |
 | 3 | Neo           | 3 | Jacobs    |
 | 4 | Fen           | 4 | Jensen    |
 | 5 | An Si         | 5 | Wu        |
-| 6 | Jan           | 6 | Lee       |&lt;/p&gt;
+| 6 | Jan           | 6 | Lee       | --&gt;
 &lt;p&gt;We will use these to generate a list of people later.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let fNames = [ (1, &amp;quot;Sue&amp;quot;); (2, &amp;quot;Bob&amp;quot;); (3, &amp;quot;Neo&amp;quot;); (4, &amp;quot;Fen&amp;quot;); (5, &amp;quot;An Si&amp;quot; ); (6, &amp;quot;Jan&amp;quot;)] |&amp;gt; Map.ofList
 let lNames = [ (1, &amp;quot;Ali&amp;quot;); (2, &amp;quot;Khan&amp;quot;); (3, &amp;quot;Jacobs&amp;quot;); (4, &amp;quot;Jensen&amp;quot;); (5, &amp;quot;Wu&amp;quot; ); (6, &amp;quot;Lee&amp;quot;)] |&amp;gt; Map.ofList
