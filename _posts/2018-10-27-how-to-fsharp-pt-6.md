@@ -123,7 +123,7 @@ We really just scratched the surface of the functions available on `Option` but 
 
 The most important function to understand here though would have to be `map`. We will see `map` over and over in different modules. It allows you to operate in the abstraction you are in without leaving that abstraction but still manipulate the data contained within.
 
-Next up we will finally be diving into collections.
+Next up we will finally be [diving into collections](/how-to-fsharp-pt-7).
 
 ## Resources
 
