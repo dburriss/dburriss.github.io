@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sat, 27 Oct 2018 21:28:49 +00:00</pubDate>
-    <lastBuildDate>Sat, 27 Oct 2018 21:28:49 +00:00</lastBuildDate>
+    <pubDate>Sun, 28 Oct 2018 12:28:23 +00:00</pubDate>
+    <lastBuildDate>Sun, 28 Oct 2018 12:28:23 +00:00</lastBuildDate>
+    
+    <item>
+      <title>How to F# - Part 7</title>
+      <link>https://devonburriss.me/how-to-fsharp-pt-7/</link>
+      <pubDate>Sun, 28 Oct 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/how-to-fsharp-pt-7/</guid>
+      <description>Diving into the super helpful collection functions available to manipulate collections in F#</description>
+    </item>
     
     <item>
       <title>How to F# - Part 6</title>

@@ -19,42 +19,42 @@
     
 
 
-    <title>The Page Module Model with F# and Canopy</title>
-    <meta name="description" content="Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain">
+    <title>How to F# - Part 7</title>
+    <meta name="description" content="Diving into the super helpful collection functions available to manipulate collections in F#">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="https://devonburriss.me/page-module-model/">
+    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-7/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="The Page Module Model with F# and Canopy">
-    <meta itemprop="description" content="Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain">
-    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/frame-500.jpg">
+    <meta itemprop="name" content="How to F# - Part 7">
+    <meta itemprop="description" content="Diving into the super helpful collection functions available to manipulate collections in F#">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/books-500.jpg">
     
-    <meta itemprop="datePublished" content="8/12/2018 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="8/12/2018 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="The Page Module Model with F# and Canopy - Its like testing with the Page Object Model but way way cooler" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/page-module-model/" />
-    <meta name="headline" content="The Page Module Model with F# and Canopy - Its like testing with the Page Object Model but way way cooler" />
+    <meta itemprop="datePublished" content="10/28/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="10/28/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="How to F# - Part 7 - Working with collections" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-7/" />
+    <meta name="headline" content="How to F# - Part 7 - Working with collections" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="The Page Module Model with F# and Canopy">
-    <meta name="twitter:description" content="Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain">
+    <meta name="twitter:title" content="How to F# - Part 7">
+    <meta name="twitter:description" content="Diving into the super helpful collection functions available to manipulate collections in F#">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/frame-500.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/books-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="The Page Module Model with F# and Canopy" />
+    <meta property="og:title" content="How to F# - Part 7" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/page-module-model/" />
-    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/frame-500.jpg" />
-    <meta property="og:description" content="Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain" />
+    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-7/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/books-500.jpg" />
+    <meta property="og:description" content="Diving into the super helpful collection functions available to manipulate collections in F#" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -156,31 +156,25 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/hole-bg.jpg')">
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/books-bg.jpg')">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>The Page Module Model with F# and Canopy</h1>
+                        <h1>How to F# - Part 7</h1>
                         
-                        <h2 class="subheading">Its like testing with the Page Object Model but way way cooler</h2>
+                        <h2 class="subheading">Working with collections</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on August 12, 2018</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 28, 2018</span>
                         
                             <hr />
-                            
-                                <a href="/tag/canopy" class="label label-default">Canopy</a>
                             
                                 <a href="/tag/functional" class="label label-default">Functional</a>
                             
                                 <a href="/tag/fsharp" class="label label-default">F#</a>
                             
-                                <a href="/tag/testing" class="label label-default">Testing</a>
-                            
-                                <a href="/tag/bdd" class="label label-default">BDD</a>
-                            
-                                <a href="/tag/selenium" class="label label-default">Selenium</a>
+                                <a href="/tag/net" class="label label-default">.NET</a>
                             
                         
                     <div>
@@ -196,140 +190,197 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>In the past I have done some UI testing with Selenium. I quickly adopted the Page Object Model (POM) for this kind of testing to ease readability, maintenance, and re-use across tests. Recently I needed to look into doing some UI testing and I decided to use <a href="https://lefthandedgoat.github.io/canopy/">Canopy</a> to abstract away working with Selenium. Although Canopy has some great helpers around Selenium I still found myself wanting to abstract away elements on each page and the pages themselves. Enter the Page Module Model (PMM)...</p>
+				<p>So after much threatening in past posts, we will finally be diving a little deeper into collections in F#. We will look at a few of the most commonly used functions on the collection modules by manipulating a <code>list</code> of people that we randomly generate.</p>
 <!--more-->
-<p>So full disclosure... I doubt PMM is a thing. I didn't even try search for it until writing the previous sentence. It isn't. Yet... It is similar to the POM except using <code>module</code>s because I am using F#.</p>
-<h2>What is the page object model?</h2>
-<p>The POM is simple. We encapsulate interactions with pages and elements on the site with objects. Here is an example of an <a href="https://github.com/dburriss/UiMatic">old POM framework I wrote years ago</a>.</p>
-<pre><code class="language-csharp">[Url(key: &quot;home&quot;)]
-public class GoogleHomePage : Page
-{
-    [Selector(name: &quot;q&quot;)]
-    public IInput SearchBox { get; set; }
+<p>So lets go through a few common actions you would want to do on a collection. We will use <code>list</code> as an example through most of this post but what we learn applies to <code>array</code> and <code>seq</code> as well. Before we do that though let us briefly touch on the <code>map</code> type again.</p>
+<h2>All the beautiful people (Creating data)</h2>
+<p>To work with lists we will need some data. Often data comes in the form of tables we need to join together. We will start simple though. Lets create 2 <code>map</code>s with numbers corresponding to the first names for the 1st and second names for the other.</p>
+<p>| # | First name    | # | Last name |
+|---|---------------|---|-----------|
+| 1 | Sue           | 1 | Ali       |
+| 2 | Bob           | 2 | Khan      |
+| 3 | Neo           | 3 | Jacobs    |
+| 4 | Fen           | 4 | Jensen    |
+| 5 | An Si         | 5 | Wu        |
+| 6 | Jan           | 6 | Lee       |</p>
+<p>We will use these to generate a list of people later.</p>
+<pre><code class="language-fsharp">let fNames = [ (1, &quot;Sue&quot;); (2, &quot;Bob&quot;); (3, &quot;Neo&quot;); (4, &quot;Fen&quot;); (5, &quot;An Si&quot; ); (6, &quot;Jan&quot;)] |&gt; Map.ofList
+let lNames = [ (1, &quot;Ali&quot;); (2, &quot;Khan&quot;); (3, &quot;Jacobs&quot;); (4, &quot;Jensen&quot;); (5, &quot;Wu&quot; ); (6, &quot;Lee&quot;)] |&gt; Map.ofList
 
-    public GoogleHomePage(IDriver driver) : base(driver)
-    {}
-}
+// Map&lt;int,string&gt; -&gt; Map&lt;int,string&gt; -&gt; int -&gt; string
+let generateName fnames lnames i =
+    let random = new System.Random(i) //don't new up  Random every time in a real app
+    let fo = random.Next(1,6) // get a random number between 1 - 6
+    let lo = random.Next(1,6) // get a random number between 1 - 6
+    sprintf &quot;%s %s&quot; (Map.find fo fnames) (Map.find lo lnames)
+
+// int -&gt; string
+let nameGen = generateName fNames lNames
 </code></pre>
-<p>We can then use this class to instantiate an object that we interact with instead of interacting with Selenium directly.</p>
-<pre><code class="language-csharp">[Theory]
-[InlineData(TestTarget.Chrome)]
-public void Title_OnGoogleHomePageUsingConfig_IsGoogle(TestTarget target)
-{
-    using (IDriver driver = GetDriver(target, config))
-    {
-        //create page model for test
-        var homePage = Page.Create&lt;GoogleHomePage&gt;(driver);
-        //tell browser to navigate to it
-        homePage.Go&lt;GoogleHomePage&gt;();
-        //fill a value into the text box
-        homePage.SearchBox.Value = &quot;TEST&quot;;
-        //an example of interacting with the config if needed. This gets expected title from config. 
-        var expectedTitle = config.GetPageSetting(&quot;home&quot;).Title;
-        //check the titles match
-        Assert.Equal(expectedTitle, homePage.Title);
-    }
-}
+<p>We curry <code>generateName</code> with the <code>map</code>s of <code>fNames</code> (first names) and <code>lNames</code> (last names) transforming a function of signature <code>Map&lt;int,string&gt; -&gt; Map&lt;int,string&gt; -&gt; int -&gt; string</code> into <code>int -&gt; string</code>.</p>
+<p>So calling <code>nameGen</code> will give us a random name like <em>&quot;An Ali&quot;</em> or <em>&quot;Neo Jenson&quot;</em>. Firstly we create 2 <code>map</code>s created from <code>list</code>s of <code>int * string</code> tuples using <code>Map.ofList</code>. In the <code>generateName</code> function we randomly get a first name and last name from the <code>map</code>s by using <code>Map.find</code> which has the signature of <code>'Key -&gt; Map&lt;'Key,'T&gt; -&gt; 'T</code>. Basically given a key and a <code>map</code>, it will return the value found at that key. Since we randomly generate the key, we get a random name each time.</p>
+<h2>And there was light (Creating a list)</h2>
+<p>Although we can create a list with <code>[ expression ]</code> lets look at the <code>Map.init</code> function which has the signature <code>int -&gt; (int - 'T) -&gt; 'T list</code>. Lets break this down:</p>
+<ol>
+<li><code>int</code> - size of the list to create</li>
+<li><code>(int - 'T)</code> - a function that takes in the current position in the list being generated and returns an instance of type 'T to place at that position</li>
+<li><code>'T list</code> - the list that will be created of type <code>'T</code></li>
+</ol>
+<p>So we want to create a <code>Person list</code>. We need a function <code>int -&gt; Person</code>. We curry in the <code>nameGen</code> to generate a <code>Person</code> with a randomly generated name.</p>
+<pre><code class="language-fsharp">type Person = { Id:int; Name:string }
+// (int -&gt; string) -&gt; int -&gt; Person
+let generatePerson gen i = { Id = i; Name = gen(i) }
+// int -&gt; Person
+let personGen = generatePerson nameGen
+
+let people = List.init 10 personGen
 </code></pre>
-<p>If you have ever written tests against Selenium directly I am sure you can agree that is cleaner.</p>
-<h2>Writing tests in F# and Canopy with Page Module Model</h2>
+<p>So <code>people</code> will be a list of <strong>10</strong> <code>Person</code> instances.</p>
+<pre><code class="language-fsharp">[   
+    { Id = 0; Name = &quot;Wu Fen&quot; }  
+    { Id = 1; Name = &quot;Bob Ali&quot; }  
+    { Id = 2; Name = &quot;Fen Jacobs&quot; }  
+    { Id = 3; Name = &quot;Bob Jensen&quot; }
+    { Id = 4; Name = &quot;An Si Wu&quot; }  
+    { Id = 5; Name = &quot;Bob Khan&quot; }
+    { Id = 6; Name = &quot;An Si Jacobs&quot; }  
+    { Id = 7; Name = &quot;Bob Wu&quot; }  
+    { Id = 8; Name = &quot;An Si Ali&quot; }  
+    { Id = 9; Name = &quot;Neo Jensen&quot; }
+]
+</code></pre>
+<h2>These are not the elements you are looking for (Finding an element)</h2>
+<p>Now that we have a list, lets see how we work with it. A common need while programming is to find an element in a collection.</p>
+<pre><code class="language-fsharp">let bob = people |&gt; List.find (fun p -&gt; p.Name.StartsWith(&quot;Bob&quot;))
+</code></pre>
+<p>We use <code>List.find</code> which has the signature <code>('T -&gt; bool) -&gt; 'T list -&gt; 'T</code>. In our case that would be a function <code>(Person -&gt; bool)</code> that returns <code>true</code> if it is the element you are looking for. Now this is all good and well if there is a &quot;Bob&quot; in the list. But it is a randomly generated collection of names, what if we want to find a specific &quot;Bob&quot; and he isn't in the list?</p>
+<pre><code class="language-fsharp">let bob = people |&gt; List.find (fun p -&gt; p = &quot;Bob Khan&quot;)
+</code></pre>
+<p>Assuming you do not have a &quot;Bob Khan&quot; in your list, you will get an exception thrown.</p>
 <blockquote>
-<p>You can find the <a href="https://github.com/dburriss/PageModuleModelExample">source code for this example on Github</a></p>
+<p>System.Collections.Generic.KeyNotFoundException: An index satisfying the predicate was not found in the collection.</p>
 </blockquote>
-<p>So what would the Page Object Model look like with static functions on a <code>module</code>? Pretty cool actually...</p>
-<pre><code class="language-fsharp">&quot;No laptops are free&quot; &amp;&amp;&amp; fun _ -&gt;
-    HomePage.searchFor &quot;Laptops&quot;
-    let results = SearchResultsPage.results()
-    test &lt;@ results |&gt; List.forall (fun x -&gt; x.Price &gt; 0m) @&gt;
+<p>Remember in <a href="/how-to-fsharp-pt-6">a previous post</a> we dealt with handling cases when there is no data using <code>option</code>. Well this is one of those times. Lets use a very similar function to <code>List.find</code> called <code>List.tryFind</code> that has the signature <code>('T -&gt; bool) -&gt; 'T list -&gt; 'T option</code>.</p>
+<pre><code class="language-fsharp">let maybeBob = people |&gt; List.tryFind (fun p -&gt; p.Name = &quot;Bob Khan&quot;)
 </code></pre>
-<p>We can keep the tests really concise and describe what we want to happen. Here we search for &quot;Laptops&quot;, get the search results, and then check that the price is not 0 on any items. We will dive a little deeper into how this is done in the next section.</p>
-<p>This style also allows us to easily define simple smoke tests to run before getting into the the more functional tests. A smoke test is an easy quick test of something basic. The idea being that <em>&quot;Where there is smoke there is fire&quot;</em>, so if a smoke test fails, it is not worth proceeding with the more feature rich tests.</p>
-<pre><code class="language-fsharp">context &quot;Smoke tests&quot;
-skipAllTestsOnFailure &lt;- true
-&quot;home page loads&quot; &amp;&amp;&amp; fun _ -&gt; displayed HomePage.homePageBanner
-&quot;search box available&quot; &amp;&amp;&amp; fun _ -&gt; displayed Header.searchBox
-&quot;cart is available&quot; &amp;&amp;&amp; fun _ -&gt; displayed Header.basketButton
+<blockquote>
+<p>val maybeBob : Person option = Some {Id = 5; Name = &quot;Bob Khan&quot;;}
+OR
+val maybeBob : Person option = None</p>
+</blockquote>
+<p>So depending on whether the <code>list</code> contains someone named &quot;Bob Khan&quot; the function will return <code>Some</code> or <code>None</code>.</p>
+<h2>Take what you need (Filtering a list)</h2>
+<p>Sometimes we are not looking for a specific element but multiple elements. Maybe we are looking for elements that match some criteria or are wanting to exclude based on something. Either way we are wanting to filter the collection. For <code>list</code>s we use the <code>List.filter</code> function which has the signature <code>('T -&gt; bool) -&gt; 'T list -&gt; 'T list</code>.</p>
+<pre><code class="language-fsharp">let bobs = people |&gt; List.filter (fun p -&gt; p.Name.StartsWith(&quot;Bob&quot;))
 </code></pre>
-<p>We use the <code>skipAllTestsOnFailure &lt;- true</code> to make sure we skip any other tests if any smoke tests fails.</p>
-<h2>The building blocks for composition</h2>
-<p>I usually build a page that I need and then start extracting the reusable functions out into modules from there. Most sites will have some kind of header/navigation. Here is what I needed in a header for the tests I wrote for this post.</p>
-<pre><code class="language-fsharp">module Header =
-    //selectors
-    let searchBox = &quot;#search_query&quot;
-    let basketButton = &quot;a[href=\&quot;/winkelmandje\&quot;]&quot;
-
-    //actions
-    let searchFor term =
-        searchBox &lt;&lt; term
-        press enter
+<p>So given a function that returns <code>true</code> if the element should be in the <code>list</code>, you will get a new <code>list</code> with the matching elements in it.</p>
+<pre><code class="language-fsharp">[   
+    { Id = 1; Name = &quot;Bob Ali&quot; }  
+    { Id = 3; Name = &quot;Bob Jenson&quot; }  
+    { Id = 5; Name = &quot;Bob Khan&quot; }  
+    { Id = 7; Name = &quot;Bob Wu&quot; }
+]
 </code></pre>
-<p>Here we define some selectors and a simple function that allows us to use the search functionality.</p>
-<p>If possible to modify the HTML I recommend putting <code>data-test-xyz</code> style attributes on your elements to allow you to easily query elements. Unfortunately I did not have the luxury to do so even if the front-end developers would let a back-end developer like me near it. Probably wise :)</p>
-<p>Let's look at something a bit more complex. The following module represents search results on a page.</p>
-<pre><code class="language-fsharp">module SearchResults =
-    open OpenQA.Selenium
+<p>So in my <code>list</code>, 4 out of 10 people had a first name of &quot;Bob&quot;.</p>
+<h2>A change is as good as a holiday (Working with list elements)</h2>
+<p>Imagine we have our collection of people but a request comes in that the names be in the format <em>Surname, First Names</em>.
+First things first, lets write a function <code>leadingLastName</code> that will take in <em>&quot;Neo Jensen&quot;</em> and transform it to <em>&quot;Jensen, Neo&quot;</em> and <em>&quot;An Si Ali&quot;</em> to <em>&quot;Ali, An Si&quot;</em>.</p>
+<pre><code class="language-fsharp">// char -&gt; string -&gt; string[]
+let split (sep:char) (s:string) = s.Split([|sep|])
 
-    type SearchResultElement = {
-        ProductId:string
-        El:IWebElement
-        Name:string
-        Price:decimal
-        IsAvailable:bool
-    }
+// string -&gt; string
+let leadingLastName (name:string) = 
+    let lastNameToFront (names:string array) = 
+        match names with
+        | [||] -&gt; &quot;&quot;
+        | [|x|] -&gt; x
+        | [|x;y|] -&gt; String.concat &quot;, &quot; ([|y;x|])
+        | _ -&gt; [|yield ([Array.last names;&quot;,&quot;] |&gt; String.concat &quot;&quot;); for i=0 to ((Array.length names)-2) do yield names.[i] |] |&gt; String.concat &quot; &quot;
 
-    let private toPrice (s:string) = s.Split(&quot;,&quot;).[0] |&gt; decimal
-    let private getOrderButton itemEl = itemEl |&gt; elementWithin @&quot;.product__order-button&quot;
-    let private isOrderButton (orderBtnEl:IWebElement) =
-        orderBtnEl
-        |&gt; getAttrValue &quot;class&quot;
-        |&gt; fun s -&gt; s.Split(&quot; &quot;)
-        |&gt; Array.contains @&quot;action--order&quot;
-
-    let items () =
-        let rowEls = element (sData &quot;component&quot; &quot;products&quot;)
-                    |&gt; elementsWithin &quot;.card&quot;
-        let getId itemEl = itemEl |&gt; elementWithin &quot;a&quot; |&gt; getDataAttrValue &quot;productid&quot;
-        let getTitle itemEl = itemEl |&gt; elementWithin &quot;a&quot; |&gt; getAttrValue &quot;title&quot;
-        let getPrice itemEl = itemEl |&gt; elementWithin @&quot;.product__sales-price&quot; |&gt; read |&gt; toPrice
-
-        rowEls
-        |&gt; List.map (fun itemEl -&gt;
-                                {
-                                    ProductId = itemEl |&gt; getId
-                                    El = itemEl
-                                    Name = itemEl |&gt; getTitle
-                                    Price = itemEl |&gt; getPrice
-                                    IsAvailable = itemEl |&gt; getOrderButton |&gt; isOrderButton
-                                })
+    name |&gt; split ' '
+    |&gt;lastNameToFront
 </code></pre>
-<p>This is a bit complex because of the poor selector options available to me in the HTML but still not too bad. I want to draw attention to the <code>SearchResultElement</code> record. I parse the HTML to a record rather than constantly interacting with <code>IWebElement</code>. You saw this in the test for a 0 price where I was able to easily check the <code>Price</code> field.</p>
-<p>Note: I make use of some helpers here like <code>getDataAttrValue</code> that are in the <code>Selectors.fs module</code> which you can checkout in the source if you like.</p>
-<h2>The Page Module</h2>
-<p>With these building blocks the actual page <code>module</code> can end up being quite simple.</p>
-<pre><code class="language-fsharp">module SearchResultsPage =
-    open Elements
-    open canopy.classic
+<p>This uses <code>match</code> to pattern match on the <code>array</code>. Lets break it down quickly:</p>
+<ol>
+<li><code>[||] -&gt; &quot;&quot;</code> - Matches when <code>array</code> is empty: return name is empty</li>
+<li><code>[|x|] -&gt; x</code> - Matches when name is a single element: name is a single name like &quot;Cher&quot;</li>
+<li><code>[|x;y|] -&gt; String.concat &quot;, &quot; ([|y;x|])</code> - Matches when <code>array</code> is 2 elements: name and surname so swaps and adds a ,</li>
+<li><code>_</code> - this one is quite complex but basically it moves the last element to the front and adds a , after it</li>
+</ol>
+<p>Next we will use <code>leadingLastName</code> with <code>List.map</code> which has the signature <code>('T -&gt; 'U) -&gt; 'T list -&gt; 'U list</code>. We have seen <code>map</code> (the function not the type) before when we learned about <code>option</code>. Although <code>map</code> can map from a value to a value of any other type, in that case we went from <code>string -&gt; string</code> with name to email. In this case we will also go from <code>string</code> to <code>string</code>. Just remember you can map to different types.</p>
+<pre><code class="language-fsharp">let withLeadingLName =  people |&gt; List.map (fun p -&gt; {p with Name = (leadingLastName p.Name)})
 
-    let uri = &quot;https://www.coolblue.nl/zoeken&quot; //should use settings or relative urls
-    let verifyOn() = on uri
-    let searchFor term = Header.searchFor term
-    let results() = SearchResults.items()
+[
+    { Id = 0; Name = &quot;Wu, Fen&quot; }  
+    { Id = 1; Name = &quot;Ali, Bob&quot; }  
+    { Id = 2; Name = &quot;Jacobs, Fen&quot; }  
+    { Id = 3; Name = &quot;Jenson, Bob&quot; }  
+    { Id = 4; Name = &quot;Wu, An Si&quot; }
+    ...
+]
 </code></pre>
-<p>With the page we can now group functionality on a module that makes semantic sense and compose our functions from the building blocks we have already defined.</p>
-<h2>Summary</h2>
-<p><img src="/img/posts/2018/ui-testing.jpg" alt="UI testing with Canopy" /></p>
-<p>In this post we saw how the Page Object Model can be modelled in a more functional way, using building blocks to construct pages. We also saw how we can transform interesting elements of the page into records that give us type safety and intellisense.</p>
-<p>Lastly, we saw how concise the combination of F# and Canopy can make our UI tests.</p>
+<p>We supplied <code>map</code> an inline function <code>(fun p -&gt; {p with Name = (leadingLastName p.Name)})</code> that takes a <code>Person</code> and uses <code>leadingLastName</code> to return a new <code>Person</code> with the name changed.</p>
+<h2>Get it sorted (sorting elements)</h2>
+<p>Often we care about the order of the elements in a collection. We can use one of the sorting functions to get a new sorted <code>list</code> back. <code>List.sortBy</code> has the signature <code>('T -&gt; 'Key) -&gt; 'T list -&gt; 'T list</code>.</p>
+<pre><code class="language-fsharp">let sorted = withLeadingLName |&gt; List.sortBy (fun p -&gt; p.Name)
+[
+    { Id = 8; Name = &quot;Ali, An Si&quot; }  
+    { Id = 1; Name = &quot;Ali, Bob&quot; }  
+    { Id = 6; Name = &quot;Jacobs, An Si&quot; }  
+    { Id = 2; Name = &quot;Jacobs, Fen&quot; }  
+    { Id = 9; Name = &quot;Jacobs, Neo&quot; }  
+    ...
+]
+</code></pre>
+<p>So we pass it a function to determine what to sort by and then the list and we will get back the sorted list, in this case by the <code>Name</code> <code>string</code>.</p>
+<h2>Family business (Grouping)</h2>
+<p>What if our next task was to group the people by their last name? Well with the built in <code>list</code> functions this is very simple.</p>
+<pre><code class="language-fsharp">// Person -&gt; string
+let getLastName person = person.Name |&gt; split ',' |&gt; Array.head
+let groupedByLName = withLeadingLName |&gt; List.groupBy getLastName
+[
+    (&quot;Wu&quot;, [{Id = 0; Name = &quot;Wu, Fen&quot;;}; {Id = 4; Name = &quot;Wu, An Si&quot;;}; {Id = 7; Name = &quot;Wu, Bob&quot;;}]);
+    (&quot;Ali&quot;, [{Id = 1; Name = &quot;Ali, Bob&quot;;}; {Id = 8; Name = &quot;Ali, An Si&quot;;}]);
+    ...
+]
+</code></pre>
+<p>We use the <code>List.groupBy</code> function which has the signature <code>('T -&gt; 'Key) -&gt; 'T list -&gt; ('Key * 'T list) list</code>. Lets break that down.</p>
+<ol>
+<li><code>('T -&gt; 'Key)</code> - a function that will take an element from the <code>list</code> and return a key to group by. In our case it should take a <code>Person</code> and return their last name.</li>
+<li><code>'T list</code> - the original list that needs grouping</li>
+<li><code>('Key * 'T list) list</code> - a list of tuples where the first element of the tuple is the <strong>key</strong> and the second is a list of elements that matched with that key</li>
+</ol>
+<h2>Less random</h2>
+<p>As a final demonstration, lets look at a less used function of <code>list</code>. At the beginning of this post we had 2 <code>list</code>s with the names. What if we didn't care about it being random? What if we just joined the 1st first name to the 1st last name and continued on like that down the <code>list</code>s.</p>
+<pre><code class="language-fsharp">let fNames = [ &quot;Sue&quot;; &quot;Bob&quot;; &quot;Neo&quot;; &quot;Fen&quot;; &quot;An Si&quot; ; &quot;Jan&quot;]
+let lNames = [ &quot;Ali&quot;; &quot;Khan&quot;; &quot;Jacobs&quot;; &quot;Jenson&quot;; &quot;Wu&quot;; &quot;Lee&quot;]
+let names = List.zip fNames lNames |&gt; List.map (fun (fname,lname) -&gt; sprintf &quot;%s, %s&quot; lname fname)
+</code></pre>
+<blockquote>
+<p>val names : string list = [&quot;Ali, Sue&quot;; &quot;Khan, Bob&quot;; &quot;Jacobs, Neo&quot;; &quot;Jenson, Fen&quot;; &quot;Wu, An Si&quot;; &quot;Lee, Jan&quot;]</p>
+</blockquote>
+<p>We used the <code>List.zip</code> function that takes 2 lists and zips them together into a <code>list</code> of tuples made up of an element from the 1st <code>list</code> and and element from the second.</p>
+<h2>Conclusion</h2>
+<p>So we finally got to dive into working with collections. In this post you learned how to create, map, sort, group, and even zip a <code>list</code>. Remember that the functions we worked with here are also available on the <code>Array</code> and <code>Seq</code> modules.</p>
+<p>In a coming post we will be dealing with error handling.</p>
+<h2>Resources</h2>
+<ol>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/lists">Lists</a></li>
+<li><a href="https://fsharpforfunandprofit.com/posts/list-module-functions/">For fun and profit List module functions</a></li>
+</ol>
 <h2>Credits</h2>
-<p>Social image by <a href="https://unsplash.com/@reinhartjulian">Reinhart Julian</a></p>
+<ol>
+<li>Background image by <a href="https://unsplash.com/@jackreichert">Jack Reichert</a></li>
+<li>Social image by <a href="https://unsplash.com/@p">Patrik Göthe</a></li>
+</ol>
 
                 <hr />
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
-                                                <li><a href="/anatomy-of-automated-testing/">Anatomy of an automated test suite</a></li>
-                                                <li><a href="/why-i-got-hooked-on-fsharp/">Why I got hooked on F#</a></li>
                                                 <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
+                                                <li><a href="/how-to-fsharp-pt-6/">How to F# - Part 6</a></li>
+                                                <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -337,13 +388,9 @@ skipAllTestsOnFailure &lt;- true
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/acceptance-tests/" data-toggle="tooltip"    data-placement="top" title="Writing readable Acceptance tests">&larr; Previous Post</a>
+                        <a href="/how-to-fsharp-pt-6/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 6">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/anatomy-of-automated-testing/" data-toggle="tooltip" data-placement="top" title="Anatomy of an automated test suite">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

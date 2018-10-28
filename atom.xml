@@ -3,13 +3,207 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-27T21:28:49.3912241+00:00</updated>
+  <updated>2018-10-28T12:28:23.921017+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/how-to-fsharp-pt-7/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-7/"/>
+    <title>How to F# - Part 7</title>
+    <updated>2018-10-28T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/how-to-fsharp-pt-7/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;So after much threatening in past posts, we will finally be diving a little deeper into collections in F#. We will look at a few of the most commonly used functions on the collection modules by manipulating a &lt;code&gt;list&lt;/code&gt; of people that we randomly generate.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;So lets go through a few common actions you would want to do on a collection. We will use &lt;code&gt;list&lt;/code&gt; as an example through most of this post but what we learn applies to &lt;code&gt;array&lt;/code&gt; and &lt;code&gt;seq&lt;/code&gt; as well. Before we do that though let us briefly touch on the &lt;code&gt;map&lt;/code&gt; type again.&lt;/p&gt;
+&lt;h2&gt;All the beautiful people (Creating data)&lt;/h2&gt;
+&lt;p&gt;To work with lists we will need some data. Often data comes in the form of tables we need to join together. We will start simple though. Lets create 2 &lt;code&gt;map&lt;/code&gt;s with numbers corresponding to the first names for the 1st and second names for the other.&lt;/p&gt;
+&lt;p&gt;| # | First name    | # | Last name |
+|---|---------------|---|-----------|
+| 1 | Sue           | 1 | Ali       |
+| 2 | Bob           | 2 | Khan      |
+| 3 | Neo           | 3 | Jacobs    |
+| 4 | Fen           | 4 | Jensen    |
+| 5 | An Si         | 5 | Wu        |
+| 6 | Jan           | 6 | Lee       |&lt;/p&gt;
+&lt;p&gt;We will use these to generate a list of people later.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let fNames = [ (1, &amp;quot;Sue&amp;quot;); (2, &amp;quot;Bob&amp;quot;); (3, &amp;quot;Neo&amp;quot;); (4, &amp;quot;Fen&amp;quot;); (5, &amp;quot;An Si&amp;quot; ); (6, &amp;quot;Jan&amp;quot;)] |&amp;gt; Map.ofList
+let lNames = [ (1, &amp;quot;Ali&amp;quot;); (2, &amp;quot;Khan&amp;quot;); (3, &amp;quot;Jacobs&amp;quot;); (4, &amp;quot;Jensen&amp;quot;); (5, &amp;quot;Wu&amp;quot; ); (6, &amp;quot;Lee&amp;quot;)] |&amp;gt; Map.ofList
+
+// Map&amp;lt;int,string&amp;gt; -&amp;gt; Map&amp;lt;int,string&amp;gt; -&amp;gt; int -&amp;gt; string
+let generateName fnames lnames i =
+    let random = new System.Random(i) //don&apos;t new up  Random every time in a real app
+    let fo = random.Next(1,6) // get a random number between 1 - 6
+    let lo = random.Next(1,6) // get a random number between 1 - 6
+    sprintf &amp;quot;%s %s&amp;quot; (Map.find fo fnames) (Map.find lo lnames)
+
+// int -&amp;gt; string
+let nameGen = generateName fNames lNames
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We curry &lt;code&gt;generateName&lt;/code&gt; with the &lt;code&gt;map&lt;/code&gt;s of &lt;code&gt;fNames&lt;/code&gt; (first names) and &lt;code&gt;lNames&lt;/code&gt; (last names) transforming a function of signature &lt;code&gt;Map&amp;lt;int,string&amp;gt; -&amp;gt; Map&amp;lt;int,string&amp;gt; -&amp;gt; int -&amp;gt; string&lt;/code&gt; into &lt;code&gt;int -&amp;gt; string&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;So calling &lt;code&gt;nameGen&lt;/code&gt; will give us a random name like &lt;em&gt;&amp;quot;An Ali&amp;quot;&lt;/em&gt; or &lt;em&gt;&amp;quot;Neo Jenson&amp;quot;&lt;/em&gt;. Firstly we create 2 &lt;code&gt;map&lt;/code&gt;s created from &lt;code&gt;list&lt;/code&gt;s of &lt;code&gt;int * string&lt;/code&gt; tuples using &lt;code&gt;Map.ofList&lt;/code&gt;. In the &lt;code&gt;generateName&lt;/code&gt; function we randomly get a first name and last name from the &lt;code&gt;map&lt;/code&gt;s by using &lt;code&gt;Map.find&lt;/code&gt; which has the signature of &lt;code&gt;&apos;Key -&amp;gt; Map&amp;lt;&apos;Key,&apos;T&amp;gt; -&amp;gt; &apos;T&lt;/code&gt;. Basically given a key and a &lt;code&gt;map&lt;/code&gt;, it will return the value found at that key. Since we randomly generate the key, we get a random name each time.&lt;/p&gt;
+&lt;h2&gt;And there was light (Creating a list)&lt;/h2&gt;
+&lt;p&gt;Although we can create a list with &lt;code&gt;[ expression ]&lt;/code&gt; lets look at the &lt;code&gt;Map.init&lt;/code&gt; function which has the signature &lt;code&gt;int -&amp;gt; (int - &apos;T) -&amp;gt; &apos;T list&lt;/code&gt;. Lets break this down:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;int&lt;/code&gt; - size of the list to create&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(int - &apos;T)&lt;/code&gt; - a function that takes in the current position in the list being generated and returns an instance of type &apos;T to place at that position&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&apos;T list&lt;/code&gt; - the list that will be created of type &lt;code&gt;&apos;T&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So we want to create a &lt;code&gt;Person list&lt;/code&gt;. We need a function &lt;code&gt;int -&amp;gt; Person&lt;/code&gt;. We curry in the &lt;code&gt;nameGen&lt;/code&gt; to generate a &lt;code&gt;Person&lt;/code&gt; with a randomly generated name.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;type Person = { Id:int; Name:string }
+// (int -&amp;gt; string) -&amp;gt; int -&amp;gt; Person
+let generatePerson gen i = { Id = i; Name = gen(i) }
+// int -&amp;gt; Person
+let personGen = generatePerson nameGen
+
+let people = List.init 10 personGen
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So &lt;code&gt;people&lt;/code&gt; will be a list of &lt;strong&gt;10&lt;/strong&gt; &lt;code&gt;Person&lt;/code&gt; instances.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;[   
+    { Id = 0; Name = &amp;quot;Wu Fen&amp;quot; }  
+    { Id = 1; Name = &amp;quot;Bob Ali&amp;quot; }  
+    { Id = 2; Name = &amp;quot;Fen Jacobs&amp;quot; }  
+    { Id = 3; Name = &amp;quot;Bob Jensen&amp;quot; }
+    { Id = 4; Name = &amp;quot;An Si Wu&amp;quot; }  
+    { Id = 5; Name = &amp;quot;Bob Khan&amp;quot; }
+    { Id = 6; Name = &amp;quot;An Si Jacobs&amp;quot; }  
+    { Id = 7; Name = &amp;quot;Bob Wu&amp;quot; }  
+    { Id = 8; Name = &amp;quot;An Si Ali&amp;quot; }  
+    { Id = 9; Name = &amp;quot;Neo Jensen&amp;quot; }
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;These are not the elements you are looking for (Finding an element)&lt;/h2&gt;
+&lt;p&gt;Now that we have a list, lets see how we work with it. A common need while programming is to find an element in a collection.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let bob = people |&amp;gt; List.find (fun p -&amp;gt; p.Name.StartsWith(&amp;quot;Bob&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We use &lt;code&gt;List.find&lt;/code&gt; which has the signature &lt;code&gt;(&apos;T -&amp;gt; bool) -&amp;gt; &apos;T list -&amp;gt; &apos;T&lt;/code&gt;. In our case that would be a function &lt;code&gt;(Person -&amp;gt; bool)&lt;/code&gt; that returns &lt;code&gt;true&lt;/code&gt; if it is the element you are looking for. Now this is all good and well if there is a &amp;quot;Bob&amp;quot; in the list. But it is a randomly generated collection of names, what if we want to find a specific &amp;quot;Bob&amp;quot; and he isn&apos;t in the list?&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let bob = people |&amp;gt; List.find (fun p -&amp;gt; p = &amp;quot;Bob Khan&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Assuming you do not have a &amp;quot;Bob Khan&amp;quot; in your list, you will get an exception thrown.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;System.Collections.Generic.KeyNotFoundException: An index satisfying the predicate was not found in the collection.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Remember in &lt;a href=&quot;/how-to-fsharp-pt-6&quot;&gt;a previous post&lt;/a&gt; we dealt with handling cases when there is no data using &lt;code&gt;option&lt;/code&gt;. Well this is one of those times. Lets use a very similar function to &lt;code&gt;List.find&lt;/code&gt; called &lt;code&gt;List.tryFind&lt;/code&gt; that has the signature &lt;code&gt;(&apos;T -&amp;gt; bool) -&amp;gt; &apos;T list -&amp;gt; &apos;T option&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let maybeBob = people |&amp;gt; List.tryFind (fun p -&amp;gt; p.Name = &amp;quot;Bob Khan&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;val maybeBob : Person option = Some {Id = 5; Name = &amp;quot;Bob Khan&amp;quot;;}
+OR
+val maybeBob : Person option = None&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So depending on whether the &lt;code&gt;list&lt;/code&gt; contains someone named &amp;quot;Bob Khan&amp;quot; the function will return &lt;code&gt;Some&lt;/code&gt; or &lt;code&gt;None&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Take what you need (Filtering a list)&lt;/h2&gt;
+&lt;p&gt;Sometimes we are not looking for a specific element but multiple elements. Maybe we are looking for elements that match some criteria or are wanting to exclude based on something. Either way we are wanting to filter the collection. For &lt;code&gt;list&lt;/code&gt;s we use the &lt;code&gt;List.filter&lt;/code&gt; function which has the signature &lt;code&gt;(&apos;T -&amp;gt; bool) -&amp;gt; &apos;T list -&amp;gt; &apos;T list&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let bobs = people |&amp;gt; List.filter (fun p -&amp;gt; p.Name.StartsWith(&amp;quot;Bob&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So given a function that returns &lt;code&gt;true&lt;/code&gt; if the element should be in the &lt;code&gt;list&lt;/code&gt;, you will get a new &lt;code&gt;list&lt;/code&gt; with the matching elements in it.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;[   
+    { Id = 1; Name = &amp;quot;Bob Ali&amp;quot; }  
+    { Id = 3; Name = &amp;quot;Bob Jenson&amp;quot; }  
+    { Id = 5; Name = &amp;quot;Bob Khan&amp;quot; }  
+    { Id = 7; Name = &amp;quot;Bob Wu&amp;quot; }
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So in my &lt;code&gt;list&lt;/code&gt;, 4 out of 10 people had a first name of &amp;quot;Bob&amp;quot;.&lt;/p&gt;
+&lt;h2&gt;A change is as good as a holiday (Working with list elements)&lt;/h2&gt;
+&lt;p&gt;Imagine we have our collection of people but a request comes in that the names be in the format &lt;em&gt;Surname, First Names&lt;/em&gt;.
+First things first, lets write a function &lt;code&gt;leadingLastName&lt;/code&gt; that will take in &lt;em&gt;&amp;quot;Neo Jensen&amp;quot;&lt;/em&gt; and transform it to &lt;em&gt;&amp;quot;Jensen, Neo&amp;quot;&lt;/em&gt; and &lt;em&gt;&amp;quot;An Si Ali&amp;quot;&lt;/em&gt; to &lt;em&gt;&amp;quot;Ali, An Si&amp;quot;&lt;/em&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// char -&amp;gt; string -&amp;gt; string[]
+let split (sep:char) (s:string) = s.Split([|sep|])
+
+// string -&amp;gt; string
+let leadingLastName (name:string) = 
+    let lastNameToFront (names:string array) = 
+        match names with
+        | [||] -&amp;gt; &amp;quot;&amp;quot;
+        | [|x|] -&amp;gt; x
+        | [|x;y|] -&amp;gt; String.concat &amp;quot;, &amp;quot; ([|y;x|])
+        | _ -&amp;gt; [|yield ([Array.last names;&amp;quot;,&amp;quot;] |&amp;gt; String.concat &amp;quot;&amp;quot;); for i=0 to ((Array.length names)-2) do yield names.[i] |] |&amp;gt; String.concat &amp;quot; &amp;quot;
+
+    name |&amp;gt; split &apos; &apos;
+    |&amp;gt;lastNameToFront
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This uses &lt;code&gt;match&lt;/code&gt; to pattern match on the &lt;code&gt;array&lt;/code&gt;. Lets break it down quickly:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;[||] -&amp;gt; &amp;quot;&amp;quot;&lt;/code&gt; - Matches when &lt;code&gt;array&lt;/code&gt; is empty: return name is empty&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[|x|] -&amp;gt; x&lt;/code&gt; - Matches when name is a single element: name is a single name like &amp;quot;Cher&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[|x;y|] -&amp;gt; String.concat &amp;quot;, &amp;quot; ([|y;x|])&lt;/code&gt; - Matches when &lt;code&gt;array&lt;/code&gt; is 2 elements: name and surname so swaps and adds a ,&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_&lt;/code&gt; - this one is quite complex but basically it moves the last element to the front and adds a , after it&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Next we will use &lt;code&gt;leadingLastName&lt;/code&gt; with &lt;code&gt;List.map&lt;/code&gt; which has the signature &lt;code&gt;(&apos;T -&amp;gt; &apos;U) -&amp;gt; &apos;T list -&amp;gt; &apos;U list&lt;/code&gt;. We have seen &lt;code&gt;map&lt;/code&gt; (the function not the type) before when we learned about &lt;code&gt;option&lt;/code&gt;. Although &lt;code&gt;map&lt;/code&gt; can map from a value to a value of any other type, in that case we went from &lt;code&gt;string -&amp;gt; string&lt;/code&gt; with name to email. In this case we will also go from &lt;code&gt;string&lt;/code&gt; to &lt;code&gt;string&lt;/code&gt;. Just remember you can map to different types.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let withLeadingLName =  people |&amp;gt; List.map (fun p -&amp;gt; {p with Name = (leadingLastName p.Name)})
+
+[
+    { Id = 0; Name = &amp;quot;Wu, Fen&amp;quot; }  
+    { Id = 1; Name = &amp;quot;Ali, Bob&amp;quot; }  
+    { Id = 2; Name = &amp;quot;Jacobs, Fen&amp;quot; }  
+    { Id = 3; Name = &amp;quot;Jenson, Bob&amp;quot; }  
+    { Id = 4; Name = &amp;quot;Wu, An Si&amp;quot; }
+    ...
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We supplied &lt;code&gt;map&lt;/code&gt; an inline function &lt;code&gt;(fun p -&amp;gt; {p with Name = (leadingLastName p.Name)})&lt;/code&gt; that takes a &lt;code&gt;Person&lt;/code&gt; and uses &lt;code&gt;leadingLastName&lt;/code&gt; to return a new &lt;code&gt;Person&lt;/code&gt; with the name changed.&lt;/p&gt;
+&lt;h2&gt;Get it sorted (sorting elements)&lt;/h2&gt;
+&lt;p&gt;Often we care about the order of the elements in a collection. We can use one of the sorting functions to get a new sorted &lt;code&gt;list&lt;/code&gt; back. &lt;code&gt;List.sortBy&lt;/code&gt; has the signature &lt;code&gt;(&apos;T -&amp;gt; &apos;Key) -&amp;gt; &apos;T list -&amp;gt; &apos;T list&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let sorted = withLeadingLName |&amp;gt; List.sortBy (fun p -&amp;gt; p.Name)
+[
+    { Id = 8; Name = &amp;quot;Ali, An Si&amp;quot; }  
+    { Id = 1; Name = &amp;quot;Ali, Bob&amp;quot; }  
+    { Id = 6; Name = &amp;quot;Jacobs, An Si&amp;quot; }  
+    { Id = 2; Name = &amp;quot;Jacobs, Fen&amp;quot; }  
+    { Id = 9; Name = &amp;quot;Jacobs, Neo&amp;quot; }  
+    ...
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So we pass it a function to determine what to sort by and then the list and we will get back the sorted list, in this case by the &lt;code&gt;Name&lt;/code&gt; &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Family business (Grouping)&lt;/h2&gt;
+&lt;p&gt;What if our next task was to group the people by their last name? Well with the built in &lt;code&gt;list&lt;/code&gt; functions this is very simple.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// Person -&amp;gt; string
+let getLastName person = person.Name |&amp;gt; split &apos;,&apos; |&amp;gt; Array.head
+let groupedByLName = withLeadingLName |&amp;gt; List.groupBy getLastName
+[
+    (&amp;quot;Wu&amp;quot;, [{Id = 0; Name = &amp;quot;Wu, Fen&amp;quot;;}; {Id = 4; Name = &amp;quot;Wu, An Si&amp;quot;;}; {Id = 7; Name = &amp;quot;Wu, Bob&amp;quot;;}]);
+    (&amp;quot;Ali&amp;quot;, [{Id = 1; Name = &amp;quot;Ali, Bob&amp;quot;;}; {Id = 8; Name = &amp;quot;Ali, An Si&amp;quot;;}]);
+    ...
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We use the &lt;code&gt;List.groupBy&lt;/code&gt; function which has the signature &lt;code&gt;(&apos;T -&amp;gt; &apos;Key) -&amp;gt; &apos;T list -&amp;gt; (&apos;Key * &apos;T list) list&lt;/code&gt;. Lets break that down.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;(&apos;T -&amp;gt; &apos;Key)&lt;/code&gt; - a function that will take an element from the &lt;code&gt;list&lt;/code&gt; and return a key to group by. In our case it should take a &lt;code&gt;Person&lt;/code&gt; and return their last name.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&apos;T list&lt;/code&gt; - the original list that needs grouping&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(&apos;Key * &apos;T list) list&lt;/code&gt; - a list of tuples where the first element of the tuple is the &lt;strong&gt;key&lt;/strong&gt; and the second is a list of elements that matched with that key&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Less random&lt;/h2&gt;
+&lt;p&gt;As a final demonstration, lets look at a less used function of &lt;code&gt;list&lt;/code&gt;. At the beginning of this post we had 2 &lt;code&gt;list&lt;/code&gt;s with the names. What if we didn&apos;t care about it being random? What if we just joined the 1st first name to the 1st last name and continued on like that down the &lt;code&gt;list&lt;/code&gt;s.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let fNames = [ &amp;quot;Sue&amp;quot;; &amp;quot;Bob&amp;quot;; &amp;quot;Neo&amp;quot;; &amp;quot;Fen&amp;quot;; &amp;quot;An Si&amp;quot; ; &amp;quot;Jan&amp;quot;]
+let lNames = [ &amp;quot;Ali&amp;quot;; &amp;quot;Khan&amp;quot;; &amp;quot;Jacobs&amp;quot;; &amp;quot;Jenson&amp;quot;; &amp;quot;Wu&amp;quot;; &amp;quot;Lee&amp;quot;]
+let names = List.zip fNames lNames |&amp;gt; List.map (fun (fname,lname) -&amp;gt; sprintf &amp;quot;%s, %s&amp;quot; lname fname)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;val names : string list = [&amp;quot;Ali, Sue&amp;quot;; &amp;quot;Khan, Bob&amp;quot;; &amp;quot;Jacobs, Neo&amp;quot;; &amp;quot;Jenson, Fen&amp;quot;; &amp;quot;Wu, An Si&amp;quot;; &amp;quot;Lee, Jan&amp;quot;]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We used the &lt;code&gt;List.zip&lt;/code&gt; function that takes 2 lists and zips them together into a &lt;code&gt;list&lt;/code&gt; of tuples made up of an element from the 1st &lt;code&gt;list&lt;/code&gt; and and element from the second.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;So we finally got to dive into working with collections. In this post you learned how to create, map, sort, group, and even zip a &lt;code&gt;list&lt;/code&gt;. Remember that the functions we worked with here are also available on the &lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Seq&lt;/code&gt; modules.&lt;/p&gt;
+&lt;p&gt;In a coming post we will be dealing with error handling.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/lists&quot;&gt;Lists&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/posts/list-module-functions/&quot;&gt;For fun and profit List module functions&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Background image by &lt;a href=&quot;https://unsplash.com/@jackreichert&quot;&gt;Jack Reichert&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Social image by &lt;a href=&quot;https://unsplash.com/@p&quot;&gt;Patrik Göthe&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/how-to-fsharp-pt-6/</id>
@@ -97,7 +291,7 @@ let makeEmail name =
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;We really just scratched the surface of the functions available on &lt;code&gt;Option&lt;/code&gt; but I hope you have seen how it can be used to represent the absence of data. Although when dealing with the outside world (outside your application process) you are still forced to think about the possibility of &lt;code&gt;null&lt;/code&gt;, &lt;code&gt;Option&lt;/code&gt; has some major advantages over its OO counterparts. For one there is a lot less branching logic. The &lt;code&gt;Option&lt;/code&gt; functions will often just handle &lt;code&gt;None&lt;/code&gt; elegantly. This is a particular challenge of the &lt;strong&gt;Special case&lt;/strong&gt; approach which requires you to think about a specific implementation for every type that can be &lt;code&gt;null&lt;/code&gt; and think about what a no operation means.&lt;/p&gt;
 &lt;p&gt;The most important function to understand here though would have to be &lt;code&gt;map&lt;/code&gt;. We will see &lt;code&gt;map&lt;/code&gt; over and over in different modules. It allows you to operate in the abstraction you are in without leaving that abstraction but still manipulate the data contained within.&lt;/p&gt;
-&lt;p&gt;Next up we will finally be diving into collections.&lt;/p&gt;
+&lt;p&gt;Next up we will finally be &lt;a href=&quot;/how-to-fsharp-pt-7&quot;&gt;diving into collections&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Resources&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/values/null-values&quot;&gt;Null Values&lt;/a&gt;&lt;/li&gt;
