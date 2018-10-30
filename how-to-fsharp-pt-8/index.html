@@ -19,33 +19,42 @@
     
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly just adventures in code.">
+    <title>How to F# - Part 8</title>
+    <meta name="description" content="Elegant exception handling in F#">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-8/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly just adventures in code.">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="How to F# - Part 8">
+    <meta itemprop="description" content="Elegant exception handling in F#">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/broken-500.jpg">
+    
+    <meta itemprop="datePublished" content="10/30/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="10/30/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="How to F# - Part 8 - Handling Errors Elegantly" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-8/" />
+    <meta name="headline" content="How to F# - Part 8 - Handling Errors Elegantly" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly just adventures in code.">
+    <meta name="twitter:title" content="How to F# - Part 8">
+    <meta name="twitter:description" content="Elegant exception handling in F#">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/broken-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="How to F# - Part 8" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me//page/6/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly just adventures in code." />
+    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-8/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/broken-500.jpg" />
+    <meta property="og:description" content="Elegant exception handling in F#" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -146,626 +155,196 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/path-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>How to F# - Part 8</h1>
+                        
+                        <h2 class="subheading">Handling Errors Elegantly</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 30, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/functional" class="label label-default">Functional</a>
+                            
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
+                                <a href="/tag/net" class="label label-default">.NET</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			    
+				<p>Even with all the pure functions we could ask for, eventually our applications are going to have to interact with the unpredictable outside world. Also, sometimes we just mess up. In this post we look at ways of dealing with errors in our applications.</p>
+<!--more-->
+<h2>Throwing our toys out the pram</h2>
+<p>In South Africa we say &quot;Throwing your toys out the cot&quot; but it is the same. When a child is upset, they tend to throw whatever they have in hand to express their distress. When you cannot communicate your intent in another way, this is how you get your parents' attention.</p>
+<p>With that backdrop lets introduce <code>Exception</code>s. When an error occurs, the normal execution of the application stops and an error is raised as an object that contains information about the error that occurred. Exceptions can happen for example when reading from a file that is not where you expect it to be.</p>
+<p>You can also raise exceptions yourself.</p>
+<pre><code class="language-fsharp">open System
+// int -&gt; int
+let doublePositiveNumber x =
+    if(x &lt;0) then raise (new ArgumentException(&quot;Argument must be positive number&quot;))
+    else x*2
 
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-    
+let y = doublePositiveNumber 2 // val y : int = 4
+let z = doublePositiveNumber -1 // ERROR: System.ArgumentException: Argument must be positive number
+</code></pre>
+<p>Where <code>ArgumentException</code> (which is in the <code>System</code> namespace) is a type that inherits from <code>SystemException</code> which inherits from <code>Exception</code>. We haven't covered object-oriented topics in this series but basically that means that <code>ArgumentException</code> inherits features from <code>SystemException</code> which inherits from <code>Exception</code>. All errors that occur during application execution inherit from <code>Exception</code>. We will see an implication of this later when we explore ways of handling exceptions.</p>
+<p>F# also provides a really easy way to raise an exception with a string message using <code>failwith</code>.</p>
+<pre><code class="language-fsharp">let doublePositiveNumber x =
+    if(x &lt;0) then failwith &quot;Argument must be positive number&quot;
+    else x*2
+</code></pre>
+<h2>Custom exceptions</h2>
+<p>In F# defining custom exceptions is simple (especially compared to C#). Lets define a custom exception of type <code>MustBePositiveException</code> that takes a tuple of type <code>string * int</code>.</p>
+<pre><code class="language-fsharp">exception MustBePositiveException of string * int
+let doublePositiveNumber x =
+    if(x &lt;0) then raise (MustBePositiveException(&quot;Argument must be positive number&quot;,x))
+    else x*2
+</code></pre>
+<p>We will see soon how we can handle exceptions that occur.</p>
+<h2>Handling exceptions</h2>
+<p>The semantics of handling exceptions is that we try do something with the possibility of one or more exceptions occurring. Lets look at an example.</p>
+<pre><code class="language-fsharp">open System
+let z = try
+            doublePositiveNumber -1
+        with
+        | :? Exception as ex -&gt; printfn &quot;ERROR: %s&quot; ex.Message; 0 // don't do this
+</code></pre>
+<p>We <code>try</code> execute <code>doublePositiveNumber</code> and when it fails it falls though to the <code>with</code> part of the expression. Here we pattern match on the type using <code>:? Exception</code> and return <code>0</code> after printing the exception <code>Message</code>.</p>
+<p>So we come to out first tip on exception handling.</p>
+<blockquote>
+<p>TIP 1: Only handle exceptions you are expecting. Let the exceptional cases bubble up.</p>
+</blockquote>
+<p>What does this mean in practice? It means you should be more precise than handling <code>Exception</code>. Usually we want to do something drastic (like crash the application or cancel processing that HTTP request) if something happened that we did not cater for at all.</p>
+<p>Remember that <code>Exception</code> is the type that just about any exception will inherit from, so by adding that as the type to handle, we effectively catch EVERY exception.</p>
+<p>Lets see how we can</p>
+<pre><code class="language-fsharp">// int
+let z = try
+            doublePositiveNumber -1
+        with
+        | MustBePositiveException(msg,nr) -&gt; printfn &quot;ERROR with number %i: %s&quot; nr msg; 0
+        | NumberTooLarge(msg,nr) -&gt; printfn &quot;ERROR with number %i: %s&quot; nr msg; Int32.MaxValue
+</code></pre>
+<blockquote>
+<p>TIP 2: If you can do something meaningful when an error occurs handle it as close to the exception source as possible.</p>
+</blockquote>
+<p>So we are now being more precise about handling <code>MustBePositiveException</code>, which is better.<br />
+NOTE: If we were raising an error using <code>failwith</code> we would handle with <code>| Failure(msg) -&gt; printfn &quot;%s&quot; msg</code>.</p>
+<h2>Handling expected exceptions</h2>
+<p>So in the previous example we were catching the <code>MustBePositiveException</code> exception and after printing returning <code>0</code>. Is this really a good default behavior? Maybe <code>-1</code>? This is hardly elegant or intent revealing. F# provides a functional solution to this problem in the form of <code>Result</code>. <code>Result</code> is similar to <code>Option</code> and <code>List</code> in that it provides an abstraction for dealing with a problem that takes a specific pattern. The result of a function call that can fail is either success, or a failure in some way. Lets change our calling code to return this <code>Result</code> type.</p>
+<pre><code class="language-fsharp">// Result&lt;int,exn&gt;
+let z = try
+            Ok (doublePositiveNumber -1)
+        with
+        | MustBePositiveException(msg,nr) as ex -&gt; Error(ex)
+</code></pre>
+<p>So we call <code>Ok</code> with the result if the call succeeds and <code>Error</code> if it throws an exception. Note the signature of the return type is <code>Result&lt;int,exn&gt;</code>. The first generic parameter is an <code>int</code> for the successful case and the second is of type <code>exn</code>, an F# exception. If we had instead just send back the exception message with <code>Error(msg)</code> the return type would have been <code>Result&lt;in,string&gt;</code>.</p>
+<h2>Working with Result</h2>
+<p>Lets take a look at a complete example and step through it.</p>
+<ol>
+<li>We define our function that throw an exception</li>
+<li>We call the function within a <code>try</code> expression</li>
+<li>We handle the <code>Result</code> with pattern matching</li>
+</ol>
+<pre><code class="language-fsharp">let doublePositiveNumber x =
+    if(x &lt;0) then failwith &quot;Argument must be positive number&quot;
+    else x*2
 
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/explore-590.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+let safeDoublePositiveNumber x = 
+        try
+            Ok (doublePositiveNumber x)
+        with
+        | Failure(msg) -&gt; Error(msg)
 
-        <a href="/testing-your-data-repositories/">
-            <h2 class="post-title">            Testing your data repositories
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Avoiding dependency on a data layer.
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on September 07, 2014</p>
-        
-            
-                <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-            
-                <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-            
-                <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-            
-                <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-            
-                <a href="/tag/java"><span class="label label-default">Java</span></a>
-            
-                <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-            
-        
-    </div>
-    <hr>
-    
+let z = safeDoublePositiveNumber -1
 
+match z with
+| Ok i -&gt; printfn &quot;The answer is %i&quot; i
+| Error msg -&gt; printfn &quot;ERROR: %s&quot; msg
+</code></pre>
+<blockquote>
+<p>Output: ERROR: Argument must be positive number</p>
+</blockquote>
+<p>This leads to our third tip.</p>
+<blockquote>
+<p>TIP 3: In the majority of cases you cannot do anything about the exception at the source. Return <code>Result</code> for any expected exceptions and let the calling code decide what to do.</p>
+</blockquote>
+<p>We could of course remove the need for <code>safeDoublePositiveNumber</code> by never throwing the exception in the first place.</p>
+<pre><code class="language-fsharp">let doublePositiveNumber x =
+    if(x &lt; 0) then Error &quot;Argument must be positive number&quot;
+    else Ok (x*2)
+</code></pre>
+<p>Our final tip.</p>
+<blockquote>
+<p>TIP 4: Rather than raising exceptions for non-exceptional cases, instead just return <code>Result</code>.</p>
+</blockquote>
+<h2>Conclusion</h2>
+<p>This was a brief introduction to exception handling. There are still more concepts to learn here so I do encourage you to go through the links in the resources section if you would like to learn more. You might want to look into <code>finally</code>, which allows execution of code regardless of the <code>try</code> succeeding or not.</p>
+<p>Once you are comfortable with the concepts here I also suggest looking at the Railway oriented programming link in the resources.</p>
+<p>To review the tips:</p>
+<ol>
+<li>Only handle exceptions you are expecting. Let the exceptional cases bubble up.</li>
+<li>If you can do something meaningful when an error occurs handle it as close to the exception source as possible.</li>
+<li>In the majority of cases you cannot do anything about the exception at the source. Return <code>Result</code> for any expected exceptions and let the calling code decide what to do.</li>
+<li>Rather than raising exceptions for non-exceptional cases, instead just return <code>Result</code>.</li>
+</ol>
+<p>So don't be a child. Communicate your errors back rather than throwing your exceptions out the functions (that metaphor aged badly).</p>
+<p>Next in the series we will be looking at a common occurrence in software development. Working with a database.</p>
+<h2>Resources</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Wikipedia:Don%27t_throw_your_toys_out_of_the_pram">Throwing your toys out the pram</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)">Inheritance</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/exception-handling/">Microsoft docs</a></li>
+<li><a href="https://fsharpforfunandprofit.com/posts/exceptions/">Further reading for fun and profit</a></li>
+<li><a href="https://fsharpforfunandprofit.com/rop/">Railway oriented programming</a></li>
+</ol>
+<h2>Credits</h2>
+<ol>
+<li>Social image by <a href="https://unsplash.com/@chuttersnap">Chuttersnap</a></li>
+</ol>
 
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/how-to-fsharp-pt-4/">How to F# - Part 4</a></li>
+                                                <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
+                                                <li><a href="/how-to-fsharp-pt-5/">How to F# - Part 5</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/how-to-fsharp-pt-7/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 7">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
 
+            </div>
 
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/explore-590.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/single-respon/">
-            <h2 class="post-title">            Single Responsibility Principle
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                The S in SOLID.
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on September 05, 2014</p>
-        
-            
-                <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-            
-                <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-            
-                <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="//img/posts/2014/old-clock-800.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/estimation/">
-            <h2 class="post-title">            Estimation
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Tackling the uncertainty of software estimation.
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on August 07, 2014</p>
-        
-            
-                <a href="/tag/agile"><span class="label label-default">Agile</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/explore-590.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/the-way-we-write-code/">
-            <h2 class="post-title">            The way we write code…and how we talk about it
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                The true challenge in writing good software.
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on July 18, 2014</p>
-        
-            
-                <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-            
-                <a href="/tag/agile"><span class="label label-default">Agile</span></a>
-            
-                <a href="/tag/design-patterns"><span class="label label-default">Design Patterns</span></a>
-            
-                <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-            
-                <a href="/tag/ddd"><span class="label label-default">DDD</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-<ul class="pager">
-    
-    
-    
-    <li class="next"> 
-        <a class="pagination-item newer" href="/page/5/">Newer &rarr;</a>
-    </li>
-        
-    
-</ul>
-		</div>
-
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -807,7 +386,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/agile">Agile</a>
 
@@ -827,8 +406,8 @@
 
     <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -1163,24 +742,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="https://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="https://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>

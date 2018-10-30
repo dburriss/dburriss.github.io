@@ -176,14 +176,14 @@
     <div class="post-preview jumbotron">
         
         <h1 class="post-title">            
-            <a href="/how-to-fsharp-pt-7/">How to F# - Part 7</a>
+            <a href="/how-to-fsharp-pt-8/">How to F# - Part 8</a>
         </h1>
         
         <em class="post-subtitle">
-            Working with collections
+            Handling Errors Elegantly
         </em>
         
-        <p class="post-meta">Posted by Devon Burriss on October 28, 2018</p>
+        <p class="post-meta">Posted by Devon Burriss on October 30, 2018</p>
         
             
                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
@@ -194,11 +194,11 @@
             
         
         
-            <img src="/img/posts/2018/books-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
+            <img src="/img/posts/2018/broken-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         
-        <p align="justify"><p>So after much threatening in past posts, we will finally be diving a little deeper into collections in F#. We will look at a few of the most commonly used functions on the collection modules by manipulating a <code>list</code> of people that we randomly generate.</p>
+        <p align="justify"><p>Even with all the pure functions we could ask for, eventually our applications are going to have to interact with the unpredictable outside world. Also, sometimes we just mess up. In this post we look at ways of dealing with errors in our applications.</p>
 </p></p>
-        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-7/" role="button">Read more</a></p>
+        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-8/" role="button">Read more</a></p>
     </div>
     <div class="clearfix"></div>
     <hr>
@@ -215,6 +215,155 @@
 
     
 
+     
+        
+     
+        
+        
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+    
+
+    <div class="post-preview ">
+        
+            
+        
+         <img src="/img/posts/2018/books-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+
+        <a href="/how-to-fsharp-pt-7/">
+            <h2 class="post-title">            How to F# - Part 7
+            </h2>
+            
+            
+            <h3 class="post-subtitle">
+                Working with collections
+            </h3>
+            
+        </a>
+        <p class="post-meta">Posted by Devon Burriss' Blog on October 28, 2018</p>
+        
+            
+                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
+            
+                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
+            
+                <a href="/tag/net"><span class="label label-default">.NET</span></a>
+            
+        
+    </div>
+    <hr>
+    
+
+
+
+
+    
+
+     
+        
      
         
      
@@ -360,6 +509,8 @@
 
     
 
+     
+        
      
         
      
@@ -513,6 +664,8 @@
         
      
         
+     
+        
         
         
      
@@ -650,6 +803,8 @@
 
     
 
+     
+        
      
         
      
@@ -807,6 +962,8 @@
         
      
         
+     
+        
         
         
      
@@ -940,6 +1097,8 @@
 
     
 
+     
+        
      
         
      
@@ -1101,6 +1260,8 @@
         
      
         
+     
+        
         
         
      
@@ -1246,6 +1407,8 @@
         
      
         
+     
+        
         
         
      
@@ -1366,157 +1529,6 @@
                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
             
                 <a href="/tag/csharp"><span class="label label-default">C#</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/posts/2018/functional-model-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/functional-modeling/">
-            <h2 class="post-title">            Functional modeling
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                The benefits of focusing on function rather than state
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on October 13, 2018</p>
-        
-            
-                <a href="/tag/ddd"><span class="label label-default">DDD</span></a>
-            
-                <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-            
-                <a href="/tag/functional-modeling"><span class="label label-default">Functional Modeling</span></a>
-            
-                <a href="/tag/architecture"><span class="label label-default">Architecture</span></a>
-            
-                <a href="/tag/modeling"><span class="label label-default">Modeling</span></a>
-            
-                <a href="/tag/temporal-modeling"><span class="label label-default">Temporal Modeling</span></a>
             
         
     </div>

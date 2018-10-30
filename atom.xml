@@ -3,13 +3,153 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-28T12:39:03.1778083+00:00</updated>
+  <updated>2018-10-30T23:19:27.040483+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/how-to-fsharp-pt-8/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-8/"/>
+    <title>How to F# - Part 8</title>
+    <updated>2018-10-30T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/how-to-fsharp-pt-8/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;Even with all the pure functions we could ask for, eventually our applications are going to have to interact with the unpredictable outside world. Also, sometimes we just mess up. In this post we look at ways of dealing with errors in our applications.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;Throwing our toys out the pram&lt;/h2&gt;
+&lt;p&gt;In South Africa we say &amp;quot;Throwing your toys out the cot&amp;quot; but it is the same. When a child is upset, they tend to throw whatever they have in hand to express their distress. When you cannot communicate your intent in another way, this is how you get your parents&apos; attention.&lt;/p&gt;
+&lt;p&gt;With that backdrop lets introduce &lt;code&gt;Exception&lt;/code&gt;s. When an error occurs, the normal execution of the application stops and an error is raised as an object that contains information about the error that occurred. Exceptions can happen for example when reading from a file that is not where you expect it to be.&lt;/p&gt;
+&lt;p&gt;You can also raise exceptions yourself.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;open System
+// int -&amp;gt; int
+let doublePositiveNumber x =
+    if(x &amp;lt;0) then raise (new ArgumentException(&amp;quot;Argument must be positive number&amp;quot;))
+    else x*2
+
+let y = doublePositiveNumber 2 // val y : int = 4
+let z = doublePositiveNumber -1 // ERROR: System.ArgumentException: Argument must be positive number
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Where &lt;code&gt;ArgumentException&lt;/code&gt; (which is in the &lt;code&gt;System&lt;/code&gt; namespace) is a type that inherits from &lt;code&gt;SystemException&lt;/code&gt; which inherits from &lt;code&gt;Exception&lt;/code&gt;. We haven&apos;t covered object-oriented topics in this series but basically that means that &lt;code&gt;ArgumentException&lt;/code&gt; inherits features from &lt;code&gt;SystemException&lt;/code&gt; which inherits from &lt;code&gt;Exception&lt;/code&gt;. All errors that occur during application execution inherit from &lt;code&gt;Exception&lt;/code&gt;. We will see an implication of this later when we explore ways of handling exceptions.&lt;/p&gt;
+&lt;p&gt;F# also provides a really easy way to raise an exception with a string message using &lt;code&gt;failwith&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let doublePositiveNumber x =
+    if(x &amp;lt;0) then failwith &amp;quot;Argument must be positive number&amp;quot;
+    else x*2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Custom exceptions&lt;/h2&gt;
+&lt;p&gt;In F# defining custom exceptions is simple (especially compared to C#). Lets define a custom exception of type &lt;code&gt;MustBePositiveException&lt;/code&gt; that takes a tuple of type &lt;code&gt;string * int&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;exception MustBePositiveException of string * int
+let doublePositiveNumber x =
+    if(x &amp;lt;0) then raise (MustBePositiveException(&amp;quot;Argument must be positive number&amp;quot;,x))
+    else x*2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We will see soon how we can handle exceptions that occur.&lt;/p&gt;
+&lt;h2&gt;Handling exceptions&lt;/h2&gt;
+&lt;p&gt;The semantics of handling exceptions is that we try do something with the possibility of one or more exceptions occurring. Lets look at an example.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;open System
+let z = try
+            doublePositiveNumber -1
+        with
+        | :? Exception as ex -&amp;gt; printfn &amp;quot;ERROR: %s&amp;quot; ex.Message; 0 // don&apos;t do this
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We &lt;code&gt;try&lt;/code&gt; execute &lt;code&gt;doublePositiveNumber&lt;/code&gt; and when it fails it falls though to the &lt;code&gt;with&lt;/code&gt; part of the expression. Here we pattern match on the type using &lt;code&gt;:? Exception&lt;/code&gt; and return &lt;code&gt;0&lt;/code&gt; after printing the exception &lt;code&gt;Message&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;So we come to out first tip on exception handling.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TIP 1: Only handle exceptions you are expecting. Let the exceptional cases bubble up.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;What does this mean in practice? It means you should be more precise than handling &lt;code&gt;Exception&lt;/code&gt;. Usually we want to do something drastic (like crash the application or cancel processing that HTTP request) if something happened that we did not cater for at all.&lt;/p&gt;
+&lt;p&gt;Remember that &lt;code&gt;Exception&lt;/code&gt; is the type that just about any exception will inherit from, so by adding that as the type to handle, we effectively catch EVERY exception.&lt;/p&gt;
+&lt;p&gt;Lets see how we can&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// int
+let z = try
+            doublePositiveNumber -1
+        with
+        | MustBePositiveException(msg,nr) -&amp;gt; printfn &amp;quot;ERROR with number %i: %s&amp;quot; nr msg; 0
+        | NumberTooLarge(msg,nr) -&amp;gt; printfn &amp;quot;ERROR with number %i: %s&amp;quot; nr msg; Int32.MaxValue
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TIP 2: If you can do something meaningful when an error occurs handle it as close to the exception source as possible.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So we are now being more precise about handling &lt;code&gt;MustBePositiveException&lt;/code&gt;, which is better.&lt;br /&gt;
+NOTE: If we were raising an error using &lt;code&gt;failwith&lt;/code&gt; we would handle with &lt;code&gt;| Failure(msg) -&amp;gt; printfn &amp;quot;%s&amp;quot; msg&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Handling expected exceptions&lt;/h2&gt;
+&lt;p&gt;So in the previous example we were catching the &lt;code&gt;MustBePositiveException&lt;/code&gt; exception and after printing returning &lt;code&gt;0&lt;/code&gt;. Is this really a good default behavior? Maybe &lt;code&gt;-1&lt;/code&gt;? This is hardly elegant or intent revealing. F# provides a functional solution to this problem in the form of &lt;code&gt;Result&lt;/code&gt;. &lt;code&gt;Result&lt;/code&gt; is similar to &lt;code&gt;Option&lt;/code&gt; and &lt;code&gt;List&lt;/code&gt; in that it provides an abstraction for dealing with a problem that takes a specific pattern. The result of a function call that can fail is either success, or a failure in some way. Lets change our calling code to return this &lt;code&gt;Result&lt;/code&gt; type.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// Result&amp;lt;int,exn&amp;gt;
+let z = try
+            Ok (doublePositiveNumber -1)
+        with
+        | MustBePositiveException(msg,nr) as ex -&amp;gt; Error(ex)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So we call &lt;code&gt;Ok&lt;/code&gt; with the result if the call succeeds and &lt;code&gt;Error&lt;/code&gt; if it throws an exception. Note the signature of the return type is &lt;code&gt;Result&amp;lt;int,exn&amp;gt;&lt;/code&gt;. The first generic parameter is an &lt;code&gt;int&lt;/code&gt; for the successful case and the second is of type &lt;code&gt;exn&lt;/code&gt;, an F# exception. If we had instead just send back the exception message with &lt;code&gt;Error(msg)&lt;/code&gt; the return type would have been &lt;code&gt;Result&amp;lt;in,string&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Working with Result&lt;/h2&gt;
+&lt;p&gt;Lets take a look at a complete example and step through it.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;We define our function that throw an exception&lt;/li&gt;
+&lt;li&gt;We call the function within a &lt;code&gt;try&lt;/code&gt; expression&lt;/li&gt;
+&lt;li&gt;We handle the &lt;code&gt;Result&lt;/code&gt; with pattern matching&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let doublePositiveNumber x =
+    if(x &amp;lt;0) then failwith &amp;quot;Argument must be positive number&amp;quot;
+    else x*2
+
+let safeDoublePositiveNumber x = 
+        try
+            Ok (doublePositiveNumber x)
+        with
+        | Failure(msg) -&amp;gt; Error(msg)
+
+let z = safeDoublePositiveNumber -1
+
+match z with
+| Ok i -&amp;gt; printfn &amp;quot;The answer is %i&amp;quot; i
+| Error msg -&amp;gt; printfn &amp;quot;ERROR: %s&amp;quot; msg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Output: ERROR: Argument must be positive number&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This leads to our third tip.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TIP 3: In the majority of cases you cannot do anything about the exception at the source. Return &lt;code&gt;Result&lt;/code&gt; for any expected exceptions and let the calling code decide what to do.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We could of course remove the need for &lt;code&gt;safeDoublePositiveNumber&lt;/code&gt; by never throwing the exception in the first place.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let doublePositiveNumber x =
+    if(x &amp;lt; 0) then Error &amp;quot;Argument must be positive number&amp;quot;
+    else Ok (x*2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Our final tip.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TIP 4: Rather than raising exceptions for non-exceptional cases, instead just return &lt;code&gt;Result&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;This was a brief introduction to exception handling. There are still more concepts to learn here so I do encourage you to go through the links in the resources section if you would like to learn more. You might want to look into &lt;code&gt;finally&lt;/code&gt;, which allows execution of code regardless of the &lt;code&gt;try&lt;/code&gt; succeeding or not.&lt;/p&gt;
+&lt;p&gt;Once you are comfortable with the concepts here I also suggest looking at the Railway oriented programming link in the resources.&lt;/p&gt;
+&lt;p&gt;To review the tips:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Only handle exceptions you are expecting. Let the exceptional cases bubble up.&lt;/li&gt;
+&lt;li&gt;If you can do something meaningful when an error occurs handle it as close to the exception source as possible.&lt;/li&gt;
+&lt;li&gt;In the majority of cases you cannot do anything about the exception at the source. Return &lt;code&gt;Result&lt;/code&gt; for any expected exceptions and let the calling code decide what to do.&lt;/li&gt;
+&lt;li&gt;Rather than raising exceptions for non-exceptional cases, instead just return &lt;code&gt;Result&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So don&apos;t be a child. Communicate your errors back rather than throwing your exceptions out the functions (that metaphor aged badly).&lt;/p&gt;
+&lt;p&gt;Next in the series we will be looking at a common occurrence in software development. Working with a database.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Wikipedia:Don%27t_throw_your_toys_out_of_the_pram&quot;&gt;Throwing your toys out the pram&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)&quot;&gt;Inheritance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/exception-handling/&quot;&gt;Microsoft docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/posts/exceptions/&quot;&gt;Further reading for fun and profit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/rop/&quot;&gt;Railway oriented programming&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Social image by &lt;a href=&quot;https://unsplash.com/@chuttersnap&quot;&gt;Chuttersnap&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/how-to-fsharp-pt-7/</id>
