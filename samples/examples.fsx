@@ -1,4 +1,5 @@
 open System.Web.UI.WebControls
+open System.Web.Services.Description
 #load "Strings.fsx"
 open Strings
 open System
@@ -168,109 +169,126 @@ open System.IO
 //     | x -> printf "%i, " x
 // // run fizz buzz for numbers 1 to 20
 // [1..36] |> List.iter fizzbuzz
-open System
-let fname1 = Some "Brandon"
-let fname2 = None
-//string -> string
-let makeEmail name = 
-    let sanitizeString s = null |> (fun x -> if (box x = null) then None else Some(x))
-    name
-    |> Option.bind sanitizeString
-    |> Option.orElse (Some "info")
-    |> Option.map (fun n -> sprintf "%s@acme.com" n)
+// open System
+// let fname1 = Some "Brandon"
+// let fname2 = None
+// //string -> string
+// let makeEmail name = 
+//     let sanitizeString s = null |> (fun x -> if (box x = null) then None else Some(x))
+//     name
+//     |> Option.bind sanitizeString
+//     |> Option.orElse (Some "info")
+//     |> Option.map (fun n -> sprintf "%s@acme.com" n)
     
-let lastname = Some "Lee"
-let toEmail (s:string) = makeEmail 
+// let lastname = Some "Lee"
+// let toEmail (s:string) = makeEmail 
 
-let email1 = makeEmail fname1
-let email2 = makeEmail fname2
-let fullname = Option.map2
+// let email1 = makeEmail fname1
+// let email2 = makeEmail fname2
+// let fullname = Option.map2
 
-let z = Option.bind
+// let z = Option.bind
 
-// ===============================================
-type Person = { Id:int; Name:string }
+// // ===============================================
+// type Person = { Id:int; Name:string }
 
-let people1 = [
-    { Id=1; Name="Sue"}
-    { Id=2; Name="Bob"}
-    { Id=3; Name="Neo"}
-    { Id=4; Name="Fen"}
-    { Id=5; Name="An"}
-    { Id=6; Name="Jan"}
-]
-let fNames = [ (1, "Sue"); (2, "Bob"); (3, "Neo"); (4, "Fen"); (5, "An Si" ); (6, "Jan")] |> Map.ofList
-let lNames = [ (1, "Ali"); (2, "Khan"); (3, "Jacobs"); (4, "Jenson"); (5, "Wu" ); (6, "Lee")] |> Map.ofList
-let names = List.zip fNames lNames
-// Map<int,string> -> Map<int,string> -> int -> string
-let generateName fnames lnames i =
-    let random = new System.Random(i)
-    let fo = random.Next(1,6) // get a random number between 1 - 6
-    let lo = random.Next(1,6) // get a random number between 1 - 6
-    sprintf "%s %s" (Map.find fo fnames) (Map.find lo lnames)
+// let people1 = [
+//     { Id=1; Name="Sue"}
+//     { Id=2; Name="Bob"}
+//     { Id=3; Name="Neo"}
+//     { Id=4; Name="Fen"}
+//     { Id=5; Name="An"}
+//     { Id=6; Name="Jan"}
+// ]
+// let fNames = [ (1, "Sue"); (2, "Bob"); (3, "Neo"); (4, "Fen"); (5, "An Si" ); (6, "Jan")] |> Map.ofList
+// let lNames = [ (1, "Ali"); (2, "Khan"); (3, "Jacobs"); (4, "Jenson"); (5, "Wu" ); (6, "Lee")] |> Map.ofList
+// let names = List.zip fNames lNames
+// // Map<int,string> -> Map<int,string> -> int -> string
+// let generateName fnames lnames i =
+//     let random = new System.Random(i)
+//     let fo = random.Next(1,6) // get a random number between 1 - 6
+//     let lo = random.Next(1,6) // get a random number between 1 - 6
+//     sprintf "%s %s" (Map.find fo fnames) (Map.find lo lnames)
 
-// int -> string
-let nameGen = generateName fNames lNames
-// (int -string) -> int -> Person
-let generatePerson gen i = { Id = i; Name = gen(i) }          // return a person
-// int -> Person
-let personGen = generatePerson nameGen
-let people = List.init 10 personGen
+// // int -> string
+// let nameGen = generateName fNames lNames
+// // (int -string) -> int -> Person
+// let generatePerson gen i = { Id = i; Name = gen(i) }          // return a person
+// // int -> Person
+// let personGen = generatePerson nameGen
+// let people = List.init 10 personGen
 
 
-let bob = people |> List.find (fun p -> p.Name.StartsWith("Bob"))
-let maybeBob = people |> List.tryFind (fun p -> p.Name = "Bob Khan")
+// let bob = people |> List.find (fun p -> p.Name.StartsWith("Bob"))
+// let maybeBob = people |> List.tryFind (fun p -> p.Name = "Bob Khan")
 
-let bobs = people |> List.filter (fun p -> p.Name.StartsWith("Bob"))
+// let bobs = people |> List.filter (fun p -> p.Name.StartsWith("Bob"))
 
-// char -> string -> string[]
-let split (sep:char) (s:string) = s.Split([|sep|])
+// // char -> string -> string[]
+// let split (sep:char) (s:string) = s.Split([|sep|])
 
-// string -> string
-let leadingLastName (name:string) = 
+// // string -> string
+// let leadingLastName (name:string) = 
     
-    let lastNameToFront (names:string array) = 
-        match names with
-        | [||] -> ""
-        | [|x|] -> x
-        | [|x;y|] -> String.concat ", " ([|y;x|])
-        | _ -> [|yield ([Array.last names;","] |> String.concat ""); for i=0 to ((Array.length names)-2) do yield names.[i] |] |> String.concat " "
+//     let lastNameToFront (names:string array) = 
+//         match names with
+//         | [||] -> ""
+//         | [|x|] -> x
+//         | [|x;y|] -> String.concat ", " ([|y;x|])
+//         | _ -> [|yield ([Array.last names;","] |> String.concat ""); for i=0 to ((Array.length names)-2) do yield names.[i] |] |> String.concat " "
     
-    name |> split ' '
-    |>lastNameToFront
+//     name |> split ' '
+//     |>lastNameToFront
 
-let withLeadingLName =  people |> List.map (fun p -> {p with Name = (leadingLastName p.Name)})
+// let withLeadingLName =  people |> List.map (fun p -> {p with Name = (leadingLastName p.Name)})
 
-[
-    { Id = 0; Name = "Wu, Fen" }  
-    { Id = 1; Name = "Ali, Bob" }  
-    { Id = 2; Name = "Jacobs, Fen" }  
-    { Id = 3; Name = "Jenson, Bob" }  
-    { Id = 4; Name = "Wu, An Si" }
-//...
-]
+// [
+//     { Id = 0; Name = "Wu, Fen" }  
+//     { Id = 1; Name = "Ali, Bob" }  
+//     { Id = 2; Name = "Jacobs, Fen" }  
+//     { Id = 3; Name = "Jenson, Bob" }  
+//     { Id = 4; Name = "Wu, An Si" }
+// //...
+// ]
 
 
-let sorted = withLeadingLName |> List.sortBy (fun p -> p.Name)
-[
-    { Id = 8; Name = "Ali, An Si" }  
-    { Id = 1; Name = "Ali, Bob" }  
-    { Id = 6; Name = "Jacobs, An Si" }  
-    { Id = 2; Name = "Jacobs, Fen" }  
-    { Id = 9; Name = "Jacobs, Neo" }  
-    //...
-]
+// let sorted = withLeadingLName |> List.sortBy (fun p -> p.Name)
+// [
+//     { Id = 8; Name = "Ali, An Si" }  
+//     { Id = 1; Name = "Ali, Bob" }  
+//     { Id = 6; Name = "Jacobs, An Si" }  
+//     { Id = 2; Name = "Jacobs, Fen" }  
+//     { Id = 9; Name = "Jacobs, Neo" }  
+//     //...
+// ]
 
-// Person -> string
-let getLastName person = person.Name |> split ',' |> Array.head
-let groupedByLName = withLeadingLName |> List.groupBy getLastName
+// // Person -> string
+// let getLastName person = person.Name |> split ',' |> Array.head
+// let groupedByLName = withLeadingLName |> List.groupBy getLastName
 
-[
-    ("Wu", [{Id = 0; Name = "Wu, Fen";}; {Id = 4; Name = "Wu, An Si";}; {Id = 7; Name = "Wu, Bob";}]);
-    ("Ali", [{Id = 1; Name = "Ali, Bob";}; {Id = 8; Name = "Ali, An Si";}]);
-    //...
-]
+// [
+//     ("Wu", [{Id = 0; Name = "Wu, Fen";}; {Id = 4; Name = "Wu, An Si";}; {Id = 7; Name = "Wu, Bob";}]);
+//     ("Ali", [{Id = 1; Name = "Ali, Bob";}; {Id = 8; Name = "Ali, An Si";}]);
+//     //...
+// ]
 
-let fNames = [ "Sue"; "Bob"; "Neo"; "Fen"; "An Si" ; "Jan"]
-let lNames = [ "Ali"; "Khan"; "Jacobs"; "Jenson"; "Wu"; "Lee"]
-let names = List.zip fNames lNames |> List.map (fun (fname,lname) -> sprintf "%s, %s" lname fname)
+// let fNames = [ "Sue"; "Bob"; "Neo"; "Fen"; "An Si" ; "Jan"]
+// let lNames = [ "Ali"; "Khan"; "Jacobs"; "Jenson"; "Wu"; "Lee"]
+// let names = List.zip fNames lNames |> List.map (fun (fname,lname) -> sprintf "%s, %s" lname fname)
+
+exception MustBePositiveException of string * int
+let doublePositiveNumber x =
+    if(x < 0) then Error "Argument must be positive number"
+    else Ok (x*2)
+
+let safeDoublePositiveNumber x = 
+        try
+            Ok (doublePositiveNumber x)
+        with
+        | Failure(msg) -> Error(msg)
+
+let z = safeDoublePositiveNumber -1
+
+match z with
+| Ok i -> printfn "The answer is %i" i
+| Error msg -> printfn "ERROR: %s" msg
