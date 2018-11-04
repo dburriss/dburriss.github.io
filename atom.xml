@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-11-04T21:38:09.8719159+00:00</updated>
+  <updated>2018-11-04T21:47:57.5981941+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -361,7 +361,7 @@ match z with
 &lt;li&gt;Rather than raising exceptions for non-exceptional cases, instead just return &lt;code&gt;Result&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;So don&apos;t be a child. Communicate your errors back rather than throwing your exceptions out the functions (that metaphor aged badly).&lt;/p&gt;
-&lt;p&gt;Next in the series we will be looking at a common occurrence in software development. Working with a database.&lt;/p&gt;
+&lt;p&gt;Next in the series we will be looking at a common occurrence in software development. &lt;a href=&quot;/how-to-fsharp-pt-9&quot;&gt;Working with a database&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Resources&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Wikipedia:Don%27t_throw_your_toys_out_of_the_pram&quot;&gt;Throwing your toys out the pram&lt;/a&gt;&lt;/li&gt;
