@@ -176,14 +176,14 @@
     <div class="post-preview jumbotron">
         
         <h1 class="post-title">            
-            <a href="/how-to-fsharp-pt-8/">How to F# - Part 8</a>
+            <a href="/how-to-fsharp-pt-9/">How to F# - Part 9</a>
         </h1>
         
         <em class="post-subtitle">
-            Handling Errors Elegantly
+            Connecting to a database
         </em>
         
-        <p class="post-meta">Posted by Devon Burriss on October 30, 2018</p>
+        <p class="post-meta">Posted by Devon Burriss on November 04, 2018</p>
         
             
                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
@@ -194,11 +194,11 @@
             
         
         
-            <img src="/img/posts/2018/broken-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
+            <img src="/img/posts/2018/package-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         
-        <p align="justify"><p>Even with all the pure functions we could ask for, eventually our applications are going to have to interact with the unpredictable outside world. Also, sometimes we just mess up. In this post we look at ways of dealing with errors in our applications.</p>
+        <p align="justify"><p>In almost any software system we want to store data at some point. For decades the bread and butter of persisting data has been databases, and in this post we look at ways of working with a database in F#.</p>
 </p></p>
-        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-8/" role="button">Read more</a></p>
+        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-9/" role="button">Read more</a></p>
     </div>
     <div class="clearfix"></div>
     <hr>
@@ -215,6 +215,157 @@
 
     
 
+     
+        
+     
+        
+        
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+    
+
+    <div class="post-preview ">
+        
+            
+        
+         <img src="/img/posts/2018/broken-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+
+        <a href="/how-to-fsharp-pt-8/">
+            <h2 class="post-title">            How to F# - Part 8
+            </h2>
+            
+            
+            <h3 class="post-subtitle">
+                Handling Errors Elegantly
+            </h3>
+            
+        </a>
+        <p class="post-meta">Posted by Devon Burriss' Blog on October 30, 2018</p>
+        
+            
+                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
+            
+                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
+            
+                <a href="/tag/net"><span class="label label-default">.NET</span></a>
+            
+        
+    </div>
+    <hr>
+    
+
+
+
+
+    
+
+     
+        
      
         
      
@@ -368,6 +519,8 @@
         
      
         
+     
+        
         
         
      
@@ -509,6 +662,8 @@
 
     
 
+     
+        
      
         
      
@@ -666,6 +821,8 @@
         
      
         
+     
+        
         
         
      
@@ -803,6 +960,8 @@
 
     
 
+     
+        
      
         
      
@@ -964,6 +1123,8 @@
         
      
         
+     
+        
         
         
      
@@ -1097,6 +1258,8 @@
 
     
 
+     
+        
      
         
      
@@ -1262,6 +1425,8 @@
         
      
         
+     
+        
         
         
      
@@ -1378,157 +1543,6 @@
                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
             
                 <a href="/tag/fsx"><span class="label label-default">FSX</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/posts/2018/package-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/up-and-running-with-paket/">
-            <h2 class="post-title">            Up and running with PAKET
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                The fastest ways to get going with PAKET dependency manager
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on October 16, 2018</p>
-        
-            
-                <a href="/tag/paket"><span class="label label-default">Paket</span></a>
-            
-                <a href="/tag/nuget"><span class="label label-default">Nuget</span></a>
-            
-                <a href="/tag/powershell"><span class="label label-default">Powershell</span></a>
-            
-                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-            
-                <a href="/tag/csharp"><span class="label label-default">C#</span></a>
             
         
     </div>

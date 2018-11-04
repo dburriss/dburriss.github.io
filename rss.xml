@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Tue, 30 Oct 2018 23:19:27 +00:00</pubDate>
-    <lastBuildDate>Tue, 30 Oct 2018 23:19:27 +00:00</lastBuildDate>
+    <pubDate>Sun, 04 Nov 2018 21:38:09 +00:00</pubDate>
+    <lastBuildDate>Sun, 04 Nov 2018 21:38:09 +00:00</lastBuildDate>
+    
+    <item>
+      <title>How to F# - Part 9</title>
+      <link>https://devonburriss.me/how-to-fsharp-pt-9/</link>
+      <pubDate>Sun, 04 Nov 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/how-to-fsharp-pt-9/</guid>
+      <description>Explore connecting and working with a database in F# using Dapper and SQLite</description>
+    </item>
     
     <item>
       <title>How to F# - Part 8</title>

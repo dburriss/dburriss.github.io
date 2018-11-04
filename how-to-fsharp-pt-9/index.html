@@ -19,42 +19,42 @@
     
 
 
-    <title>How to F# - Part 4</title>
-    <meta name="description" content="In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections">
+    <title>How to F# - Part 9</title>
+    <meta name="description" content="Explore connecting and working with a database in F# using Dapper and SQLite">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-4/">
+    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-9/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="How to F# - Part 4">
-    <meta itemprop="description" content="In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections">
-    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/pipes-500.jpg">
+    <meta itemprop="name" content="How to F# - Part 9">
+    <meta itemprop="description" content="Explore connecting and working with a database in F# using Dapper and SQLite">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/package-500.jpg">
     
-    <meta itemprop="datePublished" content="10/25/2018 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="10/25/2018 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="How to F# - Part 4 - Making decisions with control flow" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-4/" />
-    <meta name="headline" content="How to F# - Part 4 - Making decisions with control flow" />
+    <meta itemprop="datePublished" content="11/4/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="11/4/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="How to F# - Part 9 - Connecting to a database" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-9/" />
+    <meta name="headline" content="How to F# - Part 9 - Connecting to a database" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="How to F# - Part 4">
-    <meta name="twitter:description" content="In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections">
+    <meta name="twitter:title" content="How to F# - Part 9">
+    <meta name="twitter:description" content="Explore connecting and working with a database in F# using Dapper and SQLite">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/pipes-500.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/package-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="How to F# - Part 4" />
+    <meta property="og:title" content="How to F# - Part 9" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-4/" />
-    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/pipes-500.jpg" />
-    <meta property="og:description" content="In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections" />
+    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-9/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/package-500.jpg" />
+    <meta property="og:description" content="Explore connecting and working with a database in F# using Dapper and SQLite" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -156,17 +156,17 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/path-bg.jpg')">
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/silhouette-bg.jpg')">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>How to F# - Part 4</h1>
+                        <h1>How to F# - Part 9</h1>
                         
-                        <h2 class="subheading">Making decisions with control flow</h2>
+                        <h2 class="subheading">Connecting to a database</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 25, 2018</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on November 04, 2018</span>
                         
                             <hr />
                             
@@ -190,154 +190,228 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>In the <a href="/how-to-fsharp-pt-3">last post</a> we finished off our dive into functions. In this post we will look at control flow. How do we make a branching decision? How do we loop through something until some condition is met?</p>
+				<p>In almost any software system we want to store data at some point. For decades the bread and butter of persisting data has been databases, and in this post we look at ways of working with a database in F#.</p>
 <!--more-->
-<p>I am going to try keep this post short. The reason for this is that although you will invariably need to use control flow expressions in your code, they are stylistically not very functional and there are usually more functional ways to achieve the same thing. We explore those more functional techniques in this and future posts.</p>
-<h2>If then else</h2>
-<p>Other than<code>match</code> (covered later), <code>if</code> is probably the next most useful control flow expression we will touch on in this post. The <code>if</code> expression takes a <code>bool</code> and if <code>true</code> proceeds with the <code>then</code> body. Usually there is an <code>else</code> and we will go through when that is necessary.</p>
-<pre><code class="language-fsharp">let b = true
-if (b) then printfn &quot;Is true&quot; else printfn &quot;Is false&quot;
+<h2>Introduction</h2>
+<p>SQL databases are very common and have been for decades. In this post we will look at how to interact with a <a href="https://www.sqlite.org/about.html">SQLite database</a> using the <a href="https://github.com/StackExchange/Dapper">Dapper</a> library. Lets briefly go through the technologies we will be touching today that are not F#. If you already have experience with relational databases and are just here for the F#, you probably want to skip this introduction section.</p>
+<h3>Structured Query Language</h3>
+<p>Structured Query Language (SQL) is a domain specific language. What is a domain specific language? Well it is a language that is designed and used in a very specific domain. In this case, working with databases. I am not going to go into the mathematics as I did with functions because frankly the syntax is not nearly as similar, so it doesn't demonstrate much. Suffice to say it has its roots in relational algebra. It is a language that is easy to start using but hard to master.</p>
+<p>Imagine we want a table of data like this:</p>
+<div class="table-responsive"><table class="table table-hover">
+<thead> <tr> 
+    <th>id</th> <th>name</th>  <th>email</th> </tr> </thead>
+<tbody>
+<tr> <td>1</td> <td>Sue</td>   <td>sue@acme.com</td>        </tr>
+<tr> <td>2</td> <td>Bob</td>   <td>khan@acme.com</td>       </tr>
+<tr> <td>3</td> <td>Neo</td>   <td>neo@metacortex.com</td>  </tr>
+<tr> <td>4</td> <td>Fen</td>   <td>fen@acme.com</td>        </tr>
+<tr> <td>5</td> <td>An Si</td> <td>we@acme.com</td>         </tr>
+<tr> <td>6</td> <td>Jan</td>   <td>lee@acme.com</td>        </tr>
+</tbody>
+</table></div>
+<h4>Creating a table</h4>
+<p>So how would we create the structure for the table above? SQL is one of the more descriptive languages, because it is so specific. This is a good thing.</p>
+<pre><code class="language-sql">CREATE TABLE people (
+                     id INTEGER PRIMARY KEY,
+                     name TEXT NOT NULL,
+                     email TEXT NOT NULL UNIQUE
+                    );
 </code></pre>
-<p>The above will print out <em>Is true</em>, and not print <em>Is false</em>.<br />
-Maybe we don't want to print out anything if the value is <code>false</code>. We can do this:</p>
-<pre><code class="language-fsharp">let b = true
-if (b) then printfn &quot;Is true&quot;
+<p>Firstly we specify the name of the table to create, <em>people</em>. Secondly, we specify the columns found in the table.<br />
+We have an <code>id</code> that is an integer. We mark it as <code>PRIMARY KEY</code> to indicate that it is the primary way to uniquely identify our record. The database will automatically insert an incrementing identifier for each record we insert.<br />
+Next we have <code>name</code> which is a <code>TEXT</code> field indicating we can store a <code>string</code> value. <code>NOT NULL</code> indicates we cannot leave this record out.
+Finally, we have <code>email</code> which is similar to <code>name</code> except we have an extra constraint on it that it be <code>UNIQUE</code>. The database will enforce these constraints of <code>NOT NULL</code> and <code>UNIQUE</code>, giving us some measure of protection from bad data.</p>
+<h4>Inserting a record</h4>
+<p>So we have our table but how do we get data in the database? Unsurprisingly we use <code>INSERT</code>.</p>
+<pre><code class="language-sql">INSERT INTO people (name,email) VALUES (&quot;Bob&quot;,&quot;bob@acme.com&quot;);
 </code></pre>
-<p>Now if you changed <code>let b = false</code>, nothing would be printed.</p>
-<p>What if we wanted to <strong>return a value</strong> based on some condition though without an <code>else</code>?</p>
-<pre><code class="language-fsharp">let v = if(b) then 1 // &lt;- Error: This 'if' expression is missing an 'else' branch.
+<p>We specify the table <em>people</em> as the one we want to insert into and then the columns we will be supplying data for. Then we indicate the values to insert using <code>VALUES</code> where the order of the values matches the order of the columns we specified.</p>
+<h4>Updating a record</h4>
+<p>What if some data changed since being inserted? Well of course SQL provides an <code>UPDATE</code> command.</p>
+<pre><code class="language-sql">UPDATE people SET name='Bobby', email= 'bobby@acme.com' WHERE id = 1;
 </code></pre>
-<p>At least the error message is pretty clear about what the problem is. With the print example we were returning <code>unit</code> so it didn't matter if nothing was returned. Here the expression has to return a value because we are assigning that value.</p>
-<pre><code class="language-fsharp">let v = if(b) then 1 else 0
+<p>So we indicate an <code>UPDATE</code> on a specific table and then <code>SET</code> whichever columns we want to change. You almost always want to specify a condition of which record to update. If you left off the <code>WHERE</code> for this update it could set every <code>name</code> and <code>email</code> to &quot;Bobby&quot; and &quot;bobby@acme.com&quot;, except that we are protected by our <code>UNIQUE</code> constraint on <code>email</code>, so our constrain saves us from a potentially devastating loss of data.</p>
+<h4>Fetching records</h4>
+<p>How would we query data from it? We use a SQL <code>SELECT</code> statement.</p>
+<pre><code class="language-sql">SELECT id,name,email FROM people;
 </code></pre>
-<p>So depending on whether <code>b</code> is <code>true</code> or <code>false</code>, <code>v</code> will have a value of <code>1</code> or <code>0</code> respectively.</p>
-<p>Lets take a look at something a bit more complex:</p>
-<pre><code class="language-fsharp">let divideBy d n = n/d
-let numerator = 10
-let denominator = 2
+<p>When selecting we start with <code>SELECT</code> then specify the columns we want, then <code>FROM</code> which table.</p>
+<p>When selecting data we can also use <code>WHERE</code> to specify specific records.</p>
+<pre><code class="language-sql">SELECT id,name,email FROM people WHERE id = 1;
+SELECT id,name,email FROM people WHERE email LIKE '%@acme.com';
+</code></pre>
+<p>The first query will return a single record since <code>id</code> is always unique.<br />
+The second query will return all records where <code>email</code> ends with <em>@acme.com</em>, skipping only record number 3 in our example data.</p>
+<blockquote>
+<p>In this tutorial we will only deal with data in a single table, we will not be going into relationships between tables. Relationships are a very powerful aspect of some databases and worth looking into further.</p>
+</blockquote>
+<h3>SQLite</h3>
+<p>SQLite is a very popular database that has some unique characteristics that make it desireable for a tutorial like this. It requires no server so we interact directly with the file system from our process. This means it is very easy to get going with as it has zero setup.</p>
+<p>We will be using the <a href="https://www.nuget.org/packages/System.Data.SQLite/">System.Data.SQLite Nuget package</a> to interact with a local <a href="https://www.sqlite.org">SQLite</a> database. The database is created in our code when we use it for the first time.</p>
+<h3>Dapper</h3>
+<p><a href="https://github.com/StackExchange/Dapper">Dapper</a> is a very popular mini-ORM. An ORM (Object Relational Mapper) is typically a library used in your code that maps relational data from a database to objects in your programming language of choice. While a full ORM will typically generate all queries, joins, and mappings for you, a mini-ORM will usually require you to still write some SQL and then it will do some mapping by convention for you. We will be visiting some Dapper code soon.</p>
+<h2>Now to the good part</h2>
+<p>Although Dapper is a great library for flexibly working with databases, it is written in and for C#. So the first thing we are going to do each time we use Dapper is wrap its functionality it in functions that surfaces Dapper in a more functional way.</p>
+<h3>Executing SQL</h3>
+<p>Dapper exposes the following C# function that we will be using a lot. It executes a SQL statement against a database connection and allows you to optionally pass an <code>object</code> in for parameters for the SQL statement. Don't worry if this doesn't make complete sense now, it should make more sense when you see an example.</p>
+<p>It is known as an <strong>extension method</strong> and is on an instance of <code>IDbConnection</code>.</p>
+<pre><code class="language-csharp">public static Task&lt;int&gt; Execute(this IDbConnection cnn, string sql, object param = null, SqlTransaction transaction = null)
+</code></pre>
+<p>So what is the problem here? Well for one remember in <a href="/how-to-fsharp-pt-8">part 8</a> we looked at how to handle exceptions more functionally? The above method will throw an exception if something goes wrong. Lets fix that.</p>
+<pre><code class="language-fsharp">open Dapper
+open System.Data.Common
 
-let j = if(denominator &lt;&gt; 0) then 
-            printfn &quot;Dividing by %i, not 0&quot; denominator
-            let x = numerator |&gt; divideBy denominator
-            printfn &quot;The answer is %i&quot; x
-            x
-        else
-            printfn &quot;Dividing by 0&quot;
-            0
+// DbConnection -&gt; string -&gt; 'b -&gt; Result&lt;int,exn&gt;
+let execute (connection:#DbConnection) (sql:string) (parameters:_) =
+    try
+        let result = connection.Execute(sql, parameters)
+        Ok result
+    with
+    | ex -&gt; Error ex
 </code></pre>
-<blockquote>
-<p>Note that we don't have to assign this to a value, here <code>j</code> but it would be pretty pointless to return a value and not use it. The compiler will give you a warning at this point <em>The result of this expression has type 'int' and is implicitly ignored. Consider using 'ignore' to discard this value explicitly, e.g. 'expr |&gt; ignore', or 'let' to bind the result to a name, e.g. 'let result = expr'.</em><br />
-This is asking us to call <code>ignore()</code> in each branch of the <code>if</code> expression.</p>
-</blockquote>
-<p>We can have multiple lines in either branch, organized by indentation. Just like functions the last expression is what is returned as the value of the <code>if-else</code> expression for each branch.</p>
-<h3>Scope</h3>
-<p>In the previous post I mentioned scope. This is a good opportunity to demonstrate scope. Check out the assigning of the <code>denominator</code> value below.</p>
-<pre><code class="language-fsharp">let divideBy d n = n/d
-let numerator = 10
-let denominator = 0
+<p>So we have a function called <code>execute</code> now with signature <code>DbConnection -&gt; string -&gt; 'b -&gt; Result&lt;int,exn&gt;</code>. It makes use of the Dapper extension method <code>Execute</code> but we wrap it in a <code>try..with</code> expression and return a type <code>Result&lt;int,exn&gt;</code>.</p>
+<p>To use <code>execute</code> we need an instance of a <code>DbConnection</code>. Lets write a small function that will return us a database connection and open that connection to the database, ready to use.</p>
+<pre><code class="language-fsharp">// string -&gt; SQLiteConnection
+let conn (db:string) =
+    let c = new SQLiteConnection(sprintf &quot;Data Source=%s.sqlite&quot; db)
+    c.Open()
+    c
+</code></pre>
+<h4>Creation</h4>
+<p>So we now have all the building blocks to execute a SQL statement. Lets create a <em>people</em> table in a database called <em>test</em>.</p>
+<pre><code class="language-fsharp">// DbConnection -&gt; Result&lt;int,exn&gt;
+let createPeopleTable (connection:DbConnection) =
+    let sql = &quot;CREATE TABLE IF NOT EXISTS people (
+                 id INTEGER PRIMARY KEY,
+                 name TEXT NOT NULL,
+                 email text NOT NULL UNIQUE
+                );&quot;
+    execute connection sql None
 
-if(denominator &lt;&gt; 0) then 
-    printfn &quot;Dividing by %i, not 0&quot; denominator
-    let x = numerator |&gt; divideBy denominator
-    printfn &quot;The answer is %i&quot; x
-    x
-else
-    printfn &quot;Dividing by 0&quot;
-    let denominator = 1
-    printfn &quot;Instead by %i, not 0&quot; denominator
-    let x = numerator |&gt; divideBy denominator
-    printfn &quot;The answer is %i&quot; x
-    x
+// create a connection and the table
+let dbName = &quot;test&quot;
+let connection = conn dbName
+createPeopleTable connection
+</code></pre>
+<h4>Insertion</h4>
+<p>So now we have a table called <em>people</em>. Lets insert a record.</p>
+<pre><code class="language-fsharp">// DbConnection -&gt; string -&gt; string -&gt; Result&lt;int,exn&gt;
+let insertPerson (connection:DbConnection) name email  =
+    let data = [(&quot;@name&quot;,box name);(&quot;@email&quot;,box email)] |&gt; dict |&gt; fun d -&gt; new Dapper.DynamicParameters(d)
+    let sql = &quot;INSERT INTO people (name,email) VALUES (@name,@email);&quot;
+    execute connection sql data
 
-printfn &quot;Denominator is %i&quot; denominator
+// insert a person from name and email
+insertPerson connection &quot;Sue&quot; &quot;sue@acme.com&quot;
 </code></pre>
-<p>The above prints out the following:</p>
-<pre><code class="language-text">Dividing by 0
-Instead by 1, not 0
-The answer is 10
-Denominator is 0
+<p>So in the above code we make use of a type called <code>DynamicParameters</code> from Dapper. This takes in a dictionary so we create a list of name value tuples, and convert that to a dictionary before passing it to <code>DynamicParameters</code>. Worth noting here is that the constructor of <code>DynamicParameters</code> takes <code>IDictionary&lt;string,obj&gt;</code>.</p>
+<p>Which brings us to <code>box</code>. It has a signature of <code>'T -&gt; obj</code>, so when applied to the values in the tuples we get type <code>IDictionary&lt;string,obj&gt;</code> as needed for the constructor of <code>DynamicParameters</code>.</p>
+<blockquote>
+<p>This fails with some pretty cryptic errors of <em>Insufficient parameters supplied to the command</em> if you do not call the <code>box</code> function on the value.</p>
+</blockquote>
+<p>Another way of achieving the same, and usually a better option, is to use an actual type to represent the insert data.</p>
+<pre><code class="language-fsharp">type CreatePerson = { name:string; email:string }
+let insertPerson (connection:DbConnection) (person:CreatePerson)  =
+    let sql = &quot;INSERT INTO people (name,email) VALUES (@name,@email);&quot;
+    execute connection sql person
+
+insertPerson connection { name = &quot;Ali&quot;; email = &quot;ali@acme.com&quot; }
 </code></pre>
-<p>Notice here how we set a value for <code>denominator</code> within the <code>else</code> branch that shadows the outside one. Once we are back to the scope outside the if, <code>denominator</code> is back to <code>0</code>, even though it was set to <code>1</code> in the <code>else</code> branch. It was <code>1</code> for the scope of the <code>else</code> branch of the expression as it was set in that scope.</p>
-<h3>If / elseif / else</h3>
-<p>It is (maybe) worth mentioning that you can have more than 2 branches by using <code>elif</code>.</p>
-<pre><code class="language-fsharp">if(x = 1) then printfn &quot;x is 1&quot;
-elif (x = 2) then printfn &quot;x is 2&quot;
-else printfn &quot;x is not 1 or 2&quot;
-</code></pre>
-<p>We will briefly cover <code>match</code> next and even when <strong>if / else</strong> seems a cleaner solution, once you are using <code>elif</code> you almost certainly should be using <code>match</code> instead.</p>
-<h2>Match</h2>
-<p>We will hopefully cover pattern matching in more detail in a later entry but no coverage of functional control flow is complete without <code>match</code>.</p>
-<p>Lets re-write the previous example using <code>match</code>:</p>
-<pre><code class="language-fsharp">match x with
-| 1 -&gt; printfn &quot;x is 1&quot;
-| 2 -&gt; printfn &quot;x is 2&quot;
-| _ -&gt; printfn &quot;x is not 1 or 2&quot;
-</code></pre>
-<p>Note that <code>_</code> is a catch-all, like else is.
-This is a much cleaner and more functional way to do control flow. A nice benefit here is that the compiler gives you a warning if you are not matching exhaustively on all options of the matched value.</p>
-<p>We will hopefully circle around to <code>match</code> again when covering pattern matching as <code>match</code> is far more powerful than demonstrated here.</p>
-<p><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/match-expressions">Microsoft docs</a></p>
-<h2>for..in</h2>
-<p>If you need to loop through an entire collection and do something you could use the <code>for pattern in enumerable-expression do body-expression</code> syntax. This is like <code>foreach</code> in many other languages. Lets see what that looks like:</p>
-<pre><code class="language-fsharp">let numbers = [1..10]
-for x in numbers do
-    printf &quot;%i &quot; x
+<h4>Update</h4>
+<p>We could of course have both variations with the update as well.</p>
+<pre><code class="language-fsharp">// Option 1: multiple arguments
+let updatePerson (connection:DbConnection) id name email =
+    let data = [(&quot;@id&quot;,box id);(&quot;@name&quot;,box name);(&quot;@email&quot;,box email)] 
+                |&gt; dict |&gt; fun d -&gt; new Dapper.DynamicParameters(d)
+    let sql = &quot;UPDATE people SET name=@name, email=@email WHERE id=@id&quot;
+    execute connection sql data
+
+// Option 2: a record with all data
+[&lt;CLIMutable&gt;]
+type UpdatePerson = { id:int; name:string; email:string }
+let updatePerson (connection:DbConnection) (person:UpdatePerson) =
+    let sql = &quot;UPDATE people SET name=@name, email=@email WHERE id=@id&quot;
+    execute connection sql person
+
+// use option 2
+let updatedPerson = { id=2; name=&quot;Kublai Khan&quot;; email=&quot;kublai.k@acme.com&quot;}
+updatePerson connection updatedPerson
 </code></pre>
 <blockquote>
-<p>Output: 1 2 3 4 5 6 7 8 9 10</p>
+<p>NOTE: We put the <code>[&lt;CliMutable&gt;]</code> attribute on the type because later on we use this type to return rows from the database. If left off you will receive an error: <em>A parameterless default constructor or one matching signature (System.Int64 id, System.String name, System.String email) is required for UpdatePerson materialization</em></p>
 </blockquote>
-<p>See how you can easily create a range of values using <code>start..finish</code> syntax. We use this to define <code>numbers</code>. Then for each element of the list we print the value which is in <code>x</code>.</p>
-<p>We will hopefully cover collections in an upcoming post but for interest sake lets see how this would be done in a more functional way.</p>
-<pre><code class="language-fsharp">let numbers = [1..10]
-numbers |&gt; List.iter (printf &quot;%i &quot;)
+<p>As you can see, option 2 will handle change a lot better than option 1 if more fields need to be added it a person.</p>
+<h2>Querying for data</h2>
+<p>So far we have looked at SQL that changes state but doesn't really return much, other than the number of changes. Lets now look at querying for data.</p>
+<p>First we need to write our functional wrappers around Dapper. We will create a function for querying for multiple records (<code>query</code>) and another for querying a single record (<code>querySingle</code>). The make use of Dapper's <code>Query</code> and <code>QuerySingleOrDefault</code> methods respectively.</p>
+<pre><code class="language-fsharp">// DbConnection -&gt; string -&gt; IDictionary&lt;string,obj&gt; -&gt; Result&lt;seq&lt;'T&gt;,exn&gt;
+let query (connection:#DbConnection) (sql:string) (parameters:IDictionary&lt;string, obj&gt; option) : Result&lt;seq&lt;'T&gt;,exn&gt; =
+    try
+        let result =
+            match parameters with
+            | Some p -&gt; connection.Query&lt;'T&gt;(sql, p)
+            | None -&gt; connection.Query&lt;'T&gt;(sql)
+        Ok result
+    with
+    | ex -&gt; Error ex
+
+// DbConnection -&gt; string -&gt; IDictionary&lt;string,obj&gt; -&gt; Result&lt;'T,exn&gt;
+let querySingle (connection:#DbConnection) (sql:string) (parameters:IDictionary&lt;string, obj&gt; option) =
+    try
+        let result =
+            match parameters with
+            | Some p -&gt; connection.QuerySingleOrDefault&lt;'T&gt;(sql, p)
+            | None -&gt; connection.QuerySingleOrDefault&lt;'T&gt;(sql)
+        
+        if isNull (box result) then Ok None
+        else Ok (Some result)
+
+    with
+    | ex -&gt; Error ex
 </code></pre>
-<p>Unsurprisingly the functional approach is to call the <code>iter</code> function on the <code>List</code> module. This <code>iter</code> function has the signature <code>('T -&gt; unit) -&gt; 'T list -&gt; unit</code>. Lets break that down:</p>
-<ul>
-<li><code>('T -&gt; unit)</code>: a function defining the action to take for each element in the list</li>
-<li><code>'T list</code>: the list to iterate through</li>
-<li><code>unit</code>: returns unit so this function is designed to iterate through a function and do something, not return a value</li>
-</ul>
-<p>There are many more functions for working with lists in the <code>List</code> module and matching ones for <code>Array</code> and <code>Seq</code>.</p>
-<p><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-for-in-expression">Microsoft docs</a></p>
-<h2>for..to</h2>
-<p>While <code>for..in</code> is for iterating over a collection, <code>for..to</code> allows you to iterate from a start value to another. This is like a <code>for</code> loop in other languages.</p>
-<pre><code class="language-fsharp">let ns = [|1..10..100|]
-for i=0 to ((Array.length ns)/2) do
-    printf &quot;%i &quot; (Array.get ns i)
+<p>Note that for <code>query</code> I specify the return type, this is purely so the return type uses <code>seq&lt;'T&gt;</code> instead of <code>IEnumerable&lt;'T&gt;</code>. Errors are returned as before and for <code>querySingle</code> any <code>null</code> is returned as an <code>option</code> type as we discussed in <a href="/how-to-fsharp-pt-6">part 6</a>.</p>
+<p>So lets use <code>query</code> to create a search function for all ACME employees.</p>
+<pre><code class="language-fsharp">let findAcmeEmployees (connection:DbConnection) =
+    let sql = &quot;SELECT id,name,email FROM people WHERE email LIKE '%@acme.com'&quot;
+    query connection sql None
+
+match (findAcmeEmployees connection) with 
+| Ok people -&gt; printfn &quot;Found %i employees&quot; (Seq.length people)
+| Error ex -&gt; printfn &quot;%A&quot; ex.Message
 </code></pre>
-<blockquote>
-<p>Output: 1 11 21 31 41 51</p>
-</blockquote>
-<p>In our example we have an array that has numbers 1 to a 100 in increments of 10. We only iterate through half the list.</p>
-<p><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-for-to-expression">Microsoft docs</a></p>
-<h2>while</h2>
-<p>What if we want to iterate until a certain condition is true? The following code gets a random number until that number is <code>7</code>.</p>
-<pre><code class="language-fsharp">let random = new System.Random()
-let aNumber() = random.Next(1,10)
-let mutable n = 0
-while (n &lt;&gt; 7) do
-    printf &quot;%i &quot; n
-    n &lt;- aNumber()
+<p>Lastly, we will demonstrate fetching a single record by <strong>id</strong>.</p>
+<pre><code class="language-fsharp">let personById (connection:DbConnection) id =
+    let data = [(&quot;@id&quot;,box id)] |&gt; dict |&gt; Some
+    let sql = &quot;SELECT id,name,email FROM people WHERE id = @id&quot;
+    querySingle connection sql data
+
+// use the function to fetch person with id 1 and print results out
+match (personById connection 1) with
+| Ok (Some(person)) -&gt; printfn &quot;Found %i : %s %s&quot; person.id person.name person.email
+| Ok None -&gt; printfn &quot;No person found&quot;
+| Error ex -&gt; printfn &quot;%A&quot; ex.Message
 </code></pre>
-<blockquote>
-<p>Output: 0 9 9 1 6 5 2 2 6 6 2 6 6 1 2 3 6 8 8 1 3 2 2</p>
-</blockquote>
-<p>We kept going through the <code>while</code> loop until <code>aNumber()</code> returned <code>7</code>.</p>
-<p><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-while-do-expression">Microsoft docs</a></p>
+<p>See how we handle different possibilities when evaluating a query result. We have the happy case where we have no errors and find someone. We have no errors but do not find someone. And finally we handle errors.</p>
 <h2>Conclusion</h2>
-<p>In this post we looked at ways to represent branching logic and ways to iterate over values. Remember that much of this is a very imperative approach and as such is not used a lot in the function paradigm. We looked at some functional techniques for dealing with branching and looping and will continue this in future articles. Next up we look at <a href="/how-to-fsharp-pt-5">Pattern Matching</a>.</p>
-<h2>Credits</h2>
+<p>We covered quite a lot today but now you know the basics of working with a database in F#. We saw how we can use Dapper to ease passing in parameters and mapping to types. We wrote a functional wrapper around Dapper to handle errors and <code>null</code>s. And we saw how to persist to and query from a database that we created.</p>
+<p>What we covered here is a pretty standard way to work with a database. F# actually has some very novel ways of working with databases using <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/type-providers/">Type Provider</a>s like <a href="https://github.com/fsprojects/SQLProvider">SQLProvider</a> and <a href="https://github.com/rspeele/Rezoom.SQL">Rezoom.SQL</a>.</p>
+<p>In the final <strong>How to F#</strong> coming soon we will put everything we have learned together to create you first F# application.</p>
+<h2>Resources</h2>
 <ol>
-<li><a href="https://unsplash.com/@spacexuan">Crystal Kwok</a></li>
+<li><a href="http://www.sqlitetutorial.net/download-install-sqlite/">Install SQLite binaries</a></li>
+<li><a href="http://www.sqlitetutorial.net/sqlite-create-table/">CREATE TABLE</a></li>
+<li><a href="http://www.sqlitetutorial.net/sqlite-insert/">INSERT</a></li>
+<li><a href="http://www.sqlitetutorial.net/sqlite-update/">UPDATE</a></li>
+<li><a href="https://fsharpforfunandprofit.com/posts/cli-types/#boxing-and-unboxing">Boxing for fun and profit</a></li>
 </ol>
 
                 <hr />
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
-                                                <li><a href="/how-to-fsharp-pt-5/">How to F# - Part 5</a></li>
+                                                <li><a href="/how-to-fsharp-pt-6/">How to F# - Part 6</a></li>
+                                                <li><a href="/how-to-fsharp-pt-7/">How to F# - Part 7</a></li>
                                                 <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
-                                                <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -345,13 +419,9 @@ while (n &lt;&gt; 7) do
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/how-to-fsharp-pt-3/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 3">&larr; Previous Post</a>
+                        <a href="/how-to-fsharp-pt-8/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 8">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/how-to-fsharp-pt-5/" data-toggle="tooltip" data-placement="top" title="How to F# - Part 5">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

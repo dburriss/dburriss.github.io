@@ -3,13 +3,238 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-10-30T23:19:27.040483+00:00</updated>
+  <updated>2018-11-04T21:38:09.8719159+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/how-to-fsharp-pt-9/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-9/"/>
+    <title>How to F# - Part 9</title>
+    <updated>2018-11-04T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/how-to-fsharp-pt-9/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;In almost any software system we want to store data at some point. For decades the bread and butter of persisting data has been databases, and in this post we look at ways of working with a database in F#.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;SQL databases are very common and have been for decades. In this post we will look at how to interact with a &lt;a href=&quot;https://www.sqlite.org/about.html&quot;&gt;SQLite database&lt;/a&gt; using the &lt;a href=&quot;https://github.com/StackExchange/Dapper&quot;&gt;Dapper&lt;/a&gt; library. Lets briefly go through the technologies we will be touching today that are not F#. If you already have experience with relational databases and are just here for the F#, you probably want to skip this introduction section.&lt;/p&gt;
+&lt;h3&gt;Structured Query Language&lt;/h3&gt;
+&lt;p&gt;Structured Query Language (SQL) is a domain specific language. What is a domain specific language? Well it is a language that is designed and used in a very specific domain. In this case, working with databases. I am not going to go into the mathematics as I did with functions because frankly the syntax is not nearly as similar, so it doesn&apos;t demonstrate much. Suffice to say it has its roots in relational algebra. It is a language that is easy to start using but hard to master.&lt;/p&gt;
+&lt;p&gt;Imagine we want a table of data like this:&lt;/p&gt;
+&lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-hover&quot;&gt;
+&lt;thead&gt; &lt;tr&gt; 
+    &lt;th&gt;id&lt;/th&gt; &lt;th&gt;name&lt;/th&gt;  &lt;th&gt;email&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;Sue&lt;/td&gt;   &lt;td&gt;sue@acme.com&lt;/td&gt;        &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;Bob&lt;/td&gt;   &lt;td&gt;khan@acme.com&lt;/td&gt;       &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;3&lt;/td&gt; &lt;td&gt;Neo&lt;/td&gt;   &lt;td&gt;neo@metacortex.com&lt;/td&gt;  &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;4&lt;/td&gt; &lt;td&gt;Fen&lt;/td&gt;   &lt;td&gt;fen@acme.com&lt;/td&gt;        &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;5&lt;/td&gt; &lt;td&gt;An Si&lt;/td&gt; &lt;td&gt;we@acme.com&lt;/td&gt;         &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;6&lt;/td&gt; &lt;td&gt;Jan&lt;/td&gt;   &lt;td&gt;lee@acme.com&lt;/td&gt;        &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;h4&gt;Creating a table&lt;/h4&gt;
+&lt;p&gt;So how would we create the structure for the table above? SQL is one of the more descriptive languages, because it is so specific. This is a good thing.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;CREATE TABLE people (
+                     id INTEGER PRIMARY KEY,
+                     name TEXT NOT NULL,
+                     email TEXT NOT NULL UNIQUE
+                    );
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Firstly we specify the name of the table to create, &lt;em&gt;people&lt;/em&gt;. Secondly, we specify the columns found in the table.&lt;br /&gt;
+We have an &lt;code&gt;id&lt;/code&gt; that is an integer. We mark it as &lt;code&gt;PRIMARY KEY&lt;/code&gt; to indicate that it is the primary way to uniquely identify our record. The database will automatically insert an incrementing identifier for each record we insert.&lt;br /&gt;
+Next we have &lt;code&gt;name&lt;/code&gt; which is a &lt;code&gt;TEXT&lt;/code&gt; field indicating we can store a &lt;code&gt;string&lt;/code&gt; value. &lt;code&gt;NOT NULL&lt;/code&gt; indicates we cannot leave this record out.
+Finally, we have &lt;code&gt;email&lt;/code&gt; which is similar to &lt;code&gt;name&lt;/code&gt; except we have an extra constraint on it that it be &lt;code&gt;UNIQUE&lt;/code&gt;. The database will enforce these constraints of &lt;code&gt;NOT NULL&lt;/code&gt; and &lt;code&gt;UNIQUE&lt;/code&gt;, giving us some measure of protection from bad data.&lt;/p&gt;
+&lt;h4&gt;Inserting a record&lt;/h4&gt;
+&lt;p&gt;So we have our table but how do we get data in the database? Unsurprisingly we use &lt;code&gt;INSERT&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;INSERT INTO people (name,email) VALUES (&amp;quot;Bob&amp;quot;,&amp;quot;bob@acme.com&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We specify the table &lt;em&gt;people&lt;/em&gt; as the one we want to insert into and then the columns we will be supplying data for. Then we indicate the values to insert using &lt;code&gt;VALUES&lt;/code&gt; where the order of the values matches the order of the columns we specified.&lt;/p&gt;
+&lt;h4&gt;Updating a record&lt;/h4&gt;
+&lt;p&gt;What if some data changed since being inserted? Well of course SQL provides an &lt;code&gt;UPDATE&lt;/code&gt; command.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;UPDATE people SET name=&apos;Bobby&apos;, email= &apos;bobby@acme.com&apos; WHERE id = 1;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So we indicate an &lt;code&gt;UPDATE&lt;/code&gt; on a specific table and then &lt;code&gt;SET&lt;/code&gt; whichever columns we want to change. You almost always want to specify a condition of which record to update. If you left off the &lt;code&gt;WHERE&lt;/code&gt; for this update it could set every &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;email&lt;/code&gt; to &amp;quot;Bobby&amp;quot; and &amp;quot;bobby@acme.com&amp;quot;, except that we are protected by our &lt;code&gt;UNIQUE&lt;/code&gt; constraint on &lt;code&gt;email&lt;/code&gt;, so our constrain saves us from a potentially devastating loss of data.&lt;/p&gt;
+&lt;h4&gt;Fetching records&lt;/h4&gt;
+&lt;p&gt;How would we query data from it? We use a SQL &lt;code&gt;SELECT&lt;/code&gt; statement.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT id,name,email FROM people;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When selecting we start with &lt;code&gt;SELECT&lt;/code&gt; then specify the columns we want, then &lt;code&gt;FROM&lt;/code&gt; which table.&lt;/p&gt;
+&lt;p&gt;When selecting data we can also use &lt;code&gt;WHERE&lt;/code&gt; to specify specific records.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT id,name,email FROM people WHERE id = 1;
+SELECT id,name,email FROM people WHERE email LIKE &apos;%@acme.com&apos;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first query will return a single record since &lt;code&gt;id&lt;/code&gt; is always unique.&lt;br /&gt;
+The second query will return all records where &lt;code&gt;email&lt;/code&gt; ends with &lt;em&gt;@acme.com&lt;/em&gt;, skipping only record number 3 in our example data.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In this tutorial we will only deal with data in a single table, we will not be going into relationships between tables. Relationships are a very powerful aspect of some databases and worth looking into further.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;SQLite&lt;/h3&gt;
+&lt;p&gt;SQLite is a very popular database that has some unique characteristics that make it desireable for a tutorial like this. It requires no server so we interact directly with the file system from our process. This means it is very easy to get going with as it has zero setup.&lt;/p&gt;
+&lt;p&gt;We will be using the &lt;a href=&quot;https://www.nuget.org/packages/System.Data.SQLite/&quot;&gt;System.Data.SQLite Nuget package&lt;/a&gt; to interact with a local &lt;a href=&quot;https://www.sqlite.org&quot;&gt;SQLite&lt;/a&gt; database. The database is created in our code when we use it for the first time.&lt;/p&gt;
+&lt;h3&gt;Dapper&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/StackExchange/Dapper&quot;&gt;Dapper&lt;/a&gt; is a very popular mini-ORM. An ORM (Object Relational Mapper) is typically a library used in your code that maps relational data from a database to objects in your programming language of choice. While a full ORM will typically generate all queries, joins, and mappings for you, a mini-ORM will usually require you to still write some SQL and then it will do some mapping by convention for you. We will be visiting some Dapper code soon.&lt;/p&gt;
+&lt;h2&gt;Now to the good part&lt;/h2&gt;
+&lt;p&gt;Although Dapper is a great library for flexibly working with databases, it is written in and for C#. So the first thing we are going to do each time we use Dapper is wrap its functionality it in functions that surfaces Dapper in a more functional way.&lt;/p&gt;
+&lt;h3&gt;Executing SQL&lt;/h3&gt;
+&lt;p&gt;Dapper exposes the following C# function that we will be using a lot. It executes a SQL statement against a database connection and allows you to optionally pass an &lt;code&gt;object&lt;/code&gt; in for parameters for the SQL statement. Don&apos;t worry if this doesn&apos;t make complete sense now, it should make more sense when you see an example.&lt;/p&gt;
+&lt;p&gt;It is known as an &lt;strong&gt;extension method&lt;/strong&gt; and is on an instance of &lt;code&gt;IDbConnection&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public static Task&amp;lt;int&amp;gt; Execute(this IDbConnection cnn, string sql, object param = null, SqlTransaction transaction = null)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So what is the problem here? Well for one remember in &lt;a href=&quot;/how-to-fsharp-pt-8&quot;&gt;part 8&lt;/a&gt; we looked at how to handle exceptions more functionally? The above method will throw an exception if something goes wrong. Lets fix that.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;open Dapper
+open System.Data.Common
+
+// DbConnection -&amp;gt; string -&amp;gt; &apos;b -&amp;gt; Result&amp;lt;int,exn&amp;gt;
+let execute (connection:#DbConnection) (sql:string) (parameters:_) =
+    try
+        let result = connection.Execute(sql, parameters)
+        Ok result
+    with
+    | ex -&amp;gt; Error ex
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So we have a function called &lt;code&gt;execute&lt;/code&gt; now with signature &lt;code&gt;DbConnection -&amp;gt; string -&amp;gt; &apos;b -&amp;gt; Result&amp;lt;int,exn&amp;gt;&lt;/code&gt;. It makes use of the Dapper extension method &lt;code&gt;Execute&lt;/code&gt; but we wrap it in a &lt;code&gt;try..with&lt;/code&gt; expression and return a type &lt;code&gt;Result&amp;lt;int,exn&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To use &lt;code&gt;execute&lt;/code&gt; we need an instance of a &lt;code&gt;DbConnection&lt;/code&gt;. Lets write a small function that will return us a database connection and open that connection to the database, ready to use.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// string -&amp;gt; SQLiteConnection
+let conn (db:string) =
+    let c = new SQLiteConnection(sprintf &amp;quot;Data Source=%s.sqlite&amp;quot; db)
+    c.Open()
+    c
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Creation&lt;/h4&gt;
+&lt;p&gt;So we now have all the building blocks to execute a SQL statement. Lets create a &lt;em&gt;people&lt;/em&gt; table in a database called &lt;em&gt;test&lt;/em&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// DbConnection -&amp;gt; Result&amp;lt;int,exn&amp;gt;
+let createPeopleTable (connection:DbConnection) =
+    let sql = &amp;quot;CREATE TABLE IF NOT EXISTS people (
+                 id INTEGER PRIMARY KEY,
+                 name TEXT NOT NULL,
+                 email text NOT NULL UNIQUE
+                );&amp;quot;
+    execute connection sql None
+
+// create a connection and the table
+let dbName = &amp;quot;test&amp;quot;
+let connection = conn dbName
+createPeopleTable connection
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Insertion&lt;/h4&gt;
+&lt;p&gt;So now we have a table called &lt;em&gt;people&lt;/em&gt;. Lets insert a record.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// DbConnection -&amp;gt; string -&amp;gt; string -&amp;gt; Result&amp;lt;int,exn&amp;gt;
+let insertPerson (connection:DbConnection) name email  =
+    let data = [(&amp;quot;@name&amp;quot;,box name);(&amp;quot;@email&amp;quot;,box email)] |&amp;gt; dict |&amp;gt; fun d -&amp;gt; new Dapper.DynamicParameters(d)
+    let sql = &amp;quot;INSERT INTO people (name,email) VALUES (@name,@email);&amp;quot;
+    execute connection sql data
+
+// insert a person from name and email
+insertPerson connection &amp;quot;Sue&amp;quot; &amp;quot;sue@acme.com&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So in the above code we make use of a type called &lt;code&gt;DynamicParameters&lt;/code&gt; from Dapper. This takes in a dictionary so we create a list of name value tuples, and convert that to a dictionary before passing it to &lt;code&gt;DynamicParameters&lt;/code&gt;. Worth noting here is that the constructor of &lt;code&gt;DynamicParameters&lt;/code&gt; takes &lt;code&gt;IDictionary&amp;lt;string,obj&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Which brings us to &lt;code&gt;box&lt;/code&gt;. It has a signature of &lt;code&gt;&apos;T -&amp;gt; obj&lt;/code&gt;, so when applied to the values in the tuples we get type &lt;code&gt;IDictionary&amp;lt;string,obj&amp;gt;&lt;/code&gt; as needed for the constructor of &lt;code&gt;DynamicParameters&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This fails with some pretty cryptic errors of &lt;em&gt;Insufficient parameters supplied to the command&lt;/em&gt; if you do not call the &lt;code&gt;box&lt;/code&gt; function on the value.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Another way of achieving the same, and usually a better option, is to use an actual type to represent the insert data.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;type CreatePerson = { name:string; email:string }
+let insertPerson (connection:DbConnection) (person:CreatePerson)  =
+    let sql = &amp;quot;INSERT INTO people (name,email) VALUES (@name,@email);&amp;quot;
+    execute connection sql person
+
+insertPerson connection { name = &amp;quot;Ali&amp;quot;; email = &amp;quot;ali@acme.com&amp;quot; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Update&lt;/h4&gt;
+&lt;p&gt;We could of course have both variations with the update as well.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// Option 1: multiple arguments
+let updatePerson (connection:DbConnection) id name email =
+    let data = [(&amp;quot;@id&amp;quot;,box id);(&amp;quot;@name&amp;quot;,box name);(&amp;quot;@email&amp;quot;,box email)] 
+                |&amp;gt; dict |&amp;gt; fun d -&amp;gt; new Dapper.DynamicParameters(d)
+    let sql = &amp;quot;UPDATE people SET name=@name, email=@email WHERE id=@id&amp;quot;
+    execute connection sql data
+
+// Option 2: a record with all data
+[&amp;lt;CLIMutable&amp;gt;]
+type UpdatePerson = { id:int; name:string; email:string }
+let updatePerson (connection:DbConnection) (person:UpdatePerson) =
+    let sql = &amp;quot;UPDATE people SET name=@name, email=@email WHERE id=@id&amp;quot;
+    execute connection sql person
+
+// use option 2
+let updatedPerson = { id=2; name=&amp;quot;Kublai Khan&amp;quot;; email=&amp;quot;kublai.k@acme.com&amp;quot;}
+updatePerson connection updatedPerson
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;NOTE: We put the &lt;code&gt;[&amp;lt;CliMutable&amp;gt;]&lt;/code&gt; attribute on the type because later on we use this type to return rows from the database. If left off you will receive an error: &lt;em&gt;A parameterless default constructor or one matching signature (System.Int64 id, System.String name, System.String email) is required for UpdatePerson materialization&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As you can see, option 2 will handle change a lot better than option 1 if more fields need to be added it a person.&lt;/p&gt;
+&lt;h2&gt;Querying for data&lt;/h2&gt;
+&lt;p&gt;So far we have looked at SQL that changes state but doesn&apos;t really return much, other than the number of changes. Lets now look at querying for data.&lt;/p&gt;
+&lt;p&gt;First we need to write our functional wrappers around Dapper. We will create a function for querying for multiple records (&lt;code&gt;query&lt;/code&gt;) and another for querying a single record (&lt;code&gt;querySingle&lt;/code&gt;). The make use of Dapper&apos;s &lt;code&gt;Query&lt;/code&gt; and &lt;code&gt;QuerySingleOrDefault&lt;/code&gt; methods respectively.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// DbConnection -&amp;gt; string -&amp;gt; IDictionary&amp;lt;string,obj&amp;gt; -&amp;gt; Result&amp;lt;seq&amp;lt;&apos;T&amp;gt;,exn&amp;gt;
+let query (connection:#DbConnection) (sql:string) (parameters:IDictionary&amp;lt;string, obj&amp;gt; option) : Result&amp;lt;seq&amp;lt;&apos;T&amp;gt;,exn&amp;gt; =
+    try
+        let result =
+            match parameters with
+            | Some p -&amp;gt; connection.Query&amp;lt;&apos;T&amp;gt;(sql, p)
+            | None -&amp;gt; connection.Query&amp;lt;&apos;T&amp;gt;(sql)
+        Ok result
+    with
+    | ex -&amp;gt; Error ex
+
+// DbConnection -&amp;gt; string -&amp;gt; IDictionary&amp;lt;string,obj&amp;gt; -&amp;gt; Result&amp;lt;&apos;T,exn&amp;gt;
+let querySingle (connection:#DbConnection) (sql:string) (parameters:IDictionary&amp;lt;string, obj&amp;gt; option) =
+    try
+        let result =
+            match parameters with
+            | Some p -&amp;gt; connection.QuerySingleOrDefault&amp;lt;&apos;T&amp;gt;(sql, p)
+            | None -&amp;gt; connection.QuerySingleOrDefault&amp;lt;&apos;T&amp;gt;(sql)
+        
+        if isNull (box result) then Ok None
+        else Ok (Some result)
+
+    with
+    | ex -&amp;gt; Error ex
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that for &lt;code&gt;query&lt;/code&gt; I specify the return type, this is purely so the return type uses &lt;code&gt;seq&amp;lt;&apos;T&amp;gt;&lt;/code&gt; instead of &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt;. Errors are returned as before and for &lt;code&gt;querySingle&lt;/code&gt; any &lt;code&gt;null&lt;/code&gt; is returned as an &lt;code&gt;option&lt;/code&gt; type as we discussed in &lt;a href=&quot;/how-to-fsharp-pt-6&quot;&gt;part 6&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So lets use &lt;code&gt;query&lt;/code&gt; to create a search function for all ACME employees.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let findAcmeEmployees (connection:DbConnection) =
+    let sql = &amp;quot;SELECT id,name,email FROM people WHERE email LIKE &apos;%@acme.com&apos;&amp;quot;
+    query connection sql None
+
+match (findAcmeEmployees connection) with 
+| Ok people -&amp;gt; printfn &amp;quot;Found %i employees&amp;quot; (Seq.length people)
+| Error ex -&amp;gt; printfn &amp;quot;%A&amp;quot; ex.Message
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lastly, we will demonstrate fetching a single record by &lt;strong&gt;id&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let personById (connection:DbConnection) id =
+    let data = [(&amp;quot;@id&amp;quot;,box id)] |&amp;gt; dict |&amp;gt; Some
+    let sql = &amp;quot;SELECT id,name,email FROM people WHERE id = @id&amp;quot;
+    querySingle connection sql data
+
+// use the function to fetch person with id 1 and print results out
+match (personById connection 1) with
+| Ok (Some(person)) -&amp;gt; printfn &amp;quot;Found %i : %s %s&amp;quot; person.id person.name person.email
+| Ok None -&amp;gt; printfn &amp;quot;No person found&amp;quot;
+| Error ex -&amp;gt; printfn &amp;quot;%A&amp;quot; ex.Message
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;See how we handle different possibilities when evaluating a query result. We have the happy case where we have no errors and find someone. We have no errors but do not find someone. And finally we handle errors.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;We covered quite a lot today but now you know the basics of working with a database in F#. We saw how we can use Dapper to ease passing in parameters and mapping to types. We wrote a functional wrapper around Dapper to handle errors and &lt;code&gt;null&lt;/code&gt;s. And we saw how to persist to and query from a database that we created.&lt;/p&gt;
+&lt;p&gt;What we covered here is a pretty standard way to work with a database. F# actually has some very novel ways of working with databases using &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/type-providers/&quot;&gt;Type Provider&lt;/a&gt;s like &lt;a href=&quot;https://github.com/fsprojects/SQLProvider&quot;&gt;SQLProvider&lt;/a&gt; and &lt;a href=&quot;https://github.com/rspeele/Rezoom.SQL&quot;&gt;Rezoom.SQL&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In the final &lt;strong&gt;How to F#&lt;/strong&gt; coming soon we will put everything we have learned together to create you first F# application.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.sqlitetutorial.net/download-install-sqlite/&quot;&gt;Install SQLite binaries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.sqlitetutorial.net/sqlite-create-table/&quot;&gt;CREATE TABLE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.sqlitetutorial.net/sqlite-insert/&quot;&gt;INSERT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.sqlitetutorial.net/sqlite-update/&quot;&gt;UPDATE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/posts/cli-types/#boxing-and-unboxing&quot;&gt;Boxing for fun and profit&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/how-to-fsharp-pt-8/</id>
@@ -166,51 +391,14 @@ match z with
 &lt;h2&gt;All the beautiful people (Creating data)&lt;/h2&gt;
 &lt;p&gt;To work with lists we will need some data. Often data comes in the form of tables we need to join together. We will start simple though. Lets create 2 &lt;code&gt;map&lt;/code&gt;s with numbers corresponding to the first names for the 1st and second names for the other.&lt;/p&gt;
 &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-hover&quot;&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;#&lt;/th&gt;
-&lt;th&gt;First name&lt;/th&gt;
-&lt;th&gt;#&lt;/th&gt;
-&lt;th&gt;Last name&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
+&lt;thead&gt; &lt;tr&gt; &lt;th&gt;#&lt;/th&gt; &lt;th&gt;First name&lt;/th&gt; &lt;th&gt;#&lt;/th&gt; &lt;th&gt;Last name&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Sue&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Ali&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;Khan&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;td&gt;Neo&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;td&gt;Jacobs&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;4&lt;/td&gt;
-&lt;td&gt;Fen&lt;/td&gt;
-&lt;td&gt;4&lt;/td&gt;
-&lt;td&gt;Jensen&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;5&lt;/td&gt;
-&lt;td&gt;An Si&lt;/td&gt;
-&lt;td&gt;5&lt;/td&gt;
-&lt;td&gt;Wu&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;6&lt;/td&gt;
-&lt;td&gt;Jan&lt;/td&gt;
-&lt;td&gt;6&lt;/td&gt;
-&lt;td&gt;Lee&lt;/td&gt;
-&lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;Sue&lt;/td&gt;    &lt;td&gt;1&lt;/td&gt; &lt;td&gt;Ali&lt;/td&gt;     &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;Bob&lt;/td&gt;    &lt;td&gt;2&lt;/td&gt; &lt;td&gt;Khan&lt;/td&gt;    &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;3&lt;/td&gt; &lt;td&gt;Neo&lt;/td&gt;    &lt;td&gt;3&lt;/td&gt; &lt;td&gt;Jacobs&lt;/td&gt;  &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;4&lt;/td&gt; &lt;td&gt;Fen&lt;/td&gt;    &lt;td&gt;4&lt;/td&gt; &lt;td&gt;Jensen&lt;/td&gt;  &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;5&lt;/td&gt; &lt;td&gt;An Si&lt;/td&gt;  &lt;td&gt;5&lt;/td&gt; &lt;td&gt;Wu&lt;/td&gt;      &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;6&lt;/td&gt; &lt;td&gt;Jan&lt;/td&gt;    &lt;td&gt;6&lt;/td&gt; &lt;td&gt;Lee&lt;/td&gt;     &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;&lt;/div&gt;
 &lt;!-- | # | First name    | # | Last name |
