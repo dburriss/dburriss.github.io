@@ -1,3 +1,5 @@
 tools
 npm-debug.log
 .vscode/last.sql
+samples/packages
+.idea

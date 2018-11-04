@@ -169,7 +169,7 @@ To review the tips:
 
 So don't be a child. Communicate your errors back rather than throwing your exceptions out the functions (that metaphor aged badly).
 
-Next in the series we will be looking at a common occurrence in software development. Working with a database.
+Next in the series we will be looking at a common occurrence in software development. [Working with a database](/how-to-fsharp-pt-9).
 
 ## Resources
 
