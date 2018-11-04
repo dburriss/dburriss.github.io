@@ -23,51 +23,14 @@ So lets go through a few common actions you would want to do on a collection. We
 To work with lists we will need some data. Often data comes in the form of tables we need to join together. We will start simple though. Lets create 2 `map`s with numbers corresponding to the first names for the 1st and second names for the other.
 
 <div class="table-responsive"><table class="table table-hover">
-<thead>
-<tr>
-<th>#</th>
-<th>First name</th>
-<th>#</th>
-<th>Last name</th>
-</tr>
-</thead>
+<thead> <tr> <th>#</th> <th>First name</th> <th>#</th> <th>Last name</th> </tr> </thead>
 <tbody>
-<tr>
-<td>1</td>
-<td>Sue</td>
-<td>1</td>
-<td>Ali</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Bob</td>
-<td>2</td>
-<td>Khan</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Neo</td>
-<td>3</td>
-<td>Jacobs</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Fen</td>
-<td>4</td>
-<td>Jensen</td>
-</tr>
-<tr>
-<td>5</td>
-<td>An Si</td>
-<td>5</td>
-<td>Wu</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Jan</td>
-<td>6</td>
-<td>Lee</td>
-</tr>
+<tr> <td>1</td> <td>Sue</td>    <td>1</td> <td>Ali</td>     </tr>
+<tr> <td>2</td> <td>Bob</td>    <td>2</td> <td>Khan</td>    </tr>
+<tr> <td>3</td> <td>Neo</td>    <td>3</td> <td>Jacobs</td>  </tr>
+<tr> <td>4</td> <td>Fen</td>    <td>4</td> <td>Jensen</td>  </tr>
+<tr> <td>5</td> <td>An Si</td>  <td>5</td> <td>Wu</td>      </tr>
+<tr> <td>6</td> <td>Jan</td>    <td>6</td> <td>Lee</td>     </tr>
 </tbody>
 </table></div>
 <!-- | # | First name    | # | Last name |
