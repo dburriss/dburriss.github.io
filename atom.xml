@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-11-12T05:42:39.7038324+00:00</updated>
+  <updated>2018-11-12T05:53:47.1992235+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -611,7 +611,7 @@ if(!string.IsNullOrEmpty(email))
     SendEmail(email);
 } else ...
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This means you code can become littered with &lt;code&gt;null&lt;/code&gt; checks and if you forget to check and a &lt;code&gt;null&lt;/code&gt; sneaks through, you code will throw some kind of &lt;code&gt;NullReferenceException&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This means your code can become littered with &lt;code&gt;null&lt;/code&gt; checks and if you forget to check and a &lt;code&gt;null&lt;/code&gt; sneaks through, your code will throw some kind of &lt;code&gt;NullReferenceException&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;// Problem 2: If you do not check for null your application can blow up
 var email = (firstname.ToLower()) + &amp;quot;@acme.com&amp;quot;; 
 &lt;/code&gt;&lt;/pre&gt;

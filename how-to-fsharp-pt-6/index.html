@@ -201,7 +201,7 @@ if(!string.IsNullOrEmpty(email))
     SendEmail(email);
 } else ...
 </code></pre>
-<p>This means you code can become littered with <code>null</code> checks and if you forget to check and a <code>null</code> sneaks through, you code will throw some kind of <code>NullReferenceException</code>.</p>
+<p>This means your code can become littered with <code>null</code> checks and if you forget to check and a <code>null</code> sneaks through, your code will throw some kind of <code>NullReferenceException</code>.</p>
 <pre><code class="language-csharp">// Problem 2: If you do not check for null your application can blow up
 var email = (firstname.ToLower()) + &quot;@acme.com&quot;; 
 </code></pre>
