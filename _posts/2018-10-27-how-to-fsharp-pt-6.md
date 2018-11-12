@@ -32,11 +32,11 @@ if(!string.IsNullOrEmpty(email))
 This means you code can become littered with `null` checks and if you forget to check and a `null` sneaks through, you code will throw some kind of `NullReferenceException`.
 
 ```csharp
-// Problem 2: If you do not application can blow up
-var fullname = firstname + " " + lastname; 
+// Problem 2: If you do not check for null your application can blow up
+var email = (firstname.ToLower()) + "@acme.com"; 
 ```
 
-If `firstname` or `lastname` is `null`, this statement will throw an exception and possibly crash our application.
+If `firstname` is `null`, this statement will throw an exception and possibly crash our application.
 
 The strategies for mitigating these problems are to try catch all `null`s at the boundaries of your application and to use the [Null Object/Special Case](https://martinfowler.com/eaaCatalog/specialCase.html) pattern. We won't go into these but my main criticism is the noise it adds to the code.
 
@@ -88,14 +88,13 @@ Running again we would get the following value for `email2`:
 
 ## Handling null
 
-What if we are getting values from a database but always wrapping them in `Some`. Then we would be getting values of `Some(null)`. We could convert the `Some(null)` to `None` using `Option.bind`. This has a signature `('T -> 'U option) -> 'U option`. So we would pass it a function of `string -> string option`, which you can see below is the `sanitizeString` function.
+What if we are getting values from a database but always wrapping them in `Some`. Then we would be getting values of `Some(null)`. We could convert the `Some(null)` to `None` using `Option.bind`. This has a signature `('T -> 'U option) -> 'U option`. So we would pass it a function of `string -> string option`, which you can see below is the `Option.ofObj` function.
 
 ```fsharp
 //string option -> string
-let makeEmail name = 
-    let sanitizeString s = null |> (fun x -> if (box x = null) then None else Some(x))
+let makeEmail name =  
     name
-    |> Option.bind sanitizeString
+    |> Option.bind Option.ofObj
     |> Option.orElse (Some "info")
     |> Option.map (fun n -> sprintf "%s@acme.com" n)
 ```
