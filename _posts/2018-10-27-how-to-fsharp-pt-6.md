@@ -29,7 +29,7 @@ if(!string.IsNullOrEmpty(email))
 } else ...
 ```
 
-This means you code can become littered with `null` checks and if you forget to check and a `null` sneaks through, you code will throw some kind of `NullReferenceException`.
+This means your code can become littered with `null` checks and if you forget to check and a `null` sneaks through, your code will throw some kind of `NullReferenceException`.
 
 ```csharp
 // Problem 2: If you do not check for null your application can blow up
