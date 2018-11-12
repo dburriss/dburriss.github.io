@@ -137,6 +137,8 @@ let execute (connection:#DbConnection) (sql:string) (parameters:_) =
     | ex -> Error ex
 ```
 
+> NOTE: I am catching ALL errors here, contrary to my advice in the previous [post on error handling](/how-to-fsharp-pt-8). This is to keep things simple and concentrate on executing SQL.
+
 So we have a function called `execute` now with signature `DbConnection -> string -> 'b -> Result<int,exn>`. It makes use of the Dapper extension method `Execute` but we wrap it in a `try..with` expression and return a type `Result<int,exn>`.
 
 To use `execute` we need an instance of a `DbConnection`. Lets write a small function that will return us a database connection and open that connection to the database, ready to use.
@@ -292,6 +294,18 @@ match (personById connection 1) with
 ```
 
 See how we handle different possibilities when evaluating a query result. We have the happy case where we have no errors and find someone. We have no errors but do not find someone. And finally we handle errors.
+
+## Cleaning up
+
+Remeber the `conn` method we created at the beginning of the code walkthrough? It gave us back an open connection because it called `Open()` on the connection before returning it. If you have performed the operation on the connection, but may use it again, call `Close()` on the connection. If you are done with the operation, call `Dispose()`. Once disposed you cannot use the connection again and will need to create another if needed.
+
+```fsharp
+let cleanup (connection:DbConnection) =
+    connection.Close()
+    connection.Dispose()
+```
+
+Technically, you could just call `Dispose()` if you are not planning on reusing the connection.
 
 ## Conclusion
 
