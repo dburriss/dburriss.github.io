@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-11-04T21:47:57.5981941+00:00</updated>
+  <updated>2018-11-12T05:42:39.7038324+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -99,6 +99,9 @@ let execute (connection:#DbConnection) (sql:string) (parameters:_) =
     with
     | ex -&amp;gt; Error ex
 &lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;NOTE: I am catching ALL errors here, contrary to my advice in the previous &lt;a href=&quot;/how-to-fsharp-pt-8&quot;&gt;post on error handling&lt;/a&gt;. This is to keep things simple and concentrate on executing SQL.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;So we have a function called &lt;code&gt;execute&lt;/code&gt; now with signature &lt;code&gt;DbConnection -&amp;gt; string -&amp;gt; &apos;b -&amp;gt; Result&amp;lt;int,exn&amp;gt;&lt;/code&gt;. It makes use of the Dapper extension method &lt;code&gt;Execute&lt;/code&gt; but we wrap it in a &lt;code&gt;try..with&lt;/code&gt; expression and return a type &lt;code&gt;Result&amp;lt;int,exn&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;To use &lt;code&gt;execute&lt;/code&gt; we need an instance of a &lt;code&gt;DbConnection&lt;/code&gt;. Lets write a small function that will return us a database connection and open that connection to the database, ready to use.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// string -&amp;gt; SQLiteConnection
@@ -222,6 +225,13 @@ match (personById connection 1) with
 | Error ex -&amp;gt; printfn &amp;quot;%A&amp;quot; ex.Message
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;See how we handle different possibilities when evaluating a query result. We have the happy case where we have no errors and find someone. We have no errors but do not find someone. And finally we handle errors.&lt;/p&gt;
+&lt;h2&gt;Cleaning up&lt;/h2&gt;
+&lt;p&gt;Remeber the &lt;code&gt;conn&lt;/code&gt; method we created at the beginning of the code walkthrough? It gave us back an open connection because it called &lt;code&gt;Open()&lt;/code&gt; on the connection before returning it. If you have performed the operation on the connection, but may use it again, call &lt;code&gt;Close()&lt;/code&gt; on the connection. If you are done with the operation, call &lt;code&gt;Dispose()&lt;/code&gt;. Once disposed you cannot use the connection again and will need to create another if needed.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let cleanup (connection:DbConnection) =
+    connection.Close()
+    connection.Dispose()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Technically, you could just call &lt;code&gt;Dispose()&lt;/code&gt; if you are not planning on reusing the connection.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;We covered quite a lot today but now you know the basics of working with a database in F#. We saw how we can use Dapper to ease passing in parameters and mapping to types. We wrote a functional wrapper around Dapper to handle errors and &lt;code&gt;null&lt;/code&gt;s. And we saw how to persist to and query from a database that we created.&lt;/p&gt;
 &lt;p&gt;What we covered here is a pretty standard way to work with a database. F# actually has some very novel ways of working with databases using &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/type-providers/&quot;&gt;Type Provider&lt;/a&gt;s like &lt;a href=&quot;https://github.com/fsprojects/SQLProvider&quot;&gt;SQLProvider&lt;/a&gt; and &lt;a href=&quot;https://github.com/rspeele/Rezoom.SQL&quot;&gt;Rezoom.SQL&lt;/a&gt;.&lt;/p&gt;
@@ -602,10 +612,10 @@ if(!string.IsNullOrEmpty(email))
 } else ...
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This means you code can become littered with &lt;code&gt;null&lt;/code&gt; checks and if you forget to check and a &lt;code&gt;null&lt;/code&gt; sneaks through, you code will throw some kind of &lt;code&gt;NullReferenceException&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;// Problem 2: If you do not application can blow up
-var fullname = firstname + &amp;quot; &amp;quot; + lastname; 
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;// Problem 2: If you do not check for null your application can blow up
+var email = (firstname.ToLower()) + &amp;quot;@acme.com&amp;quot;; 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If &lt;code&gt;firstname&lt;/code&gt; or &lt;code&gt;lastname&lt;/code&gt; is &lt;code&gt;null&lt;/code&gt;, this statement will throw an exception and possibly crash our application.&lt;/p&gt;
+&lt;p&gt;If &lt;code&gt;firstname&lt;/code&gt; is &lt;code&gt;null&lt;/code&gt;, this statement will throw an exception and possibly crash our application.&lt;/p&gt;
 &lt;p&gt;The strategies for mitigating these problems are to try catch all &lt;code&gt;null&lt;/code&gt;s at the boundaries of your application and to use the &lt;a href=&quot;https://martinfowler.com/eaaCatalog/specialCase.html&quot;&gt;Null Object/Special Case&lt;/a&gt; pattern. We won&apos;t go into these but my main criticism is the noise it adds to the code.&lt;/p&gt;
 &lt;h2&gt;Maybe this is here&lt;/h2&gt;
 &lt;p&gt;The nice thing about the &lt;code&gt;Maybe&lt;/code&gt; abstraction is it is generic, unlike the &lt;strong&gt;Special Case&lt;/strong&gt; and in general can be much more elegant, saving you from repeatedly checking for &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;
@@ -643,12 +653,11 @@ let makeEmail name =
 &lt;p&gt;val email2 : string option = Some &amp;quot;info@acme.com&amp;quot;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Handling null&lt;/h2&gt;
-&lt;p&gt;What if we are getting values from a database but always wrapping them in &lt;code&gt;Some&lt;/code&gt;. Then we would be getting values of &lt;code&gt;Some(null)&lt;/code&gt;. We could convert the &lt;code&gt;Some(null)&lt;/code&gt; to &lt;code&gt;None&lt;/code&gt; using &lt;code&gt;Option.bind&lt;/code&gt;. This has a signature &lt;code&gt;(&apos;T -&amp;gt; &apos;U option) -&amp;gt; &apos;U option&lt;/code&gt;. So we would pass it a function of &lt;code&gt;string -&amp;gt; string option&lt;/code&gt;, which you can see below is the &lt;code&gt;sanitizeString&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;What if we are getting values from a database but always wrapping them in &lt;code&gt;Some&lt;/code&gt;. Then we would be getting values of &lt;code&gt;Some(null)&lt;/code&gt;. We could convert the &lt;code&gt;Some(null)&lt;/code&gt; to &lt;code&gt;None&lt;/code&gt; using &lt;code&gt;Option.bind&lt;/code&gt;. This has a signature &lt;code&gt;(&apos;T -&amp;gt; &apos;U option) -&amp;gt; &apos;U option&lt;/code&gt;. So we would pass it a function of &lt;code&gt;string -&amp;gt; string option&lt;/code&gt;, which you can see below is the &lt;code&gt;Option.ofObj&lt;/code&gt; function.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;//string option -&amp;gt; string
-let makeEmail name = 
-    let sanitizeString s = null |&amp;gt; (fun x -&amp;gt; if (box x = null) then None else Some(x))
+let makeEmail name =  
     name
-    |&amp;gt; Option.bind sanitizeString
+    |&amp;gt; Option.bind Option.ofObj
     |&amp;gt; Option.orElse (Some &amp;quot;info&amp;quot;)
     |&amp;gt; Option.map (fun n -&amp;gt; sprintf &amp;quot;%s@acme.com&amp;quot; n)
 &lt;/code&gt;&lt;/pre&gt;

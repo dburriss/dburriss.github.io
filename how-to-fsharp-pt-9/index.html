@@ -269,6 +269,9 @@ let execute (connection:#DbConnection) (sql:string) (parameters:_) =
     with
     | ex -&gt; Error ex
 </code></pre>
+<blockquote>
+<p>NOTE: I am catching ALL errors here, contrary to my advice in the previous <a href="/how-to-fsharp-pt-8">post on error handling</a>. This is to keep things simple and concentrate on executing SQL.</p>
+</blockquote>
 <p>So we have a function called <code>execute</code> now with signature <code>DbConnection -&gt; string -&gt; 'b -&gt; Result&lt;int,exn&gt;</code>. It makes use of the Dapper extension method <code>Execute</code> but we wrap it in a <code>try..with</code> expression and return a type <code>Result&lt;int,exn&gt;</code>.</p>
 <p>To use <code>execute</code> we need an instance of a <code>DbConnection</code>. Lets write a small function that will return us a database connection and open that connection to the database, ready to use.</p>
 <pre><code class="language-fsharp">// string -&gt; SQLiteConnection
@@ -392,6 +395,13 @@ match (personById connection 1) with
 | Error ex -&gt; printfn &quot;%A&quot; ex.Message
 </code></pre>
 <p>See how we handle different possibilities when evaluating a query result. We have the happy case where we have no errors and find someone. We have no errors but do not find someone. And finally we handle errors.</p>
+<h2>Cleaning up</h2>
+<p>Remeber the <code>conn</code> method we created at the beginning of the code walkthrough? It gave us back an open connection because it called <code>Open()</code> on the connection before returning it. If you have performed the operation on the connection, but may use it again, call <code>Close()</code> on the connection. If you are done with the operation, call <code>Dispose()</code>. Once disposed you cannot use the connection again and will need to create another if needed.</p>
+<pre><code class="language-fsharp">let cleanup (connection:DbConnection) =
+    connection.Close()
+    connection.Dispose()
+</code></pre>
+<p>Technically, you could just call <code>Dispose()</code> if you are not planning on reusing the connection.</p>
 <h2>Conclusion</h2>
 <p>We covered quite a lot today but now you know the basics of working with a database in F#. We saw how we can use Dapper to ease passing in parameters and mapping to types. We wrote a functional wrapper around Dapper to handle errors and <code>null</code>s. And we saw how to persist to and query from a database that we created.</p>
 <p>What we covered here is a pretty standard way to work with a database. F# actually has some very novel ways of working with databases using <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/type-providers/">Type Provider</a>s like <a href="https://github.com/fsprojects/SQLProvider">SQLProvider</a> and <a href="https://github.com/rspeele/Rezoom.SQL">Rezoom.SQL</a>.</p>

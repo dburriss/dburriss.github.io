@@ -202,10 +202,10 @@ if(!string.IsNullOrEmpty(email))
 } else ...
 </code></pre>
 <p>This means you code can become littered with <code>null</code> checks and if you forget to check and a <code>null</code> sneaks through, you code will throw some kind of <code>NullReferenceException</code>.</p>
-<pre><code class="language-csharp">// Problem 2: If you do not application can blow up
-var fullname = firstname + &quot; &quot; + lastname; 
+<pre><code class="language-csharp">// Problem 2: If you do not check for null your application can blow up
+var email = (firstname.ToLower()) + &quot;@acme.com&quot;; 
 </code></pre>
-<p>If <code>firstname</code> or <code>lastname</code> is <code>null</code>, this statement will throw an exception and possibly crash our application.</p>
+<p>If <code>firstname</code> is <code>null</code>, this statement will throw an exception and possibly crash our application.</p>
 <p>The strategies for mitigating these problems are to try catch all <code>null</code>s at the boundaries of your application and to use the <a href="https://martinfowler.com/eaaCatalog/specialCase.html">Null Object/Special Case</a> pattern. We won't go into these but my main criticism is the noise it adds to the code.</p>
 <h2>Maybe this is here</h2>
 <p>The nice thing about the <code>Maybe</code> abstraction is it is generic, unlike the <strong>Special Case</strong> and in general can be much more elegant, saving you from repeatedly checking for <code>null</code>.</p>
@@ -243,12 +243,11 @@ let makeEmail name =
 <p>val email2 : string option = Some &quot;info@acme.com&quot;</p>
 </blockquote>
 <h2>Handling null</h2>
-<p>What if we are getting values from a database but always wrapping them in <code>Some</code>. Then we would be getting values of <code>Some(null)</code>. We could convert the <code>Some(null)</code> to <code>None</code> using <code>Option.bind</code>. This has a signature <code>('T -&gt; 'U option) -&gt; 'U option</code>. So we would pass it a function of <code>string -&gt; string option</code>, which you can see below is the <code>sanitizeString</code> function.</p>
+<p>What if we are getting values from a database but always wrapping them in <code>Some</code>. Then we would be getting values of <code>Some(null)</code>. We could convert the <code>Some(null)</code> to <code>None</code> using <code>Option.bind</code>. This has a signature <code>('T -&gt; 'U option) -&gt; 'U option</code>. So we would pass it a function of <code>string -&gt; string option</code>, which you can see below is the <code>Option.ofObj</code> function.</p>
 <pre><code class="language-fsharp">//string option -&gt; string
-let makeEmail name = 
-    let sanitizeString s = null |&gt; (fun x -&gt; if (box x = null) then None else Some(x))
+let makeEmail name =  
     name
-    |&gt; Option.bind sanitizeString
+    |&gt; Option.bind Option.ofObj
     |&gt; Option.orElse (Some &quot;info&quot;)
     |&gt; Option.map (fun n -&gt; sprintf &quot;%s@acme.com&quot; n)
 </code></pre>
