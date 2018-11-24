@@ -9,7 +9,7 @@ category: Software Development
 tags: [Functional,F#,.NET,.NET Core,Tutorial]
 comments: true
 excerpt_separator: <!--more-->
-header-img: "img/backgrounds/path-bg.jpg"
+header-img: "img/backgrounds/dashboard-bg.jpg"
 social-img: "img/posts/2018/fsharpapp-500.jpg"
 published: true
 ---
