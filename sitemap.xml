@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>https://devonburriss.me/how-to-fsharp-pt-10/</loc>
+    <lastmod>2018-11-24T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>https://devonburriss.me/how-to-fsharp-pt-9/</loc>
     <lastmod>2018-11-04T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -970,6 +977,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//tag/net/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/net-core/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>

@@ -176,14 +176,14 @@
     <div class="post-preview jumbotron">
         
         <h1 class="post-title">            
-            <a href="/how-to-fsharp-pt-9/">How to F# - Part 9</a>
+            <a href="/how-to-fsharp-pt-10/">How to F# - Part 10</a>
         </h1>
         
         <em class="post-subtitle">
-            Working with databases in F#
+            Writing your first command line application using F# and .NET Core
         </em>
         
-        <p class="post-meta">Posted by Devon Burriss on November 04, 2018</p>
+        <p class="post-meta">Posted by Devon Burriss on November 24, 2018</p>
         
             
                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
@@ -192,13 +192,17 @@
             
                 <a href="/tag/net"><span class="label label-default">.NET</span></a>
             
+                <a href="/tag/net-core"><span class="label label-default">.NET Core</span></a>
+            
+                <a href="/tag/tutorial"><span class="label label-default">Tutorial</span></a>
+            
         
         
-            <img src="/img/posts/2018/package-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
+            <img src="/img/posts/2018/fsharpapp-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         
-        <p align="justify"><p>In almost any software system we want to store data at some point. For decades the bread and butter of persisting data has been databases, and in this post we look at ways of working with a database in F#.</p>
+        <p align="justify"><p>In this final post in the series we are going to create a fully functioning F# application. Along the way we will discuss the .NET SDK, SQLite, and how to organize your code. If you follow along (which I recommend you do), you will have a working F# console application that accepts input and communicates with a database.</p>
 </p></p>
-        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-9/" role="button">Read more</a></p>
+        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-10/" role="button">Read more</a></p>
     </div>
     <div class="clearfix"></div>
     <hr>
@@ -215,6 +219,159 @@
 
     
 
+     
+        
+     
+        
+        
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+    
+
+    <div class="post-preview ">
+        
+            
+        
+         <img src="/img/posts/2018/package-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+
+        <a href="/how-to-fsharp-pt-9/">
+            <h2 class="post-title">            How to F# - Part 9
+            </h2>
+            
+            
+            <h3 class="post-subtitle">
+                Working with databases in F#
+            </h3>
+            
+        </a>
+        <p class="post-meta">Posted by Devon Burriss' Blog on November 04, 2018</p>
+        
+            
+                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
+            
+                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
+            
+                <a href="/tag/net"><span class="label label-default">.NET</span></a>
+            
+        
+    </div>
+    <hr>
+    
+
+
+
+
+    
+
+     
+        
      
         
      
@@ -370,6 +527,8 @@
         
      
         
+     
+        
         
         
      
@@ -513,6 +672,8 @@
 
     
 
+     
+        
      
         
      
@@ -672,6 +833,8 @@
         
      
         
+     
+        
         
         
      
@@ -811,6 +974,8 @@
 
     
 
+     
+        
      
         
      
@@ -974,6 +1139,8 @@
         
      
         
+     
+        
         
         
      
@@ -1109,6 +1276,8 @@
 
     
 
+     
+        
      
         
      
@@ -1276,6 +1445,8 @@
         
      
         
+     
+        
         
         
      
@@ -1405,153 +1576,6 @@
 
 
 
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/posts/2018/script-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/fsharp-scripting/">
-            <h2 class="post-title">            F# Scripts
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Exploring running F# from a fsx script file
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on October 17, 2018</p>
-        
-            
-                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-            
-                <a href="/tag/fsx"><span class="label label-default">FSX</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
 <ul class="pager">
     
     
@@ -1635,6 +1659,12 @@
 <a class="badge badge-info" href="/tag/net/" style="font-size: 80%">
     <span class="site-tag">                
         .NET
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/net-core/" style="font-size: 80%">
+    <span class="site-tag">                
+        .NET Core
     </span>
 </a>
 

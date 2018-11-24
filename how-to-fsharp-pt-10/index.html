@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+    <title>How to F# - Part 10</title>
+    <meta name="description" content="Writing your first F# application">
+    <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="https://devonburriss.me/how-to-fsharp-pt-10/">
+    
+    <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
+    <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="How to F# - Part 10">
+    <meta itemprop="description" content="Writing your first F# application">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/fsharpapp-500.jpg">
+    
+    <meta itemprop="datePublished" content="11/24/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="11/24/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="How to F# - Part 10 - Writing your first command line application using F# and .NET Core" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/how-to-fsharp-pt-10/" />
+    <meta name="headline" content="How to F# - Part 10 - Writing your first command line application using F# and .NET Core" />
+
+    
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary_large_image">
+    <meta name="twitter:site" content="@DevonBurriss">
+    <meta name="twitter:title" content="How to F# - Part 10">
+    <meta name="twitter:description" content="Writing your first F# application">
+    <meta name="twitter:creator" content="@DevonBurriss">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/fsharpapp-500.jpg">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="How to F# - Part 10" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://devonburriss.me/how-to-fsharp-pt-10/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/fsharpapp-500.jpg" />
+    <meta property="og:description" content="Writing your first F# application" />
+    <meta property="og:site_name" content="Devon Burriss' Blog" /> 
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    
+
+    <!-- Code Highlight -->
+    <link rel="stylesheet" charset="UTF-8" href="/css/highlight/atom-one-light.css">
+    
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Devon Burriss' Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/recommended-reading.html">Recommended Reading</a>
+                </li>
+                <!--
+				
+                <li>
+                    <a href="/atom.xml">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/index.html">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/recommended-reading.html">Recommended Reading</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/rss.xml">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/sitemap.xml">this is a post</a>
+                </li>
+				
+                -->
+                <li>
+                    <a href="/rss.xml">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-rss fa-stack-1x"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/path-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>How to F# - Part 10</h1>
+                        
+                        <h2 class="subheading">Writing your first command line application using F# and .NET Core</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on November 24, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/functional" class="label label-default">Functional</a>
+                            
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
+                                <a href="/tag/net" class="label label-default">.NET</a>
+                            
+                                <a href="/tag/net-core" class="label label-default">.NET Core</a>
+                            
+                                <a href="/tag/tutorial" class="label label-default">Tutorial</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
+
+				<p>In this final post in the series we are going to create a fully functioning F# application. Along the way we will discuss the .NET SDK, SQLite, and how to organize your code. If you follow along (which I recommend you do), you will have a working F# console application that accepts input and communicates with a database.</p>
+<!--more-->
+<p>The code for this tutorial can be found at <a href="https://github.com/dburriss/HowToFsharp">Github</a>.</p>
+<h2>Introduction</h2>
+<p>First let's discuss what we will be building. We will be creating a console application that accepts some contact information as user input and then persists those contacts to a database.</p>
+<p>The data we will be capturing will have the following fields:</p>
+<ul>
+<li>First name</li>
+<li>Last name</li>
+<li>Email</li>
+</ul>
+<p>We will be doing the initial creation of the project from the command line so it doesn't matter if you are using VS Code, Visual Studio, Rider, or any other preferred editor on Windows, Linux, or Mac.</p>
+<h2>Project setup</h2>
+<p>The first thing we need to check is if we have the <a href="https://www.microsoft.com/net/download">.NET Core SDK installed</a>. Go to <a href="https://www.microsoft.com/net/download">dot.net</a> and download the .NET Core SDK.</p>
+<p>And although I hope you tried out some of the samples in previous posts, if any this would be the one to follow along with if you have never written a F# application before. To do that you will need an IDE.</p>
+<ul>
+<li><a href="https://visualstudio.microsoft.com/downloads/">Visual Studio with the F# workload installed</a></li>
+<li><a href="https://visualstudio.microsoft.com/downloads/">Visual Studio Code</a> with <a href="http://ionide.io/">Ionide extension installed</a></li>
+<li><a href="https://www.jetbrains.com/rider/">Rider</a></li>
+</ul>
+<p>Once we have the .NET SDK installed, create a folder and navigate to that folder in your terminal (Prompt on Windows or Terminal on *nix).</p>
+<p>If you are unsure there is an awesome <a href="https://www.youtube.com/playlist?list=PLlzAi3ycg2x0TScJb7czq7-4LrQoyTB0I">video series by Compositional IT on YouTube now that will get you setup</a>.</p>
+<p>On Windows using Powershell I did the following:</p>
+<pre><code class="language-powershell">cd C:\dev\personal\  
+mkdir HowToFsharp  
+cd .\HowToFsharp\
+</code></pre>
+<p>So I am in a folder <em>C:\dev\personal\HowToFsharp</em>. You can put the folder anywhere you prefer and call it what you like, it is not too important. Just be sure that you execute the following command in the folder you just created:</p>
+<pre><code class="language-powershell">dotnet new --list
+</code></pre>
+<p><img src="/img/posts/2018/dotnet-list.jpg" alt="dotnet new --list" /></p>
+<p>This prints out a list of all the templates you have installed on your machine. We will be creating a console application so we will use the first template on the list above.</p>
+<pre><code class="language-powershell">dotnet new console -lang F#
+</code></pre>
+<p>Running this will generate 2 files and another folder called <code>obj</code> which we won't be looking at. Let's look at the 2 files though.</p>
+<p><em>HowToFsharp.fsproj</em>:</p>
+<pre><code class="language-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;Exe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;netcoreapp2.1&lt;/TargetFramework&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;Compile Include=&quot;Program.fs&quot; /&gt;
+  &lt;/ItemGroup&gt;
+
+&lt;/Project&gt;
+</code></pre>
+<p>The <code>*proj</code> files like <code>csproj</code> and <code>fsproj</code> MSBuild XML files that specify how our project is built. The first thing to notice is it is specifying <code>Microsoft.NET.Sdk</code> as an attribute in the root <code>Project</code> element. This layers in tasks and targets automatically for us to work with .NET Core.</p>
+<p><code>OutputType</code> is quite straight forward. The artefact of this program will be an executable that can be run.</p>
+<p>With <code>TargetFramework</code> we indicate what framework we are targeting. <code>netcoreapp2.1</code> is for runnable .NET Core applications. If we wanted to target .NET Fullframework we could specify something like <code>net461</code>. That is not too important for this post though, just useful to keep in mind when developing your own applications.</p>
+<p>Finally we have an <code>ItemGroup</code> with <code>&lt;Compile Include=&quot;Program.fs&quot; /&gt;</code>. This is important as it includes our other file of interest that we will look at next to be compiled when compiling this project. In an F# project file this is important as this allows us to specify what is compiled and in what order. If you are used to C#, this is different as the order of files does not matter in C#. The important part to note here is that as we add more F# files, we will need to add them here so they are compiled as needed.</p>
+<p><em>Program.fs</em></p>
+<pre><code class="language-fsharp">open System
+
+[&lt;EntryPoint&gt;]
+let main argv =
+    printfn &quot;Hello World from F#!&quot;
+    0 // return an integer exit code
+</code></pre>
+<p><code>Program.fs</code> becomes the entry point of our application (as is made explicit by the <code>[&lt;EntryPoint&gt;]</code> attribute).</p>
+<p>On the command line if you are in the folder containing the <code>fsproj</code> file you can run the command <code>dotnet run</code> command to build and run this program.</p>
+<blockquote>
+<p><code>dotnet run</code><br />
+Hello World from F#!</p>
+</blockquote>
+<p>Before we get to writing our program, let's talk about organizing code.</p>
+<h2>Organizing Code</h2>
+<p>So far in this series we haven't talked about how to organize code. In your F# code you typically have 3 aspects to bring together to organise your code. Firstly, you have <em>files</em>. These are files ending with <code>.fs</code>. Pretty straight forward. As mentioned before <code>.fs</code> files need to be compiled in the order they are used. So if You depend on functions or types in another file, that file must appear ahead in the compilation order of the file they are used in.</p>
+<p>The bread and butter of organizing F# code is <code>module</code>s. A <code>module</code> allows you to group values, types, and functions. This can be useful for thinking of the group as a single abstraction and avoiding naming conflicts. When interoping with other .NET languages, <code>module</code>s show up as static classes.</p>
+<p>Lastly, there are <em>namespaces</em>. These are an artefact of the interop with the rest of the .NET library although they can be useful for spanning multiple <code>module</code>s. One important thing to note is that although we can define types in a <code>namespace</code>, we cannot define values. This includes functions.</p>
+<p>We will be coding up the following:</p>
+<p><img src="/img/posts/2018/fsharpapp.jpg" alt="Code" /></p>
+<p>As we discussed, <code>Program.fs</code> represents our entry point. All other files contain <code>module</code>s in the <code>Contacts</code> <code>namespace</code>.</p>
+<h2>Creating our model</h2>
+<p>We will start with creating our <code>Domain.fs</code> file. There are multiple ways to organise code with or without namespaces but I am showing my preferred method. We have a <code>namespace</code>, in this case <code>Contacts</code> that all the code falls under. We create our types within that <code>namespace</code>. Any domain logic we need enforced on our types, we place in a <code>module</code> with the same name as the type.</p>
+<p><em>Domains.fs</em>:</p>
+<pre><code class="language-fsharp">namespace Contacts
+
+open System
+
+type Contact = {
+    Id:Guid
+    Firstname:string
+    Lastname:string
+    Email:string
+}
+
+[&lt;RequireQualifiedAccess&gt;]
+module Contact =
+    // string -&gt; bool
+    let private isValidEmail (email:string) =
+        try
+            new System.Net.Mail.MailAddress(email) |&gt; ignore
+            true
+        with 
+        | _ -&gt; false
+
+    // Contact -&gt; Result&lt;Contact,seq&lt;string&gt;&gt;
+    let validate contact =
+        let errors = seq {
+            if(String.IsNullOrEmpty(contact.Firstname)) then yield &quot;First name should not be empty&quot;
+            if(String.IsNullOrEmpty(contact.Lastname)) then yield &quot;Last name should not be empty&quot;
+            if(String.IsNullOrEmpty(contact.Email)) then yield &quot;Email should not be empty&quot;
+            if(isValidEmail contact.Email |&gt; not) then yield &quot;Not a valid email&quot;
+        }
+
+        if(Seq.isEmpty errors) then Ok contact else Error errors
+
+    // string -&gt; string -&gt; string -&gt; Result&lt;Contact,seq&lt;string&gt;&gt;
+    let create fname lname email =
+        let c = { Id = Guid.NewGuid(); Firstname = fname; Lastname = lname; Email = email }
+        validate c
+</code></pre>
+<p>Above we have a type <code>Contact</code> and a <code>module</code> <code>Contact</code>. Within the <code>module</code> we have 2 public functions. <code>create</code> creates a contact given the needed values, and uses <code>validate</code> to ensure the contact is valid.</p>
+<p>I find this a nice structured way of finding the necessary behavior on a type that is similar to how behavior would be discovered using OO, is still functional, and matches how we work in F# with types like <code>List</code> and <code>Option</code>.</p>
+<h2>Getting input</h2>
+<p>Next, let's look at how we can get input from the user console. We will be catering for the following functionality.</p>
+<ol>
+<li>Print a menu to the console</li>
+<li>List all existing saved contacts persisted to the database</li>
+<li>Capture new contacts to the database</li>
+</ol>
+<p>The menu will look like this:</p>
+<pre><code class="language-text">====================
+MENU&quot;
+====================
+1. Print Contacts&quot;
+2. Capture Contacts&quot;
+0. Quit&quot;
+</code></pre>
+<p>With this bit of code, consider reading it from the bottom up. This way of reading code often makes the most sense as the upper functions are helper functions for those lower down.</p>
+<pre><code class="language-fsharp">namespace Contacts
+
+[&lt;RequireQualifiedAccess&gt;]
+module Input = 
+
+    open System
+    
+    // string -&gt; string
+    let private captureInput(label:string) = 
+            printf &quot;%s&quot; label
+            Console.ReadLine()
+
+    // seq&lt;string&gt; -&gt; unit
+    let private printErrors errs =
+        printfn &quot;ERRORS&quot;
+        errs |&gt; Seq.iter (printfn &quot;%s&quot;)
+
+    // unit -&gt; Contact
+    let rec private captureContact() =
+        printfn &quot;CAPTURE CONTACT&quot;
+        Contact.create
+            (captureInput &quot;First name: &quot;)
+            (captureInput &quot;Last name: &quot;)
+            (captureInput &quot;Email: &quot;)
+        |&gt; fun r -&gt; match r with
+                    | Ok c -&gt; c
+                    | Error err -&gt; 
+                        printErrors err
+                        captureContact()
+
+    // (Contact -&gt; unit) -&gt; Choice&lt;unit,unit&gt;
+    let private captureContactChoice saveContact =
+        let contact = captureContact()
+        saveContact contact
+        let another = captureInput &quot;Continue (Y/N)?&quot;
+        match another.ToUpper() with
+        | &quot;Y&quot; -&gt; Choice1Of2 ()
+        | _ -&gt; Choice2Of2 ()
+
+    // (Contact -&gt; unit) -&gt; unit
+    let rec private captureContacts saveContact =
+        match captureContactChoice saveContact with
+        | Choice1Of2 _ -&gt; 
+            captureContacts saveContact
+        | Choice2Of2 _ -&gt; ()
+
+    // unit -&gt; unit
+    let printMenu() =
+        printfn &quot;====================&quot;
+        printfn &quot;MENU&quot;
+        printfn &quot;====================&quot;
+        printfn &quot;1. Print Contacts&quot;
+        printfn &quot;2. Capture Contacts&quot;
+        printfn &quot;0. Quit&quot;
+
+    // string -&gt; (unit -&gt; Contact list) -&gt; (Contact -&gt; unit) -&gt; unit
+    let routeMenuOption i getContacts saveContact =
+        match i with
+        | &quot;1&quot; -&gt; 
+            printfn &quot;Contacts&quot;
+            getContacts() |&gt; List.iter (fun c -&gt; printfn &quot;%s %s (%s)&quot; c.Firstname c.Lastname c.Email)
+        | &quot;2&quot; -&gt; captureContacts saveContact
+        | _ -&gt; printMenu()
+
+    // unit -&gt; string
+    let readKey() =
+        let k = Console.ReadKey()
+        Console.WriteLine()
+        k.KeyChar |&gt; string
+</code></pre>
+<p>The first thing you may notice (if you did still start from the top) is the <code>RequireQualifiedAccess</code> attribute. This enforces that calling the functions in the module is done using the fully qualified <code>module</code> name. I often like this as it gives context to the function call names.</p>
+<p>Now that you have been found out for starting from the top, let's work our way up from the bottom.</p>
+<p><code>readKey</code> is pretty uninteresting. It gets a key as input and returns that as a string. This will be used to get menu choices.</p>
+<p><code>routeMenuOption</code> pattern <code>match</code>es on the <code>i</code>. &quot;1&quot; prints out each contact. To do that it calls the <code>getContacts</code> function that is passed in as an argument. This means we are not directly tied to fetching our contacts from the database when using this <code>Input module</code>, we need only supply a function with the signature <code>unit -&gt; Contact list</code>.<br />
+&quot;2&quot; is a little more interesting as we call a function <code>captureContacts</code> which is in this <code>Input module</code>. It takes as an argument the function <code>saveContact</code> which has the signature <code>Contact -&gt; unit</code>. So again, the <code>Input module</code> is not dependent on storing contacts in a database. All it requires is a function that will do something with the <code>Contact</code>.</p>
+<p>Let's drill into <code>captureContacts</code> then. It has the signature <code>(Contact -&gt; unit) -&gt; unit</code>, so its argument matches up with our <code>saveContact</code> function. Another interesting part about <code>captureContacts</code> is the <code>rec</code> keyword. This means that the function is recursive. That is a fancy way of saying it calls itself. So what it does is make use of the <code>captureContact</code> function which returns back a <code>Choice</code> type. <code>Choice1Of2</code> means we will capture another contact, <code>Choice2Of2</code> means we will not capture any more contacts.</p>
+<p>The rest of the functions <code>printMenu</code>, <code>printErrors</code>, and <code>captureInput</code> should be simple enough to reason about by now.</p>
+<h2>Persisting data</h2>
+<p>Next we need to setup our data access. I am not going to go over the code too much in this section as it is basically the same as what <a href="https://devonburriss.me/how-to-fsharp-pt-9/">we covered in Part 9</a>.</p>
+<h3>Database creation</h3>
+<p>What is important is to be able to work with <a href="https://www.sqlite.org/">SQLite</a>. To follow along here you can <a href="https://www.sqlite.org/download.html">download sqlite-tools</a> for free for your platform. You will either need to put <a href="https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/"><code>sqlite3</code> on your <em>PATH</em></a> or call it from where you downloaded it. You could also use a tool like <a href="https://www.jetbrains.com/datagrip/">Jetbrains Datagrip</a>.</p>
+<p>Once we have the <code>sqlite</code> binary we can create a new database and connect to it using the following command:</p>
+<pre><code class="language-bash">sqlite3 contactsDB.sqlite
+sqlite&gt; CREATE TABLE IF NOT EXISTS contacts ( id TEXT PRIMARY KEY, firstname TEXT NOT NULL, lastname TEXT NOT NULL, email TEXT NOT NULL UNIQUE );
+</code></pre>
+<p>It should look something like this, depending on your operating system and terminal of choice.</p>
+<p><img src="/img/posts/2018/sqlite3.jpg" alt="sqlite3 bash" /></p>
+<h3>Install nuget packages</h3>
+<p>So now we have our database setup, we are going to start with the code to connect to it. First we will install the <a href="https://github.com/StackExchange/Dapper">Dapper</a> package into our project.</p>
+<blockquote>
+<p>I would usually recommend dependency management <a href="https://fsprojects.github.io/Paket/">Paket</a>. I have a post on <a href="https://devonburriss.me/up-and-running-with-paket/">getting up and running with Paket</a> if you are interested.</p>
+</blockquote>
+<p>Run the following commands:</p>
+<pre><code class="language-bash">dotnet add package Dapper
+dotnet add package System.Data.SQLite
+dotnet restore
+</code></pre>
+<p>Your <em>HowToFsharp.fsproj</em> should now contain the following <em>ItemGroup</em> element.</p>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+  &lt;PackageReference Include=&quot;Dapper&quot; Version=&quot;1.50.5&quot; /&gt;
+  &lt;PackageReference Include=&quot;System.Data.SQLite&quot; Version=&quot;1.0.109.2&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<p>We are going to add some code we saw in <a href="https://devonburriss.me/how-to-fsharp-pt-9/">Part 9</a>. <em>Database.fs</em> is a helper <code>module</code> for using Dapper in a more functional way.</p>
+<p><em>Database.fs</em></p>
+<pre><code class="language-fsharp">namespace Contacts
+
+module Database =
+
+    open Dapper
+    open System.Data.Common
+    open System.Collections.Generic
+
+    // DbConnection -&gt; string -&gt; 'b -&gt; Result&lt;int,exn&gt;
+    let execute (connection:#DbConnection) (sql:string) (parameters:_) =
+        try
+            let result = connection.Execute(sql, parameters)
+            Ok result
+        with
+        | ex -&gt; Error ex
+
+    // DbConnection -&gt; string -&gt; IDictionary&lt;string,obj&gt; -&gt; Result&lt;seq&lt;'T&gt;,exn&gt;
+    let query (connection:#DbConnection) (sql:string) (parameters:IDictionary&lt;string, obj&gt; option) : Result&lt;seq&lt;'T&gt;,exn&gt; =
+        try
+            let result =
+                match parameters with
+                | Some p -&gt; connection.Query&lt;'T&gt;(sql, p)
+                | None -&gt; connection.Query&lt;'T&gt;(sql)
+            Ok result
+        with
+        | ex -&gt; Error ex
+
+    // DbConnection -&gt; string -&gt; IDictionary&lt;string,obj&gt; -&gt; Result&lt;'T,exn&gt;
+    let querySingle (connection:#DbConnection) (sql:string) (parameters:IDictionary&lt;string, obj&gt; option) =
+        try
+            let result =
+                match parameters with
+                | Some p -&gt; connection.QuerySingleOrDefault&lt;'T&gt;(sql, p)
+                | None -&gt; connection.QuerySingleOrDefault&lt;'T&gt;(sql)
+            
+            if isNull (box result) then Ok None
+            else Ok (Some result)
+
+        with
+        | ex -&gt; Error ex
+</code></pre>
+<p>Next we will use this file in a <code>module</code> we will call <code>Data</code> that will contain the code and queries for saving and listing the contacts in the database.</p>
+<p><em>Data.fs</em></p>
+<pre><code class="language-fsharp">namespace Contacts
+
+open Contacts
+open System
+open System.Data.SQLite
+
+[&lt;RequireQualifiedAccess&gt;]
+module Data =
+
+    type ContactEntity = { id:string; firstname:string; lastname:string; email:string }
+
+    // string -&gt; SQLiteConnection
+    let private conn (dbname:string) = 
+        let c = new SQLiteConnection(sprintf &quot;Data Source=%s.sqlite&quot; dbname)
+        c.Open()
+        c
+
+    let private dbname = &quot;contactsDB&quot;
+
+    // unit -&gt; Result&lt;seq&lt;Contact&gt;,exn&gt;
+    let all() =
+        let db = conn dbname
+        Database.query db &quot;SELECT id, firstname, lastname, email FROM contacts&quot; None 
+        |&gt; Result.map
+            (fun ss -&gt; ss 
+                    |&gt; Seq.map (fun c -&gt; {
+                        Id = Guid.Parse(c.id); Firstname = c.firstname; Lastname = c.lastname; Email = c.email
+                        }))
+
+    // Contact -&gt; Result&lt;int,exn&gt;
+    let insert c =
+        let db = conn dbname
+        let entity = { id = c.Id.ToString(); firstname = c.Firstname; lastname = c.Lastname; email = c.Email }
+        let sql = &quot;INSERT INTO contacts (id, firstname, lastname, email) VALUES (@id, @firstname, @lastname, @email);&quot;
+        Database.execute db sql entity   
+</code></pre>
+<p>Of note here is that we use a specific type here called <code>ContactEntity</code> that we use to store and retrieve from the database. Here it was necessary as SQLite does not handle <code>Guid</code> type that we are using for the <code>Id</code>. Even if this was not necessary it is a good practice to separate the boandaries of your application like input and storage from your domain types.</p>
+<h2>Tying it all together</h2>
+<p>Remember we need to add the files to the <em>HowToFsharp.fsproj</em> for them to be compiled.</p>
+<pre><code class="language-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;Exe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;netcoreapp2.1&lt;/TargetFramework&gt;
+  &lt;/PropertyGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;Compile Include=&quot;Database.fs&quot; /&gt;    
+    &lt;Compile Include=&quot;Domain.fs&quot; /&gt;
+    &lt;Compile Include=&quot;Data.fs&quot; /&gt;
+    &lt;Compile Include=&quot;Input.fs&quot; /&gt;
+    &lt;Compile Include=&quot;Program.fs&quot; /&gt;
+  &lt;/ItemGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include=&quot;Dapper&quot; Version=&quot;1.50.5&quot; /&gt;
+    &lt;PackageReference Include=&quot;System.Data.SQLite&quot; Version=&quot;1.0.109.2&quot; /&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;
+</code></pre>
+<p>Now we have all the building blocks we need to tie our application together. Lets flesh out our entry point to use what we have created so far to get our contacts application working.</p>
+<p>When the application starts we want to print the menu and get an input. After completing each action we will print the menu again and get an input.</p>
+<p><em>Program.fs</em></p>
+<pre><code class="language-fsharp">open Contacts
+
+// unit -&gt; Contact list
+let getContacts() =
+    Data.all()
+    |&gt; fun r -&gt; match r with
+                | Ok cs -&gt; cs |&gt; Seq.toList
+                | Error e -&gt; 
+                        printfn &quot;ERROR: %s&quot; e.Message
+                        List.empty
+
+// Contact -&gt; unit
+let insertContact c =
+    Data.insert c
+    |&gt; fun r -&gt; match r with
+                | Ok i -&gt; printfn &quot;%i records inserted&quot; i
+                | Error e -&gt; printfn &quot;ERROR: %s&quot; e.Message
+
+[&lt;EntryPoint&gt;]
+let main argv =
+    Input.printMenu()
+    let mutable selection = Input.readKey()
+    while(selection &lt;&gt; &quot;0&quot;) do
+        Input.routeMenuOption selection getContacts insertContact 
+        Input.printMenu()
+        selection &lt;- Input.readKey()
+    0
+</code></pre>
+<p>So we print the menu and get a menu option, then we go into a loop of doing that after executing each action with <code>Input.routeMenuOption</code>.
+Remember that <code>Input.routeMenuOption</code> takes 2 functions as input to fetch all contacts and insert a contact.</p>
+<p>In the <code>Data</code> module we have 2 functions that almost fit the bill. <code>Data.all</code> has a signature of <code>unit -&gt; Result&lt;seq&lt;Contact&gt;,exn&gt;</code> for fetching all contacts as a result, where the result may be an exception. <code>Data.insert</code> has a signature of <code>Contact -&gt; Result&lt;int,exn&gt;</code> with the result of inserting a contact into the database.</p>
+<p>At the top of <em>Program.fs</em> we have created 2 functions that wrap the <code>Data module</code> functions, handling errors and then give us the signatures we need for using them in <code>Input.routeMenuOption</code>.</p>
+<p>This all just loops in the <code>while</code> loop until the <strong>Quit</strong> option is selected.</p>
+<p>To run our application we execute the <code>dotnet run</code> command like we did near the beginning of this tutorial.</p>
+<pre><code class="language-bash">&gt; dotnet run
+====================
+MENU
+====================
+1. Print Contacts
+2. Capture Contacts
+0. Quit
+</code></pre>
+<h2>Conclusion</h2>
+<p>Congratulations for completing your first application! Hopefully you can see that functional programming and F# is not a scary thing and that it is quite possible to write any kind of application in it.</p>
+<p>Here are a few ways you could expand this application:</p>
+<ol>
+<li>Move the connection string into a json or yaml configuration file</li>
+<li>Try use a different database</li>
+<li>Try use <a href="https://fsprojects.github.io/SQLProvider/">SQL Provider</a> for the <code>Data</code> layer</li>
+<li>Try import contacts from a <a href="https://gist.github.com/dburriss/4fd75fb874efb3ee41d0c31b14387fdf">CSV</a> file</li>
+<li>Make this a web api using <a href="https://github.com/giraffe-fsharp/Giraffe">Giraffe</a></li>
+</ol>
+<h3>Next steps</h3>
+<p>What are some ways of furthering your learnings in F#?</p>
+<ol>
+<li>Check out <a href="https://exercism.io/">Exercism</a> is a great way to get some easy practice writing code</li>
+<li><a href="https://fsharpforfunandprofit.com/">F# for fun and profit</a> is a wealth of F# knowledge and I started out by just reading a little of that every day. I would encourage you to follow along with the <a href="https://devonburriss.me/fsharp-scripting/">script files</a> rather than just read like I did. Nothing beats actually writing code for learning a new language.</li>
+<li><a href="https://www.manning.com/books/get-programming-with-f-sharp">Get Programming with FSharp</a> by Isaac Abraham is a great getting started book</li>
+<li><a href="https://pragprog.com/book/swdddf/domain-modeling-made-functional">Domain Modeling Made Functional</a> is one of my favorite F# and DDD books, I highly recommend it once you are a little comfortable with F#.</li>
+</ol>
+<h2>Resources</h2>
+<ol>
+<li><a href="https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-use-project-sdk">MSBuild project SDKs</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/core/tools/csproj">MSBuild for .NET Core</a></li>
+</ol>
+
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/how-to-fsharp-pt-9/">How to F# - Part 9</a></li>
+                                                <li><a href="/how-to-fsharp-pt-6/">How to F# - Part 6</a></li>
+                                                <li><a href="/how-to-fsharp-pt-4/">How to F# - Part 4</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/how-to-fsharp-pt-9/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 9">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
+                    <li>
+                        <a href="/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/DevonBurriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dburriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+
+    <a class="badge badge-info" href="/category/agile">Agile</a>
+
+    <a class="badge badge-info" href="/category/devops">DevOps</a>
+
+    <a class="badge badge-info" href="/category/leadership">Leadership</a>
+
+    <a class="badge badge-info" href="/category/life">Life</a>
+
+    <a class="badge badge-info" href="/category/modeling">Modeling</a>
+
+    <a class="badge badge-info" href="/category/project-management">Project Management</a>
+
+    <a class="badge badge-info" href="/category/software-development">Software Development</a>
+
+    <a class="badge badge-info" href="/category/tools">Tools</a>
+
+    <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
+
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+<div class="well">
+
+
+<a class="badge badge-info" href="/tag/net/" style="font-size: 80%">
+    <span class="site-tag">                
+        .NET
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/net-core/" style="font-size: 80%">
+    <span class="site-tag">                
+        .NET Core
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/agile/" style="font-size: 80%">
+    <span class="site-tag">                
+        Agile
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/appveyor/" style="font-size: 80%">
+    <span class="site-tag">                
+        AppVeyor
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/architecture/" style="font-size: 80%">
+    <span class="site-tag">                
+        Architecture
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/asp-net-5/" style="font-size: 80%">
+    <span class="site-tag">                
+        ASP.NET 5
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/atdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        ATDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/azure/" style="font-size: 80%">
+    <span class="site-tag">                
+        Azure
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/bdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        BDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/csharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        C#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/cake/" style="font-size: 80%">
+    <span class="site-tag">                
+        Cake
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/canopy/" style="font-size: 80%">
+    <span class="site-tag">                
+        Canopy
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ci/" style="font-size: 80%">
+    <span class="site-tag">                
+        CI
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/clean-code/" style="font-size: 80%">
+    <span class="site-tag">                
+        Clean Code
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ddd/" style="font-size: 80%">
+    <span class="site-tag">                
+        DDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/design-patterns/" style="font-size: 80%">
+    <span class="site-tag">                
+        Design Patterns
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/dnx/" style="font-size: 80%">
+    <span class="site-tag">                
+        DNX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/fsharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        F#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/fsx/" style="font-size: 80%">
+    <span class="site-tag">                
+        FSX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/functional/" style="font-size: 80%">
+    <span class="site-tag">                
+        Functional
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/functional-modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Functional Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/general/" style="font-size: 80%">
+    <span class="site-tag">                
+        General
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/git/" style="font-size: 80%">
+    <span class="site-tag">                
+        Git
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/github-pages/" style="font-size: 80%">
+    <span class="site-tag">                
+        Github Pages
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/hyper-v/" style="font-size: 80%">
+    <span class="site-tag">                
+        Hyper V
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/java/" style="font-size: 80%">
+    <span class="site-tag">                
+        Java
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/learning-csharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        Learning c#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/life/" style="font-size: 80%">
+    <span class="site-tag">                
+        Life
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/maven/" style="font-size: 80%">
+    <span class="site-tag">                
+        Maven
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/meditation/" style="font-size: 80%">
+    <span class="site-tag">                
+        Meditation
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/mindfulness/" style="font-size: 80%">
+    <span class="site-tag">                
+        Mindfulness
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/morality/" style="font-size: 80%">
+    <span class="site-tag">                
+        Morality
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/mvc-6/" style="font-size: 80%">
+    <span class="site-tag">                
+        MVC 6
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/nuget/" style="font-size: 80%">
+    <span class="site-tag">                
+        Nuget
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/oop/" style="font-size: 80%">
+    <span class="site-tag">                
+        OOP
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/osx/" style="font-size: 80%">
+    <span class="site-tag">                
+        OSX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/paket/" style="font-size: 80%">
+    <span class="site-tag">                
+        Paket
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/pascal/" style="font-size: 80%">
+    <span class="site-tag">                
+        Pascal
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/powershell/" style="font-size: 80%">
+    <span class="site-tag">                
+        Powershell
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/pretzel/" style="font-size: 80%">
+    <span class="site-tag">                
+        Pretzel
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/productivity/" style="font-size: 80%">
+    <span class="site-tag">                
+        Productivity
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/programming/" style="font-size: 80%">
+    <span class="site-tag">                
+        Programming
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/science/" style="font-size: 80%">
+    <span class="site-tag">                
+        Science
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/selenium/" style="font-size: 80%">
+    <span class="site-tag">                
+        Selenium
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/solid/" style="font-size: 80%">
+    <span class="site-tag">                
+        SOLID
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/tdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        TDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/team-lead/" style="font-size: 80%">
+    <span class="site-tag">                
+        Team Lead
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/temporal-modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Temporal Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/testing/" style="font-size: 80%">
+    <span class="site-tag">                
+        Testing
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/tutorial/" style="font-size: 80%">
+    <span class="site-tag">                
+        Tutorial
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ubuntu/" style="font-size: 80%">
+    <span class="site-tag">                
+        Ubuntu
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/unit-testing/" style="font-size: 80%">
+    <span class="site-tag">                
+        Unit Testing
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/visual-studio/" style="font-size: 80%">
+    <span class="site-tag">                
+        Visual Studio
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/visual-studio-online/" style="font-size: 80%">
+    <span class="site-tag">                
+        Visual Studio Online
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/vs-code/" style="font-size: 80%">
+    <span class="site-tag">                
+        VS Code
+    </span>
+</a>
+
+</div>
+            
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+    
+                    <ul class="list-inline text-center">
+                    <li>
+                        <a href="/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/DevonBurriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dburriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+    
+    <div class="container-fluid">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'devonburriss'; // required: replace example with your forum shortname
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+    <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+        if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+        }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="https://disqus.com/forums/devonburriss/get_num_replies.js' + query + '"></' + 'script>');
+    })();
+    //]]>
+    </script>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p class="copyright text-muted">Copyright &copy; 
+                <a href="/about.html">Devon Burriss</a> 2018
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+
+    <script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45750611-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+
+</html>

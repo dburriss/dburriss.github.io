@@ -3,13 +3,430 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-11-24T13:40:09.3565937+00:00</updated>
+  <updated>2018-11-24T14:41:31.1779093+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/how-to-fsharp-pt-10/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-10/"/>
+    <title>How to F# - Part 10</title>
+    <updated>2018-11-24T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/how-to-fsharp-pt-10/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;In this final post in the series we are going to create a fully functioning F# application. Along the way we will discuss the .NET SDK, SQLite, and how to organize your code. If you follow along (which I recommend you do), you will have a working F# console application that accepts input and communicates with a database.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;The code for this tutorial can be found at &lt;a href=&quot;https://github.com/dburriss/HowToFsharp&quot;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;First let&apos;s discuss what we will be building. We will be creating a console application that accepts some contact information as user input and then persists those contacts to a database.&lt;/p&gt;
+&lt;p&gt;The data we will be capturing will have the following fields:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First name&lt;/li&gt;
+&lt;li&gt;Last name&lt;/li&gt;
+&lt;li&gt;Email&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We will be doing the initial creation of the project from the command line so it doesn&apos;t matter if you are using VS Code, Visual Studio, Rider, or any other preferred editor on Windows, Linux, or Mac.&lt;/p&gt;
+&lt;h2&gt;Project setup&lt;/h2&gt;
+&lt;p&gt;The first thing we need to check is if we have the &lt;a href=&quot;https://www.microsoft.com/net/download&quot;&gt;.NET Core SDK installed&lt;/a&gt;. Go to &lt;a href=&quot;https://www.microsoft.com/net/download&quot;&gt;dot.net&lt;/a&gt; and download the .NET Core SDK.&lt;/p&gt;
+&lt;p&gt;And although I hope you tried out some of the samples in previous posts, if any this would be the one to follow along with if you have never written a F# application before. To do that you will need an IDE.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://visualstudio.microsoft.com/downloads/&quot;&gt;Visual Studio with the F# workload installed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://visualstudio.microsoft.com/downloads/&quot;&gt;Visual Studio Code&lt;/a&gt; with &lt;a href=&quot;http://ionide.io/&quot;&gt;Ionide extension installed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.jetbrains.com/rider/&quot;&gt;Rider&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Once we have the .NET SDK installed, create a folder and navigate to that folder in your terminal (Prompt on Windows or Terminal on *nix).&lt;/p&gt;
+&lt;p&gt;If you are unsure there is an awesome &lt;a href=&quot;https://www.youtube.com/playlist?list=PLlzAi3ycg2x0TScJb7czq7-4LrQoyTB0I&quot;&gt;video series by Compositional IT on YouTube now that will get you setup&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;On Windows using Powershell I did the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;cd C:\dev\personal\  
+mkdir HowToFsharp  
+cd .\HowToFsharp\
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So I am in a folder &lt;em&gt;C:\dev\personal\HowToFsharp&lt;/em&gt;. You can put the folder anywhere you prefer and call it what you like, it is not too important. Just be sure that you execute the following command in the folder you just created:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;dotnet new --list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/dotnet-list.jpg&quot; alt=&quot;dotnet new --list&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;This prints out a list of all the templates you have installed on your machine. We will be creating a console application so we will use the first template on the list above.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;dotnet new console -lang F#
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Running this will generate 2 files and another folder called &lt;code&gt;obj&lt;/code&gt; which we won&apos;t be looking at. Let&apos;s look at the 2 files though.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;HowToFsharp.fsproj&lt;/em&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;Project Sdk=&amp;quot;Microsoft.NET.Sdk&amp;quot;&amp;gt;
+
+  &amp;lt;PropertyGroup&amp;gt;
+    &amp;lt;OutputType&amp;gt;Exe&amp;lt;/OutputType&amp;gt;
+    &amp;lt;TargetFramework&amp;gt;netcoreapp2.1&amp;lt;/TargetFramework&amp;gt;
+  &amp;lt;/PropertyGroup&amp;gt;
+
+  &amp;lt;ItemGroup&amp;gt;
+    &amp;lt;Compile Include=&amp;quot;Program.fs&amp;quot; /&amp;gt;
+  &amp;lt;/ItemGroup&amp;gt;
+
+&amp;lt;/Project&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;*proj&lt;/code&gt; files like &lt;code&gt;csproj&lt;/code&gt; and &lt;code&gt;fsproj&lt;/code&gt; MSBuild XML files that specify how our project is built. The first thing to notice is it is specifying &lt;code&gt;Microsoft.NET.Sdk&lt;/code&gt; as an attribute in the root &lt;code&gt;Project&lt;/code&gt; element. This layers in tasks and targets automatically for us to work with .NET Core.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;OutputType&lt;/code&gt; is quite straight forward. The artefact of this program will be an executable that can be run.&lt;/p&gt;
+&lt;p&gt;With &lt;code&gt;TargetFramework&lt;/code&gt; we indicate what framework we are targeting. &lt;code&gt;netcoreapp2.1&lt;/code&gt; is for runnable .NET Core applications. If we wanted to target .NET Fullframework we could specify something like &lt;code&gt;net461&lt;/code&gt;. That is not too important for this post though, just useful to keep in mind when developing your own applications.&lt;/p&gt;
+&lt;p&gt;Finally we have an &lt;code&gt;ItemGroup&lt;/code&gt; with &lt;code&gt;&amp;lt;Compile Include=&amp;quot;Program.fs&amp;quot; /&amp;gt;&lt;/code&gt;. This is important as it includes our other file of interest that we will look at next to be compiled when compiling this project. In an F# project file this is important as this allows us to specify what is compiled and in what order. If you are used to C#, this is different as the order of files does not matter in C#. The important part to note here is that as we add more F# files, we will need to add them here so they are compiled as needed.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Program.fs&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;open System
+
+[&amp;lt;EntryPoint&amp;gt;]
+let main argv =
+    printfn &amp;quot;Hello World from F#!&amp;quot;
+    0 // return an integer exit code
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;Program.fs&lt;/code&gt; becomes the entry point of our application (as is made explicit by the &lt;code&gt;[&amp;lt;EntryPoint&amp;gt;]&lt;/code&gt; attribute).&lt;/p&gt;
+&lt;p&gt;On the command line if you are in the folder containing the &lt;code&gt;fsproj&lt;/code&gt; file you can run the command &lt;code&gt;dotnet run&lt;/code&gt; command to build and run this program.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;dotnet run&lt;/code&gt;&lt;br /&gt;
+Hello World from F#!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Before we get to writing our program, let&apos;s talk about organizing code.&lt;/p&gt;
+&lt;h2&gt;Organizing Code&lt;/h2&gt;
+&lt;p&gt;So far in this series we haven&apos;t talked about how to organize code. In your F# code you typically have 3 aspects to bring together to organise your code. Firstly, you have &lt;em&gt;files&lt;/em&gt;. These are files ending with &lt;code&gt;.fs&lt;/code&gt;. Pretty straight forward. As mentioned before &lt;code&gt;.fs&lt;/code&gt; files need to be compiled in the order they are used. So if You depend on functions or types in another file, that file must appear ahead in the compilation order of the file they are used in.&lt;/p&gt;
+&lt;p&gt;The bread and butter of organizing F# code is &lt;code&gt;module&lt;/code&gt;s. A &lt;code&gt;module&lt;/code&gt; allows you to group values, types, and functions. This can be useful for thinking of the group as a single abstraction and avoiding naming conflicts. When interoping with other .NET languages, &lt;code&gt;module&lt;/code&gt;s show up as static classes.&lt;/p&gt;
+&lt;p&gt;Lastly, there are &lt;em&gt;namespaces&lt;/em&gt;. These are an artefact of the interop with the rest of the .NET library although they can be useful for spanning multiple &lt;code&gt;module&lt;/code&gt;s. One important thing to note is that although we can define types in a &lt;code&gt;namespace&lt;/code&gt;, we cannot define values. This includes functions.&lt;/p&gt;
+&lt;p&gt;We will be coding up the following:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/fsharpapp.jpg&quot; alt=&quot;Code&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;As we discussed, &lt;code&gt;Program.fs&lt;/code&gt; represents our entry point. All other files contain &lt;code&gt;module&lt;/code&gt;s in the &lt;code&gt;Contacts&lt;/code&gt; &lt;code&gt;namespace&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Creating our model&lt;/h2&gt;
+&lt;p&gt;We will start with creating our &lt;code&gt;Domain.fs&lt;/code&gt; file. There are multiple ways to organise code with or without namespaces but I am showing my preferred method. We have a &lt;code&gt;namespace&lt;/code&gt;, in this case &lt;code&gt;Contacts&lt;/code&gt; that all the code falls under. We create our types within that &lt;code&gt;namespace&lt;/code&gt;. Any domain logic we need enforced on our types, we place in a &lt;code&gt;module&lt;/code&gt; with the same name as the type.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Domains.fs&lt;/em&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;namespace Contacts
+
+open System
+
+type Contact = {
+    Id:Guid
+    Firstname:string
+    Lastname:string
+    Email:string
+}
+
+[&amp;lt;RequireQualifiedAccess&amp;gt;]
+module Contact =
+    // string -&amp;gt; bool
+    let private isValidEmail (email:string) =
+        try
+            new System.Net.Mail.MailAddress(email) |&amp;gt; ignore
+            true
+        with 
+        | _ -&amp;gt; false
+
+    // Contact -&amp;gt; Result&amp;lt;Contact,seq&amp;lt;string&amp;gt;&amp;gt;
+    let validate contact =
+        let errors = seq {
+            if(String.IsNullOrEmpty(contact.Firstname)) then yield &amp;quot;First name should not be empty&amp;quot;
+            if(String.IsNullOrEmpty(contact.Lastname)) then yield &amp;quot;Last name should not be empty&amp;quot;
+            if(String.IsNullOrEmpty(contact.Email)) then yield &amp;quot;Email should not be empty&amp;quot;
+            if(isValidEmail contact.Email |&amp;gt; not) then yield &amp;quot;Not a valid email&amp;quot;
+        }
+
+        if(Seq.isEmpty errors) then Ok contact else Error errors
+
+    // string -&amp;gt; string -&amp;gt; string -&amp;gt; Result&amp;lt;Contact,seq&amp;lt;string&amp;gt;&amp;gt;
+    let create fname lname email =
+        let c = { Id = Guid.NewGuid(); Firstname = fname; Lastname = lname; Email = email }
+        validate c
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Above we have a type &lt;code&gt;Contact&lt;/code&gt; and a &lt;code&gt;module&lt;/code&gt; &lt;code&gt;Contact&lt;/code&gt;. Within the &lt;code&gt;module&lt;/code&gt; we have 2 public functions. &lt;code&gt;create&lt;/code&gt; creates a contact given the needed values, and uses &lt;code&gt;validate&lt;/code&gt; to ensure the contact is valid.&lt;/p&gt;
+&lt;p&gt;I find this a nice structured way of finding the necessary behavior on a type that is similar to how behavior would be discovered using OO, is still functional, and matches how we work in F# with types like &lt;code&gt;List&lt;/code&gt; and &lt;code&gt;Option&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Getting input&lt;/h2&gt;
+&lt;p&gt;Next, let&apos;s look at how we can get input from the user console. We will be catering for the following functionality.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Print a menu to the console&lt;/li&gt;
+&lt;li&gt;List all existing saved contacts persisted to the database&lt;/li&gt;
+&lt;li&gt;Capture new contacts to the database&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The menu will look like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;====================
+MENU&amp;quot;
+====================
+1. Print Contacts&amp;quot;
+2. Capture Contacts&amp;quot;
+0. Quit&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With this bit of code, consider reading it from the bottom up. This way of reading code often makes the most sense as the upper functions are helper functions for those lower down.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;namespace Contacts
+
+[&amp;lt;RequireQualifiedAccess&amp;gt;]
+module Input = 
+
+    open System
+    
+    // string -&amp;gt; string
+    let private captureInput(label:string) = 
+            printf &amp;quot;%s&amp;quot; label
+            Console.ReadLine()
+
+    // seq&amp;lt;string&amp;gt; -&amp;gt; unit
+    let private printErrors errs =
+        printfn &amp;quot;ERRORS&amp;quot;
+        errs |&amp;gt; Seq.iter (printfn &amp;quot;%s&amp;quot;)
+
+    // unit -&amp;gt; Contact
+    let rec private captureContact() =
+        printfn &amp;quot;CAPTURE CONTACT&amp;quot;
+        Contact.create
+            (captureInput &amp;quot;First name: &amp;quot;)
+            (captureInput &amp;quot;Last name: &amp;quot;)
+            (captureInput &amp;quot;Email: &amp;quot;)
+        |&amp;gt; fun r -&amp;gt; match r with
+                    | Ok c -&amp;gt; c
+                    | Error err -&amp;gt; 
+                        printErrors err
+                        captureContact()
+
+    // (Contact -&amp;gt; unit) -&amp;gt; Choice&amp;lt;unit,unit&amp;gt;
+    let private captureContactChoice saveContact =
+        let contact = captureContact()
+        saveContact contact
+        let another = captureInput &amp;quot;Continue (Y/N)?&amp;quot;
+        match another.ToUpper() with
+        | &amp;quot;Y&amp;quot; -&amp;gt; Choice1Of2 ()
+        | _ -&amp;gt; Choice2Of2 ()
+
+    // (Contact -&amp;gt; unit) -&amp;gt; unit
+    let rec private captureContacts saveContact =
+        match captureContactChoice saveContact with
+        | Choice1Of2 _ -&amp;gt; 
+            captureContacts saveContact
+        | Choice2Of2 _ -&amp;gt; ()
+
+    // unit -&amp;gt; unit
+    let printMenu() =
+        printfn &amp;quot;====================&amp;quot;
+        printfn &amp;quot;MENU&amp;quot;
+        printfn &amp;quot;====================&amp;quot;
+        printfn &amp;quot;1. Print Contacts&amp;quot;
+        printfn &amp;quot;2. Capture Contacts&amp;quot;
+        printfn &amp;quot;0. Quit&amp;quot;
+
+    // string -&amp;gt; (unit -&amp;gt; Contact list) -&amp;gt; (Contact -&amp;gt; unit) -&amp;gt; unit
+    let routeMenuOption i getContacts saveContact =
+        match i with
+        | &amp;quot;1&amp;quot; -&amp;gt; 
+            printfn &amp;quot;Contacts&amp;quot;
+            getContacts() |&amp;gt; List.iter (fun c -&amp;gt; printfn &amp;quot;%s %s (%s)&amp;quot; c.Firstname c.Lastname c.Email)
+        | &amp;quot;2&amp;quot; -&amp;gt; captureContacts saveContact
+        | _ -&amp;gt; printMenu()
+
+    // unit -&amp;gt; string
+    let readKey() =
+        let k = Console.ReadKey()
+        Console.WriteLine()
+        k.KeyChar |&amp;gt; string
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first thing you may notice (if you did still start from the top) is the &lt;code&gt;RequireQualifiedAccess&lt;/code&gt; attribute. This enforces that calling the functions in the module is done using the fully qualified &lt;code&gt;module&lt;/code&gt; name. I often like this as it gives context to the function call names.&lt;/p&gt;
+&lt;p&gt;Now that you have been found out for starting from the top, let&apos;s work our way up from the bottom.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;readKey&lt;/code&gt; is pretty uninteresting. It gets a key as input and returns that as a string. This will be used to get menu choices.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;routeMenuOption&lt;/code&gt; pattern &lt;code&gt;match&lt;/code&gt;es on the &lt;code&gt;i&lt;/code&gt;. &amp;quot;1&amp;quot; prints out each contact. To do that it calls the &lt;code&gt;getContacts&lt;/code&gt; function that is passed in as an argument. This means we are not directly tied to fetching our contacts from the database when using this &lt;code&gt;Input module&lt;/code&gt;, we need only supply a function with the signature &lt;code&gt;unit -&amp;gt; Contact list&lt;/code&gt;.&lt;br /&gt;
+&amp;quot;2&amp;quot; is a little more interesting as we call a function &lt;code&gt;captureContacts&lt;/code&gt; which is in this &lt;code&gt;Input module&lt;/code&gt;. It takes as an argument the function &lt;code&gt;saveContact&lt;/code&gt; which has the signature &lt;code&gt;Contact -&amp;gt; unit&lt;/code&gt;. So again, the &lt;code&gt;Input module&lt;/code&gt; is not dependent on storing contacts in a database. All it requires is a function that will do something with the &lt;code&gt;Contact&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let&apos;s drill into &lt;code&gt;captureContacts&lt;/code&gt; then. It has the signature &lt;code&gt;(Contact -&amp;gt; unit) -&amp;gt; unit&lt;/code&gt;, so its argument matches up with our &lt;code&gt;saveContact&lt;/code&gt; function. Another interesting part about &lt;code&gt;captureContacts&lt;/code&gt; is the &lt;code&gt;rec&lt;/code&gt; keyword. This means that the function is recursive. That is a fancy way of saying it calls itself. So what it does is make use of the &lt;code&gt;captureContact&lt;/code&gt; function which returns back a &lt;code&gt;Choice&lt;/code&gt; type. &lt;code&gt;Choice1Of2&lt;/code&gt; means we will capture another contact, &lt;code&gt;Choice2Of2&lt;/code&gt; means we will not capture any more contacts.&lt;/p&gt;
+&lt;p&gt;The rest of the functions &lt;code&gt;printMenu&lt;/code&gt;, &lt;code&gt;printErrors&lt;/code&gt;, and &lt;code&gt;captureInput&lt;/code&gt; should be simple enough to reason about by now.&lt;/p&gt;
+&lt;h2&gt;Persisting data&lt;/h2&gt;
+&lt;p&gt;Next we need to setup our data access. I am not going to go over the code too much in this section as it is basically the same as what &lt;a href=&quot;https://devonburriss.me/how-to-fsharp-pt-9/&quot;&gt;we covered in Part 9&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Database creation&lt;/h3&gt;
+&lt;p&gt;What is important is to be able to work with &lt;a href=&quot;https://www.sqlite.org/&quot;&gt;SQLite&lt;/a&gt;. To follow along here you can &lt;a href=&quot;https://www.sqlite.org/download.html&quot;&gt;download sqlite-tools&lt;/a&gt; for free for your platform. You will either need to put &lt;a href=&quot;https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/&quot;&gt;&lt;code&gt;sqlite3&lt;/code&gt; on your &lt;em&gt;PATH&lt;/em&gt;&lt;/a&gt; or call it from where you downloaded it. You could also use a tool like &lt;a href=&quot;https://www.jetbrains.com/datagrip/&quot;&gt;Jetbrains Datagrip&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Once we have the &lt;code&gt;sqlite&lt;/code&gt; binary we can create a new database and connect to it using the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sqlite3 contactsDB.sqlite
+sqlite&amp;gt; CREATE TABLE IF NOT EXISTS contacts ( id TEXT PRIMARY KEY, firstname TEXT NOT NULL, lastname TEXT NOT NULL, email TEXT NOT NULL UNIQUE );
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It should look something like this, depending on your operating system and terminal of choice.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/sqlite3.jpg&quot; alt=&quot;sqlite3 bash&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Install nuget packages&lt;/h3&gt;
+&lt;p&gt;So now we have our database setup, we are going to start with the code to connect to it. First we will install the &lt;a href=&quot;https://github.com/StackExchange/Dapper&quot;&gt;Dapper&lt;/a&gt; package into our project.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I would usually recommend dependency management &lt;a href=&quot;https://fsprojects.github.io/Paket/&quot;&gt;Paket&lt;/a&gt;. I have a post on &lt;a href=&quot;https://devonburriss.me/up-and-running-with-paket/&quot;&gt;getting up and running with Paket&lt;/a&gt; if you are interested.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Run the following commands:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;dotnet add package Dapper
+dotnet add package System.Data.SQLite
+dotnet restore
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Your &lt;em&gt;HowToFsharp.fsproj&lt;/em&gt; should now contain the following &lt;em&gt;ItemGroup&lt;/em&gt; element.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;ItemGroup&amp;gt;
+  &amp;lt;PackageReference Include=&amp;quot;Dapper&amp;quot; Version=&amp;quot;1.50.5&amp;quot; /&amp;gt;
+  &amp;lt;PackageReference Include=&amp;quot;System.Data.SQLite&amp;quot; Version=&amp;quot;1.0.109.2&amp;quot; /&amp;gt;
+&amp;lt;/ItemGroup&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are going to add some code we saw in &lt;a href=&quot;https://devonburriss.me/how-to-fsharp-pt-9/&quot;&gt;Part 9&lt;/a&gt;. &lt;em&gt;Database.fs&lt;/em&gt; is a helper &lt;code&gt;module&lt;/code&gt; for using Dapper in a more functional way.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Database.fs&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;namespace Contacts
+
+module Database =
+
+    open Dapper
+    open System.Data.Common
+    open System.Collections.Generic
+
+    // DbConnection -&amp;gt; string -&amp;gt; &apos;b -&amp;gt; Result&amp;lt;int,exn&amp;gt;
+    let execute (connection:#DbConnection) (sql:string) (parameters:_) =
+        try
+            let result = connection.Execute(sql, parameters)
+            Ok result
+        with
+        | ex -&amp;gt; Error ex
+
+    // DbConnection -&amp;gt; string -&amp;gt; IDictionary&amp;lt;string,obj&amp;gt; -&amp;gt; Result&amp;lt;seq&amp;lt;&apos;T&amp;gt;,exn&amp;gt;
+    let query (connection:#DbConnection) (sql:string) (parameters:IDictionary&amp;lt;string, obj&amp;gt; option) : Result&amp;lt;seq&amp;lt;&apos;T&amp;gt;,exn&amp;gt; =
+        try
+            let result =
+                match parameters with
+                | Some p -&amp;gt; connection.Query&amp;lt;&apos;T&amp;gt;(sql, p)
+                | None -&amp;gt; connection.Query&amp;lt;&apos;T&amp;gt;(sql)
+            Ok result
+        with
+        | ex -&amp;gt; Error ex
+
+    // DbConnection -&amp;gt; string -&amp;gt; IDictionary&amp;lt;string,obj&amp;gt; -&amp;gt; Result&amp;lt;&apos;T,exn&amp;gt;
+    let querySingle (connection:#DbConnection) (sql:string) (parameters:IDictionary&amp;lt;string, obj&amp;gt; option) =
+        try
+            let result =
+                match parameters with
+                | Some p -&amp;gt; connection.QuerySingleOrDefault&amp;lt;&apos;T&amp;gt;(sql, p)
+                | None -&amp;gt; connection.QuerySingleOrDefault&amp;lt;&apos;T&amp;gt;(sql)
+            
+            if isNull (box result) then Ok None
+            else Ok (Some result)
+
+        with
+        | ex -&amp;gt; Error ex
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next we will use this file in a &lt;code&gt;module&lt;/code&gt; we will call &lt;code&gt;Data&lt;/code&gt; that will contain the code and queries for saving and listing the contacts in the database.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Data.fs&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;namespace Contacts
+
+open Contacts
+open System
+open System.Data.SQLite
+
+[&amp;lt;RequireQualifiedAccess&amp;gt;]
+module Data =
+
+    type ContactEntity = { id:string; firstname:string; lastname:string; email:string }
+
+    // string -&amp;gt; SQLiteConnection
+    let private conn (dbname:string) = 
+        let c = new SQLiteConnection(sprintf &amp;quot;Data Source=%s.sqlite&amp;quot; dbname)
+        c.Open()
+        c
+
+    let private dbname = &amp;quot;contactsDB&amp;quot;
+
+    // unit -&amp;gt; Result&amp;lt;seq&amp;lt;Contact&amp;gt;,exn&amp;gt;
+    let all() =
+        let db = conn dbname
+        Database.query db &amp;quot;SELECT id, firstname, lastname, email FROM contacts&amp;quot; None 
+        |&amp;gt; Result.map
+            (fun ss -&amp;gt; ss 
+                    |&amp;gt; Seq.map (fun c -&amp;gt; {
+                        Id = Guid.Parse(c.id); Firstname = c.firstname; Lastname = c.lastname; Email = c.email
+                        }))
+
+    // Contact -&amp;gt; Result&amp;lt;int,exn&amp;gt;
+    let insert c =
+        let db = conn dbname
+        let entity = { id = c.Id.ToString(); firstname = c.Firstname; lastname = c.Lastname; email = c.Email }
+        let sql = &amp;quot;INSERT INTO contacts (id, firstname, lastname, email) VALUES (@id, @firstname, @lastname, @email);&amp;quot;
+        Database.execute db sql entity   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Of note here is that we use a specific type here called &lt;code&gt;ContactEntity&lt;/code&gt; that we use to store and retrieve from the database. Here it was necessary as SQLite does not handle &lt;code&gt;Guid&lt;/code&gt; type that we are using for the &lt;code&gt;Id&lt;/code&gt;. Even if this was not necessary it is a good practice to separate the boandaries of your application like input and storage from your domain types.&lt;/p&gt;
+&lt;h2&gt;Tying it all together&lt;/h2&gt;
+&lt;p&gt;Remember we need to add the files to the &lt;em&gt;HowToFsharp.fsproj&lt;/em&gt; for them to be compiled.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;Project Sdk=&amp;quot;Microsoft.NET.Sdk&amp;quot;&amp;gt;
+  &amp;lt;PropertyGroup&amp;gt;
+    &amp;lt;OutputType&amp;gt;Exe&amp;lt;/OutputType&amp;gt;
+    &amp;lt;TargetFramework&amp;gt;netcoreapp2.1&amp;lt;/TargetFramework&amp;gt;
+  &amp;lt;/PropertyGroup&amp;gt;
+  &amp;lt;ItemGroup&amp;gt;
+    &amp;lt;Compile Include=&amp;quot;Database.fs&amp;quot; /&amp;gt;    
+    &amp;lt;Compile Include=&amp;quot;Domain.fs&amp;quot; /&amp;gt;
+    &amp;lt;Compile Include=&amp;quot;Data.fs&amp;quot; /&amp;gt;
+    &amp;lt;Compile Include=&amp;quot;Input.fs&amp;quot; /&amp;gt;
+    &amp;lt;Compile Include=&amp;quot;Program.fs&amp;quot; /&amp;gt;
+  &amp;lt;/ItemGroup&amp;gt;
+  &amp;lt;ItemGroup&amp;gt;
+    &amp;lt;PackageReference Include=&amp;quot;Dapper&amp;quot; Version=&amp;quot;1.50.5&amp;quot; /&amp;gt;
+    &amp;lt;PackageReference Include=&amp;quot;System.Data.SQLite&amp;quot; Version=&amp;quot;1.0.109.2&amp;quot; /&amp;gt;
+  &amp;lt;/ItemGroup&amp;gt;
+&amp;lt;/Project&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we have all the building blocks we need to tie our application together. Lets flesh out our entry point to use what we have created so far to get our contacts application working.&lt;/p&gt;
+&lt;p&gt;When the application starts we want to print the menu and get an input. After completing each action we will print the menu again and get an input.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Program.fs&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;open Contacts
+
+// unit -&amp;gt; Contact list
+let getContacts() =
+    Data.all()
+    |&amp;gt; fun r -&amp;gt; match r with
+                | Ok cs -&amp;gt; cs |&amp;gt; Seq.toList
+                | Error e -&amp;gt; 
+                        printfn &amp;quot;ERROR: %s&amp;quot; e.Message
+                        List.empty
+
+// Contact -&amp;gt; unit
+let insertContact c =
+    Data.insert c
+    |&amp;gt; fun r -&amp;gt; match r with
+                | Ok i -&amp;gt; printfn &amp;quot;%i records inserted&amp;quot; i
+                | Error e -&amp;gt; printfn &amp;quot;ERROR: %s&amp;quot; e.Message
+
+[&amp;lt;EntryPoint&amp;gt;]
+let main argv =
+    Input.printMenu()
+    let mutable selection = Input.readKey()
+    while(selection &amp;lt;&amp;gt; &amp;quot;0&amp;quot;) do
+        Input.routeMenuOption selection getContacts insertContact 
+        Input.printMenu()
+        selection &amp;lt;- Input.readKey()
+    0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So we print the menu and get a menu option, then we go into a loop of doing that after executing each action with &lt;code&gt;Input.routeMenuOption&lt;/code&gt;.
+Remember that &lt;code&gt;Input.routeMenuOption&lt;/code&gt; takes 2 functions as input to fetch all contacts and insert a contact.&lt;/p&gt;
+&lt;p&gt;In the &lt;code&gt;Data&lt;/code&gt; module we have 2 functions that almost fit the bill. &lt;code&gt;Data.all&lt;/code&gt; has a signature of &lt;code&gt;unit -&amp;gt; Result&amp;lt;seq&amp;lt;Contact&amp;gt;,exn&amp;gt;&lt;/code&gt; for fetching all contacts as a result, where the result may be an exception. &lt;code&gt;Data.insert&lt;/code&gt; has a signature of &lt;code&gt;Contact -&amp;gt; Result&amp;lt;int,exn&amp;gt;&lt;/code&gt; with the result of inserting a contact into the database.&lt;/p&gt;
+&lt;p&gt;At the top of &lt;em&gt;Program.fs&lt;/em&gt; we have created 2 functions that wrap the &lt;code&gt;Data module&lt;/code&gt; functions, handling errors and then give us the signatures we need for using them in &lt;code&gt;Input.routeMenuOption&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This all just loops in the &lt;code&gt;while&lt;/code&gt; loop until the &lt;strong&gt;Quit&lt;/strong&gt; option is selected.&lt;/p&gt;
+&lt;p&gt;To run our application we execute the &lt;code&gt;dotnet run&lt;/code&gt; command like we did near the beginning of this tutorial.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&amp;gt; dotnet run
+====================
+MENU
+====================
+1. Print Contacts
+2. Capture Contacts
+0. Quit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Congratulations for completing your first application! Hopefully you can see that functional programming and F# is not a scary thing and that it is quite possible to write any kind of application in it.&lt;/p&gt;
+&lt;p&gt;Here are a few ways you could expand this application:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Move the connection string into a json or yaml configuration file&lt;/li&gt;
+&lt;li&gt;Try use a different database&lt;/li&gt;
+&lt;li&gt;Try use &lt;a href=&quot;https://fsprojects.github.io/SQLProvider/&quot;&gt;SQL Provider&lt;/a&gt; for the &lt;code&gt;Data&lt;/code&gt; layer&lt;/li&gt;
+&lt;li&gt;Try import contacts from a &lt;a href=&quot;https://gist.github.com/dburriss/4fd75fb874efb3ee41d0c31b14387fdf&quot;&gt;CSV&lt;/a&gt; file&lt;/li&gt;
+&lt;li&gt;Make this a web api using &lt;a href=&quot;https://github.com/giraffe-fsharp/Giraffe&quot;&gt;Giraffe&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Next steps&lt;/h3&gt;
+&lt;p&gt;What are some ways of furthering your learnings in F#?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Check out &lt;a href=&quot;https://exercism.io/&quot;&gt;Exercism&lt;/a&gt; is a great way to get some easy practice writing code&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fsharpforfunandprofit.com/&quot;&gt;F# for fun and profit&lt;/a&gt; is a wealth of F# knowledge and I started out by just reading a little of that every day. I would encourage you to follow along with the &lt;a href=&quot;https://devonburriss.me/fsharp-scripting/&quot;&gt;script files&lt;/a&gt; rather than just read like I did. Nothing beats actually writing code for learning a new language.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.manning.com/books/get-programming-with-f-sharp&quot;&gt;Get Programming with FSharp&lt;/a&gt; by Isaac Abraham is a great getting started book&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://pragprog.com/book/swdddf/domain-modeling-made-functional&quot;&gt;Domain Modeling Made Functional&lt;/a&gt; is one of my favorite F# and DDD books, I highly recommend it once you are a little comfortable with F#.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-use-project-sdk&quot;&gt;MSBuild project SDKs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/core/tools/csproj&quot;&gt;MSBuild for .NET Core&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/how-to-fsharp-pt-9/</id>
