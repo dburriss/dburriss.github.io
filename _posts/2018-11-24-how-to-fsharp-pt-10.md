@@ -3,7 +3,7 @@ layout: post
 title: "How to F# - Part 10"
 subtitle: "Writing your first command line application using F# and .NET Core"
 description: "Writing your first F# application"
-permalink: how-to-fsharp-pt-12
+permalink: how-to-fsharp-pt-10
 author: "Devon Burriss"
 category: Software Development
 tags: [Functional,F#,.NET,.NET Core,Tutorial]
@@ -11,14 +11,11 @@ comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2018/fsharpapp-500.jpg"
-published: false
+published: true
 ---
-- new console
-- organising code
-- test?
-In this final post we are going to create an application in F# that accepts input and persists that input to a database. Along the way we will discuss how to organize your code.
+In this final post in the series we are going to create a fully functioning F# application. Along the way we will discuss the .NET SDK, SQLite, and how to organize your code. If you follow along (which I recommend you do), you will have a working F# console application that accepts input and communicates with a database.
 <!--more-->
-The code for this tutorial can be found on [Github](https://github.com/dburriss/HowToFsharp).
+The code for this tutorial can be found at [Github](https://github.com/dburriss/HowToFsharp).
 
 ## Introduction
 
@@ -44,7 +41,7 @@ And although I hope you tried out some of the samples in previous posts, if any 
 
 Once we have the .NET SDK installed, create a folder and navigate to that folder in your terminal (Prompt on Windows or Terminal on *nix).
 
-There is an awesome [video series by Compositional IT on YouTube now that will get you setup](https://www.youtube.com/playlist?list=PLlzAi3ycg2x0TScJb7czq7-4LrQoyTB0I).
+If you are unsure there is an awesome [video series by Compositional IT on YouTube now that will get you setup](https://www.youtube.com/playlist?list=PLlzAi3ycg2x0TScJb7czq7-4LrQoyTB0I).
 
 On Windows using Powershell I did the following:
 
@@ -54,7 +51,7 @@ mkdir HowToFsharp
 cd .\HowToFsharp\
 ```
 
-So I am in a folder *C:\dev\personal\HowToFsharp*. You can put the folder anywhere you prefer and call it what you like, it is not too important. Just be sure in your terminal now you are in the folder and execute the following command:
+So I am in a folder *C:\dev\personal\HowToFsharp*. You can put the folder anywhere you prefer and call it what you like, it is not too important. Just be sure that you execute the following command in the folder you just created:
 
 ```powershell
 dotnet new --list
@@ -93,7 +90,7 @@ The `*proj` files like `csproj` and `fsproj` MSBuild XML files that specify how 
 
 With `TargetFramework` we indicate what framework we are targeting. `netcoreapp2.1` is for runnable .NET Core applications. If we wanted to target .NET Fullframework we could specify something like `net461`. That is not too important for this post though, just useful to keep in mind when developing your own applications.
 
-Finally we have an `ItemGroup` with `<Compile Include="Program.fs" />`. This is important as it includes our other file of interest that we will look at next to be compiled when compiling this project. In an F# project file this is important as this allows us to specify what is compiled and in what order. If you aer used to C#, this is different as the order of files does not matter in C#. The important part to note here is that as we add more F# files, we will need to add them here so they are compiled as needed.
+Finally we have an `ItemGroup` with `<Compile Include="Program.fs" />`. This is important as it includes our other file of interest that we will look at next to be compiled when compiling this project. In an F# project file this is important as this allows us to specify what is compiled and in what order. If you are used to C#, this is different as the order of files does not matter in C#. The important part to note here is that as we add more F# files, we will need to add them here so they are compiled as needed.
 
 *Program.fs*
 
@@ -117,7 +114,7 @@ Before we get to writing our program, let's talk about organizing code.
 
 ## Organizing Code
 
-So far in this series we haven't talked about how to organize code. In your F# code you typically have 3 aspects to bring together to organise your code. Firstly, you have *files*. These are files ending with `.fs`. Pretty straight forward. As mentioned before `.fs` files need to be compiled in order they are used. So if You depend on functions or types in another file, that file must appear ahead in the compilation order of the file they are used in.
+So far in this series we haven't talked about how to organize code. In your F# code you typically have 3 aspects to bring together to organise your code. Firstly, you have *files*. These are files ending with `.fs`. Pretty straight forward. As mentioned before `.fs` files need to be compiled in the order they are used. So if You depend on functions or types in another file, that file must appear ahead in the compilation order of the file they are used in.
 
 The bread and butter of organizing F# code is `module`s. A `module` allows you to group values, types, and functions. This can be useful for thinking of the group as a single abstraction and avoiding naming conflicts. When interoping with other .NET languages, `module`s show up as static classes.
 
@@ -131,7 +128,7 @@ As we discussed, `Program.fs` represents our entry point. All other files contai
 
 ## Creating our model
 
-We will start with creating our `Domain.fs` file. There are multiple ways to organise code with or without namespaces but I am showing my preferred. We have a `namespace`, in this case `Contacts` that all the code falls under. We create our types within that `namespace`. Any domain logic we need enforced on our types, we place in a `module` with the same name as the type.
+We will start with creating our `Domain.fs` file. There are multiple ways to organise code with or without namespaces but I am showing my preferred method. We have a `namespace`, in this case `Contacts` that all the code falls under. We create our types within that `namespace`. Any domain logic we need enforced on our types, we place in a `module` with the same name as the type.
 
 *Domains.fs*:
 
@@ -278,7 +275,7 @@ Now that you have been found out for starting from the top, let's work our way u
 `readKey` is pretty uninteresting. It gets a key as input and returns that as a string. This will be used to get menu choices.
 
 `routeMenuOption` pattern `match`es on the `i`. "1" prints out each contact. To do that it calls the `getContacts` function that is passed in as an argument. This means we are not directly tied to fetching our contacts from the database when using this `Input module`, we need only supply a function with the signature `unit -> Contact list`.  
-"2" is a little more interesting as we call a function `captureContacts` which is in this `Input module` but it takes as argument the 2nd argument we received in `routeMenuOption`, the function `saveContact`. `saveContact` has the signature `Contact -> unit`. So again, the `Input module` is not dependent on storing contacts in a database. All it requires is a function that will do something with the `Contact`.
+"2" is a little more interesting as we call a function `captureContacts` which is in this `Input module`. It takes as an argument the function `saveContact` which has the signature `Contact -> unit`. So again, the `Input module` is not dependent on storing contacts in a database. All it requires is a function that will do something with the `Contact`.
 
 Let's drill into `captureContacts` then. It has the signature `(Contact -> unit) -> unit`, so its argument matches up with our `saveContact` function. Another interesting part about `captureContacts` is the `rec` keyword. This means that the function is recursive. That is a fancy way of saying it calls itself. So what it does is make use of the `captureContact` function which returns back a `Choice` type. `Choice1Of2` means we will capture another contact, `Choice2Of2` means we will not capture any more contacts.
 
