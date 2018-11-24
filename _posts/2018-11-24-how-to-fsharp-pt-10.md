@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "How to F# - Part 10"
-subtitle: "Writing your first command line application using F# and .NET Core"
-description: "Writing your first F# application"
+subtitle: "Writing your first F# application"
+description: "Writing your first command line application using F# and .NET Core"
 permalink: how-to-fsharp-pt-10
 author: "Devon Burriss"
 category: Software Development
