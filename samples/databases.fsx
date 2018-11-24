@@ -82,5 +82,8 @@ match (personById connection 1) with
 | Ok None -> printfn "No person found"
 | Error ex -> printfn "%A" ex.Message
 
-connection.Close()
-connection.Dispose()
+let cleanup (connection:DbConnection) =
+    connection.Close()
+    connection.Dispose()
+
+cleanup connection

@@ -170,21 +170,20 @@ open System.IO
 // // run fizz buzz for numbers 1 to 20
 // [1..36] |> List.iter fizzbuzz
 // open System
-// let fname1 = Some "Brandon"
-// let fname2 = None
-// //string -> string
-// let makeEmail name = 
-//     let sanitizeString s = null |> (fun x -> if (box x = null) then None else Some(x))
-//     name
-//     |> Option.bind sanitizeString
-//     |> Option.orElse (Some "info")
-//     |> Option.map (fun n -> sprintf "%s@acme.com" n)
+let fname1 = Some "Brandon"
+let fname2 = None
+//string -> string
+let makeEmail name = 
+    name
+    |> Option.bind Option.ofObj
+    |> Option.orElse (Some "info")
+    |> Option.map (fun n -> sprintf "%s@acme.com" n)
     
-// let lastname = Some "Lee"
+let lastname = Some "Lee"
 // let toEmail (s:string) = makeEmail 
 
-// let email1 = makeEmail fname1
-// let email2 = makeEmail fname2
+let email1 = makeEmail fname1
+let email2 = makeEmail fname2
 // let fullname = Option.map2
 
 // let z = Option.bind
