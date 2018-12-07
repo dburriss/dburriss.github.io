@@ -12,36 +12,49 @@
 
 
 
+    
 
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly explorations in code">
+    
+
+
+    <title>Review: F# unit testing frameworks and libraries</title>
+    <meta name="description" content="A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="https://devonburriss.me/review-fsharp-test-libs/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly explorations in code">
+    <meta itemprop="name" content="Review: F# unit testing frameworks and libraries">
+    <meta itemprop="description" content="A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries">
     <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    
+    <meta itemprop="datePublished" content="12/7/2018 9:33:55 PM" id="date">
+    <meta itemprop="dateModified" content="12/7/2018 9:33:55 PM" id="mdate">
+    <meta itemprop="headline" content="Review: F# unit testing frameworks and libraries - A review of XUnit, FsUnit, Unquote, and Expecto" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/review-fsharp-test-libs/" />
+    <meta name="headline" content="Review: F# unit testing frameworks and libraries - A review of XUnit, FsUnit, Unquote, and Expecto" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly explorations in code">
+    <meta name="twitter:title" content="Review: F# unit testing frameworks and libraries">
+    <meta name="twitter:description" content="A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries">
     <meta name="twitter:creator" content="@DevonBurriss">
     <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="Review: F# unit testing frameworks and libraries" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me//tag/testing/" />
+    <meta property="og:url" content="https://devonburriss.me/review-fsharp-test-libs/" />
     <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly explorations in code" />
+    <meta property="og:description" content="A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -142,293 +155,155 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/bulb-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Review: F# unit testing frameworks and libraries</h1>
+                        
+                        <h2 class="subheading">A review of XUnit, FsUnit, Unquote, and Expecto</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on December 07, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
+                                <a href="/tag/testing" class="label label-default">Testing</a>
+                            
+                                <a href="/tag/tdd" class="label label-default">TDD</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			<div>
-    <div class="clearfix">
-        <h1 class="pull-right">&#47;Testing&#47; &nbsp;</h1>
+				<p>In this post I go through a few of the available assertion libraries and 2 test runners. We will look at running options, assertion style, and the clarity of the error messages.</p>
+<!--more-->
+<h2>Introduction</h2>
+<p>Before we get into reviewing some different options, let me introduce the the libraries and frameworks up for review and the criteria I will be looking at. One criteria you may expect here is speed. I will make some small observations on this at the end but I didn't see enough difference that I think it should be a factor.</p>
+<h3>Frameworks</h3>
+<p>We will be looking at 2 frameworks: XUnit and Expecto. Some may disagree with me labeling them as frameworks. That is fine but it is useful to distinguish that both have components that allow you to write tests and hand that over to .NET tooling or Visual Studio to then run those tests. This is in contrast to the assertion libraries that are focused on the actual assertion of the outcome of a test.</p>
+<h4>XUnit</h4>
+<p>XUnit is a popular unit testing tool in the .NET space. It will be the baseline for a lot of the comparisons and is also necessary for the assertion libraries, as they are not test runners.</p>
+<h4>Expecto</h4>
+<p>Expecto is a F# testing framework that does a lot. It has an API for running tests, test adapters for runners, assertions, performance tests, and integration with FsCheck for property based testing. In this post we will only be looking at the basic features of setting up tests and the assertions.</p>
+<h3>Criteria</h3>
+<p>When reviewing or comparing anything it is useful to have a concrete list of attributes that are compared.</p>
+<ul>
+<li><strong>Setup:</strong> what options there are in terms of getting up and running</li>
+<li><strong>Style:</strong> test setup style for the frameworks as well as the assertion style</li>
+<li><strong>Messages:</strong> format of the error messages and comment on ease of parsing as well as the amount of detail in the message</li>
+<li><strong>Runners:</strong> Running from Visual Studio and command line as well as filtering tests</li>
+</ul>
+<h2>Review</h2>
+<p>So let's get into the comparison...</p>
+<h3>Setup</h3>
+<p>The project used to test out the examples is <a href="">here on Github</a>.</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-5"><h4>XUnit</h4></div>
+    <div class="col-md-5"><h4>Expecto</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><b>Templates</b></div>
+    <div class="col-md-5">
+      <p> 
+        .NET Core templating comes standard with an xUnit template. Visual Studio also has built in templates for XUnit.<br/>
+        `dotnet new xunit -lang F#`
+      </p>
     </div>
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      
-      <div class="post-preview ">
-          <a href="/review-fsharp-test-libs/">
-              <h2 class="post-title">            Review: F# unit testing frameworks and libraries
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on December 07, 2018</p>
-          
-              
-                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/anatomy-of-automated-testing/">
-              <h2 class="post-title">            Anatomy of an automated test suite
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 13, 2018</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
-              
-                 <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/page-module-model/">
-              <h2 class="post-title">            The Page Module Model with F# and Canopy
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 12, 2018</p>
-          
-              
-                 <a href="/tag/canopy"><span class="label label-default">Canopy</span></a>
-              
-                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-              
-                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-                 <a href="/tag/selenium"><span class="label label-default">Selenium</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/acceptance-tests/">
-              <h2 class="post-title">            Writing readable Acceptance tests
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 11, 2018</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
-              
-                 <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/maintainable-unit-tests/">
-              <h2 class="post-title">            3 tips for more maintainable unit tests
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on April 07, 2018</p>
-          
-              
-                 <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/testing-the-untestable/">
-              <h2 class="post-title">            Testing the Untestable
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on January 27, 2015</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                 <a href="/tag/unit-testing"><span class="label label-default">Unit Testing</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/testing-your-data-repositories/">
-              <h2 class="post-title">            Testing your data repositories
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on September 07, 2014</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                 <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-              
-                 <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-                 <a href="/tag/java"><span class="label label-default">Java</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
+    <div class="col-md-5">
+      <p> 
+        You can install the Expecto template<br/>
+        `dotnet new -i Expecto.Template::*`<br/>
+        `dotnet new expecto -n PROJECT_NAME -o FOLDER_NAME`
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><b>Nuget</b></div>
+    <div class="col-md-5">
+      <ul> 
+        <li>[xunit]()</li>
+      </p>
+    </div>
+    <div class="col-md-5">
+      <ul> 
+        <li>[Expecto]()</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><b>VS Adapter</b></div>
+    <div class="col-md-5">
+      <ul> 
+        <li>[Microsoft.NET.Test.Sdk]()</li>
+        <li>[xunit.runner.visualstudio]()</li>
+      </ul>
+    </div>
+    <div class="col-md-5">
+      <ul> 
+        <li>[YoloDev.Expecto.TestSdk]()</li>
+      </ul>
+    </div>
+  </div>
 </div>
-		</div>
+<p>The only issue I had was finding out to use <em>YoloDev.Expecto.TestSdk</em> to get Visual Studio integration working instead of <em>Expecto.VisualStudio.TestAdapter</em>.</p>
+<h3>Style</h3>
+<h3>Error message</h3>
+<h3>Runners</h3>
+<ul>
+<li>pics of vs</li>
+<li>commands and pics of console</li>
+<li>commands for filtering</li>
+</ul>
+<h2>Resources</h2>
+<ol>
+<li><a href="https://xunit.github.io/">xunit</a></li>
+<li><a href="http://fsprojects.github.io/FsUnit/">FsUnit</a></li>
+<li><a href="https://github.com/SwensenSoftware/unquote">Unquote</a></li>
+<li><a href="https://github.com/haf/expecto">Expecto</a></li>
+</ol>
 
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/anatomy-of-automated-testing/">Anatomy of an automated test suite</a></li>
+                                                <li><a href="/maintainable-unit-tests/">3 tips for more maintainable unit tests</a></li>
+                                                <li><a href="/acceptance-tests/">Writing readable Acceptance tests</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/how-to-fsharp-pt-10/" data-toggle="tooltip"    data-placement="top" title="How to F# - Part 10">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -470,7 +345,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/agile">Agile</a>
 
@@ -490,8 +365,8 @@
 
     <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -832,24 +707,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="https://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="https://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>

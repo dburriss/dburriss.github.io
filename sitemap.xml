@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>https://devonburriss.me/review-fsharp-test-libs/</loc>
+    <lastmod>2018-12-07T21:33:55.6292946+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>https://devonburriss.me/how-to-fsharp-pt-10/</loc>
     <lastmod>2018-11-24T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
