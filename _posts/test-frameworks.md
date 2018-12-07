@@ -11,7 +11,7 @@ comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 social-img: "img/explore-590.jpg"
-published: true
+published: false
 ---
 In this post I go through a few of the available assertion libraries and 2 test runners. We will look at running options, assertion style, and the clarity of the error messages.
 <!--more-->
@@ -60,14 +60,14 @@ The project used to test out the examples is [here on Github]().
     <div class="col-md-5">
       <p> 
         .NET Core templating comes standard with an xUnit template. Visual Studio also has built in templates for XUnit.<br/>
-        `dotnet new xunit -lang F#`
+        <code>dotnet new xunit -lang F#</code>
       </p>
     </div>
     <div class="col-md-5">
       <p> 
         You can install the Expecto template<br/>
-        `dotnet new -i Expecto.Template::*`<br/>
-        `dotnet new expecto -n PROJECT_NAME -o FOLDER_NAME`
+        <code>dotnet new -i Expecto.Template::*</code><br/>
+        <code>dotnet new expecto -n PROJECT_NAME -o FOLDER_NAME</code>
       </p>
     </div>
   </div>
@@ -76,12 +76,12 @@ The project used to test out the examples is [here on Github]().
     <div class="col-md-2"><b>Nuget</b></div>
     <div class="col-md-5">
       <ul> 
-        <li>[xunit]()</li>
+        <li><a href="">xunit</a></li>
       </p>
     </div>
     <div class="col-md-5">
       <ul> 
-        <li>[Expecto]()</li>
+        <li><a href="">Expecto</a></li>
       </ul>
     </div>
   </div>
@@ -90,22 +90,100 @@ The project used to test out the examples is [here on Github]().
     <div class="col-md-2"><b>VS Adapter</b></div>
     <div class="col-md-5">
       <ul> 
-        <li>[Microsoft.NET.Test.Sdk]()</li>
-        <li>[xunit.runner.visualstudio]()</li>
+        <li><a href="">Microsoft.NET.Test.Sdk</a></li>
+        <li><a href="">xunit.runner.visualstudio</a></li>
       </ul>
     </div>
     <div class="col-md-5">
       <ul> 
-        <li>[YoloDev.Expecto.TestSdk]()</li>
+        <li><a href="">YoloDev.Expecto.TestSdk</a></li>
       </ul>
     </div>
   </div>
 
 </div>
 
-The only issue I had was finding out to use *YoloDev.Expecto.TestSdk* to get Visual Studio integration working instead of *Expecto.VisualStudio.TestAdapter*.
+The only issue I had was discovering I had to use *YoloDev.Expecto.TestSdk* to get Visual Studio integration working instead of *Expecto.VisualStudio.TestAdapter* (as suggested in the documentation). Easy enough to discover by generating an example project using the template. So not much between them here other than XUnit being available out the box.
 
 ### Style
+
+Let's look at how we setup a test in both XUnit and Expecto and then we will look at the assertion styles.
+
+#### Test setup
+
+**XUnit** looks for the `[<Fact>]` or `[<Theory>]` attribute on a function and will run that as a test.
+
+```fsharp
+[<Fact>]
+let ``toEmail with bob gives bob [at] acme [dot] com`` () =
+    let name = "bob"
+    let expected = "bob@acme.com"
+    let actual = toEmail name
+    Assert.Equal (expected, actual)
+```
+
+> F# allows us to use the double &#96; to name a function with some special characters in it.
+
+So we have the `[<Fact>]` attribute and a function with our test. 
+
+Let's compare this to **Expecto** setup.
+
+```fsharp
+[<Tests>]
+let aTest =
+  test "toEmail with bob gives bob [at] acme [dot] com" {
+      let name = "bob"
+      let expected = "bob@acme.com"
+      let actual = toEmail name
+      Expect.equal actual expected "emails did not match"
+  }
+```
+
+Expecto uses the `[<Tests>]` attribute to mark a value that contains tests, where the tests are defined in a F# computation expression called `test`.
+
+Although this might seem quite similar, it is in fact quite different. This becomes more apparent if we have multiple tests. Where XUnit is just more functions with the attribute on, Expecto treats the tests more like data.
+
+```fsharp
+[<Tests>]
+let emailtests = 
+    testList "Email tests" [
+            
+        test "toEmail with null gives info [at] acme [dot] com" {
+            let name = null
+            let expected = "info@acme.com"
+            let actual = toEmail name
+            Expect.equal actual expected "emails did not match"
+        }
+
+        test "toEmail with bob gives bob [at] acme [dot] com" {
+            let name = "bob"
+            let expected = "bob@acme.com"
+            let actual = toEmail name
+            Expect.equal actual expected "emails did not match"
+        }
+    ]
+```
+
+Now we are defining our tests in a `List` given to a `testList`. Expecto [has an almost overwhelming number of ways to organize tests](https://github.com/haf/expecto#writing-tests). XUnit is simple and straightforward but if you find yourself wanting to take more control of how tests are organized, Expecto might be just what you want. This becomes even more important if you are using it to do property-based testing, performance tests, etc.
+
+#### Assertions
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"><h4>XUnit</h4></div>
+    <div class="col-md-3"><h4>FsCheck</h4></div>
+    <div class="col-md-3"><h4>Unquote</h4></div>
+    <div class="col-md-3"><h4>Expecto</h4></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h4>XUnit</h4></div>
+    <div class="col-md-3"><h4>FsCheck</h4></div>
+    <div class="col-md-3"><h4>Unquote</h4></div>
+    <div class="col-md-3"><h4>Expecto</h4></div>
+  </div>
+</div>
+
 
 ### Error message
 
@@ -121,3 +199,4 @@ The only issue I had was finding out to use *YoloDev.Expecto.TestSdk* to get Vis
 1. [FsUnit](http://fsprojects.github.io/FsUnit/)
 1. [Unquote](https://github.com/SwensenSoftware/unquote)
 1. [Expecto](https://github.com/haf/expecto)
+1. [Computation Expressions](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions)
