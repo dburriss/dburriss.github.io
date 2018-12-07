@@ -3,112 +3,13 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-12-07T21:34:58.5172229+00:00</updated>
+  <updated>2018-12-07T22:16:20.3935664+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
-  
-  <entry>
-    <id>https://devonburriss.me/review-fsharp-test-libs/</id>
-    <link type="text/html" rel="alternate" href="https://devonburriss.me/review-fsharp-test-libs/"/>
-    <title>Review: F# unit testing frameworks and libraries</title>
-    <updated>2018-12-07T21:33:55.6292946+00:00</updated>
-    <author>
-      <name>Devon Burriss</name>
-      <uri>https://devonburriss.me/review-fsharp-test-libs/</uri>
-    </author>
-    <summary type="html">&lt;p&gt;In this post I go through a few of the available assertion libraries and 2 test runners. We will look at running options, assertion style, and the clarity of the error messages.&lt;/p&gt;
-&lt;!--more--&gt;
-&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Before we get into reviewing some different options, let me introduce the the libraries and frameworks up for review and the criteria I will be looking at. One criteria you may expect here is speed. I will make some small observations on this at the end but I didn&apos;t see enough difference that I think it should be a factor.&lt;/p&gt;
-&lt;h3&gt;Frameworks&lt;/h3&gt;
-&lt;p&gt;We will be looking at 2 frameworks: XUnit and Expecto. Some may disagree with me labeling them as frameworks. That is fine but it is useful to distinguish that both have components that allow you to write tests and hand that over to .NET tooling or Visual Studio to then run those tests. This is in contrast to the assertion libraries that are focused on the actual assertion of the outcome of a test.&lt;/p&gt;
-&lt;h4&gt;XUnit&lt;/h4&gt;
-&lt;p&gt;XUnit is a popular unit testing tool in the .NET space. It will be the baseline for a lot of the comparisons and is also necessary for the assertion libraries, as they are not test runners.&lt;/p&gt;
-&lt;h4&gt;Expecto&lt;/h4&gt;
-&lt;p&gt;Expecto is a F# testing framework that does a lot. It has an API for running tests, test adapters for runners, assertions, performance tests, and integration with FsCheck for property based testing. In this post we will only be looking at the basic features of setting up tests and the assertions.&lt;/p&gt;
-&lt;h3&gt;Criteria&lt;/h3&gt;
-&lt;p&gt;When reviewing or comparing anything it is useful to have a concrete list of attributes that are compared.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Setup:&lt;/strong&gt; what options there are in terms of getting up and running&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Style:&lt;/strong&gt; test setup style for the frameworks as well as the assertion style&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Messages:&lt;/strong&gt; format of the error messages and comment on ease of parsing as well as the amount of detail in the message&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Runners:&lt;/strong&gt; Running from Visual Studio and command line as well as filtering tests&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Review&lt;/h2&gt;
-&lt;p&gt;So let&apos;s get into the comparison...&lt;/p&gt;
-&lt;h3&gt;Setup&lt;/h3&gt;
-&lt;p&gt;The project used to test out the examples is &lt;a href=&quot;&quot;&gt;here on Github&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&quot;container&quot;&gt;
-  &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-md-2&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-5&quot;&gt;&lt;h4&gt;XUnit&lt;/h4&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-5&quot;&gt;&lt;h4&gt;Expecto&lt;/h4&gt;&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-md-2&quot;&gt;&lt;b&gt;Templates&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-5&quot;&gt;
-      &lt;p&gt; 
-        .NET Core templating comes standard with an xUnit template. Visual Studio also has built in templates for XUnit.&lt;br/&gt;
-        `dotnet new xunit -lang F#`
-      &lt;/p&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-md-5&quot;&gt;
-      &lt;p&gt; 
-        You can install the Expecto template&lt;br/&gt;
-        `dotnet new -i Expecto.Template::*`&lt;br/&gt;
-        `dotnet new expecto -n PROJECT_NAME -o FOLDER_NAME`
-      &lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-md-2&quot;&gt;&lt;b&gt;Nuget&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-5&quot;&gt;
-      &lt;ul&gt; 
-        &lt;li&gt;[xunit]()&lt;/li&gt;
-      &lt;/p&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-md-5&quot;&gt;
-      &lt;ul&gt; 
-        &lt;li&gt;[Expecto]()&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-md-2&quot;&gt;&lt;b&gt;VS Adapter&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-5&quot;&gt;
-      &lt;ul&gt; 
-        &lt;li&gt;[Microsoft.NET.Test.Sdk]()&lt;/li&gt;
-        &lt;li&gt;[xunit.runner.visualstudio]()&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-md-5&quot;&gt;
-      &lt;ul&gt; 
-        &lt;li&gt;[YoloDev.Expecto.TestSdk]()&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;The only issue I had was finding out to use &lt;em&gt;YoloDev.Expecto.TestSdk&lt;/em&gt; to get Visual Studio integration working instead of &lt;em&gt;Expecto.VisualStudio.TestAdapter&lt;/em&gt;.&lt;/p&gt;
-&lt;h3&gt;Style&lt;/h3&gt;
-&lt;h3&gt;Error message&lt;/h3&gt;
-&lt;h3&gt;Runners&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;pics of vs&lt;/li&gt;
-&lt;li&gt;commands and pics of console&lt;/li&gt;
-&lt;li&gt;commands for filtering&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Resources&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://xunit.github.io/&quot;&gt;xunit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://fsprojects.github.io/FsUnit/&quot;&gt;FsUnit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/SwensenSoftware/unquote&quot;&gt;Unquote&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/haf/expecto&quot;&gt;Expecto&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</summary>
-  </entry>
   
   <entry>
     <id>https://devonburriss.me/how-to-fsharp-pt-10/</id>

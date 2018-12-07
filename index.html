@@ -176,29 +176,33 @@
     <div class="post-preview jumbotron">
         
         <h1 class="post-title">            
-            <a href="/review-fsharp-test-libs/">Review: F# unit testing frameworks and libraries</a>
+            <a href="/how-to-fsharp-pt-10/">How to F# - Part 10</a>
         </h1>
         
         <em class="post-subtitle">
-            A review of XUnit, FsUnit, Unquote, and Expecto
+            Writing your first F# application
         </em>
         
-        <p class="post-meta">Posted by Devon Burriss on December 07, 2018</p>
+        <p class="post-meta">Posted by Devon Burriss on November 24, 2018</p>
         
+            
+                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
             
                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
             
-                <a href="/tag/testing"><span class="label label-default">Testing</span></a>
+                <a href="/tag/net"><span class="label label-default">.NET</span></a>
             
-                <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
+                <a href="/tag/net-core"><span class="label label-default">.NET Core</span></a>
+            
+                <a href="/tag/tutorial"><span class="label label-default">Tutorial</span></a>
             
         
         
-            <img src="/img/explore-590.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
+            <img src="/img/posts/2018/fsharpapp-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         
-        <p align="justify"><p>In this post I go through a few of the available assertion libraries and 2 test runners. We will look at running options, assertion style, and the clarity of the error messages.</p>
+        <p align="justify"><p>In this final post in the series we are going to create a fully functioning F# application. Along the way we will discuss the .NET SDK, SQLite, and how to organize your code. If you follow along (which I recommend you do), you will have a working F# console application that accepts input and communicates with a database.</p>
 </p></p>
-        <p class="text-left"><a class="btn btn-primary btn-lg" href="/review-fsharp-test-libs/" role="button">Read more</a></p>
+        <p class="text-left"><a class="btn btn-primary btn-lg" href="/how-to-fsharp-pt-10/" role="button">Read more</a></p>
     </div>
     <div class="clearfix"></div>
     <hr>
@@ -215,165 +219,6 @@
 
     
 
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/posts/2018/fsharpapp-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/how-to-fsharp-pt-10/">
-            <h2 class="post-title">            How to F# - Part 10
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Writing your first F# application
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on November 24, 2018</p>
-        
-            
-                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-            
-                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-            
-                <a href="/tag/net"><span class="label label-default">.NET</span></a>
-            
-                <a href="/tag/net-core"><span class="label label-default">.NET Core</span></a>
-            
-                <a href="/tag/tutorial"><span class="label label-default">Tutorial</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
      
         
      
@@ -531,8 +376,6 @@
         
      
         
-     
-        
         
         
      
@@ -678,8 +521,6 @@
 
     
 
-     
-        
      
         
      
@@ -841,8 +682,6 @@
         
      
         
-     
-        
         
         
      
@@ -984,8 +823,6 @@
 
     
 
-     
-        
      
         
      
@@ -1151,8 +988,6 @@
         
      
         
-     
-        
         
         
      
@@ -1290,8 +1125,6 @@
 
     
 
-     
-        
      
         
      
@@ -1461,8 +1294,6 @@
         
      
         
-     
-        
         
         
      
@@ -1578,6 +1409,157 @@
             
         </a>
         <p class="post-meta">Posted by Devon Burriss' Blog on October 23, 2018</p>
+        
+            
+                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
+            
+                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
+            
+                <a href="/tag/net"><span class="label label-default">.NET</span></a>
+            
+        
+    </div>
+    <hr>
+    
+
+
+
+
+    
+
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+        
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+    
+
+    <div class="post-preview ">
+        
+            
+        
+         <img src="/img/posts/2017/apple.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+
+        <a href="/how-to-fsharp-pt-1/">
+            <h2 class="post-title">            How to F# - Part 1
+            </h2>
+            
+            
+            <h3 class="post-subtitle">
+                Assigning values and getting to know types
+            </h3>
+            
+        </a>
+        <p class="post-meta">Posted by Devon Burriss' Blog on October 19, 2018</p>
         
             
                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
