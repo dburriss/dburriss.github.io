@@ -31,10 +31,10 @@
     <!-- Schema.org markup for Google+ -->
     <meta itemprop="name" content="Review: F# unit testing frameworks and libraries">
     <meta itemprop="description" content="A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/frame-500.jpg">
     
-    <meta itemprop="datePublished" content="12/7/2018 9:33:55 PM" id="date">
-    <meta itemprop="dateModified" content="12/7/2018 9:33:55 PM" id="mdate">
+    <meta itemprop="datePublished" content="12/8/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="12/8/2018 12:00:00 AM" id="mdate">
     <meta itemprop="headline" content="Review: F# unit testing frameworks and libraries - A review of XUnit, FsUnit, Unquote, and Expecto" />
     <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/review-fsharp-test-libs/" />
     <meta name="headline" content="Review: F# unit testing frameworks and libraries - A review of XUnit, FsUnit, Unquote, and Expecto" />
@@ -47,13 +47,13 @@
     <meta name="twitter:title" content="Review: F# unit testing frameworks and libraries">
     <meta name="twitter:description" content="A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/frame-500.jpg">
 
     <!-- Open Graph data -->
     <meta property="og:title" content="Review: F# unit testing frameworks and libraries" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://devonburriss.me/review-fsharp-test-libs/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/frame-500.jpg" />
     <meta property="og:description" content="A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
@@ -156,7 +156,7 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/bulb-bg.jpg')">
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/silhouette-bg.jpg')">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -166,7 +166,7 @@
                         
                         <h2 class="subheading">A review of XUnit, FsUnit, Unquote, and Expecto</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on December 07, 2018</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on December 08, 2018</span>
                         
                             <hr />
                             
@@ -192,6 +192,9 @@
 
 				<p>In this post I go through a few of the available assertion libraries and 2 test runners. We will look at running options, assertion style, and the clarity of the error messages.</p>
 <!--more-->
+<blockquote>
+<p>This post is part of FsAdvent 2018.</p>
+</blockquote>
 <h2>Introduction</h2>
 <p>Before we get into reviewing some different options, let me introduce the the libraries and frameworks up for review and the criteria I will be looking at. One criteria you may expect here is speed. I will make some small observations on this at the end but I didn't see enough difference that I think it should be a factor.</p>
 <h3>Frameworks</h3>
@@ -200,6 +203,8 @@
 <p>XUnit is a popular unit testing tool in the .NET space. It will be the baseline for a lot of the comparisons and is also necessary for the assertion libraries, as they are not test runners.</p>
 <h4>Expecto</h4>
 <p>Expecto is a F# testing framework that does a lot. It has an API for running tests, test adapters for runners, assertions, performance tests, and integration with FsCheck for property based testing. In this post we will only be looking at the basic features of setting up tests and the assertions.</p>
+<h3>Assertion libraries</h3>
+<p>Both <strong>XUnit</strong> and <strong>Expecto</strong> come with their own assertions. We will be looking at 2 other assertion libraries with different approaches. <strong>FsUnit</strong> brings an fun style to assertions that many like and <strong>Unquote</strong> makes use of a cool F# language feature to give detailed error messages.</p>
 <h3>Criteria</h3>
 <p>When reviewing or comparing anything it is useful to have a concrete list of attributes that are compared.</p>
 <ul>
@@ -211,7 +216,7 @@
 <h2>Review</h2>
 <p>So let's get into the comparison...</p>
 <h3>Setup</h3>
-<p>The project used to test out the examples is <a href="">here on Github</a>.</p>
+<p>The project used to test out the examples is <a href="https://github.com/dburriss/FsharpUnitTestFrameworks">here on Github</a>.</p>
 <div class="container">
   <div class="row">
     <div class="col-md-2"></div>
@@ -223,14 +228,14 @@
     <div class="col-md-5">
       <p> 
         .NET Core templating comes standard with an xUnit template. Visual Studio also has built in templates for XUnit.<br/>
-        `dotnet new xunit -lang F#`
+        <code>dotnet new xunit -lang F#</code>
       </p>
     </div>
     <div class="col-md-5">
       <p> 
         You can install the Expecto template<br/>
-        `dotnet new -i Expecto.Template::*`<br/>
-        `dotnet new expecto -n PROJECT_NAME -o FOLDER_NAME`
+        <code>dotnet new -i Expecto.Template::*</code><br/>
+        <code>dotnet new expecto -n PROJECT_NAME -o FOLDER_NAME</code>
       </p>
     </div>
   </div>
@@ -238,12 +243,12 @@
     <div class="col-md-2"><b>Nuget</b></div>
     <div class="col-md-5">
       <ul> 
-        <li>[xunit]()</li>
+        <li><a href="https://www.nuget.org/packages/xunit/">xunit</a></li>
       </p>
     </div>
     <div class="col-md-5">
       <ul> 
-        <li>[Expecto]()</li>
+        <li><a href="https://www.nuget.org/packages/Expecto/">Expecto</a></li>
       </ul>
     </div>
   </div>
@@ -251,32 +256,237 @@
     <div class="col-md-2"><b>VS Adapter</b></div>
     <div class="col-md-5">
       <ul> 
-        <li>[Microsoft.NET.Test.Sdk]()</li>
-        <li>[xunit.runner.visualstudio]()</li>
+        <li><a href="https://www.nuget.org/packages/Microsoft.NET.Test.Sdk/15.9.0">Microsoft.NET.Test.Sdk</a></li>
+        <li><a href="https://www.nuget.org/packages/xunit.runner.visualstudio/">xunit.runner.visualstudio</a></li>
       </ul>
     </div>
     <div class="col-md-5">
       <ul> 
-        <li>[YoloDev.Expecto.TestSdk]()</li>
+        <li><a href="https://www.nuget.org/packages/YoloDev.Expecto.TestSdk/">YoloDev.Expecto.TestSdk</a></li>
       </ul>
     </div>
   </div>
 </div>
-<p>The only issue I had was finding out to use <em>YoloDev.Expecto.TestSdk</em> to get Visual Studio integration working instead of <em>Expecto.VisualStudio.TestAdapter</em>.</p>
+<p>The only issue I had was discovering I had to use <em>YoloDev.Expecto.TestSdk</em> to get Visual Studio integration working instead of <em>Expecto.VisualStudio.TestAdapter</em> (as suggested in the documentation). Easy enough to discover by generating an example project using the template. So not much between them here other than XUnit being available out the box.</p>
 <h3>Style</h3>
+<p>Let's look at how we setup a test in both XUnit and Expecto and then we will look at the assertion styles.</p>
+<h4>Test setup</h4>
+<p><strong>XUnit</strong> looks for the <code>[&lt;Fact&gt;]</code> or <code>[&lt;Theory&gt;]</code> attribute on a function and will run that as a test.</p>
+<pre><code class="language-fsharp">[&lt;Fact&gt;]
+let ``toEmail with bob gives bob [at] acme [dot] com`` () =
+    let name = &quot;bob&quot;
+    let expected = &quot;bob@acme.com&quot;
+    let actual = toEmail name
+    Assert.Equal (expected, actual)
+</code></pre>
+<blockquote>
+<p>F# allows us to use the double ` to name a function with some special characters in it.</p>
+</blockquote>
+<p>So we have the <code>[&lt;Fact&gt;]</code> attribute and a function with our test.</p>
+<p>Let's compare this to <strong>Expecto</strong> setup.</p>
+<pre><code class="language-fsharp">[&lt;Tests&gt;]
+let aTest =
+  test &quot;toEmail with bob gives bob [at] acme [dot] com&quot; {
+      let name = &quot;bob&quot;
+      let expected = &quot;bob@acme.com&quot;
+      let actual = toEmail name
+      Expect.equal actual expected &quot;emails did not match&quot;
+  }
+</code></pre>
+<p>Expecto uses the <code>[&lt;Tests&gt;]</code> attribute to mark a value that contains tests, where the tests are defined in a F# computation expression called <code>test</code>.</p>
+<p>Although this might seem quite similar, it is in fact quite different. This becomes more apparent if we have multiple tests. Where XUnit is just more functions with the attribute on, Expecto treats the tests more like data.</p>
+<pre><code class="language-fsharp">[&lt;Tests&gt;]
+let emailtests = 
+    testList &quot;Email tests&quot; [
+            
+        test &quot;toEmail with null gives info [at] acme [dot] com&quot; {
+            let name = null
+            let expected = &quot;info@acme.com&quot;
+            let actual = toEmail name
+            Expect.equal actual expected &quot;emails did not match&quot;
+        }
+
+        test &quot;toEmail with bob gives bob [at] acme [dot] com&quot; {
+            let name = &quot;bob&quot;
+            let expected = &quot;bob@acme.com&quot;
+            let actual = toEmail name
+            Expect.equal actual expected &quot;emails did not match&quot;
+        }
+    ]
+</code></pre>
+<p>Now we are defining our tests in a <code>List</code> given to a <code>testList</code>. Expecto <a href="https://github.com/haf/expecto#writing-tests">has an almost overwhelming number of ways to organize tests</a>. XUnit is simple and straightforward but if you find yourself wanting to take more control of how tests are organized, Expecto might be just what you want. This becomes even more important if you are using it to do property-based testing, performance tests, etc.</p>
+<h4>Assertions</h4>
+<p>Next we will look at the style of the assertions used by each library.</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"><h4>XUnit</h4></div>
+    <div class="col-md-3"><h4>FsCheck</h4></div>
+    <div class="col-md-3"><h4>Unquote</h4></div>
+    <div class="col-md-3"><h4>Expecto</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"><code>Assert.Equal (expected, actual)</code></div>
+    <div class="col-md-3"><code>actual |> should equal expected</code></div>
+    <div class="col-md-3"><code>test <@ actual = expected @></code></div>
+    <div class="col-md-3"><code>Expect.equal actual expected "null should be None"</code></div>
+  </div>
+</div>
+<p><strong>XUnit</strong> is pretty standard if you come from an OO background, and it's OO roots are really showing here. Other than that it is easy enough to understand. XUnit's <code>Assert</code> static class contains a stack of useful assertion methods on it and since XUnit is very popular in the .NET space, it is easy finding answers.</p>
+<p><strong>FsUnit</strong> is for those that like a more fluent style (FP version) of defining assertions. If you are a C# developer and love the style of <a href="https://fluentassertions.com/">FluentAssertions</a>, then you may want to try this out. Honestly, I am not a fan of FluentAssertions library for its assertion style, I am a fan for its helpful error messages. In OO I prefer the more succinct XUnit style but use FluentAssertions because of its error messages. So if this is a style that appeals to you, try it out!</p>
+<p><strong>Unquote</strong> is slightly different as it uses F# quoted expressions (using <code>&lt;@ expression @&gt;</code>) to evaluate a plain statically typed F# expression and give detailed failure messages based on that evaluation. We will take at what this means for the error messages in the next section. There are some <a href="https://github.com/SwensenSoftware/unquote/wiki/UserGuide#assertions">assertion helpers</a> but mostly you just write plain old F# expressions.</p>
+<p><strong>Expecto</strong> has its own assertion module <code>Expect</code> which has a bunch of functions available for asserting behavior. This is much akin to XUnit's <code>Assert</code> class except it doesn't carry the same OO legacy and so is much more functional in feel.</p>
 <h3>Error message</h3>
+<p>Although a fan of TDD I prefer testing from the boundary of my application and only going as deep as needed. The less your clients (including your tests) know about the internals of your code, the more free you are to make changes without breaking any API contracts. So then error messages from your application become very important, and the more helpful your assertions are at surfacing this the better.</p>
+<pre><code class="language-fsharp">// XUnit / FsUnit / Unquote
+[&lt;Fact&gt;]
+let ``toEmail with bob gives bob [at] acme [dot] com`` () =
+    let name = &quot;bob&quot;
+    let expected = &quot;bob@acme.com&quot;
+    let actual = toEmail name
+    // XUnit
+    Assert.Equal (expected, actual)
+    // FsUnit
+    actual |&gt; should equal expected
+    // Unquote
+    test &lt;@ actual = expected @&gt;
+
+// Expecto
+test &quot;toEmail with bob gives bob [at] acme [dot] com&quot; {
+    let name = &quot;bob&quot;
+    let expected = &quot;bob@acme.com&quot;
+    let actual = toEmail name
+    Expect.equal actual expected &quot;bob should be Some bob&quot;
+}
+</code></pre>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"><h4>XUnit</h4></div>
+    <div class="col-md-3"><h4>FsCheck</h4></div>
+    <div class="col-md-3"><h4>Unquote</h4></div>
+    <div class="col-md-3"><h4>Expecto</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"><p>
+Message: Assert.Equal() Failure
+          ↓ (pos 0)
+Expected: bob@acme.com
+Actual:   info@acme.com
+          ↑ (pos 0)
+    </p></div>
+    <div class="col-md-3"><p>
+Message: FsUnit.Xunit+MatchException : Exception of type 'FsUnit.Xunit+MatchException' was thrown.
+Expected: Equals "bob@acme.com"
+Actual:   was "info@acme.com"
+    </p></div>
+    <div class="col-md-3"><p>
+"info@acme.com" = "bob@acme.com"
+false
+    </p></div>
+    <div class="col-md-3"><p>
+Message: 
+emails did not match.
+Expected string to equal:
+bob@acme.com
+↑
+The string differs at index 0.
+info@acme.com
+↑
+String does not match at position 0. Expected char: 'b', but got 'i'.
+    </p></div>
+  </div>
+</div>
+<p>So far there is very little between them. <strong>Unquote</strong> does stand out as different to the others. <strong>FsUnit</strong> has a bit more noise before the important part and doesn't point out the index of where things go wrong. That little detail could be helpful in spotting a small <em>tpyo</em> but other than that is not too significant.</p>
+<p>Let's look at something with a functional concept in like <code>option</code>.</p>
+<pre><code class="language-fsharp">// XUnit / FsUnit / Unquote
+[&lt;Fact&gt;]
+let ``sanitize with bob gives Some bob`` () =
+    let name = &quot;bob&quot;
+    let expected = Some name
+    let actual = Data.sanitize name
+    // XUnit
+    Assert.Equal (expected, actual)
+    // FsUnit
+    actual |&gt; should equal expected
+    // Unquote
+    test &lt;@ actual = expected @&gt;
+
+// Expecto
+test &quot;sanitize with bob gives Some bob&quot; {
+    let name = &quot;bob&quot;
+    let expected = Some name
+    let actual = Data.sanitize name
+    Expect.equal actual expected &quot;bob should be Some bob&quot;
+}
+</code></pre>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"><h4>XUnit</h4></div>
+    <div class="col-md-3"><h4>FsCheck</h4></div>
+    <div class="col-md-3"><h4>Unquote</h4></div>
+    <div class="col-md-3"><h4>Expecto</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"><p>
+Message: Assert.Equal() Failure
+Expected: Some(bob)
+Actual:   (null)
+    </p></div>
+    <div class="col-md-3"><p>
+Message: FsUnit.Xunit+MatchException : Exception of type 'FsUnit.Xunit+MatchException' was thrown.
+Expected: Equals Some "bob"
+Actual:   was null
+    </p></div>
+    <div class="col-md-3"><p>
+None = Some "bob"
+false
+    </p></div>
+    <div class="col-md-3"><p>
+Message: 
+bob should be Some bob. Actual value was &lt;null&gt; but had expected it to be Some "bob".
+    </p></div>
+  </div>
+</div>
+<p>Again most are similar but <strong>Unquote</strong> begins to shine. All the other libraries print <code>None</code> as <code>null</code>.</p>
 <h3>Runners</h3>
-<ul>
-<li>pics of vs</li>
-<li>commands and pics of console</li>
-<li>commands for filtering</li>
-</ul>
+<p>If you are using Visual Studio you probably want to run your tests from the Test Explorer in the IDE. This works fine for all the listed frameworks as you can see.</p>
+<p><img src="/img/posts/2018/test-explorer.jpg" alt="Visual Studio Test Explorer" /></p>
+<p>If the command line is more your thing, <code>dotnet test</code> works just fine. This example is a bit of a mess as it is running all the test libraries.</p>
+<p><img src="/img/posts/2018/console-tests.jpg" alt="Visual Studio Test Explorer" /></p>
+<h4>Filtering</h4>
+<p>Sometimes it is useful to filter to run only certain tests. <strong>XUnit</strong> and <code>dotnet test</code> support this. With the following example you can filter down to just tests marked with this category using <code>--filter</code>.</p>
+<pre><code class="language-fsharp">[&lt;Trait(&quot;Category&quot;, &quot;Smoke&quot;)&gt;]
+[&lt;Fact&gt;]
+let ``get list of numbers`` () =
+    let expected = [|1;2;3|]
+    let actual = Data.list |&gt; Seq.take 3 |&gt; Seq.toArray
+    Assert.Equal&lt;IEnumerable&lt;int&gt;&gt;(expected, actual)
+</code></pre>
+<blockquote>
+<p><code>dotnet test --filter Category=Smoke</code></p>
+</blockquote>
+<p>Filtering with <strong>Expecto</strong> is a bit different. Remember how we assign a list of tests to a value? We could for example run our data tests like so by running them from a command line program.</p>
+<pre><code class="language-fsharp">// Program.fs
+
+module Program = 
+    
+    open Expecto
+    open TestFrameworks
+
+    let [&lt;EntryPoint&gt;] main args = 
+        runTestsWithArgs defaultConfig args ExpectoTests.datatests
+</code></pre>
+<p>And since this is just a normal console application, you can make it as simple or complex as needed. Now testing becomes a <code>dotnet watch run</code>.</p>
+<h2>Conclusion</h2>
+<p>So that is our review of a few of the testing libraries available in the F# ecosystem. This is by no means a comprehensive in terms of all libraries nor a deep dive into any of these. I do hope that if you have not used some of these, you did glimpse what some of them might offer.</p>
 <h2>Resources</h2>
 <ol>
 <li><a href="https://xunit.github.io/">xunit</a></li>
 <li><a href="http://fsprojects.github.io/FsUnit/">FsUnit</a></li>
 <li><a href="https://github.com/SwensenSoftware/unquote">Unquote</a></li>
 <li><a href="https://github.com/haf/expecto">Expecto</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions">Computation Expressions</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/code-quotations">Quoted expressions</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/core/testing/selective-unit-tests#xunit">Filtering tests</a></li>
 </ol>
 
                 <hr />
@@ -285,7 +495,7 @@
                     <ul>
                                                 <li><a href="/anatomy-of-automated-testing/">Anatomy of an automated test suite</a></li>
                                                 <li><a href="/maintainable-unit-tests/">3 tips for more maintainable unit tests</a></li>
-                                                <li><a href="/acceptance-tests/">Writing readable Acceptance tests</a></li>
+                                                <li><a href="/testing-the-untestable/">Testing the Untestable</a></li>
                                             </ul>
                 </section>
                 <hr />
