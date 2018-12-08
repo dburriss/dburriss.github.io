@@ -184,8 +184,8 @@ Next we will look at the style of the assertions used by each library.
   </div>
 
   <div class="row">
-    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">XUnit</b><code>Assert.Equal (expected, actual)</code></div>
-    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">FsUnit</b><code>actual |> should equal expected</code></div>
+    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">XUnit</b><pre><code class="fsharp">Assert.Equal (expected, actual)</code></pre></div>
+    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">FsUnit</b><pre><code class="fsharp">actual |> should equal expected</code></pre></div>
   </div>
 
    <div class="row hidden-xs hidden-sm">
@@ -194,8 +194,8 @@ Next we will look at the style of the assertions used by each library.
   </div>
 
   <div class="row">
-    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">Unquote</b><code>test <@ actual = expected @></code></div>
-    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">Expecto</b><code>Expect.equal actual expected "null should be None"</code></div>
+    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">Unquote</b><pre><code class="fsharp">test <@ actual = expected @></code></pre></div>
+    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">Expecto</b><pre><code class="fsharp">Expect.equal actual expected "null should be None"</code></pre></div>
   </div>
 </div>
 
