@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-12-08T00:48:59.6511577+00:00</updated>
+  <updated>2018-12-08T08:31:07.4924168+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -48,7 +48,7 @@
 &lt;h3&gt;Setup&lt;/h3&gt;
 &lt;p&gt;The project used to test out the examples is &lt;a href=&quot;https://github.com/dburriss/FsharpUnitTestFrameworks&quot;&gt;here on Github&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&quot;container&quot;&gt;
-  &lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;row hidden-xs hidden-sm&quot;&gt;
     &lt;div class=&quot;col-md-2&quot;&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-5&quot;&gt;&lt;h4&gt;XUnit&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-5&quot;&gt;&lt;h4&gt;Expecto&lt;/h4&gt;&lt;/div&gt;
@@ -148,17 +148,17 @@ let emailtests =
 &lt;h4&gt;Assertions&lt;/h4&gt;
 &lt;p&gt;Next we will look at the style of the assertions used by each library.&lt;/p&gt;
 &lt;div class=&quot;container&quot;&gt;
-  &lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;row hidden-xs hidden-sm&quot;&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;XUnit&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;FsCheck&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;Unquote&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;Expecto&lt;/h4&gt;&lt;/div&gt;
   &lt;/div&gt;
   &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;code&gt;Assert.Equal (expected, actual)&lt;/code&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;code&gt;actual |&gt; should equal expected&lt;/code&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;code&gt;test &lt;@ actual = expected @&gt;&lt;/code&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;code&gt;Expect.equal actual expected &quot;null should be None&quot;&lt;/code&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-3&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;XUnit&lt;/b&gt;&lt;code&gt;Assert.Equal (expected, actual)&lt;/code&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-3&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;FsUnit&lt;/b&gt;&lt;code&gt;actual |&gt; should equal expected&lt;/code&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-3&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;Unquote&lt;/b&gt;&lt;code&gt;test &lt;@ actual = expected @&gt;&lt;/code&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-3&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;Expecto&lt;/b&gt;&lt;code&gt;Expect.equal actual expected &quot;null should be None&quot;&lt;/code&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;XUnit&lt;/strong&gt; is pretty standard if you come from an OO background, and it&apos;s OO roots are really showing here. Other than that it is easy enough to understand. XUnit&apos;s &lt;code&gt;Assert&lt;/code&gt; static class contains a stack of useful assertion methods on it and since XUnit is very popular in the .NET space, it is easy finding answers.&lt;/p&gt;
@@ -189,7 +189,7 @@ test &amp;quot;toEmail with bob gives bob [at] acme [dot] com&amp;quot; {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&quot;container&quot;&gt;
-  &lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;row hidden-xs hidden-sm&quot;&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;XUnit&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;FsCheck&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;Unquote&lt;/h4&gt;&lt;/div&gt;
@@ -197,6 +197,7 @@ test &amp;quot;toEmail with bob gives bob [at] acme [dot] com&amp;quot; {
   &lt;/div&gt;
   &lt;div class=&quot;row&quot;&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;p&gt;
+    &lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;XUnit&lt;/b&gt;
 Message: Assert.Equal() Failure
           ↓ (pos 0)
 Expected: bob@acme.com
@@ -204,15 +205,18 @@ Actual:   info@acme.com
           ↑ (pos 0)
     &lt;/p&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;p&gt;
+    &lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;FsUnit&lt;/b&gt;
 Message: FsUnit.Xunit+MatchException : Exception of type &apos;FsUnit.Xunit+MatchException&apos; was thrown.
 Expected: Equals &quot;bob@acme.com&quot;
 Actual:   was &quot;info@acme.com&quot;
     &lt;/p&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;p&gt;
+    &lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;Unquote&lt;/b&gt;
 &quot;info@acme.com&quot; = &quot;bob@acme.com&quot;
 false
     &lt;/p&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;p&gt;
+    &lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;Expecto&lt;/b&gt;
 Message: 
 emails did not match.
 Expected string to equal:
@@ -249,7 +253,7 @@ test &amp;quot;sanitize with bob gives Some bob&amp;quot; {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&quot;container&quot;&gt;
-  &lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;row hidden-xs hidden-sm&quot;&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;XUnit&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;FsCheck&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;Unquote&lt;/h4&gt;&lt;/div&gt;
@@ -257,20 +261,24 @@ test &amp;quot;sanitize with bob gives Some bob&amp;quot; {
   &lt;/div&gt;
   &lt;div class=&quot;row&quot;&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;p&gt;
+    &lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;XUnit&lt;/b&gt;
 Message: Assert.Equal() Failure
 Expected: Some(bob)
 Actual:   (null)
     &lt;/p&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;p&gt;
+    &lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;FsUnit&lt;/b&gt;
 Message: FsUnit.Xunit+MatchException : Exception of type &apos;FsUnit.Xunit+MatchException&apos; was thrown.
 Expected: Equals Some &quot;bob&quot;
 Actual:   was null
     &lt;/p&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;p&gt;
+    &lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;Unquote&lt;/b&gt;
 None = Some &quot;bob&quot;
 false
     &lt;/p&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;p&gt;
+    &lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;Expecto&lt;/b&gt;
 Message: 
 bob should be Some bob. Actual value was &amp;lt;null&amp;gt; but had expected it to be Some &quot;bob&quot;.
     &lt;/p&gt;&lt;/div&gt;
@@ -307,7 +315,7 @@ module Program =
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;And since this is just a normal console application, you can make it as simple or complex as needed. Now testing becomes a &lt;code&gt;dotnet watch run&lt;/code&gt;.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;So that is our review of a few of the testing libraries available in the F# ecosystem. This is by no means a comprehensive in terms of all libraries nor a deep dive into any of these. I do hope that if you have not used some of these, you did glimpse what some of them might offer.&lt;/p&gt;
+&lt;p&gt;So that is our review of a few of the testing libraries available in the F# ecosystem. This is by no means comprehensive in terms of all libraries nor a deep dive into any of these. I do hope that if you have not used some of these, you did glimpse what some of them might offer.&lt;/p&gt;
 &lt;h2&gt;Resources&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://xunit.github.io/&quot;&gt;xunit&lt;/a&gt;&lt;/li&gt;

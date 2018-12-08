@@ -218,7 +218,7 @@
 <h3>Setup</h3>
 <p>The project used to test out the examples is <a href="https://github.com/dburriss/FsharpUnitTestFrameworks">here on Github</a>.</p>
 <div class="container">
-  <div class="row">
+  <div class="row hidden-xs hidden-sm">
     <div class="col-md-2"></div>
     <div class="col-md-5"><h4>XUnit</h4></div>
     <div class="col-md-5"><h4>Expecto</h4></div>
@@ -318,17 +318,17 @@ let emailtests =
 <h4>Assertions</h4>
 <p>Next we will look at the style of the assertions used by each library.</p>
 <div class="container">
-  <div class="row">
+  <div class="row hidden-xs hidden-sm">
     <div class="col-md-3"><h4>XUnit</h4></div>
     <div class="col-md-3"><h4>FsCheck</h4></div>
     <div class="col-md-3"><h4>Unquote</h4></div>
     <div class="col-md-3"><h4>Expecto</h4></div>
   </div>
   <div class="row">
-    <div class="col-md-3"><code>Assert.Equal (expected, actual)</code></div>
-    <div class="col-md-3"><code>actual |> should equal expected</code></div>
-    <div class="col-md-3"><code>test <@ actual = expected @></code></div>
-    <div class="col-md-3"><code>Expect.equal actual expected "null should be None"</code></div>
+    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">XUnit</b><code>Assert.Equal (expected, actual)</code></div>
+    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">FsUnit</b><code>actual |> should equal expected</code></div>
+    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">Unquote</b><code>test <@ actual = expected @></code></div>
+    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">Expecto</b><code>Expect.equal actual expected "null should be None"</code></div>
   </div>
 </div>
 <p><strong>XUnit</strong> is pretty standard if you come from an OO background, and it's OO roots are really showing here. Other than that it is easy enough to understand. XUnit's <code>Assert</code> static class contains a stack of useful assertion methods on it and since XUnit is very popular in the .NET space, it is easy finding answers.</p>
@@ -359,7 +359,7 @@ test &quot;toEmail with bob gives bob [at] acme [dot] com&quot; {
 }
 </code></pre>
 <div class="container">
-  <div class="row">
+  <div class="row hidden-xs hidden-sm">
     <div class="col-md-3"><h4>XUnit</h4></div>
     <div class="col-md-3"><h4>FsCheck</h4></div>
     <div class="col-md-3"><h4>Unquote</h4></div>
@@ -367,6 +367,7 @@ test &quot;toEmail with bob gives bob [at] acme [dot] com&quot; {
   </div>
   <div class="row">
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">XUnit</b>
 Message: Assert.Equal() Failure
           ↓ (pos 0)
 Expected: bob@acme.com
@@ -374,15 +375,18 @@ Actual:   info@acme.com
           ↑ (pos 0)
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">FsUnit</b>
 Message: FsUnit.Xunit+MatchException : Exception of type 'FsUnit.Xunit+MatchException' was thrown.
 Expected: Equals "bob@acme.com"
 Actual:   was "info@acme.com"
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">Unquote</b>
 "info@acme.com" = "bob@acme.com"
 false
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">Expecto</b>
 Message: 
 emails did not match.
 Expected string to equal:
@@ -419,7 +423,7 @@ test &quot;sanitize with bob gives Some bob&quot; {
 }
 </code></pre>
 <div class="container">
-  <div class="row">
+  <div class="row hidden-xs hidden-sm">
     <div class="col-md-3"><h4>XUnit</h4></div>
     <div class="col-md-3"><h4>FsCheck</h4></div>
     <div class="col-md-3"><h4>Unquote</h4></div>
@@ -427,20 +431,24 @@ test &quot;sanitize with bob gives Some bob&quot; {
   </div>
   <div class="row">
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">XUnit</b>
 Message: Assert.Equal() Failure
 Expected: Some(bob)
 Actual:   (null)
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">FsUnit</b>
 Message: FsUnit.Xunit+MatchException : Exception of type 'FsUnit.Xunit+MatchException' was thrown.
 Expected: Equals Some "bob"
 Actual:   was null
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">Unquote</b>
 None = Some "bob"
 false
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">Expecto</b>
 Message: 
 bob should be Some bob. Actual value was &lt;null&gt; but had expected it to be Some "bob".
     </p></div>
@@ -477,7 +485,7 @@ module Program =
 </code></pre>
 <p>And since this is just a normal console application, you can make it as simple or complex as needed. Now testing becomes a <code>dotnet watch run</code>.</p>
 <h2>Conclusion</h2>
-<p>So that is our review of a few of the testing libraries available in the F# ecosystem. This is by no means a comprehensive in terms of all libraries nor a deep dive into any of these. I do hope that if you have not used some of these, you did glimpse what some of them might offer.</p>
+<p>So that is our review of a few of the testing libraries available in the F# ecosystem. This is by no means comprehensive in terms of all libraries nor a deep dive into any of these. I do hope that if you have not used some of these, you did glimpse what some of them might offer.</p>
 <h2>Resources</h2>
 <ol>
 <li><a href="https://xunit.github.io/">xunit</a></li>
