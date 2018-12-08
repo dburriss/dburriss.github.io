@@ -179,17 +179,17 @@ Next we will look at the style of the assertions used by each library.
 
 <div class="container">
   <div class="row hidden-xs hidden-sm">
-    <div class="col-md-3"><h4>XUnit</h4></div>
-    <div class="col-md-3"><h4>FsCheck</h4></div>
-    <div class="col-md-3"><h4>Unquote</h4></div>
-    <div class="col-md-3"><h4>Expecto</h4></div>
+    <div class="col-md-6"><h4>XUnit</h4></div>
+    <div class="col-md-6"><h4>FsCheck</h4></div>
+    <div class="col-md-6"><h4>Unquote</h4></div>
+    <div class="col-md-6"><h4>Expecto</h4></div>
   </div>
 
   <div class="row">
-    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">XUnit</b><code>Assert.Equal (expected, actual)</code></div>
-    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">FsUnit</b><code>actual |> should equal expected</code></div>
-    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">Unquote</b><code>test <@ actual = expected @></code></div>
-    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">Expecto</b><code>Expect.equal actual expected "null should be None"</code></div>
+    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">XUnit</b><code>Assert.Equal (expected, actual)</code></div>
+    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">FsUnit</b><code>actual |> should equal expected</code></div>
+    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">Unquote</b><code>test <@ actual = expected @></code></div>
+    <div class="col-md-6"><b class="visible-xs-block visible-sm-block">Expecto</b><code>Expect.equal actual expected "null should be None"</code></div>
   </div>
 </div>
 
