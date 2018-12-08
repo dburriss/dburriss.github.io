@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-12-08T08:31:07.4924168+00:00</updated>
+  <updated>2018-12-08T08:36:10.4983616+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -149,16 +149,16 @@ let emailtests =
 &lt;p&gt;Next we will look at the style of the assertions used by each library.&lt;/p&gt;
 &lt;div class=&quot;container&quot;&gt;
   &lt;div class=&quot;row hidden-xs hidden-sm&quot;&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;XUnit&lt;/h4&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;FsCheck&lt;/h4&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;Unquote&lt;/h4&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;Expecto&lt;/h4&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;&lt;h4&gt;XUnit&lt;/h4&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;&lt;h4&gt;FsCheck&lt;/h4&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;&lt;h4&gt;Unquote&lt;/h4&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;&lt;h4&gt;Expecto&lt;/h4&gt;&lt;/div&gt;
   &lt;/div&gt;
   &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;XUnit&lt;/b&gt;&lt;code&gt;Assert.Equal (expected, actual)&lt;/code&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;FsUnit&lt;/b&gt;&lt;code&gt;actual |&gt; should equal expected&lt;/code&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;Unquote&lt;/b&gt;&lt;code&gt;test &lt;@ actual = expected @&gt;&lt;/code&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;Expecto&lt;/b&gt;&lt;code&gt;Expect.equal actual expected &quot;null should be None&quot;&lt;/code&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;XUnit&lt;/b&gt;&lt;code&gt;Assert.Equal (expected, actual)&lt;/code&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;FsUnit&lt;/b&gt;&lt;code&gt;actual |&gt; should equal expected&lt;/code&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;Unquote&lt;/b&gt;&lt;code&gt;test &lt;@ actual = expected @&gt;&lt;/code&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;Expecto&lt;/b&gt;&lt;code&gt;Expect.equal actual expected &quot;null should be None&quot;&lt;/code&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;XUnit&lt;/strong&gt; is pretty standard if you come from an OO background, and it&apos;s OO roots are really showing here. Other than that it is easy enough to understand. XUnit&apos;s &lt;code&gt;Assert&lt;/code&gt; static class contains a stack of useful assertion methods on it and since XUnit is very popular in the .NET space, it is easy finding answers.&lt;/p&gt;
