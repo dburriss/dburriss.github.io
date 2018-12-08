@@ -56,7 +56,7 @@ So let's get into the comparison...
 The project used to test out the examples is [here on Github](https://github.com/dburriss/FsharpUnitTestFrameworks).
 
 <div class="container">
-  <div class="row">
+  <div class="row hidden-xs hidden-sm">
     <div class="col-md-2"></div>
     <div class="col-md-5"><h4>XUnit</h4></div>
     <div class="col-md-5"><h4>Expecto</h4></div>
@@ -178,7 +178,7 @@ Now we are defining our tests in a `List` given to a `testList`. Expecto [has an
 Next we will look at the style of the assertions used by each library. 
 
 <div class="container">
-  <div class="row">
+  <div class="row hidden-xs hidden-sm">
     <div class="col-md-3"><h4>XUnit</h4></div>
     <div class="col-md-3"><h4>FsCheck</h4></div>
     <div class="col-md-3"><h4>Unquote</h4></div>
@@ -186,10 +186,10 @@ Next we will look at the style of the assertions used by each library.
   </div>
 
   <div class="row">
-    <div class="col-md-3"><code>Assert.Equal (expected, actual)</code></div>
-    <div class="col-md-3"><code>actual |> should equal expected</code></div>
-    <div class="col-md-3"><code>test <@ actual = expected @></code></div>
-    <div class="col-md-3"><code>Expect.equal actual expected "null should be None"</code></div>
+    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">XUnit</b><code>Assert.Equal (expected, actual)</code></div>
+    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">FsUnit</b><code>actual |> should equal expected</code></div>
+    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">Unquote</b><code>test <@ actual = expected @></code></div>
+    <div class="col-md-3"><b class="visible-xs-block visible-sm-block">Expecto</b><code>Expect.equal actual expected "null should be None"</code></div>
   </div>
 </div>
 
@@ -229,7 +229,7 @@ test "toEmail with bob gives bob [at] acme [dot] com" {
 ```
 
 <div class="container">
-  <div class="row">
+  <div class="row hidden-xs hidden-sm">
     <div class="col-md-3"><h4>XUnit</h4></div>
     <div class="col-md-3"><h4>FsCheck</h4></div>
     <div class="col-md-3"><h4>Unquote</h4></div>
@@ -238,6 +238,7 @@ test "toEmail with bob gives bob [at] acme [dot] com" {
 
   <div class="row">
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">XUnit</b>
 Message: Assert.Equal() Failure
           ↓ (pos 0)
 Expected: bob@acme.com
@@ -245,15 +246,18 @@ Actual:   info@acme.com
           ↑ (pos 0)
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">FsUnit</b>
 Message: FsUnit.Xunit+MatchException : Exception of type 'FsUnit.Xunit+MatchException' was thrown.
 Expected: Equals "bob@acme.com"
 Actual:   was "info@acme.com"
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">Unquote</b>
 "info@acme.com" = "bob@acme.com"
 false
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">Expecto</b>
 Message: 
 emails did not match.
 Expected string to equal:
@@ -295,7 +299,7 @@ test "sanitize with bob gives Some bob" {
 ```
 
 <div class="container">
-  <div class="row">
+  <div class="row hidden-xs hidden-sm">
     <div class="col-md-3"><h4>XUnit</h4></div>
     <div class="col-md-3"><h4>FsCheck</h4></div>
     <div class="col-md-3"><h4>Unquote</h4></div>
@@ -304,20 +308,24 @@ test "sanitize with bob gives Some bob" {
 
   <div class="row">
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">XUnit</b>
 Message: Assert.Equal() Failure
 Expected: Some(bob)
 Actual:   (null)
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">FsUnit</b>
 Message: FsUnit.Xunit+MatchException : Exception of type 'FsUnit.Xunit+MatchException' was thrown.
 Expected: Equals Some "bob"
 Actual:   was null
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">Unquote</b>
 None = Some "bob"
 false
     </p></div>
     <div class="col-md-3"><p>
+    <b class="visible-xs-block visible-sm-block">Expecto</b>
 Message: 
 bob should be Some bob. Actual value was &lt;null&gt; but had expected it to be Some "bob".
     </p></div>
@@ -369,7 +377,7 @@ And since this is just a normal console application, you can make it as simple o
 
 ## Conclusion
 
-So that is our review of a few of the testing libraries available in the F# ecosystem. This is by no means a comprehensive in terms of all libraries nor a deep dive into any of these. I do hope that if you have not used some of these, you did glimpse what some of them might offer.
+So that is our review of a few of the testing libraries available in the F# ecosystem. This is by no means comprehensive in terms of all libraries nor a deep dive into any of these. I do hope that if you have not used some of these, you did glimpse what some of them might offer.
 
 ## Resources
 
