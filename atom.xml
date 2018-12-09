@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-12-08T08:45:48.3603049+00:00</updated>
+  <updated>2018-12-09T09:26:42.8651913+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -150,7 +150,7 @@ let emailtests =
 &lt;div class=&quot;container&quot;&gt;
   &lt;div class=&quot;row hidden-xs hidden-sm&quot;&gt;
     &lt;div class=&quot;col-md-6&quot;&gt;&lt;h4&gt;XUnit&lt;/h4&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-6&quot;&gt;&lt;h4&gt;FsCheck&lt;/h4&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;&lt;h4&gt;FsUnit&lt;/h4&gt;&lt;/div&gt;
   &lt;/div&gt;
   &lt;div class=&quot;row&quot;&gt;
     &lt;div class=&quot;col-md-6&quot;&gt;&lt;b class=&quot;visible-xs-block visible-sm-block&quot;&gt;XUnit&lt;/b&gt;&lt;pre&gt;&lt;code class=&quot;fsharp&quot;&gt;Assert.Equal (expected, actual)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -195,7 +195,7 @@ test &amp;quot;toEmail with bob gives bob [at] acme [dot] com&amp;quot; {
 &lt;div class=&quot;container&quot;&gt;
   &lt;div class=&quot;row hidden-xs hidden-sm&quot;&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;XUnit&lt;/h4&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;FsCheck&lt;/h4&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;FsUnit&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;Unquote&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;Expecto&lt;/h4&gt;&lt;/div&gt;
   &lt;/div&gt;
@@ -259,7 +259,7 @@ test &amp;quot;sanitize with bob gives Some bob&amp;quot; {
 &lt;div class=&quot;container&quot;&gt;
   &lt;div class=&quot;row hidden-xs hidden-sm&quot;&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;XUnit&lt;/h4&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;FsCheck&lt;/h4&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;FsUnit&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;Unquote&lt;/h4&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;h4&gt;Expecto&lt;/h4&gt;&lt;/div&gt;
   &lt;/div&gt;
@@ -329,6 +329,8 @@ module Program =
 &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions&quot;&gt;Computation Expressions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/code-quotations&quot;&gt;Quoted expressions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/core/testing/selective-unit-tests#xunit&quot;&gt;Filtering tests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://fscheck.github.io/FsCheck/&quot;&gt;Property-based testing with FsCheck&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/fsprojects/Foq/wiki&quot;&gt;Foq for Mocking (personally I don&apos;t recommend using mock frameworks much)&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</summary>
   </entry>
   
