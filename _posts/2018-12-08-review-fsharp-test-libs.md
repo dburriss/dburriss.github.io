@@ -180,7 +180,7 @@ Next we will look at the style of the assertions used by each library.
 <div class="container">
   <div class="row hidden-xs hidden-sm">
     <div class="col-md-6"><h4>XUnit</h4></div>
-    <div class="col-md-6"><h4>FsCheck</h4></div>
+    <div class="col-md-6"><h4>FsUnit</h4></div>
   </div>
 
   <div class="row">
@@ -237,7 +237,7 @@ test "toEmail with bob gives bob [at] acme [dot] com" {
 <div class="container">
   <div class="row hidden-xs hidden-sm">
     <div class="col-md-3"><h4>XUnit</h4></div>
-    <div class="col-md-3"><h4>FsCheck</h4></div>
+    <div class="col-md-3"><h4>FsUnit</h4></div>
     <div class="col-md-3"><h4>Unquote</h4></div>
     <div class="col-md-3"><h4>Expecto</h4></div>
   </div>
@@ -307,7 +307,7 @@ test "sanitize with bob gives Some bob" {
 <div class="container">
   <div class="row hidden-xs hidden-sm">
     <div class="col-md-3"><h4>XUnit</h4></div>
-    <div class="col-md-3"><h4>FsCheck</h4></div>
+    <div class="col-md-3"><h4>FsUnit</h4></div>
     <div class="col-md-3"><h4>Unquote</h4></div>
     <div class="col-md-3"><h4>Expecto</h4></div>
   </div>
@@ -394,3 +394,5 @@ So that is our review of a few of the testing libraries available in the F# ecos
 1. [Computation Expressions](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions)
 1. [Quoted expressions](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/code-quotations)
 1. [Filtering tests](https://docs.microsoft.com/en-us/dotnet/core/testing/selective-unit-tests#xunit)
+1. [Property-based testing with FsCheck](https://fscheck.github.io/FsCheck/)
+1. [Foq for Mocking (personally I don't recommend using mock frameworks much)](https://github.com/fsprojects/Foq/wiki)
