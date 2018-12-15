@@ -12,36 +12,49 @@
 
 
 
+    
 
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly explorations in code">
+    
+
+
+    <title>Canopy as a FSX Script</title>
+    <meta name="description" content="Examples of running Canopy Selenium automation in a F# fsx script file">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="https://devonburriss.me/canopy-as-fsx/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly explorations in code">
+    <meta itemprop="name" content="Canopy as a FSX Script">
+    <meta itemprop="description" content="Examples of running Canopy Selenium automation in a F# fsx script file">
     <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    
+    <meta itemprop="datePublished" content="12/15/2018 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="12/15/2018 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Canopy as a FSX Script - The bare minimum needed to get Canopy up and running" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/canopy-as-fsx/" />
+    <meta name="headline" content="Canopy as a FSX Script - The bare minimum needed to get Canopy up and running" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly explorations in code">
+    <meta name="twitter:title" content="Canopy as a FSX Script">
+    <meta name="twitter:description" content="Examples of running Canopy Selenium automation in a F# fsx script file">
     <meta name="twitter:creator" content="@DevonBurriss">
     <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="Canopy as a FSX Script" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me//tag/testing/" />
+    <meta property="og:url" content="https://devonburriss.me/canopy-as-fsx/" />
     <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly explorations in code" />
+    <meta property="og:description" content="Examples of running Canopy Selenium automation in a F# fsx script file" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -142,316 +155,122 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/bulb-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Canopy as a FSX Script</h1>
+                        
+                        <h2 class="subheading">The bare minimum needed to get Canopy up and running</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on December 15, 2018</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/canopy" class="label label-default">Canopy</a>
+                            
+                                <a href="/tag/functional" class="label label-default">Functional</a>
+                            
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
+                                <a href="/tag/testing" class="label label-default">Testing</a>
+                            
+                                <a href="/tag/selenium" class="label label-default">Selenium</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			<div>
-    <div class="clearfix">
-        <h1 class="pull-right">&#47;Testing&#47; &nbsp;</h1>
-    </div>
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      
-      <div class="post-preview ">
-          <a href="/canopy-as-fsx/">
-              <h2 class="post-title">            Canopy as a FSX Script
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on December 15, 2018</p>
-          
-              
-                 <a href="/tag/canopy"><span class="label label-default">Canopy</span></a>
-              
-                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-              
-                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/selenium"><span class="label label-default">Selenium</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/review-fsharp-test-libs/">
-              <h2 class="post-title">            Review: F# unit testing frameworks and libraries
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on December 08, 2018</p>
-          
-              
-                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/anatomy-of-automated-testing/">
-              <h2 class="post-title">            Anatomy of an automated test suite
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 13, 2018</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
-              
-                 <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/page-module-model/">
-              <h2 class="post-title">            The Page Module Model with F# and Canopy
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 12, 2018</p>
-          
-              
-                 <a href="/tag/canopy"><span class="label label-default">Canopy</span></a>
-              
-                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-              
-                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-                 <a href="/tag/selenium"><span class="label label-default">Selenium</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/acceptance-tests/">
-              <h2 class="post-title">            Writing readable Acceptance tests
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 11, 2018</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
-              
-                 <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/maintainable-unit-tests/">
-              <h2 class="post-title">            3 tips for more maintainable unit tests
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on April 07, 2018</p>
-          
-              
-                 <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/testing-the-untestable/">
-              <h2 class="post-title">            Testing the Untestable
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on January 27, 2015</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                 <a href="/tag/unit-testing"><span class="label label-default">Unit Testing</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/testing-your-data-repositories/">
-              <h2 class="post-title">            Testing your data repositories
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on September 07, 2014</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                 <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-              
-                 <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-                 <a href="/tag/java"><span class="label label-default">Java</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-</div>
-		</div>
+				<p>Recently I found myself doing a very repetitive task that entailed copying values one at a time off a page, navigating to the next page, then repeat. I would spend 2 hours automating 1 hour of work if said work is sufficiently boring, even if I may never need the automation again. I enjoy coding, I do not enjoy copy-pasting. So I wondered if it was even possible to run Canopy in an F# FSX script file. It turns out it is.</p>
+<!--more-->
+<h2>F# Scripting</h2>
+<p>In case you are new to F# let us briefly touch on what an FSX file is. F# (and nowadays C# as well) code can be placed into <code>.fs</code> files in a project and compiled to DLLs. This is how you would write a console application, Windows Service, or a Web Application. Another option that is great for experimenting is using <code>.fsx</code> files. These are F# scripting file that allow you to run as a standalone script using <strong>FSI</strong> (FSharp Interactive).</p>
+<pre><code class="language-powershell">fsi .\basic.fsx
+</code></pre>
+<p>This requires <code>Fsi.exe</code> be on your <strong>PATH</strong>. For more information see <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/fsharp-interactive/">the docs</a>.</p>
+<p>Worth mentioning is <a href="http://ionide.io/">Ionide Project's</a> great support for running script files, as well as working with <a href="https://fsprojects.github.io/Paket/">PAKET</a> which we will not go into in detail.</p>
+<h2>Setup</h2>
+<p>So the first thing you will need is a way to pull down the necessary Nuget packages. See my article on <a href="/up-and-running-with-paket">getting up and running with Paket fast</a> if you need help setting up Paket.</p>
+<p>Here is the TL;DR version:</p>
+<pre><code class="language-powershell"># Download Paket exe into .paket folder
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command &quot;iex (Invoke-WebRequest 'https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1')&quot;
+# Most NB this creates 'paket.dependencies' file
+.\.paket\paket.exe init
+# At this point add some lines to 'paket.dependencies'. Downloads dependencies.
+.\.paket\paket.exe install
+</code></pre>
+<h2>A basic script</h2>
+<p>First we use PAKET to pull down the Nuget package we need.</p>
+<pre><code class="language-text">source https://www.nuget.org/api/v2
+nuget canopy
+</code></pre>
+<p>And run <code>.\.paket\paket.exe install</code> to download the packages.</p>
+<pre><code class="language-fsharp">#r &quot;packages/Selenium.WebDriver/lib/netstandard2.0/WebDriver.dll&quot;
+#r &quot;packages/canopy/lib/netstandard2.0/canopy.dll&quot;
 
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+open canopy.classic
+open canopy.configuration
+open canopy.types
+
+chromeDir &lt;- &quot;C:\\tools\\selenium\\&quot;//or wherever you place your Selenium
+start chrome
+pin FullScreen
+
+url &quot;https://google.com/&quot;
+
+&quot;[name=q]&quot; &lt;&lt; &quot;Youtube: BGF Red and Blue&quot;
+press enter
+</code></pre>
+<blockquote>
+<p>One gotcha I did run across here is that the order of the <code>#r</code> references here does matter. The <em>WebDriver.dll</em> is required before <em>canopy.dll</em>.</p>
+</blockquote>
+<h2>Conclusion</h2>
+<p>And that is how easy it is to start using Canopy from a FSX file. This is a great way of automating some repetitive web task where an API is not available or exploring interacting with some DOM elements via Canopy in preparation for a UI test. Hope you found this useful. If you have any other use-cases, I would love to hear about them in the comments below.</p>
+<h2>Resources</h2>
+<ol>
+<li><a href="https://lefthandedgoat.github.io/canopy/">Canopy</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/fsharp-interactive/">FSI Reference</a></li>
+<li><a href="https://www.seleniumhq.org/download/">Selenium Download</a></li>
+</ol>
+
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/up-and-running-with-paket/">Up and running with PAKET</a></li>
+                                                <li><a href="/page-module-model/">The Page Module Model with F# and Canopy</a></li>
+                                                <li><a href="/fsharp-scripting/">F# Scripts</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/review-fsharp-test-libs/" data-toggle="tooltip"    data-placement="top" title="Review: F# unit testing frameworks and libraries">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -493,7 +312,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/agile">Agile</a>
 
@@ -513,8 +332,8 @@
 
     <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -855,24 +674,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="https://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="https://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>

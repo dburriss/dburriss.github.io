@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sun, 09 Dec 2018 09:26:42 +00:00</pubDate>
-    <lastBuildDate>Sun, 09 Dec 2018 09:26:42 +00:00</lastBuildDate>
+    <pubDate>Sat, 15 Dec 2018 09:13:14 +00:00</pubDate>
+    <lastBuildDate>Sat, 15 Dec 2018 09:13:14 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Canopy as a FSX Script</title>
+      <link>https://devonburriss.me/canopy-as-fsx/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/canopy-as-fsx/</guid>
+      <description>Examples of running Canopy Selenium automation in a F# fsx script file</description>
+    </item>
     
     <item>
       <title>Review: F# unit testing frameworks and libraries</title>
