@@ -18,10 +18,10 @@ Recently I found myself doing a very repetitive task that entailed copying value
 
 ## F# Scripting
 
-In case you are new to F# let us briefly touch on what an FSX file is. F# (and nowadays C# as well) code can be placed into `.fs` files in a project and compiled to DLLs. This is how you would write a console application, Windows Service, or a Web Application. Another option that is great for experimenting is using `.fsx` files. These are F# scripting file that allow you to run as a standalone script using **FSI** (FSharp Interactive).
+In case you are new to F# let us briefly touch on what a FSX file is. F# code can be placed into `.fs` files in a project and compiled to DLLs. This is how you would write a console application, Windows Service, or a Web Application. Another option that is great for experimenting is using `.fsx` files (and nowadays C# as well with .csx). These are F# scripting file that allow you to run as a standalone script using **FSI** (FSharp Interactive).
 
 ```powershell
-fsi .\basic.fsx
+fsi .\basic.fsx 
 ```
 
 This requires `Fsi.exe` be on your **PATH**. For more information see [the docs](https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/fsharp-interactive/).
@@ -73,6 +73,8 @@ press enter
 ```
 
 > One gotcha I did run across here is that the order of the `#r` references here does matter. The *WebDriver.dll* is required before *canopy.dll*.
+
+For more advanced examples see the [related Github repository](https://github.com/dburriss/CanopyFSX/).
 
 ## Conclusion
 
