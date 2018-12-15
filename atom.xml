@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-12-15T09:39:26.3454605+00:00</updated>
+  <updated>2018-12-15T09:59:58.2182266+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -12,13 +12,13 @@
 
   
   <entry>
-    <id>https://devonburriss.me/canopy-as-fsx/</id>
-    <link type="text/html" rel="alternate" href="https://devonburriss.me/canopy-as-fsx/"/>
-    <title>Canopy as a FSX Script</title>
+    <id>https://devonburriss.me/canopy-from-fsx/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/canopy-from-fsx/"/>
+    <title>Canopy from a FSX Script</title>
     <updated>2018-12-15T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>https://devonburriss.me/canopy-as-fsx/</uri>
+      <uri>https://devonburriss.me/canopy-from-fsx/</uri>
     </author>
     <summary type="html">&lt;p&gt;Recently I found myself doing a very repetitive task that entailed copying values one at a time off a page, navigating to the next page, then repeat. I would spend 2 hours automating 1 hour of work if said work is sufficiently boring, even if I may never need the automation again. I enjoy coding, I do not enjoy copy-pasting. So I wondered if it was even possible to run Canopy in an F# FSX script file. It turns out it is.&lt;/p&gt;
 &lt;!--more--&gt;
