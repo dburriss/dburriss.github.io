@@ -197,8 +197,8 @@
 				<p>Recently I found myself doing a very repetitive task that entailed copying values one at a time off a page, navigating to the next page, then repeat. I would spend 2 hours automating 1 hour of work if said work is sufficiently boring, even if I may never need the automation again. I enjoy coding, I do not enjoy copy-pasting. So I wondered if it was even possible to run Canopy in an F# FSX script file. It turns out it is.</p>
 <!--more-->
 <h2>F# Scripting</h2>
-<p>In case you are new to F# let us briefly touch on what an FSX file is. F# (and nowadays C# as well) code can be placed into <code>.fs</code> files in a project and compiled to DLLs. This is how you would write a console application, Windows Service, or a Web Application. Another option that is great for experimenting is using <code>.fsx</code> files. These are F# scripting file that allow you to run as a standalone script using <strong>FSI</strong> (FSharp Interactive).</p>
-<pre><code class="language-powershell">fsi .\basic.fsx
+<p>In case you are new to F# let us briefly touch on what a FSX file is. F# code can be placed into <code>.fs</code> files in a project and compiled to DLLs. This is how you would write a console application, Windows Service, or a Web Application. Another option that is great for experimenting is using <code>.fsx</code> files (and nowadays C# as well with .csx). These are F# scripting file that allow you to run as a standalone script using <strong>FSI</strong> (FSharp Interactive).</p>
+<pre><code class="language-powershell">fsi .\basic.fsx 
 </code></pre>
 <p>This requires <code>Fsi.exe</code> be on your <strong>PATH</strong>. For more information see <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/fsharp-interactive/">the docs</a>.</p>
 <p>Worth mentioning is <a href="http://ionide.io/">Ionide Project's</a> great support for running script files, as well as working with <a href="https://fsprojects.github.io/Paket/">PAKET</a> which we will not go into in detail.</p>
@@ -237,6 +237,7 @@ press enter
 <blockquote>
 <p>One gotcha I did run across here is that the order of the <code>#r</code> references here does matter. The <em>WebDriver.dll</em> is required before <em>canopy.dll</em>.</p>
 </blockquote>
+<p>For more advanced examples see the <a href="https://github.com/dburriss/CanopyFSX/">related Github repository</a>.</p>
 <h2>Conclusion</h2>
 <p>And that is how easy it is to start using Canopy from a FSX file. This is a great way of automating some repetitive web task where an API is not available or exploring interacting with some DOM elements via Canopy in preparation for a UI test. Hope you found this useful. If you have any other use-cases, I would love to hear about them in the comments below.</p>
 <h2>Resources</h2>
