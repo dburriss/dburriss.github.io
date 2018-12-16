@@ -199,6 +199,10 @@
 <p>The biggest problem with working with Paket has nothing to do with Paket itself, or even its differences with Nuget. The biggest issue is that the ecosystem is geared to make using Nuget really easy. The tooling is all geared such that Nuget is embedded in your project whether you like it or not. So let's see how we can make working with Paket as smooth as possible. This ease isn't a bad thing, it just means the barrier to entry for something better seems high. Let us see what we can do about that.</p>
 <h2>TL;DR</h2>
 <p>If you just want the commands to have Paket up and running in a folder fast:</p>
+<h3>.NET Core 2.1 SDK and later versions</h3>
+<p>You can install it in a specific directory.</p>
+<p><code>dotnet tool install --tool-path &quot;.paket&quot; Paket --add-source https://api.nuget.org/v3/index.json</code></p>
+<h3>Without .NET Core SDK</h3>
 <pre><code class="language-powershell"># Download Paket exe into .paket folder
 PowerShell -NoProfile -ExecutionPolicy Bypass -Command &quot;iex (Invoke-WebRequest 'https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1')&quot;
 # Most NB this creates 'paket.dependencies' file
@@ -207,6 +211,9 @@ PowerShell -NoProfile -ExecutionPolicy Bypass -Command &quot;iex (Invoke-WebRequ
 .\.paket\paket.exe install
 </code></pre>
 <h2>Install fast</h2>
+<blockquote>
+<p>This section goes over the details of the Powershell script. If you are using .NET Core SDK, feel free to skip this section.</p>
+</blockquote>
 <p>So as I mentioned, Nuget is there by default. Paket is not. You can <a href="https://fsprojects.github.io/Paket/getting-started.html#Downloading-Paket-s-Bootstrapper">install Paket manually</a> but I wanted to provide another option. Let's create a Powershell script to install Paket with a single line.</p>
 <h3>One liner</h3>
 <p>To work with Paket you need the binary available. Usually this is in a folder named <em>.paket</em> in the root of your solution. I have created <a href="https://gist.github.com/dburriss/b4075863873b5871d34e32ab1ae42baa">a Gist file</a> that you can download and execute with a single line that will do just that.</p>

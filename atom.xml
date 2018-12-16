@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2018-12-15T09:59:58.2182266+00:00</updated>
+  <updated>2018-12-16T12:45:25.109203+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -31,13 +31,9 @@
 &lt;h2&gt;Setup&lt;/h2&gt;
 &lt;p&gt;So the first thing you will need is a way to pull down the necessary Nuget packages. See my article on &lt;a href=&quot;/up-and-running-with-paket&quot;&gt;getting up and running with Paket fast&lt;/a&gt; if you need help setting up Paket.&lt;/p&gt;
 &lt;p&gt;Here is the TL;DR version:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;# Download Paket exe into .paket folder
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command &amp;quot;iex (Invoke-WebRequest &apos;https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1&apos;)&amp;quot;
-# Most NB this creates &apos;paket.dependencies&apos; file
-.\.paket\paket.exe init
-# At this point add some lines to &apos;paket.dependencies&apos;. Downloads dependencies.
-.\.paket\paket.exe install
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;.NET Core 2.1 SDK and later versions&lt;/h3&gt;
+&lt;p&gt;You can install it in a specific directory.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dotnet tool install --tool-path &amp;quot;.paket&amp;quot; Paket --add-source https://api.nuget.org/v3/index.json&lt;/code&gt;&lt;/p&gt;
 &lt;h2&gt;A basic script&lt;/h2&gt;
 &lt;p&gt;First we use PAKET to pull down the Nuget package we need.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;source https://www.nuget.org/api/v2
@@ -2224,6 +2220,10 @@ match fsi.CommandLineArgs with
 &lt;p&gt;The biggest problem with working with Paket has nothing to do with Paket itself, or even its differences with Nuget. The biggest issue is that the ecosystem is geared to make using Nuget really easy. The tooling is all geared such that Nuget is embedded in your project whether you like it or not. So let&apos;s see how we can make working with Paket as smooth as possible. This ease isn&apos;t a bad thing, it just means the barrier to entry for something better seems high. Let us see what we can do about that.&lt;/p&gt;
 &lt;h2&gt;TL;DR&lt;/h2&gt;
 &lt;p&gt;If you just want the commands to have Paket up and running in a folder fast:&lt;/p&gt;
+&lt;h3&gt;.NET Core 2.1 SDK and later versions&lt;/h3&gt;
+&lt;p&gt;You can install it in a specific directory.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dotnet tool install --tool-path &amp;quot;.paket&amp;quot; Paket --add-source https://api.nuget.org/v3/index.json&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Without .NET Core SDK&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;# Download Paket exe into .paket folder
 PowerShell -NoProfile -ExecutionPolicy Bypass -Command &amp;quot;iex (Invoke-WebRequest &apos;https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1&apos;)&amp;quot;
 # Most NB this creates &apos;paket.dependencies&apos; file
@@ -2232,6 +2232,9 @@ PowerShell -NoProfile -ExecutionPolicy Bypass -Command &amp;quot;iex (Invoke-Web
 .\.paket\paket.exe install
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Install fast&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This section goes over the details of the Powershell script. If you are using .NET Core SDK, feel free to skip this section.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;So as I mentioned, Nuget is there by default. Paket is not. You can &lt;a href=&quot;https://fsprojects.github.io/Paket/getting-started.html#Downloading-Paket-s-Bootstrapper&quot;&gt;install Paket manually&lt;/a&gt; but I wanted to provide another option. Let&apos;s create a Powershell script to install Paket with a single line.&lt;/p&gt;
 &lt;h3&gt;One liner&lt;/h3&gt;
 &lt;p&gt;To work with Paket you need the binary available. Usually this is in a folder named &lt;em&gt;.paket&lt;/em&gt; in the root of your solution. I have created &lt;a href=&quot;https://gist.github.com/dburriss/b4075863873b5871d34e32ab1ae42baa&quot;&gt;a Gist file&lt;/a&gt; that you can download and execute with a single line that will do just that.&lt;/p&gt;

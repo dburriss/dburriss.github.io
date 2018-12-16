@@ -205,13 +205,9 @@
 <h2>Setup</h2>
 <p>So the first thing you will need is a way to pull down the necessary Nuget packages. See my article on <a href="/up-and-running-with-paket">getting up and running with Paket fast</a> if you need help setting up Paket.</p>
 <p>Here is the TL;DR version:</p>
-<pre><code class="language-powershell"># Download Paket exe into .paket folder
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command &quot;iex (Invoke-WebRequest 'https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1')&quot;
-# Most NB this creates 'paket.dependencies' file
-.\.paket\paket.exe init
-# At this point add some lines to 'paket.dependencies'. Downloads dependencies.
-.\.paket\paket.exe install
-</code></pre>
+<h3>.NET Core 2.1 SDK and later versions</h3>
+<p>You can install it in a specific directory.</p>
+<p><code>dotnet tool install --tool-path &quot;.paket&quot; Paket --add-source https://api.nuget.org/v3/index.json</code></p>
 <h2>A basic script</h2>
 <p>First we use PAKET to pull down the Nuget package we need.</p>
 <pre><code class="language-text">source https://www.nuget.org/api/v2
