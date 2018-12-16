@@ -21,6 +21,14 @@ The biggest problem with working with Paket has nothing to do with Paket itself,
 
 If you just want the commands to have Paket up and running in a folder fast:
 
+### .NET Core 2.1 SDK and later versions
+
+You can install it in a specific directory.
+
+`dotnet tool install --tool-path ".paket" Paket --add-source https://api.nuget.org/v3/index.json`
+
+### Without .NET Core SDK
+
 ```powershell
 # Download Paket exe into .paket folder
 PowerShell -NoProfile -ExecutionPolicy Bypass -Command "iex (Invoke-WebRequest 'https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1')"
@@ -31,6 +39,8 @@ PowerShell -NoProfile -ExecutionPolicy Bypass -Command "iex (Invoke-WebRequest '
 ```
 
 ## Install fast
+
+> This section goes over the details of the Powershell script. If you are using .NET Core SDK, feel free to skip this section.
 
 So as I mentioned, Nuget is there by default. Paket is not. You can [install Paket manually](https://fsprojects.github.io/Paket/getting-started.html#Downloading-Paket-s-Bootstrapper) but I wanted to provide another option. Let's create a Powershell script to install Paket with a single line.
 

@@ -34,14 +34,11 @@ So the first thing you will need is a way to pull down the necessary Nuget packa
 
 Here is the TL;DR version:
 
-```powershell
-# Download Paket exe into .paket folder
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "iex (Invoke-WebRequest 'https://gist.githubusercontent.com/dburriss/b4075863873b5871d34e32ab1ae42baa/raw/b09c0b3735ef2392dcb3b1be5df0ca109b70d24e/Install-Paket.ps1')"
-# Most NB this creates 'paket.dependencies' file
-.\.paket\paket.exe init
-# At this point add some lines to 'paket.dependencies'. Downloads dependencies.
-.\.paket\paket.exe install
-```
+### .NET Core 2.1 SDK and later versions
+
+You can install it in a specific directory.
+
+`dotnet tool install --tool-path ".paket" Paket --add-source https://api.nuget.org/v3/index.json`
 
 ## A basic script
 
