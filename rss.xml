@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Fri, 30 Aug 2019 09:04:51 +00:00</pubDate>
-    <lastBuildDate>Fri, 30 Aug 2019 09:04:51 +00:00</lastBuildDate>
+    <pubDate>Wed, 04 Dec 2019 04:13:08 +00:00</pubDate>
+    <lastBuildDate>Wed, 04 Dec 2019 04:13:08 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Reliability with Intents</title>
+      <link>https://devonburriss.me/reliability-with-intents/</link>
+      <pubDate>Thu, 05 Dec 2019 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/reliability-with-intents/</guid>
+      <description>Looking at problems and solution with sending messages before and after changing internal state</description>
+    </item>
     
     <item>
       <title>Canopy from a FSX Script</title>

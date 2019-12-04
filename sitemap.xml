@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>https://devonburriss.me/reliability-with-intents/</loc>
+    <lastmod>2019-12-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>https://devonburriss.me/canopy-from-fsx/</loc>
     <lastmod>2018-12-15T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -921,6 +928,14 @@
 	
   
 	
+  
+	
+  
+	
+  
+	
+  
+	
 	<url>
 		<loc>https://devonburriss.me//category/agile/index.html</loc>
 		<changefreq>daily</changefreq>
@@ -1227,6 +1242,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//tag/meditation/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/messaging/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
