@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2019-12-04T08:22:22.033805+00:00</updated>
+  <updated>2019-12-04T20:05:02.9412724+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -120,9 +120,9 @@ let createPersonIntent (connection:#DbConnection) (transaction:#DbTransaction op
     createIntent connection transaction intent&apos; &amp;quot;create-person&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Of course, increasing the reliability of your system comes at the cost of a bit of added complexity, as well as a speed penalty for the outgoing notifications. I will say that on top of the reliability increase, you also get a fairly good audit log without having moved to Event Sourcing (no I am not saying auditing alone is a good reason to do ES).&lt;/p&gt;
+&lt;p&gt;Of course, increasing the reliability of your system comes at the cost of a bit of added complexity, as well as a latency penalty for the outgoing notifications. I will say that on top of the reliability increase, you also get a fairly good audit log without having moved to Event Sourcing (no I am not saying auditing alone is a good reason to do ES).&lt;/p&gt;
 &lt;p&gt;Another useful design choice that is related here is collecting events as your code executes. If you are using a functional style of programming, always returning events is the way to go. If you are using a more imperative style using classic DDD techniques, an aggregate root is a good place to accumulate these events. Erik Heemskerk has a great post &lt;a href=&quot;https://www.erikheemskerk.nl/ddd-persistence-recorded-event-driven-persistence/&quot;&gt;highlighting how a team we worked in together used this&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I did want to acknowledge that the processing of the intents does have some challenges that I have not covered in this post. You want to try to avoid having multiple workers pulling the same kind of &lt;strong&gt;intents&lt;/strong&gt; or the number of duplicate messages will explode. You should always cater for duplicate messages as EXACTLY ONCE message delivery is a pipe dream. Having a single instance processing means it can easily go down, so monitoring and restarts are important for the health of your system. A product like &lt;a href=&quot;https://www.hangfire.io/&quot;&gt;Hangfire&lt;/a&gt; may be useful here, or scheduled serverless functions. Your mileage may vary.&lt;/p&gt;
+&lt;p&gt;I did want to acknowledge that the processing of the intents does have some challenges that I have not covered in this post. You want to try to avoid having multiple workers pulling the same kind of &lt;strong&gt;intents&lt;/strong&gt; or the number of duplicate messages will explode. You should always cater for duplicate messages as EXACTLY ONCE message delivery using a push mechanism is a pipe dream. Having a single instance processing means it can easily go down, so monitoring and restarts are important for the health of your system. A product like &lt;a href=&quot;https://www.hangfire.io/&quot;&gt;Hangfire&lt;/a&gt; may be useful here, or scheduled serverless functions. Your mileage may vary.&lt;/p&gt;
 &lt;p&gt;Finally, I did want to also point out a &lt;a href=&quot;https://www.youtube.com/watch?v=FkDZw9HmwQY&amp;amp;list=FLtCKfk3-Xz9K1kCkvT_v6aQ&quot;&gt;great talk of Erik&apos;s&lt;/a&gt; where he talks about turning this around so consumers come get the events from you. If you want to send out notifications you can write the consumer of your event feed that then notifies... or just tell people to come and fetch and be done with all this headache.&lt;/p&gt;
 &lt;h2&gt;Credits&lt;/h2&gt;
 &lt;ul&gt;
