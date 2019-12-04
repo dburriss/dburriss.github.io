@@ -6,8 +6,8 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Wed, 04 Dec 2019 04:37:46 +00:00</pubDate>
-    <lastBuildDate>Wed, 04 Dec 2019 04:37:46 +00:00</lastBuildDate>
+    <pubDate>Wed, 04 Dec 2019 05:14:18 +00:00</pubDate>
+    <lastBuildDate>Wed, 04 Dec 2019 05:14:18 +00:00</lastBuildDate>
     
     <item>
       <title>Reliability with Intents</title>
@@ -15,7 +15,7 @@
       <pubDate>Thu, 05 Dec 2019 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/reliability-with-intents/</guid>
-      <description>Looking at problems and solution with sending messages before and after changing internal state</description>
+      <description>In this post I explore a solution for sending messages across process boundaries where the notification needs to be transactional with state change</description>
     </item>
     
     <item>
