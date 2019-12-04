@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2019-12-04T05:14:18.8263697+00:00</updated>
+  <updated>2019-12-04T08:22:22.033805+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -2568,24 +2568,27 @@ Where before we had a model that is monolithic and used throughout the software 
     <summary type="html">&lt;p&gt;Unit, integration, end-to-end, acceptance, UI tests, and more. With so many types of automated tests is it no wonder that we so often disagree on whether something is an acceptance test or an integration test? Or maybe an end-to-end test? What if instead of thinking about the structure of the test, what it tested, we instead considered the question that the test is answering...&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h2&gt;A quick note on the test pyramid&lt;/h2&gt;
-&lt;p&gt;For some reason the test pyramid comes up when talking about what tests to write. The test pyramid gives us an indication of the relative return on investment of writing certain types of tests. The cost of writing and maintaining UI tests is usually quite high, thus diminishing their value as a verification of correctness. Unit tests on the other hand should be pretty quick to write, easy to maintain, and so give more value over UI tests. Therefore we should have a relatively large number of unit tests compared to UI tests.&lt;/p&gt;
-&lt;p&gt;In this image I use &lt;em&gt;Service&lt;/em&gt; to encompass integration, end-to-end, acceptance tests, etc.&lt;/p&gt;
+&lt;p&gt;For some reason, the test pyramid comes up when talking about what tests to write. The test pyramid gives us an indication of the relative return on investment of writing certain types of tests. The cost of writing and maintaining UI tests is usually quite high, thus diminishing their value as verification of correctness. Unit tests, on the other hand, should be pretty quick to write, easy to maintain, and so give more value over UI tests. Therefore we should have a relatively large number of unit tests compared to UI tests.&lt;/p&gt;
+&lt;p&gt;In this image, I use &lt;em&gt;Service&lt;/em&gt; to encompass integration, end-to-end, acceptance tests, etc.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2018/test-pyramid.jpg&quot; alt=&quot;Test Pyramid&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;If we had a way that made &lt;a href=&quot;/page-module-model/&quot;&gt;UI tests easy to write and maintain&lt;/a&gt;, they would switch places in the test pyramid. They might then provide more value relative to the cost of creation and maintenance.&lt;/p&gt;
 &lt;h2&gt;Practices around testing&lt;/h2&gt;
 &lt;p&gt;Let us take a look at some of the testing practices around and what they focus on. This will give us a good indication of what questions we can ask of our tests.&lt;/p&gt;
-&lt;p&gt;First up we have &lt;strong&gt;Test-Driven Development&lt;/strong&gt;. A lot can be written about TDD and half of it would be disagreed with by half its practitioners half of the time. I will try stay away from questions of what to mock and the granularity of the tests. I have &lt;a href=&quot;/maintainable-unit-tests/&quot;&gt;written about my thoughts on maintainable unit tests&lt;/a&gt; already though. The practice of writing tests first, then making them pass, and then refactoring; gives fast and incremental feedback on both progress and the design of your code. While making functional progress a test suite is being built up that proves that what you have implemented is working as expected by you as the developer.&lt;/p&gt;
+&lt;p&gt;First up we have &lt;strong&gt;Test-Driven Development&lt;/strong&gt;. A lot can be written about TDD and half of it would be disagreed with by half its practitioners half of the time. I will try to stay away from questions of what to mock and the granularity of the tests. I have &lt;a href=&quot;/maintainable-unit-tests/&quot;&gt;written about my thoughts on maintainable unit tests&lt;/a&gt; already though. The practice of writing tests first, then making them pass, and then refactoring; gives fast and incremental feedback on both progress and the design of your code. While making functional progress a test suite is being built up that proves that what you have implemented is working as expected by you as the developer.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Behavior-Driven Design&lt;/strong&gt; builds on top of the idea of TDD but with a focus on capturing requirements in an automated way that fosters domain understanding and collaboration with stakeholders.&lt;/p&gt;
-&lt;p&gt;It really isn&apos;t clear to me that the 2 need to be separate practices. BDD is just TDD practiced by developers with a &lt;a href=&quot;/acceptance-tests/&quot;&gt;focus on domain knowledge and stakeholder collaboration&lt;/a&gt;. From the other side, TDD has become what developers do when they are not focusing on stakeholder collaboration. This was not its original intent.&lt;/p&gt;
-&lt;p&gt;Honestly though I do find the distinction a little bit useful in thinking about the kind of tests I am writing just because it allows me to as questions about the quality of what was built and the functional correctness.&lt;/p&gt;
+&lt;p&gt;It really isn&apos;t clear to me that the 2 need to be separate practices. BDD is just TDD practiced by developers with a &lt;a href=&quot;/acceptance-tests/&quot;&gt;focus on domain knowledge and stakeholder collaboration&lt;/a&gt;. On the other side, TDD has become what developers do when they are not focusing on stakeholder collaboration. This was not its original intent.&lt;/p&gt;
+&lt;p&gt;Honestly, though I do find the distinction a little bit useful in thinking about the kind of tests I am writing just because it allows me to ask questions about the quality of what was built and the functional correctness.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2018/test-quadrant.jpg&quot; alt=&quot;Test Quadrant&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;So for the sake of comparison we will make the distinction that unit tests are an artifact of TDD and acceptance tests are an artifact of BDD. Don&apos;t get too attached to this idea, it is just useful for the upcoming discussion.&lt;/p&gt;
+&lt;p&gt;So for the sake of comparison, we will make the distinction that unit tests are an artifact of TDD and acceptance tests are an artifact of BDD. Don&apos;t get too attached to this idea, it is just useful for the upcoming discussion.&lt;/p&gt;
 &lt;h2&gt;Asking the right questions&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;UPDATE: I have noticed a lot of confusion when talking about Integration tests. In the context of this post I mean a narrow test that tests the connection handshake and contract with software outside of the process boundary. Typically I limit the scope of these but do not mock the external system, since that is the point of the test. If on the other hand there was a reliable way to verify the contract with fewer dependencies, I would be happy to drop this and name it a Contract Test.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;I promised some questions to be asked to give a different perspective on the types of tests. What if instead of thinking about tests in terms of how they were written (xUnit and C# vs Gherkin) we thought about them in terms of questions directed at the test?&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Do I understand the problem?&lt;br /&gt;
 Is my feature ready to ship?&lt;br /&gt;
 Does it behave as expected?&lt;/em&gt;&lt;br /&gt;
-Check the &lt;strong&gt;Acceptance tests&lt;/strong&gt;. It passed? Ship the feature.&lt;/p&gt;
+Check the &lt;strong&gt;Acceptance tests&lt;/strong&gt;. Did it passed? Ship the feature.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Am I confident I built it well?&lt;br /&gt;
 Does my code handle exceptions correctly?&lt;br /&gt;
 Is my codes API intuitive to use?&lt;/em&gt;&lt;br /&gt;
@@ -2596,12 +2599,12 @@ Are my message queues configured correctly?&lt;/em&gt;&lt;br /&gt;
 Check the &lt;strong&gt;Integration tests&lt;/strong&gt;. Passes. I am confident that I won&apos;t have surprises when the system runs. I will find integration problems quickly.&lt;/p&gt;
 &lt;p&gt;There are other types of tests like &lt;strong&gt;Consumer-driven contracts&lt;/strong&gt; and &lt;strong&gt;UI tests&lt;/strong&gt; that might be useful to you and I am sure you can come up with the questions if they matter to you. The point is that dividing your tests based on how they are implemented is less useful than distinguishing what answers each group of tests is good at giving.&lt;/p&gt;
 &lt;h2&gt;Summary&lt;/h2&gt;
-&lt;p&gt;In this post I suggested that instead of looking at tests based on what they test or how they are implemented, it is more useful to ask what questions they can answer. For example:&lt;br /&gt;
+&lt;p&gt;In this post, I suggested that instead of looking at tests based on what they test or how they are implemented, it is more useful to ask what questions they can answer. For example:&lt;br /&gt;
 &lt;strong&gt;Acceptance tests&lt;/strong&gt; answer &lt;em&gt;Did I build the right thing?&lt;/em&gt; and &lt;em&gt;Can I ship it?&lt;/em&gt;.&lt;br /&gt;
 &lt;strong&gt;Unit tests&lt;/strong&gt; give me confidence on &lt;em&gt;Did I build it right?&lt;/em&gt;.&lt;br /&gt;
 &lt;strong&gt;Integration tests&lt;/strong&gt; tell me &lt;em&gt;Can these components communicate?&lt;/em&gt; I especially like checking across process boundaries here.&lt;/p&gt;
-&lt;p&gt;Hopefully by this point I have convinced you to think about your tests in terms of the questions they answer and the actions you will take from those questions.&lt;/p&gt;
-&lt;p&gt;One last thing. Much of the gain in TDD is that unit tests gives you rapid feedback. As long as you have good trustworthy acceptance tests, deleting unit tests if they are causing any issues should be completely acceptable. They already gave a large amount of their benefit in the design and verification process.&lt;/p&gt;
+&lt;p&gt;Hopefully, by this point, I have convinced you to think about your tests in terms of the questions they answer and the actions you will take from those questions.&lt;/p&gt;
+&lt;p&gt;One last thing. Much of the gain in TDD is that unit tests gives you rapid feedback. As long as you have good trustworthy acceptance tests, deleting unit tests if they are causing any issues should be completely acceptable. They already gave a large amount of their benefits in the design and verification process.&lt;/p&gt;
 &lt;p&gt;I hope you found this useful. If so I would love to hear your thoughts on the different types of testing.&lt;/p&gt;
 &lt;h2&gt;Credits&lt;/h2&gt;
 &lt;ul&gt;
