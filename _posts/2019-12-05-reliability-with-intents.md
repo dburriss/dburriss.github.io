@@ -82,25 +82,29 @@ person
 transaction.Commit()
 ```
 
+Don't get too hung up on what this code is doing. The important part here is that `createPerson` and `createPersonIntent` are both called using the same transaction.
+
 Finally, you need to process all persisted intents.
 
 ```fsharp
 let handleIntent connection queue (id,intent) =
- // handle each state of the intent
- match intent with
- | Pending person -> 
- Message.personCreated queue person |> ignore
- Data.markCreatePersonIntentDone connection id (Complete person) |> ignore
- printfn "%A intent sent" person
- | Complete _ -> failwith "These should not be queried"
+    // handle each state of the intent
+    match intent with
+    | Pending person -> 
+        Message.personCreated queue person |> ignore
+        Data.markCreatePersonIntentDone connection id (Complete person) |> ignore
+        printfn "%A intent sent" person
+    | Complete _ -> failwith "These should not be queried"
  
 
 let processIntents (dbConnection:DbConnection) queue =
- let intentsR = Data.getCreatePersonIntents dbConnection
- match intentsR with
- | Error ex -> raise ex
- | Ok intents -> intents |> Seq.iter (handleIntent dbConnection queue)
+    let intentsR = Data.getCreatePersonIntents dbConnection
+    match intentsR with
+    | Error ex -> raise ex
+    | Ok intents -> intents |> Seq.iter (handleIntent dbConnection queue)
 ```
+
+Note the state changes in `handleIntent` where the message is sent and the new state of the **intent** is persisted back.
 
 Now as long as you have a process that is regularly running through and processing the **intents**, you can guarantee that as soon as all infrastructure is healthy, all notifications will be sent at least once.
 
@@ -110,7 +114,7 @@ Now as long as you have a process that is regularly running through and processi
 
 All the DEMO code is [available on my GitHub](https://github.com/dburriss/intent-blog) but I wanted to talk about a few implementation details and what you may want to do differently.
 
-This is the table I am storing the **intents** in. I am using `iscomplete` to filter out the **intents** I do no longer need to process. `intenttype` allows me to use this table for multiple **intents** and treat each differently. `intent` is a JSON string of the serialized **intent**.
+This is the table I am storing the **intents** in. 
 
 ```sql
 CREATE TABLE IF NOT EXISTS intents (
@@ -121,19 +125,23 @@ CREATE TABLE IF NOT EXISTS intents (
 );
 ```
 
-For production, you will likely want to add some indexes. Another thought I had was a partition key that could be used to process the intents from multiple consumers. This way you could scale out consumers even if the order was important for related **intents**.
+- I am using `iscomplete` to filter out the **intents** I no longer need to process. 
+- `intenttype` allows me to use this table for multiple **intents** and treat each differently. 
+- `intent` is a JSON string of the serialized **intent**.
+
+For production, you will likely want to add some indexes. Another thought I had was a partition key that could be used to process the intents from multiple consumers. This way you could scale out consumers even if the order was important for related **intents**, with a consumer per partition key.
 
 You can check out the usage of this on the [GitHub](https://github.com/dburriss/intent-blog) repository, specifically `Data.fs` but the following code should give a sufficient peek under the hood to get you going.
 
 ```fsharp
 let createIntent (connection:#DbConnection) (transaction:#DbTransaction option) (intent:string) (type':string)=
- let data = [("@intent",box intent);("@intenttype",box type')] |> dict |> fun d -> DynamicParameters(d)
- let sql = "INSERT INTO intents (intent,intenttype) VALUES (@intent,@intenttype);"
- execute connection sql data transaction
+    let data = [("@intent",box intent);("@intenttype",box type')] |> dict |> fun d -> DynamicParameters(d)
+    let sql = "INSERT INTO intents (intent,intenttype) VALUES (@intent,@intenttype);"
+    execute connection sql data transaction
 
 let createPersonIntent (connection:#DbConnection) (transaction:#DbTransaction option) (intent:IntentOfPersonCreated) =
- let intent' = intent |> JsonConvert.SerializeObject
- createIntent connection transaction intent' "create-person"
+    let intent' = intent |> JsonConvert.SerializeObject
+    createIntent connection transaction intent' "create-person"
 ```
 
 ## Conclusion
@@ -144,7 +152,7 @@ Another useful design choice that is related here is collecting events as your c
 
 I did want to acknowledge that the processing of the intents does have some challenges that I have not covered in this post. You want to try to avoid having multiple workers pulling the same kind of **intents** or the number of duplicate messages will explode. You should always cater for duplicate messages as EXACTLY ONCE message delivery is a pipe dream. Having a single instance processing means it can easily go down, so monitoring and restarts are important for the health of your system. A product like [Hangfire](https://www.hangfire.io/) may be useful here, or scheduled serverless functions. Your mileage may vary.
 
-Finally, I did want to also point out a [great talk of Erik's](https://www.youtube.com/watch?v=FkDZw9HmwQY&list=FLtCKfk3-Xz9K1kCkvT_v6aQ) where he talks about turning this around so consumers came to get the events from you. If you want to send out notifications you can write the consumer of your event feed that notifies... or just tell people to come and fetch and be done with all this headache.
+Finally, I did want to also point out a [great talk of Erik's](https://www.youtube.com/watch?v=FkDZw9HmwQY&list=FLtCKfk3-Xz9K1kCkvT_v6aQ) where he talks about turning this around so consumers come get the events from you. If you want to send out notifications you can write the consumer of your event feed that then notifies... or just tell people to come and fetch and be done with all this headache.
 
 ## Credits
 
