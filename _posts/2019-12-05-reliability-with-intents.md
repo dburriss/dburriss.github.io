@@ -2,7 +2,7 @@
 layout: post
 title: "Reliability with Intents"
 subtitle: "Telling the world about state changes"
-description: "Looking at problems and solution with sending messages before and after changing internal state"
+description: "In this post I explore a solution for sending messages across process boundaries where the notification needs to be transactional with state change"
 permalink: reliability-with-intents
 author: "Devon Burriss"
 category: Software Development
