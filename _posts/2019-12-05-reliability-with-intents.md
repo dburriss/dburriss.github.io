@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS intents (
 - `intenttype` allows me to use this table for multiple **intents** and treat each differently. 
 - `intent` is a JSON string of the serialized **intent**.
 
-For production, you will likely want to add some indexes. Another thought I had was a partition key that could be used to process the intents from multiple consumers. This way you could scale out consumers even if the order was important for related **intents**, with a consumer per partition key.
+For production, you will likely want to add some indexes. Another thought I had was a partition key that could be used to process the intents from multiple consumers. This way you could scale out consumers even if the order was important for related **intents**, with a consumer per partition key. 
 
 You can check out the usage of this on the [GitHub](https://github.com/dburriss/intent-blog) repository, specifically `Data.fs` but the following code should give a sufficient peek under the hood to get you going.
 
@@ -146,11 +146,11 @@ let createPersonIntent (connection:#DbConnection) (transaction:#DbTransaction op
 
 ## Conclusion
 
-Of course, increasing the reliability of your system comes at the cost of a bit of added complexity, as well as a speed penalty for the outgoing notifications. I will say that on top of the reliability increase, you also get a fairly good audit log without having moved to Event Sourcing (no I am not saying auditing alone is a good reason to do ES).
+Of course, increasing the reliability of your system comes at the cost of a bit of added complexity, as well as a latency penalty for the outgoing notifications. I will say that on top of the reliability increase, you also get a fairly good audit log without having moved to Event Sourcing (no I am not saying auditing alone is a good reason to do ES).
 
 Another useful design choice that is related here is collecting events as your code executes. If you are using a functional style of programming, always returning events is the way to go. If you are using a more imperative style using classic DDD techniques, an aggregate root is a good place to accumulate these events. Erik Heemskerk has a great post [highlighting how a team we worked in together used this](https://www.erikheemskerk.nl/ddd-persistence-recorded-event-driven-persistence/).
 
-I did want to acknowledge that the processing of the intents does have some challenges that I have not covered in this post. You want to try to avoid having multiple workers pulling the same kind of **intents** or the number of duplicate messages will explode. You should always cater for duplicate messages as EXACTLY ONCE message delivery is a pipe dream. Having a single instance processing means it can easily go down, so monitoring and restarts are important for the health of your system. A product like [Hangfire](https://www.hangfire.io/) may be useful here, or scheduled serverless functions. Your mileage may vary.
+I did want to acknowledge that the processing of the intents does have some challenges that I have not covered in this post. You want to try to avoid having multiple workers pulling the same kind of **intents** or the number of duplicate messages will explode. You should always cater for duplicate messages as EXACTLY ONCE message delivery using a push mechanism is a pipe dream. Having a single instance processing means it can easily go down, so monitoring and restarts are important for the health of your system. A product like [Hangfire](https://www.hangfire.io/) may be useful here, or scheduled serverless functions. Your mileage may vary.
 
 Finally, I did want to also point out a [great talk of Erik's](https://www.youtube.com/watch?v=FkDZw9HmwQY&list=FLtCKfk3-Xz9K1kCkvT_v6aQ) where he talks about turning this around so consumers come get the events from you. If you want to send out notifications you can write the consumer of your event feed that then notifies... or just tell people to come and fetch and be done with all this headache.
 
