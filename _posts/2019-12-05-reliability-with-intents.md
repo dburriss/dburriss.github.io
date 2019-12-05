@@ -18,6 +18,8 @@ If you are using any kind of messaging architecture to notify outside of your sy
 
 > This post is part of [#FsAdvent 2019](https://sergeytihon.com/2019/11/05/f-advent-calendar-in-english-2019/). PS. THIS IS NOT PRODUCTION WORTHY CODE! FOR DEMO PURPOSES ONLY!
 
+> UPDATE: Posting this on Twitter yielded that I had, as I expected, uncovered an existing pattern. With the example I show here it is basically the Transactional outbox. I will say that the pattern I show here can function more like a local orchestrator that forms part of an choreography-based saga.
+
 ## The atomic problem
 
 Oft times when doing an operation in an application, I see a call to put some kind of message on a queue (or topic) to notify other systems that this event occurred.
@@ -104,7 +106,7 @@ let processIntents (dbConnection:DbConnection) queue =
     | Ok intents -> intents |> Seq.iter (handleIntent dbConnection queue)
 ```
 
-Note the state changes in `handleIntent` where the message is sent and the new state of the **intent** is persisted back.
+Note the state changes in `handleIntent` where the message is sent and the new state of the **intent** is persisted back. If you expanded the states that these can land in, you could potentially move through multiple states. This would allow for a kind of local orchestrator, in a choreography-based saga.
 
 Now as long as you have a process that is regularly running through and processing the **intents**, you can guarantee that as soon as all infrastructure is healthy, all notifications will be sent at least once.
 
@@ -153,6 +155,11 @@ Another useful design choice that is related here is collecting events as your c
 I did want to acknowledge that the processing of the intents does have some challenges that I have not covered in this post. You want to try to avoid having multiple workers pulling the same kind of **intents** or the number of duplicate messages will explode. Since EXACTLY ONCE message delivery using a push mechanism is a pipe dream, you need to cater for duplicate messages. Having a single instance processing means it can easily go down, so monitoring and restarts are important for the health of your system. A product like [Hangfire](https://www.hangfire.io/) may be useful here, or scheduled serverless functions. Your mileage may vary.
 
 Finally, I did want to also point out a [great talk of Erik's](https://www.youtube.com/watch?v=FkDZw9HmwQY&list=FLtCKfk3-Xz9K1kCkvT_v6aQ) where he talks about turning this around so consumers come get the events from you. If you want to send out notifications you can write the consumer of your event feed that then notifies... or just tell people to come and fetch and be done with all this headache.
+
+## Resources
+
+1. [Saga pattern](https://microservices.io/patterns/data/saga.html)
+2. [Transactional Outbox](https://microservices.io/patterns/data/transactional-outbox.html)
 
 ## Credits
 
