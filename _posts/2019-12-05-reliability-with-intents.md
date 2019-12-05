@@ -38,13 +38,13 @@ What happens though if the application crashes right after saving some changes t
 
 > If you are thinking that the chances of this happening are vanishingly small, let me float this idea. A 99.99% uptime still means almost an hour of downtime a year. On a high load system in the cloud (chaos monkey as a service), systems can disappear more often than you think.
 
-I have seen businesses be unaware of this communication loss for months, where the result is customer service calls routed to teams dependent on that message. The problem here is both assume every message is sent, never considering the loss. Only once these numbers were monitored to the problem become apparent.
+I have seen businesses be unaware of this communication loss for months, where the result is customer service calls routed to teams dependent on that message. The problem here is both assume every message is sent, never considering the loss. Only once these numbers were monitored did the problem become apparent.
 
 So back to the problem. Of course, reversing the order does not help.
 
 ![send then persist state](/img/posts/2019/intents-2.png)
 
-Now you are notifying the world about a change that in effect never happened.
+Now you are notifying the world about a change that never happened.
 
 ## What is your intention?
 
@@ -148,9 +148,9 @@ let createPersonIntent (connection:#DbConnection) (transaction:#DbTransaction op
 
 Of course, increasing the reliability of your system comes at the cost of a bit of added complexity, as well as a latency penalty for the outgoing notifications. I will say that on top of the reliability increase, you also get a fairly good audit log without having moved to Event Sourcing (no I am not saying auditing alone is a good reason to do ES).
 
-Another useful design choice that is related here is collecting events as your code executes. If you are using a functional style of programming, always returning events is the way to go. If you are using a more imperative style using classic DDD techniques, an aggregate root is a good place to accumulate these events. Erik Heemskerk has a great post [highlighting how a team we worked in together used this](https://www.erikheemskerk.nl/ddd-persistence-recorded-event-driven-persistence/).
+Another useful design choice that is related here is collecting events as your code executes. If you are using a functional style of programming, always returning events is the way to go. If you are using a more imperative style using classic DDD techniques, an aggregate root is a good place to accumulate these events. Erik Heemskerk and myself worked together and he has a great [post describing this technique](https://www.erikheemskerk.nl/ddd-persistence-recorded-event-driven-persistence/).
 
-I did want to acknowledge that the processing of the intents does have some challenges that I have not covered in this post. You want to try to avoid having multiple workers pulling the same kind of **intents** or the number of duplicate messages will explode. You should always cater for duplicate messages as EXACTLY ONCE message delivery using a push mechanism is a pipe dream. Having a single instance processing means it can easily go down, so monitoring and restarts are important for the health of your system. A product like [Hangfire](https://www.hangfire.io/) may be useful here, or scheduled serverless functions. Your mileage may vary.
+I did want to acknowledge that the processing of the intents does have some challenges that I have not covered in this post. You want to try to avoid having multiple workers pulling the same kind of **intents** or the number of duplicate messages will explode. Since EXACTLY ONCE message delivery using a push mechanism is a pipe dream, you need to cater for duplicate messages. Having a single instance processing means it can easily go down, so monitoring and restarts are important for the health of your system. A product like [Hangfire](https://www.hangfire.io/) may be useful here, or scheduled serverless functions. Your mileage may vary.
 
 Finally, I did want to also point out a [great talk of Erik's](https://www.youtube.com/watch?v=FkDZw9HmwQY&list=FLtCKfk3-Xz9K1kCkvT_v6aQ) where he talks about turning this around so consumers come get the events from you. If you want to send out notifications you can write the consumer of your event feed that then notifies... or just tell people to come and fetch and be done with all this headache.
 
