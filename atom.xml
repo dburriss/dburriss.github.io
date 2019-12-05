@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2019-12-05T05:15:05.3151936+00:00</updated>
+  <updated>2019-12-05T19:26:03.9634775+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -24,6 +24,9 @@
 &lt;!--more--&gt;
 &lt;blockquote&gt;
 &lt;p&gt;This post is part of &lt;a href=&quot;https://sergeytihon.com/2019/11/05/f-advent-calendar-in-english-2019/&quot;&gt;#FsAdvent 2019&lt;/a&gt;. PS. THIS IS NOT PRODUCTION WORTHY CODE! FOR DEMO PURPOSES ONLY!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;UPDATE: Posting this on Twitter yielded that I had, as I expected, uncovered an existing pattern. With the example I show here it is basically the Transactional outbox. I will say that the pattern I show here can function more like a local orchestrator that forms part of an choreography-based saga.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;The atomic problem&lt;/h2&gt;
 &lt;p&gt;Oft times when doing an operation in an application, I see a call to put some kind of message on a queue (or topic) to notify other systems that this event occurred.&lt;/p&gt;
@@ -90,7 +93,7 @@ let processIntents (dbConnection:DbConnection) queue =
     | Error ex -&amp;gt; raise ex
     | Ok intents -&amp;gt; intents |&amp;gt; Seq.iter (handleIntent dbConnection queue)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Note the state changes in &lt;code&gt;handleIntent&lt;/code&gt; where the message is sent and the new state of the &lt;strong&gt;intent&lt;/strong&gt; is persisted back.&lt;/p&gt;
+&lt;p&gt;Note the state changes in &lt;code&gt;handleIntent&lt;/code&gt; where the message is sent and the new state of the &lt;strong&gt;intent&lt;/strong&gt; is persisted back. If you expanded the states that these can land in, you could potentially move through multiple states. This would allow for a kind of local orchestrator, in a choreography-based saga.&lt;/p&gt;
 &lt;p&gt;Now as long as you have a process that is regularly running through and processing the &lt;strong&gt;intents&lt;/strong&gt;, you can guarantee that as soon as all infrastructure is healthy, all notifications will be sent at least once.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/posts/2019/intents-3.png&quot; alt=&quot;transactional persistence of state and intention&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;Implementation ideas&lt;/h2&gt;
@@ -124,6 +127,11 @@ let createPersonIntent (connection:#DbConnection) (transaction:#DbTransaction op
 &lt;p&gt;Another useful design choice that is related here is collecting events as your code executes. If you are using a functional style of programming, always returning events is the way to go. If you are using a more imperative style using classic DDD techniques, an aggregate root is a good place to accumulate these events. Erik Heemskerk and myself worked together and he has a great &lt;a href=&quot;https://www.erikheemskerk.nl/ddd-persistence-recorded-event-driven-persistence/&quot;&gt;post describing this technique&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I did want to acknowledge that the processing of the intents does have some challenges that I have not covered in this post. You want to try to avoid having multiple workers pulling the same kind of &lt;strong&gt;intents&lt;/strong&gt; or the number of duplicate messages will explode. Since EXACTLY ONCE message delivery using a push mechanism is a pipe dream, you need to cater for duplicate messages. Having a single instance processing means it can easily go down, so monitoring and restarts are important for the health of your system. A product like &lt;a href=&quot;https://www.hangfire.io/&quot;&gt;Hangfire&lt;/a&gt; may be useful here, or scheduled serverless functions. Your mileage may vary.&lt;/p&gt;
 &lt;p&gt;Finally, I did want to also point out a &lt;a href=&quot;https://www.youtube.com/watch?v=FkDZw9HmwQY&amp;amp;list=FLtCKfk3-Xz9K1kCkvT_v6aQ&quot;&gt;great talk of Erik&apos;s&lt;/a&gt; where he talks about turning this around so consumers come get the events from you. If you want to send out notifications you can write the consumer of your event feed that then notifies... or just tell people to come and fetch and be done with all this headache.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://microservices.io/patterns/data/saga.html&quot;&gt;Saga pattern&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://microservices.io/patterns/data/transactional-outbox.html&quot;&gt;Transactional Outbox&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2&gt;Credits&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Photo by Jens Lelie on &lt;a href=&quot;https://unsplash.com/photos/u0vgcIOQG08&quot;&gt;Unsplash&lt;/a&gt;&lt;/li&gt;
