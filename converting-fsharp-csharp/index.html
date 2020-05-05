@@ -196,7 +196,7 @@
 <p>For the sake of this post being a reference post, I am going to post this class which captures a lot of the conversions. Here I try and capture the C# type as the type most closely related to an F# type, if that makes sense. In most cases, this is an <code>'T array</code>, since this is equivalent to a <code>'T []</code> array in C#. I do encourage you to read the rest of the article at least once, as I will try break down the types a bit so in the future it should be easier to figure out the conversions yourself.</p>
 <p>For many of these, you will need to convert to <code>seq</code> and then to the F# type you want to work with. If that is not acceptable perhaps do it yourself with a loop.</p>
 <p>| From | To | Conversion |
-| -- |:--:| --:|
+| --- | --- | --- |
 | <code>IEnumerable&lt;int&gt;</code>  | <code>int seq</code>         | alias for                           |
 | <code>List&lt;int&gt;</code>         | <code>ResizeArray</code>     | alias for                           |
 | <code>IEnumerable</code>       | <code>seq</code>             | <code>Seq.cast</code>                          |
