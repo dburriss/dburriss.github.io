@@ -22,19 +22,13 @@ For the sake of this post being a reference post, I am going to post this class 
 
 For many of these, you will need to convert to `seq` and then to the F# type you want to work with. If that is not acceptable perhaps do it yourself with a loop. 
 
-| From     | To      | Conversion    |
-| -------- | ------- | ------------- |
-| some   | text          | stuff |
-| without  | brackets    | alias for      |
-
-
-| From              | To                 | Conversion                              |
+<!-- | From                 | To                 | Conversion                           |
 | -------------------- | ------------------ | ------------------------------------ |
 | `IEnumerable<int>`   | `int seq`          | alias for                            |
 | `List<int>`          | `ResizeArray`      | alias for                            |
 | `IEnumerable`        | `seq`              | `Seq.cast`                           |
-| `IEnumerable`        | `int array`        | `Seq.cast |> Seq.toArray`            |
-| `IEnumerable`        | `int list`         | `Seq.cast |> Seq.toList`             |
+| `IEnumerable`        | `int array`        | `Seq.cast \|> Seq.toArray`           |
+| `IEnumerable`        | `int list`         | `Seq.cast \|> Seq.toList`            |
 | `ICollection<int>`   | `int seq`          | `:> seq<_>`                          |
 | `IList<int>`         | `int seq`          | `:> seq<_>`                          |
 | `int []`             | `int array`        | alias for                            |
@@ -47,7 +41,111 @@ For many of these, you will need to convert to `seq` and then to the F# type you
 | `ResizeArray`        | `int seq`          | `:> seq<_>`                          |
 | `ResizeArray`        | `int array`        | `.ToArray()` instance method         |
 | `f: unit -> int`     | `Func<int>`        | `Func<int>(f)` ctor                  |
-| `Func<int>`          | `unit -> int`      | `fun () -> f.Invoke()`               |
+| `Func<int>`          | `unit -> int`      | `fun () -> f.Invoke()`               | -->
+
+<table>
+<thead>
+<tr>
+<th>From</th>
+<th>To</th>
+<th>Conversion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IEnumerable&lt;int&gt;</code></td>
+<td><code>int seq</code></td>
+<td>alias for</td>
+</tr>
+<tr>
+<td><code>List&lt;int&gt;</code></td>
+<td><code>ResizeArray</code></td>
+<td>alias for</td>
+</tr>
+<tr>
+<td><code>IEnumerable</code></td>
+<td><code>seq</code></td>
+<td><code>Seq.cast</code></td>
+</tr>
+<tr>
+<td><code>IEnumerable</code></td>
+<td><code>int array</code></td>
+<td><code>Seq.cast &#124;&gt; Seq.toArray</code></td>
+</tr>
+<tr>
+<td><code>IEnumerable</code></td>
+<td><code>int list</code></td>
+<td><code>Seq.cast &#124;&gt; Seq.toList</code></td>
+</tr>
+<tr>
+<td><code>ICollection&lt;int&gt;</code></td>
+<td><code>int seq</code></td>
+<td><code>:&gt; seq&lt;_&gt;</code></td>
+</tr>
+<tr>
+<td><code>IList&lt;int&gt;</code></td>
+<td><code>int seq</code></td>
+<td><code>:&gt; seq&lt;_&gt;</code></td>
+</tr>
+<tr>
+<td><code>int []</code></td>
+<td><code>int array</code></td>
+<td>alias for</td>
+</tr>
+<tr>
+<td><code>System.Array</code></td>
+<td><code>obj seq</code></td>
+<td><code>System.Linq.Enumerable.OfType&lt;obj&gt;</code></td>
+</tr>
+<tr>
+<td><code>seq</code>/<code>array</code>/<code>list</code></td>
+<td><code>ResizeArray</code></td>
+<td><code>ResizeArray</code> ctor</td>
+</tr>
+<tr>
+<td><code>int seq</code></td>
+<td><code>IEnumerable</code></td>
+<td><code>:&gt; IEnumerable</code></td>
+</tr>
+<tr>
+<td><code>int array</code></td>
+<td><code>ICollection&lt;int&gt;</code></td>
+<td><code>:&gt; ICollection&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>ResizeArray</code></td>
+<td><code>ICollection&lt;int&gt;</code></td>
+<td><code>:&gt; ICollection&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>ResizeArray</code></td>
+<td><code>IList&lt;int&gt;</code></td>
+<td><code>:&gt; IList&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>ResizeArray</code></td>
+<td><code>int seq</code></td>
+<td><code>:&gt; seq&lt;_&gt;</code></td>
+</tr>
+<tr>
+<td><code>ResizeArray</code></td>
+<td><code>int array</code></td>
+<td><code>.ToArray()</code> instance method</td>
+</tr>
+<tr>
+<td><code>f: unit -&gt; int</code></td>
+<td><code>Func&lt;int&gt;</code></td>
+<td><code>Func&lt;int&gt;(f)</code> ctor</td>
+</tr>
+<tr>
+<td><code>Func&lt;int&gt;</code></td>
+<td><code>unit -&gt; int</code></td>
+<td><code>fun () -&gt; f.Invoke()</code></td>
+</tr>
+</tbody>
+</table>
+
+
 
 > For those that can be cast with `:> seq<_>` like `ICollection<>` and `IList<>` you can use directly with the `Seq` module functions like `toList`, since those interfaces implement `IEnumerable<>`.
 
