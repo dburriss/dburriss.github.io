@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2020-05-05T21:39:56.0369479+00:00</updated>
+  <updated>2020-05-05T21:52:51.2376406+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -214,7 +214,7 @@ type seq&amp;lt;&apos;T&amp;gt; = IEnumerable&amp;lt;&apos;T&amp;gt;
 ss &amp;lt;- [1;2]
 ss &amp;lt;- [|1;2|]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is because &lt;code&gt;seq&lt;/code&gt; is &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; and &lt;code&gt;&apos;a list&lt;/code&gt; and &lt;code&gt;&apos;a array&lt;/code&gt; implement &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This is because &lt;code&gt;seq&lt;/code&gt; is &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; and &lt;code&gt;&apos;a list&lt;/code&gt; and &lt;code&gt;&apos;a array&lt;/code&gt; implement &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// FSharp.Core
 type List&amp;lt;&apos;T&amp;gt; = 
        | ([])  :                  &apos;T list
@@ -224,8 +224,7 @@ type List&amp;lt;&apos;T&amp;gt; =
        interface System.Collections.Generic.IReadOnlyCollection&amp;lt;&apos;T&amp;gt;
        interface System.Collections.Generic.IReadOnlyList&amp;lt;&apos;T&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Finally, &lt;code&gt;&apos;a array&lt;/code&gt; is the same as an array in C#, and so also implements &lt;code&gt;IEnumerable&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;As it turns out, this gets us a very long way with interacting with C#, since &lt;code&gt;IEnumerable&lt;/code&gt; and &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; is pretty ubiquitous.&lt;/p&gt;
+&lt;p&gt;As it turns out, this gets us a very long way with interacting with C#, since &lt;code&gt;IEnumerable&lt;/code&gt; and &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; are pretty ubiquitous.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let csharp = CSharpyType()
 csharp.IEnumerableTProp &amp;lt;- seq { 0..10 }
 csharp.IEnumerableTProp &amp;lt;- [0..10]
@@ -245,20 +244,20 @@ csharp.IEnumerableProp &amp;lt;- [|0..10|]
     printfn &amp;quot;i: %A&amp;quot; i
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;int []&lt;/h3&gt;
-&lt;p&gt;With a typed array, we can just use &lt;code&gt;&apos;T array&lt;/code&gt; &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays&quot;&gt;since they are the same&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With a typed array, we can just use &lt;code&gt;&apos;T array&lt;/code&gt; &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays&quot;&gt;since they are the same&lt;/a&gt; across F# and the .NET BCL.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let csharp = CSharpyType()
 csharp.ArrayTProp &amp;lt;- [|0..10|]
 //csharp.ArrayTProp &amp;lt;- seq {0..10} // Compile error: This expression was expected to have type &apos;int []&apos; but here has type &apos;seq&amp;lt;int&amp;gt;&apos;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Make use of whatever you need from the &lt;code&gt;Array&lt;/code&gt; module.&lt;/p&gt;
 &lt;h3&gt;System.Array&lt;/h3&gt;
-&lt;p&gt;The above is still true when just using &lt;code&gt;System.Array&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The above is still true when using &lt;code&gt;System.Array&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let csharp = CSharpyType()
 csharp.ArrayProp &amp;lt;- [|0..10|]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When trying to assign an instance of this type to an F# value you will need to give it a &lt;code&gt;Type&lt;/code&gt;. This can be done using a static method out of &lt;code&gt;Linq&lt;/code&gt; to get us an &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; ie &lt;code&gt;seq&lt;/code&gt;, &lt;code&gt;arr |&amp;gt; System.Linq.Enumerable.OfType&amp;lt;obj&amp;gt;&lt;/code&gt;. From there you can make use of the functions in the &lt;code&gt;Seq&lt;/code&gt; module.&lt;/p&gt;
+&lt;p&gt;When trying to assign an instance of this type to an F# value you will need to give it a &lt;code&gt;Type&lt;/code&gt;. This can be done using a static method out of &lt;code&gt;Linq&lt;/code&gt; to get us an &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; ie &lt;code&gt;seq&lt;/code&gt;, like so: &lt;code&gt;arr |&amp;gt; System.Linq.Enumerable.OfType&amp;lt;obj&amp;gt;&lt;/code&gt;. From there you can make use of the functions in the &lt;code&gt;Seq&lt;/code&gt; module.&lt;/p&gt;
 &lt;h3&gt;System.Collections.Generic.List&amp;lt;_&amp;gt;&lt;/h3&gt;
-&lt;p&gt;So it can be confusing initially since &lt;code&gt;list&lt;/code&gt; in F# is not the same as &lt;code&gt;List&amp;lt;&amp;gt;&lt;/code&gt; in C#. The equivalent of a &lt;a href=&quot;https://github.com/fsharp/fsharp/blob/3bc41f9e10f9abbdc1216e984a98e91aad351cff/src/fsharp/FSharp.Core/prim-types.fs#L3129&quot;&gt;C# list in F# is &lt;code&gt;ResizeArray&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It can be confusing initially since &lt;code&gt;list&lt;/code&gt; in F# is not the same as &lt;code&gt;List&amp;lt;&amp;gt;&lt;/code&gt; in C#. The equivalent of a &lt;a href=&quot;https://github.com/fsharp/fsharp/blob/3bc41f9e10f9abbdc1216e984a98e91aad351cff/src/fsharp/FSharp.Core/prim-types.fs#L3129&quot;&gt;C# list in F# is &lt;code&gt;ResizeArray&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// FSharp.Core
 type ResizeArray&amp;lt;&apos;T&amp;gt; = System.Collections.Generic.List&amp;lt;&apos;T&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;

@@ -384,7 +384,7 @@ type seq&lt;'T&gt; = IEnumerable&lt;'T&gt;
 ss &lt;- [1;2]
 ss &lt;- [|1;2|]
 </code></pre>
-<p>This is because <code>seq</code> is <code>IEnumerable&lt;'T&gt;</code> and <code>'a list</code> and <code>'a array</code> implement <code>IEnumerable&lt;'T&gt;</code></p>
+<p>This is because <code>seq</code> is <code>IEnumerable&lt;'T&gt;</code> and <code>'a list</code> and <code>'a array</code> implement <code>IEnumerable&lt;'T&gt;</code>.</p>
 <pre><code class="language-fsharp">// FSharp.Core
 type List&lt;'T&gt; = 
        | ([])  :                  'T list
@@ -394,8 +394,7 @@ type List&lt;'T&gt; =
        interface System.Collections.Generic.IReadOnlyCollection&lt;'T&gt;
        interface System.Collections.Generic.IReadOnlyList&lt;'T&gt;
 </code></pre>
-<p>Finally, <code>'a array</code> is the same as an array in C#, and so also implements <code>IEnumerable</code>.</p>
-<p>As it turns out, this gets us a very long way with interacting with C#, since <code>IEnumerable</code> and <code>IEnumerable&lt;'T&gt;</code> is pretty ubiquitous.</p>
+<p>As it turns out, this gets us a very long way with interacting with C#, since <code>IEnumerable</code> and <code>IEnumerable&lt;'T&gt;</code> are pretty ubiquitous.</p>
 <pre><code class="language-fsharp">let csharp = CSharpyType()
 csharp.IEnumerableTProp &lt;- seq { 0..10 }
 csharp.IEnumerableTProp &lt;- [0..10]
@@ -415,20 +414,20 @@ csharp.IEnumerableProp &lt;- [|0..10|]
     printfn &quot;i: %A&quot; i
 </code></pre>
 <h3>int []</h3>
-<p>With a typed array, we can just use <code>'T array</code> <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays">since they are the same</a>.</p>
+<p>With a typed array, we can just use <code>'T array</code> <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays">since they are the same</a> across F# and the .NET BCL.</p>
 <pre><code class="language-fsharp">let csharp = CSharpyType()
 csharp.ArrayTProp &lt;- [|0..10|]
 //csharp.ArrayTProp &lt;- seq {0..10} // Compile error: This expression was expected to have type 'int []' but here has type 'seq&lt;int&gt;'
 </code></pre>
 <p>Make use of whatever you need from the <code>Array</code> module.</p>
 <h3>System.Array</h3>
-<p>The above is still true when just using <code>System.Array</code>.</p>
+<p>The above is still true when using <code>System.Array</code>.</p>
 <pre><code class="language-fsharp">let csharp = CSharpyType()
 csharp.ArrayProp &lt;- [|0..10|]
 </code></pre>
-<p>When trying to assign an instance of this type to an F# value you will need to give it a <code>Type</code>. This can be done using a static method out of <code>Linq</code> to get us an <code>IEnumerable&lt;'T&gt;</code> ie <code>seq</code>, <code>arr |&gt; System.Linq.Enumerable.OfType&lt;obj&gt;</code>. From there you can make use of the functions in the <code>Seq</code> module.</p>
+<p>When trying to assign an instance of this type to an F# value you will need to give it a <code>Type</code>. This can be done using a static method out of <code>Linq</code> to get us an <code>IEnumerable&lt;'T&gt;</code> ie <code>seq</code>, like so: <code>arr |&gt; System.Linq.Enumerable.OfType&lt;obj&gt;</code>. From there you can make use of the functions in the <code>Seq</code> module.</p>
 <h3>System.Collections.Generic.List&lt;_&gt;</h3>
-<p>So it can be confusing initially since <code>list</code> in F# is not the same as <code>List&lt;&gt;</code> in C#. The equivalent of a <a href="https://github.com/fsharp/fsharp/blob/3bc41f9e10f9abbdc1216e984a98e91aad351cff/src/fsharp/FSharp.Core/prim-types.fs#L3129">C# list in F# is <code>ResizeArray</code></a>.</p>
+<p>It can be confusing initially since <code>list</code> in F# is not the same as <code>List&lt;&gt;</code> in C#. The equivalent of a <a href="https://github.com/fsharp/fsharp/blob/3bc41f9e10f9abbdc1216e984a98e91aad351cff/src/fsharp/FSharp.Core/prim-types.fs#L3129">C# list in F# is <code>ResizeArray</code></a>.</p>
 <pre><code class="language-fsharp">// FSharp.Core
 type ResizeArray&lt;'T&gt; = System.Collections.Generic.List&lt;'T&gt;
 </code></pre>
