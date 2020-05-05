@@ -3,13 +3,193 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2019-12-05T19:26:03.9634775+00:00</updated>
+  <updated>2020-05-05T21:06:41.8378291+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/converting-fsharp-csharp/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/converting-fsharp-csharp/"/>
+    <title>Converting between F# and C# types</title>
+    <updated>2020-05-05T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/converting-fsharp-csharp/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;Every now and again in F# you run into needing to convert a &lt;code&gt;Seq&lt;/code&gt; to something like &lt;code&gt;IList&amp;lt;&amp;gt;&lt;/code&gt;. Depending on how often you do this, and if you are like me, you will need to search for this or try different things for longer than you would care to admit. So if nothing else, here I am capturing for myself how to tackle some of these conversions.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;For the sake of this post being a reference post, I am going to post this class which captures a lot of the conversions. Here I try and capture the C# type as the type most closely related to an F# type, if that makes sense. In most cases, this is an &lt;code&gt;&apos;T array&lt;/code&gt;, since this is equivalent to a &lt;code&gt;&apos;T []&lt;/code&gt; array in C#. I do encourage you to read the rest of the article at least once, as I will try break down the types a bit so in the future it should be easier to figure out the conversions yourself.&lt;/p&gt;
+&lt;p&gt;For many of these, you will need to convert to &lt;code&gt;seq&lt;/code&gt; and then to the F# type you want to work with. If that is not acceptable perhaps do it yourself with a loop.&lt;/p&gt;
+&lt;p&gt;| From | To | Conversion |
+| -- |:--:| --:|
+| &lt;code&gt;IEnumerable&amp;lt;int&amp;gt;&lt;/code&gt;  | &lt;code&gt;int seq&lt;/code&gt;         | alias for                           |
+| &lt;code&gt;List&amp;lt;int&amp;gt;&lt;/code&gt;         | &lt;code&gt;ResizeArray&lt;/code&gt;     | alias for                           |
+| &lt;code&gt;IEnumerable&lt;/code&gt;       | &lt;code&gt;seq&lt;/code&gt;             | &lt;code&gt;Seq.cast&lt;/code&gt;                          |
+| &lt;code&gt;IEnumerable&lt;/code&gt;       | &lt;code&gt;int array&lt;/code&gt;       | &lt;code&gt;Seq.cast |&amp;gt; Seq.toArray&lt;/code&gt;           |
+| &lt;code&gt;IEnumerable&lt;/code&gt;       | &lt;code&gt;int list&lt;/code&gt;        | &lt;code&gt;Seq.cast |&amp;gt; Seq.toList&lt;/code&gt;            |
+| &lt;code&gt;ICollection&amp;lt;int&amp;gt;&lt;/code&gt;  | &lt;code&gt;int seq&lt;/code&gt;         | &lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt;                         |
+| &lt;code&gt;IList&amp;lt;int&amp;gt;&lt;/code&gt;        | &lt;code&gt;int seq&lt;/code&gt;         | &lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt;                         |
+| &lt;code&gt;int []&lt;/code&gt;            | &lt;code&gt;int array&lt;/code&gt;       | alias for                           |
+| &lt;code&gt;System.Array&lt;/code&gt;      | &lt;code&gt;obj seq&lt;/code&gt;         | &lt;code&gt;System.Linq.Enumerable.OfType&amp;lt;obj&amp;gt;&lt;/code&gt;|
+| &lt;code&gt;seq&lt;/code&gt;/&lt;code&gt;array&lt;/code&gt;/&lt;code&gt;list&lt;/code&gt;| &lt;code&gt;ResizeArray&lt;/code&gt;     | &lt;code&gt;ResizeArray&lt;/code&gt; ctor                  |
+| &lt;code&gt;int seq&lt;/code&gt;           | &lt;code&gt;IEnumerable&lt;/code&gt;     | &lt;code&gt;:&amp;gt; IEnumerable&lt;/code&gt;                    |
+| &lt;code&gt;int array&lt;/code&gt;         | &lt;code&gt;ICollection&amp;lt;int&amp;gt;&lt;/code&gt;| &lt;code&gt;:&amp;gt; ICollection&amp;lt;int&amp;gt;&lt;/code&gt;               |
+| &lt;code&gt;ResizeArray&lt;/code&gt;       | &lt;code&gt;ICollection&amp;lt;int&amp;gt;&lt;/code&gt;| &lt;code&gt;:&amp;gt; ICollection&amp;lt;int&amp;gt;&lt;/code&gt;               |
+| &lt;code&gt;ResizeArray&lt;/code&gt;       | &lt;code&gt;IList&amp;lt;int&amp;gt;&lt;/code&gt;      | &lt;code&gt;:&amp;gt; IList&amp;lt;int&amp;gt;&lt;/code&gt;                     |
+| &lt;code&gt;ResizeArray&lt;/code&gt;       | &lt;code&gt;int seq&lt;/code&gt;         | &lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt;                         |
+| &lt;code&gt;ResizeArray&lt;/code&gt;       | &lt;code&gt;int array&lt;/code&gt;       | &lt;code&gt;.ToArray()&lt;/code&gt; instance method        |
+| &lt;code&gt;f: unit -&amp;gt; int&lt;/code&gt;    | &lt;code&gt;Func&amp;lt;int&amp;gt;&lt;/code&gt;       | &lt;code&gt;Func&amp;lt;int&amp;gt;(f)&lt;/code&gt; ctor                 |
+| &lt;code&gt;Func&amp;lt;int&amp;gt;&lt;/code&gt;         | &lt;code&gt;unit -&amp;gt; int&lt;/code&gt;     | &lt;code&gt;fun () -&amp;gt; f.Invoke()&lt;/code&gt;              |&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For those that can be cast with &lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt; like &lt;code&gt;ICollection&amp;lt;&amp;gt;&lt;/code&gt; and &lt;code&gt;IList&amp;lt;&amp;gt;&lt;/code&gt; you can use directly with the &lt;code&gt;Seq&lt;/code&gt; module functions like &lt;code&gt;toList&lt;/code&gt;, since those interfaces implement &lt;code&gt;IEnumerable&amp;lt;&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Example&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// This is for demonstration purposes only
+type CSharpyType() =
+    // seq&amp;lt;int&amp;gt;
+    let mutable enumerableTProp = Seq.empty
+    // seq&amp;lt;obj&amp;gt;
+    let mutable enumerableProp = Seq.empty
+    // int []
+    let mutable arrayTProp = Array.empty
+    // obj []
+    let mutable arrayProp = Array.empty
+    // int list
+    let mutable listTProp = ResizeArray()
+    // int []
+    let mutable ilistTProp  = Array.empty
+    // int []
+    let mutable icollectionTProp = Array.empty
+    // unit -&amp;gt; DateTimeOffset
+    let mutable dtFun = fun () -&amp;gt; System.DateTimeOffset.UtcNow
+    // Convert between expressions: http://www.fssnip.net/ts/title/F-lambda-to-C-LINQ-Expression
+    
+    member _.IEnumerableTProp 
+        with get() : System.Collections.Generic.IEnumerable&amp;lt;int&amp;gt; = enumerableTProp
+        and set(v : System.Collections.Generic.IEnumerable&amp;lt;int&amp;gt;) = enumerableTProp &amp;lt;- v 
+    
+    member _.IEnumerableProp 
+        with get() : System.Collections.IEnumerable = enumerableProp :&amp;gt; System.Collections.IEnumerable
+        and set(v : System.Collections.IEnumerable ) = enumerableProp &amp;lt;- v |&amp;gt; Seq.cast
+
+    member _.ArrayTProp 
+        with get() : int[] = arrayTProp
+        and set(v  : int[]) = arrayTProp &amp;lt;- v 
+
+    member _.ArrayProp   
+        with get() : System.Array = arrayProp :&amp;gt; System.Array
+        and set(v : System.Array) = arrayProp &amp;lt;- v |&amp;gt; System.Linq.Enumerable.OfType&amp;lt;obj&amp;gt; |&amp;gt; Seq.toArray
+
+    member _.ListTProp 
+        with get() : System.Collections.Generic.List&amp;lt;int&amp;gt; = listTProp
+        and set(v : System.Collections.Generic.List&amp;lt;int&amp;gt;) = listTProp &amp;lt;- v
+
+    member _.ICollectionTProp 
+        with get() : System.Collections.Generic.ICollection&amp;lt;int&amp;gt; = icollectionTProp :&amp;gt; System.Collections.Generic.ICollection&amp;lt;int&amp;gt;
+        and set(v : System.Collections.Generic.ICollection&amp;lt;int&amp;gt;) = icollectionTProp &amp;lt;- v |&amp;gt; Seq.toArray
+
+    member _.IListTProp 
+        with get() : System.Collections.Generic.IList&amp;lt;int&amp;gt; = ilistTProp :&amp;gt; System.Collections.Generic.IList&amp;lt;int&amp;gt;
+        and set(v : System.Collections.Generic.IList&amp;lt;int&amp;gt;) = ilistTProp &amp;lt;- v |&amp;gt; Seq.toArray
+
+    member _.FuncProp 
+        with get() : System.Func&amp;lt;System.DateTimeOffset&amp;gt; = System.Func&amp;lt;System.DateTimeOffset&amp;gt;(dtFun)
+        and set(f : System.Func&amp;lt;System.DateTimeOffset&amp;gt;) = dtFun &amp;lt;- fun () -&amp;gt; f.Invoke()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Breakdown&lt;/h2&gt;
+&lt;p&gt;Well done for pushing past just copy pasting the code you need from above. We will go through the F# types and see what interfaces they implement, as well as if they have corresponding types in .NET BCL types.&lt;/p&gt;
+&lt;h3&gt;System.Collections.Generic.IEnumerable&amp;lt;_&amp;gt;&lt;/h3&gt;
+&lt;p&gt;So as a &lt;code&gt;type&lt;/code&gt;, &lt;a href=&quot;https://github.com/fsharp/fsharp/blob/3bc41f9e10f9abbdc1216e984a98e91aad351cff/src/fsharp/FSharp.Core/prim-types.fs#L3287&quot;&gt;&lt;code&gt;seq&amp;lt;&apos;T&amp;gt;&lt;/code&gt; is an alias for &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; in FSharp.Core&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// FSharp.Core
+type seq&amp;lt;&apos;T&amp;gt; = IEnumerable&amp;lt;&apos;T&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you are just getting started with F#, you may have noticed that it can be a lot more particular about it&apos;s types than C#. It can be easy to forget that this actually works. You can assign &lt;code&gt;&apos;a list&lt;/code&gt; or &lt;code&gt;&apos;a array&lt;/code&gt; to a &lt;code&gt;seq&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let mutable ss = seq { 1; 2 }
+ss &amp;lt;- [1;2]
+ss &amp;lt;- [|1;2|]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is because &lt;code&gt;seq&lt;/code&gt; is &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; and &lt;code&gt;&apos;a list&lt;/code&gt; and &lt;code&gt;&apos;a array&lt;/code&gt; implement &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// FSharp.Core
+type List&amp;lt;&apos;T&amp;gt; = 
+       | ([])  :                  &apos;T list
+       | (::)  : Head: &apos;T * Tail: &apos;T list -&amp;gt; &apos;T list
+       interface System.Collections.Generic.IEnumerable&amp;lt;&apos;T&amp;gt;
+       interface System.Collections.IEnumerable
+       interface System.Collections.Generic.IReadOnlyCollection&amp;lt;&apos;T&amp;gt;
+       interface System.Collections.Generic.IReadOnlyList&amp;lt;&apos;T&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally, &lt;code&gt;&apos;a array&lt;/code&gt; is the same as an array in C#, and so also implements &lt;code&gt;IEnumerable&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;As it turns out, this gets us a very long way with interacting with C#, since &lt;code&gt;IEnumerable&lt;/code&gt; and &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; is pretty ubiquitous.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let csharp = CSharpyType()
+csharp.IEnumerableTProp &amp;lt;- seq { 0..10 }
+csharp.IEnumerableTProp &amp;lt;- [0..10]
+csharp.IEnumerableTProp &amp;lt;- [|0..10|]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, working with &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; in F# is as simple as using &lt;code&gt;seq&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;System.Collections.IEnumerable&lt;/h3&gt;
+&lt;p&gt;For working with &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/api/system.collections.ienumerable?view=netcore-3.1&quot;&gt;System.Collections.IEnumerable&lt;/a&gt; we can make use of a function on the &lt;code&gt;Seq&lt;/code&gt; module, &lt;code&gt;Seq.cast&lt;/code&gt;. This takes an &lt;code&gt;System.Collections.IEnumerable&lt;/code&gt; and turns it into a &lt;code&gt;seq&lt;/code&gt;. Now it is in a more natural form for working with in F#.&lt;br /&gt;
+In terms of assigning, &lt;code&gt;&apos;a seq&lt;/code&gt;, &lt;code&gt;&apos;a list&lt;/code&gt;, and &lt;code&gt;&apos;a array&lt;/code&gt; can be assigned to it, since they all implement &lt;code&gt;IEnumerable&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let csharp = CSharpyType()
+csharp.IEnumerableProp &amp;lt;- seq { 0..10 }
+csharp.IEnumerableProp &amp;lt;- [0..10]
+csharp.IEnumerableProp &amp;lt;- [|0..10|]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is worth noting we can also just use them in the usual constructs like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;for i in (csharp.IEnumerableProp) do 
+    printfn &amp;quot;i: %A&amp;quot; i
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;int []&lt;/h3&gt;
+&lt;p&gt;With a typed array, we can just use &lt;code&gt;&apos;T array&lt;/code&gt; &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays&quot;&gt;since they are the same&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let csharp = CSharpyType()
+csharp.ArrayTProp &amp;lt;- [|0..10|]
+//csharp.ArrayTProp &amp;lt;- seq {0..10} // Compile error: This expression was expected to have type &apos;int []&apos; but here has type &apos;seq&amp;lt;int&amp;gt;&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Make use of whatever you need from the &lt;code&gt;Array&lt;/code&gt; module.&lt;/p&gt;
+&lt;h3&gt;System.Array&lt;/h3&gt;
+&lt;p&gt;The above is still true when just using &lt;code&gt;System.Array&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let csharp = CSharpyType()
+csharp.ArrayProp &amp;lt;- [|0..10|]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When trying to assign an instance of this type to an F# value you will need to give it a &lt;code&gt;Type&lt;/code&gt;. This can be done using a static method out of &lt;code&gt;Linq&lt;/code&gt; to get us an &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; ie &lt;code&gt;seq&lt;/code&gt;, &lt;code&gt;arr |&amp;gt; System.Linq.Enumerable.OfType&amp;lt;obj&amp;gt;&lt;/code&gt;. From there you can make use of the functions in the &lt;code&gt;Seq&lt;/code&gt; module.&lt;/p&gt;
+&lt;h3&gt;System.Collections.Generic.List&amp;lt;_&amp;gt;&lt;/h3&gt;
+&lt;p&gt;So it can be confusing initially since &lt;code&gt;list&lt;/code&gt; in F# is not the same as &lt;code&gt;List&amp;lt;&amp;gt;&lt;/code&gt; in C#. The equivalent of a &lt;a href=&quot;https://github.com/fsharp/fsharp/blob/3bc41f9e10f9abbdc1216e984a98e91aad351cff/src/fsharp/FSharp.Core/prim-types.fs#L3129&quot;&gt;C# list in F# is &lt;code&gt;ResizeArray&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// FSharp.Core
+type ResizeArray&amp;lt;&apos;T&amp;gt; = System.Collections.Generic.List&amp;lt;&apos;T&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can convert F# types to a &lt;code&gt;ResizeArray&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;csharp.ListTProp &amp;lt;- [0..10] |&amp;gt; ResizeArray
+csharp.ListTProp &amp;lt;- [|0..10|] |&amp;gt; ResizeArray
+csharp.ListTProp &amp;lt;- seq { 0..10 } |&amp;gt; ResizeArray
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And of course remember that &lt;code&gt;List&amp;lt;&apos;T&amp;gt;&lt;/code&gt; implements &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt; and &lt;code&gt;ICollection&amp;lt;&apos;T&amp;gt;&lt;/code&gt;, which we will look at next.&lt;/p&gt;
+&lt;h3&gt;System.Collections.Generic.ICollection&amp;lt;&lt;em&gt;&amp;gt; &amp;amp; IList&amp;lt;&lt;/em&gt;&amp;gt;&lt;/h3&gt;
+&lt;p&gt;Remember that &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-and-arrays&quot;&gt;array&lt;/a&gt; and &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=netcore-3.1&quot;&gt;&lt;code&gt;List&amp;lt;&apos;T&amp;gt;&lt;/code&gt;&lt;/a&gt; aka &lt;code&gt;ResizeArray&lt;/code&gt; already implement &lt;code&gt;IEnumerable&amp;lt;&apos;T&amp;gt;&lt;/code&gt;, &lt;code&gt;ICollection&amp;lt;&apos;T&amp;gt;&lt;/code&gt;, and &lt;code&gt;IList&amp;lt;&apos;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;csharp.ICollectionTProp &amp;lt;- [|0..10|]
+csharp.ICollectionTProp &amp;lt;- [|0..10|] |&amp;gt; ResizeArray
+
+csharp.IListTProp &amp;lt;- [|0..10|]
+csharp.IListTProp &amp;lt;- [|0..10|] |&amp;gt; ResizeArray
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;ResizeArray&lt;/h3&gt;
+&lt;p&gt;One thing you might be left wondering is converting from a ResizeArray, back to more natural F# types.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let resizeArr = [0..10] |&amp;gt; ResizeArray
+let xs = resizeArr :&amp;gt; seq&amp;lt;_&amp;gt; // Implements IEnumerable&amp;lt;T&amp;gt; so we can just cast
+let arr = resizeArr.ToArray() // ResizeArray / List&amp;lt;T&amp;gt; has a `ToArray` method. This is an O(n) activity.
+let lst = xs |&amp;gt; Seq.toList // Once we have a seq, we can use Seq functions
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Bonus: System.Func&amp;lt;_&amp;gt;&lt;/h3&gt;
+&lt;p&gt;Another kind of conversion I often find myself doing when working with C# APIs is with &lt;code&gt;Func&lt;/code&gt; and F# functions. Converting a F# function to a &lt;code&gt;Func&lt;/code&gt; is as simple as passing it into the &lt;code&gt;Func&lt;/code&gt; constructor if need be. We can often simply assign a F# function to a &lt;code&gt;Func&lt;/code&gt; and the compiler will handle that.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;csharp.FuncProp &amp;lt;- (fun () -&amp;gt; System.DateTimeOffset.UnixEpoch)
+let f = fun () -&amp;gt; csharp.FuncProp.Invoke()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;So that is my potted run through of converting between F# and C# types. This was meant to be more of a reference than a post that teaches or tells a story so I hope the lack of continuity was not too off-putting.&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/reliability-with-intents/</id>
