@@ -195,26 +195,26 @@
 <h2>TL;DR</h2>
 <p>For the sake of this post being a reference post, I am going to post this class which captures a lot of the conversions. Here I try and capture the C# type as the type most closely related to an F# type, if that makes sense. In most cases, this is an <code>'T array</code>, since this is equivalent to a <code>'T []</code> array in C#. I do encourage you to read the rest of the article at least once, as I will try break down the types a bit so in the future it should be easier to figure out the conversions yourself.</p>
 <p>For many of these, you will need to convert to <code>seq</code> and then to the F# type you want to work with. If that is not acceptable perhaps do it yourself with a loop.</p>
-<p>| From | To | Conversion |
-| --- | --- | --- |
-| <code>IEnumerable&lt;int&gt;</code>  | <code>int seq</code>         | alias for                           |
-| <code>List&lt;int&gt;</code>         | <code>ResizeArray</code>     | alias for                           |
-| <code>IEnumerable</code>       | <code>seq</code>             | <code>Seq.cast</code>                          |
-| <code>IEnumerable</code>       | <code>int array</code>       | <code>Seq.cast |&gt; Seq.toArray</code>           |
-| <code>IEnumerable</code>       | <code>int list</code>        | <code>Seq.cast |&gt; Seq.toList</code>            |
-| <code>ICollection&lt;int&gt;</code>  | <code>int seq</code>         | <code>:&gt; seq&lt;_&gt;</code>                         |
-| <code>IList&lt;int&gt;</code>        | <code>int seq</code>         | <code>:&gt; seq&lt;_&gt;</code>                         |
-| <code>int []</code>            | <code>int array</code>       | alias for                           |
-| <code>System.Array</code>      | <code>obj seq</code>         | <code>System.Linq.Enumerable.OfType&lt;obj&gt;</code>|
-| <code>seq</code>/<code>array</code>/<code>list</code>| <code>ResizeArray</code>     | <code>ResizeArray</code> ctor                  |
-| <code>int seq</code>           | <code>IEnumerable</code>     | <code>:&gt; IEnumerable</code>                    |
-| <code>int array</code>         | <code>ICollection&lt;int&gt;</code>| <code>:&gt; ICollection&lt;int&gt;</code>               |
-| <code>ResizeArray</code>       | <code>ICollection&lt;int&gt;</code>| <code>:&gt; ICollection&lt;int&gt;</code>               |
-| <code>ResizeArray</code>       | <code>IList&lt;int&gt;</code>      | <code>:&gt; IList&lt;int&gt;</code>                     |
-| <code>ResizeArray</code>       | <code>int seq</code>         | <code>:&gt; seq&lt;_&gt;</code>                         |
-| <code>ResizeArray</code>       | <code>int array</code>       | <code>.ToArray()</code> instance method        |
-| <code>f: unit -&gt; int</code>    | <code>Func&lt;int&gt;</code>       | <code>Func&lt;int&gt;(f)</code> ctor                 |
-| <code>Func&lt;int&gt;</code>         | <code>unit -&gt; int</code>     | <code>fun () -&gt; f.Invoke()</code>              |</p>
+<p>| From              | To                 | Conversion                              |
+| -------------------- | ------------------ | ------------------------------------ |
+| <code>IEnumerable&lt;int&gt;</code>   | <code>int seq</code>          | alias for                            |
+| <code>List&lt;int&gt;</code>          | <code>ResizeArray</code>      | alias for                            |
+| <code>IEnumerable</code>        | <code>seq</code>              | <code>Seq.cast</code>                           |
+| <code>IEnumerable</code>        | <code>int array</code>        | <code>Seq.cast |&gt; Seq.toArray</code>            |
+| <code>IEnumerable</code>        | <code>int list</code>         | <code>Seq.cast |&gt; Seq.toList</code>             |
+| <code>ICollection&lt;int&gt;</code>   | <code>int seq</code>          | <code>:&gt; seq&lt;_&gt;</code>                          |
+| <code>IList&lt;int&gt;</code>         | <code>int seq</code>          | <code>:&gt; seq&lt;_&gt;</code>                          |
+| <code>int []</code>             | <code>int array</code>        | alias for                            |
+| <code>System.Array</code>       | <code>obj seq</code>          | <code>System.Linq.Enumerable.OfType&lt;obj&gt;</code> |
+| <code>seq</code>/<code>array</code>/<code>list</code> | <code>ResizeArray</code>      | <code>ResizeArray</code> ctor                   |
+| <code>int seq</code>            | <code>IEnumerable</code>      | <code>:&gt; IEnumerable</code>                     |
+| <code>int array</code>          | <code>ICollection&lt;int&gt;</code> | <code>:&gt; ICollection&lt;int&gt;</code>                |
+| <code>ResizeArray</code>        | <code>ICollection&lt;int&gt;</code> | <code>:&gt; ICollection&lt;int&gt;</code>                |
+| <code>ResizeArray</code>        | <code>IList&lt;int&gt;</code>       | <code>:&gt; IList&lt;int&gt;</code>                      |
+| <code>ResizeArray</code>        | <code>int seq</code>          | <code>:&gt; seq&lt;_&gt;</code>                          |
+| <code>ResizeArray</code>        | <code>int array</code>        | <code>.ToArray()</code> instance method         |
+| <code>f: unit -&gt; int</code>     | <code>Func&lt;int&gt;</code>        | <code>Func&lt;int&gt;(f)</code> ctor                  |
+| <code>Func&lt;int&gt;</code>          | <code>unit -&gt; int</code>      | <code>fun () -&gt; f.Invoke()</code>               |</p>
 <blockquote>
 <p>For those that can be cast with <code>:&gt; seq&lt;_&gt;</code> like <code>ICollection&lt;&gt;</code> and <code>IList&lt;&gt;</code> you can use directly with the <code>Seq</code> module functions like <code>toList</code>, since those interfaces implement <code>IEnumerable&lt;&gt;</code>.</p>
 </blockquote>
