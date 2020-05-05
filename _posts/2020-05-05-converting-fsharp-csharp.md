@@ -22,6 +22,12 @@ For the sake of this post being a reference post, I am going to post this class 
 
 For many of these, you will need to convert to `seq` and then to the F# type you want to work with. If that is not acceptable perhaps do it yourself with a loop. 
 
+| From     | To      | Conversion    |
+| -------- | ------- | ------------- |
+| some   | text          | stuff |
+| without  | brackets    | alias for      |
+
+
 | From              | To                 | Conversion                              |
 | -------------------- | ------------------ | ------------------------------------ |
 | `IEnumerable<int>`   | `int seq`          | alias for                            |
