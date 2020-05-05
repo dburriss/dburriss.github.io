@@ -22,26 +22,26 @@ For the sake of this post being a reference post, I am going to post this class 
 
 For many of these, you will need to convert to `seq` and then to the F# type you want to work with. If that is not acceptable perhaps do it yourself with a loop. 
 
-| From | To | Conversion |
-| --- | --- | --- |
-| `IEnumerable<int>`  | `int seq`         | alias for                           |
-| `List<int>`         | `ResizeArray`     | alias for                           |
-| `IEnumerable`       | `seq`             | `Seq.cast`                          |
-| `IEnumerable`       | `int array`       | `Seq.cast |> Seq.toArray`           |
-| `IEnumerable`       | `int list`        | `Seq.cast |> Seq.toList`            |
-| `ICollection<int>`  | `int seq`         | `:> seq<_>`                         |
-| `IList<int>`        | `int seq`         | `:> seq<_>`                         |
-| `int []`            | `int array`       | alias for                           |
-| `System.Array`      | `obj seq`         | `System.Linq.Enumerable.OfType<obj>`|
-| `seq`/`array`/`list`| `ResizeArray`     | `ResizeArray` ctor                  |
-| `int seq`           | `IEnumerable`     | `:> IEnumerable`                    |
-| `int array`         | `ICollection<int>`| `:> ICollection<int>`               |
-| `ResizeArray`       | `ICollection<int>`| `:> ICollection<int>`               |
-| `ResizeArray`       | `IList<int>`      | `:> IList<int>`                     |
-| `ResizeArray`       | `int seq`         | `:> seq<_>`                         |
-| `ResizeArray`       | `int array`       | `.ToArray()` instance method        |
-| `f: unit -> int`    | `Func<int>`       | `Func<int>(f)` ctor                 |
-| `Func<int>`         | `unit -> int`     | `fun () -> f.Invoke()`              |
+| From              | To                 | Conversion                              |
+| -------------------- | ------------------ | ------------------------------------ |
+| `IEnumerable<int>`   | `int seq`          | alias for                            |
+| `List<int>`          | `ResizeArray`      | alias for                            |
+| `IEnumerable`        | `seq`              | `Seq.cast`                           |
+| `IEnumerable`        | `int array`        | `Seq.cast |> Seq.toArray`            |
+| `IEnumerable`        | `int list`         | `Seq.cast |> Seq.toList`             |
+| `ICollection<int>`   | `int seq`          | `:> seq<_>`                          |
+| `IList<int>`         | `int seq`          | `:> seq<_>`                          |
+| `int []`             | `int array`        | alias for                            |
+| `System.Array`       | `obj seq`          | `System.Linq.Enumerable.OfType<obj>` |
+| `seq`/`array`/`list` | `ResizeArray`      | `ResizeArray` ctor                   |
+| `int seq`            | `IEnumerable`      | `:> IEnumerable`                     |
+| `int array`          | `ICollection<int>` | `:> ICollection<int>`                |
+| `ResizeArray`        | `ICollection<int>` | `:> ICollection<int>`                |
+| `ResizeArray`        | `IList<int>`       | `:> IList<int>`                      |
+| `ResizeArray`        | `int seq`          | `:> seq<_>`                          |
+| `ResizeArray`        | `int array`        | `.ToArray()` instance method         |
+| `f: unit -> int`     | `Func<int>`        | `Func<int>(f)` ctor                  |
+| `Func<int>`          | `unit -> int`      | `fun () -> f.Invoke()`               |
 
 > For those that can be cast with `:> seq<_>` like `ICollection<>` and `IList<>` you can use directly with the `Seq` module functions like `toList`, since those interfaces implement `IEnumerable<>`.
 
