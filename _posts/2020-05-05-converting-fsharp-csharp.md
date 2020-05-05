@@ -226,7 +226,7 @@ ss <- [1;2]
 ss <- [|1;2|]
 ```
 
-This is because `seq` is `IEnumerable<'T>` and `'a list` and `'a array` implement `IEnumerable<'T>`
+This is because `seq` is `IEnumerable<'T>` and `'a list` and `'a array` implement `IEnumerable<'T>`.
 
 ```fsharp
 // FSharp.Core
@@ -239,9 +239,7 @@ type List<'T> =
        interface System.Collections.Generic.IReadOnlyList<'T>
 ```
 
-Finally, `'a array` is the same as an array in C#, and so also implements `IEnumerable`.
-
-As it turns out, this gets us a very long way with interacting with C#, since `IEnumerable` and `IEnumerable<'T>` is pretty ubiquitous.
+As it turns out, this gets us a very long way with interacting with C#, since `IEnumerable` and `IEnumerable<'T>` are pretty ubiquitous.
 
 ```fsharp
 let csharp = CSharpyType()
@@ -273,7 +271,7 @@ for i in (csharp.IEnumerableProp) do
 
 ### int []
 
-With a typed array, we can just use `'T array` [since they are the same](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays).
+With a typed array, we can just use `'T array` [since they are the same](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays) across F# and the .NET BCL.
 
 ```fsharp
 let csharp = CSharpyType()
@@ -285,18 +283,18 @@ Make use of whatever you need from the `Array` module.
 
 ### System.Array
 
-The above is still true when just using `System.Array`.
+The above is still true when using `System.Array`.
 
 ```fsharp
 let csharp = CSharpyType()
 csharp.ArrayProp <- [|0..10|]
 ```
 
-When trying to assign an instance of this type to an F# value you will need to give it a `Type`. This can be done using a static method out of `Linq` to get us an `IEnumerable<'T>` ie `seq`, `arr |> System.Linq.Enumerable.OfType<obj>`. From there you can make use of the functions in the `Seq` module.
+When trying to assign an instance of this type to an F# value you will need to give it a `Type`. This can be done using a static method out of `Linq` to get us an `IEnumerable<'T>` ie `seq`, like so: `arr |> System.Linq.Enumerable.OfType<obj>`. From there you can make use of the functions in the `Seq` module.
 
 ### System.Collections.Generic.List<_>
 
-So it can be confusing initially since `list` in F# is not the same as `List<>` in C#. The equivalent of a [C# list in F# is `ResizeArray`](https://github.com/fsharp/fsharp/blob/3bc41f9e10f9abbdc1216e984a98e91aad351cff/src/fsharp/FSharp.Core/prim-types.fs#L3129).
+It can be confusing initially since `list` in F# is not the same as `List<>` in C#. The equivalent of a [C# list in F# is `ResizeArray`](https://github.com/fsharp/fsharp/blob/3bc41f9e10f9abbdc1216e984a98e91aad351cff/src/fsharp/FSharp.Core/prim-types.fs#L3129).
 
 ```fsharp
 // FSharp.Core
