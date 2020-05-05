@@ -195,30 +195,127 @@
 <h2>TL;DR</h2>
 <p>For the sake of this post being a reference post, I am going to post this class which captures a lot of the conversions. Here I try and capture the C# type as the type most closely related to an F# type, if that makes sense. In most cases, this is an <code>'T array</code>, since this is equivalent to a <code>'T []</code> array in C#. I do encourage you to read the rest of the article at least once, as I will try break down the types a bit so in the future it should be easier to figure out the conversions yourself.</p>
 <p>For many of these, you will need to convert to <code>seq</code> and then to the F# type you want to work with. If that is not acceptable perhaps do it yourself with a loop.</p>
-<p>| From     | To      | Conversion    |
-| -------- | ------- | ------------- |
-| some   | text          | stuff |
-| without  | brackets    | alias for      |</p>
-<p>| From              | To                 | Conversion                              |
+<!-- | From                 | To                 | Conversion                           |
 | -------------------- | ------------------ | ------------------------------------ |
-| <code>IEnumerable&lt;int&gt;</code>   | <code>int seq</code>          | alias for                            |
-| <code>List&lt;int&gt;</code>          | <code>ResizeArray</code>      | alias for                            |
-| <code>IEnumerable</code>        | <code>seq</code>              | <code>Seq.cast</code>                           |
-| <code>IEnumerable</code>        | <code>int array</code>        | <code>Seq.cast |&gt; Seq.toArray</code>            |
-| <code>IEnumerable</code>        | <code>int list</code>         | <code>Seq.cast |&gt; Seq.toList</code>             |
-| <code>ICollection&lt;int&gt;</code>   | <code>int seq</code>          | <code>:&gt; seq&lt;_&gt;</code>                          |
-| <code>IList&lt;int&gt;</code>         | <code>int seq</code>          | <code>:&gt; seq&lt;_&gt;</code>                          |
-| <code>int []</code>             | <code>int array</code>        | alias for                            |
-| <code>System.Array</code>       | <code>obj seq</code>          | <code>System.Linq.Enumerable.OfType&lt;obj&gt;</code> |
-| <code>seq</code>/<code>array</code>/<code>list</code> | <code>ResizeArray</code>      | <code>ResizeArray</code> ctor                   |
-| <code>int seq</code>            | <code>IEnumerable</code>      | <code>:&gt; IEnumerable</code>                     |
-| <code>int array</code>          | <code>ICollection&lt;int&gt;</code> | <code>:&gt; ICollection&lt;int&gt;</code>                |
-| <code>ResizeArray</code>        | <code>ICollection&lt;int&gt;</code> | <code>:&gt; ICollection&lt;int&gt;</code>                |
-| <code>ResizeArray</code>        | <code>IList&lt;int&gt;</code>       | <code>:&gt; IList&lt;int&gt;</code>                      |
-| <code>ResizeArray</code>        | <code>int seq</code>          | <code>:&gt; seq&lt;_&gt;</code>                          |
-| <code>ResizeArray</code>        | <code>int array</code>        | <code>.ToArray()</code> instance method         |
-| <code>f: unit -&gt; int</code>     | <code>Func&lt;int&gt;</code>        | <code>Func&lt;int&gt;(f)</code> ctor                  |
-| <code>Func&lt;int&gt;</code>          | <code>unit -&gt; int</code>      | <code>fun () -&gt; f.Invoke()</code>               |</p>
+| `IEnumerable<int>`   | `int seq`          | alias for                            |
+| `List<int>`          | `ResizeArray`      | alias for                            |
+| `IEnumerable`        | `seq`              | `Seq.cast`                           |
+| `IEnumerable`        | `int array`        | `Seq.cast \|> Seq.toArray`           |
+| `IEnumerable`        | `int list`         | `Seq.cast \|> Seq.toList`            |
+| `ICollection<int>`   | `int seq`          | `:> seq<_>`                          |
+| `IList<int>`         | `int seq`          | `:> seq<_>`                          |
+| `int []`             | `int array`        | alias for                            |
+| `System.Array`       | `obj seq`          | `System.Linq.Enumerable.OfType<obj>` |
+| `seq`/`array`/`list` | `ResizeArray`      | `ResizeArray` ctor                   |
+| `int seq`            | `IEnumerable`      | `:> IEnumerable`                     |
+| `int array`          | `ICollection<int>` | `:> ICollection<int>`                |
+| `ResizeArray`        | `ICollection<int>` | `:> ICollection<int>`                |
+| `ResizeArray`        | `IList<int>`       | `:> IList<int>`                      |
+| `ResizeArray`        | `int seq`          | `:> seq<_>`                          |
+| `ResizeArray`        | `int array`        | `.ToArray()` instance method         |
+| `f: unit -> int`     | `Func<int>`        | `Func<int>(f)` ctor                  |
+| `Func<int>`          | `unit -> int`      | `fun () -> f.Invoke()`               | -->
+<table>
+<thead>
+<tr>
+<th>From</th>
+<th>To</th>
+<th>Conversion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IEnumerable&lt;int&gt;</code></td>
+<td><code>int seq</code></td>
+<td>alias for</td>
+</tr>
+<tr>
+<td><code>List&lt;int&gt;</code></td>
+<td><code>ResizeArray</code></td>
+<td>alias for</td>
+</tr>
+<tr>
+<td><code>IEnumerable</code></td>
+<td><code>seq</code></td>
+<td><code>Seq.cast</code></td>
+</tr>
+<tr>
+<td><code>IEnumerable</code></td>
+<td><code>int array</code></td>
+<td><code>Seq.cast &#124;&gt; Seq.toArray</code></td>
+</tr>
+<tr>
+<td><code>IEnumerable</code></td>
+<td><code>int list</code></td>
+<td><code>Seq.cast &#124;&gt; Seq.toList</code></td>
+</tr>
+<tr>
+<td><code>ICollection&lt;int&gt;</code></td>
+<td><code>int seq</code></td>
+<td><code>:&gt; seq&lt;_&gt;</code></td>
+</tr>
+<tr>
+<td><code>IList&lt;int&gt;</code></td>
+<td><code>int seq</code></td>
+<td><code>:&gt; seq&lt;_&gt;</code></td>
+</tr>
+<tr>
+<td><code>int []</code></td>
+<td><code>int array</code></td>
+<td>alias for</td>
+</tr>
+<tr>
+<td><code>System.Array</code></td>
+<td><code>obj seq</code></td>
+<td><code>System.Linq.Enumerable.OfType&lt;obj&gt;</code></td>
+</tr>
+<tr>
+<td><code>seq</code>/<code>array</code>/<code>list</code></td>
+<td><code>ResizeArray</code></td>
+<td><code>ResizeArray</code> ctor</td>
+</tr>
+<tr>
+<td><code>int seq</code></td>
+<td><code>IEnumerable</code></td>
+<td><code>:&gt; IEnumerable</code></td>
+</tr>
+<tr>
+<td><code>int array</code></td>
+<td><code>ICollection&lt;int&gt;</code></td>
+<td><code>:&gt; ICollection&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>ResizeArray</code></td>
+<td><code>ICollection&lt;int&gt;</code></td>
+<td><code>:&gt; ICollection&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>ResizeArray</code></td>
+<td><code>IList&lt;int&gt;</code></td>
+<td><code>:&gt; IList&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>ResizeArray</code></td>
+<td><code>int seq</code></td>
+<td><code>:&gt; seq&lt;_&gt;</code></td>
+</tr>
+<tr>
+<td><code>ResizeArray</code></td>
+<td><code>int array</code></td>
+<td><code>.ToArray()</code> instance method</td>
+</tr>
+<tr>
+<td><code>f: unit -&gt; int</code></td>
+<td><code>Func&lt;int&gt;</code></td>
+<td><code>Func&lt;int&gt;(f)</code> ctor</td>
+</tr>
+<tr>
+<td><code>Func&lt;int&gt;</code></td>
+<td><code>unit -&gt; int</code></td>
+<td><code>fun () -&gt; f.Invoke()</code></td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>For those that can be cast with <code>:&gt; seq&lt;_&gt;</code> like <code>ICollection&lt;&gt;</code> and <code>IList&lt;&gt;</code> you can use directly with the <code>Seq</code> module functions like <code>toList</code>, since those interfaces implement <code>IEnumerable&lt;&gt;</code>.</p>
 </blockquote>
@@ -369,8 +466,8 @@ let f = fun () -&gt; csharp.FuncProp.Invoke()
                     <h4>You may be interested in</h4>
                     <ul>
                                                 <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
-                                                <li><a href="/how-to-fsharp-pt-7/">How to F# - Part 7</a></li>
                                                 <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
+                                                <li><a href="/how-to-fsharp-pt-7/">How to F# - Part 7</a></li>
                                             </ul>
                 </section>
                 <hr />

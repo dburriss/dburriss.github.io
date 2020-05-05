@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2020-05-05T21:23:25.1316925+00:00</updated>
+  <updated>2020-05-05T21:39:56.0369479+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -25,30 +25,127 @@
 &lt;h2&gt;TL;DR&lt;/h2&gt;
 &lt;p&gt;For the sake of this post being a reference post, I am going to post this class which captures a lot of the conversions. Here I try and capture the C# type as the type most closely related to an F# type, if that makes sense. In most cases, this is an &lt;code&gt;&apos;T array&lt;/code&gt;, since this is equivalent to a &lt;code&gt;&apos;T []&lt;/code&gt; array in C#. I do encourage you to read the rest of the article at least once, as I will try break down the types a bit so in the future it should be easier to figure out the conversions yourself.&lt;/p&gt;
 &lt;p&gt;For many of these, you will need to convert to &lt;code&gt;seq&lt;/code&gt; and then to the F# type you want to work with. If that is not acceptable perhaps do it yourself with a loop.&lt;/p&gt;
-&lt;p&gt;| From     | To      | Conversion    |
-| -------- | ------- | ------------- |
-| some   | text          | stuff |
-| without  | brackets    | alias for      |&lt;/p&gt;
-&lt;p&gt;| From              | To                 | Conversion                              |
+&lt;!-- | From                 | To                 | Conversion                           |
 | -------------------- | ------------------ | ------------------------------------ |
-| &lt;code&gt;IEnumerable&amp;lt;int&amp;gt;&lt;/code&gt;   | &lt;code&gt;int seq&lt;/code&gt;          | alias for                            |
-| &lt;code&gt;List&amp;lt;int&amp;gt;&lt;/code&gt;          | &lt;code&gt;ResizeArray&lt;/code&gt;      | alias for                            |
-| &lt;code&gt;IEnumerable&lt;/code&gt;        | &lt;code&gt;seq&lt;/code&gt;              | &lt;code&gt;Seq.cast&lt;/code&gt;                           |
-| &lt;code&gt;IEnumerable&lt;/code&gt;        | &lt;code&gt;int array&lt;/code&gt;        | &lt;code&gt;Seq.cast |&amp;gt; Seq.toArray&lt;/code&gt;            |
-| &lt;code&gt;IEnumerable&lt;/code&gt;        | &lt;code&gt;int list&lt;/code&gt;         | &lt;code&gt;Seq.cast |&amp;gt; Seq.toList&lt;/code&gt;             |
-| &lt;code&gt;ICollection&amp;lt;int&amp;gt;&lt;/code&gt;   | &lt;code&gt;int seq&lt;/code&gt;          | &lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt;                          |
-| &lt;code&gt;IList&amp;lt;int&amp;gt;&lt;/code&gt;         | &lt;code&gt;int seq&lt;/code&gt;          | &lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt;                          |
-| &lt;code&gt;int []&lt;/code&gt;             | &lt;code&gt;int array&lt;/code&gt;        | alias for                            |
-| &lt;code&gt;System.Array&lt;/code&gt;       | &lt;code&gt;obj seq&lt;/code&gt;          | &lt;code&gt;System.Linq.Enumerable.OfType&amp;lt;obj&amp;gt;&lt;/code&gt; |
-| &lt;code&gt;seq&lt;/code&gt;/&lt;code&gt;array&lt;/code&gt;/&lt;code&gt;list&lt;/code&gt; | &lt;code&gt;ResizeArray&lt;/code&gt;      | &lt;code&gt;ResizeArray&lt;/code&gt; ctor                   |
-| &lt;code&gt;int seq&lt;/code&gt;            | &lt;code&gt;IEnumerable&lt;/code&gt;      | &lt;code&gt;:&amp;gt; IEnumerable&lt;/code&gt;                     |
-| &lt;code&gt;int array&lt;/code&gt;          | &lt;code&gt;ICollection&amp;lt;int&amp;gt;&lt;/code&gt; | &lt;code&gt;:&amp;gt; ICollection&amp;lt;int&amp;gt;&lt;/code&gt;                |
-| &lt;code&gt;ResizeArray&lt;/code&gt;        | &lt;code&gt;ICollection&amp;lt;int&amp;gt;&lt;/code&gt; | &lt;code&gt;:&amp;gt; ICollection&amp;lt;int&amp;gt;&lt;/code&gt;                |
-| &lt;code&gt;ResizeArray&lt;/code&gt;        | &lt;code&gt;IList&amp;lt;int&amp;gt;&lt;/code&gt;       | &lt;code&gt;:&amp;gt; IList&amp;lt;int&amp;gt;&lt;/code&gt;                      |
-| &lt;code&gt;ResizeArray&lt;/code&gt;        | &lt;code&gt;int seq&lt;/code&gt;          | &lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt;                          |
-| &lt;code&gt;ResizeArray&lt;/code&gt;        | &lt;code&gt;int array&lt;/code&gt;        | &lt;code&gt;.ToArray()&lt;/code&gt; instance method         |
-| &lt;code&gt;f: unit -&amp;gt; int&lt;/code&gt;     | &lt;code&gt;Func&amp;lt;int&amp;gt;&lt;/code&gt;        | &lt;code&gt;Func&amp;lt;int&amp;gt;(f)&lt;/code&gt; ctor                  |
-| &lt;code&gt;Func&amp;lt;int&amp;gt;&lt;/code&gt;          | &lt;code&gt;unit -&amp;gt; int&lt;/code&gt;      | &lt;code&gt;fun () -&amp;gt; f.Invoke()&lt;/code&gt;               |&lt;/p&gt;
+| `IEnumerable&lt;int&gt;`   | `int seq`          | alias for                            |
+| `List&lt;int&gt;`          | `ResizeArray`      | alias for                            |
+| `IEnumerable`        | `seq`              | `Seq.cast`                           |
+| `IEnumerable`        | `int array`        | `Seq.cast \|&gt; Seq.toArray`           |
+| `IEnumerable`        | `int list`         | `Seq.cast \|&gt; Seq.toList`            |
+| `ICollection&lt;int&gt;`   | `int seq`          | `:&gt; seq&lt;_&gt;`                          |
+| `IList&lt;int&gt;`         | `int seq`          | `:&gt; seq&lt;_&gt;`                          |
+| `int []`             | `int array`        | alias for                            |
+| `System.Array`       | `obj seq`          | `System.Linq.Enumerable.OfType&lt;obj&gt;` |
+| `seq`/`array`/`list` | `ResizeArray`      | `ResizeArray` ctor                   |
+| `int seq`            | `IEnumerable`      | `:&gt; IEnumerable`                     |
+| `int array`          | `ICollection&lt;int&gt;` | `:&gt; ICollection&lt;int&gt;`                |
+| `ResizeArray`        | `ICollection&lt;int&gt;` | `:&gt; ICollection&lt;int&gt;`                |
+| `ResizeArray`        | `IList&lt;int&gt;`       | `:&gt; IList&lt;int&gt;`                      |
+| `ResizeArray`        | `int seq`          | `:&gt; seq&lt;_&gt;`                          |
+| `ResizeArray`        | `int array`        | `.ToArray()` instance method         |
+| `f: unit -&gt; int`     | `Func&lt;int&gt;`        | `Func&lt;int&gt;(f)` ctor                  |
+| `Func&lt;int&gt;`          | `unit -&gt; int`      | `fun () -&gt; f.Invoke()`               | --&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;From&lt;/th&gt;
+&lt;th&gt;To&lt;/th&gt;
+&lt;th&gt;Conversion&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;IEnumerable&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;int seq&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;alias for&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;List&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ResizeArray&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;alias for&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;IEnumerable&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;seq&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Seq.cast&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;IEnumerable&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;int array&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Seq.cast &amp;#124;&amp;gt; Seq.toArray&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;IEnumerable&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;int list&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Seq.cast &amp;#124;&amp;gt; Seq.toList&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ICollection&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;int seq&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;IList&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;int seq&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;int []&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;int array&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;alias for&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;System.Array&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;obj seq&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;System.Linq.Enumerable.OfType&amp;lt;obj&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;seq&lt;/code&gt;/&lt;code&gt;array&lt;/code&gt;/&lt;code&gt;list&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ResizeArray&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ResizeArray&lt;/code&gt; ctor&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;int seq&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;IEnumerable&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;:&amp;gt; IEnumerable&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;int array&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ICollection&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;:&amp;gt; ICollection&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ResizeArray&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ICollection&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;:&amp;gt; ICollection&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ResizeArray&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;IList&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;:&amp;gt; IList&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ResizeArray&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;int seq&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ResizeArray&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;int array&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.ToArray()&lt;/code&gt; instance method&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;f: unit -&amp;gt; int&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Func&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Func&amp;lt;int&amp;gt;(f)&lt;/code&gt; ctor&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Func&amp;lt;int&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;unit -&amp;gt; int&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;fun () -&amp;gt; f.Invoke()&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;blockquote&gt;
 &lt;p&gt;For those that can be cast with &lt;code&gt;:&amp;gt; seq&amp;lt;_&amp;gt;&lt;/code&gt; like &lt;code&gt;ICollection&amp;lt;&amp;gt;&lt;/code&gt; and &lt;code&gt;IList&amp;lt;&amp;gt;&lt;/code&gt; you can use directly with the &lt;code&gt;Seq&lt;/code&gt; module functions like &lt;code&gt;toList&lt;/code&gt;, since those interfaces implement &lt;code&gt;IEnumerable&amp;lt;&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
