@@ -2,7 +2,7 @@
 layout: post
 title: "Converting between F# and C# types"
 subtitle: "Breaking down conversions between C# and F# collections and functions"
-description: "In this post we look at converting between F# collections list Seq, List, and Array and common C# collections and interfaces."
+description: "In this post we look at converting between F# collections like Seq, List, Array and common C# collections and interfaces."
 permalink: converting-fsharp-csharp
 author: "Devon Burriss"
 category: Software Development
