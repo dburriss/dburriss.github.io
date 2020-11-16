@@ -2,7 +2,7 @@
 layout: post
 title: "Skills of meditation"
 subtitle: "A tour of areas that can be improved by skillful application of meditation techniques"
-description: "A short overview of the value add that Paket package manager brings"
+description: "By combining different traditions of meditation skillfully we can improve our contentment and treat others with kindness"
 permalink: skills-of-meditation
 author: "Devon Burriss"
 category: Life
