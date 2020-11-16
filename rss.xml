@@ -6,8 +6,8 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Mon, 16 Nov 2020 21:06:50 +00:00</pubDate>
-    <lastBuildDate>Mon, 16 Nov 2020 21:06:50 +00:00</lastBuildDate>
+    <pubDate>Mon, 16 Nov 2020 21:17:54 +00:00</pubDate>
+    <lastBuildDate>Mon, 16 Nov 2020 21:17:54 +00:00</lastBuildDate>
     
     <item>
       <title>Converting between F# and C# types</title>
