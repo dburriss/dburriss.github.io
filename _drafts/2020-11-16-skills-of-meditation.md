@@ -25,10 +25,10 @@ Let's look at some of the "mental muscles" you may want to target and how these 
 
 ### Reducing suffering
 
-I think we can all agree that a good place to start with living a good life is by reducing suffering. Now the word suffering can be a misleading one though as everyone has their understanding of it. Suffering can be the usual mental, emotional, or physical anguish that occur from traumatic events in your life. It can be from well-known sources like stress.  Another lesser-acknowledged source is from change. Everything changes and holding on to anything can be an exercise in futility, and a source of suffering.
+I think we can all agree that a good place to start with living a good life is by reducing suffering. Now the word suffering can be a misleading one though as everyone has their understanding of it. Suffering can be the mental, emotional, or physical anguish that occur from traumatic events in your life. It can be from well-known sources like stress.  Another lesser-acknowledged source is from change. Everything changes and holding on to anything can be an exercise in futility, and a source of suffering.
 
 One way that formal meditation helps alleviate suffering is by training you to recognise when you are lost in thought. We all know that feeling of remaining angry because you replay in your mind how someone wronged you. The technique often referred to as Mindfulness is the practice of observing a thought, and then bringing attention back to something like the breath. 
-A common misconception of meditation is that you are trying to keep your mind free of thought, the real benefit is that each time you recognise a thought, you get to do a "rep" and practice letting go of that thought.
+A common misconception of meditation is that you are trying to keep your mind free of thought. The real benefit is that each time you recognise a thought, you get to do a "rep" and practice letting go of that thought. This is the practice. We cannot in-fact control our thoughts, we can only control where we place our attention.
 
 Epictetus, a well known Stoic philosopher, summarised the source of our suffering well: 
 
@@ -48,7 +48,9 @@ A General of an army conquers a town and then hears about a Zen master who lives
 ### Being kind to others
 
 A common theme of philosophies that are serious about how to live well is that of treating others well. 
-"Call to mind the doctrine that rational creatures have come into the world for the sake of one another, and that tolerance is a part of justice" - Marcus Aurelius
+
+> "Call to mind the doctrine that rational creatures have come into the world for the sake of one another, and that tolerance is a part of justice" - Marcus Aurelius
+
 In Buddhism, there is a technique for actively cultivating feelings of compassion for yourself and the world around you. It is the practice of Metta, otherwise known as loving-kindness. In this practice, you generate a feeling of compassion. You start with those you already have this feeling for and wish them happiness, freedom from suffering, and fulfilment in life. You then expand that to others. This may feel awkward initially but recall that our thoughts about people are just running through neural pathways. Reinforcing these pathways in positive ways can lead to new ways of thinking and feeling. 
 
 ### Finding meaning
@@ -63,9 +65,11 @@ If you can, get out into open spaces. Walk around and greet any stranger you can
 
 Developing a practice of being thankful daily for every little thing you can muster will provide a bulwark against the bad things that come your way.
 
-One last practice ties in with the meditation on death. By considering that any day could be your last, it can bring into focus what is important and what your energy should be spent on.
+I said I would come back to the meditation on death. By considering that any day could be your last, it can bring into focus what is important and what your energy should be spent on.
 
-> “Let us prepare our minds as if we’d come to the very end of life. Let us postpone nothing. Let us balance life’s books each day. The one who puts the finishing touches on their life each day is never short of time.” -Seneca
+> “Let us prepare our minds as if we’d come to the very end of life. Let us postpone nothing. Let us balance life’s books each day. The one who puts the finishing touches on their life each day is never short of time.” - Seneca
+
+No only can meditating on your own mortality make sure you spend your time well, it can cause you to appreciate life more.
 
 ### Conclusion
 
