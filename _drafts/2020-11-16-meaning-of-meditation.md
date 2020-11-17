@@ -40,7 +40,7 @@ Epictetus, a well known Stoic philosopher, summarised the source of our sufferin
 
 > "What upsets people is not things themselves, but their judgements about these things". 
 
-The idea Epictetus is putting forth here is also a core them in Buddhism. That we suffer because we cling to things. Both the Stoics and Buddhists are often maligned on this point. Accused of not caring. The key point here is that clinging to things, good or bad, will cause suffering because everything is impermanent and we are shaped by what we place our attention on.
+The idea Epictetus is putting forth here is also a core theme in Buddhism. That we suffer because we cling to things. Both the Stoics and Buddhists are often maligned on this point. Accused of not caring. The key point here is that clinging to things, good or bad, will cause suffering because everything is impermanent and we are shaped by what we place our attention on.
 
 And these are the types of meditations of the Stoics. They do not sit and breathe but instead meditate on the wisdom passed down to them, and their thoughts. They visualise how they want to approach situations with wisdom and courage.
 One example of a Stoic practice is described by Seneca: 
