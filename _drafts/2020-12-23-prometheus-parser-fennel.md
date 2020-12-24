@@ -147,16 +147,4 @@ Have you used FParsec? If not, was this helpful?
 You have plenty of experience with it? What can I improve?  
 Leave a comment or create an issue or PR on the repo.
 
-https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config
-
-docker run --rm -it -p 9090:9090 -v /Users/dburriss@xebia.com/GitHub/Fennel.MetricsDemo/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
-
-check its up: http://localhost:9090/graph
-
-https://www.datadoghq.com/blog/monitor-prometheus-metrics/
-
-https://medium.com/@jeffhollan/ordered-queue-processing-in-azure-functions-with-sessions-c42ee21e689d
-
-https://michaelscodingspot.com/performance-counters/
-
 <span>Photo by <a href="https://unsplash.com/@_ggleee?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Gleb Lukomets</a> on <a href="https://unsplash.com/s/photos/flame?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
