@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>https://devonburriss.me/prometheus-parser-fennel/</loc>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>https://devonburriss.me/converting-fsharp-csharp/</loc>
     <lastmod>2020-05-05T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -1182,6 +1189,14 @@
   
 	
 	<url>
+		<loc>https://devonburriss.me//tag/fennel/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
 		<loc>https://devonburriss.me//tag/fsadvent/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
@@ -1391,6 +1406,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//tag/programming/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/prometheus/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>

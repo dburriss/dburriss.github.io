@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Thu, 24 Dec 2020 09:22:05 +00:00</pubDate>
-    <lastBuildDate>Thu, 24 Dec 2020 09:22:05 +00:00</lastBuildDate>
+    <pubDate>Thu, 24 Dec 2020 10:12:59 +00:00</pubDate>
+    <lastBuildDate>Thu, 24 Dec 2020 10:12:59 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Creating a Prometheus parser: Fennel</title>
+      <link>https://devonburriss.me/prometheus-parser-fennel/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/prometheus-parser-fennel/</guid>
+      <description>This post shows some of the results both in text parsing and end Promethean result of creating a parser.</description>
+    </item>
     
     <item>
       <title>Converting between F# and C# types</title>

@@ -176,29 +176,31 @@
     <div class="post-preview jumbotron">
         
         <h1 class="post-title">            
-            <a href="/converting-fsharp-csharp/">Converting between F# and C# types</a>
+            <a href="/prometheus-parser-fennel/">Creating a Prometheus parser: Fennel</a>
         </h1>
         
         <em class="post-subtitle">
-            Breaking down conversions between C# and F# collections and functions
+            Some thoughts using FParsec to write a Prometheus parser
         </em>
         
-        <p class="post-meta">Posted by Devon Burriss on May 05, 2020</p>
+        <p class="post-meta">Posted by Devon Burriss on December 24, 2020</p>
         
             
                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
             
-                <a href="/tag/csharp"><span class="label label-default">C#</span></a>
+                <a href="/tag/prometheus"><span class="label label-default">Prometheus</span></a>
             
-                <a href="/tag/collections"><span class="label label-default">Collections</span></a>
+                <a href="/tag/fennel"><span class="label label-default">Fennel</span></a>
+            
+                <a href="/tag/fsadvent"><span class="label label-default">FsAdvent</span></a>
             
         
         
-            <img src="/img/posts/2020/fsharp512sharp.png" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
+            <img src="/img/posts/2018/flame-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         
-        <p align="justify"><p>Every now and again in F# you run into needing to convert a <code>Seq</code> to something like <code>IList&lt;&gt;</code>. Depending on how often you do this, and if you are like me, you will need to search for this or try different things for longer than you would care to admit. So if nothing else, here I am capturing for myself how to tackle some of these conversions.</p>
+        <p align="justify"><p>A year back I ran into the need for a library that provided a model for creating valid Prometheus log lines. The libraries I looked at sent these metrics for export rather than giving me access to the model or allowing me to create the corresponding log string. I had been wanting to play around with FParsec for a while so this seemed like a perfect opportunity to give it a try.</p>
 </p></p>
-        <p class="text-left"><a class="btn btn-primary btn-lg" href="/converting-fsharp-csharp/" role="button">Read more</a></p>
+        <p class="text-left"><a class="btn btn-primary btn-lg" href="/prometheus-parser-fennel/" role="button">Read more</a></p>
     </div>
     <div class="clearfix"></div>
     <hr>
@@ -215,6 +217,169 @@
 
     
 
+     
+        
+     
+        
+        
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+    
+
+    <div class="post-preview ">
+        
+            
+        
+         <img src="/img/posts/2020/fsharp512sharp.png" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+
+        <a href="/converting-fsharp-csharp/">
+            <h2 class="post-title">            Converting between F# and C# types
+            </h2>
+            
+            
+            <h3 class="post-subtitle">
+                Breaking down conversions between C# and F# collections and functions
+            </h3>
+            
+        </a>
+        <p class="post-meta">Posted by Devon Burriss' Blog on May 05, 2020</p>
+        
+            
+                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
+            
+                <a href="/tag/csharp"><span class="label label-default">C#</span></a>
+            
+                <a href="/tag/collections"><span class="label label-default">Collections</span></a>
+            
+        
+    </div>
+    <hr>
+    
+
+
+
+
+    
+
+     
+        
      
         
      
@@ -378,6 +543,8 @@
 
     
 
+     
+        
      
         
      
@@ -549,6 +716,8 @@
         
      
         
+     
+        
         
         
      
@@ -702,6 +871,8 @@
 
     
 
+     
+        
      
         
      
@@ -877,6 +1048,8 @@
         
      
         
+     
+        
         
         
      
@@ -1038,6 +1211,8 @@
         
      
         
+     
+        
         
         
      
@@ -1183,6 +1358,8 @@
 
     
 
+     
+        
      
         
      
@@ -1360,6 +1537,8 @@
         
      
         
+     
+        
         
         
      
@@ -1483,165 +1662,6 @@
             
         </a>
         <p class="post-meta">Posted by Devon Burriss' Blog on October 27, 2018</p>
-        
-            
-                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-            
-                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-            
-                <a href="/tag/net"><span class="label label-default">.NET</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/posts/2018/rubiks-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/how-to-fsharp-pt-5/">
-            <h2 class="post-title">            How to F# - Part 5
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Making magic with Pattern Matching
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on October 26, 2018</p>
         
             
                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
@@ -1852,6 +1872,12 @@
     </span>
 </a>
 
+<a class="badge badge-info" href="/tag/fennel/" style="font-size: 80%">
+    <span class="site-tag">                
+        Fennel
+    </span>
+</a>
+
 <a class="badge badge-info" href="/tag/fsadvent/" style="font-size: 80%">
     <span class="site-tag">                
         FsAdvent
@@ -2011,6 +2037,12 @@
 <a class="badge badge-info" href="/tag/programming/" style="font-size: 80%">
     <span class="site-tag">                
         Programming
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/prometheus/" style="font-size: 80%">
+    <span class="site-tag">                
+        Prometheus
     </span>
 </a>
 
