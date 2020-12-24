@@ -949,6 +949,14 @@
 	
   
 	
+  
+	
+  
+	
+  
+	
+  
+	
 	<url>
 		<loc>https://devonburriss.me//category/agile/index.html</loc>
 		<changefreq>daily</changefreq>
@@ -1167,6 +1175,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//tag/fsharp/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/fsadvent/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
