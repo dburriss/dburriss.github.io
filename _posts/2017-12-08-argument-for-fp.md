@@ -6,7 +6,7 @@ description: "Arguments in favour of multiple programming languages, functional 
 permalink: argument-for-fp
 author: "Devon Burriss"
 category: Software Development
-tags: [Functional, OOP, F#]
+tags: [Functional, OOP, F#, FsAdvent]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stairwell-bg.jpg"

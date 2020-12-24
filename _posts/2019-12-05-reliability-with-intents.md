@@ -6,7 +6,7 @@ description: "In this post I explore a solution for sending messages across proc
 permalink: reliability-with-intents
 author: "Devon Burriss"
 category: Software Development
-tags: [F#,Clean Code,Architecture,Messaging]
+tags: [F#,Clean Code,Architecture,Messaging,FsAdvent]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"

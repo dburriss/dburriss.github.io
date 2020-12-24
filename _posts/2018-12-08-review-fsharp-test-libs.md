@@ -6,7 +6,7 @@ description: "A review of XUnit, FsUnit, Unquote, and Expecto as unit testing li
 permalink: review-fsharp-test-libs
 author: "Devon Burriss"
 category: Software Development
-tags: [F#,Testing,TDD]
+tags: [F#,Testing,TDD, FsAdvent]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/silhouette-bg.jpg"
