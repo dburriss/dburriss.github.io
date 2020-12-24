@@ -17,16 +17,16 @@ A year back I ran into the need for a library that provided a model for creating
 <!--more-->
 The result was a library called [Fennel](https://github.com/dburriss/fennel). It can parse Prometheus text to objects, and turn these metric objects into valid Prometheus text.
 
-As I mentioned this was my first time using a library to do a custom parser. In the past when I had needed to parse text I had used a state machine and consumed a character at a time. The idea here is that depending on the state, you expect certain characters to follow. See [here](https://stackoverflow.com/questions/50896567/fsharp-sequence-processing-with-state/50918243#50918243) for an example. It turns out this is not to different to how you use a library like FParsec.
+As I mentioned this was my first time using a library to do a custom parser. In the past when I had needed to parse text I had used a state machine and consumed a character at a time. The idea here is that depending on the state, you expect certain characters to follow. See [here](https://stackoverflow.com/questions/50896567/fsharp-sequence-processing-with-state/50918243#50918243) for an example. It turns out this is not too different to how you use a library like FParsec.
 Although there is a bit of a learning curve, and not many resources outside of the docs, using [FParsec](http://www.quanttec.com/fparsec/) was fun. I am sure there are 100 ways I could improve the parser (feedback welcome...preferably be polite) but I am happy with the end result.
 
 ## FParsec
 
 This post is not meant to be a tutorial on FParsec but in-case you have never used it, let's look at some of the things it allows you to do.
 
-FParsec gives you a boat load of parsers that can be combined together to make a new parser. Parser factory functions like `satisfy` will give you back a `Parser<>` that satisfies the given predicate. The library also gives you some operators. Here `<|>` means try the first parser, if that fails, try the second.
+FParsec gives you a boatload of parsers that can be combined to make a new parser. Parser factory functions like `satisfy` will give you back a `Parser<>` that satisfies the given predicate. The library also gives you some operators. Here `<|>` means try the first parser, if that fails, try the second.
 
-The example below uses `manyChar2` which uses the first parser for the first char and then the next for all following chars. In this case because a Prometheus metric name must start with an ASCII letter or an underscore (not a number).
+The example below uses `manyChar2` which uses the first parser for the first char and then the next for all following chars. In this case, because a Prometheus metric name must start with an ASCII letter or an underscore (not a number).
 
 ```fsharp
 let underscoreOrColon = satisfy (fun c -> c = '_' || c = ':')
@@ -44,7 +44,7 @@ This is just a tiny taste of how you can build up a complex parser from simpler 
 
 ## Prometheus parser
 
-As a reminder, the Prometheus format is a text based format.
+As a reminder, the Prometheus format is a text-based format.
 
 ```text
 # This is a comment but the following 2 have meaning
@@ -142,9 +142,9 @@ let prometheusString = Prometheus.metric "http_requests_total" 1027. [("method",
 
 ## Conclusion
 
-So that was a little peak into creating my first parser. 
+So that was a little peek into creating my first parser. 
 Have you used FParsec? If not, was this helpful?  
-You have plenty of experience with it? What can I improve?  
+Do you have plenty of experience with it? What can I improve?  
 Leave a comment or create an issue or PR on the repo.
 
 <span>Photo by <a href="https://unsplash.com/@_ggleee?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Gleb Lukomets</a> on <a href="https://unsplash.com/s/photos/flame?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
