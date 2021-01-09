@@ -96,8 +96,8 @@ Once you have control, only then can you decide where to go.
 
 ### Further reading
 
-Daily Stoic (https://dailystoic.com/)  
-Waking Up (https://samharris.org/how-to-meditate/)  
+[Daily Stoic](https://dailystoic.com/)  
+[Waking Up](https://samharris.org/how-to-meditate/)  
 To get started easily there are many apps like Waking Up, Head Space, and 10 Percent Happier that will take you through guided meditations.
 
 <span>Photo by <a href="https://unsplash.com/@fcornish?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Faye Cornish</a> on <a href="https://unsplash.com/s/photos/wisdom?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
