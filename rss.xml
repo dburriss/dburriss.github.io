@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sat, 09 Jan 2021 06:39:05 +00:00</pubDate>
-    <lastBuildDate>Sat, 09 Jan 2021 06:39:05 +00:00</lastBuildDate>
+    <pubDate>Sat, 09 Jan 2021 06:47:32 +00:00</pubDate>
+    <lastBuildDate>Sat, 09 Jan 2021 06:47:32 +00:00</lastBuildDate>
+    
+    <item>
+      <title>The meaning of meditation</title>
+      <link>https://devonburriss.me/meaning-of-meditation/</link>
+      <pubDate>Sat, 09 Jan 2021 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/meaning-of-meditation/</guid>
+      <description>By combining different traditions of meditation skillfully we can improve our contentment and treat others with kindness</description>
+    </item>
     
     <item>
       <title>Creating a Prometheus parser: Fennel</title>
