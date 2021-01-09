@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Meaning of meditation"
+title: "The meaning of meditation"
 subtitle: "A tour of areas that can be improved by skillful application of meditation techniques"
 description: "By combining different traditions of meditation skillfully we can improve our contentment and treat others with kindness"
 permalink: meaning-of-meditation
@@ -16,7 +16,7 @@ published: false
 
 ## Skills of meditation
 
-Meditation. Often described as clearing your mind. Following your breath. Relaxing. Although the most common descriptions, these are probably the least interesting descriptions of meditation. They do not capture the rich depth of the techniques that can be found in the many contemplative traditions throughout history. During this weird time of a global pandemic, I believe these techniques can be especially helpful.
+Meditation. Often described as clearing your mind. Following your breath. Relaxing. Although the most common descriptions, they are the least interesting activities of meditation. They do not capture the rich depth of the techniques that can be found in the many contemplative traditions throughout history. During this weird time of a global pandemic, I believe these techniques can be especially helpful.
 <!--more-->
 A clarifying analogue for meditation is that of physical exercise. One way of comparing exercises is by their discipline. Weightlifting vs running, yoga vs cross-fit. If you are looking for what the benefits are from these exercises, the style is less important than the specific exercises you do within them. All of these styles can be good for you but doing the exercises from each that give the biggest boost to your physical fitness is the best way of approaching them.
 Meditation is the same. When comparing the different styles of meditation, the common theme is living a good life. What exactly a good life is can differ between them but this just gives us a buffet of techniques to choose from while trying to improve our own lives.
@@ -25,7 +25,7 @@ Let's look at some of the "mental muscles" you may want to target and how these 
 
 I came to meditation in a rather round-about way. Around 2009 I was running 60+ km a week. I heard about some Tai Chi classes nearby and thought I would try it out as a kind of cross-training for my legs that didn't cause so much injury. Although the Taoist Tai Chi and Kung Fu school had its form of meditation, my teacher also taught mindfulness. She encouraged me to try it and was always willing to talk about my experience and give pointers. Mindfulness appealed to me as it made no esoteric claims about the universe like Taoism did.
 
-My meditation practice was an on-and-off affair for the next few years. I would have a good run for a few weeks or months, then get busy and stop. Then I would get stressed, and go back to it, seeking relief. And looking back at it I had a very different view on it than I do now but no matter the level of understanding, meditation has something to offer.
+My formal meditation practice was an on-and-off affair for the next few years. I would have a good run for a few weeks or months, then get busy and stop. Then I would get stressed, and go back to it, seeking relief. And looking back at it I had a very different view on it than I do now. No matter the level of understanding though, meditation has something to offer.
 
 Then in 2014, I moved to a new city. I not only left my friends, family, and fiance behind; I left my faith. I had grown up in a religious home and had believed my whole life but years of asking questions had led me to an answer. I could no longer believe without sufficient evidence. As chance would have it, I decided to listen to a lecture series on meditation on the 9-hour drive to my new life. To live a good life without faith.
 
