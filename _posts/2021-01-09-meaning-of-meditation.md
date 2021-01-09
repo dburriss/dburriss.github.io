@@ -11,7 +11,7 @@ comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/tree-bg.jpg"
 social-img: "img/posts/2020/tree.jpg"
-published: false
+published: true
 ---
 
 ## Skills of meditation
