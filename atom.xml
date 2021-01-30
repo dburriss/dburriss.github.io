@@ -3,13 +3,55 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-01-09T07:09:49.4785196+00:00</updated>
+  <updated>2021-01-30T18:40:36.8265118+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/local-prometheus-setup/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/local-prometheus-setup/"/>
+    <title>Local Prometheus setup</title>
+    <updated>2021-01-30T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/local-prometheus-setup/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;It is useful to have a local Prometheus instance running to test the instrumentation of your application. If you are running the application on your machine, you need to make sure the Prometheus container can talk to the host machine. This is a short post detailing this setup.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;Firstly, let&apos;s create a Prometheus configuration with the needed &lt;a href=&quot;https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config&quot;&gt;scrape config&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;# A list of scrape configurations.
+scrape_configs:
+  # The job name assigned to scraped metrics by default.
+  - job_name: &apos;fennel-metricsdemo&apos;
+
+    # How frequently to scrape targets from this job.
+    scrape_interval: 5s
+    
+    # The HTTP resource path on which to fetch metrics from targets.
+    metrics_path: &amp;quot;/api/metrics&amp;quot;
+
+    # List of labeled statically configured targets for this job.
+    static_configs:
+      # The targets specified by the static config.
+      - targets: [&apos;host.docker.internal:7071&apos;]
+        # Labels assigned to all metrics scraped from the targets.
+        labels:
+          app: &apos;demo-app&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since we are running this locally, you need to target your local machine. With Docker on Mac I had to target &lt;code&gt;host.docker.internal&lt;/code&gt; and my application (an Azure Function) is running locally on port 7071.&lt;/p&gt;
+&lt;p&gt;Now that we have our configuration, we can use this to start our Docker container, mounting the configuration as a volume.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run --rm -it -p 9090:9090 -v /path/to/your/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Prometheus should now be up and running and if your application is emitting metrics, you can go see them by navigating to http://localhost:9090/graph.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2020/prometheus_sale_count.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I will be making use of this in an upcoming post I plan to release soon. In my next post though I will look at using Datadog instead of a Prometheus server. I hope you find this useful.&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Photo by &lt;a href=&quot;https://unsplash.com/@_ggleee?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Gleb Lukomets&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/s/photos/flame?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/meaning-of-meditation/</id>

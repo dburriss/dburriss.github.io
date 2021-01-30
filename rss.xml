@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sat, 09 Jan 2021 07:09:49 +00:00</pubDate>
-    <lastBuildDate>Sat, 09 Jan 2021 07:09:49 +00:00</lastBuildDate>
+    <pubDate>Sat, 30 Jan 2021 18:40:36 +00:00</pubDate>
+    <lastBuildDate>Sat, 30 Jan 2021 18:40:36 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Local Prometheus setup</title>
+      <link>https://devonburriss.me/local-prometheus-setup/</link>
+      <pubDate>Sat, 30 Jan 2021 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/local-prometheus-setup/</guid>
+      <description>Using docker to run a local Prometheus instance for testing.</description>
+    </item>
     
     <item>
       <title>The meaning of meditation</title>

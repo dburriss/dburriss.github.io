@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>https://devonburriss.me/local-prometheus-setup/</loc>
+    <lastmod>2021-01-30T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>https://devonburriss.me/meaning-of-meditation/</loc>
     <lastmod>2021-01-09T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -1188,6 +1195,14 @@
   
 	
 	<url>
+		<loc>https://devonburriss.me//tag/docker/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
 		<loc>https://devonburriss.me//tag/fsharp/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
@@ -1349,6 +1364,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//tag/nuget/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/observability/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>

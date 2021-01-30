@@ -12,36 +12,49 @@
 
 
 
+    
 
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly explorations in code">
+    
+
+
+    <title>Local Prometheus setup</title>
+    <meta name="description" content="Using docker to run a local Prometheus instance for testing.">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="https://devonburriss.me/local-prometheus-setup/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly explorations in code">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="Local Prometheus setup">
+    <meta itemprop="description" content="Using docker to run a local Prometheus instance for testing.">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2020/flame-500.jpg">
+    
+    <meta itemprop="datePublished" content="1/30/2021 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="1/30/2021 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Local Prometheus setup - Setting up Prometheus locally with Docker" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/local-prometheus-setup/" />
+    <meta name="headline" content="Local Prometheus setup - Setting up Prometheus locally with Docker" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly explorations in code">
+    <meta name="twitter:title" content="Local Prometheus setup">
+    <meta name="twitter:description" content="Using docker to run a local Prometheus instance for testing.">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2020/flame-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="Local Prometheus setup" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me//tag/tdd/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly explorations in code" />
+    <meta property="og:url" content="https://devonburriss.me/local-prometheus-setup/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2020/flame-500.jpg" />
+    <meta property="og:description" content="Using docker to run a local Prometheus instance for testing." />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -142,307 +155,96 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/dashboard-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Local Prometheus setup</h1>
+                        
+                        <h2 class="subheading">Setting up Prometheus locally with Docker</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on January 30, 2021</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/prometheus" class="label label-default">Prometheus</a>
+                            
+                                <a href="/tag/docker" class="label label-default">Docker</a>
+                            
+                                <a href="/tag/observability" class="label label-default">Observability</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			<div>
-    <div class="clearfix">
-        <h1 class="pull-right">&#47;TDD&#47; &nbsp;</h1>
-    </div>
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      
-      <div class="post-preview ">
-          <a href="/review-fsharp-test-libs/">
-              <h2 class="post-title">            Review: F# unit testing frameworks and libraries
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on December 08, 2018</p>
-          
-              
-                 <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-                 <a href="/tag/fsadvent"><span class="label label-default">FsAdvent</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/anatomy-of-automated-testing/">
-              <h2 class="post-title">            Anatomy of an automated test suite
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 13, 2018</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
-              
-                 <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/acceptance-tests/">
-              <h2 class="post-title">            Writing readable Acceptance tests
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on August 11, 2018</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/atdd"><span class="label label-default">ATDD</span></a>
-              
-                 <a href="/tag/bdd"><span class="label label-default">BDD</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/maintainable-unit-tests/">
-              <h2 class="post-title">            3 tips for more maintainable unit tests
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on April 07, 2018</p>
-          
-              
-                 <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/testing-the-untestable/">
-              <h2 class="post-title">            Testing the Untestable
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on January 27, 2015</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                 <a href="/tag/unit-testing"><span class="label label-default">Unit Testing</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/testing-your-data-repositories/">
-              <h2 class="post-title">            Testing your data repositories
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on September 07, 2014</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                 <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-              
-                 <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-              
-                 <a href="/tag/java"><span class="label label-default">Java</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/the-way-we-write-code/">
-              <h2 class="post-title">            The way we write code…and how we talk about it
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on July 18, 2014</p>
-          
-              
-                 <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-              
-                 <a href="/tag/agile"><span class="label label-default">Agile</span></a>
-              
-                 <a href="/tag/design-patterns"><span class="label label-default">Design Patterns</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-                 <a href="/tag/ddd"><span class="label label-default">DDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-</div>
-		</div>
+				<p>It is useful to have a local Prometheus instance running to test the instrumentation of your application. If you are running the application on your machine, you need to make sure the Prometheus container can talk to the host machine. This is a short post detailing this setup.</p>
+<!--more-->
+<h2>Configuration</h2>
+<p>Firstly, let's create a Prometheus configuration with the needed <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config">scrape config</a>.</p>
+<pre><code class="language-yaml"># A list of scrape configurations.
+scrape_configs:
+  # The job name assigned to scraped metrics by default.
+  - job_name: 'fennel-metricsdemo'
 
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+    # How frequently to scrape targets from this job.
+    scrape_interval: 5s
+    
+    # The HTTP resource path on which to fetch metrics from targets.
+    metrics_path: &quot;/api/metrics&quot;
+
+    # List of labeled statically configured targets for this job.
+    static_configs:
+      # The targets specified by the static config.
+      - targets: ['host.docker.internal:7071']
+        # Labels assigned to all metrics scraped from the targets.
+        labels:
+          app: 'demo-app'
+</code></pre>
+<p>Since we are running this locally, you need to target your local machine. With Docker on Mac I had to target <code>host.docker.internal</code> and my application (an Azure Function) is running locally on port 7071.</p>
+<p>Now that we have our configuration, we can use this to start our Docker container, mounting the configuration as a volume.</p>
+<pre><code class="language-bash">docker run --rm -it -p 9090:9090 -v /path/to/your/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+</code></pre>
+<p>Prometheus should now be up and running and if your application is emitting metrics, you can go see them by navigating to http://localhost:9090/graph.</p>
+<p><img src="../img/posts/2020/prometheus_sale_count.png" alt="" /></p>
+<p>I will be making use of this in an upcoming post I plan to release soon. In my next post though I will look at using Datadog instead of a Prometheus server. I hope you find this useful.</p>
+<p><span>Photo by <a href="https://unsplash.com/@_ggleee?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Gleb Lukomets</a> on <a href="https://unsplash.com/s/photos/flame?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span></p>
+
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/prometheus-parser-fennel/">Creating a Prometheus parser: Fennel</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/meaning-of-meditation/" data-toggle="tooltip"    data-placement="top" title="The meaning of meditation">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -484,7 +286,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/agile">Agile</a>
 
@@ -504,8 +306,8 @@
 
     <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -888,24 +690,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="https://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="https://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>
