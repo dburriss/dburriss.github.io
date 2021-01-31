@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-01-31T13:53:20.5582751+00:00</updated>
+  <updated>2021-01-31T16:02:07.4157654+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -52,7 +52,7 @@ You can find the &lt;a href=&quot;https://docs.datadoghq.com/integrations/openme
     metrics:
       - demo_*
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It is important that you specify which metrics you want to scrape. For this reason it is useful to prefix your metrics with an app name. In the example above I have updated my metrics to all start with **demo_*.&lt;br /&gt;
+&lt;p&gt;It is important that you specify which metrics you want to scrape. For this reason it is useful to prefix your metrics with an app name. In the example above I have updated my metrics to all start with &lt;em&gt;demo_&lt;/em&gt;.&lt;br /&gt;
 Once done editing the &lt;em&gt;conf.yaml&lt;/em&gt;, restart your Datadog agent.&lt;/p&gt;
 &lt;p&gt;Using the Web UI to check that metrics are flowing from your application is useful at this point. The most details can be seen by navigating to &lt;strong&gt;Status &amp;gt; Collector&lt;/strong&gt;. Scroll down until you see the Open Metrics section. Check that metrics sample is increasing (values do not update without a refresh).&lt;/p&gt;
 &lt;p&gt;Once values are flowing to Datadog, you can go and view them in Datadog.&lt;/p&gt;

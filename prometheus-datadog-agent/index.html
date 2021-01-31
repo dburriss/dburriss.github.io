@@ -222,7 +222,7 @@ You can find the <a href="https://docs.datadoghq.com/integrations/openmetrics/">
     metrics:
       - demo_*
 </code></pre>
-<p>It is important that you specify which metrics you want to scrape. For this reason it is useful to prefix your metrics with an app name. In the example above I have updated my metrics to all start with **demo_*.<br />
+<p>It is important that you specify which metrics you want to scrape. For this reason it is useful to prefix your metrics with an app name. In the example above I have updated my metrics to all start with <em>demo_</em>.<br />
 Once done editing the <em>conf.yaml</em>, restart your Datadog agent.</p>
 <p>Using the Web UI to check that metrics are flowing from your application is useful at this point. The most details can be seen by navigating to <strong>Status &gt; Collector</strong>. Scroll down until you see the Open Metrics section. Check that metrics sample is increasing (values do not update without a refresh).</p>
 <p>Once values are flowing to Datadog, you can go and view them in Datadog.</p>
