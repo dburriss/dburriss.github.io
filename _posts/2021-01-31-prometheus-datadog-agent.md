@@ -47,7 +47,7 @@ init_config:
       - demo_*
 ```
 
-It is important that you specify which metrics you want to scrape. For this reason it is useful to prefix your metrics with an app name. In the example above I have updated my metrics to all start with **demo_*.  
+It is important that you specify which metrics you want to scrape. For this reason it is useful to prefix your metrics with an app name. In the example above I have updated my metrics to all start with *demo_*.  
 Once done editing the *conf.yaml*, restart your Datadog agent.
 
 Using the Web UI to check that metrics are flowing from your application is useful at this point. The most details can be seen by navigating to **Status > Collector**. Scroll down until you see the Open Metrics section. Check that metrics sample is increasing (values do not update without a refresh).
