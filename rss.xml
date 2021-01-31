@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sat, 30 Jan 2021 18:40:36 +00:00</pubDate>
-    <lastBuildDate>Sat, 30 Jan 2021 18:40:36 +00:00</lastBuildDate>
+    <pubDate>Sun, 31 Jan 2021 13:49:08 +00:00</pubDate>
+    <lastBuildDate>Sun, 31 Jan 2021 13:49:08 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Prometheus Datadog Agent</title>
+      <link>https://devonburriss.me/prometheus-datadog-agent/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/prometheus-datadog-agent/</guid>
+      <description>In this post we configure a Datadog agent to scrape metrics from a Prometheus metrics endpoint.</description>
+    </item>
     
     <item>
       <title>Local Prometheus setup</title>

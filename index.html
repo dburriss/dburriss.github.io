@@ -176,29 +176,29 @@
     <div class="post-preview jumbotron">
         
         <h1 class="post-title">            
-            <a href="/local-prometheus-setup/">Local Prometheus setup</a>
+            <a href="/prometheus-datadog-agent/">Prometheus Datadog Agent</a>
         </h1>
         
         <em class="post-subtitle">
-            Setting up Prometheus locally with Docker
+            Setting up a Datadog agent to pull from a Prometheus endpoint
         </em>
         
-        <p class="post-meta">Posted by Devon Burriss on January 30, 2021</p>
+        <p class="post-meta">Posted by Devon Burriss on January 31, 2021</p>
         
             
                 <a href="/tag/prometheus"><span class="label label-default">Prometheus</span></a>
             
-                <a href="/tag/docker"><span class="label label-default">Docker</span></a>
+                <a href="/tag/datadog"><span class="label label-default">Datadog</span></a>
             
                 <a href="/tag/observability"><span class="label label-default">Observability</span></a>
             
         
         
-            <img src="/img/posts/2020/flame-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
+            <img src="/img/posts/2021/DDlogo.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         
-        <p align="justify"><p>It is useful to have a local Prometheus instance running to test the instrumentation of your application. If you are running the application on your machine, you need to make sure the Prometheus container can talk to the host machine. This is a short post detailing this setup.</p>
+        <p align="justify"><p>In the previous post we looked at setting up a local Prometheus container to scrape metrics to test the observability setup of an application locally. A lot of companies I have worked with in recent years are using hosted observability solutions like Datadog. Although Datadog is typically a push based collector, a little known feature is that the agent can scrape from a Prometheus endpoint. In this post we will look at a simple setup for this locally.</p>
 </p></p>
-        <p class="text-left"><a class="btn btn-primary btn-lg" href="/local-prometheus-setup/" role="button">Read more</a></p>
+        <p class="text-left"><a class="btn btn-primary btn-lg" href="/prometheus-datadog-agent/" role="button">Read more</a></p>
     </div>
     <div class="clearfix"></div>
     <hr>
@@ -215,6 +215,175 @@
 
     
 
+     
+        
+     
+        
+        
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+    
+
+    <div class="post-preview ">
+        
+            
+        
+         <img src="/img/posts/2020/flame-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+
+        <a href="/local-prometheus-setup/">
+            <h2 class="post-title">            Local Prometheus setup
+            </h2>
+            
+            
+            <h3 class="post-subtitle">
+                Setting up Prometheus locally with Docker
+            </h3>
+            
+        </a>
+        <p class="post-meta">Posted by Devon Burriss' Blog on January 30, 2021</p>
+        
+            
+                <a href="/tag/prometheus"><span class="label label-default">Prometheus</span></a>
+            
+                <a href="/tag/docker"><span class="label label-default">Docker</span></a>
+            
+                <a href="/tag/observability"><span class="label label-default">Observability</span></a>
+            
+        
+    </div>
+    <hr>
+    
+
+
+
+
+    
+
+     
+        
      
         
      
@@ -380,6 +549,8 @@
 
     
 
+     
+        
      
         
      
@@ -555,6 +726,8 @@
         
      
         
+     
+        
         
         
      
@@ -712,6 +885,8 @@
 
     
 
+     
+        
      
         
      
@@ -881,6 +1056,8 @@
 
     
 
+     
+        
      
         
      
@@ -1064,6 +1241,8 @@
         
      
         
+     
+        
         
         
      
@@ -1217,6 +1396,8 @@
 
     
 
+     
+        
      
         
      
@@ -1404,6 +1585,8 @@
         
      
         
+     
+        
         
         
      
@@ -1533,171 +1716,6 @@
             
         </a>
         <p class="post-meta">Posted by Devon Burriss' Blog on November 04, 2018</p>
-        
-            
-                <a href="/tag/functional"><span class="label label-default">Functional</span></a>
-            
-                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-            
-                <a href="/tag/net"><span class="label label-default">.NET</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/posts/2018/broken-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/how-to-fsharp-pt-8/">
-            <h2 class="post-title">            How to F# - Part 8
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Handling Errors Elegantly
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on October 30, 2018</p>
         
             
                 <a href="/tag/functional"><span class="label label-default">Functional</span></a>
@@ -1881,6 +1899,12 @@
 <a class="badge badge-info" href="/tag/collections/" style="font-size: 80%">
     <span class="site-tag">                
         Collections
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/datadog/" style="font-size: 80%">
+    <span class="site-tag">                
+        Datadog
     </span>
 </a>
 

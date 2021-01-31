@@ -3,13 +3,63 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-01-30T18:40:36.8265118+00:00</updated>
+  <updated>2021-01-31T13:49:08.9765417+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/prometheus-datadog-agent/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/prometheus-datadog-agent/"/>
+    <title>Prometheus Datadog Agent</title>
+    <updated>2021-01-31T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/prometheus-datadog-agent/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;In the previous post we looked at setting up a local Prometheus container to scrape metrics to test the observability setup of an application locally. A lot of companies I have worked with in recent years are using hosted observability solutions like Datadog. Although Datadog is typically a push based collector, a little known feature is that the agent can scrape from a Prometheus endpoint. In this post we will look at a simple setup for this locally.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;To get started you need to have the &lt;a href=&quot;https://docs.datadoghq.com/agent/&quot;&gt;Datadog agent installed&lt;/a&gt;.&lt;br /&gt;
+Once you have the agent installed, you will need to edit &lt;em&gt;openmetrics.d/conf.yaml&lt;/em&gt;. On my Mac this is found in &lt;em&gt;/opt/datadog-agent/etc/conf.d/openmetrics.d/conf.yaml&lt;/em&gt;.&lt;br /&gt;
+Optionally, you can launch the agent&apos;s Web UI. On my install it is at &lt;a href=&quot;http://127.0.0.1:5002/&quot;&gt;http://127.0.0.1:5002/&lt;/a&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Click &lt;strong&gt;Checks &amp;gt; Manage Check Checks&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;If &lt;em&gt;openmetrics.d/conf.yaml&lt;/em&gt; is not available, select &lt;strong&gt;Add Check&lt;/strong&gt; from the select box (NOT &lt;em&gt;prometheus.d/conf.yaml&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;Configure the yaml value shown below.
+You can find the &lt;a href=&quot;https://docs.datadoghq.com/integrations/openmetrics/&quot;&gt;docs here&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;init_config:
+  ## Every instance is scheduled independent of the others.
+  instances:
+
+    ## @param prometheus_url - string - required
+    ## The URL where your application metrics are exposed by Prometheus.
+    #
+  - prometheus_url: http://localhost:7071/api/metrics
+
+    ## @param namespace - string - required
+    ## The namespace to be prepended to all metrics.
+    #
+    namespace: azure.functions
+
+    ## @param metrics - list of strings - required
+    ## List of metrics to be fetched from the prometheus endpoint, if there&apos;s a
+    ## value it&apos;ll be renamed. This list should contain at least one metric.
+    #
+    metrics:
+      - demo_*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is important that you specify which metrics you want to scrape. For this reason it is useful to prefix your metrics with an app name. In the example above I have updated my metrics to all start with **demo_*.&lt;br /&gt;
+Once done editing the &lt;em&gt;conf.yaml&lt;/em&gt;, restart your Datadog agent.&lt;/p&gt;
+&lt;p&gt;Using the Web UI to check that metrics are flowing from your application is useful at this point. The most details can be seen by navigating to &lt;strong&gt;Status &amp;gt; Collector&lt;/strong&gt;. Scroll down until you see the Open Metrics section. Check that metrics sample is increasing (values do not update without a refresh).&lt;/p&gt;
+&lt;p&gt;Once values are flowing to Datadog, you can go and view them in Datadog.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2021/azurefunctiongraph.png&quot; alt=&quot;sale demo graph&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Datadog allows you to have a mix of push and pull metrics if you have applications that were built with different strategies. This is a really nice touch rather than having different places where applications are monitored. In my next post I will be showing how you can use this to monitor custom events in Azure Functions from Datadog.&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/local-prometheus-setup/</id>
