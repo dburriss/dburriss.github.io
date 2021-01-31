@@ -53,6 +53,8 @@ Prometheus should now be up and running and if your application is emitting metr
 
 ![](../img/posts/2020/prometheus_sale_count.png)
 
-I will be making use of this in an upcoming post I plan to release soon. In my next post though I will look at using Datadog instead of a Prometheus server. I hope you find this useful.
+## Conclusion
+
+I will be making use of this in an upcoming post I plan to release soon. In my [next post](/prometheus-datadog-agent) though I will look at using Datadog instead of a Prometheus server. I hope you find this useful.
 
 <span>Photo by <a href="https://unsplash.com/@_ggleee?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Gleb Lukomets</a> on <a href="https://unsplash.com/s/photos/flame?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
