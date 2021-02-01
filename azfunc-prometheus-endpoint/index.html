@@ -269,7 +269,7 @@ let metrics ([&lt;HttpTrigger(AuthorizationLevel.Anonymous, &quot;get&quot;, Rou
 </code></pre>
 <p>Nothing too interesting here other than the <code>ContentType</code> being &quot;text/plain; version=0.0.4&quot; as per Prometheus specification.</p>
 <h2>How it's going</h2>
-<p>Having the metrics endpoint up, all that is left is to <a href="/setup-local-prometheus">setup a local Prometheus instance</a> to call our Azure Function.</p>
+<p>Having the metrics endpoint up, all that is left is to <a href="/local-prometheus-setup">setup a local Prometheus instance</a> to call our Azure Function.</p>
 <p>Looking at Prometheus' UI at <code>http://localhost:9090/graph</code> we can query for <code>sale_count</code> and we can see the metrics are coming in:</p>
 <p><img src="../img/posts/2020/prometheus_sale_count.png" alt="Prometheus graph" /></p>
 <p>At work we use Datadog and it turns out the <a href="https://www.datadoghq.com/blog/monitor-prometheus-metrics/">Datadog agent has support for scraping a Prometheus endpoint</a>. Once we have the <a href="/prometheus-datadog-agent">Datadog agent setup</a> we can see the metrics flowing into Datadog.</p>

@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-02-01T19:12:07.1386046+00:00</updated>
+  <updated>2021-02-01T19:24:07.4163038+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -99,7 +99,7 @@ let metrics ([&amp;lt;HttpTrigger(AuthorizationLevel.Anonymous, &amp;quot;get&am
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Nothing too interesting here other than the &lt;code&gt;ContentType&lt;/code&gt; being &amp;quot;text/plain; version=0.0.4&amp;quot; as per Prometheus specification.&lt;/p&gt;
 &lt;h2&gt;How it&apos;s going&lt;/h2&gt;
-&lt;p&gt;Having the metrics endpoint up, all that is left is to &lt;a href=&quot;/setup-local-prometheus&quot;&gt;setup a local Prometheus instance&lt;/a&gt; to call our Azure Function.&lt;/p&gt;
+&lt;p&gt;Having the metrics endpoint up, all that is left is to &lt;a href=&quot;/local-prometheus-setup&quot;&gt;setup a local Prometheus instance&lt;/a&gt; to call our Azure Function.&lt;/p&gt;
 &lt;p&gt;Looking at Prometheus&apos; UI at &lt;code&gt;http://localhost:9090/graph&lt;/code&gt; we can query for &lt;code&gt;sale_count&lt;/code&gt; and we can see the metrics are coming in:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;../img/posts/2020/prometheus_sale_count.png&quot; alt=&quot;Prometheus graph&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;At work we use Datadog and it turns out the &lt;a href=&quot;https://www.datadoghq.com/blog/monitor-prometheus-metrics/&quot;&gt;Datadog agent has support for scraping a Prometheus endpoint&lt;/a&gt;. Once we have the &lt;a href=&quot;/prometheus-datadog-agent&quot;&gt;Datadog agent setup&lt;/a&gt; we can see the metrics flowing into Datadog.&lt;/p&gt;
