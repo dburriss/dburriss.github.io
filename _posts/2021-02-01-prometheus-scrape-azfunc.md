@@ -6,7 +6,7 @@ description: "A simple example showing how to expose a Prometheus endpoint from 
 permalink: azfunc-prometheus-endpoint
 author: "Devon Burriss"
 category: Software Development
-tags: [F#,Monitoring,Prometheus,FsAdvent]
+tags: [F#,Observability,Prometheus]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
@@ -15,8 +15,6 @@ published: true
 ---
 For years now I have noticed a blind-spot when using serverless functions and observability platforms like Datadog. Custom metrics. Observability tools are constantly improving their integrations with cloud providers but are still not on par with having access to the OS like with VMs or containers. In this post I explore a little proof-of-concept I did to get custom metrics out of Azure Functions.
 <!--more-->
-
-> This post is part of [FsAdvent 2020](https://sergeytihon.com/2020/10/22/f-advent-calendar-in-english-2020/).
 
 ## How it started
 
@@ -30,7 +28,7 @@ You can find my [post on Fennel here](/prometheus-parser-fennel).
 
 ## Taking the steps
 
-![Design for scraping metrics from Azure Functions](/img/posts/2020/azfunc_prom_setup.jpg)
+![Design for scraping metrics from Azure Functions](../img/posts/2020/azfunc_prom_setup.jpg)
 
 So my idea is fairly simple. In any function that needs to emit metrics, use a Azure Function binding to write them to some store. I chose an Azure Storage Queue for simplicity but I need to post a disclaimer at this point:
 
@@ -41,7 +39,7 @@ So my idea is fairly simple. In any function that needs to emit metrics, use a A
 > 1. Resilience and sending custom metrics only if state has changed
 > 1. This ignores a lot of the more complex things Prometheus exporters do
 > 
-> The code will be available on my [GitHub](https://github.com/dburriss). 
+> The code will be available on my [GitHub](https://github.com/dburriss/Fennel.MetricsDemo). 
 
 As a reminder, the Prometheus format is a text based format.
 
@@ -55,43 +53,48 @@ http_requests_total{method="post",code="400"}    3 1395066363000
 
 ```fsharp
 // The builder ensures that a metric has HELP and TYPE information when written to a string
+// For implementation: https://github.com/dburriss/Fennel.MetricsDemo/blob/master/Fennel.MetricsDemo/PrometheusLogBuilder.fs
 let metricsBuilder = PrometheusLogBuilder()
                         .Define("sale_count", MetricType.Counter, "Number of sales that have occurred.")
 
+// Function for generating some simple metrics
 [<FunctionName("MetricsGenerator")>]
-let metricsGenerator(
-                    [<TimerTrigger("*/6 * * * * *")>]myTimer: TimerInfo,
-                    [<Queue("logs")>] queue : ICollector<string>) =
-    // random number for some sales coming in
+let metricsGenerator([<TimerTrigger("*/6 * * * * *")>]myTimer: TimerInfo, [<Queue("logs")>] queue : ICollector<string>, log: ILogger) =
+    let msg = sprintf "Generating sales at: %A" DateTime.Now
+    log.LogInformation msg
     let sales = Random().Next(0, 50) |> float
-    // use the builder to return a string of the array of metrics using Fennel under the hood
-    let promLogs = metricsBuilder.Stringify [|
-        Line.metric (MetricName "sale_count") (MetricValue.FloatValue sales) [] None
-    |]
-    queue.Add(promLogs)
+    let metric = Line.metric (MetricName "demo_sale_count") (MetricValue.FloatValue sales) [] (Some(Timestamp DateTimeOffset.UtcNow))
+
+    queue.Add(Line.asString metric)
+    log.LogInformation (sprintf "Sales : %f" sales)
 ```
 
 Next create a HTTP Azure Function to serve as the `/metrics` endpoint to be scraped by Prometheus.
 
 ```fsharp
 [<FunctionName("metrics")>]
-let metrics ([<HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)>]_: HttpRequest) =
+let metrics ([<HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)>]req: HttpRequest) (log: ILogger) =
     async {
-        // get queue client
+        log.LogInformation("Fetching prometheus metrics...")
+        // setup queue client
         let queueName = "logs"
         let connectionString = Environment.GetEnvironmentVariable("AzureWebJobsStorage", EnvironmentVariableTarget.Process)
         let queueClient = QueueClient(connectionString, queueName)
+        
         if queueClient.Exists().Value then
-            // pull from queue and build up a string to return
+            // receive messages
             let messages = queueClient.ReceiveMessages(Nullable<int>(32), Nullable<TimeSpan>(TimeSpan.FromSeconds(20.))).Value
-            let sb = StringBuilder()
+            log.LogInformation(sprintf "Received %i logs." messages.Length)
+            // return message as text
             let processMessage (msg : QueueMessage) =
                 let txt = Encoding.UTF8.GetString(Convert.FromBase64String(msg.MessageText))
-                sb.Append(sprintf "%s\n" txt) |> ignore
                 queueClient.DeleteMessage(msg.MessageId, msg.PopReceipt) |> ignore
-            messages |> Array.iter processMessage
-            let responseTxt = sb.ToString().TrimEnd()
-            // return as content matching what Prometheus expects
+                txt
+            let metrics = messages |> Array.map processMessage
+            // build up Prometheus text
+            let responseTxt = metricsBuilder.Build(metrics)
+            
+            // return as Prometheus HTTP content
             let response = ContentResult()
             response.Content <- responseTxt
             response.ContentType <- "text/plain; version=0.0.4"
@@ -110,27 +113,15 @@ Having the metrics endpoint up, all that is left is to [setup a local Prometheus
 
 Looking at Prometheus' UI at `http://localhost:9090/graph` we can query for `sale_count` and we can see the metrics are coming in:
 
-![Prometheus graph](/img/posts/2020/prometheus_sale_count.png)
+![Prometheus graph](../img/posts/2020/prometheus_sale_count.png)
 
-At work we use Datadog and it turns out the [Datadog agent has support for scraping a Prometheus endpoint](https://www.datadoghq.com/blog/monitor-prometheus-metrics/). Once we have the [Datadog agent setup](/datadog-prometheus-scraping) we can see the metrics flowing into Datadog.
+At work we use Datadog and it turns out the [Datadog agent has support for scraping a Prometheus endpoint](https://www.datadoghq.com/blog/monitor-prometheus-metrics/). Once we have the [Datadog agent setup](/prometheus-datadog-agent) we can see the metrics flowing into Datadog.
 
-![Datadog metric from Prometheus](/img/posts/2020/datadog_sales.png)
+![Datadog metric from Prometheus](../img/posts/2021/azurefunctiongraph.png)
 
 ## Conclusion
 
-This was a quick proof-of-concept of whether this approach was worth pursuing. I intend to take it further by running this in Azure and have a container with an agent reach out for metrics. It is unfortunate that the workarounds described here are necessary at this point but if we want a view on business metrics, we need to get creative. What I do like about this approach though is that it leverages bindings as well as Prometheus' scraping model, so not much had to be re-invented here. I am sure in the future we will see better baked in solutions for this but for now we work with what we have.
+This was a quick proof-of-concept of whether this approach was worth pursuing. I intend to take it further by running this in Azure and have a container with an agent reach out for metrics. It is unfortunate that the workarounds described here are necessary at this point but if we want a view on business metrics, we need to get creative. What I do like about this approach though is that it leverages Azure function bindings as well as Prometheus' scraping model, so not much had to be re-invented here. I am sure in the future we will see better baked in solutions for this but for now we work with what we have.
 
-<!-- 
-https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config
-
-docker run --rm -it -p 9090:9090 -v /Users/dburriss@xebia.com/GitHub/Fennel.MetricsDemo/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
-
-check its up: http://localhost:9090/graph
-
-https://www.datadoghq.com/blog/monitor-prometheus-metrics/
-
-https://medium.com/@jeffhollan/ordered-queue-processing-in-azure-functions-with-sessions-c42ee21e689d
-
-https://michaelscodingspot.com/performance-counters/ -->
 
 <span>Photo by <a href="https://unsplash.com/@_ggleee?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Gleb Lukomets</a> on <a href="https://unsplash.com/s/photos/flame?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
