@@ -19,33 +19,42 @@
     
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly just adventures in code.">
+    <title>Capturing custom business metrics in Azure Functions</title>
+    <meta name="description" content="A simple example showing how to expose a Prometheus endpoint from Azure Functions using the Fennel library">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="https://devonburriss.me/azfunc-prometheus-endpoint/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly just adventures in code.">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="Capturing custom business metrics in Azure Functions">
+    <meta itemprop="description" content="A simple example showing how to expose a Prometheus endpoint from Azure Functions using the Fennel library">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/flame-500.jpg">
+    
+    <meta itemprop="datePublished" content="2/1/2021 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="2/1/2021 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Capturing custom business metrics in Azure Functions - A Proof-of-concept for scraping Prometheus metrics from Azure Functions" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/azfunc-prometheus-endpoint/" />
+    <meta name="headline" content="Capturing custom business metrics in Azure Functions - A Proof-of-concept for scraping Prometheus metrics from Azure Functions" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly just adventures in code.">
+    <meta name="twitter:title" content="Capturing custom business metrics in Azure Functions">
+    <meta name="twitter:description" content="A simple example showing how to expose a Prometheus endpoint from Azure Functions using the Fennel library">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/flame-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="Capturing custom business metrics in Azure Functions" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me//page/7/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly just adventures in code." />
+    <meta property="og:url" content="https://devonburriss.me/azfunc-prometheus-endpoint/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/flame-500.jpg" />
+    <meta property="og:description" content="A simple example showing how to expose a Prometheus endpoint from Azure Functions using the Fennel library" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -146,879 +155,154 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/dashboard-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Capturing custom business metrics in Azure Functions</h1>
+                        
+                        <h2 class="subheading">A Proof-of-concept for scraping Prometheus metrics from Azure Functions</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on February 01, 2021</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
+                                <a href="/tag/observability" class="label label-default">Observability</a>
+                            
+                                <a href="/tag/prometheus" class="label label-default">Prometheus</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			    
+				<p>For years now I have noticed a blind-spot when using serverless functions and observability platforms like Datadog. Custom metrics. Observability tools are constantly improving their integrations with cloud providers but are still not on par with having access to the OS like with VMs or containers. In this post I explore a little proof-of-concept I did to get custom metrics out of Azure Functions.</p>
+<!--more-->
+<h2>How it started</h2>
+<p>A couple years back I explored solving this with a <a href="https://github.com/dburriss/DatadogAzureFunctions">custom binding</a> to Datadog but it was a naive implementation that just called Datadog's HTTP API. About a year ago I had the idea of scraping these metrics using Prometheus but at the time I couldn't find a library that easily allowed me to &quot;speak Promethean&quot;. The .NET libraries I found didn't seem to allow you to create or parse Prometheus logs, instead handling things from end-to-end. Usually as middleware.</p>
+<h2>Clearing the path</h2>
+<p>So about 7 months back I created a small library called <a href="https://github.com/dburriss/fennel">Fennel</a> which has a very simple purpose. Parse Prometheus text to objects, and turn these metric objects into valid Prometheus text. This gave me the building block I needed to easily try my experiment.</p>
+<p>You can find my <a href="/prometheus-parser-fennel">post on Fennel here</a>.</p>
+<h2>Taking the steps</h2>
+<p><img src="../img/posts/2020/azfunc_prom_setup.jpg" alt="Design for scraping metrics from Azure Functions" /></p>
+<p>So my idea is fairly simple. In any function that needs to emit metrics, use a Azure Function binding to write them to some store. I chose an Azure Storage Queue for simplicity but I need to post a disclaimer at this point:</p>
+<blockquote>
+<p>This is demo code hacked together in an evening and does not consider the following very important production quality points:</p>
+<ol>
+<li>Longer persistence of the metrics</li>
+<li>Multiple consumers of the metrics</li>
+<li>Enforcing ordering if more than 1 function instance is running</li>
+<li>Resilience and sending custom metrics only if state has changed</li>
+<li>This ignores a lot of the more complex things Prometheus exporters do</li>
+</ol>
+<p>The code will be available on my <a href="https://github.com/dburriss/Fennel.MetricsDemo">GitHub</a>.</p>
+</blockquote>
+<p>As a reminder, the Prometheus format is a text based format.</p>
+<pre><code class="language-text"># This is a comment but the following 2 have meaning
+# HELP http_requests_total The total number of HTTP requests.
+# TYPE http_requests_total counter
+http_requests_total{method=&quot;post&quot;,code=&quot;200&quot;} 1027 1395066363000
+http_requests_total{method=&quot;post&quot;,code=&quot;400&quot;}    3 1395066363000
+</code></pre>
+<pre><code class="language-fsharp">// The builder ensures that a metric has HELP and TYPE information when written to a string
+// For implementation: https://github.com/dburriss/Fennel.MetricsDemo/blob/master/Fennel.MetricsDemo/PrometheusLogBuilder.fs
+let metricsBuilder = PrometheusLogBuilder()
+                        .Define(&quot;sale_count&quot;, MetricType.Counter, &quot;Number of sales that have occurred.&quot;)
 
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
+// Function for generating some simple metrics
+[&lt;FunctionName(&quot;MetricsGenerator&quot;)&gt;]
+let metricsGenerator([&lt;TimerTrigger(&quot;*/6 * * * * *&quot;)&gt;]myTimer: TimerInfo, [&lt;Queue(&quot;logs&quot;)&gt;] queue : ICollector&lt;string&gt;, log: ILogger) =
+    let msg = sprintf &quot;Generating sales at: %A&quot; DateTime.Now
+    log.LogInformation msg
+    let sales = Random().Next(0, 50) |&gt; float
+    let metric = Line.metric (MetricName &quot;demo_sale_count&quot;) (MetricValue.FloatValue sales) [] (Some(Timestamp DateTimeOffset.UtcNow))
 
-    <div class="post-preview ">
+    queue.Add(Line.asString metric)
+    log.LogInformation (sprintf &quot;Sales : %f&quot; sales)
+</code></pre>
+<p>Next create a HTTP Azure Function to serve as the <code>/metrics</code> endpoint to be scraped by Prometheus.</p>
+<pre><code class="language-fsharp">[&lt;FunctionName(&quot;metrics&quot;)&gt;]
+let metrics ([&lt;HttpTrigger(AuthorizationLevel.Anonymous, &quot;get&quot;, Route = null)&gt;]req: HttpRequest) (log: ILogger) =
+    async {
+        log.LogInformation(&quot;Fetching prometheus metrics...&quot;)
+        // setup queue client
+        let queueName = &quot;logs&quot;
+        let connectionString = Environment.GetEnvironmentVariable(&quot;AzureWebJobsStorage&quot;, EnvironmentVariableTarget.Process)
+        let queueClient = QueueClient(connectionString, queueName)
         
+        if queueClient.Exists().Value then
+            // receive messages
+            let messages = queueClient.ReceiveMessages(Nullable&lt;int&gt;(32), Nullable&lt;TimeSpan&gt;(TimeSpan.FromSeconds(20.))).Value
+            log.LogInformation(sprintf &quot;Received %i logs.&quot; messages.Length)
+            // return message as text
+            let processMessage (msg : QueueMessage) =
+                let txt = Encoding.UTF8.GetString(Convert.FromBase64String(msg.MessageText))
+                queueClient.DeleteMessage(msg.MessageId, msg.PopReceipt) |&gt; ignore
+                txt
+            let metrics = messages |&gt; Array.map processMessage
+            // build up Prometheus text
+            let responseTxt = metricsBuilder.Build(metrics)
             
+            // return as Prometheus HTTP content
+            let response = ContentResult()
+            response.Content &lt;- responseTxt
+            response.ContentType &lt;- &quot;text/plain; version=0.0.4&quot;
+            response.StatusCode &lt;- Nullable&lt;int&gt;(200)
+            return response :&gt; IActionResult
+        else return NoContentResult() :&gt; IActionResult
         
-         <img src="/img/explore-590.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+    } |&gt; Async.StartAsTask
+</code></pre>
+<p>Nothing too interesting here other than the <code>ContentType</code> being &quot;text/plain; version=0.0.4&quot; as per Prometheus specification.</p>
+<h2>How it's going</h2>
+<p>Having the metrics endpoint up, all that is left is to <a href="/setup-local-prometheus">setup a local Prometheus instance</a> to call our Azure Function.</p>
+<p>Looking at Prometheus' UI at <code>http://localhost:9090/graph</code> we can query for <code>sale_count</code> and we can see the metrics are coming in:</p>
+<p><img src="../img/posts/2020/prometheus_sale_count.png" alt="Prometheus graph" /></p>
+<p>At work we use Datadog and it turns out the <a href="https://www.datadoghq.com/blog/monitor-prometheus-metrics/">Datadog agent has support for scraping a Prometheus endpoint</a>. Once we have the <a href="/prometheus-datadog-agent">Datadog agent setup</a> we can see the metrics flowing into Datadog.</p>
+<p><img src="../img/posts/2021/azurefunctiongraph.png" alt="Datadog metric from Prometheus" /></p>
+<h2>Conclusion</h2>
+<p>This was a quick proof-of-concept of whether this approach was worth pursuing. I intend to take it further by running this in Azure and have a container with an agent reach out for metrics. It is unfortunate that the workarounds described here are necessary at this point but if we want a view on business metrics, we need to get creative. What I do like about this approach though is that it leverages Azure function bindings as well as Prometheus' scraping model, so not much had to be re-invented here. I am sure in the future we will see better baked in solutions for this but for now we work with what we have.</p>
+<p><span>Photo by <a href="https://unsplash.com/@_ggleee?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Gleb Lukomets</a> on <a href="https://unsplash.com/s/photos/flame?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span></p>
 
-        <a href="/software-development-is-like-a-piece-of-string/">
-            <h2 class="post-title">            Software development is like a piece of string
-            </h2>
-            
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on October 03, 2014</p>
-        
-            
-                <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-            
-                <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-            
-                <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-            
-        
-    </div>
-    <hr>
-    
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/prometheus-datadog-agent/">Prometheus Datadog Agent</a></li>
+                                                <li><a href="/local-prometheus-setup/">Local Prometheus setup</a></li>
+                                                <li><a href="/prometheus-parser-fennel/">Creating a Prometheus parser: Fennel</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/prometheus-datadog-agent/" data-toggle="tooltip"    data-placement="top" title="Prometheus Datadog Agent">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
 
+            </div>
 
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/explore-590.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/testing-your-data-repositories/">
-            <h2 class="post-title">            Testing your data repositories
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Avoiding dependency on a data layer.
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on September 07, 2014</p>
-        
-            
-                <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-            
-                <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-            
-                <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-            
-                <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-            
-                <a href="/tag/java"><span class="label label-default">Java</span></a>
-            
-                <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/explore-590.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/single-respon/">
-            <h2 class="post-title">            Single Responsibility Principle
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                The S in SOLID.
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on September 05, 2014</p>
-        
-            
-                <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-            
-                <a href="/tag/solid"><span class="label label-default">SOLID</span></a>
-            
-                <a href="/tag/oop"><span class="label label-default">OOP</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="//img/posts/2014/old-clock-800.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/estimation/">
-            <h2 class="post-title">            Estimation
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                Tackling the uncertainty of software estimation.
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on August 07, 2014</p>
-        
-            
-                <a href="/tag/agile"><span class="label label-default">Agile</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/explore-590.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/the-way-we-write-code/">
-            <h2 class="post-title">            The way we write code…and how we talk about it
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                The true challenge in writing good software.
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on July 18, 2014</p>
-        
-            
-                <a href="/tag/clean-code"><span class="label label-default">Clean Code</span></a>
-            
-                <a href="/tag/agile"><span class="label label-default">Agile</span></a>
-            
-                <a href="/tag/design-patterns"><span class="label label-default">Design Patterns</span></a>
-            
-                <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-            
-                <a href="/tag/ddd"><span class="label label-default">DDD</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-<ul class="pager">
-    
-    
-    
-    <li class="next"> 
-        <a class="pagination-item newer" href="/page/6/">Newer &rarr;</a>
-    </li>
-        
-    
-</ul>
-		</div>
-
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -1060,7 +344,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/agile">Agile</a>
 
@@ -1080,8 +364,8 @@
 
     <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -1470,24 +754,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="https://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="https://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>

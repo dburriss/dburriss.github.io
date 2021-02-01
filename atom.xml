@@ -3,13 +3,111 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-01-31T16:02:07.4157654+00:00</updated>
+  <updated>2021-02-01T19:07:25.3085689+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/azfunc-prometheus-endpoint/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/azfunc-prometheus-endpoint/"/>
+    <title>Capturing custom business metrics in Azure Functions</title>
+    <updated>2021-02-01T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/azfunc-prometheus-endpoint/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;For years now I have noticed a blind-spot when using serverless functions and observability platforms like Datadog. Custom metrics. Observability tools are constantly improving their integrations with cloud providers but are still not on par with having access to the OS like with VMs or containers. In this post I explore a little proof-of-concept I did to get custom metrics out of Azure Functions.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;How it started&lt;/h2&gt;
+&lt;p&gt;A couple years back I explored solving this with a &lt;a href=&quot;https://github.com/dburriss/DatadogAzureFunctions&quot;&gt;custom binding&lt;/a&gt; to Datadog but it was a naive implementation that just called Datadog&apos;s HTTP API. About a year ago I had the idea of scraping these metrics using Prometheus but at the time I couldn&apos;t find a library that easily allowed me to &amp;quot;speak Promethean&amp;quot;. The .NET libraries I found didn&apos;t seem to allow you to create or parse Prometheus logs, instead handling things from end-to-end. Usually as middleware.&lt;/p&gt;
+&lt;h2&gt;Clearing the path&lt;/h2&gt;
+&lt;p&gt;So about 7 months back I created a small library called &lt;a href=&quot;https://github.com/dburriss/fennel&quot;&gt;Fennel&lt;/a&gt; which has a very simple purpose. Parse Prometheus text to objects, and turn these metric objects into valid Prometheus text. This gave me the building block I needed to easily try my experiment.&lt;/p&gt;
+&lt;p&gt;You can find my &lt;a href=&quot;/prometheus-parser-fennel&quot;&gt;post on Fennel here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Taking the steps&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2020/azfunc_prom_setup.jpg&quot; alt=&quot;Design for scraping metrics from Azure Functions&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;So my idea is fairly simple. In any function that needs to emit metrics, use a Azure Function binding to write them to some store. I chose an Azure Storage Queue for simplicity but I need to post a disclaimer at this point:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is demo code hacked together in an evening and does not consider the following very important production quality points:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Longer persistence of the metrics&lt;/li&gt;
+&lt;li&gt;Multiple consumers of the metrics&lt;/li&gt;
+&lt;li&gt;Enforcing ordering if more than 1 function instance is running&lt;/li&gt;
+&lt;li&gt;Resilience and sending custom metrics only if state has changed&lt;/li&gt;
+&lt;li&gt;This ignores a lot of the more complex things Prometheus exporters do&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The code will be available on my &lt;a href=&quot;https://github.com/dburriss/Fennel.MetricsDemo&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As a reminder, the Prometheus format is a text based format.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;# This is a comment but the following 2 have meaning
+# HELP http_requests_total The total number of HTTP requests.
+# TYPE http_requests_total counter
+http_requests_total{method=&amp;quot;post&amp;quot;,code=&amp;quot;200&amp;quot;} 1027 1395066363000
+http_requests_total{method=&amp;quot;post&amp;quot;,code=&amp;quot;400&amp;quot;}    3 1395066363000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// The builder ensures that a metric has HELP and TYPE information when written to a string
+// For implementation: https://github.com/dburriss/Fennel.MetricsDemo/blob/master/Fennel.MetricsDemo/PrometheusLogBuilder.fs
+let metricsBuilder = PrometheusLogBuilder()
+                        .Define(&amp;quot;sale_count&amp;quot;, MetricType.Counter, &amp;quot;Number of sales that have occurred.&amp;quot;)
+
+// Function for generating some simple metrics
+[&amp;lt;FunctionName(&amp;quot;MetricsGenerator&amp;quot;)&amp;gt;]
+let metricsGenerator([&amp;lt;TimerTrigger(&amp;quot;*/6 * * * * *&amp;quot;)&amp;gt;]myTimer: TimerInfo, [&amp;lt;Queue(&amp;quot;logs&amp;quot;)&amp;gt;] queue : ICollector&amp;lt;string&amp;gt;, log: ILogger) =
+    let msg = sprintf &amp;quot;Generating sales at: %A&amp;quot; DateTime.Now
+    log.LogInformation msg
+    let sales = Random().Next(0, 50) |&amp;gt; float
+    let metric = Line.metric (MetricName &amp;quot;demo_sale_count&amp;quot;) (MetricValue.FloatValue sales) [] (Some(Timestamp DateTimeOffset.UtcNow))
+
+    queue.Add(Line.asString metric)
+    log.LogInformation (sprintf &amp;quot;Sales : %f&amp;quot; sales)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next create a HTTP Azure Function to serve as the &lt;code&gt;/metrics&lt;/code&gt; endpoint to be scraped by Prometheus.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;[&amp;lt;FunctionName(&amp;quot;metrics&amp;quot;)&amp;gt;]
+let metrics ([&amp;lt;HttpTrigger(AuthorizationLevel.Anonymous, &amp;quot;get&amp;quot;, Route = null)&amp;gt;]req: HttpRequest) (log: ILogger) =
+    async {
+        log.LogInformation(&amp;quot;Fetching prometheus metrics...&amp;quot;)
+        // setup queue client
+        let queueName = &amp;quot;logs&amp;quot;
+        let connectionString = Environment.GetEnvironmentVariable(&amp;quot;AzureWebJobsStorage&amp;quot;, EnvironmentVariableTarget.Process)
+        let queueClient = QueueClient(connectionString, queueName)
+        
+        if queueClient.Exists().Value then
+            // receive messages
+            let messages = queueClient.ReceiveMessages(Nullable&amp;lt;int&amp;gt;(32), Nullable&amp;lt;TimeSpan&amp;gt;(TimeSpan.FromSeconds(20.))).Value
+            log.LogInformation(sprintf &amp;quot;Received %i logs.&amp;quot; messages.Length)
+            // return message as text
+            let processMessage (msg : QueueMessage) =
+                let txt = Encoding.UTF8.GetString(Convert.FromBase64String(msg.MessageText))
+                queueClient.DeleteMessage(msg.MessageId, msg.PopReceipt) |&amp;gt; ignore
+                txt
+            let metrics = messages |&amp;gt; Array.map processMessage
+            // build up Prometheus text
+            let responseTxt = metricsBuilder.Build(metrics)
+            
+            // return as Prometheus HTTP content
+            let response = ContentResult()
+            response.Content &amp;lt;- responseTxt
+            response.ContentType &amp;lt;- &amp;quot;text/plain; version=0.0.4&amp;quot;
+            response.StatusCode &amp;lt;- Nullable&amp;lt;int&amp;gt;(200)
+            return response :&amp;gt; IActionResult
+        else return NoContentResult() :&amp;gt; IActionResult
+        
+    } |&amp;gt; Async.StartAsTask
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nothing too interesting here other than the &lt;code&gt;ContentType&lt;/code&gt; being &amp;quot;text/plain; version=0.0.4&amp;quot; as per Prometheus specification.&lt;/p&gt;
+&lt;h2&gt;How it&apos;s going&lt;/h2&gt;
+&lt;p&gt;Having the metrics endpoint up, all that is left is to &lt;a href=&quot;/setup-local-prometheus&quot;&gt;setup a local Prometheus instance&lt;/a&gt; to call our Azure Function.&lt;/p&gt;
+&lt;p&gt;Looking at Prometheus&apos; UI at &lt;code&gt;http://localhost:9090/graph&lt;/code&gt; we can query for &lt;code&gt;sale_count&lt;/code&gt; and we can see the metrics are coming in:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2020/prometheus_sale_count.png&quot; alt=&quot;Prometheus graph&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;At work we use Datadog and it turns out the &lt;a href=&quot;https://www.datadoghq.com/blog/monitor-prometheus-metrics/&quot;&gt;Datadog agent has support for scraping a Prometheus endpoint&lt;/a&gt;. Once we have the &lt;a href=&quot;/prometheus-datadog-agent&quot;&gt;Datadog agent setup&lt;/a&gt; we can see the metrics flowing into Datadog.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2021/azurefunctiongraph.png&quot; alt=&quot;Datadog metric from Prometheus&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;This was a quick proof-of-concept of whether this approach was worth pursuing. I intend to take it further by running this in Azure and have a container with an agent reach out for metrics. It is unfortunate that the workarounds described here are necessary at this point but if we want a view on business metrics, we need to get creative. What I do like about this approach though is that it leverages Azure function bindings as well as Prometheus&apos; scraping model, so not much had to be re-invented here. I am sure in the future we will see better baked in solutions for this but for now we work with what we have.&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Photo by &lt;a href=&quot;https://unsplash.com/@_ggleee?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Gleb Lukomets&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/s/photos/flame?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/prometheus-datadog-agent/</id>
