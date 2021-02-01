@@ -109,7 +109,7 @@ Nothing too interesting here other than the `ContentType` being "text/plain; ver
 
 ## How it's going
 
-Having the metrics endpoint up, all that is left is to [setup a local Prometheus instance](/setup-local-prometheus) to call our Azure Function.
+Having the metrics endpoint up, all that is left is to [setup a local Prometheus instance](/local-prometheus-setup) to call our Azure Function.
 
 Looking at Prometheus' UI at `http://localhost:9090/graph` we can query for `sale_count` and we can see the metrics are coming in:
 
