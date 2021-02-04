@@ -6,8 +6,8 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Mon, 01 Feb 2021 19:24:07 +00:00</pubDate>
-    <lastBuildDate>Mon, 01 Feb 2021 19:24:07 +00:00</lastBuildDate>
+    <pubDate>Thu, 04 Feb 2021 16:14:49 +00:00</pubDate>
+    <lastBuildDate>Thu, 04 Feb 2021 16:14:49 +00:00</lastBuildDate>
     
     <item>
       <title>Capturing custom business metrics in Azure Functions</title>

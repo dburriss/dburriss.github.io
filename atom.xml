@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-02-01T19:24:07.4163038+00:00</updated>
+  <updated>2021-02-04T16:14:49.981934+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -48,6 +48,7 @@
 http_requests_total{method=&amp;quot;post&amp;quot;,code=&amp;quot;200&amp;quot;} 1027 1395066363000
 http_requests_total{method=&amp;quot;post&amp;quot;,code=&amp;quot;400&amp;quot;}    3 1395066363000
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For this demo I have a small function on a timer trigger to emit metrics.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// The builder ensures that a metric has HELP and TYPE information when written to a string
 // For implementation: https://github.com/dburriss/Fennel.MetricsDemo/blob/master/Fennel.MetricsDemo/PrometheusLogBuilder.fs
 let metricsBuilder = PrometheusLogBuilder()
@@ -64,7 +65,8 @@ let metricsGenerator([&amp;lt;TimerTrigger(&amp;quot;*/6 * * * * *&amp;quot;)&am
     queue.Add(Line.asString metric)
     log.LogInformation (sprintf &amp;quot;Sales : %f&amp;quot; sales)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Next create a HTTP Azure Function to serve as the &lt;code&gt;/metrics&lt;/code&gt; endpoint to be scraped by Prometheus.&lt;/p&gt;
+&lt;p&gt;It places a Prometheus text representation of a &lt;code&gt;demo_sale_count&lt;/code&gt; event on a queue called &lt;code&gt;logs&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Next, I create a HTTP Azure Function to serve as the &lt;code&gt;/metrics&lt;/code&gt; endpoint to be scraped by Prometheus.  It pulls the messages off the &lt;code&gt;logs&lt;/code&gt; queue and builds up Prometheus text.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;[&amp;lt;FunctionName(&amp;quot;metrics&amp;quot;)&amp;gt;]
 let metrics ([&amp;lt;HttpTrigger(AuthorizationLevel.Anonymous, &amp;quot;get&amp;quot;, Route = null)&amp;gt;]req: HttpRequest) (log: ILogger) =
     async {
