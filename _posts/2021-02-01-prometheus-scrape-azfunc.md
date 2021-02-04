@@ -51,6 +51,8 @@ http_requests_total{method="post",code="200"} 1027 1395066363000
 http_requests_total{method="post",code="400"}    3 1395066363000
 ```
 
+For this demo I have a small function on a timer trigger to emit metrics.
+
 ```fsharp
 // The builder ensures that a metric has HELP and TYPE information when written to a string
 // For implementation: https://github.com/dburriss/Fennel.MetricsDemo/blob/master/Fennel.MetricsDemo/PrometheusLogBuilder.fs
@@ -69,7 +71,9 @@ let metricsGenerator([<TimerTrigger("*/6 * * * * *")>]myTimer: TimerInfo, [<Queu
     log.LogInformation (sprintf "Sales : %f" sales)
 ```
 
-Next create a HTTP Azure Function to serve as the `/metrics` endpoint to be scraped by Prometheus.
+It places a Prometheus text representation of a `demo_sale_count` event on a queue called `logs`.
+
+Next, I create a HTTP Azure Function to serve as the `/metrics` endpoint to be scraped by Prometheus.  It pulls the messages off the `logs` queue and builds up Prometheus text.
 
 ```fsharp
 [<FunctionName("metrics")>]
