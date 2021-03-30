@@ -29,7 +29,14 @@ Having done this before I had a few goals I wanted to achieve.
 
 1. Avoid `string` based configuration as much as possible
 1. Avoid configuring permissions in multiple places
+1. Use terms `Role`, `Permission`, and `Claims` as defined above in the code 
 
 ## Getting started
 
-So I
+I will start off from where the [Auth0 getting started tutorial](https://auth0.com/docs/quickstart/webapp/aspnet-core/01-login) ends off. I won't repeat what is already covered there so if you want to follow along you can clone/fork the [Auth0 ASP.NET Core GitHub repository](https://github.com/auth0-samples/auth0-aspnetcore-mvc-samples/tree/master/Quickstart/01-Login).
+
+## Approach
+
+So as not to use strings we will define `enum`s to represent our permission parts of `Operation` and `Permission`. Typically, these are represented as a string in the format `operation:resource`. We will also define a few helper members (both instance and `static`) to help work with some `string` to type conversion. 
+Roles and Permissions will be defined in static classes rather than a database. I have often received resistance to this idea but consider this; you will always need to add code to check for a specific operation/resource combination, so why not have type safety and define them only once? 
+

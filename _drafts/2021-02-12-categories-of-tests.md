@@ -55,7 +55,7 @@ Alternative:
 
 Let's go through these 3 groupings and see what they mean and the types of tests you might write in each.
 
-### Correctness | Acceptance
+### Acceptance
 
 This category of tests focuses on the correctness of the feature for the purpose of release readiness. They answer questions that your **stakeholders** will care deeply about:
 
@@ -63,14 +63,14 @@ This category of tests focuses on the correctness of the feature for the purpose
 - Is a feature behaving as expected?
 - Is it safe to release?
 
-Your acceptance tests should give you an emphatic answer to these questions. This category makes no demands on whether you [test against code](https://devonburriss.me/acceptance-tests/) or [block-box boundary tests](https://blog.picnic.nl/staying-ahead-of-the-competition-with-executable-specifications-1c7cb31acbb1). It makes no demand on using regular code or a specialized DSL like [Gherkin](https://specflow.org/bdd/gherkin/).  
+Your acceptance tests should give you an emphatic answer to these questions. This category makes no demands on whether you [test against code](https://devonburriss.me/acceptance-tests/) or [black-box boundary tests](https://blog.picnic.nl/staying-ahead-of-the-competition-with-executable-specifications-1c7cb31acbb1). It makes no demand on using regular code or a specialized DSL like [Gherkin](https://specflow.org/bdd/gherkin/).  
 I do believe the tests in this category should have the following properties:
 
 - AVOID deep knowledge of internals
 - FOCUS on behavior
 - FOCUS on domain language
 
-### Construction | Building
+### Building
 
 In this category we have the more detailed implementation tests. They allow us to experiment with our implementation API, get rapid feedback on said implementation, and give a sense of progress. They give feedback to **developers** like:
 
@@ -86,7 +86,7 @@ These tests are part of a developers process of building high quality software. 
 - AVOID being dependent or attached to these tests
 - DO delete these tests if implementation changes
 
-### Communication | Communicating
+### Communicating
 
 The last category is about communication across processes. These tests are checking that all **collaborators** (producers and consumers) are communicating with a shared language. Additionally, you should check that collaborators are indeed where they are expected to be. What questions are these tests expected to answer?
 
@@ -106,7 +106,7 @@ Other tests that fall here are contract testing in general, integration tests, a
 - FOCUS on schemas in an isolated manner
 - FOCUS on point-to-point in the environment the communication occurs in
 
-### Summary
+## Summary
 
 TODO: Table with category and types of tests, questions, focus
 
@@ -137,3 +137,8 @@ Code / Construction - scaffolding always gets removed (NJ)
 Communication / Boundary
 Correctness
 
+TODO:
+
+- ABC
+- diagrams
+- Explain coupling to structure

@@ -1,0 +1,2 @@
+- Handle complexity - boundaries, shared understanding
+- 

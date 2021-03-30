@@ -288,6 +288,21 @@ let safeDoublePositiveNumber x =
 
 let z = safeDoublePositiveNumber -1
 
-match z with
-| Ok i -> printfn "The answer is %i" i
-| Error msg -> printfn "ERROR: %s" msg
+// match z with
+// | Ok i -> printfn "The answer is %i" i
+// | Error msg -> printfn "ERROR: %s" msg
+
+type Customer = { CanEmail:bool; Email:string}
+let customers = [] 
+let EMAIL_CUSTOMERS = "EMAIL_CUSTOMERS"
+let featureIsOn s = true
+let email c = ()
+
+if (featureIsOn EMAIL_CUSTOMERS) then   // +1
+    for c in customers do               // +1
+        if(c.CanEmail) then             // +1
+            email c
+
+
+
+let f s = printf "%f is my name" s
