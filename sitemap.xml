@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>https://devonburriss.me/reliable-apis-part-1/</loc>
+    <lastmod>2021-08-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>https://devonburriss.me/azfunc-prometheus-endpoint/</loc>
     <lastmod>2021-02-01T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -996,6 +1003,18 @@
 	
   
 	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
 	<url>
 		<loc>https://devonburriss.me//category/agile/index.html</loc>
 		<changefreq>daily</changefreq>
@@ -1086,6 +1105,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//tag/agile/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/api-design/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
@@ -1206,6 +1233,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//tag/design-patterns/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/distributed-systems/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
@@ -1470,6 +1505,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//tag/prometheus/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/reliability/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>
