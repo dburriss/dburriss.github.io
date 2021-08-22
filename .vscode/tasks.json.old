@@ -1,0 +1,21 @@
+{
+    "version": "0.1.0",
+    "tasks": [
+        {
+            "taskName": "Build",
+            "command": "powershell",
+            "isShellCommand": true,
+            "args": [".\\pretzel.ps1"],
+            "showOutput": "always",
+            "isBuildCommand": true
+        },
+        {
+            "taskName": "Run",
+            "command": "powershell",
+            "isShellCommand": false,
+            "args": [".\\run.ps1"],
+            "showOutput": "always",
+            "isTestCommand": true
+        }
+    ]    
+}
