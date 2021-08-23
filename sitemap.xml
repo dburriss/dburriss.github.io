@@ -7,6 +7,13 @@
   <!-- Generated with pretzel -->
   
   <url>
+    <loc>https://devonburriss.me/reliable-apis-part-2/</loc>
+    <lastmod>2021-08-23T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
     <loc>https://devonburriss.me/reliable-apis-part-1/</loc>
     <lastmod>2021-08-22T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -1015,6 +1022,8 @@
 	
   
 	
+  
+	
 	<url>
 		<loc>https://devonburriss.me//category/agile/index.html</loc>
 		<changefreq>daily</changefreq>
@@ -1337,6 +1346,14 @@
 	
 	<url>
 		<loc>https://devonburriss.me//tag/hyper-v/index.html</loc>
+		<changefreq>daily</changefreq>
+		<priority>1.00</priority>
+	</url>
+	
+  
+	
+	<url>
+		<loc>https://devonburriss.me//tag/idempotent/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
 	</url>

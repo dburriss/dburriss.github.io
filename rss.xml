@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sun, 22 Aug 2021 15:03:59 +00:00</pubDate>
-    <lastBuildDate>Sun, 22 Aug 2021 15:03:59 +00:00</lastBuildDate>
+    <pubDate>Mon, 23 Aug 2021 17:17:09 +00:00</pubDate>
+    <lastBuildDate>Mon, 23 Aug 2021 17:17:09 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Reliable APIs - Part 2</title>
+      <link>https://devonburriss.me/reliable-apis-part-2/</link>
+      <pubDate>Mon, 23 Aug 2021 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/reliable-apis-part-2/</guid>
+      <description>An example of a bad resilience implementation and discussion of the failure modes.</description>
+    </item>
     
     <item>
       <title>Reliable APIs - Part 1</title>

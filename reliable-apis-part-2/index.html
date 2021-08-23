@@ -19,42 +19,42 @@
     
 
 
-    <title>F# Scripts</title>
-    <meta name="description" content="Start exploring code faster by running F# as a fsx script file">
+    <title>Reliable APIs - Part 2</title>
+    <meta name="description" content="An example of a bad resilience implementation and discussion of the failure modes.">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="https://devonburriss.me/fsharp-scripting/">
+    <link rel="canonical" href="https://devonburriss.me/reliable-apis-part-2/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="F# Scripts">
-    <meta itemprop="description" content="Start exploring code faster by running F# as a fsx script file">
-    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/script-500.jpg">
+    <meta itemprop="name" content="Reliable APIs - Part 2">
+    <meta itemprop="description" content="An example of a bad resilience implementation and discussion of the failure modes.">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2019/target-500.jpg">
     
-    <meta itemprop="datePublished" content="10/17/2018 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="10/17/2018 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="F# Scripts - Exploring running F# from a fsx script file" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/fsharp-scripting/" />
-    <meta name="headline" content="F# Scripts - Exploring running F# from a fsx script file" />
+    <meta itemprop="datePublished" content="8/23/2021 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="8/23/2021 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Reliable APIs - Part 2 - Using Idempotency-Key and a response cache" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/reliable-apis-part-2/" />
+    <meta name="headline" content="Reliable APIs - Part 2 - Using Idempotency-Key and a response cache" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="F# Scripts">
-    <meta name="twitter:description" content="Start exploring code faster by running F# as a fsx script file">
+    <meta name="twitter:title" content="Reliable APIs - Part 2">
+    <meta name="twitter:description" content="An example of a bad resilience implementation and discussion of the failure modes.">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/script-500.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2019/target-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="F# Scripts" />
+    <meta property="og:title" content="Reliable APIs - Part 2" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/fsharp-scripting/" />
-    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/script-500.jpg" />
-    <meta property="og:description" content="Start exploring code faster by running F# as a fsx script file" />
+    <meta property="og:url" content="https://devonburriss.me/reliable-apis-part-2/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2019/target-500.jpg" />
+    <meta property="og:description" content="An example of a bad resilience implementation and discussion of the failure modes." />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -156,23 +156,27 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/vents-bg.jpg')">
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/path-bg.jpg')">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>F# Scripts</h1>
+                        <h1>Reliable APIs - Part 2</h1>
                         
-                        <h2 class="subheading">Exploring running F# from a fsx script file</h2>
+                        <h2 class="subheading">Using Idempotency-Key and a response cache</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on October 17, 2018</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on August 23, 2021</span>
                         
                             <hr />
                             
-                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                                <a href="/tag/distributed-systems" class="label label-default">Distributed Systems</a>
                             
-                                <a href="/tag/fsx" class="label label-default">FSX</a>
+                                <a href="/tag/api-design" class="label label-default">API Design</a>
+                            
+                                <a href="/tag/reliability" class="label label-default">Reliability</a>
+                            
+                                <a href="/tag/idempotent" class="label label-default">Idempotent</a>
                             
                         
                     <div>
@@ -188,111 +192,61 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>Using F# scripts is something I only started doing after dabbling in F# for quite a while. This is unfortunate because they are a really fast and easy way of throwing some code together and thus a really good way to learn F#. This post is for anyone getting started with F# scripting.</p>
+				<p>In the <a href="/reliable-apis-part-1">previous post</a> we saw how you can end up with duplicates if using a retry-policy on a call to a non-idempotent endpoint. In this post, we will look at correcting this and see a subtle way that this can go wrong.</p>
 <!--more-->
-<h2>Installation</h2>
-<p>Check out the <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/get-started/install-fsharp?tabs=windows">documentation for installing F#</a>. The easiest way is to install F# as part of Visual Studio. You may still need to add FSI.exe to your <strong>PATH</strong>.</p>
-<ol>
-<li><a href="https://fsharp.org/use/windows/">Instructions for Windows</a></li>
-<li><a href="https://fsharp.org/use/mac/">Instructions for MacOS</a></li>
-<li><a href="https://fsharp.org/use/linux/">Instructions for Linux</a></li>
-</ol>
-<h2>F# Interactive</h2>
-<p>FSI allows you to execute F# code in an interactive console. Just type <code>fsi.exe</code> on Windows or <code>fsharpi</code> on Linux/Mac.</p>
-<pre><code class="language-fsharp">&gt; let x = 1;;
-val x : int = 1
-</code></pre>
+<p>When we last saw our young developer, they had learned a lesson about the indiscriminate use of retry policy. This led to some insightful telemetry to be able to monitor when the system landed in an inconsistent state.</p>
+<p>A good thing too! The e-commerce company our developer works at is expanding into another country and to cope with the increase in buying across 2 countries, they are automating the restocking. A sister team has been working with the data science team to develop an intelligent resupply service that will be making use of the supplier ordering API to automatically create orders. Currently, inconsistencies only happen once every week or two but with an increase in load, this will start getting even more annoying for both the development team and purchasers. Our young developer has raised that they want to have this fixed and stable before the automation kicks in.</p>
+<p>As a reminder, this is the current design:</p>
+<p><img src="../img/posts/2021/2021-08-22-10-38-55.png" alt="Current design" /></p>
+<p>Let's see how our young developer is getting along...</p>
+<h2>That idempotence thing</h2>
+<p>So you stopped using XML and SOAP and started sending JSON so you figured you had this REST stuff down. If the last few weeks has taught you anything though it is that there is way more to this API design than the getting started pages on web frameworks tell you. You do recall this idea of <em>idempotent</em> calls though and this seems like what you are looking for. Searching for solutions, the internet seems to be a dumpster fire of people arguing about whether POST should be idempotent or not. Going to the source and reading the POST section of the <a href="https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3">RFC</a> you decide on:</p>
+<ul>
+<li>Respond with <code>201 Created</code> if the resource does not exist</li>
+<li>Respond with <code>303 See Other</code> if the resource already exists</li>
+</ul>
+<p>So apparently a POST can be idempotent. Regardless of the spec, this just seems like a good idea.</p>
+<p>The more difficult question is, how to tell if a request is a duplicate? Apparently, the semantic way to handle this would be to use <a href="https://tools.ietf.org/id/draft-idempotency-header-01.html">Idempotency-Key</a>.<br />
+The <code>Idemptency-Key</code> is a header you place in a request that indicates a unique request. So for each create order request you send to your API, it will have a unique UUID. Now you can retry a request if it fails, you can retry the request with the same <code>Idemptency-Key</code> as the failed request.</p>
+<p>For the API our young developer comes up with the following design. The whole team is really excited about adding Redis to their stack as a cache. Not only will it be used as the <code>Idemptency-Key</code> cache but as a response cache in general.</p>
+<p><img src="../img/posts/2021/2021-08-23-06-19-59.png" alt="With cache" /></p>
+<p>Before servicing a request, the create order endpoint will check to see if the <code>Idemptency-Key</code> is already in the cache and if it is, it will just return the cached response. If it is not in the cache, it will proceed with the rest of the call and at the end, place the response in the cache.</p>
+<p>Now that the endpoint is idempotent, you go ahead and re-enable that retry policy from the client-side.</p>
+<h2>Not again!</h2>
+<p>The day after deploying your new resiliency changes you get a call from one of the new stock purchasers, Leon. Leon is an older guy who wanted a change from warehousing, an area he had been working for decades. He mentions that he has noticed some inconsistencies but wants to check them with you since he does not know these new systems. You smile to yourself because Leon does not seem very comfortable on the computer. He double clicks everything and types with one finger. Leon brings up the application that shows the purchase orders created on our side. He also brings up the portal they use that shows them incoming deliveries from the supplier. It takes a while but eventually he puts these 2 screens next to each other. There are orders that have been created on our side and do not exist at the supplier. Not only that but duplicates are back!<br />
+Leon points out something else interesting. He noticed that his orders seem to be duplicated far more often than the other purchasers. He is worried he is doing something wrong since he knows he isn't great at this computer stuff.<br />
+You are pretty sure you know what is wrong and you can't believe you made this mistake again. You explain to Leon that he does not need to double click the button but assure him that the fault is not his but rather yours. Leon not only found a bug earlier than everyone else but because he had checked at the supplier, he was able to fix the orders before deliveries were sent. Thank you, Leon!</p>
+<h2>Quick fix</h2>
+<p>You are pretty sure you know what is going on. Leon's double-clicking meant that sometimes a second request was making it into the endpoint before the first call had been completed and was cached. Now that you are thinking through it, the current design hardly adds any value at all from a resilience point of view. You are shocked. Annoyed with yourself because the reason you had not looked at this more critically before was that this was the advice of countless posts and libraries on the internet. Maybe people just don't make POST requests idempotent? Or the people giving the advice don't work on distributed systems? Maybe they just don't have telemetry telling them how often this goes wrong? Looking at yours, it indeed confirms Leon's findings. Apparently, you need to invest in even better metrics and alerts.</p>
+<p>You implement some quick fixes. Firstly, you disable the retry policy. Again. Next, you add a quick change to the UI that disables the button until a response is received. That should take care of Leon's double-clicking.</p>
+<p>Back to the drawing board.</p>
+<h2>Analysis</h2>
+<p>So what went wrong with our friend's design this time? Basically, concurrency makes everything just a little bit more complex. When walking through a sequence of steps in our program it can be difficult to think about what this means for other executions happening at the same time. The kind of bugs that can arise from this can be rather subtle and confusing.</p>
+<p>Here is just one example of 2 requests hitting the endpoint before the cache has been updated.</p>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/##eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3QgW29yaWddXG4gICAgQVBJLT4-K0NhY2hlIDogQ2hlY2sgZm9yIElkZW1wb3RlbmN5LUtleSBbb3JpZ11cbiAgICBDYWNoZS0-Pi1BUEkgOiBObyBrZXkgZm91bmQgW29yaWddXG4gICAgQ2xpZW50LT4-QVBJOiBEdXBsaWNhdGUgY3JlYXRlIG9yZGVyIHJlcXVlc3QgW2R1cF1cbiAgICBBUEktPj4rQ2FjaGUgOiBDaGVjayBmb3IgSWRlbXBvdGVuY3ktS2V5IFtkdXBdXG4gICAgQ2FjaGUtPj4tQVBJIDogTm8ga2V5IGZvdW5kIFtkdXBdXG4gICAgQVBJLT4-REIgOiBQZXJzaXN0IHJlY29yZCBbb3JpZ11cbiAgICBBUEktPj5TdXBwbGllciBBUEkgOiBTZW5kIG9yZGVyIFtvcmlnXVxuICAgIEFQSS0-PkRCIDogUGVyc2lzdCByZWNvcmQgW2R1cF1cbiAgICBBUEktPj5TdXBwbGllciBBUEkgOiBTZW5kIG9yZGVyIFtkdXBdXG4gICAgQVBJLT4-Q2FjaGUgOiBVcGRhdGUgY2FjaGUgW29yaWddXG4gICAgQVBJLT4-Q2FjaGUgIDogVXBkYXRlIGNhY2hlIFtkdXBdXG4gICAgQVBJLS0-PkNsaWVudDogT3JkZXIgY3JlYXRlZCByZXNwb25zZSBbb3JpZ11cbiAgICBBUEktLT4-LUNsaWVudDogT3JkZXIgY3JlYXRlZCByZXNwb25zZSBbZHVwXVxuICAgICIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9"><img src="https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3QgW29yaWddXG4gICAgQVBJLT4-K0NhY2hlIDogQ2hlY2sgZm9yIElkZW1wb3RlbmN5LUtleSBbb3JpZ11cbiAgICBDYWNoZS0-Pi1BUEkgOiBObyBrZXkgZm91bmQgW29yaWddXG4gICAgQ2xpZW50LT4-QVBJOiBEdXBsaWNhdGUgY3JlYXRlIG9yZGVyIHJlcXVlc3QgW2R1cF1cbiAgICBBUEktPj4rQ2FjaGUgOiBDaGVjayBmb3IgSWRlbXBvdGVuY3ktS2V5IFtkdXBdXG4gICAgQ2FjaGUtPj4tQVBJIDogTm8ga2V5IGZvdW5kIFtkdXBdXG4gICAgQVBJLT4-REIgOiBQZXJzaXN0IHJlY29yZCBbb3JpZ11cbiAgICBBUEktPj5TdXBwbGllciBBUEkgOiBTZW5kIG9yZGVyIFtvcmlnXVxuICAgIEFQSS0-PkRCIDogUGVyc2lzdCByZWNvcmQgW2R1cF1cbiAgICBBUEktPj5TdXBwbGllciBBUEkgOiBTZW5kIG9yZGVyIFtkdXBdXG4gICAgQVBJLT4-Q2FjaGUgOiBVcGRhdGUgY2FjaGUgW29yaWddXG4gICAgQVBJLT4-Q2FjaGUgOiBVcGRhdGUgY2FjaGUgW2R1cF1cbiAgICBBUEktLT4-Q2xpZW50OiBPcmRlciBjcmVhdGVkIHJlc3BvbnNlIFtvcmlnXVxuICAgIEFQSS0tPj4tQ2xpZW50OiBPcmRlciBjcmVhdGVkIHJlc3BvbnNlIFtkdXBdXG4gICAgIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ" alt="Concurrent requests to cache" /></a></p>
+<p>As you can see in the sequence diagram, the first request comes in and then the second. The second check against the cache happens before the first request completes and updates the cache.</p>
+<p>We also still have the problem that a call to the supplier API failing would leave our database in an inconsistent state. Depending on what went wrong we could retry, but what if the process was terminated at that point? A duplicate call could come in again.<br />
+What if we updated the cache before the calls? Well then we could end up with either database or external API call failing and from the outside it seeming like it had succeeded.</p>
+<h2>Conclusion</h2>
+<p>This design of cache that is not transactional with state change within the service does not really move us closer to a resilient API design. In the next post, we will finally look at a design that does improve reliability.</p>
+<h2>Summary</h2>
+<p><strong>Problem:</strong> Duplicate calls</p>
+<p><strong>Solutions:</strong> idempotency via a response cache</p>
+<p><strong>Consequence:</strong> Duplicate calls because cache update is not atomic</p>
 <blockquote>
-<p>Note: Each expression needs to end with <code>;;</code> in the interactive window.</p>
+<p>Concurrency is hard</p>
 </blockquote>
-<p>To get help: <code>#help;;</code><br />
-To quit: <code>#quit;;</code></p>
-<h2>Scripting</h2>
-<p>So entering code directly into fsi is ok for trying simple things out but what about more complex code. That is where <code>.fsx</code> files come in.</p>
-<p>Imagine we have a file called <em>print-name.fsx</em> with the following content:</p>
-<pre><code class="language-fsharp">let name = &quot;Devon&quot;
-printfn &quot;Name: %s&quot; name
-</code></pre>
-<p>Executing it we would see the following:</p>
-<blockquote>
-<p>&gt; fsi .\samples\print-name.fsx<br />
-&gt; Name: Devon</p>
-</blockquote>
-<h3>Including other fsx files</h3>
-<p>You can load other fsx files into a script. If we have <code>Strings.fsx</code> containing the following code:</p>
-<pre><code class="language-fsharp">let toUpper (s:string) = s.ToUpper()
-let toLower (s:string) = s.ToLower()
-let replace (oldValue:string) (newValue:string) (s:string) = s.Replace(oldValue,newValue)
-
-module StringBuilder =
-    open System.Text
-    let init() = new StringBuilder()
-    let initWith(s:string) = new StringBuilder(s)
-    let append (s:string) (sb:StringBuilder) = sb.Append(s)
-</code></pre>
-<p>We can now use it in our script file like so:</p>
-<pre><code class="language-fsharp">#load &quot;Strings.fsx&quot;
-open Strings
-let name = &quot;Devon&quot; |&gt; StringBuilder.initWith
-            |&gt; StringBuilder.append &quot; Burriss&quot;
-            |&gt; string |&gt; toUpper
-printfn &quot;Name: %s&quot; name
-</code></pre>
-<p>We use <code>#load &quot;path/to/script.fsx&quot;</code> to make it available and then <code>open NameOfFileWithoutExtension</code> to import it. So each script file is then treated as a <code>module</code>.</p>
-<p>Executing it we would see the following:</p>
-<blockquote>
-<p>&gt; fsi .\samples\print-name.fsx<br />
-&gt; Name: DEVON BURRISS</p>
-</blockquote>
-<h3>Taking Arguments</h3>
-<p>It is possible to pass arguments into a script file. They are available in a field <code>fsi.CommandLineArgs</code>. Let's change our script one more time to demonstrate the usage. The arguments come through as an array so we pattern match on the number of elements to decide what to print.</p>
-<blockquote>
-<p>Note: The first element of the array is always the name of the script the arguments are passed into</p>
-</blockquote>
-<pre><code class="language-fsharp">#load &quot;Strings.fsx&quot;
-open Strings
-let stringWithSpace x = x |&gt; string |&gt; (sprintf &quot; %s&quot;)
-let name first = first |&gt; toUpper
-let nameAndLastName first last = first |&gt; StringBuilder.initWith |&gt; StringBuilder.append last |&gt; stringWithSpace |&gt; toUpper
-let nameAndLastNameWithOccupation first last occ = 
-    first |&gt; StringBuilder.initWith 
-    |&gt; StringBuilder.append &quot; &quot; 
-    |&gt; StringBuilder.append last 
-    |&gt; StringBuilder.append (sprintf &quot; (%s)&quot; occ)
-    |&gt; string |&gt; toUpper
-
-match fsi.CommandLineArgs with
-| [|scriptName;|] -&gt; failwith (sprintf &quot;At least a name required for %s&quot; scriptName)
-| [|_;firstName|] -&gt; name firstName |&gt; printfn &quot;Name: %s&quot;
-| [|_;firstName; lastName|] -&gt; nameAndLastName firstName lastName |&gt; printfn &quot;Name: %s&quot;
-| [|_;firstName; lastName; occ|] -&gt; nameAndLastNameWithOccupation firstName lastName occ |&gt; printfn &quot;Name: %s&quot;
-| _ -&gt; failwith (sprintf &quot;Too many arguments %A&quot; (fsi.CommandLineArgs |&gt; Array.tail))
-</code></pre>
-<p>Executing it we would see the following:</p>
-<blockquote>
-<p>&gt; fsi .\samples\print-name.fsx devon burriss developer<br />
-&gt; Name: DEVON BURRISS (DEVELOPER)</p>
-</blockquote>
-<p>You could of course also access the arguments as a zero based array <code>fsi.CommandLineArgs.[0]</code> or loop through them.</p>
-<h3>Referencing DLLs</h3>
-<p>You can reference DLLs using <code>#r &quot;path/to/file.dll&quot;</code>. If you want to pull down DLLs from Nuget, check out <a href="/up-and-running-with-paket">my article on using Paket dependency manager</a>.</p>
 <h2>Resources</h2>
-<ol>
-<li><a href="https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/fsharp-interactive/">FSI Documentation</a></li>
-<li><a href="http://brandewinder.com/2016/02/06/10-fsharp-scripting-tips/">10 Tips for Productive F# Scripting</a></li>
-</ol>
-<h2>Credits</h2>
-<ol>
-<li>Social Image by <a href="https://unsplash.com/@0628fromchina">yifei chen</a></li>
-</ol>
+<ul>
+<li>https://stripe.com/blog/idempotency</li>
+<li>https://repl.ca/what-is-the-idempotency-key-header/</li>
+</ul>
 
                 <hr />
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
-                                                <li><a href="/canopy-from-fsx/">Canopy from a FSX Script</a></li>
-                                                <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
-                                                <li><a href="/how-to-fsharp-pt-4/">How to F# - Part 4</a></li>
+                                                <li><a href="/reliable-apis-part-1/">Reliable APIs - Part 1</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -300,13 +254,9 @@ match fsi.CommandLineArgs with
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/up-and-running-with-paket/" data-toggle="tooltip"    data-placement="top" title="Up and running with PAKET">&larr; Previous Post</a>
+                        <a href="/reliable-apis-part-1/" data-toggle="tooltip"    data-placement="top" title="Reliable APIs - Part 1">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/how-to-fsharp-pt-1/" data-toggle="tooltip" data-placement="top" title="How to F# - Part 1">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

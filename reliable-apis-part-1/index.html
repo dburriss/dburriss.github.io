@@ -217,7 +217,7 @@
 <p>Firstly, our young developer fell for the first fallacy of distributed systems, ala <em>&quot;The network is reliable&quot;</em>.</p>
 <p>In my experience, this is a common one for developers to fall into when they are dealing with low volume traffic. The time between failures is long, and if there is a user observing an intermittent failure, they will often just retry.</p>
 <p>Adding a retry policy was a good instinct but unfortunately, it requires your API to have particular characteristics. We will get to these characteristics in later posts but first, let's look at each step in the operation, and what effect a retry has.</p>
-<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/##eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgbG9vcCAxLiBDbGllbnQgQVBJIGNhbGxcbiAgICAgICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3RcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMi4gRmV0Y2ggZnJvbSBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogRmV0Y2ggc3VwcGxpZXIgZGF0YVxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMy4gUGVyc2lzdCB0byBEXG4gICAgICAgIEFQSS0-PkRhdGFiYXNlOiBQZXJzaXN0IE9yZGVyXG4gICAgICAgIGVuZFxuICAgICAgICBcbiAgICAgICAgbG9vcCA0LiBFeHRlcm5hbCBBUEkgY2FsbFxuICAgICAgICBBUEktLT4-U3VwcGxpZXIgQVBJOiBDcmVhdGUgb3JkZXIgYXQgc3VwcGxpZXJcbiAgICAgICAgZW5kXG5cbiAgICAgICAgQVBJLS0-Pi1DbGllbnQ6IE9yZGVyIGNyZWF0ZWQgcmVzcG9uc2VcbiAgICBlbmQiLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ"><img src="https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgbG9vcCAxLiBDbGllbnQgQVBJIGNhbGxcbiAgICAgICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3RcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMi4gRmV0Y2ggZnJvbSBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogRmV0Y2ggc3VwcGxpZXIgZGF0YVxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMy4gUGVyc2lzdCB0byBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogUGVyc2lzdCBPcmRlclxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgNC4gRXh0ZXJuYWwgQVBJIGNhbGxcbiAgICAgICAgQVBJLS0-PlN1cHBsaWVyIEFQSTogQ3JlYXRlIG9yZGVyIGF0IHN1cHBsaWVyXG4gICAgICAgIGVuZFxuXG4gICAgICAgIEFQSS0tPj4tQ2xpZW50OiBPcmRlciBjcmVhdGVkIHJlc3BvbnNlXG4gICAgZW5kIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ" alt="" /></a></p>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/##eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgbG9vcCAxLiBDbGllbnQgQVBJIGNhbGxcbiAgICAgICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3RcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMi4gRmV0Y2ggZnJvbSBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogRmV0Y2ggc3VwcGxpZXIgZGF0YVxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMy4gUGVyc2lzdCB0byBEXG4gICAgICAgIEFQSS0-PkRhdGFiYXNlOiBQZXJzaXN0IE9yZGVyXG4gICAgICAgIGVuZFxuICAgICAgICBcbiAgICAgICAgbG9vcCA0LiBFeHRlcm5hbCBBUEkgY2FsbFxuICAgICAgICBBUEktLT4-U3VwcGxpZXIgQVBJOiBDcmVhdGUgb3JkZXIgYXQgc3VwcGxpZXJcbiAgICAgICAgZW5kXG5cbiAgICAgICAgQVBJLS0-Pi1DbGllbnQ6IE9yZGVyIGNyZWF0ZWQgcmVzcGmplex9uc2VcbiAgICBlbmQiLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ"><img src="https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgbG9vcCAxLiBDbGllbnQgQVBJIGNhbGxcbiAgICAgICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3RcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMi4gRmV0Y2ggZnJvbSBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogRmV0Y2ggc3VwcGxpZXIgZGF0YVxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMy4gUGVyc2lzdCB0byBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogUGVyc2lzdCBPcmRlclxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgNC4gRXh0ZXJuYWwgQVBJIGNhbGxcbiAgICAgICAgQVBJLS0-PlN1cHBsaWVyIEFQSTogQ3JlYXRlIG9yZGVyIGF0IHN1cHBsaWVyXG4gICAgICAgIGVuZFxuXG4gICAgICAgIEFQSS0tPj4tQ2xpZW50OiBPcmRlciBjcmVhdGVkIHJlc3BvbnNlXG4gICAgZW5kIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ" alt="" /></a></p>
 <h3>1. Client API call</h3>
 <p>Putting a retry around the entire operation is problematic because our developer friend was not being very specific about what went wrong. As we will see in the next few paragraphs, a retry may be appropriate or not. In part 2 of this series of posts, we will start to make our API endpoint idempotent. As we will see then, even that is more difficult than it seems at first glance.</p>
 <p>What are some of the failure modes the client can experience calling the API though?</p>
@@ -242,18 +242,28 @@ Since this call changes no state, we could retry this query if it fails due to i
 <h2>Conclusion</h2>
 <p><img src="../img/posts/2021/2021-08-22-10-38-55.png" alt="Final design" /></p>
 <p>In this post, we looked at some of the ways that different calls can fail, and looked at whether retrying was appropriate. Our developer friend learned some important lessons. The most important improvement was the improved telemetry and alerting to get insight into when the system is ending up in an inconsistent state. Unfortunately, these kinds of failures are a lot more prevalent in systems than most think. The actual problem is that visibility into systems is usually so poor (or no one is looking) that no one is aware of how often these types of errors actually occur. In a lot of cases, other parts of the business just absorb the inconsistency by having mitigating processes.</p>
-<p>The network is not reliable but simply retrying often has unintended consequences. In the next post, we will start to improve our design so that we can retry with more confidence by trying to make the endpoint idempotent.</p>
+<p>The network is not reliable but simply retrying often has unintended consequences. In the <a href="/reliable-apis-part-2">next post</a>, we will start to improve our design so that we can retry with more confidence by trying to make the endpoint idempotent.</p>
 <p>I hope this discussion was insightful. If you think I missed anything important for a discussion at this level, please let me know in the comments.</p>
 <h2>Summary</h2>
 <p><strong>Problem:</strong> Transient network errors</p>
 <p><strong>Solutions:</strong> Retry policy on network calls</p>
 <p><strong>Consequence:</strong> Duplicate calls</p>
+<blockquote>
+<p>Only retry idempotent operations</p>
+</blockquote>
 <h2>Resources</h2>
 <ul>
 <li><a href="https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3">POST method</a></li>
 <li><a href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.6">Error Codes</a></li>
 </ul>
 
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/reliable-apis-part-2/">Reliable APIs - Part 2</a></li>
+                                            </ul>
+                </section>
                 <hr />
                                 
                 <ul class="pager">
@@ -262,6 +272,10 @@ Since this call changes no state, we could retry this query if it fails due to i
                         <a href="/azfunc-prometheus-endpoint/" data-toggle="tooltip"    data-placement="top" title="Capturing custom business metrics in Azure Functions">&larr; Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/reliable-apis-part-2/" data-toggle="tooltip" data-placement="top" title="Reliable APIs - Part 2">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 
@@ -525,6 +539,12 @@ Since this call changes no state, we could retry this query if it fails due to i
 <a class="badge badge-info" href="/tag/hyper-v/" style="font-size: 80%">
     <span class="site-tag">                
         Hyper V
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/idempotent/" style="font-size: 80%">
+    <span class="site-tag">                
+        Idempotent
     </span>
 </a>
 

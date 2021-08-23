@@ -176,14 +176,14 @@
     <div class="post-preview jumbotron">
         
         <h1 class="post-title">            
-            <a href="/reliable-apis-part-1/">Reliable APIs - Part 1</a>
+            <a href="/reliable-apis-part-2/">Reliable APIs - Part 2</a>
         </h1>
         
         <em class="post-subtitle">
-            Exploring reties, retry implications, and the failure modes they are appropriate for
+            Using Idempotency-Key and a response cache
         </em>
         
-        <p class="post-meta">Posted by Devon Burriss on August 22, 2021</p>
+        <p class="post-meta">Posted by Devon Burriss on August 23, 2021</p>
         
             
                 <a href="/tag/distributed-systems"><span class="label label-default">Distributed Systems</span></a>
@@ -192,13 +192,15 @@
             
                 <a href="/tag/reliability"><span class="label label-default">Reliability</span></a>
             
+                <a href="/tag/idempotent"><span class="label label-default">Idempotent</span></a>
+            
         
         
             <img src="/img/posts/2019/target-500.jpg" alt="Social image" class="img-rounded pull-right" width="280" style="margin-left: 1em;">
         
-        <p align="justify"><p>Resiliency is more than just slapping a retry policy on a client and hoping it can handle transient errors. It is building systems that handle operations that always end in a valid state across the whole system. This does not mean that all operations WILL BE successful. Just that they are always handled in an expected way, every time.</p>
+        <p align="justify"><p>In the <a href="/reliable-apis-part-1">previous post</a> we saw how you can end up with duplicates if using a retry-policy on a call to a non-idempotent endpoint. In this post, we will look at correcting this and see a subtle way that this can go wrong.</p>
 </p></p>
-        <p class="text-left"><a class="btn btn-primary btn-lg" href="/reliable-apis-part-1/" role="button">Read more</a></p>
+        <p class="text-left"><a class="btn btn-primary btn-lg" href="/reliable-apis-part-2/" role="button">Read more</a></p>
     </div>
     <div class="clearfix"></div>
     <hr>
@@ -215,6 +217,181 @@
 
     
 
+     
+        
+     
+        
+        
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+    
+
+    <div class="post-preview ">
+        
+            
+        
+         <img src="/img/posts/2019/target-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
+
+        <a href="/reliable-apis-part-1/">
+            <h2 class="post-title">            Reliable APIs - Part 1
+            </h2>
+            
+            
+            <h3 class="post-subtitle">
+                Exploring reties, retry implications, and the failure modes they are appropriate for
+            </h3>
+            
+        </a>
+        <p class="post-meta">Posted by Devon Burriss' Blog on August 22, 2021</p>
+        
+            
+                <a href="/tag/distributed-systems"><span class="label label-default">Distributed Systems</span></a>
+            
+                <a href="/tag/api-design"><span class="label label-default">API Design</span></a>
+            
+                <a href="/tag/reliability"><span class="label label-default">Reliability</span></a>
+            
+        
+    </div>
+    <hr>
+    
+
+
+
+
+    
+
+     
+        
      
         
      
@@ -392,6 +569,8 @@
         
      
         
+     
+        
         
         
      
@@ -557,6 +736,8 @@
 
     
 
+     
+        
      
         
      
@@ -738,6 +919,8 @@
         
      
         
+     
+        
         
         
      
@@ -899,6 +1082,8 @@
 
     
 
+     
+        
      
         
      
@@ -1086,6 +1271,8 @@
         
      
         
+     
+        
         
         
      
@@ -1243,6 +1430,8 @@
 
     
 
+     
+        
      
         
      
@@ -1438,6 +1627,8 @@
         
      
         
+     
+        
         
         
      
@@ -1584,179 +1775,6 @@
                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
             
                 <a href="/tag/selenium"><span class="label label-default">Selenium</span></a>
-            
-        
-    </div>
-    <hr>
-    
-
-
-
-
-    
-
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-        
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-    
-
-    <div class="post-preview ">
-        
-            
-        
-         <img src="/img/posts/2018/frame-500.jpg" alt="Social image" class="img-rounded pull-left" width="110" style="margin-right: 1em;">
-
-        <a href="/review-fsharp-test-libs/">
-            <h2 class="post-title">            Review: F# unit testing frameworks and libraries
-            </h2>
-            
-            
-            <h3 class="post-subtitle">
-                A review of XUnit, FsUnit, Unquote, and Expecto
-            </h3>
-            
-        </a>
-        <p class="post-meta">Posted by Devon Burriss' Blog on December 08, 2018</p>
-        
-            
-                <a href="/tag/fsharp"><span class="label label-default">F#</span></a>
-            
-                <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-            
-                <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-            
-                <a href="/tag/fsadvent"><span class="label label-default">FsAdvent</span></a>
             
         
     </div>
@@ -2035,6 +2053,12 @@
 <a class="badge badge-info" href="/tag/hyper-v/" style="font-size: 80%">
     <span class="site-tag">                
         Hyper V
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/idempotent/" style="font-size: 80%">
+    <span class="site-tag">                
+        Idempotent
     </span>
 </a>
 
