@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Reliable APIs - Part 2"
+title: "Reliable APIs - Part 3"
 subtitle: "Using Idempotency-Key and a response cache"
 description: "An example of a bad resilience implementation and discussion of the failure modes."
-permalink: reliable-apis-part-2
+permalink: reliable-apis-part-3
 author: "Devon Burriss"
 category: Software Development
 tags: [Distributed Systems,API Design,Reliability,Idempotent]

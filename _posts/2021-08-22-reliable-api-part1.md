@@ -61,7 +61,7 @@ In my experience, this is a common one for developers to fall into when they are
 
 Adding a retry policy was a good instinct but unfortunately, it requires your API to have particular characteristics. We will get to these characteristics in later posts but first, let's look at each step in the operation, and what effect a retry has.
 
-[![](https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgbG9vcCAxLiBDbGllbnQgQVBJIGNhbGxcbiAgICAgICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3RcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMi4gRmV0Y2ggZnJvbSBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogRmV0Y2ggc3VwcGxpZXIgZGF0YVxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMy4gUGVyc2lzdCB0byBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogUGVyc2lzdCBPcmRlclxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgNC4gRXh0ZXJuYWwgQVBJIGNhbGxcbiAgICAgICAgQVBJLS0-PlN1cHBsaWVyIEFQSTogQ3JlYXRlIG9yZGVyIGF0IHN1cHBsaWVyXG4gICAgICAgIGVuZFxuXG4gICAgICAgIEFQSS0tPj4tQ2xpZW50OiBPcmRlciBjcmVhdGVkIHJlc3BvbnNlXG4gICAgZW5kIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/edit/##eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgbG9vcCAxLiBDbGllbnQgQVBJIGNhbGxcbiAgICAgICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3RcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMi4gRmV0Y2ggZnJvbSBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogRmV0Y2ggc3VwcGxpZXIgZGF0YVxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMy4gUGVyc2lzdCB0byBEXG4gICAgICAgIEFQSS0-PkRhdGFiYXNlOiBQZXJzaXN0IE9yZGVyXG4gICAgICAgIGVuZFxuICAgICAgICBcbiAgICAgICAgbG9vcCA0LiBFeHRlcm5hbCBBUEkgY2FsbFxuICAgICAgICBBUEktLT4-U3VwcGxpZXIgQVBJOiBDcmVhdGUgb3JkZXIgYXQgc3VwcGxpZXJcbiAgICAgICAgZW5kXG5cbiAgICAgICAgQVBJLS0-Pi1DbGllbnQ6IE9yZGVyIGNyZWF0ZWQgcmVzcG9uc2VcbiAgICBlbmQiLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)
+[![](https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgbG9vcCAxLiBDbGllbnQgQVBJIGNhbGxcbiAgICAgICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3RcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMi4gRmV0Y2ggZnJvbSBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogRmV0Y2ggc3VwcGxpZXIgZGF0YVxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMy4gUGVyc2lzdCB0byBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogUGVyc2lzdCBPcmRlclxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgNC4gRXh0ZXJuYWwgQVBJIGNhbGxcbiAgICAgICAgQVBJLS0-PlN1cHBsaWVyIEFQSTogQ3JlYXRlIG9yZGVyIGF0IHN1cHBsaWVyXG4gICAgICAgIGVuZFxuXG4gICAgICAgIEFQSS0tPj4tQ2xpZW50OiBPcmRlciBjcmVhdGVkIHJlc3BvbnNlXG4gICAgZW5kIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/edit/##eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgbG9vcCAxLiBDbGllbnQgQVBJIGNhbGxcbiAgICAgICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3RcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMi4gRmV0Y2ggZnJvbSBEQlxuICAgICAgICBBUEktPj5EYXRhYmFzZTogRmV0Y2ggc3VwcGxpZXIgZGF0YVxuICAgICAgICBlbmRcbiAgICAgICAgXG4gICAgICAgIGxvb3AgMy4gUGVyc2lzdCB0byBEXG4gICAgICAgIEFQSS0-PkRhdGFiYXNlOiBQZXJzaXN0IE9yZGVyXG4gICAgICAgIGVuZFxuICAgICAgICBcbiAgICAgICAgbG9vcCA0LiBFeHRlcm5hbCBBUEkgY2FsbFxuICAgICAgICBBUEktLT4-U3VwcGxpZXIgQVBJOiBDcmVhdGUgb3JkZXIgYXQgc3VwcGxpZXJcbiAgICAgICAgZW5kXG5cbiAgICAgICAgQVBJLS0-Pi1DbGllbnQ6IE9yZGVyIGNyZWF0ZWQgcmVzcGmplex9uc2VcbiAgICBlbmQiLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)
 
 ### 1. Client API call
 
@@ -100,7 +100,7 @@ The external API call is the most fraught since how it behaves is not under our 
 
 In this post, we looked at some of the ways that different calls can fail, and looked at whether retrying was appropriate. Our developer friend learned some important lessons. The most important improvement was the improved telemetry and alerting to get insight into when the system is ending up in an inconsistent state. Unfortunately, these kinds of failures are a lot more prevalent in systems than most think. The actual problem is that visibility into systems is usually so poor (or no one is looking) that no one is aware of how often these types of errors actually occur. In a lot of cases, other parts of the business just absorb the inconsistency by having mitigating processes.
 
-The network is not reliable but simply retrying often has unintended consequences. In the next post, we will start to improve our design so that we can retry with more confidence by trying to make the endpoint idempotent.
+The network is not reliable but simply retrying often has unintended consequences. In the [next post](/reliable-apis-part-2), we will start to improve our design so that we can retry with more confidence by trying to make the endpoint idempotent.
 
 I hope this discussion was insightful. If you think I missed anything important for a discussion at this level, please let me know in the comments.
 
@@ -111,6 +111,8 @@ I hope this discussion was insightful. If you think I missed anything important 
 **Solutions:** Retry policy on network calls
 
 **Consequence:** Duplicate calls
+
+> Only retry idempotent operations
 
 ## Resources
 
