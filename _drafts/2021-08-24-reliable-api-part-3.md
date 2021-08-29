@@ -1,96 +1,127 @@
 ---
 layout: post
 title: "Reliable APIs - Part 3"
-subtitle: "Using Idempotency-Key and a response cache"
-description: "An example of a bad resilience implementation and discussion of the failure modes."
+subtitle: "The epic saga of client-side IDs and true idempotency"
+description: "A better idempotency implementation using client-generated IDs."
 permalink: reliable-apis-part-3
 author: "Devon Burriss"
 category: Software Development
-tags: [Distributed Systems,API Design,Reliability,Idempotent]
+tags: [Distributed Systems,API Design,Reliability,Idempotent,Client-generated ID]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2019/target-500.jpg"
 published: true
 ---
-In the [previous post](/reliable-apis-part-1) we saw how you can end up with duplicates if using a retry-policy on a call to a non-idempotent endpoint. In this post we will look at correcting this and see a subtle way that this can go wrong.
+The [previous post](/reliable-apis-part-2) showed how things can go wrong when not thinking through edge cases carefully, especially where concurrency comes into play. In this post we will look at a truly idempotent endpoint design as well as discuss some alternative designs.
 <!--more-->
-When we last saw our young developer, they had learned a lesson about indiscriminate use of retry policy. This led to some insightful telemetry to be able to monitor when the system landed in an inconsistent state. 
+Posts in this series:
 
-A good thing to! The e-commerce company our developer works at is expanding into another country and to cope with the increase in buying across 2 countries, they are automating the restocking. A sister team has been working with a the data science team to develop an intelligent resupply service that will be making use of the supplier ordering API to automatically create orders. Currently inconsistencies only happen once every week or two but with an increase in load, this will start getting even more annoying for both the development team and purchasers. Our young developer has raised that they want to have this fixed and stable before the automation kicks in.
+1. [Exploring reties, retry implications, and the failure modes they are appropriate for](/reliable-apis-part-1)
+2. [Using Idempotency-Key and a response cache](/reliable-apis-part-2)
+3. The epic saga of client-side IDs and true idempotence
 
+Once again we join our intrepid young developer as they try to implement a truly idempotent endpoint. They seek not idempotence for it's own sake but rather to finally claim that the endpoint is reliable.
 As a reminder, this is the current design:
 
 ![Current design](../img/posts/2021/2021-08-22-10-38-55.png)
 
-Let's see how our young developer is getting along...
+We have looked at all the different places this operation can fail in the two preceding posts. Currently, the DB calls are the only out-of-proc calls that have retry policies over them.
 
-## That idempotence thing
+Our friend has not been idle during our absence. They have been leveling up knowledge on concurrency, REST, and architecture. The result is a design that is simple but our developer worries the team will think it unorthodox.
 
-So you stopped using XML and SOAP and started sending JSON so you figured you had this REST stuff down. If the last few weeks has taught you anything though it is that thereis way more to this API design than the getting started pages on web frameworks tell you. You do recall this idea of *idempotent* calls though and this seems like what you are looking for. Searching for solutions, the internet seems to be a dumpster fire of people arguing about whether POST should be idempotent or not. Going to the source and reading the POST section of the [RFC](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3) you decide on:
+## A different perspective
 
-- Respond with `201 Created` if the resource does not exist
-- Respond with `303 See Other` if the resource already exists
+After standup the team has a short sharing session on designs for the stories they are working on. You pitch the use of client generated IDs. Although not something the rest of the team has heard of, the name kind of gives it away, and the team balks at the idea. 
 
-So apparently a POST can be idempotent. Regardless of the spec, this just seems like a good idea.
+*"IDs should be generated on the server!"* Why? We already use UUIDs generated in our code. Does it matter where this is generated?  
+*"It's a security risk!"* Why? It is internal software in our network where we maintain the client and the server.  
+*"It seems weird!"* Why? From a REST point of view, we are just telling the server to create a resource at a more specific URI.
 
-The more difficult question is, how to tell if a request is a duplicate? Apparently, the semantic way to handle this would be to use [Idempotency-Key](https://tools.ietf.org/id/draft-idempotency-header-01.html).  
-The `Idemptency-Key` is a header you place ina request that indicates a unique request. So for each create order request you send to your API, it will have a unique UUID. Now you can retry a request if it fails, you can retry the request with the same `Idemptency-Key` as the failed request.
+Let me explain further.
 
-For the API our young developer comes up with the following design. The whole team is really excited about adding Redis to their stack as a cache. Not only will it be used as the `Idemptency-Key` cache but as a response cache in general.
+[![Idempotent design](https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3Qgd2l0aCBJZFxuICAgIEFQSS0-PkRCIDogRmV0Y2ggc3VwcGxpZXIgaW5mb1xuICAgIEFQSS0-PkRCIDogUGVyc2lzdCByZWNvcmQgd2l0aCBJZCBhbmQgb3V0Ym94XG4gICAgQVBJLS0-Pi1DbGllbnQ6IE9yZGVyIGNyZWF0ZWQgcmVzcG9uc2VcbiAgICBXb3JrZXItPj5EQiA6IEZldGNoIG91dGJveFxuICAgIFdvcmtlci0-PlN1cHBsaWVyIEFQSSA6IFNlbmQgb3JkZXJcbiAgICBXb3JrZXItPj5EQiA6IFVwZGF0ZSBvdXRib3hcbiAgICBsb29wIFBvbGwgZW5kcG9pbnRcbiAgICAgICAgQ2xpZW50LT4-QVBJOiBDaGVjayBpZiBvcmRlciBjcmVhdGlvbiBkb25lXG4gICAgZW5kIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/edit/##eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3Qgd2l0aCBJZFxuICAgIEFQSS0-PkRCIDogRmV0Y2ggc3VwcGxpZXIgaW5mb1xuICAgIEFQSS0-PkRCIDogUGVyc2lzdCByZWNvcmQgd2l0aCBJZCBhbmQgb3V0Ym94XG4gICAgQVBJLS0-Pi1DbGllbnQ6IE9yZGVyIGNyZWF0ZWQgcmVzcG9uc2VcbiAgICBXb3JrZXItPj5EQiA6IEZldGNoIG91dGJveFxuICAgIFdvcmtlci0-PlN1cHBsaWVyIEFQSSA6IFNlbmQgb3JkZXJcbiAgICBXb3JrZXItPj5EQiA6IFVwZGF0ZSBvdXRib3hcbiAgICBsb29wIFBvbGwgZW5kcG9pblxuICAgICAgICBDbGllbnQtPj5BUEk6IENoZWNrIGlmIG9yZGVyIGNyZWF0aW9uIGRvbmVcbiAgICBlbmQiLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)
 
-![With cache](../img/posts/2021/2021-08-23-06-19-59.png)
+1. The client will generate a UUID as an identifier (ID) that will represent the Order to be created
+2. Instead of sending `Idempotency-Key` we POST to a unique URI now eg. `/orders/1b2e680a-78ce-41f3-8296-63706432f844`. Now we either have a order at a known resource, or we do not.
+3. When persisting this order, we use the ID sent as a unique identifier in the database. We can use the database to enforce uniqueness so any call to persist an order with the same ID will fail. If the persist was successful, we return `202 Accepted`.
+4. Have a `supplier_requests` table that represent the [intent](https://devonburriss.me/reliability-with-intents/) to send the request to the supplier. This is the [outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html).
+5. A worker is running in the background that picks up and sends the unsent records from `supplier_requests`
+6. Once the worker has completed, it updates the database such that subsequent GET requests to `/orders/1b2e680a-78ce-41f3-8296-63706432f844` will return `200 OK` instead of `202 Accepted`.
 
-Before servicing a request, the create order endpoint will check to see if the `Idemptency-Key` is already in the cache and if it is, it will just return the cached response. If it is not in the cache, it will proceed with the rest of the call and at the end, place the response in the cache.
+Although the unorthodoxy of generating the ID on the client side seems to bother some people in the team still, they can't really say why. More importantly, everyone agrees that this design does indeed seem to have the guarantees for resilience that they were aiming at.
 
-Now that the endpoint is idempotent, you go ahead and re-enable that retry policy from the client side.
-
-## Not again!
-
-The day after deploying your new resiliency changes you get a call from one of the new stock purchasers, Leon. Leon is an older guy who wanted a change from warehousing, an area he had been working for decades. He mentions that he has noticed some inconsistencies but wants to check them with you since he does not know these new systems. You smile to yourself because Leon does not seem very comfortable on the computer. He double clicks everything and types with one finger. Leon brings up the application that shows the purchase orders created on our side. He also brings up the portal the use that shoes them incoming deliveries from the supplier. It takes a while but eventually he puts these 2 screens next to each other. There are orders that have been created our side and do not exist at the supplier. Not only that but duplicates are back!  
-Leon points out something else interesting. He noticed that his orders seem to be duplicated far more often than the other purchasers. He is worried he is doing something wrong since he knows he isn't great at this computer stuff.  
-You are pretty sure you know what is wrong and you can't believe you made this mistake again. You explain to Leon that he does not need to double click the button but assure him that the fault is not his but rather yours. Leon not only found a bug earlier than everyone else but because he had checked he was able to fix the orders before deliveries where sent. Thank you Leon!
-
-## Quick fix
-
-You are pretty sure you know what is going on. Leon's double clicking meant that sometimes a second request was making it into the endpoint before the first call had completed and was cached. Now that you are thinking through it, the current design hardly adds any value at all from a resilience point of view. You are shocked. Now that you look at it, it is obvious but the reason you had not looked at this critically before was that this was the advice of countless posts and libraries on the internet. Maybe people just don't make POST requests idempotent? Or the people giving the advice don't work on distributed systems? Maybe they just don't have telemetry telling them how often this goes wrong. Looking at yours, it indeed confirms Leon's findings. You decrease the tolerance on the alerts.
-
-You implement some quick fixes. Firstly, you disable the retry policy. Again. Next, you add a quick change to the UI that disables the button until a response is received. That should take care of Leon's double clicking.
-
-Back to the drawing board.
+Happy with the design and the buy-in, our developer pairs up with one of the more skeptical team members to implement the design. And finally, they can enable the client retry policies.
 
 ## Analysis
 
-So what went wrong with our friend's design this time? Basically, concurrency makes everything just a little bit more complex. When walking through a sequence of steps in our program it can be difficult to think about what this means for other executions happening at the same time. The kind of bugs that can arise from this can be rather subtle and confusing.
+As part of the analysis we will go into some implementation details, as well as some possible alternative designs.
 
-[![Concurrent requests to cache](https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3QgW29yaWddXG4gICAgQVBJLT4-K0NhY2hlIDogQ2hlY2sgZm9yIElkZW1wb3RlbmN5LUtleSBbb3JpZ11cbiAgICBDYWNoZS0-Pi1BUEkgOiBObyBrZXkgZm91bmQgW29yaWddXG4gICAgQ2xpZW50LT4-QVBJOiBEdXBsaWNhdGUgY3JlYXRlIG9yZGVyIHJlcXVlc3QgW2R1cF1cbiAgICBBUEktPj4rQ2FjaGUgOiBDaGVjayBmb3IgSWRlbXBvdGVuY3ktS2V5IFtkdXBdXG4gICAgQ2FjaGUtPj4tQVBJIDogTm8ga2V5IGZvdW5kIFtkdXBdXG4gICAgQVBJLT4-REIgOiBQZXJzaXN0IHJlY29yZCBbb3JpZ11cbiAgICBBUEktPj5TdXBwbGllciBBUEkgOiBTZW5kIG9yZGVyIFtvcmlnXVxuICAgIEFQSS0-PkRCIDogUGVyc2lzdCByZWNvcmQgW2R1cF1cbiAgICBBUEktPj5TdXBwbGllciBBUEkgOiBTZW5kIG9yZGVyIFtkdXBdXG4gICAgQVBJLT4-Q2FjaGUgOiBVcGRhdGUgY2FjaGUgW29yaWddXG4gICAgQVBJLT4-Q2FjaGUgOiBVcGRhdGUgY2FjaGUgW2R1cF1cbiAgICBBUEktLT4-Q2xpZW50OiBPcmRlciBjcmVhdGVkIHJlc3BvbnNlIFtvcmlnXVxuICAgIEFQSS0tPj4tQ2xpZW50OiBPcmRlciBjcmVhdGVkIHJlc3BvbnNlIFtkdXBdXG4gICAgIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/edit/##eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3QgW29yaWddXG4gICAgQVBJLT4-K0NhY2hlIDogQ2hlY2sgZm9yIElkZW1wb3RlbmN5LUtleSBbb3JpZ11cbiAgICBDYWNoZS0-Pi1BUEkgOiBObyBrZXkgZm91bmQgW29yaWddXG4gICAgQ2xpZW50LT4-QVBJOiBEdXBsaWNhdGUgY3JlYXRlIG9yZGVyIHJlcXVlc3QgW2R1cF1cbiAgICBBUEktPj4rQ2FjaGUgOiBDaGVjayBmb3IgSWRlbXBvdGVuY3ktS2V5IFtkdXBdXG4gICAgQ2FjaGUtPj4tQVBJIDogTm8ga2V5IGZvdW5kIFtkdXBdXG4gICAgQVBJLT4-REIgOiBQZXJzaXN0IHJlY29yZCBbb3JpZ11cbiAgICBBUEktPj5TdXBwbGllciBBUEkgOiBTZW5kIG9yZGVyIFtvcmlnXVxuICAgIEFQSS0-PkRCIDogUGVyc2lzdCByZWNvcmQgW2R1cF1cbiAgICBBUEktPj5TdXBwbGllciBBUEkgOiBTZW5kIG9yZGVyIFtkdXBdXG4gICAgQVBJLT4-Q2FjaGUgOiBVcGRhdGUgY2FjaGUgW29yaWddXG4gICAgQVBJLT4-Q2FjaGUgIDogVXBkYXRlIGNhY2hlIFtkdXBdXG4gICAgQVBJLS0-PkNsaWVudDogT3JkZXIgY3JlYXRlZCByZXNwb25zZSBbb3JpZ11cbiAgICBBUEktLT4-LUNsaWVudDogT3JkZXIgY3JlYXRlZCByZXNwb25zZSBbZHVwXVxuICAgICIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9)
+### Client-generated ID vs. Idempotency-Key
 
-Here is just one example of 2 requests hitting the endpoint before the cache has been updated. And we still have the problem that a call to the supplier API failing would leave our database in an inconsistent state. Depending on what went wrong we could retry, but what if the process was terminated at that point. A duplicate call could come in again.  
-What if we updated the cache before the calls? Well then we could end up with either database or external API call failing and from the outside it seeming like it had succeeded.
+If a team is uncomfortable using the client-generated ID, continuing to use `Idempotency-Key` is a perfectly good solution. In this case you could just insert `Idempotency-Key` into another table in the same transaction as the order is inserted into the database. It is important that this is in the same transaction, or you lose the idempotency guarantee. You just need to make sure the column has a uniqueness constraint on it.
+
+> A note on the primary key: When using client-generated ID you need not use it as the primary key for the Order. By indexing it and placing a uniqueness constraint on it we can use it as a public lookup. We can then use a database incrementing numeric key for the primary key to do joins on. This way your primary key is never exposed. This gives location independence if you needed to make major changes to your database to cope with scale.
+
+### Outbox states
+
+I wanted to make a few suggestions for your `supplier_requests` implementation. In my [intents](https://devonburriss.me/reliability-with-intents/) post I discuss a more generic outbox but I would not make that jump unless you have a lot of different systems you are interacting with in an application. 
+
+Some data to consider keeping on the outbox:
+
+- `created_at`
+- `last_touch`
+- `completed_at`
+- `status`
+- `try_count`
+- `message`
+- `order_id`
+
+A few states to keep track of though:
+
+- `pending`: Has not been picked up by a worker (message relay), Sets `created_at` & `last_touch` column to same value.
+- `in-progress`: Has been picked up by a worked but not completed. Updates `last_touch` column.
+- `failed`: Tried to post to the supplier but either failed with a reason that makes retying risky, or retry count was hit. Updates `try_count`, `message`, `completed_at`.
+- `completed`: Set if POST to supplier is successful. Updates `try_count`, `completed_at`.
+
+This design assumes all data you need can be fetched from the linked order. The other option is to just keep a serialized payload in the outbox row as a column.
+
+### Workers
+
+The workers that do the actual sending, known as *message relays*, need to be singletons so they are not picking up the same outbox message concurrently. This does not mean you can have only one. You could use locking, or more preferable, partitioning where multiple workers process concurrently but over distinct partitions. As a single example you could have 2 workers, 1 processing the outbox for orders with even numbered row number while the other processes odd.
+
+### A word on cache back-channeling
+
+For endpoints where multiple hits to either the POST (unlikely) or the GET (more likely) are going to cause significant load on the database, it can be a good idea to actively populate the cache. This is where the outbox represents the [intent](https://devonburriss.me/reliability-with-intents/) of steps in a saga rather than the mere passing on of a single message.
+
+If for example we expected a high load on `GET /orders/1b2e680a-78ce-41f3-8296-63706432f844` our worker could:
+
+1. POST to supplier API
+2. Prepopulate a distributed cache with the order (or response, depending on cache type)
+3. The unhappy path would be to trigger some sort of rollback or user notification of a failure to complete
+
+### Optimization warning
+
+If it is imperative that the endpoint be responding as quickly as possible that the saga has completed, you may be tempted to TRY complete it with the initial request. This gets us back into the concurrency problem where you could have the worker and the API both trying to process the same outbox message. It is possible if you are doing some locking on the database but honestly it just doesn't seem worth it to me.
 
 ## Conclusion
 
-This design of cache that is not transactional with state change within the service does not really move us closer to a resilient API design. In the next post we will finally look at a design that does improve reliability.
+It took a while to get there, but our young developer finally got to a robust API design. In this series we looked at a few subtle ways that things can go wrong. These failure modes are often overlooked when developers are used to dealing with low volume loads, but can quickly become an issue if your load grows quickly. We also saw how sometimes business processes can mask system errors and so saw the importance of having good monitoring, metrics, and alerts fo not just the health, but proper operating of our systems.
+
+The solutions presented in this post assume certain properties from your persistent storage, so it is important to think about how you are handling idempotence when selecting your database technology.
+
+Finally, this design was really optimizing for resilience and eventual consistency of the system. Sometimes if speed of processing is more important, you may need to sacrifice some reliability. Unfortunately, when you are making those kinds of tradeoffs you are almost by definition dealing with high loads so... it depends.
 
 ## Summary
 
 **Problem:** Duplicate calls
 
-**Solutions:** idempotency via a response cache
+**Solutions:** idempotency via unique key in an atomic commit
 
-**Consequence:** Duplicate calls because cache update is not atomic
-
-> Concurrency is hard
-
-
-- idemotency-key in a cache (users double click and 2nd request occurs before cache is updated)
-- move to client-generated id in a DB + back-channel to a cache
-- outbox
-
+**Consequence:** The database enforces no duplicates
 
 ## Resources
 
-- https://stripe.com/blog/idempotency
-- https://repl.ca/what-is-the-idempotency-key-header/
-- https://www.techyourchance.com/client-generated-ids-vs-server-generated-ids/
-- https://tech.trello.com/sync-two-id-problem/
+- [A very basic discussion of client vs. server IDs](https://www.techyourchance.com/client-generated-ids-vs-server-generated-ids/)
+- [Flexible design for outbox like saga](https://devonburriss.me/reliability-with-intents/)
+- [Interesting discussion of what happens when you can't use client side IDs](https://tech.trello.com/sync-two-id-problem/)

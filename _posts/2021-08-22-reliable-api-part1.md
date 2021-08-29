@@ -15,6 +15,12 @@ published: true
 ---
 Resiliency is more than just slapping a retry policy on a client and hoping it can handle transient errors. It is building systems that handle operations that always end in a valid state across the whole system. This does not mean that all operations WILL BE successful. Just that they are always handled in an expected way, every time.
 <!--more-->
+Posts in this series:
+
+1. Exploring reties, retry implications, and the failure modes they are appropriate for
+2. [Using Idempotency-Key and a response cache](/reliable-apis-part-2)
+3. [The epic saga of client-side IDs and true idempotence](/reliable-apis-part-3)
+
 To explore this, let's step into a young developer's shoes and consider a simple piece of functionality. 
 
 > A stock purchaser is using a system where they look at some analytics on a stock item and decide if they need to purchase more stock and how much. They indicate the quantity on the client application and click the "Order now" button. This sends a POST request to the backend to create an order with the supplier.

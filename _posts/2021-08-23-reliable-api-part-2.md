@@ -15,6 +15,12 @@ published: true
 ---
 In the [previous post](/reliable-apis-part-1) we saw how you can end up with duplicates if using a retry-policy on a call to a non-idempotent endpoint. In this post, we will look at correcting this and see a subtle way that this can go wrong.
 <!--more-->
+Posts in this series:
+
+1. [Exploring reties, retry implications, and the failure modes they are appropriate for](/reliable-apis-part-1)
+2. Using Idempotency-Key and a response cache
+3. [The epic saga of client-side IDs and true idempotence](/reliable-apis-part-3)
+
 When we last saw our young developer, they had learned a lesson about the indiscriminate use of retry policy. This led to some insightful telemetry to be able to monitor when the system landed in an inconsistent state. 
 
 A good thing too! The e-commerce company our developer works at is expanding into another country and to cope with the increase in buying across 2 countries, they are automating the restocking. A sister team has been working with the data science team to develop an intelligent resupply service that will be making use of the supplier ordering API to automatically create orders. Currently, inconsistencies only happen once every week or two but with an increase in load, this will start getting even more annoying for both the development team and purchasers. Our young developer has raised that they want to have this fixed and stable before the automation kicks in.
@@ -88,5 +94,5 @@ This design of cache that is not transactional with state change within the serv
 
 ## Resources
 
-- https://stripe.com/blog/idempotency
-- https://repl.ca/what-is-the-idempotency-key-header/
+- [Stripe blog on Idempotency](https://stripe.com/blog/idempotency)
+- [Intro to Idempotency-Key header](https://repl.ca/what-is-the-idempotency-key-header/)
