@@ -12,36 +12,49 @@
 
 
 
+    
 
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly explorations in code">
+    
+
+
+    <title>Reliable APIs - Part 3</title>
+    <meta name="description" content="A better idempotency implementation using client-generated IDs.">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="https://devonburriss.me/reliable-apis-part-3/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly explorations in code">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="Reliable APIs - Part 3">
+    <meta itemprop="description" content="A better idempotency implementation using client-generated IDs.">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2019/target-500.jpg">
+    
+    <meta itemprop="datePublished" content="8/29/2021 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="8/29/2021 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Reliable APIs - Part 3 - The epic saga of client-side IDs and true idempotency" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/reliable-apis-part-3/" />
+    <meta name="headline" content="Reliable APIs - Part 3 - The epic saga of client-side IDs and true idempotency" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly explorations in code">
+    <meta name="twitter:title" content="Reliable APIs - Part 3">
+    <meta name="twitter:description" content="A better idempotency implementation using client-generated IDs.">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2019/target-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="Reliable APIs - Part 3" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me//tag/unit-testing/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly explorations in code" />
+    <meta property="og:url" content="https://devonburriss.me/reliable-apis-part-3/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2019/target-500.jpg" />
+    <meta property="og:description" content="A better idempotency implementation using client-generated IDs." />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -142,189 +155,154 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/path-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Reliable APIs - Part 3</h1>
+                        
+                        <h2 class="subheading">The epic saga of client-side IDs and true idempotency</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on August 29, 2021</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/distributed-systems" class="label label-default">Distributed Systems</a>
+                            
+                                <a href="/tag/api-design" class="label label-default">API Design</a>
+                            
+                                <a href="/tag/reliability" class="label label-default">Reliability</a>
+                            
+                                <a href="/tag/idempotent" class="label label-default">Idempotent</a>
+                            
+                                <a href="/tag/client-generated-id" class="label label-default">Client-generated ID</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			<div>
-    <div class="clearfix">
-        <h1 class="pull-right">&#47;Unit Testing&#47; &nbsp;</h1>
-    </div>
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      
-      <div class="post-preview ">
-          <a href="/testing-the-untestable/">
-              <h2 class="post-title">            Testing the Untestable
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on January 27, 2015</p>
-          
-              
-                 <a href="/tag/testing"><span class="label label-default">Testing</span></a>
-              
-                 <a href="/tag/programming"><span class="label label-default">Programming</span></a>
-              
-                 <a href="/tag/unit-testing"><span class="label label-default">Unit Testing</span></a>
-              
-                 <a href="/tag/tdd"><span class="label label-default">TDD</span></a>
-              
-          
-      </div>
-      <hr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-</div>
-		</div>
+				<p>The <a href="/reliable-apis-part-2">previous post</a> showed how things can go wrong when not thinking through edge cases carefully, especially where concurrency comes into play. In this post we will look at a truly idempotent endpoint design as well as discuss some alternative designs.</p>
+<!--more-->
+<p>Posts in this series:</p>
+<ol>
+<li><a href="/reliable-apis-part-1">Exploring reties, retry implications, and the failure modes they are appropriate for</a></li>
+<li><a href="/reliable-apis-part-2">Using Idempotency-Key and a response cache</a></li>
+<li>The epic saga of client-side IDs and true idempotence</li>
+</ol>
+<p>Once again we join our intrepid young developer as they try to implement a truly idempotent endpoint. They seek not idempotence for it's own sake but rather to finally claim that the endpoint is reliable.
+As a reminder, this is the current design:</p>
+<p><img src="../img/posts/2021/2021-08-22-10-38-55.png" alt="Current design" /></p>
+<p>We have looked at all the different places this operation can fail in the two preceding posts. Currently, the DB calls are the only out-of-proc calls that have retry policies over them.</p>
+<p>Our friend has not been idle during our absence. They have been leveling up knowledge on concurrency, REST, and architecture. The result is a design that is simple but our developer worries the team will think it unorthodox.</p>
+<h2>A different perspective</h2>
+<p>After standup the team has a short sharing session on designs for the stories they are working on. You pitch the use of client generated IDs. Although not something the rest of the team has heard of, the name kind of gives it away, and the team balks at the idea.</p>
+<p><em>&quot;IDs should be generated on the server!&quot;</em> Why? We already use UUIDs generated in our code. Does it matter where this is generated?<br />
+<em>&quot;It's a security risk!&quot;</em> Why? It is internal software in our network where we maintain the client and the server.<br />
+<em>&quot;It seems weird!&quot;</em> Why? From a REST point of view, we are just telling the server to create a resource at a more specific URI.</p>
+<p>Let me explain further.</p>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/##eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3Qgd2l0aCBJZFxuICAgIEFQSS0-PkRCIDogRmV0Y2ggc3VwcGxpZXIgaW5mb1xuICAgIEFQSS0-PkRCIDogUGVyc2lzdCByZWNvcmQgd2l0aCBJZCBhbmQgb3V0Ym94XG4gICAgQVBJLS0-Pi1DbGllbnQ6IE9yZGVyIGNyZWF0ZWQgcmVzcG9uc2VcbiAgICBXb3JrZXItPj5EQiA6IEZldGNoIG91dGJveFxuICAgIFdvcmtlci0-PlN1cHBsaWVyIEFQSSA6IFNlbmQgb3JkZXJcbiAgICBXb3JrZXItPj5EQiA6IFVwZGF0ZSBvdXRib3hcbiAgICBsb29wIFBvbGwgZW5kcG9pblxuICAgICAgICBDbGllbnQtPj5BUEk6IENoZWNrIGlmIG9yZGVyIGNyZWF0aW9uIGRvbmVcbiAgICBlbmQiLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ"><img src="https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3Qgd2l0aCBJZFxuICAgIEFQSS0-PkRCIDogRmV0Y2ggc3VwcGxpZXIgaW5mb1xuICAgIEFQSS0-PkRCIDogUGVyc2lzdCByZWNvcmQgd2l0aCBJZCBhbmQgb3V0Ym94XG4gICAgQVBJLS0-Pi1DbGllbnQ6IE9yZGVyIGNyZWF0ZWQgcmVzcG9uc2VcbiAgICBXb3JrZXItPj5EQiA6IEZldGNoIG91dGJveFxuICAgIFdvcmtlci0-PlN1cHBsaWVyIEFQSSA6IFNlbmQgb3JkZXJcbiAgICBXb3JrZXItPj5EQiA6IFVwZGF0ZSBvdXRib3hcbiAgICBsb29wIFBvbGwgZW5kcG9pbnRcbiAgICAgICAgQ2xpZW50LT4-QVBJOiBDaGVjayBpZiBvcmRlciBjcmVhdGlvbiBkb25lXG4gICAgZW5kIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ" alt="Idempotent design" /></a></p>
+<ol>
+<li>The client will generate a UUID as an identifier (ID) that will represent the Order to be created</li>
+<li>Instead of sending <code>Idempotency-Key</code> we POST to a unique URI now eg. <code>/orders/1b2e680a-78ce-41f3-8296-63706432f844</code>. Now we either have a order at a known resource, or we do not.</li>
+<li>When persisting this order, we use the ID sent as a unique identifier in the database. We can use the database to enforce uniqueness so any call to persist an order with the same ID will fail. If the persist was successful, we return <code>202 Accepted</code>.</li>
+<li>Have a <code>supplier_requests</code> table that represent the <a href="https://devonburriss.me/reliability-with-intents/">intent</a> to send the request to the supplier. This is the <a href="https://microservices.io/patterns/data/transactional-outbox.html">outbox pattern</a>.</li>
+<li>A worker is running in the background that picks up and sends the unsent records from <code>supplier_requests</code></li>
+<li>Once the worker has completed, it updates the database such that subsequent GET requests to <code>/orders/1b2e680a-78ce-41f3-8296-63706432f844</code> will return <code>200 OK</code> instead of <code>202 Accepted</code>.</li>
+</ol>
+<p>Although the unorthodoxy of generating the ID on the client side seems to bother some people in the team still, they can't really say why. More importantly, everyone agrees that this design does indeed seem to have the guarantees for resilience that they were aiming at.</p>
+<p>Happy with the design and the buy-in, our developer pairs up with one of the more skeptical team members to implement the design. And finally, they can enable the client retry policies.</p>
+<h2>Analysis</h2>
+<p>As part of the analysis we will go into some implementation details, as well as some possible alternative designs.</p>
+<h3>Client-generated ID vs. Idempotency-Key</h3>
+<p>If a team is uncomfortable using the client-generated ID, continuing to use <code>Idempotency-Key</code> is a perfectly good solution. In this case you could just insert <code>Idempotency-Key</code> into another table in the same transaction as the order is inserted into the database. It is important that this is in the same transaction, or you lose the idempotency guarantee. You just need to make sure the column has a uniqueness constraint on it.</p>
+<blockquote>
+<p>A note on the primary key: When using client-generated ID you need not use it as the primary key for the Order. By indexing it and placing a uniqueness constraint on it we can use it as a public lookup. We can then use a database incrementing numeric key for the primary key to do joins on. This way your primary key is never exposed. This gives location independence if you needed to make major changes to your database to cope with scale.</p>
+</blockquote>
+<h3>Outbox states</h3>
+<p>I wanted to make a few suggestions for your <code>supplier_requests</code> implementation. In my <a href="https://devonburriss.me/reliability-with-intents/">intents</a> post I discuss a more generic outbox but I would not make that jump unless you have a lot of different systems you are interacting with in an application.</p>
+<p>Some data to consider keeping on the outbox:</p>
+<ul>
+<li><code>created_at</code></li>
+<li><code>last_touch</code></li>
+<li><code>completed_at</code></li>
+<li><code>status</code></li>
+<li><code>try_count</code></li>
+<li><code>message</code></li>
+<li><code>order_id</code></li>
+</ul>
+<p>A few states to keep track of though:</p>
+<ul>
+<li><code>pending</code>: Has not been picked up by a worker (message relay), Sets <code>created_at</code> &amp; <code>last_touch</code> column to same value.</li>
+<li><code>in-progress</code>: Has been picked up by a worked but not completed. Updates <code>last_touch</code> column.</li>
+<li><code>failed</code>: Tried to post to the supplier but either failed with a reason that makes retying risky, or retry count was hit. Updates <code>try_count</code>, <code>message</code>, <code>completed_at</code>.</li>
+<li><code>completed</code>: Set if POST to supplier is successful. Updates <code>try_count</code>, <code>completed_at</code>.</li>
+</ul>
+<p>This design assumes all data you need can be fetched from the linked order. The other option is to just keep a serialized payload in the outbox row as a column.</p>
+<h3>Workers</h3>
+<p>The workers that do the actual sending, known as <em>message relays</em>, need to be singletons so they are not picking up the same outbox message concurrently. This does not mean you can have only one. You could use locking, or more preferable, partitioning where multiple workers process concurrently but over distinct partitions. As a single example you could have 2 workers, 1 processing the outbox for orders with even numbered row number while the other processes odd.</p>
+<h3>A word on cache back-channeling</h3>
+<p>For endpoints where multiple hits to either the POST (unlikely) or the GET (more likely) are going to cause significant load on the database, it can be a good idea to actively populate the cache. This is where the outbox represents the <a href="https://devonburriss.me/reliability-with-intents/">intent</a> of steps in a saga rather than the mere passing on of a single message.</p>
+<p>If for example we expected a high load on <code>GET /orders/1b2e680a-78ce-41f3-8296-63706432f844</code> our worker could:</p>
+<ol>
+<li>POST to supplier API</li>
+<li>Prepopulate a distributed cache with the order (or response, depending on cache type)</li>
+<li>The unhappy path would be to trigger some sort of rollback or user notification of a failure to complete</li>
+</ol>
+<h3>Optimization warning</h3>
+<p>If it is imperative that the endpoint be responding as quickly as possible that the saga has completed, you may be tempted to TRY complete it with the initial request. This gets us back into the concurrency problem where you could have the worker and the API both trying to process the same outbox message. It is possible if you are doing some locking on the database but honestly it just doesn't seem worth it to me.</p>
+<h2>Conclusion</h2>
+<p>It took a while to get there, but our young developer finally got to a robust API design. In this series we looked at a few subtle ways that things can go wrong. These failure modes are often overlooked when developers are used to dealing with low volume loads, but can quickly become an issue if your load grows quickly. We also saw how sometimes business processes can mask system errors and so saw the importance of having good monitoring, metrics, and alerts fo not just the health, but proper operating of our systems.</p>
+<p>The solutions presented in this post assume certain properties from your persistent storage, so it is important to think about how you are handling idempotence when selecting your database technology.</p>
+<p>Finally, this design was really optimizing for resilience and eventual consistency of the system. Sometimes if speed of processing is more important, you may need to sacrifice some reliability. Unfortunately, when you are making those kinds of tradeoffs you are almost by definition dealing with high loads so... it depends.</p>
+<h2>Summary</h2>
+<p><strong>Problem:</strong> Duplicate calls</p>
+<p><strong>Solutions:</strong> idempotency via unique key in an atomic commit</p>
+<p><strong>Consequence:</strong> The database enforces no duplicates</p>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.techyourchance.com/client-generated-ids-vs-server-generated-ids/">A very basic discussion of client vs. server IDs</a></li>
+<li><a href="https://devonburriss.me/reliability-with-intents/">Flexible design for outbox like saga</a></li>
+<li><a href="https://tech.trello.com/sync-two-id-problem/">Interesting discussion of what happens when you can't use client side IDs</a></li>
+</ul>
 
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/reliable-apis-part-2/">Reliable APIs - Part 2</a></li>
+                                                <li><a href="/reliable-apis-part-1/">Reliable APIs - Part 1</a></li>
+                                                <li><a href="/reliability-with-intents/">Reliability with Intents</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/reliable-apis-part-2/" data-toggle="tooltip"    data-placement="top" title="Reliable APIs - Part 2">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -366,7 +344,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/agile">Agile</a>
 
@@ -386,8 +364,8 @@
 
     <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -806,24 +784,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="https://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="https://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>

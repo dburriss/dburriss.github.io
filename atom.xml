@@ -3,13 +3,107 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-08-23T17:17:09.3487824+00:00</updated>
+  <updated>2021-08-29T09:41:06.6861491+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/reliable-apis-part-3/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/reliable-apis-part-3/"/>
+    <title>Reliable APIs - Part 3</title>
+    <updated>2021-08-29T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/reliable-apis-part-3/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;The &lt;a href=&quot;/reliable-apis-part-2&quot;&gt;previous post&lt;/a&gt; showed how things can go wrong when not thinking through edge cases carefully, especially where concurrency comes into play. In this post we will look at a truly idempotent endpoint design as well as discuss some alternative designs.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;Posts in this series:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;/reliable-apis-part-1&quot;&gt;Exploring reties, retry implications, and the failure modes they are appropriate for&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/reliable-apis-part-2&quot;&gt;Using Idempotency-Key and a response cache&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The epic saga of client-side IDs and true idempotence&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Once again we join our intrepid young developer as they try to implement a truly idempotent endpoint. They seek not idempotence for it&apos;s own sake but rather to finally claim that the endpoint is reliable.
+As a reminder, this is the current design:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2021/2021-08-22-10-38-55.png&quot; alt=&quot;Current design&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We have looked at all the different places this operation can fail in the two preceding posts. Currently, the DB calls are the only out-of-proc calls that have retry policies over them.&lt;/p&gt;
+&lt;p&gt;Our friend has not been idle during our absence. They have been leveling up knowledge on concurrency, REST, and architecture. The result is a design that is simple but our developer worries the team will think it unorthodox.&lt;/p&gt;
+&lt;h2&gt;A different perspective&lt;/h2&gt;
+&lt;p&gt;After standup the team has a short sharing session on designs for the stories they are working on. You pitch the use of client generated IDs. Although not something the rest of the team has heard of, the name kind of gives it away, and the team balks at the idea.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&amp;quot;IDs should be generated on the server!&amp;quot;&lt;/em&gt; Why? We already use UUIDs generated in our code. Does it matter where this is generated?&lt;br /&gt;
+&lt;em&gt;&amp;quot;It&apos;s a security risk!&amp;quot;&lt;/em&gt; Why? It is internal software in our network where we maintain the client and the server.&lt;br /&gt;
+&lt;em&gt;&amp;quot;It seems weird!&amp;quot;&lt;/em&gt; Why? From a REST point of view, we are just telling the server to create a resource at a more specific URI.&lt;/p&gt;
+&lt;p&gt;Let me explain further.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mermaid-js.github.io/mermaid-live-editor/edit/##eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3Qgd2l0aCBJZFxuICAgIEFQSS0-PkRCIDogRmV0Y2ggc3VwcGxpZXIgaW5mb1xuICAgIEFQSS0-PkRCIDogUGVyc2lzdCByZWNvcmQgd2l0aCBJZCBhbmQgb3V0Ym94XG4gICAgQVBJLS0-Pi1DbGllbnQ6IE9yZGVyIGNyZWF0ZWQgcmVzcG9uc2VcbiAgICBXb3JrZXItPj5EQiA6IEZldGNoIG91dGJveFxuICAgIFdvcmtlci0-PlN1cHBsaWVyIEFQSSA6IFNlbmQgb3JkZXJcbiAgICBXb3JrZXItPj5EQiA6IFVwZGF0ZSBvdXRib3hcbiAgICBsb29wIFBvbGwgZW5kcG9pblxuICAgICAgICBDbGllbnQtPj5BUEk6IENoZWNrIGlmIG9yZGVyIGNyZWF0aW9uIGRvbmVcbiAgICBlbmQiLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ&quot;&gt;&lt;img src=&quot;https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQ2xpZW50LT4-K0FQSTogQ3JlYXRlIG9yZGVyIHJlcXVlc3Qgd2l0aCBJZFxuICAgIEFQSS0-PkRCIDogRmV0Y2ggc3VwcGxpZXIgaW5mb1xuICAgIEFQSS0-PkRCIDogUGVyc2lzdCByZWNvcmQgd2l0aCBJZCBhbmQgb3V0Ym94XG4gICAgQVBJLS0-Pi1DbGllbnQ6IE9yZGVyIGNyZWF0ZWQgcmVzcG9uc2VcbiAgICBXb3JrZXItPj5EQiA6IEZldGNoIG91dGJveFxuICAgIFdvcmtlci0-PlN1cHBsaWVyIEFQSSA6IFNlbmQgb3JkZXJcbiAgICBXb3JrZXItPj5EQiA6IFVwZGF0ZSBvdXRib3hcbiAgICBsb29wIFBvbGwgZW5kcG9pbnRcbiAgICAgICAgQ2xpZW50LT4-QVBJOiBDaGVjayBpZiBvcmRlciBjcmVhdGlvbiBkb25lXG4gICAgZW5kIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ&quot; alt=&quot;Idempotent design&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The client will generate a UUID as an identifier (ID) that will represent the Order to be created&lt;/li&gt;
+&lt;li&gt;Instead of sending &lt;code&gt;Idempotency-Key&lt;/code&gt; we POST to a unique URI now eg. &lt;code&gt;/orders/1b2e680a-78ce-41f3-8296-63706432f844&lt;/code&gt;. Now we either have a order at a known resource, or we do not.&lt;/li&gt;
+&lt;li&gt;When persisting this order, we use the ID sent as a unique identifier in the database. We can use the database to enforce uniqueness so any call to persist an order with the same ID will fail. If the persist was successful, we return &lt;code&gt;202 Accepted&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Have a &lt;code&gt;supplier_requests&lt;/code&gt; table that represent the &lt;a href=&quot;https://devonburriss.me/reliability-with-intents/&quot;&gt;intent&lt;/a&gt; to send the request to the supplier. This is the &lt;a href=&quot;https://microservices.io/patterns/data/transactional-outbox.html&quot;&gt;outbox pattern&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;A worker is running in the background that picks up and sends the unsent records from &lt;code&gt;supplier_requests&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Once the worker has completed, it updates the database such that subsequent GET requests to &lt;code&gt;/orders/1b2e680a-78ce-41f3-8296-63706432f844&lt;/code&gt; will return &lt;code&gt;200 OK&lt;/code&gt; instead of &lt;code&gt;202 Accepted&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Although the unorthodoxy of generating the ID on the client side seems to bother some people in the team still, they can&apos;t really say why. More importantly, everyone agrees that this design does indeed seem to have the guarantees for resilience that they were aiming at.&lt;/p&gt;
+&lt;p&gt;Happy with the design and the buy-in, our developer pairs up with one of the more skeptical team members to implement the design. And finally, they can enable the client retry policies.&lt;/p&gt;
+&lt;h2&gt;Analysis&lt;/h2&gt;
+&lt;p&gt;As part of the analysis we will go into some implementation details, as well as some possible alternative designs.&lt;/p&gt;
+&lt;h3&gt;Client-generated ID vs. Idempotency-Key&lt;/h3&gt;
+&lt;p&gt;If a team is uncomfortable using the client-generated ID, continuing to use &lt;code&gt;Idempotency-Key&lt;/code&gt; is a perfectly good solution. In this case you could just insert &lt;code&gt;Idempotency-Key&lt;/code&gt; into another table in the same transaction as the order is inserted into the database. It is important that this is in the same transaction, or you lose the idempotency guarantee. You just need to make sure the column has a uniqueness constraint on it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A note on the primary key: When using client-generated ID you need not use it as the primary key for the Order. By indexing it and placing a uniqueness constraint on it we can use it as a public lookup. We can then use a database incrementing numeric key for the primary key to do joins on. This way your primary key is never exposed. This gives location independence if you needed to make major changes to your database to cope with scale.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Outbox states&lt;/h3&gt;
+&lt;p&gt;I wanted to make a few suggestions for your &lt;code&gt;supplier_requests&lt;/code&gt; implementation. In my &lt;a href=&quot;https://devonburriss.me/reliability-with-intents/&quot;&gt;intents&lt;/a&gt; post I discuss a more generic outbox but I would not make that jump unless you have a lot of different systems you are interacting with in an application.&lt;/p&gt;
+&lt;p&gt;Some data to consider keeping on the outbox:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;created_at&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;last_touch&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;completed_at&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;status&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;try_count&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;message&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;order_id&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A few states to keep track of though:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pending&lt;/code&gt;: Has not been picked up by a worker (message relay), Sets &lt;code&gt;created_at&lt;/code&gt; &amp;amp; &lt;code&gt;last_touch&lt;/code&gt; column to same value.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;in-progress&lt;/code&gt;: Has been picked up by a worked but not completed. Updates &lt;code&gt;last_touch&lt;/code&gt; column.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;failed&lt;/code&gt;: Tried to post to the supplier but either failed with a reason that makes retying risky, or retry count was hit. Updates &lt;code&gt;try_count&lt;/code&gt;, &lt;code&gt;message&lt;/code&gt;, &lt;code&gt;completed_at&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;completed&lt;/code&gt;: Set if POST to supplier is successful. Updates &lt;code&gt;try_count&lt;/code&gt;, &lt;code&gt;completed_at&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This design assumes all data you need can be fetched from the linked order. The other option is to just keep a serialized payload in the outbox row as a column.&lt;/p&gt;
+&lt;h3&gt;Workers&lt;/h3&gt;
+&lt;p&gt;The workers that do the actual sending, known as &lt;em&gt;message relays&lt;/em&gt;, need to be singletons so they are not picking up the same outbox message concurrently. This does not mean you can have only one. You could use locking, or more preferable, partitioning where multiple workers process concurrently but over distinct partitions. As a single example you could have 2 workers, 1 processing the outbox for orders with even numbered row number while the other processes odd.&lt;/p&gt;
+&lt;h3&gt;A word on cache back-channeling&lt;/h3&gt;
+&lt;p&gt;For endpoints where multiple hits to either the POST (unlikely) or the GET (more likely) are going to cause significant load on the database, it can be a good idea to actively populate the cache. This is where the outbox represents the &lt;a href=&quot;https://devonburriss.me/reliability-with-intents/&quot;&gt;intent&lt;/a&gt; of steps in a saga rather than the mere passing on of a single message.&lt;/p&gt;
+&lt;p&gt;If for example we expected a high load on &lt;code&gt;GET /orders/1b2e680a-78ce-41f3-8296-63706432f844&lt;/code&gt; our worker could:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;POST to supplier API&lt;/li&gt;
+&lt;li&gt;Prepopulate a distributed cache with the order (or response, depending on cache type)&lt;/li&gt;
+&lt;li&gt;The unhappy path would be to trigger some sort of rollback or user notification of a failure to complete&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Optimization warning&lt;/h3&gt;
+&lt;p&gt;If it is imperative that the endpoint be responding as quickly as possible that the saga has completed, you may be tempted to TRY complete it with the initial request. This gets us back into the concurrency problem where you could have the worker and the API both trying to process the same outbox message. It is possible if you are doing some locking on the database but honestly it just doesn&apos;t seem worth it to me.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;It took a while to get there, but our young developer finally got to a robust API design. In this series we looked at a few subtle ways that things can go wrong. These failure modes are often overlooked when developers are used to dealing with low volume loads, but can quickly become an issue if your load grows quickly. We also saw how sometimes business processes can mask system errors and so saw the importance of having good monitoring, metrics, and alerts fo not just the health, but proper operating of our systems.&lt;/p&gt;
+&lt;p&gt;The solutions presented in this post assume certain properties from your persistent storage, so it is important to think about how you are handling idempotence when selecting your database technology.&lt;/p&gt;
+&lt;p&gt;Finally, this design was really optimizing for resilience and eventual consistency of the system. Sometimes if speed of processing is more important, you may need to sacrifice some reliability. Unfortunately, when you are making those kinds of tradeoffs you are almost by definition dealing with high loads so... it depends.&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Problem:&lt;/strong&gt; Duplicate calls&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Solutions:&lt;/strong&gt; idempotency via unique key in an atomic commit&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Consequence:&lt;/strong&gt; The database enforces no duplicates&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.techyourchance.com/client-generated-ids-vs-server-generated-ids/&quot;&gt;A very basic discussion of client vs. server IDs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://devonburriss.me/reliability-with-intents/&quot;&gt;Flexible design for outbox like saga&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://tech.trello.com/sync-two-id-problem/&quot;&gt;Interesting discussion of what happens when you can&apos;t use client side IDs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/reliable-apis-part-2/</id>
@@ -22,6 +116,12 @@
     </author>
     <summary type="html">&lt;p&gt;In the &lt;a href=&quot;/reliable-apis-part-1&quot;&gt;previous post&lt;/a&gt; we saw how you can end up with duplicates if using a retry-policy on a call to a non-idempotent endpoint. In this post, we will look at correcting this and see a subtle way that this can go wrong.&lt;/p&gt;
 &lt;!--more--&gt;
+&lt;p&gt;Posts in this series:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;/reliable-apis-part-1&quot;&gt;Exploring reties, retry implications, and the failure modes they are appropriate for&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Using Idempotency-Key and a response cache&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/reliable-apis-part-3&quot;&gt;The epic saga of client-side IDs and true idempotence&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;When we last saw our young developer, they had learned a lesson about the indiscriminate use of retry policy. This led to some insightful telemetry to be able to monitor when the system landed in an inconsistent state.&lt;/p&gt;
 &lt;p&gt;A good thing too! The e-commerce company our developer works at is expanding into another country and to cope with the increase in buying across 2 countries, they are automating the restocking. A sister team has been working with the data science team to develop an intelligent resupply service that will be making use of the supplier ordering API to automatically create orders. Currently, inconsistencies only happen once every week or two but with an increase in load, this will start getting even more annoying for both the development team and purchasers. Our young developer has raised that they want to have this fixed and stable before the automation kicks in.&lt;/p&gt;
 &lt;p&gt;As a reminder, this is the current design:&lt;/p&gt;
@@ -66,8 +166,8 @@ What if we updated the cache before the calls? Well then we could end up with ei
 &lt;/blockquote&gt;
 &lt;h2&gt;Resources&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;https://stripe.com/blog/idempotency&lt;/li&gt;
-&lt;li&gt;https://repl.ca/what-is-the-idempotency-key-header/&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://stripe.com/blog/idempotency&quot;&gt;Stripe blog on Idempotency&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://repl.ca/what-is-the-idempotency-key-header/&quot;&gt;Intro to Idempotency-Key header&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary>
   </entry>
   
@@ -82,6 +182,12 @@ What if we updated the cache before the calls? Well then we could end up with ei
     </author>
     <summary type="html">&lt;p&gt;Resiliency is more than just slapping a retry policy on a client and hoping it can handle transient errors. It is building systems that handle operations that always end in a valid state across the whole system. This does not mean that all operations WILL BE successful. Just that they are always handled in an expected way, every time.&lt;/p&gt;
 &lt;!--more--&gt;
+&lt;p&gt;Posts in this series:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Exploring reties, retry implications, and the failure modes they are appropriate for&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/reliable-apis-part-2&quot;&gt;Using Idempotency-Key and a response cache&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/reliable-apis-part-3&quot;&gt;The epic saga of client-side IDs and true idempotence&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;To explore this, let&apos;s step into a young developer&apos;s shoes and consider a simple piece of functionality.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;A stock purchaser is using a system where they look at some analytics on a stock item and decide if they need to purchase more stock and how much. They indicate the quantity on the client application and click the &amp;quot;Order now&amp;quot; button. This sends a POST request to the backend to create an order with the supplier.&lt;/p&gt;

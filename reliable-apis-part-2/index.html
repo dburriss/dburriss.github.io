@@ -194,6 +194,12 @@
 
 				<p>In the <a href="/reliable-apis-part-1">previous post</a> we saw how you can end up with duplicates if using a retry-policy on a call to a non-idempotent endpoint. In this post, we will look at correcting this and see a subtle way that this can go wrong.</p>
 <!--more-->
+<p>Posts in this series:</p>
+<ol>
+<li><a href="/reliable-apis-part-1">Exploring reties, retry implications, and the failure modes they are appropriate for</a></li>
+<li>Using Idempotency-Key and a response cache</li>
+<li><a href="/reliable-apis-part-3">The epic saga of client-side IDs and true idempotence</a></li>
+</ol>
 <p>When we last saw our young developer, they had learned a lesson about the indiscriminate use of retry policy. This led to some insightful telemetry to be able to monitor when the system landed in an inconsistent state.</p>
 <p>A good thing too! The e-commerce company our developer works at is expanding into another country and to cope with the increase in buying across 2 countries, they are automating the restocking. A sister team has been working with the data science team to develop an intelligent resupply service that will be making use of the supplier ordering API to automatically create orders. Currently, inconsistencies only happen once every week or two but with an increase in load, this will start getting even more annoying for both the development team and purchasers. Our young developer has raised that they want to have this fixed and stable before the automation kicks in.</p>
 <p>As a reminder, this is the current design:</p>
@@ -238,14 +244,15 @@ What if we updated the cache before the calls? Well then we could end up with ei
 </blockquote>
 <h2>Resources</h2>
 <ul>
-<li>https://stripe.com/blog/idempotency</li>
-<li>https://repl.ca/what-is-the-idempotency-key-header/</li>
+<li><a href="https://stripe.com/blog/idempotency">Stripe blog on Idempotency</a></li>
+<li><a href="https://repl.ca/what-is-the-idempotency-key-header/">Intro to Idempotency-Key header</a></li>
 </ul>
 
                 <hr />
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
+                                                <li><a href="/reliable-apis-part-3/">Reliable APIs - Part 3</a></li>
                                                 <li><a href="/reliable-apis-part-1/">Reliable APIs - Part 1</a></li>
                                             </ul>
                 </section>
@@ -257,6 +264,10 @@ What if we updated the cache before the calls? Well then we could end up with ei
                         <a href="/reliable-apis-part-1/" data-toggle="tooltip"    data-placement="top" title="Reliable APIs - Part 1">&larr; Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/reliable-apis-part-3/" data-toggle="tooltip" data-placement="top" title="Reliable APIs - Part 3">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 
@@ -418,6 +429,12 @@ What if we updated the cache before the calls? Well then we could end up with ei
 <a class="badge badge-info" href="/tag/clean-code/" style="font-size: 80%">
     <span class="site-tag">                
         Clean Code
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/client-generated-id/" style="font-size: 80%">
+    <span class="site-tag">                
+        Client generated ID
     </span>
 </a>
 

@@ -192,6 +192,12 @@
 
 				<p>Resiliency is more than just slapping a retry policy on a client and hoping it can handle transient errors. It is building systems that handle operations that always end in a valid state across the whole system. This does not mean that all operations WILL BE successful. Just that they are always handled in an expected way, every time.</p>
 <!--more-->
+<p>Posts in this series:</p>
+<ol>
+<li>Exploring reties, retry implications, and the failure modes they are appropriate for</li>
+<li><a href="/reliable-apis-part-2">Using Idempotency-Key and a response cache</a></li>
+<li><a href="/reliable-apis-part-3">The epic saga of client-side IDs and true idempotence</a></li>
+</ol>
 <p>To explore this, let's step into a young developer's shoes and consider a simple piece of functionality.</p>
 <blockquote>
 <p>A stock purchaser is using a system where they look at some analytics on a stock item and decide if they need to purchase more stock and how much. They indicate the quantity on the client application and click the &quot;Order now&quot; button. This sends a POST request to the backend to create an order with the supplier.</p>
@@ -262,6 +268,7 @@ Since this call changes no state, we could retry this query if it fails due to i
                     <h4>You may be interested in</h4>
                     <ul>
                                                 <li><a href="/reliable-apis-part-2/">Reliable APIs - Part 2</a></li>
+                                                <li><a href="/reliable-apis-part-3/">Reliable APIs - Part 3</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -437,6 +444,12 @@ Since this call changes no state, we could retry this query if it fails due to i
 <a class="badge badge-info" href="/tag/clean-code/" style="font-size: 80%">
     <span class="site-tag">                
         Clean Code
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/client-generated-id/" style="font-size: 80%">
+    <span class="site-tag">                
+        Client generated ID
     </span>
 </a>
 
