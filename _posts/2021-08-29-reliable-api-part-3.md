@@ -53,6 +53,8 @@ Although the unorthodoxy of generating the ID on the client side seems to bother
 
 Happy with the design and the buy-in, our developer pairs up with one of the more skeptical team members to implement the design. And finally, they can enable the client retry policies.
 
+![Final design](../img/posts/2021/2021-08-29-11-48-28.png)
+
 ## Analysis
 
 As part of the analysis we will go into some implementation details, as well as some possible alternative designs.
