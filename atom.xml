@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-08-29T09:41:06.6861491+00:00</updated>
+  <updated>2021-08-29T09:50:46.0959708+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -50,6 +50,7 @@ As a reminder, this is the current design:&lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;Although the unorthodoxy of generating the ID on the client side seems to bother some people in the team still, they can&apos;t really say why. More importantly, everyone agrees that this design does indeed seem to have the guarantees for resilience that they were aiming at.&lt;/p&gt;
 &lt;p&gt;Happy with the design and the buy-in, our developer pairs up with one of the more skeptical team members to implement the design. And finally, they can enable the client retry policies.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2021/2021-08-29-11-48-28.png&quot; alt=&quot;Final design&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;Analysis&lt;/h2&gt;
 &lt;p&gt;As part of the analysis we will go into some implementation details, as well as some possible alternative designs.&lt;/p&gt;
 &lt;h3&gt;Client-generated ID vs. Idempotency-Key&lt;/h3&gt;
