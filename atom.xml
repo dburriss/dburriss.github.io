@@ -3,13 +3,126 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-12-22T09:38:12.4003085+00:00</updated>
+  <updated>2021-12-22T20:05:41.6229889+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/what-is-fp/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/what-is-fp/"/>
+    <title>What is Functional Programming?</title>
+    <updated>2021-12-22T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/what-is-fp/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;A few weeks ago I was preparing a small introduction to functional programming. It turns out, for me at least, to be fairly difficult to define what functional programming is. I distilled it down to 3 things via process of elimination. In this post I review what these are&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;Sidebar: As someone who has been doing OOP for 15+ years at this stage, I find OOP difficult to define too. This was not always the case. Learning functional programming ruined me, as it has ruined many before. As an OO programmer I was sure of my knowledge, my patterns, my design. Then I tried learning something that seemed to turn it all on it&apos;s head. Not just my knowledge but my self-assuredness in &amp;quot;right&amp;quot; and &amp;quot;wrong&amp;quot; ways to build software. Now with a little more experience in FP, I see many similarities in the problems and how they are solved. For me the benefit in FP is the number of &amp;quot;patterns and practices&amp;quot; that need to be understood to write better software. The point of this sidebar though is that words like abstraction and encapsulation are not claimed exclusively by OO. Except for inheritance... OO can have that if it wants it!&lt;/p&gt;
+&lt;p&gt;In the following sections I discuss my 3 aspects of programming that should be followed to reap the benefits of FP.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The language should support higher-order functions&lt;/li&gt;
+&lt;li&gt;More complex functions should be composed out of simpler functions&lt;/li&gt;
+&lt;li&gt;The programmer should follow the discipline of making a distinction between pure and impure functions and try maximize the amount of pure functions&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I find it interesting that there are 3 moving parts here. The language, how we build code, and how we architect code to interact with the world.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Higher-order functions&lt;/h2&gt;
+&lt;p&gt;A higher-order function is a function that meets at least one of the following two criteria:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A function that takes another function as an input&lt;/li&gt;
+&lt;li&gt;A function that returns a function as its output&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Although most modern languages support this now days, functional-first languages tend to make this feel a lot more natural to use.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let isEven x = (x % 2) = 0              // predicate function for determining an even number
+let selectEven = List.filter isEven     // Use predicate to returns new function of that selects even numbers
+
+let evenInts = selectEven [0..10]       // use the function
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Benefits&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Functions are values and so can be passed around&lt;/li&gt;
+&lt;li&gt;Functions that take functions can be far more flexible as behaviour can be decided by the caller&lt;/li&gt;
+&lt;li&gt;When returning a function from another function it can be evaluated later (or not at all)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Function composition&lt;/h2&gt;
+&lt;p&gt;Function composition is the combination of simple functions into more complex ones. To compose functions, the output type of a function needs match the input type for the next function in the composition.&lt;/p&gt;
+&lt;p&gt;This is probably easiest explained with examples since you have probably used it in both school mathematics and programming.&lt;/p&gt;
+&lt;p&gt;Say we want to normalize some strings by trimming the whitespace off and making them lower-case. you could do this like this.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let trim (s : string) = s.Trim()
+let lower (s : string) = s.ToLowerInvariant()
+let normalize (s : string) = lower(trim(s))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is composition. In a functional-first language like F# we can build this up in a way that structurally matches the order the functions are called.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let normalize = trim &amp;gt;&amp;gt; lower
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This creates a new function &lt;code&gt;normalize&lt;/code&gt; out of the 2 functions &lt;code&gt;trim&lt;/code&gt; and &lt;code&gt;lower&lt;/code&gt;. Remember that the output type of &lt;code&gt;trim&lt;/code&gt; needs to match the input type of &lt;code&gt;lower&lt;/code&gt;. In this case they are both &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Benefits&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Functions are small testable units&lt;/li&gt;
+&lt;li&gt;Small and generic functions enable reusability&lt;/li&gt;
+&lt;li&gt;We build more and more complex functions out of simpler functions helps in building in small steps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Maximize use of pure functions&lt;/h2&gt;
+&lt;p&gt;This one is fairly uncontroversial. If you have heard people talking about FP then you have likely heard about pure functions.&lt;/p&gt;
+&lt;p&gt;At this point talk of &lt;strong&gt;referential transparency&lt;/strong&gt; comes up. &lt;a href=&quot;https://stackoverflow.com/a/9859966/2613363&quot;&gt;Referential transparency seems to be a term borrowed from analytical philosophy&lt;/a&gt;. If something is referentially transparent it means it&apos;s value is not dependent on some context, like the time it is referenced. From a code perspective, this means that once something is assigned a value, that value does not change over the lifetime of the programs execution. Put more flippantly, &amp;quot;equals equals equals&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Ok. Cool, cool, cool. What does this mean?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;At this point I need to issue a disclaimer: I am not a computer scientist. This is just my understanding on a topic where people tend to throw around terms like it is some kind of intellectual contest.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The characteristic people are more often seeking with pure functions is &lt;em&gt;side-effect free&lt;/em&gt; functions. Side-effect free is much easier to understand than referential transparency. It means that nothing outside the scope of the function is mutated.&lt;/p&gt;
+&lt;p&gt;So for a function to be &lt;strong&gt;pure&lt;/strong&gt;, it needs to satisfy 2 criteria:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The function must be referentially transparent&lt;/li&gt;
+&lt;li&gt;The function must be side effect free&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Note that I said &lt;em&gt;maximize&lt;/em&gt; pure functions. We cannot build programs that interact with the outside world without having side effects. What we strive for in FP is increasing the amount of functions that are pure and pushing the side-effects to the boundary of our applications. We will dive into this in another post when discussing architecture.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// Referentially transparent:   Yes
+// Side-effect free:  No
+// Pure: No
+let i_am_rt x =
+    printfn &amp;quot;I am referentially transparent.&amp;quot;
+    x
+
+// Referentially transparent:   No
+// Side-effect free:  No
+// Pure: No
+let i_am_not_rt x = (System.Console.ReadLine() |&amp;gt; int) + x
+
+// Referentially transparent:   Yes
+// Side-effect free:  Yes
+// Pure: Yes
+let i_am_pure x = x + 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In practical terms, honouring referential transparency means you are not reading any data that is not in the input. Side-effect free is ensuring you are not changing input values (by reference) or mutating any state in the program or outside systems.
+Interesting to not that immutability comes along for the ride with pure functions, at least for where it really matters when programming with immutable values.&lt;/p&gt;
+&lt;h3&gt;Benefits&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Calls to a function are idempotent, so they can be repeated without fear of unexpected state updates&lt;/li&gt;
+&lt;li&gt;If a function does not depend on the output of another function, the order does not matter&lt;/li&gt;
+&lt;li&gt;Since pure functions depend only on their input, they can be called in parallel without fear of deadlock or data corruption&lt;/li&gt;
+&lt;li&gt;Pure functions are easy to test because they depend on only the input and must have an output (to be useful)&lt;/li&gt;
+&lt;li&gt;Since a pure function only depends on input, reasoning about it should be simpler&lt;/li&gt;
+&lt;li&gt;If the value of a pure function is not used, it can be removed without altering the behaviour of a program&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I shouldn&apos;t have to say it, but I will. Functional programming is not about NOT mutating state. It is not BAD at mutating state. It is just more opinionated about WHERE those mutations are.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post we looked at some of the core ideas of functional programming.&lt;/p&gt;
+&lt;p&gt;My opinion then is that for code to claim to be functional:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The language it is written in should support higher-order functions&lt;/li&gt;
+&lt;li&gt;More complex code should be built from composing simpler functions together&lt;/li&gt;
+&lt;li&gt;The programmer should follow the discipline of keeping functions pure as much as possible and push impure functions to the boundaries of the application&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These ideas all have a long tradition in mathematics but hopefully from the benefits listed you can see that they might have some real practical benefits if adopted into how you design and implement applications. Depending on what languages you have been exposed to, you may have expected other topics here like immutability and algebraic data types. These language constructs being built into the language can really help, but I don&apos;t believe are necessary for programming in a functional way. In the &lt;a href=&quot;/useful-fp-language-features&quot;&gt;next post&lt;/a&gt; we will look at these to see what benefits they bring.&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/reliable-apis-part-3/</id>

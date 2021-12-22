@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Wed, 22 Dec 2021 09:38:12 +00:00</pubDate>
-    <lastBuildDate>Wed, 22 Dec 2021 09:38:12 +00:00</lastBuildDate>
+    <pubDate>Wed, 22 Dec 2021 20:05:41 +00:00</pubDate>
+    <lastBuildDate>Wed, 22 Dec 2021 20:05:41 +00:00</lastBuildDate>
+    
+    <item>
+      <title>What is Functional Programming?</title>
+      <link>https://devonburriss.me/what-is-fp/</link>
+      <pubDate>Wed, 22 Dec 2021 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/what-is-fp/</guid>
+      <description>A review of the big ideas in functional programming like pure functions, higher-order functions, and composition. This will form the baseline for future posts on designing and structuring a functional codebase.</description>
+    </item>
     
     <item>
       <title>Reliable APIs - Part 3</title>
