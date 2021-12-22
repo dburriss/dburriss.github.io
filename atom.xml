@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-12-22T20:05:41.6229889+00:00</updated>
+  <updated>2021-12-22T20:16:51.9236694+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -20,7 +20,7 @@
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/what-is-fp/</uri>
     </author>
-    <summary type="html">&lt;p&gt;A few weeks ago I was preparing a small introduction to functional programming. It turns out, for me at least, to be fairly difficult to define what functional programming is. I distilled it down to 3 things via process of elimination. In this post I review what these are&lt;/p&gt;
+    <summary type="html">&lt;p&gt;A few weeks ago I was preparing a small introduction to functional programming. It turns out, for me at least, to be fairly difficult to define what functional programming is. I distilled it down to 3 things via process of elimination. In this post I dive into what these 3 things are and what benefits they bring.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;Sidebar: As someone who has been doing OOP for 15+ years at this stage, I find OOP difficult to define too. This was not always the case. Learning functional programming ruined me, as it has ruined many before. As an OO programmer I was sure of my knowledge, my patterns, my design. Then I tried learning something that seemed to turn it all on it&apos;s head. Not just my knowledge but my self-assuredness in &amp;quot;right&amp;quot; and &amp;quot;wrong&amp;quot; ways to build software. Now with a little more experience in FP, I see many similarities in the problems and how they are solved. For me the benefit in FP is the number of &amp;quot;patterns and practices&amp;quot; that need to be understood to write better software. The point of this sidebar though is that words like abstraction and encapsulation are not claimed exclusively by OO. Except for inheritance... OO can have that if it wants it!&lt;/p&gt;
 &lt;p&gt;In the following sections I discuss my 3 aspects of programming that should be followed to reap the benefits of FP.&lt;/p&gt;
