@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-12-22T20:16:51.9236694+00:00</updated>
+  <updated>2021-12-23T11:16:48.9519695+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -100,7 +100,7 @@ let i_am_not_rt x = (System.Console.ReadLine() |&amp;gt; int) + x
 let i_am_pure x = x + 1
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In practical terms, honouring referential transparency means you are not reading any data that is not in the input. Side-effect free is ensuring you are not changing input values (by reference) or mutating any state in the program or outside systems.
-Interesting to not that immutability comes along for the ride with pure functions, at least for where it really matters when programming with immutable values.&lt;/p&gt;
+It is interesting to note that immutability comes along for the ride with pure functions, at least for where it really matters when programming with immutable values.&lt;/p&gt;
 &lt;h3&gt;Benefits&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Calls to a function are idempotent, so they can be repeated without fear of unexpected state updates&lt;/li&gt;
@@ -111,7 +111,7 @@ Interesting to not that immutability comes along for the ride with pure function
 &lt;li&gt;If the value of a pure function is not used, it can be removed without altering the behaviour of a program&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;I shouldn&apos;t have to say it, but I will. Functional programming is not about NOT mutating state. It is not BAD at mutating state. It is just more opinionated about WHERE those mutations are.&lt;/p&gt;
+&lt;p&gt;I shouldn&apos;t have to say it, but I will. Functional programming is not about AVOIDING mutating state. It is not BAD at mutating state. It is just more opinionated about WHERE those mutations occur.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;In this post we looked at some of the core ideas of functional programming.&lt;/p&gt;
