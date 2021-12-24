@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Functional Architecture - Part 1"
-subtitle: "Defining the functional part in Functional Architecture"
-description: "A look at the big ideas in functional programming like pure functions, higher-order functions, and composition. This will form the baseline for future architecture posts on the subject."
+title: "A simple functional architecture"
+subtitle: "How do I build a production application in a functional language?"
+description: "If we apply the ideas of FP can we land at an architecture that rises out of the core ideas of high-order functions and pure functions?"
 permalink: functional-programming-architecture-part-1
 author: "Devon Burriss"
 category: Software Development
@@ -14,89 +14,93 @@ social-img: "img/posts/2019/target-500.jpg"
 published: true
 ---
 
-The number one question I get after discussing the benefits of functional programming (FP) with a developer who is not familiar with FP is, "Ok, that makes sense but how do I actually build a large application out of functions?" This will be the first in a series discussing basic functional architecture. This series will incrementally build from basic FP concepts to architecture.
+The number one question I get after discussing the [benefits of functional programming](/what-is-fp) (FP) with a developer who is not familiar with FP is, "Ok, that makes sense but how do I actually build a large application out of functions?" In this post I want to look at what a simple functional architecture that could serve as a starting point. 
 <!--more-->
+I will not be talking about Functional Reactive Programming (FRP) or Functional Relational Programming (also FRP) in this post. These are far more opinionated architectures, trying to achieve specific goals. Instead, I will describe a simple architecture that builds on the core ideas of functional programming covered in a [previous post](/what-is-fp). Let's refresh those here quickly:
 
-I have [made more general arguments for FP](https://devonburriss.me/argument-for-fp/) in other posts. In this post I want to go into some of the actual ideas of FP. If you are already an experienced functional programmer, then there won't likely be anything new here. If on the other hand you are new to FP then this can set the baseline for future posts.
+ 1. The language it is written in should support higher-order functions
+ 2. More complex code should be built from composing simpler functions together
+ 3. The programmer should follow the discipline of keeping functions pure as much as possible and push impure functions to the boundaries of the application
 
-It turns out, just like with OOP, to be pretty difficult to define exactly what makes up FP. Let's try though.
+Pure functions and high-order functions will be the main ideas at play here, so if those are not familiar terms, go read [this](/what-is-fp) first.
 
-## Maximize use of pure functions
+The "architecture" is actually embarrassingly simple. We adopt the pattern of wrapping our features in **usecases**. This is the name I prefer but I have seen them referred to as **feature** or even **service** (I dislike this as it is so overloaded already).
+A **usecase** is called by the host, where the host is typically a web application or a console application (I don't have much experience with desktop or mobile but I don't see why it would differ). The host is also responsible for providing production implementations of impure functions to the **usecase**.
 
-This one is fairly uncontroversial. If you have heard people talking about FP then you have likely heard about pure functions. 
+![Functional arch diagram](/img/posts/2021/fp-arch-1.png)
 
-At this point talk of **referential transparency** comes up. [Referential transparency seems to be a term borrowed from analytical philosophy](https://stackoverflow.com/a/9859966/2613363). If something is referentially transparent it means it's value is not dependent on some context like time. From a code perspective, this means that once something is assigned a value, that value does not change over the lifetime of the programs execution. Put more flippantly, "equals equals equals".
+At this point you might be saying, "Wait, isn't this just Hexagonal/Onion/Clean architecture?". Yes. Maybe it is my background (OOP)? Maybe there are only so many ways to skin a cat? There are more similarities than there are differences. 
 
-The characteristic people are more often seeking with pure functions is *side-effect free* functions. Side-effect free is much easier to understand than referential transparency. It means that nothing outside the scope of the function is mutated.
+The important part is the design inside of a **usecase**. A stark difference between OOP and FP seems to be the *separation of behaviour and data*. A revelation for me while learning FP was this focus on behaviour. All my professional career I had been modelling data and relationships, and trying to overlay behaviour over this in ways that allowed me to apply business requirements and still felt as if I was working with models of things in the real world. This focus on "things" means when it comes to implementing actual behaviour we end up with Repositories, Factories, Services, Managers, and ManagerMangers. The worst part of all of this for me was that the *behaviour*, which is where the actual value is and the thing that is important to understand, is spread across the codebase.
 
-So for a function to be **pure** it needs to satisfy 2 criteria:
+![scattered logic](/img/posts/2018/deeply-nested-dep.jpg)
 
-1. The function must be referentially transparent
-2. The function must be side effect free
+> Sprinkling important application logic throughout an object graph makes it difficult to reason about. From post [Managing code complexity](/managing-code-complexity).
 
-Note that I said *maximize* pure functions. We cannot build programs that interact with the outside world without having side effects. What we strive for in FP is increasing the amount of functions that are pure and pushing the side-effects to the boundary of our applications. We will dive into this more in part 2 of this series.
+Maybe you have worked on a codebase where dependency injection has run wild and each step is called on an object that was injected into the object executing the current step.
 
-### Benefits
+The first improvement for me, that I think was really sparked by more functional thinking, was to make sure I had an entry point that described in clear steps how a **usecase** is implemented. Functional programming encourages pipelines of behaviour that inspect data, make a decision, and change data based on this. If you think about it, this ETL process is the core of what the programs we write do. Now this isn't yet functional thinking. I have started applying this to codebases regardless of the language of whether it is functional or not.
 
-- Calls to a function are idempotent, so they can be repeated without fear of unexpected state updates
-- If a function does not depend on the output of another function, the order does not matter
-- Since pure functions depend only on their input, they can be called in parallel without fear of deadlock or data corruption
-- Pure functions are easy to test because they depend on only the input and must have an output (to be useful)
-- Since a pure function only depends on input, reasoning about it should be simpler
-- If the value of a pure function is not used, it can be removed without altering the behaviour of a program
+![usecase](/img/posts/2018/use-case.jpg)
 
-One last thing to point out before we move on from pure functions. Immutability comes along for the ride with pure functions, at least for where it really matters when programming with immutable values.
+> Usecase as the entrypoint into you domain. From post [Managing code complexity](/managing-code-complexity).
 
-## Higher-order functions
+In using these top level **usecases** I had gained the benefit of clarity of what a usecase entails, as well as an easy entry point to dive into a specific step. In C# codebases I was using a fluent method chaining, making it even *feel* more functional due to the style. I was even going to the inconvenient effort of making my classes immutable. 
+What I did not yet have was the benefits of functional programming. Even though there was a nice clean entry point and a descriptive flow, reasoning and testability where not much improved.  Where the functional programming part comes in is in trying to maximize how much of a **usecase** is [pure](/what-is-fp). The problem was I was mixing chained calls in a "functional style" without making much distinction between method calls that were pure and those that were not.
 
-A higher-order functions is a function that meets at least one of the following two criteria:
+![push IO dependencies to the boundary](/img/posts/2018/dependencies-on-boundary.jpg)
 
-1. A function that takes another function as an input
-2. A function that returns a function as its output
+> Impure operations should be pushed to the boundary. From post [Managing code complexity](/managing-code-complexity).
 
-Although most modern languages support this now days, functional-first languages tend to make this feel a lot more natural to use.
+## Example
 
-```fsharp
-let isEven x = (x % 2) = 0              // predicate function for determining an even number
-let selectEven = List.filter isEven     // Use predicate to returns new function of that selects even numbers
+Let's look at a small example. Unfortunately, architecture only starts becoming important once size and complexity scales up but then examples can become unwieldy. I am keeping things simple here to illustrate the moving parts. Module names like `DataAccess` and `Usecase` a bit on the nose and in bigger applications would not be a good way to organize functionality.
 
-let evenInts = selectEven [0..10]       // use the function
-```
-
-### Benefits
-
-- Functions are values and so can be passed around
-- Functions that take functions can far more flexible as behaviour can be decided by the caller
-- When returning a function from another function it can be evaluated later (or not at all)
-
-## Function composition
-
-Function composition is the combination of simple functions into more complex ones. To compose functions the output of a function needs to be the input for the next function in the composition.
-
-This is probably easiest explained with examples since you have probably used it in both school maths and programming.
-
-Say we want to normalize some strings by trimming the whitespace off and making them lower-case.
+Imagine a little CLI based CRM system. Current functionality is to add a new customer and to change that customers email address. So we expect to have an implementation of a `changeEmail` usecase.
 
 ```fsharp
-let trim (s : string) = s.Trim()
-let lower (s : string) = s.ToLowerInvariant()
-let normalize (s : string) = lower(trim(s))
+let changeEmail (readCustomer : ReadCustomer) (saveCustomer : SaveCustomer) (cmd : ChangeEmailCommand) : Result<((DomainEvent list) * Customer),string> =
+    readCustomer cmd.CustomreId
+    |> Result.map (Customer.updateEmail cmd.NewEmail)
+    |> Result.bind saveCustomer
 ```
 
-In a functional-first language like F# we can build this up in a way that structurally matches the order the functions are applied.
+The host provides implementations for the `ReadCustomer` and `SaveCustomer` function types. You can see the setup of those below for the CLI tool. Although the details here are not important, something you may notice in the type signature is the events in the return type `DomainEvent list`. This is something a pattern I started using many years ago even before I started functional programming when I realized raising domain events the moment it happens and having in-proc handlers can lead to inconsistencies. A safer pattern is to collect domain events as you execute and [outbox](/reliability-with-intents) what you need to at the same time you persist your aggregates.
+
+This **usecase** is testable, as the IO parts are passed into the function. You can imagine that as more things need to happen, they can just be appended to the steps in the **usecase**.
+
+If you are not familiar with F#'s `Result` type check out [Railway oriented programming](https://fsharpforfunandprofit.com/rop/).
 
 ```fsharp
-let normalize = trim >> lower
+// composite root composes IO for app
+let readCustomer = DataAccess.readCustomer // real impl would take some config
+let saveCustomer = DataAccess.saveCustomer // real impl would take some config
+let changeEmail = Usecase.changeEmail readCustomer saveCustomer
+let newCustomer = Usecase.newCustomer saveCustomer
+
+// Routing the parsed input
+let handle command =
+    match command with
+    | Commands.NewCustomer cmd -> newCustomer cmd
+    | Commands.ChangeEmail cmd -> changeEmail cmd
+    
+// Parse the input to a command
+let cmd = Mapper.inputToCommand args
+// Get result by routing the command to correct usecase
+let result = cmd |> Result.bind handle
+
+// handle result output to CLI
 ```
 
-This creates the new function `normalize` out of the 2 functions `trim` and `lower`. Remember that the output type of `trim` needs to match the input type of `lower`. In this case they are both `string`.
+With our **usecase** available, we can parse input to a command that matches to a **usecase**, in this case the `ChangeEmailCommand`. This is not an article on F# modelling and frankly it's a bit rough here but the point is that the usecase just received the command and knows nothing of the host.
 
-### Benefits
+## Tips
 
-- Functions are small testable units
-- Small and generic functions enable reusability
-- Build more and more complex functions out of simpler functions helps in building in small steps
+1. Don't use a usecase in another usecase. Rather have functions that can be shared across different usecases easily.
+2. If you need to participate or kickoff sagas, an event list is a useful pattern.
+3. Keep things simple and refactor when things get more complex
+4. Use specific types as much as possible and build up pipelines inside the usecase that operate on those types
 
 ## Conclusion
 
- In this post we looked at some of the core ideas of functional programming. These ideas all have a long tradition in mathematics but hopefully from the benefits listed you can see that they might have some real practical benefits if adopted into how you design and implement applications. Depending on what languages you have been exposed to, you may have expected other topics here like immutability and algebraic data types. These language constructs being built into the language can really help but I don't believe are necessary for programming in a functional way. In the next post we will look at these to see what benefits they bring.
+In this post we saw how some core ideas of functional programming like higher-order functions and pure functions come together in guiding us toward an architecture.
