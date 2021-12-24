@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-12-24T07:04:47.3072187+00:00</updated>
+  <updated>2021-12-24T15:38:55.811248+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -128,10 +128,10 @@ match calculateMeaning() with
 &lt;h3&gt;Benefits&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Often results in easier to understand control flow&lt;/li&gt;
-&lt;li&gt;In supporting languages, the compiler can tell you if all possibilities are matched against&lt;/li&gt;
+&lt;li&gt;In some languages, the compiler can tell you if all possibilities are matched against&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;In this post we covered a few language features that are nice to have for making you development experience using functional programming productive. These support the ideas of FP and make it faster to write code that is bug free. This post was mostly about addressing things that where not in the &lt;a href=&quot;/what-is-fp&quot;&gt;previous post&lt;/a&gt;. Finally, monads, etc. where not covered at all, since I consider them patterns. Although they are intimately connected with FP, I do not think they are strictly necessary to say you are writing code using the principles of FP.&lt;/p&gt;</summary>
+&lt;p&gt;In this post we covered a few language features that are nice to have for making you development experience using functional programming productive. These support the ideas of FP and make it faster to write code that is bug free. This post was mostly about addressing things that where not in the &lt;a href=&quot;/what-is-fp&quot;&gt;previous post&lt;/a&gt;. Finally, monads, etc. were not covered at all, since I consider them patterns. Although they are intimately connected with FP, I do not think they are strictly necessary to say you are writing code using the principles of FP.&lt;/p&gt;</summary>
   </entry>
   
   <entry>
