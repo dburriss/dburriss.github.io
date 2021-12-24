@@ -9,8 +9,8 @@ category: Software Development
 tags: [Architecture,F#,Functional,Programming]
 comments: true
 excerpt_separator: <!--more-->
-header-img: "img/backgrounds/path-bg.jpg"
-social-img: "img/posts/2019/target-500.jpg"
+header-img: "img/backgrounds/stairwell-bg.jpg"
+social-img: "img/posts/2019/frame-500.jpg"
 published: true
 ---
 
@@ -103,4 +103,4 @@ With our **usecase** available, we can parse input to a command that matches to 
 
 ## Conclusion
 
-In this post we saw how some core ideas of functional programming like higher-order functions and pure functions come together in guiding us toward an architecture.
+In this post we saw how some core ideas of functional programming like higher-order functions and pure functions come together in guiding us toward an architecture. [Mark Seeman](https://blog.ploeh.dk/) has a nice talk about the [Pit of Success](https://www.youtube.com/watch?v=US8QG9I1XW0) and [Dependency rejection](https://www.youtube.com/watch?v=cxs7oLGrxQ4) that are worth a watch. We noticed how this relates to patterns we are maybe already familiar with like Clean Architecture and having a core domain that is independent of implementation details. The value add for me is in having an entry-point that describes the steps and for keeping as much of that pure as possible. An alternative would be to really handle the IO outside of the usecase and have the host responsible for composing this together in a meaningful way. In my experience this leaves the usecase as so trivial that it is not worth having. I find it useful to have something that has the domain implementation and pointers to what it depends on to execute it's behaviour.
