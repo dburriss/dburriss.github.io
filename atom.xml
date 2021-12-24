@@ -3,13 +3,104 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-12-24T16:10:54.8364049+00:00</updated>
+  <updated>2021-12-24T19:53:48.2563976+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/functional-programming-architecture-part-1/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/functional-programming-architecture-part-1/"/>
+    <title>A simple functional architecture</title>
+    <updated>2021-12-24T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/functional-programming-architecture-part-1/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;A recurring question I get after discussing the &lt;a href=&quot;/what-is-fp&quot;&gt;benefits of functional programming&lt;/a&gt; (FP) with a developer who is not familiar with FP is, &amp;quot;Ok, that makes sense but how do I actually build a large application out of functions?&amp;quot; In this post I want to look at a simple functional architecture that could serve as a starting point.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;I will not be talking about Functional Reactive Programming (FRP) or Functional Relational Programming (also FRP) in this post. These are far more opinionated architectures, trying to achieve specific goals. Instead, I will describe a simple architecture that builds on the core ideas of functional programming covered in a &lt;a href=&quot;/what-is-fp&quot;&gt;previous post&lt;/a&gt;. Let&apos;s refresh those here quickly:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The language it is written in should support higher-order functions&lt;/li&gt;
+&lt;li&gt;More complex code should be built from composing simpler functions together&lt;/li&gt;
+&lt;li&gt;The programmer should follow the discipline of keeping functions pure as much as possible and push impure functions to the boundaries of the application&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Pure functions and higher-order functions will be the main ideas at play here, so if those are not familiar terms, go read &lt;a href=&quot;/what-is-fp&quot;&gt;this&lt;/a&gt; first.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;architecture&amp;quot; is actually embarrassingly simple. We adopt the pattern of wrapping our features in &lt;strong&gt;usecases&lt;/strong&gt;. This is the name I prefer but I have seen them referred to as &lt;strong&gt;feature&lt;/strong&gt; or even &lt;strong&gt;service&lt;/strong&gt; (I dislike this as it is so overloaded already).
+A &lt;strong&gt;usecase&lt;/strong&gt; is called by the host, where the host is typically a web application or a console application (I don&apos;t have much experience with desktop or mobile but I don&apos;t see why it would differ). The host is also responsible for providing production implementations of impure functions to the &lt;strong&gt;usecase&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2021/fp-arch-1.png&quot; alt=&quot;Functional arch diagram&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;At this point you might be saying, &amp;quot;Wait, isn&apos;t this just Hexagonal/Onion/Clean architecture?&amp;quot;. Yes. Maybe it is my background (OOP)? Maybe there are only so many ways to skin a cat? There are more similarities than there are differences.&lt;/p&gt;
+&lt;p&gt;The important part is the design inside of a &lt;strong&gt;usecase&lt;/strong&gt;. A stark difference between OOP and FP seems to be the &lt;em&gt;separation of behaviour and data&lt;/em&gt;. A revelation for me while learning FP was this focus on behaviour. All my professional career I had been modelling data and relationships, and trying to overlay behaviour over this in ways that allowed me to apply business requirements and still felt as if I was working with models of things in the real world. This focus on &amp;quot;things&amp;quot; means when it comes to implementing actual behaviour we end up splitting it between Aggregates, Repositories, Factories, Services, Managers, and ManagerMangers.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/deeply-nested-dep.jpg&quot; alt=&quot;scattered logic&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sprinkling important application logic throughout an object graph makes it difficult to reason about. From post &lt;a href=&quot;/managing-code-complexity&quot;&gt;Managing code complexity&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Maybe you have worked on a codebase where dependency injection has run wild and each step is called on an object that was injected into the object executing the current step.&lt;/p&gt;
+&lt;p&gt;The first improvement for me, that I think was really sparked by more functional thinking, was to make sure I had an entry point that described in clear steps how a &lt;strong&gt;usecase&lt;/strong&gt; is implemented. Functional programming encourages pipelines of behaviour that inspect data, make a decision, and change data based on this. If you think about it, this ETL process is the core of what the programs we write do. Now this isn&apos;t yet functional thinking. I &lt;a href=&quot;/managing-code-complexity&quot;&gt;wrote about this idea of usecases back in 2018&lt;/a&gt; and whether you are applying FP or not it can improve the maintainability of your codebase.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/use-case.jpg&quot; alt=&quot;usecase&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Usecase as the entrypoint into your domain. From post &lt;a href=&quot;/managing-code-complexity&quot;&gt;Managing code complexity&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In using these top level &lt;strong&gt;usecases&lt;/strong&gt; I had gained the benefit of clarity of what happens on a high level, as well as an easy entry point to dive into a specific step. In C# codebases I was using fluent method chaining, making it even &lt;em&gt;feel&lt;/em&gt; more functional due to the style. I went through the effort of making my classes immutable.
+What I did not yet have was the benefits of functional programming. Even though there was a nice clean entry point and a descriptive flow, reasoning and testability where not much improved.  Where the functional programming part comes in is in trying to maximize how much of a &lt;strong&gt;usecase&lt;/strong&gt; is &lt;a href=&quot;/what-is-fp&quot;&gt;pure&lt;/a&gt;. The problem was I was mixing chained calls in a &amp;quot;functional style&amp;quot; without making much distinction between method calls that were pure and those that were not.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/posts/2018/dependencies-on-boundary.jpg&quot; alt=&quot;push IO dependencies to the boundary&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Impure operations should be pushed to the boundary. From post &lt;a href=&quot;/managing-code-complexity&quot;&gt;Managing code complexity&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So what do we get from this approach?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A high-level list of all usecases in the system.&lt;/li&gt;
+&lt;li&gt;An entry point to inspect the steps in each usecase that can be a springboard into specific parts of the codebase.&lt;/li&gt;
+&lt;li&gt;Use cases only reference pure logic directly and impure functions can be substituted with test doubles.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;An architecture that is easy to understand and easy to test not a bad starting point.&lt;/p&gt;
+&lt;h2&gt;Example code&lt;/h2&gt;
+&lt;p&gt;Let&apos;s look at some code snippets of a small example. Unfortunately, architecture only starts becoming important once size and complexity scales up but then examples can become unwieldy. I am keeping things simple here to illustrate the moving parts. Module names like &lt;code&gt;DataAccess&lt;/code&gt; and &lt;code&gt;Usecase&lt;/code&gt; are a bit on the nose and in bigger applications would not be a good way to organize functionality. I use the names here to make it clear what is inside functions in these modules.&lt;/p&gt;
+&lt;p&gt;Imagine a little CLI based CRM system. Current functionality is to add a new customer and to change that customers email address. So we expect to have an implementation of a &lt;code&gt;changeEmail&lt;/code&gt; usecase.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// implementation of the change email usecase
+let changeEmail (readCustomer : ReadCustomer) (saveCustomer : SaveCustomer) (cmd : ChangeEmailCommand) : Result&amp;lt;((DomainEvent list) * Customer),string&amp;gt; =
+    readCustomer cmd.CustomreId
+    |&amp;gt; Result.map (Customer.updateEmail cmd.NewEmail)
+    |&amp;gt; Result.bind saveCustomer
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The host provides implementations for the &lt;code&gt;ReadCustomer&lt;/code&gt; and &lt;code&gt;SaveCustomer&lt;/code&gt; function types. You can see the setup of those below for the CLI tool. Although the details here are not important, something you may notice in the type signature is the events in the return type &lt;code&gt;DomainEvent list&lt;/code&gt;. This is a pattern I started using many years ago, even before I started functional programming when I realized raising domain events the moment something happens can cause inconsistencies. If the event is handled and mutates state and then something goes wrong in the main execution path, your events that &amp;quot;happened&amp;quot; don&apos;t match your internal state. A safer pattern is to collect domain events as you execute and &lt;a href=&quot;/reliability-with-intents&quot;&gt;outbox&lt;/a&gt; what you need to at the same time you persist your aggregates.&lt;/p&gt;
+&lt;p&gt;This &lt;strong&gt;usecase&lt;/strong&gt; is easily testable since the IO parts are passed into the function. You can imagine that as more things need to happen, they can just be appended to the steps in the &lt;strong&gt;usecase&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you are not familiar with F#&apos;s &lt;code&gt;Result&lt;/code&gt; type check out &lt;a href=&quot;https://fsharpforfunandprofit.com/rop/&quot;&gt;Railway oriented programming&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Let&apos;s look at how this is used in the console application.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;let main args =
+    // composite root composes IO for app
+    let readCustomer = DataAccess.readCustomer // real impl would take some config
+    let saveCustomer = DataAccess.saveCustomer // real impl would take some config
+    let changeEmail = Usecase.changeEmail readCustomer saveCustomer
+    let newCustomer = Usecase.newCustomer saveCustomer
+
+    // Routing the parsed input
+    let handle command =
+        match command with
+        | Commands.NewCustomer cmd -&amp;gt; newCustomer cmd
+        | Commands.ChangeEmail cmd -&amp;gt; changeEmail cmd
+        
+    // Parse the input to a command
+    let cmd = Mapper.inputToCommand args
+    // Get result by routing the command to correct usecase
+    let result = cmd |&amp;gt; Result.bind handle
+
+    // handle result output to CLI
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With our &lt;strong&gt;usecase&lt;/strong&gt; available, we can parse input to a command that matches to a &lt;strong&gt;usecase&lt;/strong&gt;, in this case the &lt;code&gt;ChangeEmailCommand&lt;/code&gt;. This is not an article on F# modelling and frankly it&apos;s a bit rough here but the point is that the usecase just received the command and knows nothing of the host.&lt;/p&gt;
+&lt;h2&gt;Tips&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Don&apos;t use a usecase in another usecase. Rather have functions that can be shared across different usecases easily.&lt;/li&gt;
+&lt;li&gt;If you need to participate or kickoff sagas, an event list is a useful pattern.&lt;/li&gt;
+&lt;li&gt;Keep things simple and refactor when things get more complex&lt;/li&gt;
+&lt;li&gt;Use specific types as much as possible and build up pipelines inside the usecase that operate on those types&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post we saw how some core ideas of functional programming like higher-order functions and pure functions come together in guiding us toward an architecture. &lt;a href=&quot;https://blog.ploeh.dk/&quot;&gt;Mark Seeman&lt;/a&gt; has a nice talk about the &lt;a href=&quot;https://www.youtube.com/watch?v=US8QG9I1XW0&quot;&gt;Pit of Success&lt;/a&gt; and &lt;a href=&quot;https://www.youtube.com/watch?v=cxs7oLGrxQ4&quot;&gt;Dependency rejection&lt;/a&gt; that are worth a watch. We noticed how this relates to patterns we are maybe already familiar with like Clean Architecture and having a core domain that is independent of implementation details. The value add for me is in having an entry-point that describes the steps and for keeping as much of that pure as possible. An alternative would be to really handle the IO outside of the usecase and have the host responsible for composing this together in a meaningful way. In my experience this leaves the usecase as so trivial that it is not worth having. I find it useful to have something that has the domain implementation and pointers to what it depends on to execute it&apos;s behaviour.&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/useful-fp-language-features/</id>

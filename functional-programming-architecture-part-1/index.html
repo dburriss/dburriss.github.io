@@ -16,43 +16,45 @@
 
 
 
+    
 
-    <title>Yoda wants you to be a functional programmer</title>
-    <meta name="description" content="Bring balance to the f#rce">
+
+    <title>A simple functional architecture</title>
+    <meta name="description" content="If we apply the ideas of FP can we land at an architecture that rises out of the core ideas of high-order functions and pure functions?">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/">
+    <link rel="canonical" href="https://devonburriss.me/functional-programming-architecture-part-1/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Yoda wants you to be a functional programmer">
-    <meta itemprop="description" content="Bring balance to the f#rce">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="A simple functional architecture">
+    <meta itemprop="description" content="If we apply the ideas of FP can we land at an architecture that rises out of the core ideas of high-order functions and pure functions?">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2019/frame-500.jpg">
     
-    <meta itemprop="datePublished" content="6/10/2017 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="6/10/2017 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="Yoda wants you to be a functional programmer - Bring balance to the f#rce" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/" />
-    <meta name="headline" content="Yoda wants you to be a functional programmer - Bring balance to the f#rce" />
+    <meta itemprop="datePublished" content="12/24/2021 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="12/24/2021 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="A simple functional architecture - How do I build a production application in a functional language?" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/functional-programming-architecture-part-1/" />
+    <meta name="headline" content="A simple functional architecture - How do I build a production application in a functional language?" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Yoda wants you to be a functional programmer">
-    <meta name="twitter:description" content="Bring balance to the f#rce">
+    <meta name="twitter:title" content="A simple functional architecture">
+    <meta name="twitter:description" content="If we apply the ideas of FP can we land at an architecture that rises out of the core ideas of high-order functions and pure functions?">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2019/frame-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Yoda wants you to be a functional programmer" />
+    <meta property="og:title" content="A simple functional architecture" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Bring balance to the f#rce" />
+    <meta property="og:url" content="https://devonburriss.me/functional-programming-architecture-part-1/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2019/frame-500.jpg" />
+    <meta property="og:description" content="If we apply the ideas of FP can we land at an architecture that rises out of the core ideas of high-order functions and pure functions?" />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -154,21 +156,29 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/yoda-bg.jpg')">
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/stairwell-bg.jpg')">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>Yoda wants you to be a functional programmer</h1>
+                        <h1>A simple functional architecture</h1>
                         
-                        <h2 class="subheading">Bring balance to the f#rce</h2>
+                        <h2 class="subheading">How do I build a production application in a functional language?</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on June 10, 2017</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on December 24, 2021</span>
                         
                             <hr />
                             
+                                <a href="/tag/architecture" class="label label-default">Architecture</a>
+                            
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
                                 <a href="/tag/functional" class="label label-default">Functional</a>
+                            
+                                <a href="/tag/programming" class="label label-default">Programming</a>
+                            
+                                <a href="/tag/fsadvent" class="label label-default">FsAdvent</a>
                             
                         
                     <div>
@@ -184,56 +194,94 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>This one is just for laughs but technical writing doesn't always have to be serious.<br />
-I was double checking a Yoda quote for my previous post and it got me thinking about how many Yoda quotes could be applied to the functional programming (FP) paradigm.<br />
-Star wars and programming are meant to go together.</p>
+				<p>A recurring question I get after discussing the <a href="/what-is-fp">benefits of functional programming</a> (FP) with a developer who is not familiar with FP is, &quot;Ok, that makes sense but how do I actually build a large application out of functions?&quot; In this post I want to look at a simple functional architecture that could serve as a starting point.</p>
 <!--more-->
+<p>I will not be talking about Functional Reactive Programming (FRP) or Functional Relational Programming (also FRP) in this post. These are far more opinionated architectures, trying to achieve specific goals. Instead, I will describe a simple architecture that builds on the core ideas of functional programming covered in a <a href="/what-is-fp">previous post</a>. Let's refresh those here quickly:</p>
+<ol>
+<li>The language it is written in should support higher-order functions</li>
+<li>More complex code should be built from composing simpler functions together</li>
+<li>The programmer should follow the discipline of keeping functions pure as much as possible and push impure functions to the boundaries of the application</li>
+</ol>
+<p>Pure functions and higher-order functions will be the main ideas at play here, so if those are not familiar terms, go read <a href="/what-is-fp">this</a> first.</p>
+<p>The &quot;architecture&quot; is actually embarrassingly simple. We adopt the pattern of wrapping our features in <strong>usecases</strong>. This is the name I prefer but I have seen them referred to as <strong>feature</strong> or even <strong>service</strong> (I dislike this as it is so overloaded already).
+A <strong>usecase</strong> is called by the host, where the host is typically a web application or a console application (I don't have much experience with desktop or mobile but I don't see why it would differ). The host is also responsible for providing production implementations of impure functions to the <strong>usecase</strong>.</p>
+<p><img src="/img/posts/2021/fp-arch-1.png" alt="Functional arch diagram" /></p>
+<p>At this point you might be saying, &quot;Wait, isn't this just Hexagonal/Onion/Clean architecture?&quot;. Yes. Maybe it is my background (OOP)? Maybe there are only so many ways to skin a cat? There are more similarities than there are differences.</p>
+<p>The important part is the design inside of a <strong>usecase</strong>. A stark difference between OOP and FP seems to be the <em>separation of behaviour and data</em>. A revelation for me while learning FP was this focus on behaviour. All my professional career I had been modelling data and relationships, and trying to overlay behaviour over this in ways that allowed me to apply business requirements and still felt as if I was working with models of things in the real world. This focus on &quot;things&quot; means when it comes to implementing actual behaviour we end up splitting it between Aggregates, Repositories, Factories, Services, Managers, and ManagerMangers.</p>
+<p><img src="/img/posts/2018/deeply-nested-dep.jpg" alt="scattered logic" /></p>
 <blockquote>
-<h2>“Size matters not. Look at me. Judge me by my size, do you? Hmm? Hmm. And well you should not.” – Yoda</h2>
+<p>Sprinkling important application logic throughout an object graph makes it difficult to reason about. From post <a href="/managing-code-complexity">Managing code complexity</a>.</p>
 </blockquote>
-<p>Functional programming involves small building blocks of functions that you compose to make more specific functions and so on. The functions and the types tend to be small and stay small.</p>
+<p>Maybe you have worked on a codebase where dependency injection has run wild and each step is called on an object that was injected into the object executing the current step.</p>
+<p>The first improvement for me, that I think was really sparked by more functional thinking, was to make sure I had an entry point that described in clear steps how a <strong>usecase</strong> is implemented. Functional programming encourages pipelines of behaviour that inspect data, make a decision, and change data based on this. If you think about it, this ETL process is the core of what the programs we write do. Now this isn't yet functional thinking. I <a href="/managing-code-complexity">wrote about this idea of usecases back in 2018</a> and whether you are applying FP or not it can improve the maintainability of your codebase.</p>
+<p><img src="/img/posts/2018/use-case.jpg" alt="usecase" /></p>
 <blockquote>
-<h2>“Do. Or do not. There is no try.” – Yoda</h2>
+<p>Usecase as the entrypoint into your domain. From post <a href="/managing-code-complexity">Managing code complexity</a>.</p>
 </blockquote>
-<p>Functions always return a value. No <code>void</code> here.</p>
+<p>In using these top level <strong>usecases</strong> I had gained the benefit of clarity of what happens on a high level, as well as an easy entry point to dive into a specific step. In C# codebases I was using fluent method chaining, making it even <em>feel</em> more functional due to the style. I went through the effort of making my classes immutable.
+What I did not yet have was the benefits of functional programming. Even though there was a nice clean entry point and a descriptive flow, reasoning and testability where not much improved.  Where the functional programming part comes in is in trying to maximize how much of a <strong>usecase</strong> is <a href="/what-is-fp">pure</a>. The problem was I was mixing chained calls in a &quot;functional style&quot; without making much distinction between method calls that were pure and those that were not.</p>
+<p><img src="/img/posts/2018/dependencies-on-boundary.jpg" alt="push IO dependencies to the boundary" /></p>
 <blockquote>
-<h2>“Much to learn you still have…my old padawan. This is just the beginning!” – Yoda</h2>
+<p>Impure operations should be pushed to the boundary. From post <a href="/managing-code-complexity">Managing code complexity</a>.</p>
 </blockquote>
-<p>FP is a new paradigm. Learning a new paradigm is way harder than learning a new language. It is a very useful tool to have in your toolbox though.</p>
-<blockquote>
-<h2>“Truly wonderful, the mind of a child is.” – Yoda</h2>
-</blockquote>
-<p>When learning FP, don't bring your object-oriented baggage. Embrace that this is something different.</p>
-<blockquote>
-<h2>“Always pass on what you have learned.” – Yoda</h2>
-</blockquote>
-<p>Another reference (pun intended wink wink) to functions in FP always returning something.</p>
-<blockquote>
-<h2>“Once you start down the dark path, forever will it dominate your destiny, consume you it will.” – Yoda</h2>
-</blockquote>
-<p>This one was tough. Do I use this to represent that once you grok a paradigm and see it's merits, you can't unlearn that. I think instead this should be a warning against letting yourself think any one paradigm is the best or only one that matters (I am looking at OOP).</p>
-<blockquote>
-<h2>“Mind what you have learned. Save you it can.” – Yoda</h2>
-</blockquote>
-<p>FP is a new paradigm and will make you a better developer.</p>
-<blockquote>
-<h2>“You will find only what you bring in.” – Yoda</h2>
-</blockquote>
-<p>In FP you don't usually store state. You pass along what you need in arguments.</p>
-<blockquote>
-<h2>“Attachment leads to jealously. The shadow of greed, that is.” – Yoda</h2>
-</blockquote>
-<p>I could make a point here about storing state but I think it is more important to reiterate the warning about the dark side of being too attached to just one paradigm. Find balance in the force.</p>
+<p>So what do we get from this approach?</p>
+<ol>
+<li>A high-level list of all usecases in the system.</li>
+<li>An entry point to inspect the steps in each usecase that can be a springboard into specific parts of the codebase.</li>
+<li>Use cases only reference pure logic directly and impure functions can be substituted with test doubles.</li>
+</ol>
+<p>An architecture that is easy to understand and easy to test not a bad starting point.</p>
+<h2>Example code</h2>
+<p>Let's look at some code snippets of a small example. Unfortunately, architecture only starts becoming important once size and complexity scales up but then examples can become unwieldy. I am keeping things simple here to illustrate the moving parts. Module names like <code>DataAccess</code> and <code>Usecase</code> are a bit on the nose and in bigger applications would not be a good way to organize functionality. I use the names here to make it clear what is inside functions in these modules.</p>
+<p>Imagine a little CLI based CRM system. Current functionality is to add a new customer and to change that customers email address. So we expect to have an implementation of a <code>changeEmail</code> usecase.</p>
+<pre><code class="language-fsharp">// implementation of the change email usecase
+let changeEmail (readCustomer : ReadCustomer) (saveCustomer : SaveCustomer) (cmd : ChangeEmailCommand) : Result&lt;((DomainEvent list) * Customer),string&gt; =
+    readCustomer cmd.CustomreId
+    |&gt; Result.map (Customer.updateEmail cmd.NewEmail)
+    |&gt; Result.bind saveCustomer
+</code></pre>
+<p>The host provides implementations for the <code>ReadCustomer</code> and <code>SaveCustomer</code> function types. You can see the setup of those below for the CLI tool. Although the details here are not important, something you may notice in the type signature is the events in the return type <code>DomainEvent list</code>. This is a pattern I started using many years ago, even before I started functional programming when I realized raising domain events the moment something happens can cause inconsistencies. If the event is handled and mutates state and then something goes wrong in the main execution path, your events that &quot;happened&quot; don't match your internal state. A safer pattern is to collect domain events as you execute and <a href="/reliability-with-intents">outbox</a> what you need to at the same time you persist your aggregates.</p>
+<p>This <strong>usecase</strong> is easily testable since the IO parts are passed into the function. You can imagine that as more things need to happen, they can just be appended to the steps in the <strong>usecase</strong>.</p>
+<p>If you are not familiar with F#'s <code>Result</code> type check out <a href="https://fsharpforfunandprofit.com/rop/">Railway oriented programming</a>.</p>
+<p>Let's look at how this is used in the console application.</p>
+<pre><code class="language-fsharp">let main args =
+    // composite root composes IO for app
+    let readCustomer = DataAccess.readCustomer // real impl would take some config
+    let saveCustomer = DataAccess.saveCustomer // real impl would take some config
+    let changeEmail = Usecase.changeEmail readCustomer saveCustomer
+    let newCustomer = Usecase.newCustomer saveCustomer
+
+    // Routing the parsed input
+    let handle command =
+        match command with
+        | Commands.NewCustomer cmd -&gt; newCustomer cmd
+        | Commands.ChangeEmail cmd -&gt; changeEmail cmd
+        
+    // Parse the input to a command
+    let cmd = Mapper.inputToCommand args
+    // Get result by routing the command to correct usecase
+    let result = cmd |&gt; Result.bind handle
+
+    // handle result output to CLI
+</code></pre>
+<p>With our <strong>usecase</strong> available, we can parse input to a command that matches to a <strong>usecase</strong>, in this case the <code>ChangeEmailCommand</code>. This is not an article on F# modelling and frankly it's a bit rough here but the point is that the usecase just received the command and knows nothing of the host.</p>
+<h2>Tips</h2>
+<ol>
+<li>Don't use a usecase in another usecase. Rather have functions that can be shared across different usecases easily.</li>
+<li>If you need to participate or kickoff sagas, an event list is a useful pattern.</li>
+<li>Keep things simple and refactor when things get more complex</li>
+<li>Use specific types as much as possible and build up pipelines inside the usecase that operate on those types</li>
+</ol>
 <h2>Conclusion</h2>
-<p>So that's it for Yoda on functional programming. Hope it made you think and I hope it made you smile.</p>
+<p>In this post we saw how some core ideas of functional programming like higher-order functions and pure functions come together in guiding us toward an architecture. <a href="https://blog.ploeh.dk/">Mark Seeman</a> has a nice talk about the <a href="https://www.youtube.com/watch?v=US8QG9I1XW0">Pit of Success</a> and <a href="https://www.youtube.com/watch?v=cxs7oLGrxQ4">Dependency rejection</a> that are worth a watch. We noticed how this relates to patterns we are maybe already familiar with like Clean Architecture and having a core domain that is independent of implementation details. The value add for me is in having an entry-point that describes the steps and for keeping as much of that pure as possible. An alternative would be to really handle the IO outside of the usecase and have the host responsible for composing this together in a meaningful way. In my experience this leaves the usecase as so trivial that it is not worth having. I find it useful to have something that has the domain implementation and pointers to what it depends on to execute it's behaviour.</p>
 
                 <hr />
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
-                                                <li><a href="/why-i-got-hooked-on-fsharp/">Why I got hooked on F#</a></li>
+                                                <li><a href="/what-is-fp/">What is Functional Programming?</a></li>
                                                 <li><a href="/argument-for-fp/">An argument for functional programming</a></li>
-                                                <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
+                                                <li><a href="/useful-fp-language-features/">Useful FP language features</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -241,13 +289,9 @@ Star wars and programming are meant to go together.</p>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/productivity-tips-1/" data-toggle="tooltip"    data-placement="top" title="Productivity Tips">&larr; Previous Post</a>
+                        <a href="/useful-fp-language-features/" data-toggle="tooltip"    data-placement="top" title="Useful FP language features">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/stop-comparing-eq-and-iq/" data-toggle="tooltip" data-placement="top" title="Stop comparing EQ and IQ">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
