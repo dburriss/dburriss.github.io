@@ -163,8 +163,8 @@ If working with `Option` or `Result` sounds interesting to you, I suggest checki
 ### Benefits
 
 - Often results in easier to understand control flow
-- In supporting languages, the compiler can tell you if all possibilities are matched against
+- In some languages, the compiler can tell you if all possibilities are matched against
 
 ## Conclusion
 
-In this post we covered a few language features that are nice to have for making you development experience using functional programming productive. These support the ideas of FP and make it faster to write code that is bug free. This post was mostly about addressing things that where not in the [previous post](/what-is-fp). Finally, monads, etc. where not covered at all, since I consider them patterns. Although they are intimately connected with FP, I do not think they are strictly necessary to say you are writing code using the principles of FP. 
+In this post we covered a few language features that are nice to have for making you development experience using functional programming productive. These support the ideas of FP and make it faster to write code that is bug free. This post was mostly about addressing things that where not in the [previous post](/what-is-fp). Finally, monads, etc. were not covered at all, since I consider them patterns. Although they are intimately connected with FP, I do not think they are strictly necessary to say you are writing code using the principles of FP. 
