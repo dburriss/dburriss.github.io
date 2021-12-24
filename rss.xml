@@ -6,15 +6,15 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Fri, 24 Dec 2021 20:01:43 +00:00</pubDate>
-    <lastBuildDate>Fri, 24 Dec 2021 20:01:43 +00:00</lastBuildDate>
+    <pubDate>Fri, 24 Dec 2021 20:09:31 +00:00</pubDate>
+    <lastBuildDate>Fri, 24 Dec 2021 20:09:31 +00:00</lastBuildDate>
     
     <item>
-      <title>A simple functional architecture</title>
-      <link>https://devonburriss.me/functional-programming-architecture-part-1/</link>
+      <title>A simple fp architecture</title>
+      <link>https://devonburriss.me/fp-architecture/</link>
       <pubDate>Fri, 24 Dec 2021 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/functional-programming-architecture-part-1/</guid>
+      <guid>https://devonburriss.me/fp-architecture/</guid>
       <description>If we apply the ideas of FP can we land at an architecture that rises out of the core ideas of high-order functions and pure functions?</description>
     </item>
     

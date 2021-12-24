@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-12-24T20:01:43.7105967+00:00</updated>
+  <updated>2021-12-24T20:09:31.3732865+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -12,13 +12,13 @@
 
   
   <entry>
-    <id>https://devonburriss.me/functional-programming-architecture-part-1/</id>
-    <link type="text/html" rel="alternate" href="https://devonburriss.me/functional-programming-architecture-part-1/"/>
-    <title>A simple functional architecture</title>
+    <id>https://devonburriss.me/fp-architecture/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/fp-architecture/"/>
+    <title>A simple fp architecture</title>
     <updated>2021-12-24T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>https://devonburriss.me/functional-programming-architecture-part-1/</uri>
+      <uri>https://devonburriss.me/fp-architecture/</uri>
     </author>
     <summary type="html">&lt;p&gt;A recurring question I get after discussing the &lt;a href=&quot;/what-is-fp&quot;&gt;benefits of functional programming&lt;/a&gt; (FP) with a developer who is not familiar with FP is, &amp;quot;Ok, that makes sense but how do I actually build a large application out of functions?&amp;quot; In this post I want to look at a simple functional architecture that could serve as a starting point.&lt;/p&gt;
 &lt;!--more--&gt;
