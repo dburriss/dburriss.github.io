@@ -10,7 +10,7 @@ tags: [Architecture,F#,Functional,Programming,FsAdvent]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stairwell-bg.jpg"
-social-img: "img/posts/2019/frame-500.jpg"
+social-img: "img/posts/2018/frame-500.jpg"
 published: true
 ---
 
