@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-12-24T20:09:31.3732865+00:00</updated>
+  <updated>2021-12-24T20:12:36.8364916+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -14,7 +14,7 @@
   <entry>
     <id>https://devonburriss.me/fp-architecture/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/fp-architecture/"/>
-    <title>A simple fp architecture</title>
+    <title>A simple FP architecture</title>
     <updated>2021-12-24T00:00:00+00:00</updated>
     <author>
       <name>Devon Burriss</name>

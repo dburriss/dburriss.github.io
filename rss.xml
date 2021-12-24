@@ -6,11 +6,11 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Fri, 24 Dec 2021 20:09:31 +00:00</pubDate>
-    <lastBuildDate>Fri, 24 Dec 2021 20:09:31 +00:00</lastBuildDate>
+    <pubDate>Fri, 24 Dec 2021 20:12:36 +00:00</pubDate>
+    <lastBuildDate>Fri, 24 Dec 2021 20:12:36 +00:00</lastBuildDate>
     
     <item>
-      <title>A simple fp architecture</title>
+      <title>A simple FP architecture</title>
       <link>https://devonburriss.me/fp-architecture/</link>
       <pubDate>Fri, 24 Dec 2021 00:00:00 +00:00</pubDate>
       <author>Devon Burriss</author>
