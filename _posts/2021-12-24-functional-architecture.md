@@ -3,7 +3,7 @@ layout: post
 title: "A simple functional architecture"
 subtitle: "How do I build a production application in a functional language?"
 description: "If we apply the ideas of FP can we land at an architecture that rises out of the core ideas of high-order functions and pure functions?"
-permalink: functional-programming-architecture-part-1
+permalink: functional-programming-architecture
 author: "Devon Burriss"
 category: Software Development
 tags: [Architecture,F#,Functional,Programming,FsAdvent]
