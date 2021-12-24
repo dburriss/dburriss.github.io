@@ -16,43 +16,45 @@
 
 
 
+    
 
-    <title>Yoda wants you to be a functional programmer</title>
-    <meta name="description" content="Bring balance to the f#rce">
+
+    <title>Useful FP language features</title>
+    <meta name="description" content="A review of some language features like immutability and algebraic data types that work well in a functional style of programming.">
     <meta name="author" content="Devon Burriss">
     
-    <link rel="canonical" href="https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/">
+    <link rel="canonical" href="https://devonburriss.me/useful-fp-language-features/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Yoda wants you to be a functional programmer">
-    <meta itemprop="description" content="Bring balance to the f#rce">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="Useful FP language features">
+    <meta itemprop="description" content="A review of some language features like immutability and algebraic data types that work well in a functional style of programming.">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/hammer-500.jpg">
     
-    <meta itemprop="datePublished" content="6/10/2017 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="6/10/2017 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="Yoda wants you to be a functional programmer - Bring balance to the f#rce" />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/" />
-    <meta name="headline" content="Yoda wants you to be a functional programmer - Bring balance to the f#rce" />
+    <meta itemprop="datePublished" content="12/23/2021 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="12/23/2021 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Useful FP language features - Making functional programming more productive" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/useful-fp-language-features/" />
+    <meta name="headline" content="Useful FP language features - Making functional programming more productive" />
 
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Yoda wants you to be a functional programmer">
-    <meta name="twitter:description" content="Bring balance to the f#rce">
+    <meta name="twitter:title" content="Useful FP language features">
+    <meta name="twitter:description" content="A review of some language features like immutability and algebraic data types that work well in a functional style of programming.">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/hammer-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Yoda wants you to be a functional programmer" />
+    <meta property="og:title" content="Useful FP language features" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Bring balance to the f#rce" />
+    <meta property="og:url" content="https://devonburriss.me/useful-fp-language-features/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/hammer-500.jpg" />
+    <meta property="og:description" content="A review of some language features like immutability and algebraic data types that work well in a functional style of programming." />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -154,21 +156,25 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/yoda-bg.jpg')">
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/superman-bg.jpg')">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="frame">
-                        <h1>Yoda wants you to be a functional programmer</h1>
+                        <h1>Useful FP language features</h1>
                         
-                        <h2 class="subheading">Bring balance to the f#rce</h2>
+                        <h2 class="subheading">Making functional programming more productive</h2>
                         
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on June 10, 2017</span>
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on December 23, 2021</span>
                         
                             <hr />
                             
+                                <a href="/tag/fsharp" class="label label-default">F#</a>
+                            
                                 <a href="/tag/functional" class="label label-default">Functional</a>
+                            
+                                <a href="/tag/programming" class="label label-default">Programming</a>
                             
                         
                     <div>
@@ -184,56 +190,126 @@
         <div class="row">
             <div class="col-lg-8 ">
 
-				<p>This one is just for laughs but technical writing doesn't always have to be serious.<br />
-I was double checking a Yoda quote for my previous post and it got me thinking about how many Yoda quotes could be applied to the functional programming (FP) paradigm.<br />
-Star wars and programming are meant to go together.</p>
+				<p>In a <a href="/what-is-fp">previous post</a> we looked at the big ideas of functional programming. In this post we will look at some features that are often associated with functional programming but that I do not think are core to it.</p>
 <!--more-->
+<p>Some of these are conflated with functional programming but it turns out that the only language feature needed for functional programming is support for higher-order functions.</p>
+<h2>Immutable data</h2>
+<p>To work with pure functions, you need to be careful not to change the underlying state of you application. This includes the input to your functions. It is useful if your language can enforce this.</p>
+<p>I was presenting to a group of Javascript and C# developers a few weeks ago and I showed the following C# snippet of code.</p>
+<pre><code class="language-csharp">// what does this return?
+var two = 1 + 1;
+return two++;
+</code></pre>
+<p>Now maybe this is a bit unfair but I think it highlights the problem of reasoning about mutable state as statements are executed. When I polled the audience on this it seemed about a 50/50 split between answers of 2 and answers of 3. If anything, more answers of 3. If you are not sure, it turns out the number 2 is returned. Any subsequent references to <code>two</code> would reference the value 3.</p>
+<p>Now granted, the <code>++</code> operator is not the most intuitive and you need to know the behaviour expected depending on what side of the variable it is place. It is useful in illustrating how state can change in ways we might not anticipate.</p>
+<p>In the F# example below, you see that a value is immutable. Once it's value is set, it cannot be changed.</p>
+<pre><code class="language-fsharp">let two = 1 + 1
+//let two = 3 // will not compile
+//let two &lt;- 3 // will not compile
+</code></pre>
+<p>Once you have immutable values, it is important to have an easy way to create new values from old ones. An often overlooked area here is having good tools for working with immutable collections.</p>
+<pre><code class="language-fsharp">let stock = [ (&quot;chicken&quot;, 20);(&quot;grain&quot;, 50);(&quot;potatoes&quot;, 30) ] |&gt; Map.ofList
+// create a new map from an existing one
+let newStock = stock |&gt; Map.change &quot;chicken&quot; (fun vOpt -&gt; vOpt |&gt; Option.map (fun v -&gt; v - 1))
+</code></pre>
+<p>Above we see that rather than changing the value in the map, a new map is returned with the changed value.</p>
+<h3>Benefits</h3>
+<ul>
+<li>Easier to reason about</li>
+<li>Fewer bugs due to unexpected state changes</li>
+<li>Easier parallel processing</li>
+</ul>
+<h2>Algebraic data types</h2>
+<p>Algebraic data types are comprised of <strong>product</strong> types and <strong>sum</strong> types.</p>
+<p>Sidebar: I am not the person to be trying to explain Type Theory. I am not even sure if there exists a formal definition of class and how it relates to a type (in a language agnostic way). If you are an OO programmer think of a type as a concrete class. So <code>Nullable&lt;T&gt;</code> is a class, <code>Nullable&lt;int&gt;</code> is a type and <code>Nullable&lt;decimal&gt;</code> is another type. My current thinking of a class is as a parameterized factory for a type, if it is generic. If not they can be considered equivalent. Experts, let me know in the comments all the ways this is wrong :)</p>
+<p><strong>Product types</strong> are either records or tuples which in OO languages are common data structure types.</p>
+<pre><code class="language-fsharp">type IntAndBool = {
+    I : uint
+    B : bool
+}
+
+let p = { I = 0u ; B = true }
+
+// range of possible values
+printfn &quot;product %i&quot; (((UInt32.MaxValue |&gt; int64) + 1L) * (2L)) // range of uint * range of bool
+// product 8589934592
+</code></pre>
+<p>Giving as a total possible range of 8589934592 combinations, found by multiplying the possible number of states in each field.</p>
+<p>So I bet you can guess where <strong>sum types</strong> get there name from now...</p>
+<p><strong>Sum types</strong> are known by many names and appear primarily in functional-first languages (tagged union, discriminated union, choice type, to name a few). The only OO leaning language I personally know that has something like <strong>sum types</strong> is TypeScript's Union types.</p>
+<p>These types allow us to define types that can be something, or something else. An example will illustrate this best.</p>
+<pre><code class="language-fsharp">type IntOrBool = I of uint | B of bool
+
+let s = B true
+
+(((UInt32.MaxValue |&gt; int64) + 1L) + 2L)
+printfn &quot;sum %i&quot; (((UInt32.MaxValue |&gt; int64) + 1L) + (2L)) // range of uint + range of bool
+// sum 4294967298
+</code></pre>
+<p>An instance of <code>IntOrBool</code> can be either one type or the other. There is no need to constrain these to combining simple types though. We can model using more complex types.</p>
+<pre><code class="language-fsharp">type PostalCode = string
+type Address = { 
+    HouseNumber : int
+    HouseNumberOpt : char option
+    StreetName : string
+    City : string
+    PostalCode : PostalCode
+}
+type EmailAddress = string
+type PhoneNumber = string
+type ContactMethod = Email of EmailAddress | Post of Address | Phone of PhoneNumber
+</code></pre>
+<p>Here you see the <code>ContactMethod</code> type can be <code>EmailAddress</code> OR <code>Address</code> OR <code>PhoneNumber</code>. This gives a far more rich and intuitive way of modelling a domain.</p>
+<p>A language that supports <strong>sum types</strong> typically provides elegant ways of dealing with 2 prickly issues in programming.<br />
+Too often the absence of something is represented by <code>null</code>. &quot; The billion dollar mistake yada yada...&quot;.
+In functional languages the approach is to use a sum type, usually called <code>Option</code> or <code>Maybe</code>.</p>
+<pre><code class="language-fsharp">let noValue = None
+let someValueThatCouldBeNone = Some 42
+printfn &quot;is equal? %b&quot; (noValue = someValueThatCouldBeNone)
+// is equal? false
+</code></pre>
+<p>A similar approach can be taken to exceptions. Instead of throwing an exception that is hopefully handled somewhere, we return from the function that it was possible for an exception to have occurred.</p>
+<pre><code class="language-fsharp">let success = Ok 42
+let error = Error &quot;Something went wrong calculating the meaning of life&quot;
+printfn &quot;is equal? %b&quot; (noValue = someValueThatCouldBeNone)
+// is equal? false
+</code></pre>
 <blockquote>
-<h2>“Size matters not. Look at me. Judge me by my size, do you? Hmm? Hmm. And well you should not.” – Yoda</h2>
+<p>Note: This could be the point where some might be wondering where I am going to start throwing the word Monad. This article will not. Monad, monoid, etc. are patterns as far as I am concerned. Their origins may be far more formal than the observational origins of OOP patterns like Vistor, or Strategy, but they are patterns none the less (in my opinion). The are no more necessary for FP than patterns are for OOP. Using them well can improve your code. Using them poorly can make it overly complicated.</p>
 </blockquote>
-<p>Functional programming involves small building blocks of functions that you compose to make more specific functions and so on. The functions and the types tend to be small and stay small.</p>
-<blockquote>
-<h2>“Do. Or do not. There is no try.” – Yoda</h2>
-</blockquote>
-<p>Functions always return a value. No <code>void</code> here.</p>
-<blockquote>
-<h2>“Much to learn you still have…my old padawan. This is just the beginning!” – Yoda</h2>
-</blockquote>
-<p>FP is a new paradigm. Learning a new paradigm is way harder than learning a new language. It is a very useful tool to have in your toolbox though.</p>
-<blockquote>
-<h2>“Truly wonderful, the mind of a child is.” – Yoda</h2>
-</blockquote>
-<p>When learning FP, don't bring your object-oriented baggage. Embrace that this is something different.</p>
-<blockquote>
-<h2>“Always pass on what you have learned.” – Yoda</h2>
-</blockquote>
-<p>Another reference (pun intended wink wink) to functions in FP always returning something.</p>
-<blockquote>
-<h2>“Once you start down the dark path, forever will it dominate your destiny, consume you it will.” – Yoda</h2>
-</blockquote>
-<p>This one was tough. Do I use this to represent that once you grok a paradigm and see it's merits, you can't unlearn that. I think instead this should be a warning against letting yourself think any one paradigm is the best or only one that matters (I am looking at OOP).</p>
-<blockquote>
-<h2>“Mind what you have learned. Save you it can.” – Yoda</h2>
-</blockquote>
-<p>FP is a new paradigm and will make you a better developer.</p>
-<blockquote>
-<h2>“You will find only what you bring in.” – Yoda</h2>
-</blockquote>
-<p>In FP you don't usually store state. You pass along what you need in arguments.</p>
-<blockquote>
-<h2>“Attachment leads to jealously. The shadow of greed, that is.” – Yoda</h2>
-</blockquote>
-<p>I could make a point here about storing state but I think it is more important to reiterate the warning about the dark side of being too attached to just one paradigm. Find balance in the force.</p>
+<h3>Benefits</h3>
+<ul>
+<li>They should be immutable</li>
+<li>They should have value equality</li>
+<li>More powerful modelling options without resorting to inheritance</li>
+</ul>
+<h2>Pattern matching</h2>
+<p>The final language feature I will point out is pattern matching. This is making it's way into C# now but for me the combination of pattern matching with <strong>sum types</strong> is what I miss most when working in a language that does not support algebraic types.</p>
+<pre><code class="language-fsharp">let calculateMeaning() =
+    if ((Random()).Next() % 2) = 0 then Ok 42
+    else Error &quot;Something went wrong calculating the meaning of life&quot;
+
+match calculateMeaning() with
+| Ok nr -&gt; printfn &quot;The answer to life is %i&quot; nr
+| Error err -&gt; printfn &quot;%s&quot; err
+</code></pre>
+<p>When calculating the meaning of life, the returning result will be of type <code>Result&lt;int,string&gt;</code>. We can <code>match</code> on this where we handle each case that is possible. If you have a statically typed language the compiler can tell you when your match is not covering every case.</p>
+<p>If working with <code>Option</code> or <code>Result</code> sounds interesting to you, I suggest checking out <a href="https://fsharpforfunandprofit.com/rop/">Railway oriented programming</a>.</p>
+<h3>Benefits</h3>
+<ul>
+<li>Often results in easier to understand control flow</li>
+<li>In supporting languages, the compiler can tell you if all possibilities are matched against</li>
+</ul>
 <h2>Conclusion</h2>
-<p>So that's it for Yoda on functional programming. Hope it made you think and I hope it made you smile.</p>
+<p>In this post we covered a few language features that are nice to have for making you development experience using functional programming productive. These support the ideas of FP and make it faster to write code that is bug free. This post was mostly about addressing things that where not in the <a href="/what-is-fp">previous post</a>. Finally, monads, etc. where not covered at all, since I consider them patterns. Although they are intimately connected with FP, I do not think they are strictly necessary to say you are writing code using the principles of FP.</p>
 
                 <hr />
                                 <section class="related">
                     <h4>You may be interested in</h4>
                     <ul>
+                                                <li><a href="/what-is-fp/">What is Functional Programming?</a></li>
+                                                <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
                                                 <li><a href="/argument-for-fp/">An argument for functional programming</a></li>
-                                                <li><a href="/why-i-got-hooked-on-fsharp/">Why I got hooked on F#</a></li>
-                                                <li><a href="/how-to-fsharp-pt-2/">How to F# - Part 2</a></li>
                                             </ul>
                 </section>
                 <hr />
@@ -241,13 +317,9 @@ Star wars and programming are meant to go together.</p>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/productivity-tips-1/" data-toggle="tooltip"    data-placement="top" title="Productivity Tips">&larr; Previous Post</a>
+                        <a href="/what-is-fp/" data-toggle="tooltip"    data-placement="top" title="What is Functional Programming?">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/stop-comparing-eq-and-iq/" data-toggle="tooltip" data-placement="top" title="Stop comparing EQ and IQ">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
