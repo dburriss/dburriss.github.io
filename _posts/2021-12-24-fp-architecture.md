@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A simple fp architecture"
+title: "A simple FP architecture"
 subtitle: "How do I build a production application in a functional language?"
 description: "If we apply the ideas of FP can we land at an architecture that rises out of the core ideas of high-order functions and pure functions?"
 permalink: fp-architecture
