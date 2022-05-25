@@ -117,7 +117,9 @@ I am interested to see what new diagrams Mermaid releases. Hopefully a C4 diagra
 
 ## Conclusion
 
-There are a couple things in the repository I have not covered that you may be interested in:
+That is it! What do you think? Using these already? Think you will use them going forward? With the devcontainer it is super easy to get started and give these diagrams a try.
+
+There are a couple things in the devcontainer I have not covered that you may be interested in:
 
 ### Architecture Decision Records
 
@@ -128,6 +130,12 @@ Useful for recording the history of significant decisions made for an applicatio
 ### Markdown plugins
 
 The Markdown Extension Pack comes with plenty of useful plugins for working with markdown from tables to emojis.
+
+### Organization repository responsibility
+
+I am not going to dive into it but in the repository there is a script called *generate-applications-md.fsx* that generates a markdown file with a table of all GitHub repositories in an organisation. If you add 2 specific topics to a GitHub repo, namely `team-name` and `domain-name`, it will use these to populate the team name and domain. Usage is in comments at the top of the script.
+
+![repo table](../img/posts/2022/2022-05-25-21-28-43.png)
 
 ## Plugin docs
 
