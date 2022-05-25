@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2022-05-25T19:11:43.1536299+00:00</updated>
+  <updated>2022-05-25T19:32:46.3601973+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -81,12 +81,16 @@
 &lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-25-20-33-53.png&quot; alt=&quot;Mermaid file&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;I am interested to see what new diagrams Mermaid releases. Hopefully a C4 diagram set!&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;There are a couple things in the repository I have not covered that you may be interested in:&lt;/p&gt;
+&lt;p&gt;That is it! What do you think? Using these already? Think you will use them going forward? With the devcontainer it is super easy to get started and give these diagrams a try.&lt;/p&gt;
+&lt;p&gt;There are a couple things in the devcontainer I have not covered that you may be interested in:&lt;/p&gt;
 &lt;h3&gt;Architecture Decision Records&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-25-20-43-46.png&quot; alt=&quot;ADR CLI&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Useful for recording the history of significant decisions made for an application or system of applications. Warning: requires discipline from the team to log decisions.&lt;/p&gt;
 &lt;h3&gt;Markdown plugins&lt;/h3&gt;
 &lt;p&gt;The Markdown Extension Pack comes with plenty of useful plugins for working with markdown from tables to emojis.&lt;/p&gt;
+&lt;h3&gt;Organization repository responsibility&lt;/h3&gt;
+&lt;p&gt;I am not going to dive into it but in the repository there is a script called &lt;em&gt;generate-applications-md.fsx&lt;/em&gt; that generates a markdown file with a table of all GitHub repositories in an organisation. If you add 2 specific topics to a GitHub repo, namely &lt;code&gt;team-name&lt;/code&gt; and &lt;code&gt;domain-name&lt;/code&gt;, it will use these to populate the team name and domain. Usage is in comments at the top of the script.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-25-21-28-43.png&quot; alt=&quot;repo table&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;Plugin docs&lt;/h2&gt;
 &lt;p&gt;Here is the list of plugins included in this devcontainer.&lt;/p&gt;
 &lt;ul&gt;
