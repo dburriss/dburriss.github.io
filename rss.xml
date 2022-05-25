@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Fri, 24 Dec 2021 20:12:36 +00:00</pubDate>
-    <lastBuildDate>Fri, 24 Dec 2021 20:12:36 +00:00</lastBuildDate>
+    <pubDate>Wed, 25 May 2022 19:11:43 +00:00</pubDate>
+    <lastBuildDate>Wed, 25 May 2022 19:11:43 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Tools for architecture documentation</title>
+      <link>https://devonburriss.me/tools-for-arch-docs/</link>
+      <pubDate>Tue, 24 May 2022 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/tools-for-arch-docs/</guid>
+      <description>Using a devcontainer with VS Code makes it easy for everyone to get up and running creating C4, PlantUML, and Mermaid diagrams. </description>
+    </item>
     
     <item>
       <title>A simple FP architecture</title>

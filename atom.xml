@@ -3,13 +3,99 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2021-12-24T20:12:36.8364916+00:00</updated>
+  <updated>2022-05-25T19:11:43.1536299+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/tools-for-arch-docs/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/tools-for-arch-docs/"/>
+    <title>Tools for architecture documentation</title>
+    <updated>2022-05-24T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/tools-for-arch-docs/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;Keeping documentation up to date can be difficult, and an extra barrier can be if you need extra tools setup &amp;quot;just so&amp;quot; to contribute to the docs. In this post I will give a quick run-through of setting up a &lt;strong&gt;&lt;a href=&quot;https://code.visualstudio.com/docs/remote/create-dev-container&quot;&gt;devcontainer&lt;/a&gt;&lt;/strong&gt; to help with great markdown editing, PlantUML, C4, and Mermaid diagrams. Another part of the documentation is the use of Architecture Decision Records, which will also be supported by the &lt;strong&gt;devcontainer&lt;/strong&gt;.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;I recently setup a devcontainer for out &amp;quot;Patterns and Practices&amp;quot; repository at work. This makes it easy for a developer to jump in and contribute without needing to install the required tools.&lt;/p&gt;
+&lt;p&gt;In this post I won&apos;t be diving into the details of setting up a devcontainer. Instead I will show you what the container setup gives you and then point you toward where you can get it. I will callout the parts of the setup as I demo their results.&lt;/p&gt;
+&lt;p&gt;This setup uses the following tools:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://code.visualstudio.com/docs&quot;&gt;VS Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://graphviz.org/&quot;&gt;Graphviz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://plantuml.com&quot;&gt;PlatUML&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://c4model.com/&quot;&gt;C4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://mermaid-js.github.io/&quot;&gt;Mermaid&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/npryce/adr-tools/blob/master/INSTALL.md&quot;&gt;ADR Tool&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This will not be a thorough examination of each tool, although I will at least motivate why they are on the list.&lt;/p&gt;
+&lt;h2&gt;Local setup&lt;/h2&gt;
+&lt;p&gt;I will be starting with a clean VS Code setup to show that the devcontainer is doing all the work.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-23-21-01-51.png&quot; alt=&quot;Clean VS Code setup&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;So the first things we need to do is make sure that you VS Code is ready to run a dev container:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make sure you have &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; installed&lt;/li&gt;
+&lt;li&gt;Install the Remote - Containers extension&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-24-07-37-10.png&quot; alt=&quot;Remote Containers extension&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;That&apos;s it! Your VC Code is now ready to run a devcontainer.&lt;/p&gt;
+&lt;h2&gt;Getting the devcontainer&lt;/h2&gt;
+&lt;p&gt;The example repository can be found at &lt;a href=&quot;https://github.com/dburriss/tools-for-arch-docs-example&quot;&gt;https://github.com/dburriss/tools-for-arch-docs-example&lt;/a&gt;. Either clone this or copy the &lt;em&gt;.vscode&lt;/em&gt; and &lt;em&gt;.devcontainer&lt;/em&gt; folders into the folder where you will be storing your markdown documentation.&lt;/p&gt;
+&lt;p&gt;It should prompt you to open in the container but if not bring up the command pallette and choose &amp;quot;Reopen in Container&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-24-20-45-35.png&quot; alt=&quot;Reopen in Container&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Next let&apos;s look at the various diagrams available to us.&lt;/p&gt;
+&lt;h2&gt;Graphviz&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://graphviz.org/&quot;&gt;Graphviz&lt;/a&gt; is a fairly low-level drawing language (compared to other diagrams shown later). It uses .dot files to define diagrams.&lt;/p&gt;
+&lt;p&gt;Hit &lt;em&gt;Ctrl-Shift-v&lt;/em&gt; to see a preview.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-24-21-54-54.png&quot; alt=&quot;Graphviz image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Graphviz is really powerful and flexible and this is why PlatUML is actually built on top of it, which is why it is included in this list. Personally, I have not used it much for architecture drawings.&lt;/p&gt;
+&lt;p&gt;It can be useful to generate diagrams dynamically since it is on the command-line.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-24-21-59-46.png&quot; alt=&quot;dot command&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;PlantUML&lt;/h2&gt;
+&lt;p&gt;The next diagram we will try out will be a &lt;a href=&quot;https://plantuml.com&quot;&gt;PlatUML&lt;/a&gt; diagram. PlatUML has been around for a while and so supports a wide variety of diagram types.&lt;/p&gt;
+&lt;p&gt;Pressing &lt;em&gt;Alt-d&lt;/em&gt; will bring up the render of the PlantUML diagram.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-24-20-35-31.png&quot; alt=&quot;Project structure in PlantUML&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Pulling up the command pallette with &lt;em&gt;ctrl-p&lt;/em&gt; then &lt;em&gt;&amp;gt;&lt;/em&gt; allows you to export.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-25-19-49-54.png&quot; alt=&quot;export command&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Good to know you can control the expected source and output folders in the &lt;em&gt;.vscode/settings.json&lt;/em&gt; file:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;&amp;quot;plantuml.diagramsRoot&amp;quot;: &amp;quot;diagrams/src&amp;quot;,
+&amp;quot;plantuml.exportOutDir&amp;quot;: &amp;quot;diagrams/out&amp;quot;,
+&amp;quot;plantuml.exportFormat&amp;quot;: &amp;quot;png&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;PlantUML is useful in the number of standard software diagram it supports. Check out the docs for a a complete list and usage.&lt;/p&gt;
+&lt;h2&gt;C4&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://c4model.com/&quot;&gt;C4&lt;/a&gt; diagrams are my goto when I want to explore or change an existing system or plan a new one. The creator Simon Brown had the insight that architecture diagrams should be like maps, and maps have a certain zoom level (show globe vs. country vs. city) and type (topographic vs. political). C4 diagrams have 4 main levels: System context, Container (running applications), and Code. There are others but these are the main ones that give it it&apos;s name.&lt;/p&gt;
+&lt;p&gt;Since it leverages PlantUML, &lt;em&gt;Alt-d&lt;/em&gt; will get you a preview.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-25-08-55-01.png&quot; alt=&quot;Context diagram&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I highly recommend diving into C4. It is a valuable framework for organizing and structural drawing architecture diagrams. I have even experimented with functional modeling and you can judge the result &lt;a href=&quot;https://devonburriss.me/functional-modeling/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Mermaid&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://mermaid-js.github.io/&quot;&gt;Mermaid&lt;/a&gt; is the new kid on the block when it comes to software diagramming. It has some of the usual suspects like Sequence and Class diagrams but then has some new ones like User Journey and Gitgraph diagrams.&lt;/p&gt;
+&lt;p&gt;It also has some interesting tooling options like being able to embed into markdown via a link to the Mermaid site as well as support menus and links on elements. Of interest if you use GitHub to host markdown, they now &lt;a href=&quot;https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/&quot;&gt;support Mermaid in their markdown&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-25-20-14-42.png&quot; alt=&quot;Mermaid git image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;You can also have a standalone file, although I found this is a bit buggy.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-25-20-33-53.png&quot; alt=&quot;Mermaid file&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I am interested to see what new diagrams Mermaid releases. Hopefully a C4 diagram set!&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;There are a couple things in the repository I have not covered that you may be interested in:&lt;/p&gt;
+&lt;h3&gt;Architecture Decision Records&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-05-25-20-43-46.png&quot; alt=&quot;ADR CLI&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Useful for recording the history of significant decisions made for an application or system of applications. Warning: requires discipline from the team to log decisions.&lt;/p&gt;
+&lt;h3&gt;Markdown plugins&lt;/h3&gt;
+&lt;p&gt;The Markdown Extension Pack comes with plenty of useful plugins for working with markdown from tables to emojis.&lt;/p&gt;
+&lt;h2&gt;Plugin docs&lt;/h2&gt;
+&lt;p&gt;Here is the list of plugins included in this devcontainer.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=bat67.markdown-extension-pack&quot;&gt;Markdown Extension Pack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=joaompinto.vscode-graphviz&quot;&gt;Graphviz (dot) language support&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml&quot;&gt;PlantUML&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=vstirbu.vscode-mermaid-preview&quot;&gt;Mermaid&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/fp-architecture/</id>

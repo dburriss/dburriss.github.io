@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+    <title>Tools for architecture documentation</title>
+    <meta name="description" content="Using a devcontainer with VS Code makes it easy for everyone to get up and running creating C4, PlantUML, and Mermaid diagrams. ">
+    <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="https://devonburriss.me/tools-for-arch-docs/">
+    
+    <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
+    <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Tools for architecture documentation">
+    <meta itemprop="description" content="Using a devcontainer with VS Code makes it easy for everyone to get up and running creating C4, PlantUML, and Mermaid diagrams. ">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/hammer-500.jpg">
+    
+    <meta itemprop="datePublished" content="5/24/2022 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="5/24/2022 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Tools for architecture documentation - Using devcontainers to enable easy developer documentation" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/tools-for-arch-docs/" />
+    <meta name="headline" content="Tools for architecture documentation - Using devcontainers to enable easy developer documentation" />
+
+    
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary_large_image">
+    <meta name="twitter:site" content="@DevonBurriss">
+    <meta name="twitter:title" content="Tools for architecture documentation">
+    <meta name="twitter:description" content="Using a devcontainer with VS Code makes it easy for everyone to get up and running creating C4, PlantUML, and Mermaid diagrams. ">
+    <meta name="twitter:creator" content="@DevonBurriss">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/hammer-500.jpg">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Tools for architecture documentation" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://devonburriss.me/tools-for-arch-docs/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/hammer-500.jpg" />
+    <meta property="og:description" content="Using a devcontainer with VS Code makes it easy for everyone to get up and running creating C4, PlantUML, and Mermaid diagrams. " />
+    <meta property="og:site_name" content="Devon Burriss' Blog" /> 
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    
+
+    <!-- Code Highlight -->
+    <link rel="stylesheet" charset="UTF-8" href="/css/highlight/atom-one-light.css">
+    
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Devon Burriss' Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/recommended-reading.html">Recommended Reading</a>
+                </li>
+                <!--
+				
+                <li>
+                    <a href="/atom.xml">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/index.html">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/recommended-reading.html">Recommended Reading</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/rss.xml">this is a post</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/sitemap.xml">this is a post</a>
+                </li>
+				
+                -->
+                <li>
+                    <a href="/rss.xml">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-rss fa-stack-1x"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/stuff-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Tools for architecture documentation</h1>
+                        
+                        <h2 class="subheading">Using devcontainers to enable easy developer documentation</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on May 24, 2022</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/architecture" class="label label-default">Architecture</a>
+                            
+                                <a href="/tag/diagrams" class="label label-default">Diagrams</a>
+                            
+                                <a href="/tag/modeling" class="label label-default">Modeling</a>
+                            
+                                <a href="/tag/vs-code" class="label label-default">VS Code</a>
+                            
+                                <a href="/tag/c4" class="label label-default">C4</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
+
+				<p>Keeping documentation up to date can be difficult, and an extra barrier can be if you need extra tools setup &quot;just so&quot; to contribute to the docs. In this post I will give a quick run-through of setting up a <strong><a href="https://code.visualstudio.com/docs/remote/create-dev-container">devcontainer</a></strong> to help with great markdown editing, PlantUML, C4, and Mermaid diagrams. Another part of the documentation is the use of Architecture Decision Records, which will also be supported by the <strong>devcontainer</strong>.</p>
+<!--more-->
+<p>I recently setup a devcontainer for out &quot;Patterns and Practices&quot; repository at work. This makes it easy for a developer to jump in and contribute without needing to install the required tools.</p>
+<p>In this post I won't be diving into the details of setting up a devcontainer. Instead I will show you what the container setup gives you and then point you toward where you can get it. I will callout the parts of the setup as I demo their results.</p>
+<p>This setup uses the following tools:</p>
+<ul>
+<li><a href="https://code.visualstudio.com/docs">VS Code</a></li>
+<li><a href="https://graphviz.org/">Graphviz</a></li>
+<li><a href="https://plantuml.com">PlatUML</a></li>
+<li><a href="https://c4model.com/">C4</a></li>
+<li><a href="https://mermaid-js.github.io/">Mermaid</a></li>
+<li><a href="https://github.com/npryce/adr-tools/blob/master/INSTALL.md">ADR Tool</a></li>
+</ul>
+<p>This will not be a thorough examination of each tool, although I will at least motivate why they are on the list.</p>
+<h2>Local setup</h2>
+<p>I will be starting with a clean VS Code setup to show that the devcontainer is doing all the work.</p>
+<p><img src="../img/posts/2022/2022-05-23-21-01-51.png" alt="Clean VS Code setup" /></p>
+<p>So the first things we need to do is make sure that you VS Code is ready to run a dev container:</p>
+<ul>
+<li>Make sure you have <a href="https://www.docker.com/">Docker</a> installed</li>
+<li>Install the Remote - Containers extension</li>
+</ul>
+<p><img src="../img/posts/2022/2022-05-24-07-37-10.png" alt="Remote Containers extension" /></p>
+<p>That's it! Your VC Code is now ready to run a devcontainer.</p>
+<h2>Getting the devcontainer</h2>
+<p>The example repository can be found at <a href="https://github.com/dburriss/tools-for-arch-docs-example">https://github.com/dburriss/tools-for-arch-docs-example</a>. Either clone this or copy the <em>.vscode</em> and <em>.devcontainer</em> folders into the folder where you will be storing your markdown documentation.</p>
+<p>It should prompt you to open in the container but if not bring up the command pallette and choose &quot;Reopen in Container&quot;.</p>
+<p><img src="../img/posts/2022/2022-05-24-20-45-35.png" alt="Reopen in Container" /></p>
+<p>Next let's look at the various diagrams available to us.</p>
+<h2>Graphviz</h2>
+<p><a href="https://graphviz.org/">Graphviz</a> is a fairly low-level drawing language (compared to other diagrams shown later). It uses .dot files to define diagrams.</p>
+<p>Hit <em>Ctrl-Shift-v</em> to see a preview.</p>
+<p><img src="../img/posts/2022/2022-05-24-21-54-54.png" alt="Graphviz image" /></p>
+<p>Graphviz is really powerful and flexible and this is why PlatUML is actually built on top of it, which is why it is included in this list. Personally, I have not used it much for architecture drawings.</p>
+<p>It can be useful to generate diagrams dynamically since it is on the command-line.</p>
+<p><img src="../img/posts/2022/2022-05-24-21-59-46.png" alt="dot command" /></p>
+<h2>PlantUML</h2>
+<p>The next diagram we will try out will be a <a href="https://plantuml.com">PlatUML</a> diagram. PlatUML has been around for a while and so supports a wide variety of diagram types.</p>
+<p>Pressing <em>Alt-d</em> will bring up the render of the PlantUML diagram.</p>
+<p><img src="../img/posts/2022/2022-05-24-20-35-31.png" alt="Project structure in PlantUML" /></p>
+<p>Pulling up the command pallette with <em>ctrl-p</em> then <em>&gt;</em> allows you to export.</p>
+<p><img src="../img/posts/2022/2022-05-25-19-49-54.png" alt="export command" /></p>
+<p>Good to know you can control the expected source and output folders in the <em>.vscode/settings.json</em> file:</p>
+<pre><code class="language-json">&quot;plantuml.diagramsRoot&quot;: &quot;diagrams/src&quot;,
+&quot;plantuml.exportOutDir&quot;: &quot;diagrams/out&quot;,
+&quot;plantuml.exportFormat&quot;: &quot;png&quot;
+</code></pre>
+<p>PlantUML is useful in the number of standard software diagram it supports. Check out the docs for a a complete list and usage.</p>
+<h2>C4</h2>
+<p><a href="https://c4model.com/">C4</a> diagrams are my goto when I want to explore or change an existing system or plan a new one. The creator Simon Brown had the insight that architecture diagrams should be like maps, and maps have a certain zoom level (show globe vs. country vs. city) and type (topographic vs. political). C4 diagrams have 4 main levels: System context, Container (running applications), and Code. There are others but these are the main ones that give it it's name.</p>
+<p>Since it leverages PlantUML, <em>Alt-d</em> will get you a preview.</p>
+<p><img src="../img/posts/2022/2022-05-25-08-55-01.png" alt="Context diagram" /></p>
+<p>I highly recommend diving into C4. It is a valuable framework for organizing and structural drawing architecture diagrams. I have even experimented with functional modeling and you can judge the result <a href="https://devonburriss.me/functional-modeling/">here</a>.</p>
+<h2>Mermaid</h2>
+<p><a href="https://mermaid-js.github.io/">Mermaid</a> is the new kid on the block when it comes to software diagramming. It has some of the usual suspects like Sequence and Class diagrams but then has some new ones like User Journey and Gitgraph diagrams.</p>
+<p>It also has some interesting tooling options like being able to embed into markdown via a link to the Mermaid site as well as support menus and links on elements. Of interest if you use GitHub to host markdown, they now <a href="https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/">support Mermaid in their markdown</a>.</p>
+<p><img src="../img/posts/2022/2022-05-25-20-14-42.png" alt="Mermaid git image" /></p>
+<p>You can also have a standalone file, although I found this is a bit buggy.</p>
+<p><img src="../img/posts/2022/2022-05-25-20-33-53.png" alt="Mermaid file" /></p>
+<p>I am interested to see what new diagrams Mermaid releases. Hopefully a C4 diagram set!</p>
+<h2>Conclusion</h2>
+<p>There are a couple things in the repository I have not covered that you may be interested in:</p>
+<h3>Architecture Decision Records</h3>
+<p><img src="../img/posts/2022/2022-05-25-20-43-46.png" alt="ADR CLI" /></p>
+<p>Useful for recording the history of significant decisions made for an application or system of applications. Warning: requires discipline from the team to log decisions.</p>
+<h3>Markdown plugins</h3>
+<p>The Markdown Extension Pack comes with plenty of useful plugins for working with markdown from tables to emojis.</p>
+<h2>Plugin docs</h2>
+<p>Here is the list of plugins included in this devcontainer.</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=bat67.markdown-extension-pack">Markdown Extension Pack</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=joaompinto.vscode-graphviz">Graphviz (dot) language support</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml">PlantUML</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=vstirbu.vscode-mermaid-preview">Mermaid</a></li>
+</ul>
+
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/functional-structural-impedance-mismatch/">The functional-structural impedance mismatch</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/fp-architecture/" data-toggle="tooltip"    data-placement="top" title="A simple FP architecture">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
+                    <li>
+                        <a href="/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/DevonBurriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dburriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+
+    <a class="badge badge-info" href="/category/agile">Agile</a>
+
+    <a class="badge badge-info" href="/category/devops">DevOps</a>
+
+    <a class="badge badge-info" href="/category/leadership">Leadership</a>
+
+    <a class="badge badge-info" href="/category/life">Life</a>
+
+    <a class="badge badge-info" href="/category/modeling">Modeling</a>
+
+    <a class="badge badge-info" href="/category/project-management">Project Management</a>
+
+    <a class="badge badge-info" href="/category/software-development">Software Development</a>
+
+    <a class="badge badge-info" href="/category/tools">Tools</a>
+
+    <a class="badge badge-info" href="/category/virtualization">Virtualization</a>
+
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+<div class="well">
+
+
+<a class="badge badge-info" href="/tag/net/" style="font-size: 80%">
+    <span class="site-tag">                
+        .NET
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/net-core/" style="font-size: 80%">
+    <span class="site-tag">                
+        .NET Core
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/agile/" style="font-size: 80%">
+    <span class="site-tag">                
+        Agile
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/api-design/" style="font-size: 80%">
+    <span class="site-tag">                
+        API Design
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/appveyor/" style="font-size: 80%">
+    <span class="site-tag">                
+        AppVeyor
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/architecture/" style="font-size: 80%">
+    <span class="site-tag">                
+        Architecture
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/asp-net-5/" style="font-size: 80%">
+    <span class="site-tag">                
+        ASP.NET 5
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/atdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        ATDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/azure/" style="font-size: 80%">
+    <span class="site-tag">                
+        Azure
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/bdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        BDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/csharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        C#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/c4/" style="font-size: 80%">
+    <span class="site-tag">                
+        C4
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/cake/" style="font-size: 80%">
+    <span class="site-tag">                
+        Cake
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/canopy/" style="font-size: 80%">
+    <span class="site-tag">                
+        Canopy
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ci/" style="font-size: 80%">
+    <span class="site-tag">                
+        CI
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/clean-code/" style="font-size: 80%">
+    <span class="site-tag">                
+        Clean Code
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/client-generated-id/" style="font-size: 80%">
+    <span class="site-tag">                
+        Client generated ID
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/collections/" style="font-size: 80%">
+    <span class="site-tag">                
+        Collections
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/datadog/" style="font-size: 80%">
+    <span class="site-tag">                
+        Datadog
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ddd/" style="font-size: 80%">
+    <span class="site-tag">                
+        DDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/design-patterns/" style="font-size: 80%">
+    <span class="site-tag">                
+        Design Patterns
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/diagrams/" style="font-size: 80%">
+    <span class="site-tag">                
+        Diagrams
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/distributed-systems/" style="font-size: 80%">
+    <span class="site-tag">                
+        Distributed Systems
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/dnx/" style="font-size: 80%">
+    <span class="site-tag">                
+        DNX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/docker/" style="font-size: 80%">
+    <span class="site-tag">                
+        Docker
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/fsharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        F#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/fennel/" style="font-size: 80%">
+    <span class="site-tag">                
+        Fennel
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/fsadvent/" style="font-size: 80%">
+    <span class="site-tag">                
+        FsAdvent
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/fsx/" style="font-size: 80%">
+    <span class="site-tag">                
+        FSX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/functional/" style="font-size: 80%">
+    <span class="site-tag">                
+        Functional
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/functional-modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Functional Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/general/" style="font-size: 80%">
+    <span class="site-tag">                
+        General
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/git/" style="font-size: 80%">
+    <span class="site-tag">                
+        Git
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/github-pages/" style="font-size: 80%">
+    <span class="site-tag">                
+        Github Pages
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/hyper-v/" style="font-size: 80%">
+    <span class="site-tag">                
+        Hyper V
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/idempotent/" style="font-size: 80%">
+    <span class="site-tag">                
+        Idempotent
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/java/" style="font-size: 80%">
+    <span class="site-tag">                
+        Java
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/learning-csharp/" style="font-size: 80%">
+    <span class="site-tag">                
+        Learning c#
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/life/" style="font-size: 80%">
+    <span class="site-tag">                
+        Life
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/maven/" style="font-size: 80%">
+    <span class="site-tag">                
+        Maven
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/meditation/" style="font-size: 80%">
+    <span class="site-tag">                
+        Meditation
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/messaging/" style="font-size: 80%">
+    <span class="site-tag">                
+        Messaging
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/mindfulness/" style="font-size: 80%">
+    <span class="site-tag">                
+        Mindfulness
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/morality/" style="font-size: 80%">
+    <span class="site-tag">                
+        Morality
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/mvc-6/" style="font-size: 80%">
+    <span class="site-tag">                
+        MVC 6
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/nuget/" style="font-size: 80%">
+    <span class="site-tag">                
+        Nuget
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/observability/" style="font-size: 80%">
+    <span class="site-tag">                
+        Observability
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/oop/" style="font-size: 80%">
+    <span class="site-tag">                
+        OOP
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/osx/" style="font-size: 80%">
+    <span class="site-tag">                
+        OSX
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/paket/" style="font-size: 80%">
+    <span class="site-tag">                
+        Paket
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/pascal/" style="font-size: 80%">
+    <span class="site-tag">                
+        Pascal
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/powershell/" style="font-size: 80%">
+    <span class="site-tag">                
+        Powershell
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/pretzel/" style="font-size: 80%">
+    <span class="site-tag">                
+        Pretzel
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/productivity/" style="font-size: 80%">
+    <span class="site-tag">                
+        Productivity
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/programming/" style="font-size: 80%">
+    <span class="site-tag">                
+        Programming
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/prometheus/" style="font-size: 80%">
+    <span class="site-tag">                
+        Prometheus
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/reliability/" style="font-size: 80%">
+    <span class="site-tag">                
+        Reliability
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/science/" style="font-size: 80%">
+    <span class="site-tag">                
+        Science
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/selenium/" style="font-size: 80%">
+    <span class="site-tag">                
+        Selenium
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/solid/" style="font-size: 80%">
+    <span class="site-tag">                
+        SOLID
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/tdd/" style="font-size: 80%">
+    <span class="site-tag">                
+        TDD
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/team-lead/" style="font-size: 80%">
+    <span class="site-tag">                
+        Team Lead
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/temporal-modeling/" style="font-size: 80%">
+    <span class="site-tag">                
+        Temporal Modeling
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/testing/" style="font-size: 80%">
+    <span class="site-tag">                
+        Testing
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/tutorial/" style="font-size: 80%">
+    <span class="site-tag">                
+        Tutorial
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/ubuntu/" style="font-size: 80%">
+    <span class="site-tag">                
+        Ubuntu
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/unit-testing/" style="font-size: 80%">
+    <span class="site-tag">                
+        Unit Testing
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/visual-studio/" style="font-size: 80%">
+    <span class="site-tag">                
+        Visual Studio
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/visual-studio-online/" style="font-size: 80%">
+    <span class="site-tag">                
+        Visual Studio Online
+    </span>
+</a>
+
+<a class="badge badge-info" href="/tag/vs-code/" style="font-size: 80%">
+    <span class="site-tag">                
+        VS Code
+    </span>
+</a>
+
+</div>
+            
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+    
+                    <ul class="list-inline text-center">
+                    <li>
+                        <a href="/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/DevonBurriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dburriss">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+    
+    <div class="container-fluid">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'devonburriss'; // required: replace example with your forum shortname
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+    <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+        if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+        }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="https://disqus.com/forums/devonburriss/get_num_replies.js' + query + '"></' + 'script>');
+    })();
+    //]]>
+    </script>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p class="copyright text-muted">Copyright &copy; 
+                <a href="/about.html">Devon Burriss</a> 2022
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+
+    <script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45750611-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+
+</html>
