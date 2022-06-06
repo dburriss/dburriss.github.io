@@ -3,7 +3,7 @@ layout: post
 title: "Installing Ubuntu on Hyper-V"
 subtitle: "Creating a Generation 2 Virtual Machine"
 author: "Devon Burriss"
-category: Virtualization
+category: DevOps
 tags: [Hyper-V, Ubuntu]
 comments: true
 permalink: installing-ubuntu-on-hyper-v
