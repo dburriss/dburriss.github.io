@@ -3,13 +3,68 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2022-06-06T12:19:35.7229823+00:00</updated>
+  <updated>2022-06-06T15:00:47.4430941+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/choosing-a-telemetry-platform/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/choosing-a-telemetry-platform/"/>
+    <title>Choosing a telemetry platform</title>
+    <updated>2022-06-06T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/choosing-a-telemetry-platform/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;Recently we decided to make the switch from using Azure Application Insights as our primary telemetry monitoring tool, to &lt;a href=&quot;https://docs.datadoghq.com/&quot;&gt;Datadog&lt;/a&gt;. I wanted to drop a few thoughts on why this was a good choice so anyone else looking to make this decision could take a few more aspects into consideration.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;When choosing a new tool, it is easy to get get caught up in the technical requirements. Don&apos;t get me wrong, these are VERY important and it is important to do your homework. There is nothing worse that choosing a tool and then only noticing afterward it had a huge gap in functionality.&lt;/p&gt;
+&lt;p&gt;For us some of the broad technical requirements were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Good integration with Azure&lt;/li&gt;
+&lt;li&gt;[x] Web App Service monitoring&lt;/li&gt;
+&lt;li&gt;[x] MS SQL monitoring&lt;/li&gt;
+&lt;li&gt;[x] Support for OpenTelemetry tracing&lt;/li&gt;
+&lt;li&gt;[x] Integrated logging and custom metrics&lt;/li&gt;
+&lt;li&gt;[x] Security alerting&lt;/li&gt;
+&lt;li&gt;[x] Alerting and integrations ie. Slack, PagerDuty, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The things is, we were using Application Insights, and it does tick all of these boxes. So why change?&lt;/p&gt;
+&lt;p&gt;I can summarize it with this statement.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A tool is useless if no-one wants to use it!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Let me phrase it another way. To get adoption of any tool or practice (monitoring is both), the best thing you can do is make it easy and immediately beneficial.&lt;/p&gt;
+&lt;p&gt;I have been at at least 3 companies where Datadog has been introduced. What I have noticed is that before it&apos;s introduction team&apos;s do not often build dashboards, and so team&apos;s do not use dashboards. Why? Well in most tools, dashboards are complicated to make, don&apos;t look great, and often don&apos;t have all the needed data. To be fair, not all of this is because it cannot be done. It doesn&apos;t help if the tool always feels like it is getting in the way.&lt;/p&gt;
+&lt;h2&gt;A dashboard challenge&lt;/h2&gt;
+&lt;p&gt;I decided to create 2 similar dashboards in both Datadog and Application Insights. The idea was to create a basic application dashboard that gave some high level overview and then a dive into some health metrics.&lt;/p&gt;
+&lt;h3&gt;Datadog Dashboard&lt;/h3&gt;
+&lt;p&gt;The following dashboard took me 10 minutes to design and build with no prior knowledge of what I wanted on the board, or what metrics I would use.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-13-21-12.png&quot; alt=&quot;Datadog dashboard&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Application Insights Dashboard&lt;/h3&gt;
+&lt;p&gt;The Application Insights dashboard took me just over 15 minutes to create, with idea being of following the same or similar design use on the Datadog one.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-13-24-31.png&quot; alt=&quot;Application Insights dashboard&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;Alerts&lt;/h2&gt;
+&lt;p&gt;Alerts are a similar story to dashboards. With Datadog it is a single screen that is clearly arranged with all available metrics across all environments at your finger tips.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-16-51-05.png&quot; alt=&quot;Datadog alerting&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;In Application Insights it is this weird process of refining the scope for the metrics you want to alert on.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-16-43-08.png&quot; alt=&quot;Application Insights alert&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;And this refining with the hope of finding your metric later in your choice continues when setting up conditions.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-16-44-33.png&quot; alt=&quot;Select a signal&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;And once you get to it setting up the condition is ok.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-16-46-23.png&quot; alt=&quot;AI condition&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Critique of the experience&lt;/h3&gt;
+&lt;p&gt;Datadog allows you to explore the metrics data and resulting graph or alert in real time. This makes for an interactive experience that can allows you to learn what is possible while experimenting with different types of visualizations and queries. It also allows for the quick creation of graphs and easy tweaking of data for better insights, or fixes of mistakes.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-16-57-27.png&quot; alt=&quot;Easy search in Datadog&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;To contrast with this, Application Insights really makes you decide on your design upfront. A change usually means deleting a graph and choosing a new tile type or alert. Editing the graph requires changing between different modes and saving in a way that is really unintuitive. Lastly, and the most costly, is the fact that instead of just searching for metrics, you have to choose upfront whether you want metrics from a service, database, AI instance, etc. before being able to explore what metrics are available. Each time you need to pick a resource you need to drill down from the subscription/resource group/ resource layer in a tedious and time consuming way.&lt;/p&gt;
+&lt;p&gt;Alerts follow the same trend.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I am in no way affiliated with Datadog. I am clearly a fan of the product though. I have seen it succeed many times to up the level of monitoring in a company and I think this is in no small part due to it&apos;s excellent UI and the way it let&apos;s a user explore what is possible. One great thing not mentioned is that the types of products available in the Datadog suite is ever growing and the integration that they have with each other is great. This does also bring up one point to keep in mind. With Datadog becoming a 1 stop shop for metrics, APM, logging, security, etc. it can be overwhelming. I suggest starting with one or two and expanding slowly. So do you find yourself in the position where you wish you had a better handle on not only the errors in your system but also what normal behaviour looks like? Maybe you need to ask whether your tooling is holding you back...&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/tools-for-arch-docs/</id>

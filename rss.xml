@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Mon, 06 Jun 2022 12:19:35 +00:00</pubDate>
-    <lastBuildDate>Mon, 06 Jun 2022 12:19:35 +00:00</lastBuildDate>
+    <pubDate>Mon, 06 Jun 2022 15:00:47 +00:00</pubDate>
+    <lastBuildDate>Mon, 06 Jun 2022 15:00:47 +00:00</lastBuildDate>
+    
+    <item>
+      <title>Choosing a telemetry platform</title>
+      <link>https://devonburriss.me/choosing-a-telemetry-platform/</link>
+      <pubDate>Mon, 06 Jun 2022 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/choosing-a-telemetry-platform/</guid>
+      <description>When looking at a telemetry platform we will often look at support for a cloud provider, specific technologies supported, or maybe price. Something often not considered is usability.</description>
+    </item>
     
     <item>
       <title>Tools for architecture documentation</title>
