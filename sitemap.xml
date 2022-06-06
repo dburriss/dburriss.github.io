@@ -1141,14 +1141,6 @@
   
 	
 	<url>
-		<loc>https://devonburriss.me//category/modeling/index.html</loc>
-		<changefreq>daily</changefreq>
-		<priority>1.00</priority>
-	</url>
-	
-  
-	
-	<url>
 		<loc>https://devonburriss.me//category/project-management/index.html</loc>
 		<changefreq>daily</changefreq>
 		<priority>1.00</priority>
