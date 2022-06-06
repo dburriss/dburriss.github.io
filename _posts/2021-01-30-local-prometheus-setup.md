@@ -5,7 +5,7 @@ subtitle: "Setting up Prometheus locally with Docker"
 description: "Using docker to run a local Prometheus instance for testing."
 permalink: local-prometheus-setup
 author: "Devon Burriss"
-category: Software Development
+category: DevOps
 tags: [Prometheus,Docker,Observability]
 comments: true
 excerpt_separator: <!--more-->

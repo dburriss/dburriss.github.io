@@ -5,7 +5,7 @@ subtitle: "A look at some of the non-obvious points to consider"
 description: "When looking at a telemetry platform we will often look at support for a cloud provider, specific technologies supported, or maybe price. Something often not considered is usability."
 permalink: choosing-a-telemetry-platform
 author: "Devon Burriss"
-category: Agile
+category: DevOps
 tags: [Datadog,Observability]
 comments: true
 excerpt_separator: <!--more-->

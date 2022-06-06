@@ -3,7 +3,7 @@ layout: post
 title: "Installing Docker on Hyper-V"
 description: "Installing Docker on Windows"
 author: "Devon Burriss"
-category: Virtualization
+category: DevOps
 tags: [Hyper-V, Ubuntu]
 comments: true
 permalink: installing-docker-on-hyper-v

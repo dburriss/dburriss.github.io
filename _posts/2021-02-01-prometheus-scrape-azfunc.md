@@ -5,7 +5,7 @@ subtitle: "A Proof-of-concept for scraping Prometheus metrics from Azure Functio
 description: "A simple example showing how to expose a Prometheus endpoint from Azure Functions using the Fennel library"
 permalink: azfunc-prometheus-endpoint
 author: "Devon Burriss"
-category: Software Development
+category: DevOps
 tags: [F#,Observability,Prometheus]
 comments: true
 excerpt_separator: <!--more-->

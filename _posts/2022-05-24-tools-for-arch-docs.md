@@ -5,7 +5,7 @@ subtitle: "Using devcontainers to enable easy developer documentation"
 description: "Using a devcontainer with VS Code makes it easy for everyone to get up and running creating C4, PlantUML, and Mermaid diagrams. "
 permalink: tools-for-arch-docs
 author: "Devon Burriss"
-category: Software Development
+category: Tools
 tags: [Architecture,Diagrams,Modeling,VS Code,C4]
 comments: true
 excerpt_separator: <!--more-->

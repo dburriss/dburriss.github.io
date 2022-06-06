@@ -3,7 +3,7 @@ layout: post
 title: "Big Agile Teams"
 subtitle: "Ideas on dealing with larger teams in an agile way"
 author: "Devon Burriss"
-category: Leadership
+category: Agile
 tags: [Agile]
 comments: true
 permalink: big-agile-teams

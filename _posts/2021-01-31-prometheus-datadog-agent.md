@@ -5,7 +5,7 @@ subtitle: "Setting up a Datadog agent to pull from a Prometheus endpoint"
 description: "In this post we configure a Datadog agent to scrape metrics from a Prometheus metrics endpoint."
 permalink: prometheus-datadog-agent
 author: "Devon Burriss"
-category: Software Development
+category: DevOps
 tags: [Prometheus,Datadog,Observability]
 comments: true
 excerpt_separator: <!--more-->
