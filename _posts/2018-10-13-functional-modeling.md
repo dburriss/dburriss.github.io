@@ -5,7 +5,7 @@ subtitle: "The benefits of focusing on function rather than state"
 description: "As OOP developers it is often far too easy for us to try create a model that captures every state. This is almost always a poor abstraction. What if instead of trying to model every possible state at rest we modeled the change of state over time? This article explores what that might look like."
 permalink: functional-modeling
 author: "Devon Burriss"
-category: Modeling
+category: Software Development
 tags: [DDD,OOP,Functional Modeling,Architecture, Modeling, Temporal Modeling]
 comments: true
 excerpt_separator: <!--more-->

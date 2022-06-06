@@ -5,7 +5,7 @@ subtitle: "Exploring the possibility of unifying our functional and structural m
 description: "When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of understanding a system, and to change a system, you need to understand it."
 permalink: functional-structural-impedance-mismatch
 author: "Devon Burriss"
-category: Modeling
+category: Software Development
 tags: [DDD,OOP,Functional Modeling,Architecture, Modeling, Temporal Modeling]
 comments: true
 excerpt_separator: <!--more-->
