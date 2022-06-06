@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2022-06-06T15:03:50.0679613+00:00</updated>
+  <updated>2022-06-06T15:09:41.8840346+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -25,13 +25,13 @@
 &lt;p&gt;When choosing a new tool, it is easy to get get caught up in the technical requirements. Don&apos;t get me wrong, these are VERY important and it is important to do your homework. There is nothing worse that choosing a tool and then only noticing afterward it had a huge gap in functionality.&lt;/p&gt;
 &lt;p&gt;For us some of the broad technical requirements were:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;[x] Good integration with Azure&lt;/li&gt;
-&lt;li&gt;[x] Web App Service monitoring&lt;/li&gt;
-&lt;li&gt;[x] MS SQL monitoring&lt;/li&gt;
-&lt;li&gt;[x] Support for OpenTelemetry tracing&lt;/li&gt;
-&lt;li&gt;[x] Integrated logging and custom metrics&lt;/li&gt;
-&lt;li&gt;[x] Security alerting&lt;/li&gt;
-&lt;li&gt;[x] Alerting and integrations ie. Slack, PagerDuty, etc.&lt;/li&gt;
+&lt;li&gt;Good integration with Azure&lt;/li&gt;
+&lt;li&gt;Web App Service monitoring&lt;/li&gt;
+&lt;li&gt;MS SQL monitoring&lt;/li&gt;
+&lt;li&gt;Support for OpenTelemetry tracing&lt;/li&gt;
+&lt;li&gt;Integrated logging and custom metrics&lt;/li&gt;
+&lt;li&gt;Security alerting&lt;/li&gt;
+&lt;li&gt;Alerting and integrations ie. Slack, PagerDuty, etc.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The things is, we were using Application Insights, and it does tick all of these boxes. So why change?&lt;/p&gt;
 &lt;p&gt;I can summarize it with this statement.&lt;/p&gt;
@@ -55,15 +55,15 @@
 &lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-16-43-08.png&quot; alt=&quot;Application Insights alert&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;And this refining with the hope of finding your metric later in your choice continues when setting up conditions.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-16-44-33.png&quot; alt=&quot;Select a signal&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;And once you get to it setting up the condition is ok.&lt;/p&gt;
+&lt;p&gt;Once you get to it setting up the condition is fairly intuitive.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-16-46-23.png&quot; alt=&quot;AI condition&quot; /&gt;&lt;/p&gt;
 &lt;h3&gt;Critique of the experience&lt;/h3&gt;
-&lt;p&gt;Datadog allows you to explore the metrics data and resulting graph or alert in real time. This makes for an interactive experience that can allows you to learn what is possible while experimenting with different types of visualizations and queries. It also allows for the quick creation of graphs and easy tweaking of data for better insights, or fixes of mistakes.&lt;/p&gt;
+&lt;p&gt;Datadog allows you to explore the metrics data and resulting graph or alert in real time. This makes for an interactive experience that allows you to learn what is possible while experimenting with different types of visualizations and queries. It also enables the quick creation of graphs and easy tweaking of data for better insights.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-06-16-57-27.png&quot; alt=&quot;Easy search in Datadog&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;To contrast with this, Application Insights really makes you decide on your design upfront. A change usually means deleting a graph and choosing a new tile type or alert. Editing the graph requires changing between different modes and saving in a way that is really unintuitive. Lastly, and the most costly, is the fact that instead of just searching for metrics, you have to choose upfront whether you want metrics from a service, database, AI instance, etc. before being able to explore what metrics are available. Each time you need to pick a resource you need to drill down from the subscription/resource group/ resource layer in a tedious and time consuming way.&lt;/p&gt;
+&lt;p&gt;In contrast, Application Insights really makes you decide on your design upfront. A change usually means deleting a graph and choosing a new tile type or alert. Editing the graph requires changing between different modes and saving in a way that is really unintuitive. Lastly, and the most costly, is the fact that instead of just searching for metrics, you have to choose upfront whether you want metrics from a service, database, AI instance, etc. before being able to explore what metrics are available. Each time you need to pick a resource you need to drill down from the subscription/resource group/ resource layer in a tedious and time consuming way.&lt;/p&gt;
 &lt;p&gt;Alerts follow the same trend.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;I am in no way affiliated with Datadog. I am clearly a fan of the product though. I have seen it succeed many times to up the level of monitoring in a company and I think this is in no small part due to it&apos;s excellent UI and the way it let&apos;s a user explore what is possible. One great thing not mentioned is that the types of products available in the Datadog suite is ever growing and the integration that they have with each other is great. This does also bring up one point to keep in mind. With Datadog becoming a 1 stop shop for metrics, APM, logging, security, etc. it can be overwhelming. I suggest starting with one or two and expanding slowly. So do you find yourself in the position where you wish you had a better handle on not only the errors in your system but also what normal behaviour looks like? Maybe you need to ask whether your tooling is holding you back...&lt;/p&gt;</summary>
+&lt;p&gt;I am in no way affiliated with Datadog. I am clearly a fan of the product though. I have seen it succeed many times in raising the level of monitoring in a company. I think this is in no small part due to it&apos;s excellent UI and the way it let&apos;s a user explore what is possible. One great thing not mentioned is that the types of products available in the Datadog suite is ever growing and the integration that they have with each other is great. This does also bring up one point to keep in mind. With Datadog becoming a 1 stop shop for metrics, APM, logging, security, etc. it can be overwhelming. I suggest starting with one or two and expanding slowly. So do you find yourself in the position where you wish you had a better handle on not only the errors in your system but also what normal behaviour looks like? Maybe you need to ask whether your tooling is holding you back...&lt;/p&gt;</summary>
   </entry>
   
   <entry>

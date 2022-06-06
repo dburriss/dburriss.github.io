@@ -193,13 +193,13 @@
 <p>When choosing a new tool, it is easy to get get caught up in the technical requirements. Don't get me wrong, these are VERY important and it is important to do your homework. There is nothing worse that choosing a tool and then only noticing afterward it had a huge gap in functionality.</p>
 <p>For us some of the broad technical requirements were:</p>
 <ul>
-<li>[x] Good integration with Azure</li>
-<li>[x] Web App Service monitoring</li>
-<li>[x] MS SQL monitoring</li>
-<li>[x] Support for OpenTelemetry tracing</li>
-<li>[x] Integrated logging and custom metrics</li>
-<li>[x] Security alerting</li>
-<li>[x] Alerting and integrations ie. Slack, PagerDuty, etc.</li>
+<li>Good integration with Azure</li>
+<li>Web App Service monitoring</li>
+<li>MS SQL monitoring</li>
+<li>Support for OpenTelemetry tracing</li>
+<li>Integrated logging and custom metrics</li>
+<li>Security alerting</li>
+<li>Alerting and integrations ie. Slack, PagerDuty, etc.</li>
 </ul>
 <p>The things is, we were using Application Insights, and it does tick all of these boxes. So why change?</p>
 <p>I can summarize it with this statement.</p>
@@ -223,15 +223,15 @@
 <p><img src="../img/posts/2022/2022-06-06-16-43-08.png" alt="Application Insights alert" /></p>
 <p>And this refining with the hope of finding your metric later in your choice continues when setting up conditions.</p>
 <p><img src="../img/posts/2022/2022-06-06-16-44-33.png" alt="Select a signal" /></p>
-<p>And once you get to it setting up the condition is ok.</p>
+<p>Once you get to it setting up the condition is fairly intuitive.</p>
 <p><img src="../img/posts/2022/2022-06-06-16-46-23.png" alt="AI condition" /></p>
 <h3>Critique of the experience</h3>
-<p>Datadog allows you to explore the metrics data and resulting graph or alert in real time. This makes for an interactive experience that can allows you to learn what is possible while experimenting with different types of visualizations and queries. It also allows for the quick creation of graphs and easy tweaking of data for better insights, or fixes of mistakes.</p>
+<p>Datadog allows you to explore the metrics data and resulting graph or alert in real time. This makes for an interactive experience that allows you to learn what is possible while experimenting with different types of visualizations and queries. It also enables the quick creation of graphs and easy tweaking of data for better insights.</p>
 <p><img src="../img/posts/2022/2022-06-06-16-57-27.png" alt="Easy search in Datadog" /></p>
-<p>To contrast with this, Application Insights really makes you decide on your design upfront. A change usually means deleting a graph and choosing a new tile type or alert. Editing the graph requires changing between different modes and saving in a way that is really unintuitive. Lastly, and the most costly, is the fact that instead of just searching for metrics, you have to choose upfront whether you want metrics from a service, database, AI instance, etc. before being able to explore what metrics are available. Each time you need to pick a resource you need to drill down from the subscription/resource group/ resource layer in a tedious and time consuming way.</p>
+<p>In contrast, Application Insights really makes you decide on your design upfront. A change usually means deleting a graph and choosing a new tile type or alert. Editing the graph requires changing between different modes and saving in a way that is really unintuitive. Lastly, and the most costly, is the fact that instead of just searching for metrics, you have to choose upfront whether you want metrics from a service, database, AI instance, etc. before being able to explore what metrics are available. Each time you need to pick a resource you need to drill down from the subscription/resource group/ resource layer in a tedious and time consuming way.</p>
 <p>Alerts follow the same trend.</p>
 <h2>Conclusion</h2>
-<p>I am in no way affiliated with Datadog. I am clearly a fan of the product though. I have seen it succeed many times to up the level of monitoring in a company and I think this is in no small part due to it's excellent UI and the way it let's a user explore what is possible. One great thing not mentioned is that the types of products available in the Datadog suite is ever growing and the integration that they have with each other is great. This does also bring up one point to keep in mind. With Datadog becoming a 1 stop shop for metrics, APM, logging, security, etc. it can be overwhelming. I suggest starting with one or two and expanding slowly. So do you find yourself in the position where you wish you had a better handle on not only the errors in your system but also what normal behaviour looks like? Maybe you need to ask whether your tooling is holding you back...</p>
+<p>I am in no way affiliated with Datadog. I am clearly a fan of the product though. I have seen it succeed many times in raising the level of monitoring in a company. I think this is in no small part due to it's excellent UI and the way it let's a user explore what is possible. One great thing not mentioned is that the types of products available in the Datadog suite is ever growing and the integration that they have with each other is great. This does also bring up one point to keep in mind. With Datadog becoming a 1 stop shop for metrics, APM, logging, security, etc. it can be overwhelming. I suggest starting with one or two and expanding slowly. So do you find yourself in the position where you wish you had a better handle on not only the errors in your system but also what normal behaviour looks like? Maybe you need to ask whether your tooling is holding you back...</p>
 
                 <hr />
                                 <section class="related">
