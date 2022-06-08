@@ -36,7 +36,7 @@ I can summarize it with this statement.
 
 Let me phrase it another way. To get adoption of any tool or practice (monitoring is both), the best thing you can do is make it easy and immediately beneficial.
 
-I have been at at least 3 companies where Datadog has been introduced. What I have noticed is that before it's introduction team's do not often build dashboards, and so team's do not use dashboards. Why? Well in most tools, dashboards are complicated to make, don't look great, and often don't have all the needed data. To be fair, not all of this is because it cannot be done. It doesn't help if the tool always feels like it is getting in the way.
+I have been at at least 3 companies where Datadog has been introduced. What I have noticed is that before its introduction teams do not often build dashboards, and so teams do not use dashboards. Why? Well in most tools, dashboards are complicated to make, don't look great, and often don't have all the needed data. To be fair, not all of this is because it cannot be done. It doesn't help if the tool always feels like it is getting in the way.
 
 ## A dashboard challenge
 
@@ -84,4 +84,4 @@ Alerts follow the same trend.
 
 ## Conclusion
 
-I am in no way affiliated with Datadog. I am clearly a fan of the product though. I have seen it succeed many times in raising the level of monitoring in a company. I think this is in no small part due to it's excellent UI and the way it let's a user explore what is possible. One great thing not mentioned is that the types of products available in the Datadog suite is ever growing and the integration that they have with each other is great. This does also bring up one point to keep in mind. With Datadog becoming a 1 stop shop for metrics, APM, logging, security, etc. it can be overwhelming. I suggest starting with one or two and expanding slowly. So do you find yourself in the position where you wish you had a better handle on not only the errors in your system but also what normal behaviour looks like? Maybe you need to ask whether your tooling is holding you back...
+I am in no way affiliated with Datadog. I am clearly a fan of the product though. I have seen it succeed many times in raising the level of monitoring in a company. I think this is in no small part due to its excellent UI and the way it lets a user explore what is possible. One great thing not mentioned is that the types of products available in the Datadog suite is ever growing and the integration that they have with each other is great. This does also bring up one point to keep in mind. With Datadog becoming a 1 stop shop for metrics, APM, logging, security, etc. it can be overwhelming. I suggest starting with one or two and expanding slowly. So do you find yourself in the position where you wish you had a better handle on not only the errors in your system but also what normal behaviour looks like? Maybe you need to ask whether your tooling is holding you back...
