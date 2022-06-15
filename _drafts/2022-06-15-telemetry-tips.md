@@ -33,6 +33,7 @@ Infrastructure tags to consider:
 
 - The environment as an `env` tag
 - The `service` sending telemetry
+- The `version` of the deployed application/service
 - You may want one or more of the following: `cost-centre` / `department` / `domain`
 - The team to contact for support with the resource `team:team-name`
 - The SLA for the application
@@ -40,7 +41,9 @@ Infrastructure tags to consider:
 - The tool used to created eg. `tool:farmer`
 - Dates like `created-at:2022-05-22` and `updated-at:2022-05-30`
 
-This is not an exhaustive list but will hopefully give you a starting point.
+Telemetry tools often require some of these to be useful. `env`, `service` and `version` are part of [unified service tagging](https://docs.datadoghq.com/getting_started/tagging/unified_service_tagging) for Datadog. Check what yours are for your telemetry tool.
+
+This is not an exhaustive list but will hopefully give you a starting point. 
 
 ## Build up tooling to help with standards
 
@@ -100,6 +103,8 @@ The true power of modern telemetry solutions is in the correlation of traces and
 
 Above you can see we not only have a nice trace representing our request, we also all the logs linked to said request through the trace. It can often be some work to make sure these trace and span identifiers are flowing through your system well but when they are it is magic.
 
+For many stacks these traces are injected in HTTP headers and so will carry across network boundaries. Sometimes you need you need to [configure them manually](https://docs.datadoghq.com/tracing/connect_logs_and_traces/dotnet/?tab=serilog) and depending on your tooling and stack it may be as simple as installing a package. For a message queue, you will probably need to do some manual work to propagate a trace.
+
 ## Don't mix telemetry code and application code
 
 Instead of littering your code with random logs and metric pushes, I suggest starting with "what happened?". Once you have a call defining what happened, you decide what telemetry to send internally. This is better explained with an example:
@@ -108,13 +113,13 @@ Instead of littering your code with random logs and metric pushes, I suggest sta
 DogStatsd.Set("observability_project.todo.list_count", dataStore.Count);
 if (dataStore.Count == 0)
 {
-    logger.LogInformation("TODO lists requested but none.");
+    logger.LogInformation("TODO lists requested but none found.");
     return (new List<TodoList>());
 }
 return dataStore.Values.ToList();
 ```
 
-In the snippet above we we have metric and logging code scattered around our application code. This can be better refactored into calls to a telemetry calls saying what happened, and we place the metric sending and logging within.
+In the snippet above, we have metric and logging code scattered around our application code. This can be better refactored into telemetry calls saying WHAT happened, and we place the metric sending and logging within the method.
 
 ```csharp
 if (dataStore.Count == 0)
@@ -139,3 +144,11 @@ What you want to try do is keep them out of your core domain calculations. Somet
 ## Conclusion
 
 I touched on a few ways you can set a team up for success when using a telemetry tool. There are plenty of things to learn and maybe I will do more posts on the subject. Good luck on your telemetry journey. Feel free to hit me up on [Twitter](https://twitter.com/DevonBurriss) with your tips.
+
+## Resources
+
+- [A great series on OpenTelemetry](https://jimmybogard.com/building-end-to-end-diagnostics-opentelemetry-integration/)
+- [Datadog tagging](https://docs.datadoghq.com/getting_started/tagging/)
+- [Azure naming and tagging](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging)
+- [Open metrics](https://opentelemetry.io/docs/reference/specification/metrics/semantic_conventions/)
+- [OpenTelemetry attribute](https://opentelemetry.io/docs/reference/specification/common/attribute-naming/)
