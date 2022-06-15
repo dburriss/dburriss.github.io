@@ -12,36 +12,49 @@
 
 
 
+    
 
 
 
-    <title>Devon Burriss' Blog</title>
-    <meta name="description" content="Mostly explorations in code">
+    
+
+
+    <title>Telemetry tips</title>
+    <meta name="description" content="When getting started with a new telemetry platform you may not know what conventions you need to set and follow for metrics, logs, code, etc.. Even if you do, how do you get the rest of the team to follow them too.">
     <meta name="author" content="Devon Burriss">
+    
+    <link rel="canonical" href="https://devonburriss.me/telemetry-tips/">
     
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
     <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devon Burriss' Blog">
-    <meta itemprop="description" content="Mostly explorations in code">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta itemprop="name" content="Telemetry tips">
+    <meta itemprop="description" content="When getting started with a new telemetry platform you may not know what conventions you need to set and follow for metrics, logs, code, etc.. Even if you do, how do you get the rest of the team to follow them too.">
+    <meta itemprop="image" content="https://devonburriss.me/img/posts/2018/pipes-500.jpg">
+    
+    <meta itemprop="datePublished" content="6/15/2022 12:00:00 AM" id="date">
+    <meta itemprop="dateModified" content="6/15/2022 12:00:00 AM" id="mdate">
+    <meta itemprop="headline" content="Telemetry tips - Some tips to keep your telemetry data and code clean" />
+    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/telemetry-tips/" />
+    <meta name="headline" content="Telemetry tips - Some tips to keep your telemetry data and code clean" />
+
     
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary_large_image">
     <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Devon Burriss' Blog">
-    <meta name="twitter:description" content="Mostly explorations in code">
+    <meta name="twitter:title" content="Telemetry tips">
+    <meta name="twitter:description" content="When getting started with a new telemetry platform you may not know what conventions you need to set and follow for metrics, logs, code, etc.. Even if you do, how do you get the rest of the team to follow them too.">
     <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
+    <meta name="twitter:image" content="https://devonburriss.me/img/posts/2018/pipes-500.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Devon Burriss' Blog" />
+    <meta property="og:title" content="Telemetry tips" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me//tag/datadog/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="Mostly explorations in code" />
+    <meta property="og:url" content="https://devonburriss.me/telemetry-tips/" />
+    <meta property="og:image" content="https://devonburriss.me/img/posts/2018/pipes-500.jpg" />
+    <meta property="og:description" content="When getting started with a new telemetry platform you may not know what conventions you need to set and follow for metrics, logs, code, etc.. Even if you do, how do you get the rest of the team to follow them too." />
     <meta property="og:site_name" content="Devon Burriss' Blog" /> 
 
     <!-- Bootstrap Core CSS -->
@@ -142,225 +155,163 @@
 </nav>
 
 
-    <!-- Page Header -->
-
-<header class="intro-header header-sliver" style="background-image: url('/img/backgrounds/blog-sliver.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/star-watch-bg.jpg')">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="frame">
+                        <h1>Telemetry tips</h1>
+                        
+                        <h2 class="subheading">Some tips to keep your telemetry data and code clean</h2>
+                        
+                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on June 15, 2022</span>
+                        
+                            <hr />
+                            
+                                <a href="/tag/datadog" class="label label-default">Datadog</a>
+                            
+                                <a href="/tag/observability" class="label label-default">Observability</a>
+                            
+                        
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 ">
 
-<!-- Main Content -->
-<div class="container-fluid">
-	<div class="row">
-        
-		<div class="col-lg-9">
-			<div>
-    <div class="clearfix">
-        <h1 class="pull-right">&#47;Datadog&#47; &nbsp;</h1>
-    </div>
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      
-      <div class="post-preview ">
-          <a href="/telemetry-tips/">
-              <h2 class="post-title">            Telemetry tips
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on June 15, 2022</p>
-          
-              
-                 <a href="/tag/datadog"><span class="label label-default">Datadog</span></a>
-              
-                 <a href="/tag/observability"><span class="label label-default">Observability</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/choosing-a-telemetry-platform/">
-              <h2 class="post-title">            Choosing a telemetry platform
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on June 06, 2022</p>
-          
-              
-                 <a href="/tag/datadog"><span class="label label-default">Datadog</span></a>
-              
-                 <a href="/tag/observability"><span class="label label-default">Observability</span></a>
-              
-          
-      </div>
-      <hr>
-      
-      <div class="post-preview ">
-          <a href="/prometheus-datadog-agent/">
-              <h2 class="post-title">            Prometheus Datadog Agent
-              </h2>
-              
-          </a>
-          <p class="post-meta">Posted by Devon Burriss' Blog on January 31, 2021</p>
-          
-              
-                 <a href="/tag/prometheus"><span class="label label-default">Prometheus</span></a>
-              
-                 <a href="/tag/datadog"><span class="label label-default">Datadog</span></a>
-              
-                 <a href="/tag/observability"><span class="label label-default">Observability</span></a>
-              
-          
-      </div>
-      <hr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-</div>
-		</div>
+				<p>When getting started with a new telemetry platform you may not know what conventions you need to set and follow. Even if you do, how do you get the rest of the team to follow them too. In this post I will give some tips for making sure the data hitting your telemetry tool is clean and organised so you can make the most of it, while not compromising the readability of your application code.</p>
+<!--more-->
+<h2>Define metric and tagging conventions early</h2>
+<p>Anyone who has used a telemetry tool like Datadog in an organisation where the conventions are not clear will recognise the problem this is trying to solve. As teams start sending data, searching for anything becomes difficult as you sort through metrics ranging from <code>AcmeCoolServiceStartedUp</code> to <code>record_updated</code>. This can quickly get out of hand and can make searching for metrics quite frustrating. Since we want to make working with telemetry as [easy as possible], I suggest you tackle this as soon as possible.</p>
+<p>Here are some of my recommendations:</p>
+<ul>
+<li>Use lowercase <code>snake_case</code> for metrics and and lowercase <code>kebab-case</code> tags. Reasons: Avoid case sensitive search issues. Readability.</li>
+<li>Consider namespacing your metrics if you foresee multiple complex domains with lots of unique metrics eg. <code>some_domain.some_app_some_metric</code></li>
+<li>Make use of key-value pairs in tags eg. <code>env:prod</code></li>
+<li>Be clear on reserved tags eg. <code>env:prod</code> and <code>service:app-name</code></li>
+<li>Use <code>result:success</code> and <code>result:fail</code> tags on the same metric rather than 2 separate metrics</li>
+</ul>
+<p>When running in the cloud, like many are, an important part of tagging that is easy to overlook is your infrastructure tagging. A system like <a href="https://docs.datadoghq.com/">Datadog</a> will pull tags from your cloud infrastructure resources and attach them to the metrics sent from that resource. This is why it is important to match your metric tagging and cloud infrastructure tagging conventions.</p>
+<p>Infrastructure tags to consider:</p>
+<ul>
+<li>The environment as an <code>env</code> tag</li>
+<li>The <code>service</code> sending telemetry</li>
+<li>The <code>version</code> of the deployed application/service</li>
+<li>You may want one or more of the following: <code>cost-centre</code> / <code>department</code> / <code>domain</code></li>
+<li>The team to contact for support with the resource <code>team:team-name</code></li>
+<li>The SLA for the application</li>
+<li>The criticality of the application for the health of your system ranging from <code>criticality:very-high</code> to <code>criticality:low</code></li>
+<li>The tool used to created eg. <code>tool:farmer</code></li>
+<li>Dates like <code>created-at:2022-05-22</code> and <code>updated-at:2022-05-30</code></li>
+</ul>
+<p>Telemetry tools often require some of these to be useful. <code>env</code>, <code>service</code> and <code>version</code> are part of <a href="https://docs.datadoghq.com/getting_started/tagging/unified_service_tagging">unified service tagging</a> for Datadog. Check what yours are for your telemetry tool.</p>
+<p>This is not an exhaustive list but will hopefully give you a starting point.</p>
+<h2>Build up tooling to help with standards</h2>
+<p>Tooling for helping developers fall into the pit of success with the configuration and tagging of metrics can go a long way.</p>
+<p>One such example is a thin wrapper around application setup that enforces the setup and sending of a service name, environment, etc. Often these things can be handled by the host environment but if not it is worth the small effort.</p>
+<p>Rather than having each new project require configuring the application telemetry just right, make some sort of template, snippet, or package available to help developers fall into the pit of success.</p>
+<pre><code class="language-csharp">// ASP.NET Program.cs
+var builder = WebApplication.CreateBuilder(args);
+builder.AddTelemetry();
+// other setup...
+</code></pre>
+<p>The example above relies on environment variables being present but your solution could require they are passed in. The important part is making it easy to do right and provide clear guidance if something is wrong. For example, the <code>AddTelemetry</code> method will explicitly check that all expected environment variables are present and throw an error with a clear list of all missing environment variable names.</p>
+<pre><code class="language-csharp">missing.EnvVarCheck(&quot;DD_API_KEY&quot;, &quot;Set `DD_API_KEY` with your Datadog API key.&quot;);
+missing.EnvVarCheck(&quot;DD_ENV&quot;, &quot;Set `DD_ENV` with the name of the current environment eg. prod&quot;);
+missing.EnvVarCheck(&quot;DD_SERVICE&quot;, &quot;Set `DD_SERVICE` with the name of this service.&quot;);
+// etc.
+</code></pre>
+<p>The important takeaway is to make it easy to setup correctly, and give clear feedback when something is wrong.</p>
+<p>The next helper that you can introduce is some way to make metric names discoverable.</p>
+<pre><code class="language-csharp">public static class MetricName
+{
+    public const string TodoListCreated = &quot;observability_project.todo.list_created&quot;;
+    public const string TodoListCount = &quot;observability_project.todo.list_count&quot;;
+}
+</code></pre>
+<p>This may seem like a chore but it does have some advantages. You now have a repeatable way for developers to find a metric name via intellisense. You have a single place to change a metric name if you really needed to. And an often overlooked benefit is you have an overview of all metrics possibly sent and an IDE enabled way to find from where.</p>
+<p>The same arguments can be made for tags. Remember that tags should always be of a fixed set, and so capturing them in code should be possible. If you are using an almost unconstrained range like a database identifier as a tag, expect a large bill from your telemetry provider for excessive indexes. Having them easily discoverable means you don't have multiple tags used for the same thing eg. <code>result:fail</code>, <code>result:failure</code>, and <code>result:error</code>.</p>
+<pre><code class="language-csharp">public static class Tag
+{
+    public const string Success = &quot;result:success&quot;;
+    public const string Failure = &quot;result:failure&quot;;
+}
+</code></pre>
+<p>If you decide not to go with a static list like above, at least introduce some kind of check that helps point out poorly conforming metrics and tags.</p>
+<h2>Enable metric and log correlation</h2>
+<p>The true power of modern telemetry solutions is in the correlation of traces and logs through identifiers that allow correlation between parent and child processes, even across network boundaries. Hopefully most of you would have seen this in action already but if not, it unlocks another level of observability in your applications.</p>
+<p><img src="../img/posts/2022/2022-06-14-21-44-08.png" alt="APM with linked logs" /></p>
+<p>Above you can see we not only have a nice trace representing our request, we also all the logs linked to said request through the trace. It can often be some work to make sure these trace and span identifiers are flowing through your system well but when they are it is magic.</p>
+<p>For many stacks these traces are injected in HTTP headers and so will carry across network boundaries. Sometimes you need you need to <a href="https://docs.datadoghq.com/tracing/connect_logs_and_traces/dotnet/?tab=serilog">configure them manually</a> and depending on your tooling and stack it may be as simple as installing a package. For a message queue, you will probably need to do some manual work to propagate a trace.</p>
+<h2>Don't mix telemetry code and application code</h2>
+<p>Instead of littering your code with random logs and metric pushes, I suggest starting with &quot;what happened?&quot;. Once you have a call defining what happened, you decide what telemetry to send internally. This is better explained with an example:</p>
+<pre><code class="language-csharp">DogStatsd.Set(&quot;observability_project.todo.list_count&quot;, dataStore.Count);
+if (dataStore.Count == 0)
+{
+    logger.LogInformation(&quot;TODO lists requested but none found.&quot;);
+    return (new List&lt;TodoList&gt;());
+}
+return dataStore.Values.ToList();
+</code></pre>
+<p>In the snippet above, we have metric and logging code scattered around our application code. This can be better refactored into telemetry calls saying WHAT happened, and we place the metric sending and logging within the method.</p>
+<pre><code class="language-csharp">if (dataStore.Count == 0)
+{
+    telemetryEvents.NoListsReturned();
+    return (new List&lt;TodoList&gt;());
+}
+telemetryEvents.ListsAvailable(dataStore.Count);
+return dataStore.Values.ToList();
+</code></pre>
+<p>A complaint I have heard a few times with this approach is that logging and metrics are not the same so they shouldn't be bundled together this way. There are a few arguments to make here but instead I will ask a few questions. Is the code clearer because of this change? Will the core application logic change less frequently for unrelated reasons like adding a log?</p>
+<p>If you are interested, an old colleague, [Erik Heemskerk wrote this up in more detail].</p>
+<h2>Instrument where the action happens</h2>
+<p>This is more a rule of thumb (no Sopranos here so no fingers will be broken if you ignore it). My suggestion is to try and keep the sending of telemetry to the boundaries of your application. Place them where calls come into your application and where calls go out to databases or other network calls.</p>
+<p>What you want to try do is keep them out of your core domain calculations. Sometimes, if your domain is complex enough it may be worth the odd call to that logs some information. Mostly though, metrics are about something happened, and it didn't really happen until your application interacts with the outside world.</p>
+<h2>Conclusion</h2>
+<p>I touched on a few ways you can set a team up for success when using a telemetry tool. There are plenty of things to learn and maybe I will do more posts on the subject. Good luck on your telemetry journey. Feel free to hit me up on <a href="https://twitter.com/DevonBurriss">Twitter</a> with your tips.</p>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://jimmybogard.com/building-end-to-end-diagnostics-opentelemetry-integration/">A great series on OpenTelemetry</a></li>
+<li><a href="https://docs.datadoghq.com/getting_started/tagging/">Datadog tagging</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging">Azure naming and tagging</a></li>
+<li><a href="https://opentelemetry.io/docs/reference/specification/metrics/semantic_conventions/">Open metrics</a></li>
+<li><a href="https://opentelemetry.io/docs/reference/specification/common/attribute-naming/">OpenTelemetry attribute</a></li>
+</ul>
 
-         <div class="col-lg-3 widget-column">
-            
-                            <ul class="list-inline text-center">
+                <hr />
+                                <section class="related">
+                    <h4>You may be interested in</h4>
+                    <ul>
+                                                <li><a href="/choosing-a-telemetry-platform/">Choosing a telemetry platform</a></li>
+                                                <li><a href="/prometheus-datadog-agent/">Prometheus Datadog Agent</a></li>
+                                                <li><a href="/azfunc-prometheus-endpoint/">Capturing custom business metrics in Azure Functions</a></li>
+                                            </ul>
+                </section>
+                <hr />
+                                
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/choosing-a-telemetry-platform/" data-toggle="tooltip"    data-placement="top" title="Choosing a telemetry platform">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-lg-4 widget-column">
+           
+                                <ul class="list-inline text-center">
                     <li>
                         <a href="/rss.xml">
                             <span class="fa-stack fa-lg">
@@ -402,7 +353,7 @@
                 </ul>
 
 
-            <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
+                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
 
     <a class="badge badge-info" href="/category/agile">Agile</a>
 
@@ -418,8 +369,8 @@
 
     <a class="badge badge-info" href="/category/tools">Tools</a>
 
-            <hr />
-            <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
+                <hr />
+                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
 <div class="well">
 
 
@@ -850,24 +801,13 @@
 </a>
 
 </div>
-            <hr />
-            <h3>About me</h3>
-<div>
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-        <img class="img-rounded pull-right" src="https://devonburriss.me/img/avatar.jpg" width="33%" style="margin-left: 1em;"/>
-        <meta itemprop="url" content="https://devonburriss.me/img/avatar.jpg">
+            
+            </div>
         </div>
-        <meta itemprop="name" content="Devon Burriss">
     </div>
-    <p align="justify">
-        A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here.
-    </p>
-</div>
+</article>
 
-        </div>
-	</div>
-</div>
+<hr>
     
                     <ul class="list-inline text-center">
                     <li>

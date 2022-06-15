@@ -3,13 +3,122 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2022-06-14T21:25:40.1470476+00:00</updated>
+  <updated>2022-06-15T20:13:05.2804493+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/telemetry-tips/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/telemetry-tips/"/>
+    <title>Telemetry tips</title>
+    <updated>2022-06-15T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/telemetry-tips/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;When getting started with a new telemetry platform you may not know what conventions you need to set and follow. Even if you do, how do you get the rest of the team to follow them too. In this post I will give some tips for making sure the data hitting your telemetry tool is clean and organised so you can make the most of it, while not compromising the readability of your application code.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;Define metric and tagging conventions early&lt;/h2&gt;
+&lt;p&gt;Anyone who has used a telemetry tool like Datadog in an organisation where the conventions are not clear will recognise the problem this is trying to solve. As teams start sending data, searching for anything becomes difficult as you sort through metrics ranging from &lt;code&gt;AcmeCoolServiceStartedUp&lt;/code&gt; to &lt;code&gt;record_updated&lt;/code&gt;. This can quickly get out of hand and can make searching for metrics quite frustrating. Since we want to make working with telemetry as [easy as possible], I suggest you tackle this as soon as possible.&lt;/p&gt;
+&lt;p&gt;Here are some of my recommendations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use lowercase &lt;code&gt;snake_case&lt;/code&gt; for metrics and and lowercase &lt;code&gt;kebab-case&lt;/code&gt; tags. Reasons: Avoid case sensitive search issues. Readability.&lt;/li&gt;
+&lt;li&gt;Consider namespacing your metrics if you foresee multiple complex domains with lots of unique metrics eg. &lt;code&gt;some_domain.some_app_some_metric&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Make use of key-value pairs in tags eg. &lt;code&gt;env:prod&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Be clear on reserved tags eg. &lt;code&gt;env:prod&lt;/code&gt; and &lt;code&gt;service:app-name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;result:success&lt;/code&gt; and &lt;code&gt;result:fail&lt;/code&gt; tags on the same metric rather than 2 separate metrics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When running in the cloud, like many are, an important part of tagging that is easy to overlook is your infrastructure tagging. A system like &lt;a href=&quot;https://docs.datadoghq.com/&quot;&gt;Datadog&lt;/a&gt; will pull tags from your cloud infrastructure resources and attach them to the metrics sent from that resource. This is why it is important to match your metric tagging and cloud infrastructure tagging conventions.&lt;/p&gt;
+&lt;p&gt;Infrastructure tags to consider:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The environment as an &lt;code&gt;env&lt;/code&gt; tag&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;service&lt;/code&gt; sending telemetry&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;version&lt;/code&gt; of the deployed application/service&lt;/li&gt;
+&lt;li&gt;You may want one or more of the following: &lt;code&gt;cost-centre&lt;/code&gt; / &lt;code&gt;department&lt;/code&gt; / &lt;code&gt;domain&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The team to contact for support with the resource &lt;code&gt;team:team-name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The SLA for the application&lt;/li&gt;
+&lt;li&gt;The criticality of the application for the health of your system ranging from &lt;code&gt;criticality:very-high&lt;/code&gt; to &lt;code&gt;criticality:low&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The tool used to created eg. &lt;code&gt;tool:farmer&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Dates like &lt;code&gt;created-at:2022-05-22&lt;/code&gt; and &lt;code&gt;updated-at:2022-05-30&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Telemetry tools often require some of these to be useful. &lt;code&gt;env&lt;/code&gt;, &lt;code&gt;service&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt; are part of &lt;a href=&quot;https://docs.datadoghq.com/getting_started/tagging/unified_service_tagging&quot;&gt;unified service tagging&lt;/a&gt; for Datadog. Check what yours are for your telemetry tool.&lt;/p&gt;
+&lt;p&gt;This is not an exhaustive list but will hopefully give you a starting point.&lt;/p&gt;
+&lt;h2&gt;Build up tooling to help with standards&lt;/h2&gt;
+&lt;p&gt;Tooling for helping developers fall into the pit of success with the configuration and tagging of metrics can go a long way.&lt;/p&gt;
+&lt;p&gt;One such example is a thin wrapper around application setup that enforces the setup and sending of a service name, environment, etc. Often these things can be handled by the host environment but if not it is worth the small effort.&lt;/p&gt;
+&lt;p&gt;Rather than having each new project require configuring the application telemetry just right, make some sort of template, snippet, or package available to help developers fall into the pit of success.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;// ASP.NET Program.cs
+var builder = WebApplication.CreateBuilder(args);
+builder.AddTelemetry();
+// other setup...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The example above relies on environment variables being present but your solution could require they are passed in. The important part is making it easy to do right and provide clear guidance if something is wrong. For example, the &lt;code&gt;AddTelemetry&lt;/code&gt; method will explicitly check that all expected environment variables are present and throw an error with a clear list of all missing environment variable names.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;missing.EnvVarCheck(&amp;quot;DD_API_KEY&amp;quot;, &amp;quot;Set `DD_API_KEY` with your Datadog API key.&amp;quot;);
+missing.EnvVarCheck(&amp;quot;DD_ENV&amp;quot;, &amp;quot;Set `DD_ENV` with the name of the current environment eg. prod&amp;quot;);
+missing.EnvVarCheck(&amp;quot;DD_SERVICE&amp;quot;, &amp;quot;Set `DD_SERVICE` with the name of this service.&amp;quot;);
+// etc.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The important takeaway is to make it easy to setup correctly, and give clear feedback when something is wrong.&lt;/p&gt;
+&lt;p&gt;The next helper that you can introduce is some way to make metric names discoverable.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public static class MetricName
+{
+    public const string TodoListCreated = &amp;quot;observability_project.todo.list_created&amp;quot;;
+    public const string TodoListCount = &amp;quot;observability_project.todo.list_count&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This may seem like a chore but it does have some advantages. You now have a repeatable way for developers to find a metric name via intellisense. You have a single place to change a metric name if you really needed to. And an often overlooked benefit is you have an overview of all metrics possibly sent and an IDE enabled way to find from where.&lt;/p&gt;
+&lt;p&gt;The same arguments can be made for tags. Remember that tags should always be of a fixed set, and so capturing them in code should be possible. If you are using an almost unconstrained range like a database identifier as a tag, expect a large bill from your telemetry provider for excessive indexes. Having them easily discoverable means you don&apos;t have multiple tags used for the same thing eg. &lt;code&gt;result:fail&lt;/code&gt;, &lt;code&gt;result:failure&lt;/code&gt;, and &lt;code&gt;result:error&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;public static class Tag
+{
+    public const string Success = &amp;quot;result:success&amp;quot;;
+    public const string Failure = &amp;quot;result:failure&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you decide not to go with a static list like above, at least introduce some kind of check that helps point out poorly conforming metrics and tags.&lt;/p&gt;
+&lt;h2&gt;Enable metric and log correlation&lt;/h2&gt;
+&lt;p&gt;The true power of modern telemetry solutions is in the correlation of traces and logs through identifiers that allow correlation between parent and child processes, even across network boundaries. Hopefully most of you would have seen this in action already but if not, it unlocks another level of observability in your applications.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/posts/2022/2022-06-14-21-44-08.png&quot; alt=&quot;APM with linked logs&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Above you can see we not only have a nice trace representing our request, we also all the logs linked to said request through the trace. It can often be some work to make sure these trace and span identifiers are flowing through your system well but when they are it is magic.&lt;/p&gt;
+&lt;p&gt;For many stacks these traces are injected in HTTP headers and so will carry across network boundaries. Sometimes you need you need to &lt;a href=&quot;https://docs.datadoghq.com/tracing/connect_logs_and_traces/dotnet/?tab=serilog&quot;&gt;configure them manually&lt;/a&gt; and depending on your tooling and stack it may be as simple as installing a package. For a message queue, you will probably need to do some manual work to propagate a trace.&lt;/p&gt;
+&lt;h2&gt;Don&apos;t mix telemetry code and application code&lt;/h2&gt;
+&lt;p&gt;Instead of littering your code with random logs and metric pushes, I suggest starting with &amp;quot;what happened?&amp;quot;. Once you have a call defining what happened, you decide what telemetry to send internally. This is better explained with an example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;DogStatsd.Set(&amp;quot;observability_project.todo.list_count&amp;quot;, dataStore.Count);
+if (dataStore.Count == 0)
+{
+    logger.LogInformation(&amp;quot;TODO lists requested but none found.&amp;quot;);
+    return (new List&amp;lt;TodoList&amp;gt;());
+}
+return dataStore.Values.ToList();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the snippet above, we have metric and logging code scattered around our application code. This can be better refactored into telemetry calls saying WHAT happened, and we place the metric sending and logging within the method.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;if (dataStore.Count == 0)
+{
+    telemetryEvents.NoListsReturned();
+    return (new List&amp;lt;TodoList&amp;gt;());
+}
+telemetryEvents.ListsAvailable(dataStore.Count);
+return dataStore.Values.ToList();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A complaint I have heard a few times with this approach is that logging and metrics are not the same so they shouldn&apos;t be bundled together this way. There are a few arguments to make here but instead I will ask a few questions. Is the code clearer because of this change? Will the core application logic change less frequently for unrelated reasons like adding a log?&lt;/p&gt;
+&lt;p&gt;If you are interested, an old colleague, [Erik Heemskerk wrote this up in more detail].&lt;/p&gt;
+&lt;h2&gt;Instrument where the action happens&lt;/h2&gt;
+&lt;p&gt;This is more a rule of thumb (no Sopranos here so no fingers will be broken if you ignore it). My suggestion is to try and keep the sending of telemetry to the boundaries of your application. Place them where calls come into your application and where calls go out to databases or other network calls.&lt;/p&gt;
+&lt;p&gt;What you want to try do is keep them out of your core domain calculations. Sometimes, if your domain is complex enough it may be worth the odd call to that logs some information. Mostly though, metrics are about something happened, and it didn&apos;t really happen until your application interacts with the outside world.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I touched on a few ways you can set a team up for success when using a telemetry tool. There are plenty of things to learn and maybe I will do more posts on the subject. Good luck on your telemetry journey. Feel free to hit me up on &lt;a href=&quot;https://twitter.com/DevonBurriss&quot;&gt;Twitter&lt;/a&gt; with your tips.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://jimmybogard.com/building-end-to-end-diagnostics-opentelemetry-integration/&quot;&gt;A great series on OpenTelemetry&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.datadoghq.com/getting_started/tagging/&quot;&gt;Datadog tagging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging&quot;&gt;Azure naming and tagging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://opentelemetry.io/docs/reference/specification/metrics/semantic_conventions/&quot;&gt;Open metrics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://opentelemetry.io/docs/reference/specification/common/attribute-naming/&quot;&gt;OpenTelemetry attribute&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/choosing-a-telemetry-platform/</id>
