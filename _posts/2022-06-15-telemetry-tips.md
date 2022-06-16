@@ -133,7 +133,7 @@ return dataStore.Values.ToList();
 
 A complaint I have heard a few times with this approach is that logging and metrics are not the same so they shouldn't be bundled together this way. There are a few arguments to make here but instead I will ask a few questions. Is the code clearer because of this change? Will the core application logic change less frequently for unrelated reasons like adding a log?
 
-If you are interested, an old colleague, [Erik Heemskerk wrote this up in more detail].
+If you are interested, an old colleague, [Erik Heemskerk wrote this up in more detail](https://www.erikheemskerk.nl/meaningful-logging-and-metrics/).
 
 ## Instrument where the action happens
 
