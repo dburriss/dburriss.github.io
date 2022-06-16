@@ -272,7 +272,7 @@ telemetryEvents.ListsAvailable(dataStore.Count);
 return dataStore.Values.ToList();
 </code></pre>
 <p>A complaint I have heard a few times with this approach is that logging and metrics are not the same so they shouldn't be bundled together this way. There are a few arguments to make here but instead I will ask a few questions. Is the code clearer because of this change? Will the core application logic change less frequently for unrelated reasons like adding a log?</p>
-<p>If you are interested, an old colleague, [Erik Heemskerk wrote this up in more detail].</p>
+<p>If you are interested, an old colleague, <a href="https://www.erikheemskerk.nl/meaningful-logging-and-metrics/">Erik Heemskerk wrote this up in more detail</a>.</p>
 <h2>Instrument where the action happens</h2>
 <p>This is more a rule of thumb (no Sopranos here so no fingers will be broken if you ignore it). My suggestion is to try and keep the sending of telemetry to the boundaries of your application. Place them where calls come into your application and where calls go out to databases or other network calls.</p>
 <p>What you want to try do is keep them out of your core domain calculations. Sometimes, if your domain is complex enough it may be worth the odd call to that logs some information. Mostly though, metrics are about something happened, and it didn't really happen until your application interacts with the outside world.</p>
