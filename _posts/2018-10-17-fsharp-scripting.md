@@ -122,6 +122,22 @@ Executing it we would see the following:
 
 You could of course also access the arguments as a zero based array `fsi.CommandLineArgs.[0]` or loop through them.
 
+### Nuget packages
+
+> Edit: Since .NET 5 it is possible to reference nuget packages directly in your fsx script.
+
+You can reference nuget packages in your script files by using the `#r nuget:Package.Name` syntax.
+
+As an example:
+
+```fsharp
+#r "nuget: FSharp.Data"
+
+open FSharp.Data
+
+let jVal = JsonValue.Parse """{ "lang": "fsharp" }"""
+```
+
 ### Referencing DLLs
 
 You can reference DLLs using `#r "path/to/file.dll"`. If you want to pull down DLLs from Nuget, check out [my article on using Paket dependency manager](/up-and-running-with-paket).
