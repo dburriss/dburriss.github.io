@@ -3,7 +3,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2022-07-08T05:56:44.9752601+00:00</updated>
+  <updated>2022-11-01T13:59:32.1866024+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -3805,6 +3805,18 @@ match fsi.CommandLineArgs with
 &amp;gt; Name: DEVON BURRISS (DEVELOPER)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;You could of course also access the arguments as a zero based array &lt;code&gt;fsi.CommandLineArgs.[0]&lt;/code&gt; or loop through them.&lt;/p&gt;
+&lt;h3&gt;Nuget packages&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Edit: Since .NET 5 it is possible to reference nuget packages directly in your fsx script.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You can reference nuget packages in your script files by using the &lt;code&gt;#r nuget:Package.Name&lt;/code&gt; syntax.&lt;/p&gt;
+&lt;p&gt;As an example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;#r &amp;quot;nuget: FSharp.Data&amp;quot;
+
+open FSharp.Data
+
+let jVal = JsonValue.Parse &amp;quot;&amp;quot;&amp;quot;{ &amp;quot;lang&amp;quot;: &amp;quot;fsharp&amp;quot; }&amp;quot;&amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Referencing DLLs&lt;/h3&gt;
 &lt;p&gt;You can reference DLLs using &lt;code&gt;#r &amp;quot;path/to/file.dll&amp;quot;&lt;/code&gt;. If you want to pull down DLLs from Nuget, check out &lt;a href=&quot;/up-and-running-with-paket&quot;&gt;my article on using Paket dependency manager&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Resources&lt;/h2&gt;

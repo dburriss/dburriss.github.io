@@ -274,6 +274,18 @@ match fsi.CommandLineArgs with
 &gt; Name: DEVON BURRISS (DEVELOPER)</p>
 </blockquote>
 <p>You could of course also access the arguments as a zero based array <code>fsi.CommandLineArgs.[0]</code> or loop through them.</p>
+<h3>Nuget packages</h3>
+<blockquote>
+<p>Edit: Since .NET 5 it is possible to reference nuget packages directly in your fsx script.</p>
+</blockquote>
+<p>You can reference nuget packages in your script files by using the <code>#r nuget:Package.Name</code> syntax.</p>
+<p>As an example:</p>
+<pre><code class="language-fsharp">#r &quot;nuget: FSharp.Data&quot;
+
+open FSharp.Data
+
+let jVal = JsonValue.Parse &quot;&quot;&quot;{ &quot;lang&quot;: &quot;fsharp&quot; }&quot;&quot;&quot;
+</code></pre>
 <h3>Referencing DLLs</h3>
 <p>You can reference DLLs using <code>#r &quot;path/to/file.dll&quot;</code>. If you want to pull down DLLs from Nuget, check out <a href="/up-and-running-with-paket">my article on using Paket dependency manager</a>.</p>
 <h2>Resources</h2>
@@ -292,7 +304,7 @@ match fsi.CommandLineArgs with
                     <ul>
                                                 <li><a href="/canopy-from-fsx/">Canopy from a FSX Script</a></li>
                                                 <li><a href="/how-to-fsharp-pt-1/">How to F# - Part 1</a></li>
-                                                <li><a href="/how-to-fsharp-pt-3/">How to F# - Part 3</a></li>
+                                                <li><a href="/how-to-fsharp-pt-10/">How to F# - Part 10</a></li>
                                             </ul>
                 </section>
                 <hr />
