@@ -2,23 +2,24 @@
 layout: post
 title: "You ain't gonna need YAGNI"
 subtitle: "You ain't gonna notice it"
-description: ""
+description: "Is YAGNI a principle that should always be followed? No. Principles are guides, you still need to think."
 permalink: yagnyagni
 author: "Devon Burriss"
 category: Agile
 tags: [Extreme Programming,Agile,General]
 comments: true
 excerpt_separator: <!--more-->
-header-img: "img/backgrounds/path-bg.jpg"
-social-img: "img/posts/2019/target-500.jpg"
+header-img: "img/backgrounds/yoda-bg.jpg"
+social-img: "img/posts/2018/rubiks-500.jpg"
 published: true
 ---
-With some topics, you reliably get experienced software developers arguing on both sides of said topic. When this occurs frequently for a particular topic, I believe that it is likely that both sides are both simultaneously wrong and right. This idea can be generalized but let's take the principle of YAGNI.
-How can both sides be both wrong and right? Well, because it depends.
+With some topics, you reliably get experienced software developers arguing on both sides of said topic. When this occurs frequently for a particular topic, I believe that it is that both sides are simultaneously right and wrong. This idea can be generalized but let's take the principle of YAGNI.
+How can both sides be right and wrong? Well, because it depends.
 <!--more-->
 
 ## The story so far
 
+<img src="../img/posts/2023/76mwsg.jpg" alt="Personally, I find decoupling over-rated. Straightforward makes things easier to change and things are rarely truly decoupled." class="img-rounded pull-left" style="margin-right: 1em;">
 When one developer says YAGNI, it is because she has been in a situation where a solution has been over-engineered, resulting in a complicated mess that was difficult to maintain. On the other hand, the developer pushing against YAGNI is probably trying to build some flexibility into the system. He has been in a situation before where the business comes with some last-minute "small change" that completely invalidates the current design. This resulted in a massive amount of work that threw the delivery date out or pressured him into crunching over a weekend.
 At this point, I would like to state that I err toward YAGNI in most cases. It is a principle though, not a law of nature. It is meant to be a guide toward better outcomes. In my experience, the systems that are easiest to change are those that are easy to understand. The YAGNI principle pushes toward short delivery cycles, where delivering earlier and getting feedback is more valuable than extra flexibility in the system. The underlying assumption here is that we cannot know the future, so get value out now.
 
