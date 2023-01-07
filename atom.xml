@@ -3,13 +3,39 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/"/>
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml"/>
-  <updated>2023-01-07T06:08:25.2377418+00:00</updated>
+  <updated>2023-01-07T07:44:20.0757124+00:00</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
 
+  
+  <entry>
+    <id>https://devonburriss.me/yagnyagni/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/yagnyagni/"/>
+    <title>You ain&apos;t gonna need YAGNI</title>
+    <updated>2023-01-07T00:00:00+00:00</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/yagnyagni/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;With some topics, you reliably get experienced software developers arguing on both sides of said topic. When this occurs frequently for a particular topic, I believe that it is that both sides are simultaneously right and wrong. This idea can be generalized but let&apos;s take the principle of YAGNI.
+How can both sides be right and wrong? Well, because it depends.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;The story so far&lt;/h2&gt;
+&lt;img src=&quot;../img/posts/2023/76mwsg.jpg&quot; alt=&quot;Personally, I find decoupling over-rated. Straightforward makes things easier to change and things are rarely truly decoupled.&quot; class=&quot;img-rounded pull-left&quot; style=&quot;margin-right: 1em;&quot;&gt;
+When one developer says YAGNI, it is because she has been in a situation where a solution has been over-engineered, resulting in a complicated mess that was difficult to maintain. On the other hand, the developer pushing against YAGNI is probably trying to build some flexibility into the system. He has been in a situation before where the business comes with some last-minute &quot;small change&quot; that completely invalidates the current design. This resulted in a massive amount of work that threw the delivery date out or pressured him into crunching over a weekend.
+&lt;p&gt;At this point, I would like to state that I err toward YAGNI. It is a principle though, not a law of nature. It is meant to be a guide toward better outcomes. In my experience, the systems that are easiest to change are those that are easy to understand. The YAGNI principle pushes toward short delivery cycles, where delivering earlier and getting feedback is more valuable than extra flexibility in the system that may never be needed. The underlying assumption here is that we cannot know the future, so get value out now.&lt;/p&gt;
+&lt;h2&gt;These are not the contexts you are looking for...&lt;/h2&gt;
+&lt;p&gt;Now let me switch gears a bit and put my architecture hat on. Architecture is about enabling business capabilities via software. It answers questions like &amp;quot;How much effort is it to add feature X?&amp;quot; or &amp;quot;Can we handle a 10x in customers next month?&amp;quot;.&lt;/p&gt;
+&lt;p&gt;These are questions about a future state, so YAGNI is not the correct way to think about architectural questions.
+Instead, in system architecture, we are making tradeoffs between complexity and future possibilities. These design choices are bets on what is likely to stay the same and what might change. A good design will make tradeoffs that allow the parts that are likely to evolve, to do so elegantly.&lt;/p&gt;
+&lt;p&gt;So why am I talking about architecture in a YAGNI post? When developers are arguing over the application of YAGNI, they have different hats on. The easiest way to come together is to identify what the context of the discussion is. Are they talking about system architecture? Then we are in the realm of trade-offs. Are we talking about a component in code? Then YAGNI is probably the safer bet since changes are more frequent and unpredictable. The cost of change is much smaller than large architectural changes.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Striving for a straightforward system architecture is a worthy goal. Sometimes sacrifices are made to provide future opportunities. At the level of code design, YAGNI becomes a far more compelling principle.
+The above is illustrative of how people can disagree about something because they are talking about something in different contexts. So the next time you are involved in a disagreement, check your interlocutor&apos;s context. You might find you both actually agree when you get specific.&lt;/p&gt;</summary>
+  </entry>
   
   <entry>
     <id>https://devonburriss.me/telemetry-tips/</id>

@@ -6,8 +6,17 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sat, 07 Jan 2023 06:08:25 +00:00</pubDate>
-    <lastBuildDate>Sat, 07 Jan 2023 06:08:25 +00:00</lastBuildDate>
+    <pubDate>Sat, 07 Jan 2023 07:44:20 +00:00</pubDate>
+    <lastBuildDate>Sat, 07 Jan 2023 07:44:20 +00:00</lastBuildDate>
+    
+    <item>
+      <title>You ain&apos;t gonna need YAGNI</title>
+      <link>https://devonburriss.me/yagnyagni/</link>
+      <pubDate>Sat, 07 Jan 2023 00:00:00 +00:00</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/yagnyagni/</guid>
+      <description>Is YAGNI a principle that should always be followed? No. Principles are guides, you still need to think.</description>
+    </item>
     
     <item>
       <title>Telemetry tips</title>
