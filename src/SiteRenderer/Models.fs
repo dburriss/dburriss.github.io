@@ -86,6 +86,4 @@ type RenderContext =
       OutputRoot: string }
 
 [<CLIMutable>]
-type RenderedPage =
-    { OutputPath: string
-      Content: string }
+type RenderedPage = { OutputPath: string; Content: string }

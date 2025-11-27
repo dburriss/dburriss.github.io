@@ -12,6 +12,7 @@ module Renderer =
         // Posts typically have format: yyyy-MM-dd-slug.md
         let datePattern = Regex(@"^(\d{4})-(\d{2})-(\d{2})-(.+)$")
         let m = datePattern.Match(fileName)
+
         if m.Success then
             let year = m.Groups.[1].Value
             let month = m.Groups.[2].Value
@@ -24,8 +25,11 @@ module Renderer =
 
     let private pageUrlFromPath (sourcePath: string) =
         let fileName = Path.GetFileNameWithoutExtension(sourcePath)
-        if fileName = "index" then ""
-        else sprintf "%s.html" fileName
+
+        if fileName = "index" then
+            ""
+        else
+            sprintf "%s.html" fileName
 
     let private buildPostSummary (item: ContentItem) : PostSummary =
         { Title = item.PageMeta.Title
@@ -48,8 +52,11 @@ module Renderer =
                 let fileName = Path.GetFileNameWithoutExtension(sourcePath)
                 let datePattern = Regex(@"^(\d{4})-(\d{2})-(\d{2})")
                 let m = datePattern.Match(fileName)
+
                 if m.Success then
-                    let dateStr = sprintf "%s-%s-%s" m.Groups.[1].Value m.Groups.[2].Value m.Groups.[3].Value
+                    let dateStr =
+                        sprintf "%s-%s-%s" m.Groups.[1].Value m.Groups.[2].Value m.Groups.[3].Value
+
                     match DateTime.TryParse(dateStr) with
                     | true, d -> Some d
                     | _ -> None
@@ -60,8 +67,10 @@ module Renderer =
             match meta.Permalink with
             | Some p -> p.TrimStart('/').TrimEnd('/') + "/"
             | None ->
-                if kind = "post" then postUrlFromPath sourcePath date
-                else pageUrlFromPath sourcePath
+                if kind = "post" then
+                    postUrlFromPath sourcePath date
+                else
+                    pageUrlFromPath sourcePath
 
         let outputPath =
             if url.EndsWith("/") then url + "index.html"
@@ -70,8 +79,7 @@ module Renderer =
             else url + "/index.html"
 
         let layout =
-            meta.Layout
-            |> Option.defaultValue (if kind = "post" then "post" else "page")
+            meta.Layout |> Option.defaultValue (if kind = "post" then "post" else "page")
 
         let commentsEnabled =
             match meta.Comments with
@@ -118,6 +126,7 @@ module Renderer =
 
     let loadPages (root: string) : ContentItem list =
         let pagesDir = root
+
         Directory.GetFiles(pagesDir, "*.md", SearchOption.TopDirectoryOnly)
         |> Array.toList
         |> List.filter (fun path ->
@@ -127,34 +136,40 @@ module Renderer =
 
     let private assignPreviousNext (posts: ContentItem list) : ContentItem list =
         let indexed = posts |> List.mapi (fun i p -> (i, p))
+
         indexed
         |> List.map (fun (i, post) ->
             let prev =
                 if i < posts.Length - 1 then
-                    Some (buildPostSummary posts.[i + 1])
+                    Some(buildPostSummary posts.[i + 1])
                 else
                     None
-            let next =
-                if i > 0 then
-                    Some (buildPostSummary posts.[i - 1])
-                else
-                    None
-            { post with PageMeta = { post.PageMeta with Previous = prev; Next = next } })
+
+            let next = if i > 0 then Some(buildPostSummary posts.[i - 1]) else None
+
+            { post with
+                PageMeta =
+                    { post.PageMeta with
+                        Previous = prev
+                        Next = next } })
 
     let buildSiteIndex (posts: ContentItem list) (pages: ContentItem list) : SiteIndex =
         let postsWithNav = assignPreviousNext posts
+
         let categories =
             postsWithNav
             |> List.collect (fun p -> p.PageMeta.Categories |> List.map (fun c -> (c, p)))
             |> List.groupBy fst
             |> List.map (fun (cat, items) -> (cat, items |> List.map snd))
             |> Map.ofList
+
         let tags =
             postsWithNav
             |> List.collect (fun p -> p.PageMeta.Tags |> List.map (fun t -> (t, p)))
             |> List.groupBy fst
             |> List.map (fun (tag, items) -> (tag, items |> List.map snd))
             |> Map.ofList
+
         { Posts = postsWithNav
           Pages = pages
           Categories = categories
@@ -176,7 +191,10 @@ module Renderer =
         let cats = categoryCounts ctx.Index
         let tags = tagCounts ctx.Index
         let related = post.PageMeta.Related
-        let doc = Layouts.postDocument ctx.Config post.PageMeta post.HtmlContent related cats tags
+
+        let doc =
+            Layouts.postDocument ctx.Config post.PageMeta post.HtmlContent related cats tags
+
         { OutputPath = post.OutputPath
           Content = RenderView.AsString.htmlDocument doc }
 
@@ -184,16 +202,23 @@ module Renderer =
         let cats = categoryCounts ctx.Index
         let tags = tagCounts ctx.Index
         let doc = Layouts.pageDocument ctx.Config page.PageMeta page.HtmlContent cats tags
+
         { OutputPath = page.OutputPath
           Content = RenderView.AsString.htmlDocument doc }
 
-    let renderIndex (ctx: RenderContext) (pageNumber: int) (postsPerPage: int) (defaultSocialImg: string option) : RenderedPage =
+    let renderIndex
+        (ctx: RenderContext)
+        (pageNumber: int)
+        (postsPerPage: int)
+        (defaultSocialImg: string option)
+        : RenderedPage =
         let allPosts = ctx.Index.Posts
         let totalPages = (allPosts.Length + postsPerPage - 1) / postsPerPage
         let skip = (pageNumber - 1) * postsPerPage
         let pagePosts = allPosts |> List.skip skip |> List.truncate postsPerPage
         let cats = categoryCounts ctx.Index
         let tags = tagCounts ctx.Index
+
         let pageMeta =
             { Title = ctx.Config.Title
               Subtitle = None
@@ -210,10 +235,16 @@ module Renderer =
               Next = None
               CommentsEnabled = false
               Layout = "page" }
-        let doc = Layouts.indexDocument ctx.Config pageMeta pagePosts pageNumber totalPages defaultSocialImg cats tags
+
+        let doc =
+            Layouts.indexDocument ctx.Config pageMeta pagePosts pageNumber totalPages defaultSocialImg cats tags
+
         let outputPath =
-            if pageNumber = 1 then "index.html"
-            else sprintf "page/%d/index.html" pageNumber
+            if pageNumber = 1 then
+                "index.html"
+            else
+                sprintf "page/%d/index.html" pageNumber
+
         { OutputPath = outputPath
           Content = RenderView.AsString.htmlDocument doc }
 
@@ -222,6 +253,7 @@ module Renderer =
         let tags = tagCounts ctx.Index
         let doc = Layouts.categoryDocument ctx.Config category posts cats tags
         let slug = Parsing.slugify category
+
         { OutputPath = sprintf "category/%s/index.html" slug
           Content = RenderView.AsString.htmlDocument doc }
 
@@ -230,11 +262,13 @@ module Renderer =
         let tags = tagCounts ctx.Index
         let doc = Layouts.tagDocument ctx.Config tag posts cats tags
         let slug = Parsing.slugify tag
+
         { OutputPath = sprintf "tag/%s/index.html" slug
           Content = RenderView.AsString.htmlDocument doc }
 
     let renderFeeds (ctx: RenderContext) : RenderedPage list =
         let posts = ctx.Index.Posts |> List.truncate 20
+
         [ { OutputPath = "rss.xml"
             Content = Feeds.generateRss ctx.Config posts }
           { OutputPath = "atom.xml"
@@ -246,8 +280,9 @@ module Renderer =
 
         let totalPosts = ctx.Index.Posts.Length
         let totalIndexPages = (totalPosts + postsPerPage - 1) / postsPerPage
+
         let indexPages =
-            [ 1 .. totalIndexPages ]
+            [ 1..totalIndexPages ]
             |> List.map (fun page -> renderIndex ctx page postsPerPage defaultSocialImg)
 
         let categoryPages =
@@ -269,25 +304,35 @@ module Renderer =
         |> List.iter (fun page ->
             let fullPath = Path.Combine(outputRoot, page.OutputPath)
             let dir = Path.GetDirectoryName(fullPath)
+
             if not (Directory.Exists(dir)) then
                 Directory.CreateDirectory(dir) |> ignore
+
             File.WriteAllText(fullPath, page.Content))
 
     let copyStaticAssets (sourceRoot: string) (outputRoot: string) =
         let staticDirs = [ "css"; "js"; "img"; "fonts" ]
+
         staticDirs
         |> List.iter (fun dir ->
             let sourceDir = Path.Combine(sourceRoot, dir)
             let targetDir = Path.Combine(outputRoot, dir)
+
             if Directory.Exists(sourceDir) then
                 if not (Directory.Exists(targetDir)) then
                     Directory.CreateDirectory(targetDir) |> ignore
+
                 let files = Directory.GetFiles(sourceDir, "*", SearchOption.AllDirectories)
+
                 files
                 |> Array.iter (fun file ->
-                    let relativePath = file.Substring(sourceDir.Length).TrimStart(Path.DirectorySeparatorChar)
+                    let relativePath =
+                        file.Substring(sourceDir.Length).TrimStart(Path.DirectorySeparatorChar)
+
                     let targetPath = Path.Combine(targetDir, relativePath)
                     let targetSubDir = Path.GetDirectoryName(targetPath)
+
                     if not (Directory.Exists(targetSubDir)) then
                         Directory.CreateDirectory(targetSubDir) |> ignore
+
                     File.Copy(file, targetPath, true)))

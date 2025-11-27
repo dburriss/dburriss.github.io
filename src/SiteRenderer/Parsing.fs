@@ -16,6 +16,7 @@ module Parsing =
 
     let private tryGetScalar (mapping: YamlMappingNode) (key: string) =
         let keyNode = YamlScalarNode(key)
+
         if mapping.Children.ContainsKey keyNode then
             mapping.Children.[keyNode] |> yamlScalar
         else
@@ -23,14 +24,12 @@ module Parsing =
 
     let private tryGetSequence (mapping: YamlMappingNode) (key: string) =
         let keyNode = YamlScalarNode(key)
+
         if mapping.Children.ContainsKey keyNode then
             match mapping.Children.[keyNode] with
-            | :? YamlSequenceNode as seqNode ->
-                seqNode.Children
-                |> Seq.choose yamlScalar
-                |> Seq.toList
+            | :? YamlSequenceNode as seqNode -> seqNode.Children |> Seq.choose yamlScalar |> Seq.toList
             | :? YamlScalarNode as scalar when not (String.IsNullOrWhiteSpace scalar.Value) ->
-                scalar.Value.Split([|','|], StringSplitOptions.RemoveEmptyEntries)
+                scalar.Value.Split([| ',' |], StringSplitOptions.RemoveEmptyEntries)
                 |> Array.map (fun s -> s.Trim())
                 |> Array.toList
             | _ -> []
@@ -47,20 +46,32 @@ module Parsing =
         match value with
         | Some v ->
             let formats =
-                [| "yyyy-MM-dd"; "yyyy-MM-ddTHH:mm:ssZ"; "yyyy-MM-ddTHH:mm:ss"; "MM/dd/yyyy"; "yyyy/MM/dd" |]
+                [| "yyyy-MM-dd"
+                   "yyyy-MM-ddTHH:mm:ssZ"
+                   "yyyy-MM-ddTHH:mm:ss"
+                   "MM/dd/yyyy"
+                   "yyyy/MM/dd" |]
+
             let mutable parsed = DateTime.MinValue
-            if DateTime.TryParseExact(v, formats, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, &parsed) then
-                Some (parsed.ToUniversalTime())
+
+            if
+                DateTime.TryParseExact(
+                    v,
+                    formats,
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.AssumeUniversal,
+                    &parsed
+                )
+            then
+                Some(parsed.ToUniversalTime())
             else
                 match DateTime.TryParse(v, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, &parsed) with
-                | true -> Some (parsed.ToUniversalTime())
+                | true -> Some(parsed.ToUniversalTime())
                 | _ -> None
         | None -> None
 
     let private normalizeList (items: string list) =
-        items
-        |> List.map (fun s -> s.Trim())
-        |> List.filter (fun s -> s <> "")
+        items |> List.map (fun s -> s.Trim()) |> List.filter (fun s -> s <> "")
 
     let private loadYamlMapping (yamlText: string) =
         use reader = new StringReader(yamlText)
@@ -72,6 +83,7 @@ module Parsing =
         let text = File.ReadAllText(configPath)
         let root = loadYamlMapping text
         let get = tryGetScalar root
+
         { Title = get "title" |> Option.defaultValue ""
           Description = get "description" |> Option.defaultValue ""
           Author = get "author" |> Option.defaultValue ""
@@ -94,6 +106,7 @@ module Parsing =
     let private splitFrontMatter (content: string) =
         if content.StartsWith("---") then
             let parts = Regex.Split(content, "^---\\s*$", RegexOptions.Multiline)
+
             if parts.Length >= 3 then
                 let frontMatter = parts.[1]
                 let body = String.Join("\n", parts.[2..])
@@ -125,16 +138,25 @@ module Parsing =
         else
             let mapping = loadYamlMapping frontMatter
             let get = tryGetScalar mapping
+
             let tags =
                 let primary = tryGetSequence mapping "tags"
-                if primary.Length = 0 then tryGetSequence mapping "TAGS" else primary
+
+                if primary.Length = 0 then
+                    tryGetSequence mapping "TAGS"
+                else
+                    primary
+
             let categories =
                 let cats = tryGetSequence mapping "categories"
-                if cats.Length > 0 then cats
+
+                if cats.Length > 0 then
+                    cats
                 else
                     match get "category" with
                     | Some value -> [ value ]
                     | None -> []
+
             { Layout = get "layout"
               Title = get "title"
               Subtitle = get "subtitle"
@@ -165,35 +187,23 @@ module Parsing =
 
     let extractExcerpt (html: string) =
         let idx = html.IndexOf(excerptSeparator, StringComparison.OrdinalIgnoreCase)
-        if idx >= 0 then
-            Some (html.Substring(0, idx))
-        else
-            None
+        if idx >= 0 then Some(html.Substring(0, idx)) else None
 
     let markdownPipeline =
-        MarkdownPipelineBuilder()
-            .UseAdvancedExtensions()
-            .UsePipeTables()
-            .UseYamlFrontMatter()
-            .Build()
+        MarkdownPipelineBuilder().UseAdvancedExtensions().UsePipeTables().UseYamlFrontMatter().Build()
 
     let markdownToHtml (markdown: string) =
         Markdown.ToHtml(markdown, markdownPipeline)
 
     let readAllMarkdown (root: string) (pattern: string) =
-        Directory.GetFiles(root, pattern, SearchOption.AllDirectories)
-        |> Array.toList
+        Directory.GetFiles(root, pattern, SearchOption.AllDirectories) |> Array.toList
 
     let slugify (value: string) =
         if String.IsNullOrWhiteSpace value then
             value
         else
-            value
-                .ToLowerInvariant()
-                .Replace(" ", "-")
-                .Replace("'", "")
-                .Replace("\"", "")
-                |> fun s -> Regex.Replace(s, "[^a-z0-9\-]", "")
+            value.ToLowerInvariant().Replace(" ", "-").Replace("'", "").Replace("\"", "")
+            |> fun s -> Regex.Replace(s, "[^a-z0-9\-]", "")
 
     let combineUrl (baseUrl: string) (relative: string) =
         let trimmedBase = if baseUrl.EndsWith("/") then baseUrl else baseUrl + "/"

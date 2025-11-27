@@ -11,7 +11,10 @@ module Program =
         printfn "Usage: SiteRenderer [options]"
         printfn ""
         printfn "Options:"
-        printfn "  --source <path>    Source directory containing _posts, _config.yml, etc. (default: current directory)"
+
+        printfn
+            "  --source <path>    Source directory containing _posts, _config.yml, etc. (default: current directory)"
+
         printfn "  --output <path>    Output directory for generated site (default: _site)"
         printfn "  --config <path>    Path to _config.yml (default: <source>/_config.yml)"
         printfn "  --posts-per-page   Number of posts per index page (default: 10)"
@@ -36,12 +39,9 @@ module Program =
         match args with
         | [] -> Some options
         | "--help" :: _ -> None
-        | "--source" :: path :: rest ->
-            parseArgs rest { options with SourceDir = path }
-        | "--output" :: path :: rest ->
-            parseArgs rest { options with OutputDir = path }
-        | "--config" :: path :: rest ->
-            parseArgs rest { options with ConfigPath = Some path }
+        | "--source" :: path :: rest -> parseArgs rest { options with SourceDir = path }
+        | "--output" :: path :: rest -> parseArgs rest { options with OutputDir = path }
+        | "--config" :: path :: rest -> parseArgs rest { options with ConfigPath = Some path }
         | "--posts-per-page" :: num :: rest ->
             match Int32.TryParse(num) with
             | true, n -> parseArgs rest { options with PostsPerPage = n }
@@ -54,9 +54,13 @@ module Program =
 
     let private run (options: CliOptions) =
         let sourceDir = Path.GetFullPath(options.SourceDir)
+
         let outputDir =
-            if Path.IsPathRooted(options.OutputDir) then options.OutputDir
-            else Path.Combine(sourceDir, options.OutputDir)
+            if Path.IsPathRooted(options.OutputDir) then
+                options.OutputDir
+            else
+                Path.Combine(sourceDir, options.OutputDir)
+
         let configPath =
             options.ConfigPath
             |> Option.defaultValue (Path.Combine(sourceDir, "_config.yml"))
@@ -93,6 +97,7 @@ module Program =
                 // Clean and create output directory
                 if Directory.Exists(outputDir) then
                     Directory.Delete(outputDir, true)
+
                 Directory.CreateDirectory(outputDir) |> ignore
 
                 Renderer.writeOutput outputDir rendered
@@ -103,8 +108,7 @@ module Program =
 
                 printfn "Done!"
                 0
-            with
-            | ex ->
+            with ex ->
                 printfn "Error: %s" ex.Message
                 printfn "%s" ex.StackTrace
                 1
@@ -112,9 +116,9 @@ module Program =
     [<EntryPoint>]
     let main argv =
         let args = argv |> Array.toList
+
         match parseArgs args defaultOptions with
         | None ->
             printHelp ()
             0
-        | Some options ->
-            run options
+        | Some options -> run options
