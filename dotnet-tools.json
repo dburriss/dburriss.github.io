@@ -8,6 +8,13 @@
         "fantomas"
       ],
       "rollForward": false
+    },
+    "dotnet-serve": {
+      "version": "1.10.193",
+      "commands": [
+        "dotnet-serve"
+      ],
+      "rollForward": false
     }
   }
 }

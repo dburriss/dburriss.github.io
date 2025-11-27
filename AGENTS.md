@@ -17,6 +17,20 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 
 <!-- OPENSPEC:END -->
 
+## General
+
+- Prefer simplicity
+- Work in small steps
+- After making code changes, build and test to verify
+
+## Stack
+
+- F# 10
+- .NET 10
+- [Giraffe.ViewEngine](https://giraffe.wiki/view-engine)
+
+## Commands
+
 Build the renderer project with:
 ```bash
 
@@ -28,15 +42,4 @@ Format with Fantomas after code changes (before build):
 ```bash
 dotnet fantomas ./src/SiteRenderer/
 ```
-
-## General
-- Prefer simplicity
-- Work in small steps
-- After making code changes, build and test to verify
-
-## Stack
-
-- F# 10
-- .NET 10
-- [Giraffe.ViewEngine](https://giraffe.wiki/view-engine)
 
