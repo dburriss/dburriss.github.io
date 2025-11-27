@@ -7,6 +7,21 @@ open Giraffe.ViewEngine
 
 module Layouts =
 
+    // Helper for custom attributes not in Giraffe.ViewEngine
+    let private _itemprop value = attr "itemprop" value
+
+    // Helper for fragment - just returns a div with no visible wrapper
+    // In Giraffe.ViewEngine we use a span or div with empty styling, or just inline the children
+    let private fragment (_attrs: XmlAttribute list) (children: XmlNode list) : XmlNode =
+        // Return a parent node that groups children (using span which is inline)
+        span [ attr "style" "display:contents" ] children
+
+    // Helper for HTML5 doctype - creates html element with doctype prefix
+    let private doctypeHtml (attrs: XmlAttribute list) (children: XmlNode list) : XmlNode =
+        // Create the structure: DOCTYPE + html element
+        // The DOCTYPE will be added when rendering with RenderView.AsString.htmlDocument
+        html attrs children
+
     let private htmlEncode value = WebUtility.HtmlEncode(value)
 
     let private joinUrl (root: string) (path: string) =
@@ -24,7 +39,7 @@ module Layouts =
         joinUrl site.Url relative
 
     let private headNode (site: SiteConfig) (page: PageMeta) =
-        let title = if String.IsNullOrWhiteSpace(page.Title) then site.Title else page.Title
+        let pageTitle = if String.IsNullOrWhiteSpace(page.Title) then site.Title else page.Title
         let description =
             page.Description
             |> Option.orElse page.Subtitle
@@ -41,31 +56,31 @@ module Layouts =
                 [ link [ _rel "canonical"; _href canonical ]
                   meta [ _itemprop "datePublished"; _content (date.ToString("yyyy-MM-dd")); _id "date" ]
                   meta [ _itemprop "dateModified"; _content (date.ToString("yyyy-MM-dd")); _id "mdate" ]
-                  meta [ _itemprop "headline"; _content (sprintf "%s - %s" title subtitle) ]
+                  meta [ _itemprop "headline"; _content (sprintf "%s - %s" pageTitle subtitle) ]
                   meta [ _itemprop "mainEntityOfPage"; _content canonical ]
-                  meta [ _name "headline"; _content (sprintf "%s - %s" title subtitle) ] ]
+                  meta [ _name "headline"; _content (sprintf "%s - %s" pageTitle subtitle) ] ]
             | _ -> []
         head [] (
             [ rawText "<!-- META -->"
               meta [ _charset "utf-8" ]
               meta [ _httpEquiv "X-UA-Compatible"; _content "IE=edge" ]
               meta [ _name "viewport"; _content "width=device-width, initial-scale=1" ]
-              title [] [ str title ]
+              title [] [ str pageTitle ]
               meta [ _name "description"; _content description ]
               meta [ _name "author"; _content site.Author ]
               yield! canonicalNodes
               link [ _rel "icon"; _type "image/png"; _href (assetUrl site "img/favicon16.png"); attr "sizes" "16x16" ]
               link [ _rel "icon"; _type "image/png"; _href (assetUrl site "img/favicon32.png"); attr "sizes" "32x32" ]
-              meta [ _itemprop "name"; _content title ]
+              meta [ _itemprop "name"; _content pageTitle ]
               meta [ _itemprop "description"; _content description ]
               meta [ _itemprop "image"; _content imageUrl ]
               meta [ _name "twitter:card"; _content "summary_large_image" ]
               meta [ _name "twitter:site"; _content (sprintf "@%s" (site.TwitterUsername |> Option.defaultValue "")) ]
-              meta [ _name "twitter:title"; _content title ]
+              meta [ _name "twitter:title"; _content pageTitle ]
               meta [ _name "twitter:description"; _content description ]
               meta [ _name "twitter:creator"; _content (sprintf "@%s" (site.TwitterUsername |> Option.defaultValue "")) ]
               meta [ _name "twitter:image"; _content imageUrl ]
-              meta [ _property "og:title"; _content title ]
+              meta [ _property "og:title"; _content pageTitle ]
               meta [ _property "og:type"; _content "article" ]
               meta [ _property "og:url"; _content canonical ]
               meta [ _property "og:image"; _content imageUrl ]
@@ -301,7 +316,7 @@ module Layouts =
                                     [ div [ _class "frame" ]
                                         [ h1 [] [ str page.Title ]
                                           hr [ _class "small" ]
-                                          span [ _class "subheading" ] [ str (page.Description |> Option.defaultValue site.Description) ] ] ] ] ] ]
+                                          span [ _class "subheading" ] [ str (page.Description |> Option.defaultValue site.Description) ] ] ] ] ] ] ]
                   div [ _class "container-fluid" ]
                     [ div [ _class "row" ]
                         [ div [ _class "col-lg-9" ] [ rawText htmlContent ]

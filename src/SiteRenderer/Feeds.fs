@@ -75,7 +75,7 @@ module Feeds =
                 XAttribute(XNamespace.Xmlns + "atom", rssAtomNs),
                 channel)
 
-        let doc = XDocument(XDeclaration("1.0", "utf-8", null), rss)
+        let doc = XDocument(XDeclaration("1.0", "utf-8", null), rss :> obj)
         doc.ToString()
 
     let generateAtom (site: SiteConfig) (posts: ContentItem list) =
@@ -127,5 +127,5 @@ module Feeds =
 
         entries |> List.iter (fun entry -> feed.Add(entry))
 
-        let doc = XDocument(XDeclaration("1.0", "utf-8", null), feed)
+        let doc = XDocument(XDeclaration("1.0", "utf-8", null), feed :> obj)
         doc.ToString()
