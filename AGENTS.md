@@ -32,14 +32,19 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 ## Commands
 
 Build the renderer project with:
+
 ```bash
 
 dotnet build ./src/SiteRenderer/SiteRenderer.fsproj
 ```
 
-Format with Fantomas after code changes (before build): 
+Format with [Fantomas](https://fsprojects.github.io/fantomas/docs/end-users/GettingStarted.html) tool after code changes (before build): 
 
 ```bash
 dotnet fantomas ./src/SiteRenderer/
 ```
 
+Serve the site the [dotnet serve](https://github.com/natemcmaster/dotnet-serve) tool:
+```bash
+dotnet serve -o -d ./_site/
+```
