@@ -62,8 +62,10 @@ if [ -n "$GITHUB_ACTIONS" ]; then
 fi
 
 # Ensure we're on master branch for the commit
-# Submodule may be in detached HEAD state, so we need to checkout or create master
-git checkout master 2>/dev/null || git checkout -B master origin/master 2>/dev/null || git checkout -b master
+# Submodule may be in detached HEAD state after clone, so checkout or create master
+if ! git checkout master 2>/dev/null; then
+    git checkout -b master origin/master 2>/dev/null || git checkout -b master
+fi
 
 if [ "$DRY_RUN" = true ]; then
     echo "=== DRY RUN ==="

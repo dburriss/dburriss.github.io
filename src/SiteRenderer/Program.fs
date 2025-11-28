@@ -52,6 +52,25 @@ module Program =
             printfn "Unknown option: %s" unknown
             None
 
+    /// Cleans the output directory while preserving .git (submodule pointer)
+    let private cleanOutputDirectory (outputDir: string) =
+        if Directory.Exists(outputDir) then
+            // Delete all files except .git
+            for file in Directory.GetFiles(outputDir) do
+                let fileName = Path.GetFileName(file)
+
+                if fileName <> ".git" then
+                    File.Delete(file)
+
+            // Delete all subdirectories except .git (which is a file for submodules, but check anyway)
+            for dir in Directory.GetDirectories(outputDir) do
+                let dirName = Path.GetFileName(dir)
+
+                if dirName <> ".git" then
+                    Directory.Delete(dir, true)
+        else
+            Directory.CreateDirectory(outputDir) |> ignore
+
     let private run (options: CliOptions) =
         let sourceDir = Path.GetFullPath(options.SourceDir)
 
@@ -94,11 +113,8 @@ module Program =
                 let rendered = Renderer.renderSite ctx options.PostsPerPage defaultSocialImg
                 printfn "Rendered %d pages" rendered.Length
 
-                // Clean and create output directory
-                if Directory.Exists(outputDir) then
-                    Directory.Delete(outputDir, true)
-
-                Directory.CreateDirectory(outputDir) |> ignore
+                // Clean output directory (preserves .git for submodule)
+                cleanOutputDirectory outputDir
 
                 Renderer.writeOutput outputDir rendered
                 printfn "Wrote output to %s" outputDir

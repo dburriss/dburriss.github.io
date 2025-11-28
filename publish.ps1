@@ -72,12 +72,12 @@ try {
     }
 
     # Ensure we're on master branch for the commit
-    # Submodule may be in detached HEAD state, so we need to checkout or create master
+    # Submodule may be in detached HEAD state after clone, so checkout or create master
     $null = git checkout master 2>&1
     if ($LASTEXITCODE -ne 0) {
-        $null = git checkout -B master origin/master 2>&1
+        $null = git checkout -b master origin/master 2>&1
         if ($LASTEXITCODE -ne 0) {
-            $null = git checkout -b master 2>&1
+            git checkout -b master
         }
     }
 
