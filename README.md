@@ -7,9 +7,9 @@ A personal blog built with F# and Giraffe.ViewEngine.
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
 - [dotnet-serve](https://github.com/natemcmaster/dotnet-serve) (for local preview)
 
-Install dotnet-serve globally:
+Install dotnet-serve:
 ```bash
-dotnet tool install -g dotnet-serve
+dotnet tool install dotnet-serve
 ```
 
 ## Quick Start
@@ -31,13 +31,13 @@ dotnet tool install -g dotnet-serve
 
 ```powershell
 # Build and generate site
-./build.ps1
+./run.ps1
 
 # Build and serve locally
-./build.ps1 -Serve
+./run.ps1 -Serve
 
 # Build in debug mode and serve on a custom port
-./build.ps1 -Serve -Debug -Port 5000
+./run.ps1 -Serve -Debug -Port 5000
 ```
 
 ## Project Structure
