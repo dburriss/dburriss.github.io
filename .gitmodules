@@ -1,4 +1,4 @@
 [submodule "_site"]
 	path = _site
-	url = https://github.com/dburriss/dburriss.github.io.git
+	url = git@github.com:dburriss/dburriss.github.io.git
 	branch = master
