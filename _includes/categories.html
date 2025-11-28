@@ -1,4 +1,0 @@
-<h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
-{% for category in site.CATEGORIES %}
-    <a class="badge badge-info" href="/category/{{ category.name | slugify }}">{{ category.name }}</a>
-{% endfor %}

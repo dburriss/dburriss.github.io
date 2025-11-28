@@ -47,7 +47,7 @@ dotnet tool install dotnet-serve
 ├── _posts/           # Blog posts in Markdown with YAML front matter
 ├── _drafts/          # Draft posts (not published)
 ├── _config.yml       # Site configuration
-├── _site/            # Generated output (gitignored)
+├── _site/            # Generated output (git submodule -> dburriss.github.io)
 ├── src/SiteRenderer/ # F# static site generator
 │   ├── Models.fs     # Data types
 │   ├── Parsing.fs    # Markdown and YAML parsing
@@ -59,7 +59,10 @@ dotnet tool install dotnet-serve
 ├── js/               # JavaScript files
 ├── img/              # Images
 ├── fonts/            # Web fonts
-└── run.sh            # Build script (Linux/macOS)
+├── run.sh            # Build script (Linux/macOS)
+├── run.ps1           # Build script (Windows)
+├── publish.sh        # Deploy script (Linux/macOS)
+└── publish.ps1       # Deploy script (Windows)
 ```
 
 ## Writing Posts
@@ -151,10 +154,53 @@ dotnet build ./src/SiteRenderer/SiteRenderer.fsproj
 dotnet fantomas ./src/SiteRenderer/
 ```
 
-## CI/CD
+## Deployment
 
-The site is automatically built and deployed via AppVeyor when changes are pushed to the `source` branch. The generated site is pushed to the `master` branch for GitHub Pages hosting.
+### CI/CD with GitHub Actions
 
-## Legacy
+The site is automatically built and deployed via GitHub Actions when changes are pushed to the `source` branch. The workflow:
 
-The `_layouts/`, `_includes/`, and `_plugins/` directories contain the legacy Pretzel/Liquid templates that were used before the F# migration. These are kept for reference but are no longer used in the build process.
+1. Checks out the `source` branch with submodules
+2. Builds the F# SiteRenderer
+3. Generates the static site into `_site/`
+4. Pushes the generated content to the `master` branch of `dburriss.github.io` for GitHub Pages hosting
+
+### Repository Setup
+
+The `_site/` directory is a **git submodule** pointing to `dburriss/dburriss.github.io.git`. This is where the generated site is published.
+
+**Required GitHub Secret:**
+
+A `DEPLOY_TOKEN` secret must be configured in the repository settings. This should be a Personal Access Token (PAT) with `repo` scope to allow pushing to the `dburriss.github.io` repository.
+
+### Manual Deployment
+
+You can publish the site manually using the publish scripts:
+
+```bash
+# Linux/macOS
+./publish.sh
+
+# Windows (PowerShell)
+./publish.ps1
+
+# Dry-run to see what would be published (no changes made)
+./publish.sh --dry-run
+./publish.ps1 -DryRun
+```
+
+The publish scripts will:
+1. Reinitialize the `_site` submodule if needed (the renderer wipes the directory)
+2. Checkout the `master` branch
+3. Stage and commit all changes
+4. Force-push to `origin/master`
+
+### Submodule Setup
+
+If cloning the repository fresh:
+
+```bash
+git clone --recurse-submodules https://github.com/dburriss/dburriss.github.io.git
+# Or if already cloned:
+git submodule update --init
+```
