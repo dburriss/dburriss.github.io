@@ -1,9 +1,0 @@
-// Place your settings in this file to overwrite default and user settings.
-{    
-    "less.compile": {
-        "compress":  true,  // true => remove surplus whitespace
-        "sourceMap": false,  // true => generate source maps (.css.map files)
-        "main": ["${workspaceRoot}\\less\\clean-blog.less"],
-        "out": "${workspaceRoot}\\css\\"
-    }
- }

@@ -1,688 +1,171 @@
-<?xml version="1.0"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-<channel>
+  <channel>
     <title>Devon Burriss' Blog</title>
     <link>https://devonburriss.me/</link>
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Sat, 07 Jan 2023 07:44:20 +00:00</pubDate>
-    <lastBuildDate>Sat, 07 Jan 2023 07:44:20 +00:00</lastBuildDate>
-    
+    <pubDate>Fri, 28 Nov 2025 11:09:32 GMT</pubDate>
+    <lastBuildDate>Fri, 28 Nov 2025 11:09:32 GMT</lastBuildDate>
     <item>
-      <title>You ain&apos;t gonna need YAGNI</title>
+      <title>You ain't gonna need YAGNI</title>
       <link>https://devonburriss.me/yagnyagni/</link>
-      <pubDate>Sat, 07 Jan 2023 00:00:00 +00:00</pubDate>
+      <pubDate>Fri, 06 Jan 2023 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/yagnyagni/</guid>
       <description>Is YAGNI a principle that should always be followed? No. Principles are guides, you still need to think.</description>
     </item>
-    
     <item>
       <title>Telemetry tips</title>
       <link>https://devonburriss.me/telemetry-tips/</link>
-      <pubDate>Wed, 15 Jun 2022 00:00:00 +00:00</pubDate>
+      <pubDate>Tue, 14 Jun 2022 22:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/telemetry-tips/</guid>
       <description>When getting started with a new telemetry platform you may not know what conventions you need to set and follow for metrics, logs, code, etc.. Even if you do, how do you get the rest of the team to follow them too.</description>
     </item>
-    
     <item>
       <title>Choosing a telemetry platform</title>
       <link>https://devonburriss.me/choosing-a-telemetry-platform/</link>
-      <pubDate>Mon, 06 Jun 2022 00:00:00 +00:00</pubDate>
+      <pubDate>Sun, 05 Jun 2022 22:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/choosing-a-telemetry-platform/</guid>
       <description>When looking at a telemetry platform we will often look at support for a cloud provider, specific technologies supported, or maybe price. Something often not considered is usability.</description>
     </item>
-    
     <item>
       <title>Tools for architecture documentation</title>
       <link>https://devonburriss.me/tools-for-arch-docs/</link>
-      <pubDate>Tue, 24 May 2022 00:00:00 +00:00</pubDate>
+      <pubDate>Mon, 23 May 2022 22:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/tools-for-arch-docs/</guid>
       <description>Using a devcontainer with VS Code makes it easy for everyone to get up and running creating C4, PlantUML, and Mermaid diagrams. </description>
     </item>
-    
     <item>
       <title>A simple FP architecture</title>
       <link>https://devonburriss.me/fp-architecture/</link>
-      <pubDate>Fri, 24 Dec 2021 00:00:00 +00:00</pubDate>
+      <pubDate>Thu, 23 Dec 2021 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/fp-architecture/</guid>
       <description>If we apply the ideas of FP can we land at an architecture that rises out of the core ideas of high-order functions and pure functions?</description>
     </item>
-    
     <item>
       <title>Useful FP language features</title>
       <link>https://devonburriss.me/useful-fp-language-features/</link>
-      <pubDate>Thu, 23 Dec 2021 00:00:00 +00:00</pubDate>
+      <pubDate>Wed, 22 Dec 2021 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/useful-fp-language-features/</guid>
       <description>A review of some language features like immutability and algebraic data types that work well in a functional style of programming.</description>
     </item>
-    
     <item>
       <title>What is Functional Programming?</title>
       <link>https://devonburriss.me/what-is-fp/</link>
-      <pubDate>Wed, 22 Dec 2021 00:00:00 +00:00</pubDate>
+      <pubDate>Tue, 21 Dec 2021 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/what-is-fp/</guid>
       <description>A review of the big ideas in functional programming like pure functions, higher-order functions, and composition. This will form the baseline for future posts on designing and structuring a functional codebase.</description>
     </item>
-    
     <item>
       <title>Reliable APIs - Part 3</title>
       <link>https://devonburriss.me/reliable-apis-part-3/</link>
-      <pubDate>Sun, 29 Aug 2021 00:00:00 +00:00</pubDate>
+      <pubDate>Sat, 28 Aug 2021 22:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/reliable-apis-part-3/</guid>
       <description>A better idempotency implementation using client-generated IDs.</description>
     </item>
-    
     <item>
       <title>Reliable APIs - Part 2</title>
       <link>https://devonburriss.me/reliable-apis-part-2/</link>
-      <pubDate>Mon, 23 Aug 2021 00:00:00 +00:00</pubDate>
+      <pubDate>Sun, 22 Aug 2021 22:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/reliable-apis-part-2/</guid>
       <description>An example of a bad resilience implementation and discussion of the failure modes.</description>
     </item>
-    
     <item>
       <title>Reliable APIs - Part 1</title>
       <link>https://devonburriss.me/reliable-apis-part-1/</link>
-      <pubDate>Sun, 22 Aug 2021 00:00:00 +00:00</pubDate>
+      <pubDate>Sat, 21 Aug 2021 22:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/reliable-apis-part-1/</guid>
       <description>Takes a look at using retry policies to increase the reliability of calls to APIs as well as the endpoint internals. This post looks at how retry-policies can go wrong and walks through analysing for proper use.</description>
     </item>
-    
     <item>
       <title>Capturing custom business metrics in Azure Functions</title>
       <link>https://devonburriss.me/azfunc-prometheus-endpoint/</link>
-      <pubDate>Mon, 01 Feb 2021 00:00:00 +00:00</pubDate>
+      <pubDate>Sun, 31 Jan 2021 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/azfunc-prometheus-endpoint/</guid>
       <description>A simple example showing how to expose a Prometheus endpoint from Azure Functions using the Fennel library</description>
     </item>
-    
     <item>
       <title>Prometheus Datadog Agent</title>
       <link>https://devonburriss.me/prometheus-datadog-agent/</link>
-      <pubDate>Sun, 31 Jan 2021 00:00:00 +00:00</pubDate>
+      <pubDate>Sat, 30 Jan 2021 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/prometheus-datadog-agent/</guid>
       <description>In this post we configure a Datadog agent to scrape metrics from a Prometheus metrics endpoint.</description>
     </item>
-    
     <item>
       <title>Local Prometheus setup</title>
       <link>https://devonburriss.me/local-prometheus-setup/</link>
-      <pubDate>Sat, 30 Jan 2021 00:00:00 +00:00</pubDate>
+      <pubDate>Fri, 29 Jan 2021 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/local-prometheus-setup/</guid>
       <description>Using docker to run a local Prometheus instance for testing.</description>
     </item>
-    
     <item>
       <title>The meaning of meditation</title>
       <link>https://devonburriss.me/meaning-of-meditation/</link>
-      <pubDate>Sat, 09 Jan 2021 00:00:00 +00:00</pubDate>
+      <pubDate>Fri, 08 Jan 2021 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/meaning-of-meditation/</guid>
       <description>By combining different traditions of meditation skillfully we can improve our contentment and treat others with kindness</description>
     </item>
-    
     <item>
       <title>Creating a Prometheus parser: Fennel</title>
       <link>https://devonburriss.me/prometheus-parser-fennel/</link>
-      <pubDate>Thu, 24 Dec 2020 00:00:00 +00:00</pubDate>
+      <pubDate>Wed, 23 Dec 2020 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/prometheus-parser-fennel/</guid>
       <description>This post shows some of the results both in text parsing and end Promethean result of creating a parser.</description>
     </item>
-    
     <item>
       <title>Converting between F# and C# types</title>
       <link>https://devonburriss.me/converting-fsharp-csharp/</link>
-      <pubDate>Tue, 05 May 2020 00:00:00 +00:00</pubDate>
+      <pubDate>Mon, 04 May 2020 22:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/converting-fsharp-csharp/</guid>
       <description>In this post we look at converting between F# collections like Seq, List, Array and common C# collections and interfaces.</description>
     </item>
-    
     <item>
       <title>Reliability with Intents</title>
       <link>https://devonburriss.me/reliability-with-intents/</link>
-      <pubDate>Thu, 05 Dec 2019 00:00:00 +00:00</pubDate>
+      <pubDate>Wed, 04 Dec 2019 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/reliability-with-intents/</guid>
       <description>In this post I explore a solution for sending messages across process boundaries where the notification needs to be transactional with state change</description>
     </item>
-    
     <item>
       <title>Canopy from a FSX Script</title>
       <link>https://devonburriss.me/canopy-from-fsx/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +00:00</pubDate>
+      <pubDate>Fri, 14 Dec 2018 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/canopy-from-fsx/</guid>
       <description>Examples of running Canopy Selenium automation in a F# fsx script file</description>
     </item>
-    
     <item>
       <title>Review: F# unit testing frameworks and libraries</title>
       <link>https://devonburriss.me/review-fsharp-test-libs/</link>
-      <pubDate>Sat, 08 Dec 2018 00:00:00 +00:00</pubDate>
+      <pubDate>Fri, 07 Dec 2018 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/review-fsharp-test-libs/</guid>
       <description>A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries</description>
     </item>
-    
     <item>
       <title>How to F# - Part 10</title>
       <link>https://devonburriss.me/how-to-fsharp-pt-10/</link>
-      <pubDate>Sat, 24 Nov 2018 00:00:00 +00:00</pubDate>
+      <pubDate>Fri, 23 Nov 2018 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/how-to-fsharp-pt-10/</guid>
       <description>Writing your first command line application using F# and .NET Core</description>
     </item>
-    
-    <item>
-      <title>How to F# - Part 9</title>
-      <link>https://devonburriss.me/how-to-fsharp-pt-9/</link>
-      <pubDate>Sun, 04 Nov 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/how-to-fsharp-pt-9/</guid>
-      <description>Explore connecting and working with a database in F# using Dapper and SQLite</description>
-    </item>
-    
-    <item>
-      <title>How to F# - Part 8</title>
-      <link>https://devonburriss.me/how-to-fsharp-pt-8/</link>
-      <pubDate>Tue, 30 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/how-to-fsharp-pt-8/</guid>
-      <description>Elegant exception handling in F#</description>
-    </item>
-    
-    <item>
-      <title>How to F# - Part 7</title>
-      <link>https://devonburriss.me/how-to-fsharp-pt-7/</link>
-      <pubDate>Sun, 28 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/how-to-fsharp-pt-7/</guid>
-      <description>Diving into the super helpful collection functions available to manipulate collections in F#</description>
-    </item>
-    
-    <item>
-      <title>How to F# - Part 6</title>
-      <link>https://devonburriss.me/how-to-fsharp-pt-6/</link>
-      <pubDate>Sat, 27 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/how-to-fsharp-pt-6/</guid>
-      <description>In Part 6 we explore ways of handling cases where data is not there with Maybe, and how to wrap null into this way of working with data</description>
-    </item>
-    
-    <item>
-      <title>How to F# - Part 5</title>
-      <link>https://devonburriss.me/how-to-fsharp-pt-5/</link>
-      <pubDate>Fri, 26 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/how-to-fsharp-pt-5/</guid>
-      <description>In this post we explore the magic of pattern matching including value deconstruction, match expressions, and active patterns</description>
-    </item>
-    
-    <item>
-      <title>How to F# - Part 4</title>
-      <link>https://devonburriss.me/how-to-fsharp-pt-4/</link>
-      <pubDate>Thu, 25 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/how-to-fsharp-pt-4/</guid>
-      <description>In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections</description>
-    </item>
-    
-    <item>
-      <title>How to F# - Part 3</title>
-      <link>https://devonburriss.me/how-to-fsharp-pt-3/</link>
-      <pubDate>Wed, 24 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/how-to-fsharp-pt-3/</guid>
-      <description>In part 3 we will dive deeper into functions exploring different techniques for working with them</description>
-    </item>
-    
-    <item>
-      <title>How to F# - Part 2</title>
-      <link>https://devonburriss.me/how-to-fsharp-pt-2/</link>
-      <pubDate>Tue, 23 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/how-to-fsharp-pt-2/</guid>
-      <description>In part 2 of this series we will look at what gives functional programming its name, functions</description>
-    </item>
-    
-    <item>
-      <title>How to F# - Part 1</title>
-      <link>https://devonburriss.me/how-to-fsharp-pt-1/</link>
-      <pubDate>Fri, 19 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/how-to-fsharp-pt-1/</guid>
-      <description>In part 1 of this series we will look at assigning values and at some of the common types used when programming</description>
-    </item>
-    
-    <item>
-      <title>F# Scripts</title>
-      <link>https://devonburriss.me/fsharp-scripting/</link>
-      <pubDate>Wed, 17 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/fsharp-scripting/</guid>
-      <description>Start exploring code faster by running F# as a fsx script file</description>
-    </item>
-    
-    <item>
-      <title>Up and running with PAKET</title>
-      <link>https://devonburriss.me/up-and-running-with-paket/</link>
-      <pubDate>Tue, 16 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/up-and-running-with-paket/</guid>
-      <description>Instructions on getting up and running fast with Paket dependency manager</description>
-    </item>
-    
-    <item>
-      <title>Functional modeling</title>
-      <link>https://devonburriss.me/functional-modeling/</link>
-      <pubDate>Sat, 13 Oct 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/functional-modeling/</guid>
-      <description>As OOP developers it is often far too easy for us to try create a model that captures every state. This is almost always a poor abstraction. What if instead of trying to model every possible state at rest we modeled the change of state over time? This article explores what that might look like.</description>
-    </item>
-    
-    <item>
-      <title>The functional-structural impedance mismatch</title>
-      <link>https://devonburriss.me/functional-structural-impedance-mismatch/</link>
-      <pubDate>Sat, 08 Sep 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/functional-structural-impedance-mismatch/</guid>
-      <description>When modeling software we often focus on modeling state. What if instead we modeled functionality through time? This way we can more closely match our structural model to our behavioral model. I believe this increases the ease of understanding a system, and to change a system, you need to understand it.</description>
-    </item>
-    
-    <item>
-      <title>Anatomy of an automated test suite</title>
-      <link>https://devonburriss.me/anatomy-of-automated-testing/</link>
-      <pubDate>Mon, 13 Aug 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/anatomy-of-automated-testing/</guid>
-      <description>Comparing structure and function of various test types to tease out what we really care to verify</description>
-    </item>
-    
-    <item>
-      <title>The Page Module Model with F# and Canopy</title>
-      <link>https://devonburriss.me/page-module-model/</link>
-      <pubDate>Sun, 12 Aug 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/page-module-model/</guid>
-      <description>Using F#, Canopy (Selenium) and the Page Object(Module) Model to test UIs in a way that makes tests readable and easy to maintain</description>
-    </item>
-    
-    <item>
-      <title>Writing readable Acceptance tests</title>
-      <link>https://devonburriss.me/acceptance-tests/</link>
-      <pubDate>Sat, 11 Aug 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/acceptance-tests/</guid>
-      <description>Tips and examples on improving the readability of your acceptance/behavior tests</description>
-    </item>
-    
-    <item>
-      <title>The torch bearer</title>
-      <link>https://devonburriss.me/the-torch-bearer/</link>
-      <pubDate>Tue, 29 May 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/the-torch-bearer/</guid>
-      <description>Software leadership is about high level direction but it is also about making sure the teams doing the development have the skills and experience to successfully execute what is being asked of them.</description>
-    </item>
-    
-    <item>
-      <title>Mobbing a story</title>
-      <link>https://devonburriss.me/first-mob-programming/</link>
-      <pubDate>Wed, 09 May 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/first-mob-programming/</guid>
-      <description>Mob programming is a great agile way to increase learning in a team. Here are 6 lessons learned during a mob programming session.</description>
-    </item>
-    
-    <item>
-      <title>This one trick will make you a better leader</title>
-      <link>https://devonburriss.me/simple-trick-to-be-a-better-leader/</link>
-      <pubDate>Fri, 04 May 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/simple-trick-to-be-a-better-leader/</guid>
-      <description>Leadership requires many ingredients but applying this one thing can increase loyalty, trust, as well as increase your calmness under pressure.</description>
-    </item>
-    
-    <item>
-      <title>Employees are like cars not petrol</title>
-      <link>https://devonburriss.me/employees-are-like-cars-not-petrol/</link>
-      <pubDate>Thu, 03 May 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/employees-are-like-cars-not-petrol/</guid>
-      <description>What is it about a company culture that attracts and keeps talent?</description>
-    </item>
-    
-    <item>
-      <title>Leader Archetypes</title>
-      <link>https://devonburriss.me/leader-archetypes/</link>
-      <pubDate>Thu, 26 Apr 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/leader-archetypes/</guid>
-      <description>A description of three archetypes of leaders with some pros and cons of styles</description>
-    </item>
-    
-    <item>
-      <title>3 tips for more maintainable unit tests</title>
-      <link>https://devonburriss.me/maintainable-unit-tests/</link>
-      <pubDate>Sat, 07 Apr 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/maintainable-unit-tests/</guid>
-      <description>Highlights some tips for making tests more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details.</description>
-    </item>
-    
-    <item>
-      <title>Managing Code Complexity</title>
-      <link>https://devonburriss.me/managing-code-complexity/</link>
-      <pubDate>Fri, 06 Apr 2018 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/managing-code-complexity/</guid>
-      <description>7 tips to address some common anti-patterns in code that hide intent</description>
-    </item>
-    
-    <item>
-      <title>Why I got hooked on F#</title>
-      <link>https://devonburriss.me/why-i-got-hooked-on-fsharp/</link>
-      <pubDate>Thu, 28 Dec 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/why-i-got-hooked-on-fsharp/</guid>
-      <description>A short overview of my ongoing efforts to learn functional programming, specifically F#</description>
-    </item>
-    
-    <item>
-      <title>An argument for functional programming</title>
-      <link>https://devonburriss.me/argument-for-fp/</link>
-      <pubDate>Fri, 08 Dec 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/argument-for-fp/</guid>
-      <description>Arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular</description>
-    </item>
-    
-    <item>
-      <title>Touched by God</title>
-      <link>https://devonburriss.me/touched-by-god/</link>
-      <pubDate>Thu, 02 Nov 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/touched-by-god/</guid>
-      <description>Thoughts on my experiences in charismatic churches and the stillness of my own mind.</description>
-    </item>
-    
-    <item>
-      <title>Hypothesis: Moral behavior is rewarded</title>
-      <link>https://devonburriss.me/moral-behavior-is-rewarded/</link>
-      <pubDate>Thu, 19 Oct 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/moral-behavior-is-rewarded/</guid>
-      <description>This is an initial hypothesis and description of a commitment I have made to moral integrity in my work and personal life.</description>
-    </item>
-    
-    <item>
-      <title>Stop comparing EQ and IQ</title>
-      <link>https://devonburriss.me/stop-comparing-eq-and-iq/</link>
-      <pubDate>Tue, 17 Oct 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/stop-comparing-eq-and-iq/</guid>
-      <description>EQ is dependent on mental facilities correlated to IQ such as verbal comprehension, working memory, perceptual organization, &amp; processing speed.</description>
-    </item>
-    
-    <item>
-      <title>Yoda wants you to be a functional programmer</title>
-      <link>https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</link>
-      <pubDate>Sat, 10 Jun 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/yoda-wants-you-to-be-a-functional-programmer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Productivity Tips</title>
-      <link>https://devonburriss.me/productivity-tips-1/</link>
-      <pubDate>Fri, 09 Jun 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/productivity-tips-1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Agile is a Characteristic</title>
-      <link>https://devonburriss.me/agile-is-a-characteristic/</link>
-      <pubDate>Wed, 22 Mar 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/agile-is-a-characteristic/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Aspect Rating</title>
-      <link>https://devonburriss.me/aspect-rating/</link>
-      <pubDate>Tue, 21 Mar 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/aspect-rating/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Big Agile Teams</title>
-      <link>https://devonburriss.me/big-agile-teams/</link>
-      <pubDate>Mon, 20 Mar 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/big-agile-teams/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Check-in and Check-out</title>
-      <link>https://devonburriss.me/check-in-check-out/</link>
-      <pubDate>Mon, 20 Mar 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/check-in-check-out/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Better error handling</title>
-      <link>https://devonburriss.me/better-error-handling/</link>
-      <pubDate>Sun, 19 Mar 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/better-error-handling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Honest Return Types</title>
-      <link>https://devonburriss.me/honest-return-types/</link>
-      <pubDate>Tue, 14 Mar 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/honest-return-types/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Honest Arguments</title>
-      <link>https://devonburriss.me/honest-arguments/</link>
-      <pubDate>Fri, 10 Mar 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/honest-arguments/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Visual Studio Implicit Snippet</title>
-      <link>https://devonburriss.me/visual-studio-implicit-snippet/</link>
-      <pubDate>Wed, 08 Mar 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/visual-studio-implicit-snippet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Building a Cake Script</title>
-      <link>https://devonburriss.me/cake-build/</link>
-      <pubDate>Sat, 04 Mar 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/cake-build/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Domain-Driven Design Glossary</title>
-      <link>https://devonburriss.me/ddd-glossary/</link>
-      <pubDate>Tue, 14 Feb 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/ddd-glossary/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Visual Studio Code Tasks</title>
-      <link>https://devonburriss.me/vscode-tasks/</link>
-      <pubDate>Sat, 11 Feb 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/vscode-tasks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Deploying a Pretzel generated static site to Github Pages using Appveyor</title>
-      <link>https://devonburriss.me/pretezel-blog-appveyor-deployment/</link>
-      <pubDate>Tue, 31 Jan 2017 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/pretezel-blog-appveyor-deployment/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ASP.NET 5 Tips: UrlHelper</title>
-      <link>https://devonburriss.me/asp-net-5-tips-urlhelper/</link>
-      <pubDate>Mon, 18 Jan 2016 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/asp-net-5-tips-urlhelper/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ASP.NET 5 Tips: TempData</title>
-      <link>https://devonburriss.me/asp-net-5-tips-tempdata/</link>
-      <pubDate>Sun, 17 Jan 2016 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/asp-net-5-tips-tempdata/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ASP.NET 5 CI from Git to Azure without Visual Studio</title>
-      <link>https://devonburriss.me/aspnet-vsonline-ci/</link>
-      <pubDate>Thu, 10 Sep 2015 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/aspnet-vsonline-ci/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Installing Docker on Hyper-V</title>
-      <link>https://devonburriss.me/installing-docker-on-hyper-v/</link>
-      <pubDate>Sat, 07 Mar 2015 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/installing-docker-on-hyper-v/</guid>
-      <description>Installing Docker on Windows</description>
-    </item>
-    
-    <item>
-      <title>Installing Ubuntu on Hyper-V</title>
-      <link>https://devonburriss.me/installing-ubuntu-on-hyper-v/</link>
-      <pubDate>Fri, 06 Mar 2015 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/installing-ubuntu-on-hyper-v/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Testing the Untestable</title>
-      <link>https://devonburriss.me/testing-the-untestable/</link>
-      <pubDate>Tue, 27 Jan 2015 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/testing-the-untestable/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Developer Quest II - Variables</title>
-      <link>https://devonburriss.me/developer-quest-variables/</link>
-      <pubDate>Sun, 12 Oct 2014 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/developer-quest-variables/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Developer Quest I - Getting started with C#</title>
-      <link>https://devonburriss.me/developer-quest-getting-started/</link>
-      <pubDate>Thu, 09 Oct 2014 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/developer-quest-getting-started/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Software development is like a piece of string</title>
-      <link>https://devonburriss.me/software-development-is-like-a-piece-of-string/</link>
-      <pubDate>Fri, 03 Oct 2014 00:00:00 +00:00</pubDate>
-      <author></author>
-      <guid>https://devonburriss.me/software-development-is-like-a-piece-of-string/</guid>
-      <description>With knots.</description>
-    </item>
-    
-    <item>
-      <title>Testing your data repositories</title>
-      <link>https://devonburriss.me/testing-your-data-repositories/</link>
-      <pubDate>Sun, 07 Sep 2014 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/testing-your-data-repositories/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Single Responsibility Principle</title>
-      <link>https://devonburriss.me/single-respon/</link>
-      <pubDate>Fri, 05 Sep 2014 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/single-respon/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Estimation</title>
-      <link>https://devonburriss.me/estimation/</link>
-      <pubDate>Thu, 07 Aug 2014 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/estimation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>The way we write code…and how we talk about it</title>
-      <link>https://devonburriss.me/the-way-we-write-code/</link>
-      <pubDate>Fri, 18 Jul 2014 00:00:00 +00:00</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/the-way-we-write-code/</guid>
-      <description></description>
-    </item>
-    
-  </channel> 
+  </channel>
 </rss>

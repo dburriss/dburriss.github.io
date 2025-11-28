@@ -1,194 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/Article">
-
-<head>
-    <!-- META -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
-
-
-
-    
-
-
-
-
-    <title>Single Responsibility Principle</title>
-    <meta name="description" content="The S in SOLID.">
-    <meta name="author" content="Devon Burriss">
-    
-    <link rel="canonical" href="https://devonburriss.me/single-respon/">
-    
-    <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon16.png" sizes="16x16">  
-    <link rel="icon" type="image/png" href="https://devonburriss.me/img/favicon32.png" sizes="32x32">
-
-    <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Single Responsibility Principle">
-    <meta itemprop="description" content="The S in SOLID.">
-    <meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg">
-    
-    <meta itemprop="datePublished" content="9/5/2014 12:00:00 AM" id="date">
-    <meta itemprop="dateModified" content="9/5/2014 12:00:00 AM" id="mdate">
-    <meta itemprop="headline" content="Single Responsibility Principle - The S in SOLID." />
-    <meta itemprop="mainEntityOfPage" content="https://devonburriss.me/single-respon/" />
-    <meta name="headline" content="Single Responsibility Principle - The S in SOLID." />
-
-    
-
-    <!-- Twitter Card data -->
-    <meta name="twitter:card" value="summary_large_image">
-    <meta name="twitter:site" content="@DevonBurriss">
-    <meta name="twitter:title" content="Single Responsibility Principle">
-    <meta name="twitter:description" content="The S in SOLID.">
-    <meta name="twitter:creator" content="@DevonBurriss">
-    <meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg">
-
-    <!-- Open Graph data -->
-    <meta property="og:title" content="Single Responsibility Principle" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://devonburriss.me/single-respon/" />
-    <meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg" />
-    <meta property="og:description" content="The S in SOLID." />
-    <meta property="og:site_name" content="Devon Burriss' Blog" /> 
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/clean-blog.css">
-
-    <!-- Pygments Github CSS -->
-    
-
-    <!-- Code Highlight -->
-    <link rel="stylesheet" charset="UTF-8" href="/css/highlight/atom-one-light.css">
-    
-    <!-- Custom Fonts -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+<html><head><!-- META --><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Single Responsibility Principle</title><meta name="description" content="The S in SOLID."><meta name="author" content="Devon Burriss"><link rel="canonical" href="https://devonburriss.me/single-respon/"><meta itemprop="datePublished" content="2014-09-05" id="date"><meta itemprop="dateModified" content="2014-09-05" id="mdate"><meta itemprop="headline" content="Single Responsibility Principle - The S in SOLID."><meta itemprop="mainEntityOfPage" content="https://devonburriss.me/single-respon/"><meta name="headline" content="Single Responsibility Principle - The S in SOLID."><link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16"><link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32"><meta itemprop="name" content="Single Responsibility Principle"><meta itemprop="description" content="The S in SOLID."><meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@DevonBurriss"><meta name="twitter:title" content="Single Responsibility Principle"><meta name="twitter:description" content="The S in SOLID."><meta name="twitter:creator" content="@DevonBurriss"><meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:title" content="Single Responsibility Principle"><meta property="og:type" content="article"><meta property="og:url" content="https://devonburriss.me/single-respon/"><meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:description" content="The S in SOLID."><meta property="og:site_name" content="Devon Burriss&#39; Blog"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/clean-blog.css"><link rel="stylesheet" charset="UTF-8" href="/css/highlight/atom-one-light.css"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-
-<body>
-
-    <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Devon Burriss' Blog</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/recommended-reading.html">Recommended Reading</a>
-                </li>
-                <!--
-				
-                <li>
-                    <a href="/atom.xml">this is a post</a>
-                </li>
-				
-                
-				
-                <li>
-                    <a href="/index.html">this is a post</a>
-                </li>
-				
-                
-				
-                <li>
-                    <a href="/recommended-reading.html">Recommended Reading</a>
-                </li>
-				
-                
-				
-                <li>
-                    <a href="/rss.xml">this is a post</a>
-                </li>
-				
-                
-				
-                <li>
-                    <a href="/sitemap.xml">this is a post</a>
-                </li>
-				
-                -->
-                <li>
-                    <a href="/rss.xml">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-rss fa-stack-1x"></i>
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-
-
-    <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://devonburriss.me/img/backgrounds/explore-bg.jpg')">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="frame">
-                        <h1>Single Responsibility Principle</h1>
-                        
-                        <h2 class="subheading">The S in SOLID.</h2>
-                        
-                        <span class="meta" itemprop="author" itemscope itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on September 05, 2014</span>
-                        
-                            <hr />
-                            
-                                <a href="/tag/programming" class="label label-default">Programming</a>
-                            
-                                <a href="/tag/solid" class="label label-default">SOLID</a>
-                            
-                                <a href="/tag/oop" class="label label-default">OOP</a>
-                            
-                        
-                    <div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Post Content -->
-<article>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 ">
-
-				<blockquote>
+    <![endif]--></head><body><nav class="navbar navbar-default navbar-custom navbar-fixed-top"><div class="container-fluid"><div class="navbar-header page-scroll"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Devon Burriss&#39; Blog</a></div><div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><ul class="nav navbar-nav navbar-right"><li><a href="/">Home</a></li><li><a href="/recommended-reading.html">Recommended Reading</a></li><li><a href="/rss.xml"><span class="fa-stack fa-lg"><i class="fa fa-rss fa-stack-1x"></i></span></a></li></ul></div></div></nav><header class="intro-header" style="background-image: url(&#39;/img/backgrounds/explore-bg.jpg&#39;)"><div class="container-fluid"><div class="row"><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class="post-heading"><div class="frame"><h1>Single Responsibility Principle</h1><h2 class="subheading">The S in SOLID.</h2><span class="meta" itemprop="author" itemscope="" itemtype="https://schema.org/Person">Posted by <span itemprop="name">Devon Burriss</span> on September 05, 2014</span><span style="display:contents"><hr><a href="/tag/programming"><span class="label label-default">Programming</span></a><a href="/tag/solid"><span class="label label-default">SOLID</span></a><a href="/tag/oop"><span class="label label-default">OOP</span></a></span><div></div></div></div></div></div></div></header><article><div class="container-fluid"><div class="row"><div class="col-lg-8"><blockquote>
 <p>The <strong>S</strong> in <strong>SOLID</strong>.</p>
 </blockquote>
 <p>If I had to pick one principle that had to be enforced strongly on a code base, this would be it. Most techniques for writing elegant code fall by the wayside if this principle is not followed.</p>
@@ -198,25 +12,73 @@
 <p><strong>Don’t repeat yourself.</strong> Well this does something slightly different…</p>
 <p>It has been a long time but I do remember a time when I was averse to lots of files in a development project. When I had god classes that contained demi-god functions. I am not sure if it is related but it may have been a side effect of programming in a dynamic language but to blame it on a language would be naïve. Besides, I learned the basics of programming in C++ and Java. I also remember a time when every little change I made in my projects broke a chain of other parts, some expected, and way too many completely unexpected. And it was exactly those circumstances that made me question how I was doing things. Enter SRP.</p>
 <!--more-->
-<h2>Definition</h2>
-<p>Since it is a principle, rather than a rule; it doesn’t have one clear definition but as far as I can tell Robert C. Martin (http://www.objectmentor.com/omTeam/martin_r.html) coined the term and so his definition will be used:</p>
+<h2 id="definition">Definition</h2>
+<p>Since it is a principle, rather than a rule; it doesn’t have one clear definition but as far as I can tell Robert C. Martin (<a href="http://www.objectmentor.com/omTeam/martin_r.html">http://www.objectmentor.com/omTeam/martin_r.html</a>) coined the term and so his definition will be used:</p>
 <blockquote>
 <p>THERE SHOULD NEVER BE MORE THAN ONE REASON FOR A CLASS TO CHANGE.</p>
 </blockquote>
 <p>This is a very simple statement but one that is quite hard to get right in practice. It takes discipline to think carefully about where each piece of code is placed to make sure it belongs there.</p>
 <p><img src="/img/posts/2014/train-track-800-slim.jpg" alt="trainline into the distance" /></p>
-<h2>Class Cohesion</h2>
-<p>A discussion of SRP would not be complete without mention of cohesion (http://en.wikipedia.org/wiki/Cohesion_(computer_science)). Cohesion is the measure of how well the members of a class group together. An easy tell to look for when looking for classes with low cohesion is to look for fields that are used in separate functions. If you find a field that is used in some functions, and another field that is used in others, it is likely that you need 2 classes rather than 1 for the behaviour. We will see an example of this later.</p>
-<h2>Example</h2>
+<h2 id="class-cohesion">Class Cohesion</h2>
+<p>A discussion of SRP would not be complete without mention of cohesion (<a href="http://en.wikipedia.org/wiki/Cohesion_(computer_science)">http://en.wikipedia.org/wiki/Cohesion_(computer_science)</a>). Cohesion is the measure of how well the members of a class group together. An easy tell to look for when looking for classes with low cohesion is to look for fields that are used in separate functions. If you find a field that is used in some functions, and another field that is used in others, it is likely that you need 2 classes rather than 1 for the behaviour. We will see an example of this later.</p>
+<h2 id="example">Example</h2>
 <p>Ok. Enough talk (or writing rather…). Lets look at an example of a class that does not follow SRP and refactor it towards one that does.
 The example I use is a service that processes a customer’s order.</p>
-<pre><code class="language-csharp">
+<p>{% highlight csharp %}
 public class OrderServiceBefore : IDisposable
 {
-    private const string connection = @"c:\Example.mdf";
-    private readonly DataContext db;
-    private SmtpClient emailClient;
-    public OrderServiceBefore()
+private const string connection = @&quot;c:\Example.mdf&quot;;
+private readonly DataContext db;
+private SmtpClient emailClient;
+public OrderServiceBefore()
+{
+this.db = new DataContext(connection);
+this.emailClient = new SmtpClient();
+}</p>
+<pre><code>public void Process(Order order)
+{
+
+    //validate order            
+    if (order == null)
+        throw new ArgumentNullException(&quot;order&quot;);
+    if (order.Customer == null)
+        throw new ArgumentException(&quot;Customer cannot be null.&quot;);
+    if (order.OrderLines.Count &lt; 1)
+        throw new InvalidOperationException(&quot;Cannot process an order with no lineitems.&quot;);
+
+    //save order
+    db.GetTable&lt;Order&gt;().Attach(order);
+    db.SubmitChanges();
+
+    //email order form
+    var email = string.Format(&quot;New order {0} place on {1} by {2}.&quot;);
+    foreach (var item in order.OrderLines)
+    {
+        email = email + &quot;\n&quot;;
+        email = email + item.Product + &quot; : &quot; + item.Quantity;
+    }
+    emailClient.Send(new MailMessage(&quot;me@me.com&quot;, &quot;sales@company.com&quot;));
+}
+
+public void Dispose()
+{
+    if (this.db != null)
+        this.db.Dispose();
+    if (this.emailClient != null)
+        this.emailClient.Dispose();
+}
+</code></pre>
+<p>}
+{% endhighlight %}</p>
+<p>Looking at the code you can see that the Process method does more than 1 thing. It checks the validity of the order, persists it to the database, and then emails sales with the order details.
+Lets start refactoring this toward a cleaner implementation…</p>
+<p>{% highlight csharp %}
+public class OrderServiceIntermediate : IDisposable
+{
+private const string connection = @&quot;c:\Example.mdf&quot;;
+private readonly DataContext db;
+private SmtpClient emailClient;</p>
+<pre><code>    public OrderServiceIntermediate()
     {
         this.db = new DataContext(connection);
         this.emailClient = new SmtpClient();
@@ -224,846 +86,144 @@ public class OrderServiceBefore : IDisposable
 
     public void Process(Order order)
     {
-
-        //validate order            
-        if (order == null)
-            throw new ArgumentNullException("order");
-        if (order.Customer == null)
-            throw new ArgumentException("Customer cannot be null.");
-        if (order.OrderLines.Count < 1)
-            throw new InvalidOperationException("Cannot process an order with no lineitems.");
-
-        //save order
-        db.GetTable<Order>().Attach(order);
-        db.SubmitChanges();
-
-        //email order form
-        var email = string.Format("New order {0} place on {1} by {2}.");
-        foreach (var item in order.OrderLines)
-        {
-            email = email + "\n";
-            email = email + item.Product + " : " + item.Quantity;
-        }
-        emailClient.Send(new MailMessage("me@me.com", "sales@company.com"));
+        OrderProcessGaurd(order);
+        SaveOrder(order);
+        EmailOrderToSales(order);
     }
 
+    private void EmailOrderToSales(Order order)
+    {
+        var email = string.Format(&quot;New order {0} place on {1} by &quot;);
+        foreach (var item in order.OrderLines)
+        {
+            email = email + &quot;\n&quot;;
+            email = email + item.Product + &quot; : &quot; + item.Quantity;
+        }
+
+        emailClient.Send(new MailMessage(&quot;me@me.com&quot;, &quot;sales@comp&quot;));
+    }
+
+    private void SaveOrder(Order order)
+    {
+        db.GetTable&lt;Order&gt;().Attach(order); db.SubmitChanges();
+    }
+    private void OrderProcessGaurd(Order order)
+    {
+        if (order == null)
+            throw new ArgumentNullException(&quot;order&quot;);
+        if (order.Customer == null)
+            throw new ArgumentException(&quot;Customer cannot be null.&quot;);
+        if (order.OrderLines.Count &lt; 1)
+            throw new InvalidOperationException(&quot;Cannot process an order with no lineitems.&quot;);
+    }
     public void Dispose()
     {
         if (this.db != null)
             this.db.Dispose();
+
         if (this.emailClient != null)
             this.emailClient.Dispose();
     }
+
 }
 </code></pre>
-<p>Looking at the code you can see that the Process method does more than 1 thing. It checks the validity of the order, persists it to the database, and then emails sales with the order details.
-Lets start refactoring this toward a cleaner implementation…</p>
-<pre><code class="language-csharp">
-public class OrderServiceIntermediate : IDisposable
-    {
-        private const string connection = @"c:\Example.mdf";
-        private readonly DataContext db;
-        private SmtpClient emailClient;
-
-        public OrderServiceIntermediate()
-        {
-            this.db = new DataContext(connection);
-            this.emailClient = new SmtpClient();
-        }
-
-        public void Process(Order order)
-        {
-            OrderProcessGaurd(order);
-            SaveOrder(order);
-            EmailOrderToSales(order);
-        }
-
-        private void EmailOrderToSales(Order order)
-        {
-            var email = string.Format("New order {0} place on {1} by ");
-            foreach (var item in order.OrderLines)
-            {
-                email = email + "\n";
-                email = email + item.Product + " : " + item.Quantity;
-            }
-
-            emailClient.Send(new MailMessage("me@me.com", "sales@comp"));
-        }
-
-        private void SaveOrder(Order order)
-        {
-            db.GetTable<Order>().Attach(order); db.SubmitChanges();
-        }
-        private void OrderProcessGaurd(Order order)
-        {
-            if (order == null)
-                throw new ArgumentNullException("order");
-            if (order.Customer == null)
-                throw new ArgumentException("Customer cannot be null.");
-            if (order.OrderLines.Count < 1)
-                throw new InvalidOperationException("Cannot process an order with no lineitems.");
-        }
-        public void Dispose()
-        {
-            if (this.db != null)
-                this.db.Dispose();
-
-            if (this.emailClient != null)
-                this.emailClient.Dispose();
-        }
-
-    }
-</code></pre>
+<p>{% endhighlight %}</p>
 <p>Here all I did was extract the different activities being performed into methods. This does little else other than make the intent of the Process method clearer, which in turn highlights that this class contains implementation details outside of it’s responsibility.
 So lets extract these methods into classes that are responsible for the needed functionality. We will interface each of these so we can inject the abstraction in rather than the concrete implementation.</p>
-<pre><code class="language-csharp">
+<p>{% highlight csharp %}
 public class OrderRepository : IOrderRepository
-    {
-        private const string connection = @"c:\Northwnd.mdf";
-        private readonly DataContext db;
-        public OrderRepository()
-        {
-            this.db = new DataContext(connection);
-        }
-        public void SaveOrder(Order order)
-        {
-            db.GetTable<Order>().Attach(order);
-            db.SubmitChanges();
-        }
-        public void Dispose()
-        {
-            if (this.db != null)
-                this.db.Dispose();
+{
+private const string connection = @&quot;c:\Northwnd.mdf&quot;;
+private readonly DataContext db;
+public OrderRepository()
+{
+this.db = new DataContext(connection);
+}
+public void SaveOrder(Order order)
+{
+db.GetTable<Order>().Attach(order);
+db.SubmitChanges();
+}
+public void Dispose()
+{
+if (this.db != null)
+this.db.Dispose();</p>
+<pre><code>    }
+}
+public interface IEmailService : IDisposable 
+{ 
+    void SendOrderToSales(Order order);    
+}
 
-        }
-    }
-    public interface IEmailService : IDisposable 
+public class EmailService : IEmailService { 
+
+    private SmtpClient emailClient; 
+
+    public EmailService() { 
+        this.emailClient = new SmtpClient(); 
+    } 
+    public void SendOrderToSales(Order order)        
+    {            
+        var email = BuildEmailContent(order);                         
+        emailClient.Send(new MailMessage(&quot;me@me.com&quot;, &quot;sales@company.com&quot;));        
+    }          
+    
+    private string BuildEmailContent(Order order)        
+    {            
+        var email = string.Format(&quot;New order {0} place on {1} by {2}.&quot; );           
+        foreach (var item in order.OrderLines)            
+        {                
+            email = email + &quot;\n&quot;;                
+            email = email + item.Product + &quot; : &quot; + item.Quantity;            
+        }            
+        return email;        
+    }          
+    public void Dispose() 
     { 
-        void SendOrderToSales(Order order);    
-    }
-
-    public class EmailService : IEmailService { 
-
-        private SmtpClient emailClient; 
-
-        public EmailService() { 
-            this.emailClient = new SmtpClient(); 
-        } 
-        public void SendOrderToSales(Order order)        
-        {            
-            var email = BuildEmailContent(order);                         
-            emailClient.Send(new MailMessage("me@me.com", "sales@company.com"));        
-        }          
-        
-        private string BuildEmailContent(Order order)        
-        {            
-            var email = string.Format("New order {0} place on {1} by {2}." );           
-            foreach (var item in order.OrderLines)            
-            {                
-                email = email + "\n";                
-                email = email + item.Product + " : " + item.Quantity;            
-            }            
-            return email;        
-        }          
-        public void Dispose() 
-        { 
-            if (this.emailClient != null)                
-                this.emailClient.Dispose(); 
-        } 
-    }
+        if (this.emailClient != null)                
+            this.emailClient.Dispose(); 
+    } 
+}
 </code></pre>
+<p>{% endhighlight %}</p>
 <p>With these new classes extracted we can now make use of them in our OrderService class.</p>
-<pre><code class="language-csharp">
+<p>{% highlight csharp %}
 public class OrderServiceAfter : IDisposable
-    {
-        private readonly IOrderRepository orderRepository;
-        private readonly IEmailService emailService;
-        public OrderServiceAfter(IOrderRepository orderRepository, IEmailService emailService)
-        {
-            this.orderRepository = orderRepository;
-            this.emailService = emailService;
-        }
-        public void Process(Order order)
-        {
-            OrderProcessGaurd(order);
-            orderRepository.SaveOrder(order);
-            emailService.SendOrderToSales(order);
-        }
-        private void OrderProcessGaurd(Order order)
-        {
-            if (order == null)
-                throw new ArgumentNullException("order");
-            if (order.Customer == null)
-                throw new ArgumentException("Customer cannot be null.");
-            if (order.OrderLines.Count < 1)
-                throw new InvalidOperationException("Cannot process an order with no lineitems.");
-        }
-        public void Dispose()
-        {
-            if (orderRepository != null)
-                orderRepository.Dispose();
-            if (emailService != null)
-                emailService.Dispose();
-        }
-    }
-</code></pre>
-<h3>Analysis</h3>
+{
+private readonly IOrderRepository orderRepository;
+private readonly IEmailService emailService;
+public OrderServiceAfter(IOrderRepository orderRepository, IEmailService emailService)
+public void Process(Order order)
+{
+OrderProcessGaurd(order);
+orderRepository.SaveOrder(order);
+emailService.SendOrderToSales(order);
+}
+private void OrderProcessGaurd(Order order)
+{
+if (order == null)
+throw new ArgumentNullException(&quot;order&quot;);
+if (order.Customer == null)
+throw new ArgumentException(&quot;Customer cannot be null.&quot;);
+if (order.OrderLines.Count &lt; 1)
+throw new InvalidOperationException(&quot;Cannot process an order with no lineitems.&quot;);
+}
+public void Dispose()
+{
+if (orderRepository != null)
+orderRepository.Dispose();
+if (emailService != null)
+emailService.Dispose();
+}
+}
+{% endhighlight %}</p>
+<h3 id="analysis">Analysis</h3>
 <p>Lets take a quick look at what running code metrics on this in Visual Studio 2013 looks like (Analyze &gt; Calculate Code Metrics for Selected Projects).
 <img src="/img/posts/2014/Code-Metrics-SRP.png" alt="" /></p>
 <p><strong>Maintainability Index</strong> – Here we see a nice gain just separating out into functions, with a 1 point drop when separating out into classes. I guess Microsoft see it as less maintainable with the logic in different classes. Marginally. The gains on the other criteria more than make up for the 1 point drop though. See: <a href="http://blogs.msdn.com/b/zainnab/archive/2011/05/26/code-metrics-maintainability-index.aspx">http://blogs.msdn.com/b/zainnab/archive/2011/05/26/code-metrics-maintainability-index.aspx</a></p>
 <p><a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><strong>Cyclomatic Complexity</strong></a> – This basically highlights the paths through the code. It is a good measure of how complex the code is. This dropped so marginally. Typically we can see much better gains here when applying SRP on more complex problems. See: <a href="http://blogs.msdn.com/b/zainnab/archive/2011/05/17/code-metrics-cyclomatic-complexity.aspx">http://blogs.msdn.com/b/zainnab/archive/2011/05/17/code-metrics-cyclomatic-complexity.aspx</a></p>
-<p><strong>Depth of Inheritance</strong> – We are not using inheritance to solve this problem so not going to touch on this. See: [http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code-metrics-depth-of-inheritance-dit.aspx](http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code- metrics-depth-of-inheritance-dit.aspx)</p>
+<p><strong>Depth of Inheritance</strong> – We are not using inheritance to solve this problem so not going to touch on this. See: [http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code-metrics-depth-of-inheritance-dit.aspx](<a href="http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code-">http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code-</a> metrics-depth-of-inheritance-dit.aspx)</p>
 <p><a href="http://en.wikipedia.org/wiki/Coupling_(computer_programming)"><strong>Class Coupling</strong></a> – We dropped the coupling to other classes quite substantially. This is a very good thing. The less dependencies you class has, the less likely that it breaks due to a change elsewhere in the codebase. See: <a href="http://blogs.msdn.com/b/zainnab/archive/2014/02/22/10168042.aspx">http://blogs.msdn.com/b/zainnab/archive/2014/02/22/10168042.aspx</a></p>
-<h3>Resources</h3>
+<h3 id="resources">Resources</h3>
 <p><a href="http://www.objectmentor.com/resources/articles/srp.pdf">http://www.objectmentor.com/resources/articles/srp.pdf</a></p>
-
-                <hr />
-                                <section class="related">
-                    <h4>You may be interested in</h4>
-                    <ul>
-                                                <li><a href="/testing-your-data-repositories/">Testing your data repositories</a></li>
-                                                <li><a href="/software-development-is-like-a-piece-of-string/">Software development is like a piece of string</a></li>
-                                                <li><a href="/testing-the-untestable/">Testing the Untestable</a></li>
-                                            </ul>
-                </section>
-                <hr />
-                                
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/estimation/" data-toggle="tooltip"    data-placement="top" title="Estimation">&larr; Previous Post</a>
-                    </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/testing-your-data-repositories/" data-toggle="tooltip" data-placement="top" title="Testing your data repositories">Next Post &rarr;</a>
-                    </li>
-                    
-                </ul>
-
-            </div>
-
-            <div class="col-lg-4 widget-column">
-           
-                                <ul class="list-inline text-center">
-                    <li>
-                        <a href="/rss.xml">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-square fa-stack-2x"></i>
-                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/atom.xml">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="https://twitter.com/DevonBurriss">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    
-                    <li>
-                        <a href="https://github.com/dburriss">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-
-
-                <h2><i class="glyphicon glyphicon-folder-open"> </i> &nbsp; Categories</h2>
-
-    <a class="badge badge-info" href="/category/agile">Agile</a>
-
-    <a class="badge badge-info" href="/category/devops">DevOps</a>
-
-    <a class="badge badge-info" href="/category/leadership">Leadership</a>
-
-    <a class="badge badge-info" href="/category/life">Life</a>
-
-    <a class="badge badge-info" href="/category/project-management">Project Management</a>
-
-    <a class="badge badge-info" href="/category/software-development">Software Development</a>
-
-    <a class="badge badge-info" href="/category/tools">Tools</a>
-
-                <hr />
-                <h2><i class="glyphicon glyphicon-tags"> </i> &nbsp; Tags</h2>
-<div class="well">
-
-
-<a class="badge badge-info" href="/tag/net/" style="font-size: 80%">
-    <span class="site-tag">                
-        .NET
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/net-core/" style="font-size: 80%">
-    <span class="site-tag">                
-        .NET Core
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/agile/" style="font-size: 80%">
-    <span class="site-tag">                
-        Agile
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/api-design/" style="font-size: 80%">
-    <span class="site-tag">                
-        API Design
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/appveyor/" style="font-size: 80%">
-    <span class="site-tag">                
-        AppVeyor
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/architecture/" style="font-size: 80%">
-    <span class="site-tag">                
-        Architecture
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/asp-net-5/" style="font-size: 80%">
-    <span class="site-tag">                
-        ASP.NET 5
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/atdd/" style="font-size: 80%">
-    <span class="site-tag">                
-        ATDD
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/azure/" style="font-size: 80%">
-    <span class="site-tag">                
-        Azure
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/bdd/" style="font-size: 80%">
-    <span class="site-tag">                
-        BDD
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/csharp/" style="font-size: 80%">
-    <span class="site-tag">                
-        C#
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/c4/" style="font-size: 80%">
-    <span class="site-tag">                
-        C4
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/cake/" style="font-size: 80%">
-    <span class="site-tag">                
-        Cake
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/canopy/" style="font-size: 80%">
-    <span class="site-tag">                
-        Canopy
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/ci/" style="font-size: 80%">
-    <span class="site-tag">                
-        CI
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/clean-code/" style="font-size: 80%">
-    <span class="site-tag">                
-        Clean Code
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/client-generated-id/" style="font-size: 80%">
-    <span class="site-tag">                
-        Client generated ID
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/collections/" style="font-size: 80%">
-    <span class="site-tag">                
-        Collections
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/datadog/" style="font-size: 80%">
-    <span class="site-tag">                
-        Datadog
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/ddd/" style="font-size: 80%">
-    <span class="site-tag">                
-        DDD
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/design-patterns/" style="font-size: 80%">
-    <span class="site-tag">                
-        Design Patterns
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/diagrams/" style="font-size: 80%">
-    <span class="site-tag">                
-        Diagrams
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/distributed-systems/" style="font-size: 80%">
-    <span class="site-tag">                
-        Distributed Systems
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/dnx/" style="font-size: 80%">
-    <span class="site-tag">                
-        DNX
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/docker/" style="font-size: 80%">
-    <span class="site-tag">                
-        Docker
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/extreme-programming/" style="font-size: 80%">
-    <span class="site-tag">                
-        Extreme Programming
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/fsharp/" style="font-size: 80%">
-    <span class="site-tag">                
-        F#
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/fennel/" style="font-size: 80%">
-    <span class="site-tag">                
-        Fennel
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/fsadvent/" style="font-size: 80%">
-    <span class="site-tag">                
-        FsAdvent
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/fsx/" style="font-size: 80%">
-    <span class="site-tag">                
-        FSX
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/functional/" style="font-size: 80%">
-    <span class="site-tag">                
-        Functional
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/functional-modeling/" style="font-size: 80%">
-    <span class="site-tag">                
-        Functional Modeling
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/general/" style="font-size: 80%">
-    <span class="site-tag">                
-        General
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/git/" style="font-size: 80%">
-    <span class="site-tag">                
-        Git
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/github-pages/" style="font-size: 80%">
-    <span class="site-tag">                
-        Github Pages
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/hyper-v/" style="font-size: 80%">
-    <span class="site-tag">                
-        Hyper V
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/idempotent/" style="font-size: 80%">
-    <span class="site-tag">                
-        Idempotent
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/java/" style="font-size: 80%">
-    <span class="site-tag">                
-        Java
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/learning-csharp/" style="font-size: 80%">
-    <span class="site-tag">                
-        Learning c#
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/life/" style="font-size: 80%">
-    <span class="site-tag">                
-        Life
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/maven/" style="font-size: 80%">
-    <span class="site-tag">                
-        Maven
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/meditation/" style="font-size: 80%">
-    <span class="site-tag">                
-        Meditation
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/messaging/" style="font-size: 80%">
-    <span class="site-tag">                
-        Messaging
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/mindfulness/" style="font-size: 80%">
-    <span class="site-tag">                
-        Mindfulness
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/modeling/" style="font-size: 80%">
-    <span class="site-tag">                
-        Modeling
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/morality/" style="font-size: 80%">
-    <span class="site-tag">                
-        Morality
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/mvc-6/" style="font-size: 80%">
-    <span class="site-tag">                
-        MVC 6
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/nuget/" style="font-size: 80%">
-    <span class="site-tag">                
-        Nuget
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/observability/" style="font-size: 80%">
-    <span class="site-tag">                
-        Observability
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/oop/" style="font-size: 80%">
-    <span class="site-tag">                
-        OOP
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/osx/" style="font-size: 80%">
-    <span class="site-tag">                
-        OSX
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/paket/" style="font-size: 80%">
-    <span class="site-tag">                
-        Paket
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/pascal/" style="font-size: 80%">
-    <span class="site-tag">                
-        Pascal
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/powershell/" style="font-size: 80%">
-    <span class="site-tag">                
-        Powershell
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/pretzel/" style="font-size: 80%">
-    <span class="site-tag">                
-        Pretzel
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/productivity/" style="font-size: 80%">
-    <span class="site-tag">                
-        Productivity
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/programming/" style="font-size: 80%">
-    <span class="site-tag">                
-        Programming
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/prometheus/" style="font-size: 80%">
-    <span class="site-tag">                
-        Prometheus
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/reliability/" style="font-size: 80%">
-    <span class="site-tag">                
-        Reliability
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/science/" style="font-size: 80%">
-    <span class="site-tag">                
-        Science
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/selenium/" style="font-size: 80%">
-    <span class="site-tag">                
-        Selenium
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/solid/" style="font-size: 80%">
-    <span class="site-tag">                
-        SOLID
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/tdd/" style="font-size: 80%">
-    <span class="site-tag">                
-        TDD
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/team-lead/" style="font-size: 80%">
-    <span class="site-tag">                
-        Team Lead
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/temporal-modeling/" style="font-size: 80%">
-    <span class="site-tag">                
-        Temporal Modeling
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/testing/" style="font-size: 80%">
-    <span class="site-tag">                
-        Testing
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/tutorial/" style="font-size: 80%">
-    <span class="site-tag">                
-        Tutorial
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/ubuntu/" style="font-size: 80%">
-    <span class="site-tag">                
-        Ubuntu
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/unit-testing/" style="font-size: 80%">
-    <span class="site-tag">                
-        Unit Testing
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/visual-studio/" style="font-size: 80%">
-    <span class="site-tag">                
-        Visual Studio
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/visual-studio-online/" style="font-size: 80%">
-    <span class="site-tag">                
-        Visual Studio Online
-    </span>
-</a>
-
-<a class="badge badge-info" href="/tag/vs-code/" style="font-size: 80%">
-    <span class="site-tag">                
-        VS Code
-    </span>
-</a>
-
-</div>
-            
-            </div>
-        </div>
-    </div>
-</article>
-
-<hr>
-    
-                    <ul class="list-inline text-center">
-                    <li>
-                        <a href="/rss.xml">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-square fa-stack-2x"></i>
-                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/atom.xml">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="https://twitter.com/DevonBurriss">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    
-                    <li>
-                        <a href="https://github.com/dburriss">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-
-
-    
-    <div class="container-fluid">
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'devonburriss'; // required: replace example with your forum shortname
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div>
-
-
-    <script type="text/javascript">
-    //<![CDATA[
-    (function() {
-        var links = document.getElementsByTagName('a');
-        var query = '?';
-        for(var i = 0; i < links.length; i++) {
-        if(links[i].href.indexOf('#disqus_thread') >= 0) {
-            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-        }
-        }
-        document.write('<script charset="utf-8" type="text/javascript" src="https://disqus.com/forums/devonburriss/get_num_replies.js' + query + '"></' + 'script>');
-    })();
-    //]]>
-    </script>
-
-
-    <!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p class="copyright text-muted">Copyright &copy; 
-                <a href="/about.html">Devon Burriss</a> 2023
-                </p>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js "></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/js/clean-blog.min.js "></script>
-
-
-    <script src="/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-    
-    
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-45750611-2', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-</body>
-
-</html>
+<hr><ul class="pager"><li class="previous"><a href="/estimation/" data-toggle="tooltip" data-placement="top" title="Estimation">&larr; Previous Post</a></li><li class="next"><a href="/testing-your-data-repositories/" data-toggle="tooltip" data-placement="top" title="Testing your data repositories">Next Post &rarr;</a></li></ul></div><div class="col-lg-4 widget-column"><ul class="list-inline text-center"><li><a href="/rss.xml"><span class="fa-stack fa-lg"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li><li><a href="/atom.xml"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li><li><a href="https://twitter.com/DevonBurriss"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a href="https://github.com/dburriss"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li></ul><span style="display:contents"><h2><i class="glyphicon glyphicon-folder-open"></i>  Categories</h2><a class="badge badge-info" href="/category/agile">Agile</a><a class="badge badge-info" href="/category/devops">DevOps</a><a class="badge badge-info" href="/category/leadership">Leadership</a><a class="badge badge-info" href="/category/life">Life</a><a class="badge badge-info" href="/category/project-management">Project Management</a><a class="badge badge-info" href="/category/software-development">Software Development</a><a class="badge badge-info" href="/category/tools">Tools</a></span><span style="display:contents"><h2><i class="glyphicon glyphicon-tags"></i>  Tags</h2><div class="well"><a class="badge badge-info" style="font-size: 120%" href="/tag/net/"><span class="site-tag">.NET</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/net-core/"><span class="site-tag">.NET Core</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/api-design/"><span class="site-tag">API Design</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/aspnet-5/"><span class="site-tag">ASP.NET 5</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/atdd/"><span class="site-tag">ATDD</span></a><a class="badge badge-info" style="font-size: 112%" href="/tag/agile/"><span class="site-tag">Agile</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/appveyor/"><span class="site-tag">AppVeyor</span></a><a class="badge badge-info" style="font-size: 100%" href="/tag/architecture/"><span class="site-tag">Architecture</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/azure/"><span class="site-tag">Azure</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/bdd/"><span class="site-tag">BDD</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/c/"><span class="site-tag">C#</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/c4/"><span class="site-tag">C4</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/ci/"><span class="site-tag">CI</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/cake/"><span class="site-tag">Cake</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/canopy/"><span class="site-tag">Canopy</span></a><a class="badge badge-info" style="font-size: 108%" href="/tag/clean-code/"><span class="site-tag">Clean Code</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/client-generated-id/"><span class="site-tag">Client generated ID</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/collections/"><span class="site-tag">Collections</span></a><a class="badge badge-info" style="font-size: 100%" href="/tag/ddd/"><span class="site-tag">DDD</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/dnx/"><span class="site-tag">DNX</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/datadog/"><span class="site-tag">Datadog</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/design-patterns/"><span class="site-tag">Design Patterns</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/diagrams/"><span class="site-tag">Diagrams</span></a><a class="badge badge-info" style="font-size: 96%" href="/tag/distributed-systems/"><span class="site-tag">Distributed Systems</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/docker/"><span class="site-tag">Docker</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/extreme-programming/"><span class="site-tag">Extreme Programming</span></a><a class="badge badge-info" style="font-size: 176%" href="/tag/f/"><span class="site-tag">F#</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/fsx/"><span class="site-tag">FSX</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/fennel/"><span class="site-tag">Fennel</span></a><a class="badge badge-info" style="font-size: 100%" href="/tag/fsadvent/"><span class="site-tag">FsAdvent</span></a><a class="badge badge-info" style="font-size: 164%" href="/tag/functional/"><span class="site-tag">Functional</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/functional-modeling/"><span class="site-tag">Functional Modeling</span></a><a class="badge badge-info" style="font-size: 116%" href="/tag/general/"><span class="site-tag">General</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/git/"><span class="site-tag">Git</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/github-pages/"><span class="site-tag">Github Pages</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/hyper-v/"><span class="site-tag">Hyper V</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/idempotent/"><span class="site-tag">Idempotent</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/java/"><span class="site-tag">Java</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/learning-c/"><span class="site-tag">Learning c#</span></a><a class="badge badge-info" style="font-size: 96%" href="/tag/life/"><span class="site-tag">Life</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/mvc-6/"><span class="site-tag">MVC 6</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/maven/"><span class="site-tag">Maven</span></a><a class="badge badge-info" style="font-size: 96%" href="/tag/meditation/"><span class="site-tag">Meditation</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/messaging/"><span class="site-tag">Messaging</span></a><a class="badge badge-info" style="font-size: 96%" href="/tag/mindfulness/"><span class="site-tag">Mindfulness</span></a><a class="badge badge-info" style="font-size: 96%" href="/tag/modeling/"><span class="site-tag">Modeling</span></a><a class="badge badge-info" style="font-size: 96%" href="/tag/morality/"><span class="site-tag">Morality</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/nuget/"><span class="site-tag">Nuget</span></a><a class="badge badge-info" style="font-size: 116%" href="/tag/oop/"><span class="site-tag">OOP</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/osx/"><span class="site-tag">OSX</span></a><a class="badge badge-info" style="font-size: 100%" href="/tag/observability/"><span class="site-tag">Observability</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/paket/"><span class="site-tag">Paket</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/pascal/"><span class="site-tag">Pascal</span></a><a class="badge badge-info" style="font-size: 96%" href="/tag/powershell/"><span class="site-tag">Powershell</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/pretzel/"><span class="site-tag">Pretzel</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/productivity/"><span class="site-tag">Productivity</span></a><a class="badge badge-info" style="font-size: 116%" href="/tag/programming/"><span class="site-tag">Programming</span></a><a class="badge badge-info" style="font-size: 96%" href="/tag/prometheus/"><span class="site-tag">Prometheus</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/reliability/"><span class="site-tag">Reliability</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/solid/"><span class="site-tag">SOLID</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/science/"><span class="site-tag">Science</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/selenium/"><span class="site-tag">Selenium</span></a><a class="badge badge-info" style="font-size: 108%" href="/tag/tdd/"><span class="site-tag">TDD</span></a><a class="badge badge-info" style="font-size: 96%" href="/tag/team-lead/"><span class="site-tag">Team Lead</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/temporal-modeling/"><span class="site-tag">Temporal Modeling</span></a><a class="badge badge-info" style="font-size: 112%" href="/tag/testing/"><span class="site-tag">Testing</span></a><a class="badge badge-info" style="font-size: 92%" href="/tag/tutorial/"><span class="site-tag">Tutorial</span></a><a class="badge badge-info" style="font-size: 88%" href="/tag/ubuntu/"><span class="site-tag">Ubuntu</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/unit-testing/"><span class="site-tag">Unit Testing</span></a><a class="badge badge-info" style="font-size: 96%" href="/tag/vs-code/"><span class="site-tag">VS Code</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/visual-studio/"><span class="site-tag">Visual Studio</span></a><a class="badge badge-info" style="font-size: 84%" href="/tag/visual-studio-online/"><span class="site-tag">Visual Studio Online</span></a></div></span></div></div></div><hr></article><span style="display:contents"><footer><div class="container"><div class="row"><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><p class="copyright text-muted">Copyright &#169; <a href="/about.html">Devon Burriss</a> 2025</p></div></div></div></footer><script src="/js/jquery.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/clean-blog.min.js"></script><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script></span><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-45750611-2', 'auto');ga('send', 'pageview');</script><div class="container-fluid"><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'devonburriss';(function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = 'https://devonburriss.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript></div></body></html>
