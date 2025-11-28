@@ -1,8 +1,8 @@
-image: Visual Studio 2015
+image: Visual Studio 2022
 branches:
   only:
     - source
-    
+
 environment:
   access_token:
     secure: 2Gib65Tz/4/pPXP29Yn598b42pM96vJbpvJa6gbJr8MzWna7EUfHO1UP3lI8Bu8i
@@ -10,15 +10,12 @@ environment:
 install:
   - git submodule init
   - git submodule update --remote
-  - cinst pretzel
-
-before_build:
-
 
 build_script:
-  - ps: .\pretzel.ps1
+  - ps: dotnet build ./src/SiteRenderer/SiteRenderer.fsproj -c Release
+  - ps: dotnet run --project ./src/SiteRenderer/SiteRenderer.fsproj -c Release --no-build -- --source . --output _site
 
-build: true
+build: off
 
 test: off
 

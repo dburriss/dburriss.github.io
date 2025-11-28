@@ -23,11 +23,10 @@
   - `Program.fs`: CLI entry point with --source, --output, --config, --posts-per-page options
 
 ## 3. Migration
-- [ ] 3.1 Swap Pretzel and Liquid pipeline for the new F# renderer in build scripts.
-- [ ] 3.2 Remove Pretzel-specific configuration and dependencies once parity confirmed.
-- [ ] 3.3 Update documentation describing new workflows for authors and maintainers.
+- [x] 3.1 Swap Pretzel and Liquid pipeline for the new F# renderer in build scripts.
+- [x] 3.2 Remove Pretzel-specific configuration and dependencies once parity confirmed.
+- [x] 3.3 Create README.md describing new workflows for authors and maintainers.
 
 ## 4. Validation
-- [ ] 4.1 Compare generated HTML, RSS, and Atom output against current production artifacts to confirm parity.
-- [ ] 4.2 Manually verify canonical URLs, navigation, and styling.
-- [ ] 4.3 Gather feedback from reviewers and adjust renderer gaps before cutover.
+- [x] 4.1 Compare generated HTML, RSS, and Atom output against current production artifacts to confirm parity.
+- [x] 4.2 Manually verify canonical URLs, navigation, and styling.

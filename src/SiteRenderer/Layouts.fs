@@ -394,9 +394,8 @@ module Layouts =
                                                                          assetUrl
                                                                              site
                                                                              (sprintf "tag/%s" (Parsing.slugify tag))
-                                                                     )
-                                                                     _class "label label-default" ]
-                                                                   [ str tag ])) ]
+                                                                     ) ]
+                                                                   [ span [ _class "label label-default" ] [ str tag ] ])) ]
                                             else
                                                 rawText ""
                                             div [] [] ] ] ] ] ] ]
