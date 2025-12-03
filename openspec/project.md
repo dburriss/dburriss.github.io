@@ -85,6 +85,26 @@ git submodule update --init
 
 The scripts prompt for title, subtitle, category, tags, and header image, then generate a properly formatted draft file in `_drafts/` with today's date prefix and URL-safe slug.
 
+### Promoting Drafts
+```bash
+# PowerShell
+./promote-draft.ps1
+
+# Bash
+./promote-draft.sh
+
+# With custom publish date
+./promote-draft.ps1 -Date 2025-12-25
+./promote-draft.sh -d 2025-12-25
+```
+
+The promote scripts:
+1. List available drafts in `_drafts/` with front matter status
+2. Allow interactive selection of a draft to promote
+3. Move the selected draft to `_posts/` with proper date prefix
+4. Update front matter to set `published: true`
+5. Handle filename conflicts and validation errors
+
 ### Publish (manual deployment)
 ```bash
 # PowerShell

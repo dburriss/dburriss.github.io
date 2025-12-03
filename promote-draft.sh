@@ -315,16 +315,11 @@ main() {
     
     # Verify the update
     if grep -q "^published: true" "$target_path"; then
+        # Remove the original draft since promotion was successful
+        rm "$selected_draft"
         print_success "Draft successfully promoted!"
         print_info "File: $target_path"
-        
-        # Optionally remove the original draft
-        echo -n -e "${YELLOW}Remove original draft? (y/N): ${NC}"
-        read -r remove_response
-        if [[ "$remove_response" =~ ^[Yy]$ ]]; then
-            rm "$selected_draft"
-            print_info "Original draft removed."
-        fi
+        print_info "Original draft removed."
     else
         print_error "Failed to update front matter. Please check the file manually."
         exit 1
