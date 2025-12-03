@@ -101,7 +101,8 @@ module Parsing =
           IsProduction =
             match get "is_production" with
             | Some v when v.Equals("true", StringComparison.OrdinalIgnoreCase) -> true
-            | _ -> false }
+            | _ -> false
+          Include = tryGetSequence root "include" }
 
     let private splitFrontMatter (content: string) =
         if content.StartsWith("---") then

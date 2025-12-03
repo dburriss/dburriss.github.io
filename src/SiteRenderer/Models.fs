@@ -18,7 +18,8 @@ type SiteConfig =
       DisqusUsername: string option
       GoogleTrackingId: string option
       CopyrightName: string option
-      IsProduction: bool }
+      IsProduction: bool
+      Include: string list }
 
 [<CLIMutable>]
 type FrontMatter =

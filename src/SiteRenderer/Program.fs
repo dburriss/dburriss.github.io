@@ -119,7 +119,7 @@ module Program =
                 Renderer.writeOutput outputDir rendered
                 printfn "Wrote output to %s" outputDir
 
-                Renderer.copyStaticAssets sourceDir outputDir
+                Renderer.copyStaticAssets sourceDir outputDir config.Include
                 printfn "Copied static assets"
 
                 printfn "Done!"

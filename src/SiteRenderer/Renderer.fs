@@ -4,6 +4,7 @@ open System
 open System.IO
 open System.Text.RegularExpressions
 open Giraffe.ViewEngine
+open Microsoft.Extensions.FileSystemGlobbing
 
 module Renderer =
 
@@ -310,29 +311,31 @@ module Renderer =
 
             File.WriteAllText(fullPath, page.Content))
 
-    let copyStaticAssets (sourceRoot: string) (outputRoot: string) =
-        let staticDirs = [ "css"; "js"; "img"; "fonts" ]
+    let private defaultIncludePatterns = [ "css/**"; "js/**"; "img/**"; "fonts/**" ]
 
-        staticDirs
-        |> List.iter (fun dir ->
-            let sourceDir = Path.Combine(sourceRoot, dir)
-            let targetDir = Path.Combine(outputRoot, dir)
+    let copyStaticAssets (sourceRoot: string) (outputRoot: string) (includePatterns: string list) =
+        let patterns =
+            if List.isEmpty includePatterns then
+                defaultIncludePatterns
+            else
+                includePatterns
 
-            if Directory.Exists(sourceDir) then
-                if not (Directory.Exists(targetDir)) then
-                    Directory.CreateDirectory(targetDir) |> ignore
+        let matcher = Matcher()
 
-                let files = Directory.GetFiles(sourceDir, "*", SearchOption.AllDirectories)
+        patterns |> List.iter (fun pattern -> matcher.AddInclude(pattern) |> ignore)
 
-                files
-                |> Array.iter (fun file ->
-                    let relativePath =
-                        file.Substring(sourceDir.Length).TrimStart(Path.DirectorySeparatorChar)
+        let result =
+            matcher.Execute(
+                Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper(DirectoryInfo(sourceRoot))
+            )
 
-                    let targetPath = Path.Combine(targetDir, relativePath)
-                    let targetSubDir = Path.GetDirectoryName(targetPath)
+        result.Files
+        |> Seq.iter (fun fileMatch ->
+            let sourcePath = Path.Combine(sourceRoot, fileMatch.Path)
+            let targetPath = Path.Combine(outputRoot, fileMatch.Path)
+            let targetDir = Path.GetDirectoryName(targetPath)
 
-                    if not (Directory.Exists(targetSubDir)) then
-                        Directory.CreateDirectory(targetSubDir) |> ignore
+            if not (Directory.Exists(targetDir)) then
+                Directory.CreateDirectory(targetDir) |> ignore
 
-                    File.Copy(file, targetPath, true)))
+            File.Copy(sourcePath, targetPath, true))

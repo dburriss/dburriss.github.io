@@ -16,6 +16,16 @@ disqus_username: devonburriss
 # Google Analytics
 google_tracking_id: UA-45750611-2
 
+# Static assets to copy (glob patterns)
+include:
+  - css/**
+  - js/**
+  - img/**
+  - fonts/**
+  - tkd/**
+  - CNAME
+  - sitemap.xml
+
 # Related posts configuration (used by F# SiteRenderer)
 similar_posts:
     filter_threshold: 0.3
