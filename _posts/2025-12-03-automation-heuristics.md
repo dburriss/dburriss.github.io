@@ -10,7 +10,7 @@ comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 social-img: "img/posts/2018/bridge-cables-500.jpg"
-published: false
+published: true
 ---
 While writing up some automation work with GitHub and Copilot (post coming soon), I had thoughts that didn't fit that post. I think them worth jotting down, so here's an experiment in a micro-post format.  
 Let's see how this goes since my posts tend to always be longer than I intended.
