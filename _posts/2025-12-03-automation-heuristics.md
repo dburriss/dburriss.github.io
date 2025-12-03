@@ -74,7 +74,7 @@ So consider this small change:
 2. Determine the actions.
 3. Do the actions.
 
-This simple change, turning a program into a pipeline, gives us optionality in the future. That input may produce only 1 action now but we have a design that can be easily extended. Now do not get me wrong, [YAGNI](/yagnyagni) and KISS are good principles to keep in mind but it depends what you are building. A quick one off automation? Keep it simple. A Platform that is the basis for the business to build on for years to come? Maybe put some thought into how to evolve requirements over time.
+This simple change, turning a program into a pipeline, gives us optionality in the future. That input may produce only 1 action now but we have a design that can be easily extended. For sure, [YAGNI](/yagnyagni) and KISS are good principles to keep in mind but it depends what you are building. A quick one off automation? Keep it simple. A Platform that is the basis for the business to build on for years to come? Maybe put some thought into how to evolve requirements over time.
 
 Which brings me to my final and related point...
 
