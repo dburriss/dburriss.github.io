@@ -16,6 +16,7 @@ This repository stores the source for Devon Burriss' static blog. The goal is to
 ### Code Style
 - Posts live in `_posts/` and follow the `YYYY-MM-DD-slug.md` naming convention with YAML front matter describing `layout`, `title`, `tags`, `permalink`, and `excerpt_separator`.
 - Drafts remain under `_drafts/` until published; move to `_posts/` and set `published: true` once finalized.
+- Use `new-draft.ps1` (PowerShell) or `new-draft.sh` (Bash) to interactively create new drafts with proper front matter and naming conventions.
 - Favor semantic Markdown headings over raw HTML; wrap lines naturally around ~100 characters but prioritize readability over strict width limits.
 - Keep styles, scripts, and images in their respective directories (`css/`, `js/`, `img/`, `fonts/`) and avoid embedding inline assets inside Markdown posts.
 - F# layouts are defined in `src/SiteRenderer/Layouts.fs` using Giraffe.ViewEngine.
@@ -72,6 +73,17 @@ git submodule update --init
 # Bash
 ./run.sh --serve
 ```
+
+### Creating Drafts
+```bash
+# PowerShell
+./new-draft.ps1
+
+# Bash
+./new-draft.sh
+```
+
+The scripts prompt for title, subtitle, category, tags, and header image, then generate a properly formatted draft file in `_drafts/` with today's date prefix and URL-safe slug.
 
 ### Publish (manual deployment)
 ```bash

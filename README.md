@@ -69,6 +69,36 @@ dotnet tool install dotnet-serve
 
 Create a new Markdown file in `_posts/` with the naming format `YYYY-MM-DD-slug.md`.
 
+### Creating Drafts
+
+Use the interactive scripts to create new draft posts in `_drafts/`:
+
+#### Linux/macOS
+
+```bash
+./new-draft.sh
+```
+
+#### Windows (PowerShell)
+
+```powershell
+./new-draft.ps1
+```
+
+The scripts will:
+- Prompt for title, subtitle, category, tags, and header image
+- Automatically generate a URL-safe slug from the title
+- Create a file with today's date prefix (e.g., `2025-12-03-my-post-title.md`)
+- Generate complete YAML front matter
+- Optionally open the file in your default editor
+
+To skip opening the editor, use:
+```bash
+./new-draft.sh --no-editor
+# or
+./new-draft.ps1 -NoEditor
+```
+
 ### Front Matter
 
 Each post should have YAML front matter at the top:
