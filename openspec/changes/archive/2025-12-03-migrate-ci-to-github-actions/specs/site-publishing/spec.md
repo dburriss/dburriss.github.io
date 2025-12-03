@@ -37,15 +37,4 @@ The project SHALL use GitHub Actions to automatically build and deploy the site 
 - **WHEN** the workflow runs
 - **THEN** git submodules are initialized and updated before the build.
 
-## REMOVED Requirements
-### Requirement: AppVeyor CI Configuration
-**Reason**: Replaced by GitHub Actions for better GitHub integration and modern CI features.
-**Migration**: Use GitHub Actions workflow at `.github/workflows/deploy.yml` instead.
 
-### Requirement: Pretzel Build Tooling
-**Reason**: The blog has migrated to a custom F# SiteRenderer; Pretzel and its Cake build scripts are no longer used.
-**Migration**: Use `run.ps1` or `run.sh` for local builds, GitHub Actions for CI/CD.
-
-### Requirement: Liquid Template Files
-**Reason**: The F# SiteRenderer uses `Layouts.fs` for all HTML generation; Liquid templates in `_layouts/` and `_includes/` are no longer used.
-**Migration**: All layout and partial functionality is now in `src/SiteRenderer/Layouts.fs`.
