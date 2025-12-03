@@ -29,4 +29,4 @@
 - [x] 7.1 Verify GitHub Actions workflow syntax is valid
 - [x] 7.2 Ensure `run.ps1` and `run.sh` still work for local development
 - [x] 7.3 Test `publish.ps1` / `publish.sh` locally (dry-run mode)
-- [ ] 7.4 Test deployment to `master` branch works correctly (requires CI run)
+- [x] 7.4 Test deployment to `master` branch works correctly (requires CI run)
