@@ -21,10 +21,10 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Build SiteRenderer
-        run: dotnet build ./src/SiteRenderer/SiteRenderer.fsproj -c Release
+        run: ./build.sh
 
       - name: Generate site
-        run: dotnet run --project ./src/SiteRenderer/SiteRenderer.fsproj -c Release --no-build -- --source . --output _site
+        run: ./render.sh
 
       - name: Deploy to master branch
         run: ./publish.sh

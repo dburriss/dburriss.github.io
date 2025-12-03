@@ -1,8 +1,8 @@
 ## 1. Add Publish Scripts
-- [ ] 1.1 Create `build.ps1` (Powershell) for building the SiteRenderer solution
-- [ ] 1.2 Create `build.sh` (Bash) for building the SiteRenderer solution
-- [ ] 1.3 Create `render.ps1` (Powershell) for using SiteRenderer to generate the site content to _site
-- [ ] 1.4 Create `render.sh` (Bash) for using SiteRenderer to generate the site content to _site
+- [x] 1.1 Create `build.ps1` (Powershell) for building the SiteRenderer solution
+- [x] 1.2 Create `build.sh` (Bash) for building the SiteRenderer solution
+- [x] 1.3 Create `render.ps1` (Powershell) for using SiteRenderer to generate the site content to _site
+- [x] 1.4 Create `render.sh` (Bash) for using SiteRenderer to generate the site content to _site
 - [x] 1.5 Create `publish.ps1` (PowerShell) script to push `_site` to master branch
 - [x] 1.6 Create `publish.sh` (Bash) script to push `_site` to master branch
 - [x] 1.7 Scripts should handle git configuration, commit, and force-push to master
