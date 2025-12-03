@@ -26,7 +26,7 @@ The site SHALL regenerate RSS and Atom feeds using F# XML builders that mirror t
 - **THEN** its XML structure and entry data align with the existing Atom feed consumers expect.
 
 ### Requirement: Local Rendering Tooling
-The project SHALL provide documented commands for authors to run the F# renderer locally using `run.ps1` (PowerShell) or `run.sh` (Bash) scripts.
+The project SHALL provide documented commands for authors to run the F# renderer locally using `run.ps1` (PowerShell) or `run.sh` (Bash) scripts. The project SHALL also provide `new-draft.ps1` (PowerShell) and `new-draft.sh` (Bash) scripts for creating new draft posts with proper front matter and file naming conventions.
 
 #### Scenario: Local build command available
 - **WHEN** a developer executes `./run.ps1` or `./run.sh`
@@ -35,6 +35,14 @@ The project SHALL provide documented commands for authors to run the F# renderer
 #### Scenario: Local preview with serve option
 - **WHEN** a developer executes `./run.ps1 -Serve` or `./run.sh --serve`
 - **THEN** the site is built and served locally for browser preview.
+
+#### Scenario: Draft creation script available
+- **WHEN** an author executes `./new-draft.ps1` or `./new-draft.sh`
+- **THEN** the script prompts for post metadata and creates a properly formatted draft file in `_drafts/` with complete YAML front matter.
+
+#### Scenario: Generated draft has valid front matter
+- **WHEN** a draft is created using the new-draft script
+- **THEN** the file contains valid YAML front matter with title, layout, published status, and other required fields.
 
 ### Requirement: Configurable Static Asset Copying
 The renderer SHALL copy static assets to the output directory based on glob patterns specified in the `include` configuration list. If no patterns are configured, the renderer SHALL default to copying `css/**`, `js/**`, `img/**`, and `fonts/**`.
