@@ -5,8 +5,32 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Fri, 28 Nov 2025 11:45:33 GMT</pubDate>
-    <lastBuildDate>Fri, 28 Nov 2025 11:45:33 GMT</lastBuildDate>
+    <pubDate>Fri, 05 Dec 2025 18:57:11 GMT</pubDate>
+    <lastBuildDate>Fri, 05 Dec 2025 18:57:11 GMT</lastBuildDate>
+    <item>
+      <title>Automating toil</title>
+      <link>https://devonburriss.me/automating-toil/</link>
+      <pubDate>Thu, 04 Dec 2025 23:00:00 GMT</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/automating-toil/</guid>
+      <description>Managing agents at scale with GitHub</description>
+    </item>
+    <item>
+      <title>My Terminal Helper</title>
+      <link>https://devonburriss.me/my-terminal-helper/</link>
+      <pubDate>Wed, 03 Dec 2025 23:00:00 GMT</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/my-terminal-helper/</guid>
+      <description>Asking for help without leaving the terminal</description>
+    </item>
+    <item>
+      <title>Automation Heuristics</title>
+      <link>https://devonburriss.me/automation-heuristics/</link>
+      <pubDate>Tue, 02 Dec 2025 23:00:00 GMT</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/automation-heuristics/</guid>
+      <description>Some rules of thumb for automation</description>
+    </item>
     <item>
       <title>You ain't gonna need YAGNI</title>
       <link>https://devonburriss.me/yagnyagni/</link>
@@ -142,30 +166,6 @@
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/reliability-with-intents/</guid>
       <description>In this post I explore a solution for sending messages across process boundaries where the notification needs to be transactional with state change</description>
-    </item>
-    <item>
-      <title>Canopy from a FSX Script</title>
-      <link>https://devonburriss.me/canopy-from-fsx/</link>
-      <pubDate>Fri, 14 Dec 2018 23:00:00 GMT</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/canopy-from-fsx/</guid>
-      <description>Examples of running Canopy Selenium automation in a F# fsx script file</description>
-    </item>
-    <item>
-      <title>Review: F# unit testing frameworks and libraries</title>
-      <link>https://devonburriss.me/review-fsharp-test-libs/</link>
-      <pubDate>Fri, 07 Dec 2018 23:00:00 GMT</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/review-fsharp-test-libs/</guid>
-      <description>A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries</description>
-    </item>
-    <item>
-      <title>How to F# - Part 10</title>
-      <link>https://devonburriss.me/how-to-fsharp-pt-10/</link>
-      <pubDate>Fri, 23 Nov 2018 23:00:00 GMT</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/how-to-fsharp-pt-10/</guid>
-      <description>Writing your first command line application using F# and .NET Core</description>
     </item>
   </channel>
 </rss>

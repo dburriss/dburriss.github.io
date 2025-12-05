@@ -2,12 +2,284 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/" />
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml" />
-  <updated>2025-11-28T11:45:33Z</updated>
+  <updated>2025-12-05T18:57:11Z</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
+  <entry>
+    <id>https://devonburriss.me/automating-toil/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/automating-toil/" />
+    <title>Automating toil</title>
+    <updated>2025-12-04T23:00:00Z</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/automating-toil/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;One of the promises of AI is freedom from the drudgery of boring work. At work I have seen some success in using Copilot to migrate some AWS Lambdas off of some deprecated observability tooling. In this post I will go over how I am thinking about this and leave some tips from our lessons learned.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;These days there can be quite a bit of debate between developers around the usefulness of Generative AI (LLMs) and Agentic Workflows in development. Currently, I come down in the camp of &amp;quot;we don't know&amp;quot;. So we need to figure it out. That means ignoring the marketing clown-cars, explaining to execs where we are really at, and learning what actually works and what is currently useful.&lt;/p&gt;
+&lt;p&gt;One area that I have, thankfully, found some success is in alleviating toil. Let me tell you how the deprecation of a feature in Datadog caused hundreds of hours of toil across 250+ repositories.&lt;/p&gt;
+&lt;h2 id="setting-the-scene"&gt;Setting the scene&lt;/h2&gt;
+&lt;p&gt;Imagine this scenario. You have close to 2k repositories in your GitHub organisation, spread across almost 60 teams. All these teams use Datadog for observability. Furthermore, many teams have gone hard on AWS Lambda over the last few years (I will reserve comment).&lt;/p&gt;
+&lt;p&gt;Now imagine this. Datadog is disabling the deprecated way that many of these Lambdas are sending custom metrics. The impact of this is that 250+ repositories across the organisation need to be updated in about a month.&lt;/p&gt;
+&lt;p&gt;This is the worst kind of work to be asking teams to do because other than keeping metrics working, it has no return on investment (ROI). They already have metrics. It adds no features. It doesn't even necessarily remove code, so having less maintenance. It is straight up maintenance work to keep the light on.&lt;/p&gt;
+&lt;p&gt;If this kind of work can be reduced, it should be. It's boring. It adds no value. Automating it... that has ROI. Recognising this, we went about trying to automate it. And of course, we used AI.&lt;/p&gt;
+&lt;h2 id="the-plan"&gt;The Plan&lt;/h2&gt;
+&lt;p&gt;When hearing about the scale of this work, it was obvious we needed to reduce the effort required by the teams.
+Going into this I knew any solution needed to check certain boxes:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It needed to significantly reduce the work required of teams to migrate.&lt;/li&gt;
+&lt;li&gt;Teams would still be responsible for their stack.&lt;/li&gt;
+&lt;li&gt;We needed to be able to track the progress of the migration.&lt;/li&gt;
+&lt;li&gt;Build off tools already in the ecosystem as this needed to happen fast.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="/img/posts/2025/copilot-project.png" alt="Structure of solution" /&gt;&lt;/p&gt;
+&lt;!-- 
+erDiagram
+    direction LR
+    
+    Project ||--o{ Repo : contains
+    Repo ||--|| Issue : has
+    Issue ||--|| PR : has
+    Issue ||--|| Agent : assigned
+    Agent ||--|| PR : raises
+
+    classDef default fill:#008000,stroke:#333,stroke-width:4px;
+--&gt;
+&lt;p&gt;GitHub Copilot is already heavily used in our organisation and integrates well with the GitHub ecosystem. This made GitHub Projects and Issues ideal tools for tackling this challenge.&lt;/p&gt;
+&lt;p&gt;Here's how the workflow operates: GitHub Projects tracks progress across repositories with minimal effort. We assign issues to the project, then use those issues as prompts for the Copilot agent. When assigned to an issue, Copilot creates a PR linked back to that issue. Teams can then review and merge the PR or make changes as needed.&lt;/p&gt;
+&lt;h2 id="testing-the-idea"&gt;Testing the idea&lt;/h2&gt;
+&lt;p&gt;Firstly, like with a lot of agent usage, the bulk of the work and the quality of the result depends on crafting a really good prompt. I spent hours going through the diff from a PR that was upgraded manually, pulling out the important code examples to put into the issue.&lt;/p&gt;
+&lt;p&gt;Manually creating issues and assigning Copilot to it on a few repositories has yielded really promising results so far. The agent made the changes correctly across multiple Lambdas, even detecting when no changes were needed because the change had already been done manually.&lt;/p&gt;
+&lt;h2 id="scaling-up"&gt;Scaling up&lt;/h2&gt;
+&lt;p&gt;It turns out using Copilot when dealing with an organisation account is a bit more complicated, so last weekend I decided to test the idea of using GitHub Projects to make the same change across multiple repositories.&lt;/p&gt;
+&lt;p&gt;.NET 10 just released so I figured upgrading a couple of my open-source projects using this approach makes for a great test case.&lt;/p&gt;
+&lt;p&gt;To create this structure in GitHub I created a &lt;a href="https://github.com/dburriss/orca"&gt;script&lt;/a&gt; (available here) that sets everything up from the following YAML config.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;job:
+  title: &amp;quot;Upgrade to .NET 10&amp;quot;
+  org: &amp;quot;dburriss&amp;quot;
+
+repos:
+  - &amp;quot;wye&amp;quot;
+  - &amp;quot;fennel&amp;quot;
+  - &amp;quot;unique&amp;quot;
+  - &amp;quot;overboard&amp;quot;
+  - &amp;quot;event-feed&amp;quot;
+
+issue:
+  template: &amp;quot;./dotnet-upgrade-to-10.md&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After running the script against the above file, you have a project with linked issues and the status for each.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/img/posts/2025/github-project.png" alt="GitHub Projects" /&gt;&lt;/p&gt;
+&lt;p&gt;This allows tracking of the overall progress. So what have I learned so far about creating this kind of solution?&lt;/p&gt;
+&lt;h2 id="tips"&gt;Tips&lt;/h2&gt;
+&lt;h3 id="learn-and-improve-iteratively"&gt;Learn and improve iteratively&lt;/h3&gt;
+&lt;p&gt;Do at least 1 or 2 upgrades manually to learn about what changes need to be made. Then feed back the experience into crafting a good issue template. This follows the general rule of doing something manually, writing down the steps, then automating.&lt;/p&gt;
+&lt;p&gt;Once you have a good template, try it manually on a few repositories. Create the issue, manually assign the agent to it. Keep feeding back any learnings into the issue template. Then scale up.&lt;/p&gt;
+&lt;h3 id="give-enough-context"&gt;Give enough context&lt;/h3&gt;
+&lt;p&gt;I suggest having the following elements in the issue template:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Role of the agent i.e. &amp;quot;You are a senior .NET developer&amp;quot;&lt;/li&gt;
+&lt;li&gt;Objective - what are you trying to achieve&lt;/li&gt;
+&lt;li&gt;Instructions - the steps that should be followed&lt;/li&gt;
+&lt;li&gt;Context - any context needed for the instructions to be followed well&lt;/li&gt;
+&lt;li&gt;Examples - examples of the kind of changes expected (get these from the manual work done initially)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="humans-in-the-loop"&gt;Humans in the loop&lt;/h3&gt;
+&lt;p&gt;It is important to remember that these agents have no mental model of the world, your business, or even the codebase. Make sure that as an engineer you are reviewing the changes proposed carefully. At the end of the day, a human will always be accountable for a change, even if a coding agent wrote the code. For the foreseeable future, this will remain the case. Do not give up your critical thinking!&lt;/p&gt;
+&lt;h3 id="conclusion"&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Being able to automate this type of work easily and effectively means we should be doing so. This will give teams back hours and days to spend on the type of features that add value to a company.&lt;/p&gt;
+</summary>
+  </entry>
+  <entry>
+    <id>https://devonburriss.me/my-terminal-helper/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/my-terminal-helper/" />
+    <title>My Terminal Helper</title>
+    <updated>2025-12-03T23:00:00Z</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/my-terminal-helper/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;As a long time user of &lt;a href="https://www.warp.dev/"&gt;Warp Terminal&lt;/a&gt;, I enjoyed the convenience of being able to do &lt;code&gt;&amp;gt; #How do I create a new worktree branch again?&lt;/code&gt; and get the command straight in my terminal. A potential issue for you may be that Warp does not allow you to choose your model provider. So I created a little function to fill the gap.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;&lt;a href="/automation-heuristics"&gt;Previously&lt;/a&gt;, I tried my hand at a micro-post. I failed to keep it very micro. Let's see if I can do better today.&lt;/p&gt;
+&lt;p&gt;For this setup, I am using the awesome &lt;a href="https://opencode.ai/"&gt;OpenCode&lt;/a&gt; but you can use whatever Agent CLI tool you prefer.&lt;/p&gt;
+&lt;h2 id="step-1-create-your-terminal-agent-optional"&gt;Step 1: Create your terminal agent (Optional)&lt;/h2&gt;
+&lt;p&gt;This step is optional as you could also just inline the prompt and the model selection into the &lt;code&gt;opencode&lt;/code&gt; command below.&lt;/p&gt;
+&lt;p&gt;For reference, I will show how I have mine setup.&lt;/p&gt;
+&lt;p&gt;I have a custom &lt;a href="https://opencode.ai/docs/agents/"&gt;OpenCode agent&lt;/a&gt; setup. It has instructions on the type of questions as well as output format. This markdown file is placed in &lt;code&gt;~./config/opencode/agent/terminal.md&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-md"&gt;
+
+description: Answer questions for the terminal
+mode: subagent
+model: opencode/grok-code
+tools:
+  write: false
+  edit: false
+  bash: false
+
+
+&amp;lt;role&amp;gt;
+  You are an experienced software developer and terminal user.
+&amp;lt;/role&amp;gt;
+
+&amp;lt;objective&amp;gt;
+  Your objective is to answer questions and explain in 1 or 2 lines about what is asked.
+  If the topic is about how to accomplish a task on the command line, answer with a short explanation and the command to run to a accomplish the task.
+  Only respond, DO NOT run any tools/commands.
+&amp;lt;/objective&amp;gt;
+
+&amp;lt;output_format&amp;gt;
+  &amp;lt;one-line description of the command&amp;gt;
+  CMD: &amp;lt;command&amp;gt;
+  &amp;lt;one-line explanation of each argument&amp;gt;
+&amp;lt;/output_format&amp;gt;
+
+&amp;lt;example&amp;gt;
+  Prompt:
+  How do I add a git worktree called feature-x
+  Response:
+  Create a branch with git worktrees named feature-x in folder ../feature-x, outside the bare repository.
+  CMD: git worktree add ../feature-x
+  folder - folder for the worktree and the branch name if no explicit name supplied
+&amp;lt;/example&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I have linked to the docs, so if you want to know more about OpenCode agents, the docs are pretty decent.&lt;/p&gt;
+&lt;p&gt;What you need to know is that because the file is in the &lt;code&gt;agent/&lt;/code&gt; folder, with a filename of &lt;code&gt;terminal.md&lt;/code&gt;, we have an agent called &lt;code&gt;terminal&lt;/code&gt; available to us.&lt;/p&gt;
+&lt;p&gt;The other section to note in the agent is the &lt;code&gt;output_format&lt;/code&gt; section, as we will make use of that return format in the script below.&lt;/p&gt;
+&lt;h2 id="step-2-create-your-question-function"&gt;Step 2: Create your question function&lt;/h2&gt;
+&lt;p&gt;In &lt;code&gt;~/.bashrc&lt;/code&gt; or wherever you want to put your custom bash functions, copy in the following function.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;
+q() {
+    local prompt=&amp;quot;$*&amp;quot;
+    local out
+
+    # Ask the agent
+    out=$(opencode run --agent terminal &amp;quot;$prompt&amp;quot;)
+    printf &amp;quot;%s\n&amp;quot; &amp;quot;$out&amp;quot;
+
+    # Extract command starting with &amp;quot;CMD:&amp;quot;
+    local cmd
+    cmd=$(printf &amp;quot;%s&amp;quot; &amp;quot;$out&amp;quot; | grep &amp;quot;^CMD:&amp;quot; | sed 's/^CMD:[[:space:]]*//')
+
+    [ -z &amp;quot;$cmd&amp;quot; ] &amp;amp;&amp;amp; return 0
+
+    printf &amp;quot;Action? [r = run, c = copy, n = nothing] &amp;quot;
+    read -r ans
+
+    case &amp;quot;$ans&amp;quot; in
+        r|R)
+            eval &amp;quot;$cmd&amp;quot;
+            ;;
+        c|C)
+            if command -v pbcopy &amp;gt;/dev/null 2&amp;gt;&amp;amp;1; then
+                printf &amp;quot;%s&amp;quot; &amp;quot;$cmd&amp;quot; | pbcopy
+                printf &amp;quot;Copied to clipboard (pbcopy)\n&amp;quot;
+            elif command -v xclip &amp;gt;/dev/null 2&amp;gt;&amp;amp;1; then
+                printf &amp;quot;%s&amp;quot; &amp;quot;$cmd&amp;quot; | xclip -selection clipboard
+                printf &amp;quot;Copied to clipboard (xclip)\n&amp;quot;
+            elif command -v wl-copy &amp;gt;/dev/null 2&amp;gt;&amp;amp;1; then
+                printf &amp;quot;%s&amp;quot; &amp;quot;$cmd&amp;quot; | wl-copy
+                printf &amp;quot;Copied to clipboard (wl-copy)\n&amp;quot;
+            else
+                printf &amp;quot;No clipboard tool found\n&amp;quot;
+            fi
+            ;;
+        *)
+            # n / empty / anything else → do nothing
+            ;;
+    esac
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Walking through the main parts of the script:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;out=$(opencode run --agent terminal &amp;quot;$prompt&amp;quot;)&lt;/code&gt;: Asks your question to the &amp;quot;terminal&amp;quot; agent described above. It captures the response in the &lt;code&gt;out&lt;/code&gt; variable.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cmd=$(printf &amp;quot;%s&amp;quot; &amp;quot;$out&amp;quot; | grep &amp;quot;^CMD:&amp;quot; | sed 's/^CMD:[[:space:]]*//')&lt;/code&gt;: If the response contains the text &lt;code&gt;CMD:&lt;/code&gt;, it will extract the command to the &lt;code&gt;cmd&lt;/code&gt; variable.&lt;/li&gt;
+&lt;li&gt;If &lt;code&gt;cmd&lt;/code&gt; is not empty it will ask you if you want to run, copy, or do nothing with the command.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="step-3-test-it-out"&gt;Step 3: Test it out&lt;/h2&gt;
+&lt;p&gt;Now you can use this to get those commands you don't use often and sometimes forget.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;q How do I pretty print the last 5 commits in git?
+Display the last 5 commits in a compact, one-line format showing abbreviated hash and commit message.
+
+CMD: git log --oneline -5
+
+--oneline - Format each commit on a single line with abbreviated hash and subject.
+
+-5 - Limit the output to the most recent 5 commits.
+Action? [r = run, c = copy, n = nothing]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="closing-thoughts"&gt;Closing thoughts&lt;/h2&gt;
+&lt;p&gt;Unfortunately, this is quite a bit slower than the responses from Warp, so manage expectation.&lt;/p&gt;
+&lt;p&gt;A word of warning. You are executing commands being returned over the wire from a non-deterministic LLM. Use whatever caution you think that warrants. At the very least, check the command before you execute it.&lt;/p&gt;
+&lt;p&gt;Enjoy.&lt;/p&gt;
+</summary>
+  </entry>
+  <entry>
+    <id>https://devonburriss.me/automation-heuristics/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/automation-heuristics/" />
+    <title>Automation Heuristics</title>
+    <updated>2025-12-02T23:00:00Z</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/automation-heuristics/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;While writing up some automation work with GitHub and Copilot (post coming soon), I had thoughts that didn't fit that post. I think them worth jotting down, so here's an experiment in a micro-post format.&lt;br /&gt;
+Let's see how this goes since my posts tend to always be longer than I intended.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2 id="automate-the-boring-things"&gt;Automate the boring things&lt;/h2&gt;
+&lt;p&gt;If something is boring, chances are most humans are not going to enjoy doing it. This is a prime candidate for automation because if it is boring:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is probably repetitive&lt;/li&gt;
+&lt;li&gt;It is likely predictable&lt;/li&gt;
+&lt;li&gt;It does not bring joy to do (toil)&lt;/li&gt;
+&lt;li&gt;Chances are it brings very little business value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You should be asking yourself how you can automate this.&lt;/p&gt;
+&lt;p&gt;This brings me to my next point. &amp;quot;Artificial Intelligence&amp;quot;.&lt;/p&gt;
+&lt;h2 id="a-new-capability-natural-language"&gt;A new capability: Natural language&lt;/h2&gt;
+&lt;p&gt;I really dislike our use of the word &amp;quot;Artificial Intelligence&amp;quot; to describe the latest breed of LLMs. The marketing teams have done their jobs well though, so here we are.&lt;/p&gt;
+&lt;p&gt;These token generators have given us new capabilities that can drastically lower the cost of automating certain kinds of work. This new capability is &lt;strong&gt;working in natural language&lt;/strong&gt;. Parsing language to instructions a machine can execute. Changing text based on natural language instructions. Things that were once difficult and expensive are now easy and cheap. &lt;strong&gt;This expands the possibilities of things that we should be looking at automating&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id="the-golden-path"&gt;The Golden Path&lt;/h2&gt;
+&lt;p&gt;I have often run into platform teams mandating other teams use their tool because it is &amp;quot;the standard&amp;quot;. There are often very good reasons for why teams SHOULD be using a standard way. When providing any kind of standard, there is an opportunity.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Make the RIGHT way to do something, the EASIEST way to do the thing&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;People seldom want to do a bad job but they often have competing concerns. If you add too much friction to the right way of doing something, you are going to have a hard time convincing people. Conversely, if you provide something that makes their life easier while standardising, adoption becomes painless.&lt;/p&gt;
+&lt;p&gt;This brings me to my next point...&lt;/p&gt;
+&lt;h2 id="platform-teams-are-leveraged"&gt;Platform teams are leveraged&lt;/h2&gt;
+&lt;p&gt;Platform teams operating in organisations with many development teams, are leveraged. And the more teams that use the platform, the higher the leverage. What do I mean by this?&lt;/p&gt;
+&lt;p&gt;Platforms act as a multipliers for productivity. Gains from good abstractions and workflows enabled by a platform team increase productivity across multiple teams. Trust goes up, adoption goes up, and productivity flywheels.&lt;/p&gt;
+&lt;p&gt;Unfortunately, the opposite is true too. If a platform team offers unintuitive abstractions and tooling, flaky workflows, and foot-guns galore; the impact is felt across the organisation. Worse, the platform generates an endless stream of support requests, ad-hoc fixes, firefighting, and general toil. This has a further knock-on effect to the capacity and quality of future work, feeding the flywheel of toil and tanking the potential of the whole engineering organisation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Platforms are a double-edged sword&lt;/strong&gt; that can cut both ways. The payout is big if done well, the cost is high if done poorly.&lt;/p&gt;
+&lt;p&gt;Enough bad analogies. Moving on...&lt;/p&gt;
+&lt;h2 id="build-pipelines"&gt;Build pipelines&lt;/h2&gt;
+&lt;p&gt;A couple years ago I posted about a simple &lt;a href="/fp-architecture"&gt;functional programming architecture&lt;/a&gt; that I use regardless of whether it is a CLI or a web API.&lt;/p&gt;
+&lt;p&gt;Reminding teams that are in the business of building automation to build pipelines might seem redundant, but hear me out. A pipeline is a series of steps. Too often I see pipelines that are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Take the input.&lt;/li&gt;
+&lt;li&gt;Do the thing.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;And don't get me wrong, sometimes doing the most straightforward thing is the best place to start to validate an idea. The heart of architecture, in my opinion, is optionality. It is making design choices that make it easy (or at least possible), to enable capabilities the business needs in the future. A future we cannot see.&lt;/p&gt;
+&lt;p&gt;So consider this small change:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Take the input.&lt;/li&gt;
+&lt;li&gt;Determine the actions.&lt;/li&gt;
+&lt;li&gt;Do the actions.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This simple change, turning a program into a pipeline, gives us optionality in the future. That input may produce only 1 action now but we have a design that can be easily extended. For sure, &lt;a href="/yagnyagni"&gt;YAGNI&lt;/a&gt; and KISS are good principles to keep in mind but it depends what you are building. A quick one off automation? Keep it simple. A Platform that is the basis for the business to build on for years to come? Maybe put some thought into how to evolve requirements over time.&lt;/p&gt;
+&lt;p&gt;Which brings me to my final and related point...&lt;/p&gt;
+&lt;h2 id="composition-over.everything"&gt;Composition over ... everything&lt;/h2&gt;
+&lt;p&gt;I could probably write a whole series about composition but this post is already failing as a micro-post so I want to call out one controversial design choice unlocked by mastering good composition in your design.&lt;/p&gt;
+&lt;p&gt;Designing the perfect API or abstraction is difficult and in a complex environment it is unlikely you will succeed in catering for every teams needs. My controversial advice? Share your internal implementation details.&lt;/p&gt;
+&lt;p&gt;Ok, that was ragebait but I do mean it. Consider the situation where you have this neat abstraction where a team just needs to define a target workload, some environment setting, and an artifact to deploy. All the internal details are hidden away from the client teams. Now imagine some team comes in with some weird requirements because the business has pivoted and they need to get something highly experimental out ASAP.&lt;br /&gt;
+What happens in these cases? One of 2 things. The platform team needs to drop what they are doing and pivot to unblock this high priority project. They hack something into their beautiful abstraction, breaking the encapsulation, but unblocking the team. Or if teams are really really siloed or bureaucratic, the blocked team is left to hack together their own dodgy solution.&lt;/p&gt;
+&lt;p&gt;Now consider my alternative. Your beautiful abstraction is built from composable building blocks that represent atomic operations for working with workloads, environments, and artifacts. These building blocks are treated as public APIs and so have detailed documentation. The team with the custom request can now unblock themselves instead of scuttling the platform teams roadmap. The platform team can learn from what the other team built, thoughtfully integrating it using exactly the same building blocks.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Exposing some internal building blocks has major upsides if done intentionally&lt;/strong&gt;. This allows you to focus on the 80% without screwing over the 20%.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;So in conclusion, much like an LLM I am incapable of not being verbose. Top of mind for me of late is that we are rushing into a time of accelerated pace. The use of generative and agentic tools unlocks new opportunities but also amplifies risks. Good practices and fundamentals are becoming more important than ever. We can both generate value faster, or drive our maintenance costs into orbit faster than it takes NPM to get hacked.&lt;/p&gt;
+</summary>
+  </entry>
   <entry>
     <id>https://devonburriss.me/yagnyagni/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/yagnyagni/" />
@@ -194,38 +466,5 @@
       <uri>https://devonburriss.me/reliability-with-intents/</uri>
     </author>
     <summary type="html">In this post I explore a solution for sending messages across process boundaries where the notification needs to be transactional with state change</summary>
-  </entry>
-  <entry>
-    <id>https://devonburriss.me/canopy-from-fsx/</id>
-    <link type="text/html" rel="alternate" href="https://devonburriss.me/canopy-from-fsx/" />
-    <title>Canopy from a FSX Script</title>
-    <updated>2018-12-14T23:00:00Z</updated>
-    <author>
-      <name>Devon Burriss</name>
-      <uri>https://devonburriss.me/canopy-from-fsx/</uri>
-    </author>
-    <summary type="html">Examples of running Canopy Selenium automation in a F# fsx script file</summary>
-  </entry>
-  <entry>
-    <id>https://devonburriss.me/review-fsharp-test-libs/</id>
-    <link type="text/html" rel="alternate" href="https://devonburriss.me/review-fsharp-test-libs/" />
-    <title>Review: F# unit testing frameworks and libraries</title>
-    <updated>2018-12-07T23:00:00Z</updated>
-    <author>
-      <name>Devon Burriss</name>
-      <uri>https://devonburriss.me/review-fsharp-test-libs/</uri>
-    </author>
-    <summary type="html">A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries</summary>
-  </entry>
-  <entry>
-    <id>https://devonburriss.me/how-to-fsharp-pt-10/</id>
-    <link type="text/html" rel="alternate" href="https://devonburriss.me/how-to-fsharp-pt-10/" />
-    <title>How to F# - Part 10</title>
-    <updated>2018-11-23T23:00:00Z</updated>
-    <author>
-      <name>Devon Burriss</name>
-      <uri>https://devonburriss.me/how-to-fsharp-pt-10/</uri>
-    </author>
-    <summary type="html">Writing your first command line application using F# and .NET Core</summary>
   </entry>
 </feed>
