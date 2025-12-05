@@ -1,4 +1,4 @@
-﻿# Site settings
+# Site settings
 title: Devon Burriss' Blog
 header-img: "img/backgrounds/explore-bg.jpg"
 copyright_name: "Devon Burriss"
@@ -6,34 +6,27 @@ description: "Mostly explorations in code"
 author: "Devon Burriss"
 
 baseurl: "/"
-url: "http://localhost:5001/"
-is_production: false
+url: "https://devonburriss.me/"
+is_production: true
 
 twitter_username: DevonBurriss
 github_username: dburriss
 disqus_username: devonburriss
 
 # Google Analytics
-# To enable google analytics, uncomment below line with a valid Google Tracking ID
 google_tracking_id: UA-45750611-2
 
-pretzel: 
-    engine: liquid
-category_pages_layout: categories
-tag_pages_layout: tags
+# Static assets to copy (glob patterns)
+include:
+  - css/**
+  - js/**
+  - img/**
+  - fonts/**
+  - tkd/**
+  - CNAME
+  - sitemap.xml
 
-exclude:
-  - .gitignore
-  - .git
-  - .vscode
-  - _plugins
-  - tools
-  - appveyor.yml
-  - pretzel.cake
-  - pretzel.ps1
-  - run.ps1
-  - npm-debug.log
-
+# Related posts configuration (used by F# SiteRenderer)
 similar_posts:
     filter_threshold: 0.3
     related_count: 3
@@ -42,9 +35,3 @@ similar_posts:
         tags: 0.3
         title: 0.2
         text: 1
-    stemmers:
-      - English
-    reserved:
-      - asp.net
-      - .net
-      - vs.net
