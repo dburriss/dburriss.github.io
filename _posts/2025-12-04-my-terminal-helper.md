@@ -140,8 +140,6 @@ CMD: git log --oneline -5
 Action? [r = run, c = copy, n = nothing]
 ```
 
-```
-```
 ## Closing thoughts
 
 Unfortunately, this is quite a bit slower than the responses from Warp, so manage expectation.
