@@ -234,3 +234,23 @@ git clone --recurse-submodules https://github.com/dburriss/dburriss.github.io.gi
 # Or if already cloned:
 git submodule update --init
 ```
+
+### Troubleshooting Submodule Issues
+
+If you encounter this error when running `./publish.sh`:
+
+```
+fatal: destination path '/home/deebo/Projects/blog/source/_site' already exists and is not an empty directory.
+fatal: clone of 'git@github.com:dburriss/dburriss.github.io.git' into submodule path '/home/deebo/Projects/blog/source/_site' failed
+```
+
+This happens because the site renderer wipes the `_site` directory, removing the git repository, but the directory still contains generated files. To fix:
+
+```bash
+# Remove the generated files and properly initialize the submodule
+rm -rf _site
+git submodule update --init _site
+
+# Then regenerate the site before publishing
+./render.sh
+```
