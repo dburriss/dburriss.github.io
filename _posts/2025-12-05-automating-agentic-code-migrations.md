@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Automating toil"
+title: "Automating Agentic Code Migrations"
 subtitle: "Managing agents at scale with GitHub"
-permalink: automating-toil
+permalink: automating-agentic-code-migrations
 author: "Devon Burriss"
 category: Tools
 tags: [Automation,AI,Agentic]
