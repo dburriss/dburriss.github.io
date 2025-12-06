@@ -5,14 +5,14 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Fri, 05 Dec 2025 18:57:11 GMT</pubDate>
-    <lastBuildDate>Fri, 05 Dec 2025 18:57:11 GMT</lastBuildDate>
+    <pubDate>Sat, 06 Dec 2025 09:57:50 GMT</pubDate>
+    <lastBuildDate>Sat, 06 Dec 2025 09:57:50 GMT</lastBuildDate>
     <item>
-      <title>Automating toil</title>
-      <link>https://devonburriss.me/automating-toil/</link>
+      <title>Automating Agentic Code Migrations</title>
+      <link>https://devonburriss.me/automating-agentic-code-migrations/</link>
       <pubDate>Thu, 04 Dec 2025 23:00:00 GMT</pubDate>
       <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/automating-toil/</guid>
+      <guid>https://devonburriss.me/automating-agentic-code-migrations/</guid>
       <description>Managing agents at scale with GitHub</description>
     </item>
     <item>

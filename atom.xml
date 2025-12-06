@@ -2,20 +2,20 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/" />
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml" />
-  <updated>2025-12-05T18:57:11Z</updated>
+  <updated>2025-12-06T09:57:50Z</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
   <entry>
-    <id>https://devonburriss.me/automating-toil/</id>
-    <link type="text/html" rel="alternate" href="https://devonburriss.me/automating-toil/" />
-    <title>Automating toil</title>
+    <id>https://devonburriss.me/automating-agentic-code-migrations/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/automating-agentic-code-migrations/" />
+    <title>Automating Agentic Code Migrations</title>
     <updated>2025-12-04T23:00:00Z</updated>
     <author>
       <name>Devon Burriss</name>
-      <uri>https://devonburriss.me/automating-toil/</uri>
+      <uri>https://devonburriss.me/automating-agentic-code-migrations/</uri>
     </author>
     <summary type="html">&lt;p&gt;One of the promises of AI is freedom from the drudgery of boring work. At work I have seen some success in using Copilot to migrate some AWS Lambdas off of some deprecated observability tooling. In this post I will go over how I am thinking about this and leave some tips from our lessons learned.&lt;/p&gt;
 &lt;!--more--&gt;
