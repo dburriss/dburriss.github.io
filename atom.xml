@@ -2,7 +2,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/" />
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml" />
-  <updated>2025-12-08T12:05:48Z</updated>
+  <updated>2025-12-08T12:16:23Z</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -24,15 +24,16 @@
 &lt;h2 id="setting-the-scene"&gt;Setting the scene&lt;/h2&gt;
 &lt;p&gt;Imagine this scenario. You have close to 2k repositories in your GitHub organisation, spread across almost 60 teams. All these teams use Datadog for observability. Furthermore, many teams have gone hard on AWS Lambda over the last few years (I will reserve comment).&lt;/p&gt;
 &lt;p&gt;Now imagine this. Datadog is disabling the deprecated way that many of these Lambdas are sending custom metrics. The impact of this is that 250+ repositories across the organisation need to be updated in about a month.&lt;/p&gt;
-&lt;p&gt;This is the worst kind of work to be asking teams to do because other than keeping metrics working, it has no return on investment (ROI). They already have metrics. It adds no features. It doesn't even necessarily remove code, so having less maintenance. It is straight up maintenance work to keep the lights on.&lt;/p&gt;
+&lt;p&gt;This is the worst kind of work to be asking teams to do because other than keeping metrics working, it has no return on investment (ROI).&lt;/p&gt;
 &lt;p&gt;When doing this kind of work:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The metrics already exist, so no new capabilities are added.&lt;/li&gt;
 &lt;li&gt;Existing code is replaced by new code but the overall maintenance burden remains about the same.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;If this kind of work can be reduced, it should be. It's boring. It adds no value. Automating it... that has ROI. Recognising this, we went about trying to automate it. And of course, we used AI.&lt;/p&gt;
+&lt;p&gt;It is straight up maintenance work to keep the lights on.
+If this kind of work can be reduced, it should be. It's boring. It adds no value. Automating it... that has ROI. Recognising this, we went about trying to automate it. And of course, we used AI.&lt;/p&gt;
 &lt;h2 id="the-plan"&gt;The Plan&lt;/h2&gt;
-&lt;p&gt;When hearing about the scale of this work, it was obvious we needed to reduce the effort required by the teams.
+&lt;p&gt;When hearing about the scale of this work, it was obvious to me that we needed to reduce the effort required by the teams.
 Going into this I knew any solution needed to check certain boxes:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;It needed to significantly reduce the work required of teams to migrate.&lt;/li&gt;

@@ -9,15 +9,16 @@
 <h2 id="setting-the-scene">Setting the scene</h2>
 <p>Imagine this scenario. You have close to 2k repositories in your GitHub organisation, spread across almost 60 teams. All these teams use Datadog for observability. Furthermore, many teams have gone hard on AWS Lambda over the last few years (I will reserve comment).</p>
 <p>Now imagine this. Datadog is disabling the deprecated way that many of these Lambdas are sending custom metrics. The impact of this is that 250+ repositories across the organisation need to be updated in about a month.</p>
-<p>This is the worst kind of work to be asking teams to do because other than keeping metrics working, it has no return on investment (ROI). They already have metrics. It adds no features. It doesn't even necessarily remove code, so having less maintenance. It is straight up maintenance work to keep the lights on.</p>
+<p>This is the worst kind of work to be asking teams to do because other than keeping metrics working, it has no return on investment (ROI).</p>
 <p>When doing this kind of work:</p>
 <ul>
 <li>The metrics already exist, so no new capabilities are added.</li>
 <li>Existing code is replaced by new code but the overall maintenance burden remains about the same.</li>
 </ul>
-<p>If this kind of work can be reduced, it should be. It's boring. It adds no value. Automating it... that has ROI. Recognising this, we went about trying to automate it. And of course, we used AI.</p>
+<p>It is straight up maintenance work to keep the lights on.
+If this kind of work can be reduced, it should be. It's boring. It adds no value. Automating it... that has ROI. Recognising this, we went about trying to automate it. And of course, we used AI.</p>
 <h2 id="the-plan">The Plan</h2>
-<p>When hearing about the scale of this work, it was obvious we needed to reduce the effort required by the teams.
+<p>When hearing about the scale of this work, it was obvious to me that we needed to reduce the effort required by the teams.
 Going into this I knew any solution needed to check certain boxes:</p>
 <ol>
 <li>It needed to significantly reduce the work required of teams to migrate.</li>
