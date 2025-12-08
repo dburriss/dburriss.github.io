@@ -2,7 +2,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/" />
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml" />
-  <updated>2025-12-06T09:57:50Z</updated>
+  <updated>2025-12-08T12:05:48Z</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -17,14 +17,19 @@
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/automating-agentic-code-migrations/</uri>
     </author>
-    <summary type="html">&lt;p&gt;One of the promises of AI is freedom from the drudgery of boring work. At work I have seen some success in using Copilot to migrate some AWS Lambdas off of some deprecated observability tooling. In this post I will go over how I am thinking about this and leave some tips from our lessons learned.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;One of the promises of AI is freedom from the drudgery of boring work. At work I have had some success in using Copilot to migrate some AWS Lambdas off of some deprecated observability tooling. In this post I will go over how I am using agentic workflows and leave some tips at the end.&lt;/p&gt;
 &lt;!--more--&gt;
-&lt;p&gt;These days there can be quite a bit of debate between developers around the usefulness of Generative AI (LLMs) and Agentic Workflows in development. Currently, I come down in the camp of &amp;quot;we don't know&amp;quot;. So we need to figure it out. That means ignoring the marketing clown-cars, explaining to execs where we are really at, and learning what actually works and what is currently useful.&lt;/p&gt;
+&lt;p&gt;These days there can be quite a bit of debate between developers around the usefulness of Generative AI (LLMs) and Agentic Workflows in development. Currently, I come down in the camp of &amp;quot;we don't know&amp;quot;. What we do know is it gives great gains for some tasks. For other tasks it might be better not to use these new tools. That means ignoring the marketing clown-cars, explaining to execs what is plausible at the moment, and learning what actually works and what is currently useful.&lt;/p&gt;
 &lt;p&gt;One area that I have, thankfully, found some success is in alleviating toil. Let me tell you how the deprecation of a feature in Datadog caused hundreds of hours of toil across 250+ repositories.&lt;/p&gt;
 &lt;h2 id="setting-the-scene"&gt;Setting the scene&lt;/h2&gt;
 &lt;p&gt;Imagine this scenario. You have close to 2k repositories in your GitHub organisation, spread across almost 60 teams. All these teams use Datadog for observability. Furthermore, many teams have gone hard on AWS Lambda over the last few years (I will reserve comment).&lt;/p&gt;
 &lt;p&gt;Now imagine this. Datadog is disabling the deprecated way that many of these Lambdas are sending custom metrics. The impact of this is that 250+ repositories across the organisation need to be updated in about a month.&lt;/p&gt;
-&lt;p&gt;This is the worst kind of work to be asking teams to do because other than keeping metrics working, it has no return on investment (ROI). They already have metrics. It adds no features. It doesn't even necessarily remove code, so having less maintenance. It is straight up maintenance work to keep the light on.&lt;/p&gt;
+&lt;p&gt;This is the worst kind of work to be asking teams to do because other than keeping metrics working, it has no return on investment (ROI). They already have metrics. It adds no features. It doesn't even necessarily remove code, so having less maintenance. It is straight up maintenance work to keep the lights on.&lt;/p&gt;
+&lt;p&gt;When doing this kind of work:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The metrics already exist, so no new capabilities are added.&lt;/li&gt;
+&lt;li&gt;Existing code is replaced by new code but the overall maintenance burden remains about the same.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;If this kind of work can be reduced, it should be. It's boring. It adds no value. Automating it... that has ROI. Recognising this, we went about trying to automate it. And of course, we used AI.&lt;/p&gt;
 &lt;h2 id="the-plan"&gt;The Plan&lt;/h2&gt;
 &lt;p&gt;When hearing about the scale of this work, it was obvious we needed to reduce the effort required by the teams.
@@ -33,9 +38,8 @@ Going into this I knew any solution needed to check certain boxes:&lt;/p&gt;
 &lt;li&gt;It needed to significantly reduce the work required of teams to migrate.&lt;/li&gt;
 &lt;li&gt;Teams would still be responsible for their stack.&lt;/li&gt;
 &lt;li&gt;We needed to be able to track the progress of the migration.&lt;/li&gt;
-&lt;li&gt;Build off tools already in the ecosystem as this needed to happen fast.&lt;/li&gt;
+&lt;li&gt;Build on top of existing tools in the ecosystem since there is a hard deadline.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="/img/posts/2025/copilot-project.png" alt="Structure of solution" /&gt;&lt;/p&gt;
 &lt;!-- 
 erDiagram
     direction LR
@@ -49,8 +53,9 @@ erDiagram
     classDef default fill:#008000,stroke:#333,stroke-width:4px;
 --&gt;
 &lt;p&gt;GitHub Copilot is already heavily used in our organisation and integrates well with the GitHub ecosystem. This made GitHub Projects and Issues ideal tools for tackling this challenge.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/img/posts/2025/copilot-project.png" alt="Structure of solution" /&gt;&lt;/p&gt;
 &lt;p&gt;Here's how the workflow operates: GitHub Projects tracks progress across repositories with minimal effort. We assign issues to the project, then use those issues as prompts for the Copilot agent. When assigned to an issue, Copilot creates a PR linked back to that issue. Teams can then review and merge the PR or make changes as needed.&lt;/p&gt;
-&lt;h2 id="testing-the-idea"&gt;Testing the idea&lt;/h2&gt;
+&lt;h2 id="the-experiment"&gt;The Experiment&lt;/h2&gt;
 &lt;p&gt;Firstly, like with a lot of agent usage, the bulk of the work and the quality of the result depends on crafting a really good prompt. I spent hours going through the diff from a PR that was upgraded manually, pulling out the important code examples to put into the issue.&lt;/p&gt;
 &lt;p&gt;Manually creating issues and assigning Copilot to it on a few repositories has yielded really promising results so far. The agent made the changes correctly across multiple Lambdas, even detecting when no changes were needed because the change had already been done manually.&lt;/p&gt;
 &lt;h2 id="scaling-up"&gt;Scaling up&lt;/h2&gt;
@@ -90,7 +95,7 @@ issue:
 &lt;h3 id="humans-in-the-loop"&gt;Humans in the loop&lt;/h3&gt;
 &lt;p&gt;It is important to remember that these agents have no mental model of the world, your business, or even the codebase. Make sure that as an engineer you are reviewing the changes proposed carefully. At the end of the day, a human will always be accountable for a change, even if a coding agent wrote the code. For the foreseeable future, this will remain the case. Do not give up your critical thinking!&lt;/p&gt;
 &lt;h3 id="conclusion"&gt;Conclusion&lt;/h3&gt;
-&lt;p&gt;Being able to automate this type of work easily and effectively means we should be doing so. This will give teams back hours and days to spend on the type of features that add value to a company.&lt;/p&gt;
+&lt;p&gt;Being able to now automate this type of work easily and effectively means we should be doing so. This will give teams back hours and even days of tedious work. This time can then be spent adding features that add value to a company.&lt;/p&gt;
 </summary>
   </entry>
   <entry>
