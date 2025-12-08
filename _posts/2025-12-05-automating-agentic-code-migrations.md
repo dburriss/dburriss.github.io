@@ -13,11 +13,11 @@ social-img: "img/posts/2018/rubiks-500.jpg"
 published: true
 ---
 
-One of the promises of AI is freedom from the drudgery of boring work. At work I have seen some success in using Copilot to migrate some AWS Lambdas off of some deprecated observability tooling. In this post I will go over how I am thinking about this and leave some tips from our lessons learned.
+One of the promises of AI is freedom from the drudgery of boring work. At work I have had some success in using Copilot to migrate some AWS Lambdas off of some deprecated observability tooling. In this post I will go over how I am using agentic workflows and leave some tips at the end.
 
 <!--more-->
 
-These days there can be quite a bit of debate between developers around the usefulness of Generative AI (LLMs) and Agentic Workflows in development. Currently, I come down in the camp of "we don't know". So we need to figure it out. That means ignoring the marketing clown-cars, explaining to execs where we are really at, and learning what actually works and what is currently useful. 
+These days there can be quite a bit of debate between developers around the usefulness of Generative AI (LLMs) and Agentic Workflows in development. Currently, I come down in the camp of "we don't know". What we do know is it gives great gains for some tasks. For other tasks it might be better not to use these new tools. That means ignoring the marketing clown-cars, explaining to execs what is plausible at the moment, and learning what actually works and what is currently useful. 
 
 One area that I have, thankfully, found some success is in alleviating toil. Let me tell you how the deprecation of a feature in Datadog caused hundreds of hours of toil across 250+ repositories.
 
@@ -27,21 +27,25 @@ Imagine this scenario. You have close to 2k repositories in your GitHub organisa
 
 Now imagine this. Datadog is disabling the deprecated way that many of these Lambdas are sending custom metrics. The impact of this is that 250+ repositories across the organisation need to be updated in about a month. 
 
-This is the worst kind of work to be asking teams to do because other than keeping metrics working, it has no return on investment (ROI). They already have metrics. It adds no features. It doesn't even necessarily remove code, so having less maintenance. It is straight up maintenance work to keep the light on.
+This is the worst kind of work to be asking teams to do because other than keeping metrics working, it has no return on investment (ROI).
 
+When doing this kind of work:
+
+- The metrics already exist, so no new capabilities are added.
+- Existing code is replaced by new code but the overall maintenance burden remains about the same.
+
+It is straight up maintenance work to keep the lights on.
 If this kind of work can be reduced, it should be. It's boring. It adds no value. Automating it... that has ROI. Recognising this, we went about trying to automate it. And of course, we used AI.
 
 ## The Plan
 
-When hearing about the scale of this work, it was obvious we needed to reduce the effort required by the teams. 
+When hearing about the scale of this work, it was obvious to me that we needed to reduce the effort required by the teams. 
 Going into this I knew any solution needed to check certain boxes:
 
 1. It needed to significantly reduce the work required of teams to migrate.
 2. Teams would still be responsible for their stack.
 3. We needed to be able to track the progress of the migration.
-4. Build off tools already in the ecosystem as this needed to happen fast.
-
-![Structure of solution](/img/posts/2025/copilot-project.png)
+4. Build on top of existing tools in the ecosystem since there is a hard deadline.
 
 <!-- 
 erDiagram
@@ -58,9 +62,11 @@ erDiagram
 
 GitHub Copilot is already heavily used in our organisation and integrates well with the GitHub ecosystem. This made GitHub Projects and Issues ideal tools for tackling this challenge.
 
+![Structure of solution](/img/posts/2025/copilot-project.png)
+
 Here's how the workflow operates: GitHub Projects tracks progress across repositories with minimal effort. We assign issues to the project, then use those issues as prompts for the Copilot agent. When assigned to an issue, Copilot creates a PR linked back to that issue. Teams can then review and merge the PR or make changes as needed.
 
-## Testing the idea
+## The Experiment
 
 Firstly, like with a lot of agent usage, the bulk of the work and the quality of the result depends on crafting a really good prompt. I spent hours going through the diff from a PR that was upgraded manually, pulling out the important code examples to put into the issue.
 
@@ -120,4 +126,4 @@ It is important to remember that these agents have no mental model of the world,
 
 ### Conclusion
 
-Being able to automate this type of work easily and effectively means we should be doing so. This will give teams back hours and days to spend on the type of features that add value to a company.
+Being able to now automate this type of work easily and effectively means we should be doing so. This will give teams back hours and even days of tedious work. This time can then be spent adding features that add value to a company.
