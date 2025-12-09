@@ -19,7 +19,7 @@ One of the promises of AI is freedom from the drudgery of boring work. At work I
 
 These days there can be quite a bit of debate between developers around the usefulness of Generative AI (LLMs) and Agentic Workflows in development. Currently, I come down in the camp of "we don't know". What we do know is it gives great gains for some tasks. For other tasks it might be better not to use these new tools. That means ignoring the marketing clown-cars, explaining to execs what is plausible at the moment, and learning what actually works and what is currently useful. 
 
-One area that I have, thankfully, found some success is in alleviating toil. Let me tell you how the deprecation of a feature in Datadog caused hundreds of hours of toil across 250+ repositories.
+One area that I have found success, is in alleviating toil. Let me tell you how the deprecation of a feature in Datadog caused hundreds of hours of toil across 250+ repositories.
 
 ## Setting the scene
 
@@ -119,6 +119,36 @@ I suggest having the following elements in the issue template:
 3. Instructions - the steps that should be followed
 4. Context - any context needed for the instructions to be followed well
 5. Examples - examples of the kind of changes expected (get these from the manual work done initially)
+
+> See the example [dotnet-upgrade-to-10.md here].
+
+A word of warning. Don't go too overboard with the prompt. Having too much in your context can degrade results just as much as not enough. The Copilot context will have the GitHub and Playwright MCPs in them already. It will contain your issue text. It will also gather context from your codebase.
+
+### Automate verification
+
+It is important to have an automated way of identifying regressions. If you have a verification step, the coding agent can use it to identify regressions and fix them before a human ever has to look at the change.
+
+I want to call out something important in the instructions which can be seen when the agent executes the job. I have the following instruction: "Run `dotnet build` and `dotnet test` before changing anything to verify everything is working before changes". It is important that you and the coding agent know if the tests were failing (usually because something is missing in the agents [sandbox environment](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-environment)). If this is only identified after the change, it is more difficult to know the cause.
+
+### Agent friendly environment
+
+Extending on the point above, you increase the chances of good outcome by preparing your repository to be agent friendly. Make sure that the agent can build and run your tests, linters, etc. This may mean [customising the sandbox environment](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-environment) so the agent has what it needs.
+
+As important is that the agent has clear instruction for this repository. This means making sure you have an [AGENTS.md](https://agents.md/) file that includes at a minimum:
+
+- how to build and test the project
+- the repositories tech stack
+- and standards that need following
+- for more complex codebases, pointing to an ARCHITECTURE.md file or something to help the agent with the structure
+
+### Have a rollback plan
+
+Even if you move slowly, once you scale out you might run into unknowns that were not accounted for in your prompt or preparation. I suggest 2 things:
+
+1. Make your rollout script as idempotent as possible. This would allow you to retry, add new repositories, etc. as you learn.
+2. Create a good cleanup script that can bin the project, issues, and Pull Requests and allow you to start over if need be.
+
+> Check out my example [rollout script](https://github.com/dburriss/orca/blob/main/orca.nu) and [cleanup script](https://github.com/dburriss/orca/blob/main/cleanup.nu) as an example.
 
 ### Humans in the loop
 
