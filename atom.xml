@@ -2,7 +2,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/" />
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml" />
-  <updated>2025-12-08T12:16:23Z</updated>
+  <updated>2025-12-09T08:20:31Z</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -20,7 +20,7 @@
     <summary type="html">&lt;p&gt;One of the promises of AI is freedom from the drudgery of boring work. At work I have had some success in using Copilot to migrate some AWS Lambdas off of some deprecated observability tooling. In this post I will go over how I am using agentic workflows and leave some tips at the end.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;These days there can be quite a bit of debate between developers around the usefulness of Generative AI (LLMs) and Agentic Workflows in development. Currently, I come down in the camp of &amp;quot;we don't know&amp;quot;. What we do know is it gives great gains for some tasks. For other tasks it might be better not to use these new tools. That means ignoring the marketing clown-cars, explaining to execs what is plausible at the moment, and learning what actually works and what is currently useful.&lt;/p&gt;
-&lt;p&gt;One area that I have, thankfully, found some success is in alleviating toil. Let me tell you how the deprecation of a feature in Datadog caused hundreds of hours of toil across 250+ repositories.&lt;/p&gt;
+&lt;p&gt;One area where I have found success is in alleviating toil. Let me tell you how the deprecation of a feature in Datadog caused hundreds of hours of toil across 250+ repositories.&lt;/p&gt;
 &lt;h2 id="setting-the-scene"&gt;Setting the scene&lt;/h2&gt;
 &lt;p&gt;Imagine this scenario. You have close to 2k repositories in your GitHub organisation, spread across almost 60 teams. All these teams use Datadog for observability. Furthermore, many teams have gone hard on AWS Lambda over the last few years (I will reserve comment).&lt;/p&gt;
 &lt;p&gt;Now imagine this. Datadog is disabling the deprecated way that many of these Lambdas are sending custom metrics. The impact of this is that 250+ repositories across the organisation need to be updated in about a month.&lt;/p&gt;
@@ -34,7 +34,7 @@
 If this kind of work can be reduced, it should be. It's boring. It adds no value. Automating it... that has ROI. Recognising this, we went about trying to automate it. And of course, we used AI.&lt;/p&gt;
 &lt;h2 id="the-plan"&gt;The Plan&lt;/h2&gt;
 &lt;p&gt;When hearing about the scale of this work, it was obvious to me that we needed to reduce the effort required by the teams.
-Going into this I knew any solution needed to check certain boxes:&lt;/p&gt;
+Going into this, I knew any solution needed to check certain boxes:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;It needed to significantly reduce the work required of teams to migrate.&lt;/li&gt;
 &lt;li&gt;Teams would still be responsible for their stack.&lt;/li&gt;
@@ -58,7 +58,7 @@ erDiagram
 &lt;p&gt;Here's how the workflow operates: GitHub Projects tracks progress across repositories with minimal effort. We assign issues to the project, then use those issues as prompts for the Copilot agent. When assigned to an issue, Copilot creates a PR linked back to that issue. Teams can then review and merge the PR or make changes as needed.&lt;/p&gt;
 &lt;h2 id="the-experiment"&gt;The Experiment&lt;/h2&gt;
 &lt;p&gt;Firstly, like with a lot of agent usage, the bulk of the work and the quality of the result depends on crafting a really good prompt. I spent hours going through the diff from a PR that was upgraded manually, pulling out the important code examples to put into the issue.&lt;/p&gt;
-&lt;p&gt;Manually creating issues and assigning Copilot to it on a few repositories has yielded really promising results so far. The agent made the changes correctly across multiple Lambdas, even detecting when no changes were needed because the change had already been done manually.&lt;/p&gt;
+&lt;p&gt;Manually creating issues and assigning Copilot to them on a few repositories has yielded really promising results so far. The agent made the changes correctly across multiple Lambdas, even detecting when no changes were needed because the change had already been done manually.&lt;/p&gt;
 &lt;h2 id="scaling-up"&gt;Scaling up&lt;/h2&gt;
 &lt;p&gt;It turns out using Copilot when dealing with an organisation account is a bit more complicated, so last weekend I decided to test the idea of using GitHub Projects to make the same change across multiple repositories.&lt;/p&gt;
 &lt;p&gt;.NET 10 just released so I figured upgrading a couple of my open-source projects using this approach makes for a great test case.&lt;/p&gt;
@@ -93,6 +93,31 @@ issue:
 &lt;li&gt;Context - any context needed for the instructions to be followed well&lt;/li&gt;
 &lt;li&gt;Examples - examples of the kind of changes expected (get these from the manual work done initially)&lt;/li&gt;
 &lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;See the example &lt;a href="https://github.com/dburriss/orca/blob/main/dotnet-upgrade-to-10.md"&gt;dotnet-upgrade-to-10.md here&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A word of warning. Don't go too overboard with the prompt. Having too much in your context can degrade results just as much as not enough. The Copilot context will have the GitHub and Playwright MCPs in it already. It will contain your issue text. It will also gather context from your codebase.&lt;/p&gt;
+&lt;h3 id="automate-verification"&gt;Automate verification&lt;/h3&gt;
+&lt;p&gt;It is important to have an automated way of identifying regressions. If you have a verification step, the coding agent can use it to identify regressions and fix them before a human ever has to look at the change.&lt;/p&gt;
+&lt;p&gt;I want to call out something important in the instructions which can be seen when the agent executes the job. I have the following instruction: &amp;quot;Run &lt;code&gt;dotnet build&lt;/code&gt; and &lt;code&gt;dotnet test&lt;/code&gt; before changing anything to verify everything is working before changes&amp;quot;. It is important that you and the coding agent know if the tests were failing (usually because something is missing in the agents &lt;a href="https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-environment"&gt;sandbox environment&lt;/a&gt;). If this is only identified after the change, it is more difficult to know the cause.&lt;/p&gt;
+&lt;h3 id="agent-friendly-environment"&gt;Agent friendly environment&lt;/h3&gt;
+&lt;p&gt;Extending on the point above, you increase the chances of good outcome by preparing your repository to be agent friendly. Make sure that the agent can build and run your tests, linters, etc. This may mean &lt;a href="https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-environment"&gt;customising the sandbox environment&lt;/a&gt; so the agent has what it needs.&lt;/p&gt;
+&lt;p&gt;As important is that the agent has clear instruction for this repository. This means making sure you have an &lt;a href="https://agents.md/"&gt;AGENTS.md&lt;/a&gt; file that includes at a minimum:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;how to build and test the project&lt;/li&gt;
+&lt;li&gt;the repository’s tech stack&lt;/li&gt;
+&lt;li&gt;standards that need to be followed&lt;/li&gt;
+&lt;li&gt;for more complex codebases, point to an ARCHITECTURE.md file or similar to help the agent with the structure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="have-a-rollback-plan"&gt;Have a rollback plan&lt;/h3&gt;
+&lt;p&gt;Even if you move slowly, once you scale out you might run into unknowns that were not accounted for in your prompt or preparation. I suggest 2 things:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Make your rollout script as idempotent as possible. This would allow you to retry, add new repositories, etc. as you learn.&lt;/li&gt;
+&lt;li&gt;Create a good cleanup script that can bin the project, issues, and Pull Requests and allow you to start over if need be.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Check out my example &lt;a href="https://github.com/dburriss/orca/blob/main/orca.nu"&gt;rollout script&lt;/a&gt; and &lt;a href="https://github.com/dburriss/orca/blob/main/cleanup.nu"&gt;cleanup script&lt;/a&gt; as an example.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id="humans-in-the-loop"&gt;Humans in the loop&lt;/h3&gt;
 &lt;p&gt;It is important to remember that these agents have no mental model of the world, your business, or even the codebase. Make sure that as an engineer you are reviewing the changes proposed carefully. At the end of the day, a human will always be accountable for a change, even if a coding agent wrote the code. For the foreseeable future, this will remain the case. Do not give up your critical thinking!&lt;/p&gt;
 &lt;h3 id="conclusion"&gt;Conclusion&lt;/h3&gt;
