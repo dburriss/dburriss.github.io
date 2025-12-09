@@ -2,7 +2,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/" />
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml" />
-  <updated>2025-12-09T08:23:00Z</updated>
+  <updated>2025-12-09T08:24:57Z</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -94,7 +94,7 @@ issue:
 &lt;li&gt;Examples - examples of the kind of changes expected (get these from the manual work done initially)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;See the example &lt;a href="https://github.com/dburriss/orca/blob/main/examples/dotnet-upgrade-to-10.md"&gt;dotnet-upgrade-to-10.md here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;See the example &lt;a href="https://github.com/dburriss/orca/blob/main/example/dotnet-upgrade-to-10.md"&gt;dotnet-upgrade-to-10.md here&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;A word of warning. Don't go too overboard with the prompt. Having too much in your context can degrade results just as much as not enough. The Copilot context will have the GitHub and Playwright MCPs in it already. It will contain your issue text. It will also gather context from your codebase.&lt;/p&gt;
 &lt;h3 id="automate-verification"&gt;Automate verification&lt;/h3&gt;
