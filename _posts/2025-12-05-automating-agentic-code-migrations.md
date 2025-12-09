@@ -19,7 +19,7 @@ One of the promises of AI is freedom from the drudgery of boring work. At work I
 
 These days there can be quite a bit of debate between developers around the usefulness of Generative AI (LLMs) and Agentic Workflows in development. Currently, I come down in the camp of "we don't know". What we do know is it gives great gains for some tasks. For other tasks it might be better not to use these new tools. That means ignoring the marketing clown-cars, explaining to execs what is plausible at the moment, and learning what actually works and what is currently useful. 
 
-One area that I have found success, is in alleviating toil. Let me tell you how the deprecation of a feature in Datadog caused hundreds of hours of toil across 250+ repositories.
+One area where I have found success is in alleviating toil. Let me tell you how the deprecation of a feature in Datadog caused hundreds of hours of toil across 250+ repositories.
 
 ## Setting the scene
 
@@ -40,7 +40,7 @@ If this kind of work can be reduced, it should be. It's boring. It adds no value
 ## The Plan
 
 When hearing about the scale of this work, it was obvious to me that we needed to reduce the effort required by the teams. 
-Going into this I knew any solution needed to check certain boxes:
+Going into this, I knew any solution needed to check certain boxes:
 
 1. It needed to significantly reduce the work required of teams to migrate.
 2. Teams would still be responsible for their stack.
@@ -70,7 +70,7 @@ Here's how the workflow operates: GitHub Projects tracks progress across reposit
 
 Firstly, like with a lot of agent usage, the bulk of the work and the quality of the result depends on crafting a really good prompt. I spent hours going through the diff from a PR that was upgraded manually, pulling out the important code examples to put into the issue.
 
-Manually creating issues and assigning Copilot to it on a few repositories has yielded really promising results so far. The agent made the changes correctly across multiple Lambdas, even detecting when no changes were needed because the change had already been done manually.
+Manually creating issues and assigning Copilot to them on a few repositories has yielded really promising results so far. The agent made the changes correctly across multiple Lambdas, even detecting when no changes were needed because the change had already been done manually.
 
 ## Scaling up
 
@@ -120,9 +120,9 @@ I suggest having the following elements in the issue template:
 4. Context - any context needed for the instructions to be followed well
 5. Examples - examples of the kind of changes expected (get these from the manual work done initially)
 
-> See the example [dotnet-upgrade-to-10.md here].
+> See the example [dotnet-upgrade-to-10.md here](https://github.com/dburriss/orca/blob/main/dotnet-upgrade-to-10.md).
 
-A word of warning. Don't go too overboard with the prompt. Having too much in your context can degrade results just as much as not enough. The Copilot context will have the GitHub and Playwright MCPs in them already. It will contain your issue text. It will also gather context from your codebase.
+A word of warning. Don't go too overboard with the prompt. Having too much in your context can degrade results just as much as not enough. The Copilot context will have the GitHub and Playwright MCPs in it already. It will contain your issue text. It will also gather context from your codebase.
 
 ### Automate verification
 
@@ -137,9 +137,9 @@ Extending on the point above, you increase the chances of good outcome by prepar
 As important is that the agent has clear instruction for this repository. This means making sure you have an [AGENTS.md](https://agents.md/) file that includes at a minimum:
 
 - how to build and test the project
-- the repositories tech stack
-- and standards that need following
-- for more complex codebases, pointing to an ARCHITECTURE.md file or something to help the agent with the structure
+- the repository’s tech stack
+- standards that need to be followed
+- for more complex codebases, point to an ARCHITECTURE.md file or similar to help the agent with the structure
 
 ### Have a rollback plan
 
