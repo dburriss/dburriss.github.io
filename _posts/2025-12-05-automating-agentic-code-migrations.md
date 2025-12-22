@@ -120,7 +120,7 @@ I suggest having the following elements in the issue template:
 4. Context - any context needed for the instructions to be followed well
 5. Examples - examples of the kind of changes expected (get these from the manual work done initially)
 
-> See the example [dotnet-upgrade-to-10.md here](https://github.com/dburriss/orca/blob/main/dotnet-upgrade-to-10.md).
+> See the example [dotnet-upgrade-to-10.md here](https://github.com/dburriss/orca/blob/main/example/dotnet-upgrade-to-10.md).
 
 A word of warning. Don't go too overboard with the prompt. Having too much in your context can degrade results just as much as not enough. The Copilot context will have the GitHub and Playwright MCPs in it already. It will contain your issue text. It will also gather context from your codebase.
 
@@ -140,6 +140,8 @@ As important is that the agent has clear instruction for this repository. This m
 - the repository’s tech stack
 - standards that need to be followed
 - for more complex codebases, point to an ARCHITECTURE.md file or similar to help the agent with the structure
+
+> This tip and the previous 2 makeup a workflow that I recommend for migrations. See [here](https://github.com/dburriss/orca/tree/main/example) for more.
 
 ### Have a rollback plan
 
