@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stuff-bg.jpg"
 social-img: "img/posts/2020/fsharp512sharp.png"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, F#, C#, Collections]
 ---
 Every now and again in F# you run into needing to convert a `Seq` to something like `IList<>`. Depending on how often you do this, and if you are like me, you will need to search for this or try different things for longer than you would care to admit. So if nothing else, here I am capturing for myself how to tackle some of these conversions.
 <!--more-->

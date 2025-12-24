@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2019/target-500.jpg"
 published: true
+topics: [leadership-teams]
+keywords: [Leadership, Agile;Team Lead;Morality]
 ---
 We know trust in teams are important but I wanted to share some thoughts on what trust looks like in my book and what it unlocks.
 <!--more-->

@@ -9,8 +9,9 @@ comments: true
 permalink: visual-studio-implicit-snippet
 excerpt_separator: <!--more-->
 published: true
+topics: [tooling-automation]
+keywords: [Tools, Visual Studio]
 ---
-
 Sometimes you want to create a [descriptive type](/honest-arguments) to better represent a concept such as an email (rather than a `string`) but what stops you is the effort in creating this type. Here is a quick snippet to allow you to quickly generate these types reliably.
 
 <!--more-->

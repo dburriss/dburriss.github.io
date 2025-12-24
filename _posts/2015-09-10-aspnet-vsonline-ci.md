@@ -9,8 +9,9 @@ comments: true
 permalink: aspnet-vsonline-ci
 excerpt_separator: <!--more-->
 published: true
+topics: [tooling-automation]
+keywords: [DevOps, OSX, Powershell, Azure, ASP.NET 5, MVC 6, DNX, CI, Visual Studio Online, Git, VS Code]
 ---
-
 > Using Visual Studio Online Build Services for a MSBuild/xproj free deployment.
 
 So my laptop was in for repairs so I decided to dust off my old Macbook Pro. I upgraded to Yosemite, downloaded [VSCode](https://code.visualstudio.com/) and ran through the the [setup for DNX](http://docs.asp.net/en/latest/getting-started/installing-on-mac.html) on Mac. Very quickly I started to wonder about deploying to [Azure](http://azure.microsoft.com/en-us/get-started/).

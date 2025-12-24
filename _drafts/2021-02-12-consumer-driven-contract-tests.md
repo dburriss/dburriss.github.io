@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2019/target-500.jpg"
 published: true
+topics: [engineering-practices]
+keywords: [Software Development, Testing, Contract Testing]
 ---
 Contract testing can get quite involved and there is plenty to get into on the topic. In this post I want to offer a really simple type of test that can often get you [80% of the benefits with 20% of the work](https://en.wikipedia.org/wiki/Pareto_principle). I will demonstrate writing a very simple test and describe the method you can use in your organization to apply it.
 <!--more-->

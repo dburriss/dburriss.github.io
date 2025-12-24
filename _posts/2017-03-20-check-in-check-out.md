@@ -9,8 +9,9 @@ comments: true
 permalink: check-in-check-out
 excerpt_separator: <!--more-->
 published: true
+topics: [engineering-practices]
+keywords: [Agile]
 ---
-
 Someone must have thought of this before but I have not read this anywhere so I thought I would jot it down. I recently ran a retrospective that I thought went really well, and apparently so did everyone else...
 
 # Measure with Check-in and Check-out

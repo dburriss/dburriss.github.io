@@ -10,8 +10,9 @@ permalink: asp-net-5-tips-urlhelper
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 published: true
+topics: []
+keywords: [Software Development, ASP.NET 5, MVC 6, DNX]
 ---
-
 > Note that this is specific to the upcoming RC 2 using the dotnet CLI. Currently in RC 1 this is not an issue.
 
 So I was messing around with [David Fowl's repository](https://github.com/davidfowl/dotnetcli-aspnet5) that makes use of the new RC 2 bits that run on the new [dotnet CLI](https://github.com/dotnet/cli).

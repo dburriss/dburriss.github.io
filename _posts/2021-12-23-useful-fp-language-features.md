@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/superman-bg.jpg"
 social-img: "img/posts/2018/hammer-500.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, F#, Functional, Programming]
 ---
 In a [previous post](/what-is-fp) we looked at the big ideas of functional programming. In this post we will look at some features that are often associated with functional programming but that I do not think are core to it.
 <!--more-->

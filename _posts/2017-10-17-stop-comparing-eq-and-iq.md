@@ -12,8 +12,9 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 social-img: "img/posts/2017/eq-vs-iq-280.jpg"
 published: true
+topics: [notes-reflections]
+keywords: [Life, General, Productivity, Science]
 ---
-
 I see this comparison come up online and at work a lot. The implication being that if we want success we look for people with good EQ skills and if they have weak technical skills we can teach them. Sure. These are both skills but if everyone is good at communicating but rubbish at the technical stuff, guess what the quality is like... 
 <!--more-->
 *These ideas are my own and do not represent the views of my employer.*

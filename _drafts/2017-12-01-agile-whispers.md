@@ -1,5 +1,7 @@
 ---
 published: false
+topics: []
+keywords: []
 ---
 Be careful that scrum doesn't push us into a development mode using chinese whispers. The role of PO becomes a detrimental buffer between stakeholders and developers.
 

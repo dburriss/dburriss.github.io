@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
 social-img: "img/posts/2018/fsharpapp-500.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, F#, .NET, .NET Core, Tutorial]
 ---
 In this final post in the series we are going to create a fully functioning F# application. Along the way we will discuss the .NET SDK, SQLite, and how to organize your code. If you follow along (which I recommend you do), you will have a working F# console application that accepts input and communicates with a database.
 <!--more-->

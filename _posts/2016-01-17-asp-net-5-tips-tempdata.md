@@ -9,8 +9,9 @@ comments: true
 permalink: asp-net-5-tips-tempdata
 excerpt_separator: <!--more-->
 published: true
+topics: []
+keywords: [Software Development, ASP.NET 5, MVC 6, DNX]
 ---
-
 > NOTE: Handling TempData and Session is made easy with extension methods in the [BetterSession](https://www.nuget.org/packages/BetterSession.AspNet.Mvc/) Nuget package.
 
 ASPNET 5 is designed to be configurable. It starts out with almost nothing and you choose what you need. In previous versions of MVC we got TempData out the box. Not so with the new iteration.
@@ -122,3 +123,4 @@ public static T GetFromJson<T>(this ITempDataDictionary tempData, string key)
 {% endhighlight %}
     
 So hope you and future me finds this post useful. I am going to try blog little things like this as I work more with ASP.NET 5. Please let me know in the comments below if you did find it useful or if I missed anything. Also let me know if there are other topics you want me to cover.
+

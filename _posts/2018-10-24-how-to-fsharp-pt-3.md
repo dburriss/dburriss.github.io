@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/vents-bg.jpg"
 social-img: "img/posts/2018/hammer-500.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, F#, .NET]
 ---
 [Previously](/how-to-fsharp-pt-2) we began exploring some theory behind functions. In this post we will look at practical techniques for working with functions.
 

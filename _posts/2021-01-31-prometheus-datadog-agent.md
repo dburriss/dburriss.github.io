@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
 social-img: "img/posts/2021/DDlogo.jpg"
 published: true
+topics: [reliability-observability]
+keywords: [DevOps, Prometheus, Datadog, Observability]
 ---
 In the [previous post](/local-prometheus-setup) we looked at setting up a local Prometheus container to scrape metrics to test the observability setup of an application locally. A lot of companies I have worked with in recent years are using hosted observability solutions like Datadog. Although Datadog is typically a push based collector, a little known feature is that the agent can scrape from a Prometheus endpoint. In this post we will look at a simple setup for this locally.
 <!--more-->

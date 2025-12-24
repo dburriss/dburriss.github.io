@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2019/target-500.jpg"
 published: true
+topics: [engineering-practices]
+keywords: [Agile]
 ---
 I see a lot of teams spending a lot of time trying to improve. And what I mean by this is they spend a very long time getting a little better. I know it is possible to spend very little time getting a little better. This means over a lot of time you can get A LOT better.
 <!--more-->

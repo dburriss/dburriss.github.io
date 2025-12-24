@@ -1,3 +1,7 @@
+---
+topics: []
+keywords: []
+---
 I feel like there has been a move in terms of thought leaders away from achievement and value add toward stickiness of ideas. This I guess is a consequence of social media.
 
 Stickiness of ideas has very little to do with them being factually correct. All they need is to be sticky to the world view we currently have.

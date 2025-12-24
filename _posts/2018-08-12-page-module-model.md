@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
 social-img: "img/posts/2018/frame-500.jpg"
 published: true
+topics: [engineering-practices, platforms-runtime]
+keywords: [Software Development, Canopy, Functional, F#, Testing, BDD, Selenium]
 ---
 In the past I have done some UI testing with Selenium. I quickly adopted the Page Object Model (POM) for this kind of testing to ease readability, maintenance, and re-use across tests. Recently I needed to look into doing some UI testing and I decided to use [Canopy](https://lefthandedgoat.github.io/canopy/) to abstract away working with Selenium. Although Canopy has some great helpers around Selenium I still found myself wanting to abstract away elements on each page and the pages themselves. Enter the Page Module Model (PMM)...
 <!--more-->

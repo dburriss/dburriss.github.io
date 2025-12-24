@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2018/pipes-500.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, F#, .NET]
 ---
 In the [last post](/how-to-fsharp-pt-3) we finished off our dive into functions. In this post we will look at control flow. How do we make a branching decision? How do we loop through something until some condition is met?
 <!--more-->

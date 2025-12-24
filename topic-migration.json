@@ -1,0 +1,2174 @@
+{
+  "topics": [
+    {
+      "id": "software-design",
+      "name": "Software Design"
+    },
+    {
+      "id": "engineering-practices",
+      "name": "Engineering Practices"
+    },
+    {
+      "id": "platforms-runtime",
+      "name": "Platforms \u0026 Runtime"
+    },
+    {
+      "id": "tooling-automation",
+      "name": "Tooling \u0026 Automation"
+    },
+    {
+      "id": "reliability-observability",
+      "name": "Reliability \u0026 Observability"
+    },
+    {
+      "id": "ai-agentic-systems",
+      "name": "AI \u0026 Agentic Systems"
+    },
+    {
+      "id": "leadership-teams",
+      "name": "Leadership \u0026 Teams"
+    },
+    {
+      "id": "notes-reflections",
+      "name": "Notes \u0026 Reflections"
+    }
+  ],
+  "items": [
+    {
+      "source_path": "_drafts/2017-08-05-eat-your-cake-1.md",
+      "permalink": "eat-your-cake-1",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "Automation",
+          "Cake",
+          "Powershell"
+        ]
+      },
+      "topics": [
+        "tooling-automation"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": [
+          "Automation"
+        ]
+      }
+    },
+    {
+      "source_path": "_drafts/2017-12-01-agile-whispers.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/2017-12-08-clean-architecture-solution.md",
+      "permalink": "clean-architecture-solution.md",
+      "legacy": {
+        "category": "Programming",
+        "tags": [
+          "Architecture",
+          "Clean Code"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Programming",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/2018-01-05-paket-package-manager.md",
+      "permalink": "dynamite-paket",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "Paket",
+          "Nuget"
+        ]
+      },
+      "topics": [
+        "tooling-automation"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": [
+          "Nuget"
+        ]
+      }
+    },
+    {
+      "source_path": "_drafts/2018-10-18-fsharp-in-15-min.md",
+      "permalink": "2018-10-18-fsharp-in-15-min.md",
+      "legacy": {
+        "category": "2018-10-18-fsharp-in-15-min.md",
+        "tags": [
+          "Functional"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "2018-10-18-fsharp-in-15-min.md",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/2018-12-20-azure-functions.md",
+      "permalink": "canopy-as-fsx",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Canopy",
+          "Functional",
+          "F#",
+          "Testing",
+          "Selenium"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Canopy",
+          "Selenium"
+        ]
+      }
+    },
+    {
+      "source_path": "_drafts/2019-01-10-ndepend.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/2019-08-28-claims-based-auth.md",
+      "permalink": "asp-net-core-policy-auth-1",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "ASP.NET Core",
+          "Auth0",
+          "Authentication",
+          "Authorization",
+          "C#",
+          "Security"
+        ]
+      },
+      "topics": [],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "ASP.NET Core",
+          "Auth0",
+          "Authentication",
+          "Authorization",
+          "C#",
+          "Security"
+        ]
+      }
+    },
+    {
+      "source_path": "_drafts/2019-12-10-metric-layers.md",
+      "permalink": "metric-layers",
+      "legacy": {
+        "category": "Agile",
+        "tags": [
+          "Metrics",
+          "Agile",
+          "Lean"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": [
+          "Metrics",
+          "Lean"
+        ]
+      }
+    },
+    {
+      "source_path": "_drafts/2021-02-12-categories-of-tests.md",
+      "permalink": "categories-of-tests",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Testing",
+          "ATDD",
+          "BDD",
+          "TDD"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/2021-02-12-consumer-driven-contract-tests.md",
+      "permalink": "easy-contract-tests",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Testing",
+          "Contract Testing"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Contract Testing"
+        ]
+      }
+    },
+    {
+      "source_path": "_drafts/2021-02-12-tests-with-structural-knowledge.md",
+      "permalink": "tests-with-structural-knowledge",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Testing",
+          "Contract Testing"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Contract Testing"
+        ]
+      }
+    },
+    {
+      "source_path": "_drafts/2022-07-08-high-trust-environment.md",
+      "permalink": "high-trust-environment",
+      "legacy": {
+        "category": "Leadership",
+        "tags": [
+          "Agile;Team Lead;Morality"
+        ]
+      },
+      "topics": [
+        "leadership-teams"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": [
+          "Agile;Team Lead;Morality"
+        ]
+      }
+    },
+    {
+      "source_path": "_drafts/2022-07-08-retro-everything.md",
+      "permalink": "retro-all-the-things",
+      "legacy": {
+        "category": "Agile",
+        "tags": [
+          "Agile"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/2025-12-23-you-have-to-teach.md",
+      "permalink": "you-have-to-teach",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "AI",
+          "Agentic",
+          "Context Engineering"
+        ]
+      },
+      "topics": [
+        "ai-agentic-systems"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": [
+          "Context Engineering"
+        ]
+      }
+    },
+    {
+      "source_path": "_drafts/X-dangers-of-DDD.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/X-organizational-metrics.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/X-reasons-to-DDD.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/aggregates-as-complexity-scales.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/delivering-a-message.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/enforce-your-language.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/open-metrics-for-orgs.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/part1-maintainable-test-setup.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/part2-maintainable-act.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/part3-maintainable-assert.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/raise-abstraction-on-tests.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/stickiness-of-ideas.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/technical-debt.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_drafts/the-war-analogy.md",
+      "permalink": null,
+      "legacy": {
+        "category": null,
+        "tags": []
+      },
+      "topics": [],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2014-07-18-the-way-we-write-code.md",
+      "permalink": "the-way-we-write-code",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Clean Code",
+          "Agile",
+          "Design Patterns",
+          "TDD",
+          "DDD"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2014-08-07-estimation.md",
+      "permalink": "estimation",
+      "legacy": {
+        "category": "Project Management",
+        "tags": [
+          "Agile"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "leadership-teams"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2014-09-05-single-responsibility.md",
+      "permalink": "single-respon",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Programming",
+          "SOLID",
+          "OOP"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Programming"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2014-09-07-testing-your-data-repositories.md",
+      "permalink": "testing-your-data-repositories",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Testing",
+          "Programming",
+          "SOLID",
+          "OOP",
+          "Java",
+          "TDD"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Programming"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2014-10-03-software-development-is-like-a-piece-of-string.md",
+      "permalink": "software-development-is-like-a-piece-of-string",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Programming",
+          "SOLID",
+          "OOP"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Programming"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2014-10-09-developer-quest-getting-started.md",
+      "permalink": "developer-quest-getting-started",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Programming",
+          "Learning c#",
+          "Tutorial"
+        ]
+      },
+      "topics": [
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Programming",
+          "Tutorial"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2014-10-12-developer-quest-variables.md",
+      "permalink": "developer-quest-variables",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Programming",
+          "Learning c#",
+          "Tutorial"
+        ]
+      },
+      "topics": [
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Programming",
+          "Tutorial"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2015-01-27-testing-the-untestable.md",
+      "permalink": "testing-the-untestable",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Testing",
+          "Programming",
+          "Unit Testing",
+          "TDD"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Programming"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2015-03-06-installing-ubuntu-on-hyper-v.md",
+      "permalink": "installing-ubuntu-on-hyper-v",
+      "legacy": {
+        "category": "DevOps",
+        "tags": [
+          "Hyper-V",
+          "Ubuntu"
+        ]
+      },
+      "topics": [],
+      "unmapped": {
+        "category": "DevOps",
+        "tags": [
+          "Hyper-V",
+          "Ubuntu"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2015-03-07-installing-docker-on-hyper-v.md",
+      "permalink": "installing-docker-on-hyper-v",
+      "legacy": {
+        "category": "DevOps",
+        "tags": [
+          "Hyper-V",
+          "Ubuntu"
+        ]
+      },
+      "topics": [],
+      "unmapped": {
+        "category": "DevOps",
+        "tags": [
+          "Hyper-V",
+          "Ubuntu"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2015-09-10-aspnet-vsonline-ci.md",
+      "permalink": "aspnet-vsonline-ci",
+      "legacy": {
+        "category": "DevOps",
+        "tags": [
+          "OSX",
+          "Powershell",
+          "Azure",
+          "ASP.NET 5",
+          "MVC 6",
+          "DNX",
+          "CI",
+          "Visual Studio Online",
+          "Git",
+          "VS Code"
+        ]
+      },
+      "topics": [
+        "tooling-automation"
+      ],
+      "unmapped": {
+        "category": "DevOps",
+        "tags": [
+          "OSX",
+          "Azure",
+          "ASP.NET 5",
+          "MVC 6",
+          "DNX",
+          "CI",
+          "Visual Studio Online"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2016-01-17-asp-net-5-tips-tempdata.md",
+      "permalink": "asp-net-5-tips-tempdata",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "ASP.NET 5",
+          "MVC 6",
+          "DNX"
+        ]
+      },
+      "topics": [],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "ASP.NET 5",
+          "MVC 6",
+          "DNX"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2016-01-18-asp-net-5-tips-urlhelper.md",
+      "permalink": "asp-net-5-tips-urlhelper",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "ASP.NET 5",
+          "MVC 6",
+          "DNX"
+        ]
+      },
+      "topics": [],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "ASP.NET 5",
+          "MVC 6",
+          "DNX"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2017-01-31-pretzel-blog-appveyor-deployment.md",
+      "permalink": "pretezel-blog-appveyor-deployment",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "Git",
+          "Github Pages",
+          "CI",
+          "AppVeyor",
+          "Pretzel"
+        ]
+      },
+      "topics": [
+        "tooling-automation"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": [
+          "CI",
+          "Pretzel"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2017-02-11-vscode-tasks.md",
+      "permalink": "vscode-tasks",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "VS Code",
+          "Java",
+          "Maven",
+          "Pascal",
+          "Powershell",
+          "Pretzel"
+        ]
+      },
+      "topics": [
+        "platforms-runtime",
+        "tooling-automation"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": [
+          "Pascal",
+          "Pretzel"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2017-02-14-ddd-glossary.md",
+      "permalink": "ddd-glossary",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "DDD",
+          "Modeling"
+        ]
+      },
+      "topics": [
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-03-04-cake-build.md",
+      "permalink": "cake-build",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "VS Code",
+          "Powershell",
+          "Cake"
+        ]
+      },
+      "topics": [
+        "tooling-automation"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-03-08-visual-studio-implicit-snippet.md",
+      "permalink": "visual-studio-implicit-snippet",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "Visual Studio"
+        ]
+      },
+      "topics": [
+        "tooling-automation"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-03-10-honest-arguments.md",
+      "permalink": "honest-arguments",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Clean Code",
+          "OOP"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-03-14-honest-return-types.md",
+      "permalink": "honest-return-types",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Clean Code",
+          "OOP",
+          "Functional"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-03-19-better-error-handling.md",
+      "permalink": "better-error-handling",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Clean Code",
+          "OOP",
+          "Functional"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-03-20-big-agile-teams.md",
+      "permalink": "big-agile-teams",
+      "legacy": {
+        "category": "Agile",
+        "tags": [
+          "Agile"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-03-20-check-in-check-out.md",
+      "permalink": "check-in-check-out",
+      "legacy": {
+        "category": "Agile",
+        "tags": [
+          "Agile"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-03-21-aspect-rating.md",
+      "permalink": "aspect-rating",
+      "legacy": {
+        "category": "Agile",
+        "tags": [
+          "Agile"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-03-22-agile-is-a-characteristic.md",
+      "permalink": "agile-is-a-characteristic",
+      "legacy": {
+        "category": "Agile",
+        "tags": [
+          "Agile"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-06-09-productivity-tips-1.md",
+      "permalink": "productivity-tips-1",
+      "legacy": {
+        "category": "Life",
+        "tags": [
+          "Productivity",
+          "Morality",
+          "Meditation",
+          "Mindfulness"
+        ]
+      },
+      "topics": [
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-06-10-yoda-wants-you-to-be-a-functional-programmer.md",
+      "permalink": "yoda-wants-you-to-be-a-functional-programmer",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2017-10-17-stop-comparing-eq-and-iq.md",
+      "permalink": "stop-comparing-eq-and-iq",
+      "legacy": {
+        "category": "Life",
+        "tags": [
+          "General",
+          "Productivity",
+          "Science"
+        ]
+      },
+      "topics": [
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": [
+          "General"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2017-10-19-hypothesis-moral-behaviour-is-rewarded.md",
+      "permalink": "moral-behavior-is-rewarded",
+      "legacy": {
+        "category": "Life",
+        "tags": [
+          "General",
+          "Morality",
+          "Science"
+        ]
+      },
+      "topics": [
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": [
+          "General"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2017-11-02-touched-by-god.md",
+      "permalink": "touched-by-god",
+      "legacy": {
+        "category": "Life",
+        "tags": [
+          "General",
+          "Meditation",
+          "Mindfulness",
+          "Science"
+        ]
+      },
+      "topics": [
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": [
+          "General"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2017-12-08-argument-for-fp.md",
+      "permalink": "argument-for-fp",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "OOP",
+          "F#",
+          "FsAdvent"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "FsAdvent"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2017-12-28-why-i-got-hooked-on-fsharp.md",
+      "permalink": "why-i-got-hooked-on-fsharp",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-04-06-managing-code-complexity.md",
+      "permalink": "managing-code-complexity",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Clean Code",
+          "DDD",
+          "Design Patterns",
+          "Functional"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime",
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-04-07-maintainable-unit-tests.md",
+      "permalink": "maintainable-unit-tests",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Clean Code",
+          "TDD",
+          "Testing"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-04-26-leader-archetypes.md",
+      "permalink": "leader-archetypes",
+      "legacy": {
+        "category": "Leadership",
+        "tags": [
+          "General",
+          "Life",
+          "Team Lead"
+        ]
+      },
+      "topics": [
+        "leadership-teams",
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": [
+          "General"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2018-05-03-employees-are-like-cars-not-petrol.md",
+      "permalink": "employees-are-like-cars-not-petrol",
+      "legacy": {
+        "category": "Leadership",
+        "tags": [
+          "General",
+          "Life",
+          "Team Lead"
+        ]
+      },
+      "topics": [
+        "leadership-teams",
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": [
+          "General"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2018-05-04-simple-trick-to-be-a-better-leader.md",
+      "permalink": "simple-trick-to-be-a-better-leader",
+      "legacy": {
+        "category": "Leadership",
+        "tags": [
+          "General",
+          "Life",
+          "Meditation",
+          "Mindfulness",
+          "Morality",
+          "Team Lead"
+        ]
+      },
+      "topics": [
+        "leadership-teams",
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": [
+          "General"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2018-05-09-first-mob-programming.md",
+      "permalink": "first-mob-programming",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Agile",
+          "General",
+          "Productivity"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "General"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2018-05-29-the-torch-bearer.md",
+      "permalink": "the-torch-bearer",
+      "legacy": {
+        "category": "Leadership",
+        "tags": [
+          "General",
+          "Life",
+          "Team Lead"
+        ]
+      },
+      "topics": [
+        "leadership-teams",
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": [
+          "General"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2018-08-11-acceptance-tests.md",
+      "permalink": "acceptance-tests",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Testing",
+          "ATDD",
+          "BDD",
+          "TDD"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-08-12-page-module-model.md",
+      "permalink": "page-module-model",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Canopy",
+          "Functional",
+          "F#",
+          "Testing",
+          "BDD",
+          "Selenium"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Canopy",
+          "Selenium"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2018-08-13-anatomy-of-automated-testing.md",
+      "permalink": "anatomy-of-automated-testing",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Testing",
+          "ATDD",
+          "BDD",
+          "TDD"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-09-08-functional-structural-impedance-mismatch.md",
+      "permalink": "functional-structural-impedance-mismatch",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "DDD",
+          "OOP",
+          "Functional Modeling",
+          "Architecture",
+          "Modeling",
+          "Temporal Modeling"
+        ]
+      },
+      "topics": [
+        "platforms-runtime",
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-13-functional-modeling.md",
+      "permalink": "functional-modeling",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "DDD",
+          "OOP",
+          "Functional Modeling",
+          "Architecture",
+          "Modeling",
+          "Temporal Modeling"
+        ]
+      },
+      "topics": [
+        "platforms-runtime",
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-16-up-and-running-with-paket.md",
+      "permalink": "up-and-running-with-paket",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "Paket",
+          "Nuget",
+          "Powershell",
+          "F#",
+          "C#"
+        ]
+      },
+      "topics": [
+        "platforms-runtime",
+        "tooling-automation"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": [
+          "Nuget",
+          "C#"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-17-fsharp-scripting.md",
+      "permalink": "fsharp-scripting",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "F#",
+          "FSX"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "FSX"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-19-how-to-fsharp-pt-1.md",
+      "permalink": "how-to-fsharp-pt-1",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#",
+          ".NET"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-23-how-to-fsharp-pt-2.md",
+      "permalink": "how-to-fsharp-pt-2",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#",
+          ".NET"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-24-how-to-fsharp-pt-3.md",
+      "permalink": "how-to-fsharp-pt-3",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#",
+          ".NET"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-25-how-to-fsharp-pt-4.md",
+      "permalink": "how-to-fsharp-pt-4",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#",
+          ".NET"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-26-how-to-fsharp-pt-5.md",
+      "permalink": "how-to-fsharp-pt-5",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#",
+          ".NET"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-27-how-to-fsharp-pt-6.md",
+      "permalink": "how-to-fsharp-pt-6",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#",
+          ".NET"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-28-how-to-fsharp-pt-7.md",
+      "permalink": "how-to-fsharp-pt-7",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#",
+          ".NET"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-10-30-how-to-fsharp-pt-8.md",
+      "permalink": "how-to-fsharp-pt-8",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#",
+          ".NET"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-11-04-how-to-fsharp-pt-9.md",
+      "permalink": "how-to-fsharp-pt-9",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#",
+          ".NET"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2018-11-24-how-to-fsharp-pt-10.md",
+      "permalink": "how-to-fsharp-pt-10",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Functional",
+          "F#",
+          ".NET",
+          ".NET Core",
+          "Tutorial"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Tutorial"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2018-12-08-review-fsharp-test-libs.md",
+      "permalink": "review-fsharp-test-libs",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "F#",
+          "Testing",
+          "TDD",
+          "FsAdvent"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "FsAdvent"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2018-12-15-canopy-from-fsx.md",
+      "permalink": "canopy-from-fsx",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Canopy",
+          "Functional",
+          "F#",
+          "Testing",
+          "Selenium"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Canopy",
+          "Selenium"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2019-12-05-reliability-with-intents.md",
+      "permalink": "reliability-with-intents",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Distributed Systems",
+          "F#",
+          "Clean Code",
+          "Architecture",
+          "Messaging",
+          "FsAdvent"
+        ]
+      },
+      "topics": [
+        "engineering-practices",
+        "platforms-runtime",
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "FsAdvent"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2020-05-05-converting-fsharp-csharp.md",
+      "permalink": "converting-fsharp-csharp",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "F#",
+          "C#",
+          "Collections"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "C#",
+          "Collections"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2020-12-24-prometheus-parser-fennel.md",
+      "permalink": "prometheus-parser-fennel",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "F#",
+          "Prometheus",
+          "Fennel",
+          "FsAdvent"
+        ]
+      },
+      "topics": [
+        "platforms-runtime",
+        "reliability-observability"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Fennel",
+          "FsAdvent"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2021-01-09-meaning-of-meditation.md",
+      "permalink": "meaning-of-meditation",
+      "legacy": {
+        "category": "Life",
+        "tags": [
+          "Meditation",
+          "Mindfulness",
+          "Morality"
+        ]
+      },
+      "topics": [
+        "notes-reflections"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2021-01-30-local-prometheus-setup.md",
+      "permalink": "local-prometheus-setup",
+      "legacy": {
+        "category": "DevOps",
+        "tags": [
+          "Prometheus",
+          "Docker",
+          "Observability"
+        ]
+      },
+      "topics": [
+        "reliability-observability",
+        "tooling-automation"
+      ],
+      "unmapped": {
+        "category": "DevOps",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2021-01-31-prometheus-datadog-agent.md",
+      "permalink": "prometheus-datadog-agent",
+      "legacy": {
+        "category": "DevOps",
+        "tags": [
+          "Prometheus",
+          "Datadog",
+          "Observability"
+        ]
+      },
+      "topics": [
+        "reliability-observability"
+      ],
+      "unmapped": {
+        "category": "DevOps",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2021-02-01-prometheus-scrape-azfunc.md",
+      "permalink": "azfunc-prometheus-endpoint",
+      "legacy": {
+        "category": "DevOps",
+        "tags": [
+          "F#",
+          "Observability",
+          "Prometheus"
+        ]
+      },
+      "topics": [
+        "platforms-runtime",
+        "reliability-observability"
+      ],
+      "unmapped": {
+        "category": "DevOps",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2021-08-22-reliable-api-part1.md",
+      "permalink": "reliable-apis-part-1",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Distributed Systems",
+          "API Design",
+          "Reliability"
+        ]
+      },
+      "topics": [
+        "reliability-observability",
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "API Design"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2021-08-23-reliable-api-part-2.md",
+      "permalink": "reliable-apis-part-2",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Distributed Systems",
+          "API Design",
+          "Reliability",
+          "Idempotent"
+        ]
+      },
+      "topics": [
+        "reliability-observability",
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "API Design"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2021-08-29-reliable-api-part-3.md",
+      "permalink": "reliable-apis-part-3",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Distributed Systems",
+          "API Design",
+          "Reliability",
+          "Idempotent",
+          "Client-generated ID"
+        ]
+      },
+      "topics": [
+        "reliability-observability",
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "API Design",
+          "Client-generated ID"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2021-12-22-what-is-fp.md",
+      "permalink": "what-is-fp",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "F#",
+          "Functional",
+          "Programming"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Programming"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2021-12-23-useful-fp-language-features.md",
+      "permalink": "useful-fp-language-features",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "F#",
+          "Functional",
+          "Programming"
+        ]
+      },
+      "topics": [
+        "platforms-runtime"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Programming"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2021-12-24-fp-architecture.md",
+      "permalink": "fp-architecture",
+      "legacy": {
+        "category": "Software Development",
+        "tags": [
+          "Architecture",
+          "F#",
+          "Functional",
+          "Programming",
+          "FsAdvent"
+        ]
+      },
+      "topics": [
+        "platforms-runtime",
+        "software-design"
+      ],
+      "unmapped": {
+        "category": "Software Development",
+        "tags": [
+          "Programming",
+          "FsAdvent"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2022-05-24-tools-for-arch-docs.md",
+      "permalink": "tools-for-arch-docs",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "Architecture",
+          "Diagrams",
+          "Modeling",
+          "VS Code",
+          "C4"
+        ]
+      },
+      "topics": [
+        "software-design",
+        "tooling-automation"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": [
+          "Diagrams"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2022-06-06-choosing-a-telemetry-platform.md",
+      "permalink": "choosing-a-telemetry-platform",
+      "legacy": {
+        "category": "DevOps",
+        "tags": [
+          "Datadog",
+          "Observability"
+        ]
+      },
+      "topics": [
+        "reliability-observability"
+      ],
+      "unmapped": {
+        "category": "DevOps",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2022-06-15-telemetry-tips.md",
+      "permalink": "telemetry-tips",
+      "legacy": {
+        "category": "DevOps",
+        "tags": [
+          "Datadog",
+          "Observability"
+        ]
+      },
+      "topics": [
+        "reliability-observability"
+      ],
+      "unmapped": {
+        "category": "DevOps",
+        "tags": []
+      }
+    },
+    {
+      "source_path": "_posts/2023-01-07-yagnyagni.md",
+      "permalink": "yagnyagni",
+      "legacy": {
+        "category": "Agile",
+        "tags": [
+          "Extreme Programming",
+          "Agile",
+          "General"
+        ]
+      },
+      "topics": [
+        "engineering-practices"
+      ],
+      "unmapped": {
+        "category": null,
+        "tags": [
+          "General"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2025-12-03-automation-heuristics.md",
+      "permalink": "automation-heuristics",
+      "legacy": {
+        "category": "DevOps",
+        "tags": [
+          "Automation"
+        ]
+      },
+      "topics": [],
+      "unmapped": {
+        "category": "DevOps",
+        "tags": [
+          "Automation"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2025-12-04-my-terminal-helper.md",
+      "permalink": "my-terminal-helper",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "Automation",
+          "Agents",
+          "OpenCode"
+        ]
+      },
+      "topics": [
+        "ai-agentic-systems"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": [
+          "Automation"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2025-12-05-automating-agentic-code-migrations.md",
+      "permalink": "automating-agentic-code-migrations",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "Automation",
+          "AI",
+          "Agentic"
+        ]
+      },
+      "topics": [
+        "ai-agentic-systems"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": [
+          "Automation"
+        ]
+      }
+    },
+    {
+      "source_path": "_posts/2025-12-22-llms-not-junior.md",
+      "permalink": "llms-not-junior",
+      "legacy": {
+        "category": "Tools",
+        "tags": [
+          "AI",
+          "Agentic",
+          "LLMs"
+        ]
+      },
+      "topics": [
+        "ai-agentic-systems"
+      ],
+      "unmapped": {
+        "category": "Tools",
+        "tags": []
+      }
+    }
+  ]
+}

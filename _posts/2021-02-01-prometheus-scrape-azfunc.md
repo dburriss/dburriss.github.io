@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
 social-img: "img/posts/2020/flame-500.jpg"
 published: true
+topics: [platforms-runtime, reliability-observability]
+keywords: [DevOps, F#, Observability, Prometheus]
 ---
 For years now I have noticed a blind-spot when using serverless functions and observability platforms like Datadog. Custom metrics. Observability tools are constantly improving their integrations with cloud providers but are still not on par with having access to the OS like with VMs or containers. In this post I explore a little proof-of-concept I did to get custom metrics out of Azure Functions.
 <!--more-->

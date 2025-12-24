@@ -12,8 +12,9 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 social-img: "img/explore-590.jpg"
 published: false
+topics: [platforms-runtime]
+keywords: [2018-10-18-fsharp-in-15-min.md, Functional]
 ---
-
 ## Understanding FSharp
 
 We can assign values in F# using the `let` keyword. Since F# is a functional first language even functions can be assigned with the `let` keyword.
@@ -201,3 +202,4 @@ printInt 200 // An integer 200
 ```
 
 So we were able to create a new more specialized function `printInt` by currying `print` with `intFormatter`.
+

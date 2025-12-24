@@ -10,8 +10,9 @@ permalink: pretezel-blog-appveyor-deployment
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/vents-bg.jpg"
 published: true
+topics: [tooling-automation]
+keywords: [Tools, Git, Github Pages, CI, AppVeyor, Pretzel]
 ---
-
 # Background
 
 I was using [Github Pages](https://pages.github.com/) and [Jekyll](https://jekyllrb.com/) to build and host this blog up until a few days ago. 

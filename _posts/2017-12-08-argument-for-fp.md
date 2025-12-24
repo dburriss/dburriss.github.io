@@ -12,8 +12,9 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stairwell-bg.jpg"
 social-img: "img/posts/2017/apple.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, OOP, F#, FsAdvent]
 ---
-
 Have you ever thought you have the perfect tool for the job at work but it is not on the allowed list of languages or frameworks? At this stage you have a decision to make. Are you going to just move on and pick something that will meet less resistance or are you going to do the work to drive some change? In this post I make my case for functional programming in enterprise development, specifically **F#** if your current team expertise is .NET. The same arguments could be leveled for JVM based languages like Scala if your experience is in Java.
 
 > This post is part of [FsAdvent Calendar 2017](https://sergeytihon.com/2017/10/22/f-advent-calendar-in-english-2017/)

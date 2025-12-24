@@ -12,8 +12,9 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 social-img: "img/posts/2018/functional-model-500.jpg"
 published: true
+topics: [platforms-runtime, software-design]
+keywords: [Software Development, DDD, OOP, Functional Modeling, Architecture, Modeling, Temporal Modeling]
 ---
-
 In my [previous post](/functional-structural-impedance-mismatch) I introduced the idea of a structural model in the code that closely matches what a use-case should do functionally. Just as an ubiquitous language helps us tie concepts in our code, so a functional model helps us capture the functioning of a use-case. In this post I will go into this idea in a little more detail, giving some tips on how to get started.
 <!--more-->
 

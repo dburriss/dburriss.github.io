@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 social-img: "img/explore-590.jpg"
 published: false
+topics: []
+keywords: [Software Development, ASP.NET Core, Auth0, Authentication, Authorization, C#, Security]
 ---
 At work this month I got to spend a day doing a quick proof of concept of locking down an API by action on a resource. Although I have done this a few times before, this was the 1st time I really got to dive into the new [ASP.NET Core policies](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-2.2). ASP.NET Core policies are a new addition from previous ASP.NET versions and add a real flexibility that was missing from authorization before this. 
 <!--more-->
@@ -39,4 +41,5 @@ I will start off from where the [Auth0 getting started tutorial](https://auth0.c
 
 So as not to use strings we will define `enum`s to represent our permission parts of `Operation` and `Permission`. Typically, these are represented as a string in the format `operation:resource`. We will also define a few helper members (both instance and `static`) to help work with some `string` to type conversion. 
 Roles and Permissions will be defined in static classes rather than a database. I have often received resistance to this idea but consider this; you will always need to add code to check for a specific operation/resource combination, so why not have type safety and define them only once? 
+
 

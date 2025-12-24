@@ -12,8 +12,9 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2018/lion-500.jpg"
 published: true
+topics: [leadership-teams, notes-reflections]
+keywords: [Leadership, General, Life, Team Lead]
 ---
-
 Why do we follow people? Why only some people? Character, situation, and value-alignment seem to jump out as obvious factors but what configuration of these allows us to suspend our own self-absorption to work toward a common goal? Are there archetypes that represent what leaders do to get people to follow them?
 <!--more-->
 Leadership is by no means something I have devoted a lot of time to compared to more technical learnings. Even when I have read up on leadership it has been either very specific to development teams or in a general life sense like "Seven Habits of Highly Effective People".

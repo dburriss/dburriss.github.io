@@ -9,8 +9,9 @@ comments: true
 permalink: aspect-rating
 excerpt_separator: <!--more-->
 published: true
+topics: [engineering-practices]
+keywords: [Agile]
 ---
-
 I recently ran a retrospective with a team of 11 (including myself). With that many people getting focused feedback is important or meetings can drag out. I found this exercise quite useful and the rest of the team seemed to as well. See [this post for the Check-in/Check-out](/check-in-check-out) I ran before and after.
 
 <!--more-->
@@ -93,3 +94,4 @@ The bottom line is that it really focuses the discussion into narrow, helpful, a
 ## Conclusion
 
 I think I will be using this regularly to document the teams progression on these aspects. I won't use it every retrospective but maybe every 2nd or 3rd. As this is something new I am experimenting with so please note that this is early stage beta so take it with a pinch of salt. I will try report back with more data once I have more. Did you find this useful? Do you have your own methods that you use regularly for retrospectives that gives you measurable insight? Let me know in the comments below.
+

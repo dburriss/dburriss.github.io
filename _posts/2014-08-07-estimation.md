@@ -10,8 +10,9 @@ permalink: estimation
 excerpt_separator: <!--more-->
 social-img: "/img/posts/2014/old-clock-800.jpg"
 published: true
+topics: [engineering-practices, leadership-teams]
+keywords: [Project Management, Agile]
 ---
-
 > Tackling the uncertainty of software estimation.
 
 Most developers are horrible at estimation. Period. There are numerous reasons for this. Some of the responsibility falls outside of a developers control but there are still steps that a developer is obligated to take. 
@@ -85,4 +86,5 @@ So let's schedule this for a 4.5 days.
 ### Conclusion 
 
 So knowing our failings, and bearing in mind the goals of management, we can mitigate potential disaster by using the techniques outlined here. Estimation is never going to be an exact science but we can go a long way in making our estimates more accurate. Hope this helps. Good luck with your next project.
+
 

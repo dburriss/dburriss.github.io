@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2018/broken-500.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, F#, .NET]
 ---
 Even with all the pure functions we could ask for, eventually our applications are going to have to interact with the unpredictable outside world. Also, sometimes we just mess up. In this post we look at ways of dealing with errors in our applications.
 <!--more-->

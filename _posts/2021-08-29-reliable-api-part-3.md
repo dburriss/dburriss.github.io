@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2019/target-500.jpg"
 published: true
+topics: [reliability-observability, software-design]
+keywords: [Software Development, Distributed Systems, API Design, Reliability, Idempotent, Client-generated ID]
 ---
 The [previous post](/reliable-apis-part-2) showed how things can go wrong when not thinking through edge cases carefully, especially where concurrency comes into play. In this post we will look at a truly idempotent endpoint design as well as discuss some alternative designs.
 <!--more-->

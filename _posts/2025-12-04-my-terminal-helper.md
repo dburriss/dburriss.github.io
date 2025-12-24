@@ -11,8 +11,9 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 social-img: "img/posts/2018/bulb-500.jpg"
 published: true
+topics: [ai-agentic-systems]
+keywords: [Tools, Automation, Agents, OpenCode]
 ---
-
 As a long time user of [Warp Terminal](https://www.warp.dev/), I enjoyed the convenience of being able to do `> #How do I create a new worktree branch again?` and get the command straight in my terminal. A potential issue for you may be that Warp does not allow you to choose your model provider. So I created a little function to fill the gap.
 
 <!--more-->
@@ -30,7 +31,8 @@ For reference, I will show how I have mine setup.
 I have a custom [OpenCode agent](https://opencode.ai/docs/agents/) setup. It has instructions on the type of questions as well as output format. This markdown file is placed in `~./config/opencode/agent/terminal.md`.
 
 ```md
----
+
+
 description: Answer questions for the terminal
 mode: subagent
 model: opencode/grok-code
@@ -38,7 +40,8 @@ tools:
   write: false
   edit: false
   bash: false
----
+
+
 <role>
   You are an experienced software developer and terminal user.
 </role>
@@ -147,3 +150,4 @@ Unfortunately, this is quite a bit slower than the responses from Warp, so manag
 A word of warning. You are executing commands being returned over the wire from a non-deterministic LLM. Use whatever caution you think that warrants. At the very least, check the command before you execute it.
 
 Enjoy.
+

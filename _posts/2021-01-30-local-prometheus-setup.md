@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
 social-img: "img/posts/2020/flame-500.jpg"
 published: true
+topics: [reliability-observability, tooling-automation]
+keywords: [DevOps, Prometheus, Docker, Observability]
 ---
 It is useful to have a local Prometheus instance running to test the instrumentation of your application. If you are running the application on your machine, you need to make sure the Prometheus container can talk to the host machine. This is a short post detailing this setup.
 <!--more-->

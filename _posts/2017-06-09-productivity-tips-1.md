@@ -10,8 +10,9 @@ permalink: productivity-tips-1
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/todo-bg.jpg"
 published: true
+topics: [notes-reflections]
+keywords: [Life, Productivity, Morality, Meditation, Mindfulness]
 ---
-
 > “Do. Or do not. There is no try.” - Yoda
 
 Time has become a precious commodity for me lately. Between management meetings, team meetings, and then actually trying to improve small things in process and code, it is easy to loose track of things. Even worse is that it is easy to loose track of what is important. So I am finding myself going back to some old habits that died off during different shifts in my career and apply many of them again.

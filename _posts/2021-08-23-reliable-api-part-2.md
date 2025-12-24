@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2019/target-500.jpg"
 published: true
+topics: [reliability-observability, software-design]
+keywords: [Software Development, Distributed Systems, API Design, Reliability, Idempotent]
 ---
 In the [previous post](/reliable-apis-part-1) we saw how you can end up with duplicates if using a retry-policy on a call to a non-idempotent endpoint. In this post, we will look at correcting this and see a subtle way that this can go wrong.
 <!--more-->

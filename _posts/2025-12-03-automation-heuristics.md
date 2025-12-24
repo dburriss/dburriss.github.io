@@ -11,6 +11,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 social-img: "img/posts/2018/bridge-cables-500.jpg"
 published: true
+topics: []
+keywords: [DevOps, Automation]
 ---
 While writing up some automation work with GitHub and Copilot (post coming soon), I had thoughts that didn't fit that post. I think them worth jotting down, so here's an experiment in a micro-post format.  
 Let's see how this goes since my posts tend to always be longer than I intended.
@@ -94,3 +96,4 @@ Now consider my alternative. Your beautiful abstraction is built from composable
 ## Conclusion
 
 So in conclusion, much like an LLM I am incapable of not being verbose. Top of mind for me of late is that we are rushing into a time of accelerated pace. The use of generative and agentic tools unlocks new opportunities but also amplifies risks. Good practices and fundamentals are becoming more important than ever. We can both generate value faster, or drive our maintenance costs into orbit faster than it takes NPM to get hacked.
+

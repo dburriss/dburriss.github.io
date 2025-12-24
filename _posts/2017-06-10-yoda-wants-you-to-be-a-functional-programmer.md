@@ -10,6 +10,8 @@ permalink: yoda-wants-you-to-be-a-functional-programmer
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/yoda-bg.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional]
 ---
 This one is just for laughs but technical writing doesn't always have to be serious.  
 I was double checking a Yoda quote for my previous post and it got me thinking about how many Yoda quotes could be applied to the functional programming (FP) paradigm.  
@@ -55,3 +57,4 @@ I could make a point here about storing state but I think it is more important t
 ## Conclusion
 
 So that's it for Yoda on functional programming. Hope it made you think and I hope it made you smile.
+

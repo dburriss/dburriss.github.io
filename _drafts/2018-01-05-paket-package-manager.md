@@ -12,8 +12,9 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/tree-bg.jpg"
 social-img: "img/posts/2017/footprint.jpg"
 published: false
+topics: [tooling-automation]
+keywords: [Tools, Paket, Nuget]
 ---
-
 Why
 - SemVer
 - versioning in one place

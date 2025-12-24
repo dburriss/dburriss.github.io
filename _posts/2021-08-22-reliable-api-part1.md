@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2019/target-500.jpg"
 published: true
+topics: [reliability-observability, software-design]
+keywords: [Software Development, Distributed Systems, API Design, Reliability]
 ---
 Resiliency is more than just slapping a retry policy on a client and hoping it can handle transient errors. It is building systems that handle operations that always end in a valid state across the whole system. This does not mean that all operations WILL BE successful. Just that they are always handled in an expected way, every time.
 <!--more-->

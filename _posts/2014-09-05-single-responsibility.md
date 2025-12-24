@@ -9,8 +9,9 @@ comments: true
 permalink: single-respon
 excerpt_separator: <!--more-->
 published: true
+topics: [engineering-practices, platforms-runtime]
+keywords: [Software Development, Programming, SOLID, OOP]
 ---
-
 > The **S** in **SOLID**.
 
 If I had to pick one principle that had to be enforced strongly on a code base, this would be it. Most techniques for writing elegant code fall by the wayside if this principle is not followed. 
@@ -263,3 +264,4 @@ Lets take a quick look at what running code metrics on this in Visual Studio 201
 
 ### Resources
 [http://www.objectmentor.com/resources/articles/srp.pdf](http://www.objectmentor.com/resources/articles/srp.pdf)
+

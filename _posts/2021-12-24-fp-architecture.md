@@ -12,8 +12,9 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stairwell-bg.jpg"
 social-img: "img/posts/2018/frame-500.jpg"
 published: true
+topics: [platforms-runtime, software-design]
+keywords: [Software Development, Architecture, F#, Functional, Programming, FsAdvent]
 ---
-
 A recurring question I get after discussing the [benefits of functional programming](/what-is-fp) (FP) with a developer who is not familiar with FP is, "Ok, that makes sense but how do I actually build a large application out of functions?" In this post I want to look at a simple functional architecture that could serve as a starting point. 
 <!--more-->
 I will not be talking about Functional Reactive Programming (FRP) or Functional Relational Programming (also FRP) in this post. These are far more opinionated architectures, trying to achieve specific goals. Instead, I will describe a simple architecture that builds on the core ideas of functional programming covered in a [previous post](/what-is-fp). Let's refresh those here quickly:

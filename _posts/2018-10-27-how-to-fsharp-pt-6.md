@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
 social-img: "img/posts/2018/frame-500.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, F#, .NET]
 ---
 Sometimes when dealing with data, the value you are expecting does not exist. Functional programming has a common abstraction for dealing with this called **Maybe**. In F# this abstraction is known as `option`.
 <!--more-->

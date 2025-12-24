@@ -10,8 +10,9 @@ permalink: ddd-glossary
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
 published: true
+topics: [software-design]
+keywords: [Software Development, DDD, Modeling]
 ---
-
 <div class="row">
   <div class="col-xs-6 col-md-3">
     <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=as_sl_pc_tf_mfw?&linkCode=wey&tag=wwwnervstucoz-20" class="thumbnail">

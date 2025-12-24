@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
 social-img: "img/posts/2018/car-dashboard-500.jpg"
 published: true
+topics: [leadership-teams, notes-reflections]
+keywords: [Leadership, General, Life, Team Lead]
 ---
 You may have had the experience before that the company you work for sees you as a resource. A number on a spreadsheet. Did you feel motivated to work there? Did you stay there for a long time? Did you feel loyalty? Probably not...
 

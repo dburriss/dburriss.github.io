@@ -9,9 +9,9 @@ comments: true
 permalink: developer-quest-variables
 excerpt_separator: <!--more-->
 published: true
+topics: [notes-reflections]
+keywords: [Software Development, Programming, Learning c#, Tutorial]
 ---
-
-
 > Hold this for me.
 
 ## The story so far

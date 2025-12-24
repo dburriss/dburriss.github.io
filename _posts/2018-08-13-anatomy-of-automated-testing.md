@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/pyramids-bg.jpg"
 social-img: "img/posts/2018/pyramid-500.jpg"
 published: true
+topics: [engineering-practices]
+keywords: [Software Development, Testing, ATDD, BDD, TDD]
 ---
 Unit, integration, end-to-end, acceptance, UI tests, and more. With so many types of automated tests is it no wonder that we so often disagree on whether something is an acceptance test or an integration test? Or maybe an end-to-end test? What if instead of thinking about the structure of the test, what it tested, we instead considered the question that the test is answering...
 <!--more-->

@@ -12,8 +12,9 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/tree-bg.jpg"
 social-img: "img/posts/2020/tree.jpg"
 published: true
+topics: [notes-reflections]
+keywords: [Life, Meditation, Mindfulness, Morality]
 ---
-
 ## Skills of meditation
 
 Meditation. Often described as clearing your mind. Following your breath. Relaxing. Although the most common descriptions, they are the least interesting activities of meditation. They do not capture the rich depth of the techniques that can be found in the many contemplative traditions throughout history. During this weird time of a global pandemic, I believe these techniques can be especially helpful.

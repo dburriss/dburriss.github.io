@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
 social-img: "img/posts/2018/rubiks-500.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, F#, .NET]
 ---
 In the [previous post](/how-to-fsharp-pt-4) we looked at language features that allowed us to control the flow of our applications. In this post we will look at Pattern Matching, which allows for some very powerful control flow, as well as some neat deconstruction of values.
 <!--more-->

@@ -9,6 +9,8 @@ comments: true
 permalink: the-way-we-write-code
 excerpt_separator: <!--more-->
 published: true
+topics: [engineering-practices, software-design]
+keywords: [Software Development, Clean Code, Agile, Design Patterns, TDD, DDD]
 ---
 
 > The true challenge in writing good software.

@@ -12,8 +12,9 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/star-watch-bg.jpg"
 social-img: "img/posts/2017/touched-by-god-flame.jpg"
 published: true
+topics: [notes-reflections]
+keywords: [Life, General, Meditation, Mindfulness, Science]
 ---
-
 In science and life, sometimes things happen that we cannot explain. Just a few hundred years ago most of what could not be explained was attributed to the supernatural. Thankfully a lot of that mystery has been peeled back, opening us up to bigger and more fundamental questions about the universe. Compared to areas like cosmology and particle physics, things like the human mind and consciousness remain relatively unexplored by science. This leaves some questions unanswered about our place in this expanding universe. In this post I explore and contrast some of my early religious spiritual experiences to my recent self-observations in mindfulness.
 
 <!--more-->

@@ -9,8 +9,9 @@ comments: true
 permalink: big-agile-teams
 excerpt_separator: <!--more-->
 published: true
+topics: [engineering-practices]
+keywords: [Agile]
 ---
-
 As a team grows it becomes more difficult to apply some agile practices effectively. SCRUM meetings like standup and retrospectives become drawn out, the number of stories becomes hard to manage, and the communication within the team can easily break down.  
 Currently I have a team of 10 and I am experimenting with ways of tackling these issues. Hopefully this will turn into a loose series of posts surrounding my experiences with a larger team. I won't go into the why suffice to say it is a project rather than a product but we don't want to go waterfall.
 

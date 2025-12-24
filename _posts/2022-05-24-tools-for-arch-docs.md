@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stuff-bg.jpg"
 social-img: "img/posts/2018/hammer-500.jpg"
 published: true
+topics: [software-design, tooling-automation]
+keywords: [Tools, Architecture, Diagrams, Modeling, VS Code, C4]
 ---
 Keeping documentation up to date can be difficult, and an extra barrier can be if you need extra tools setup "just so" to contribute to the docs. In this post I will give a quick run-through of setting up a **[devcontainer](https://code.visualstudio.com/docs/remote/create-dev-container)** to help with great markdown editing, PlantUML, C4, and Mermaid diagrams. Another part of the documentation is the use of Architecture Decision Records, which will also be supported by the **devcontainer**.
 <!--more-->
@@ -145,3 +147,4 @@ Here is the list of plugins included in this devcontainer.
 - [Graphviz (dot) language support](https://marketplace.visualstudio.com/items?itemName=joaompinto.vscode-graphviz)
 - [PlantUML](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
 - [Mermaid](https://marketplace.visualstudio.com/items?itemName=vstirbu.vscode-mermaid-preview)
+

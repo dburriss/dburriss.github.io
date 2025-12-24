@@ -12,4 +12,7 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 social-img: "img/explore-590.jpg"
 published: false
+topics: [engineering-practices, platforms-runtime]
+keywords: [Software Development, Canopy, Functional, F#, Testing, Selenium]
 ---
+

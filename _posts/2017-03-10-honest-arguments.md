@@ -10,8 +10,9 @@ permalink: honest-arguments
 excerpt_separator: <!--more-->
 published: true
 series: "Honest Types"
+topics: [engineering-practices, platforms-runtime]
+keywords: [Software Development, Clean Code, OOP]
 ---
-
 One of the benefits of statically typed languages is that we can rely on more than the method and parameter names for information on what is expected and what is returned. A well designed method should be about more than naming. Too often we give up on this type safety and expressiveness for the ease of instantiating primitives and `string`.
 
 <!--more-->

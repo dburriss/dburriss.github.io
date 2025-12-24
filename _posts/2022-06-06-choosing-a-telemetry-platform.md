@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2019/target-500.jpg"
 published: true
+topics: [reliability-observability]
+keywords: [DevOps, Datadog, Observability]
 ---
 Recently we decided to make the switch from using Azure Application Insights as our primary telemetry monitoring tool, to [Datadog](https://docs.datadoghq.com/). I wanted to drop a few thoughts on why this was a good choice so anyone else looking to make this decision could take a few more aspects into consideration.
 <!--more-->

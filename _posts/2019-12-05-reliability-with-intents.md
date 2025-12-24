@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
 social-img: "img/posts/2019/target-500.jpg"
 published: true
+topics: [engineering-practices, platforms-runtime, software-design]
+keywords: [Software Development, Distributed Systems, F#, Clean Code, Architecture, Messaging, FsAdvent]
 ---
 If you are using any kind of messaging architecture to notify outside of your system of internal changes you may have noticed a reliability problem. Unless you are using distributed transactions to ensure atomic operations you may have noticed an ordering problem in updating state and notifying the rest of the world. In this post, I will look at this problem and a possible solution.
 <!--more-->

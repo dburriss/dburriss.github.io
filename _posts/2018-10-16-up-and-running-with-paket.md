@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stuff-bg.jpg"
 social-img: "img/posts/2018/package-500.jpg"
 published: true
+topics: [platforms-runtime, tooling-automation]
+keywords: [Tools, Paket, Nuget, Powershell, F#, C#]
 ---
 [Paket](https://fsprojects.github.io/Paket/) is an awesome dependency manager for .NET. Comparing it to Nuget is both the easiest way to explain the basics of it and also a massive disservice to Paket. In this post I want to share some tips to make working with Paket even more awesome.
 <!--more-->

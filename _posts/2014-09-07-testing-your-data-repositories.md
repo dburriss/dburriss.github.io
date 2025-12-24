@@ -8,9 +8,9 @@ tags: [Testing, Programming, SOLID, OOP, Java, TDD]
 comments: true
 permalink: testing-your-data-repositories
 published: true
+topics: [engineering-practices, platforms-runtime]
+keywords: [Software Development, Testing, Programming, SOLID, OOP, Java, TDD]
 ---
-
-
 > Avoiding dependency on a data layer.
 
 My solution was to use an in-memory H2 database (http://www.h2database.com/html/main.html) which can be created and dropped on a per test basis. To do this I used the Command Pattern (http://en.wikipedia.org/wiki/Command_pattern) to create and then drop the table for each test. In case you are not familiar with the command pattern: 
@@ -298,4 +298,5 @@ public class CommandQueue implements Command {
 {% endhighlight %}
 
 Let me know if you found this useful, or if you have a better way for testing your data persistence...
+
 

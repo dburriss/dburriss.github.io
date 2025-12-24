@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/silhouette-bg.jpg"
 social-img: "img/posts/2018/package-500.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, F#, .NET]
 ---
 In almost any software system we want to store data at some point. For decades the bread and butter of persisting data has been databases, and in this post we look at ways of working with a database in F#.
 <!--more-->
@@ -322,3 +324,4 @@ In the final **How to F#** coming soon we will put everything we have learned to
 1. [INSERT](http://www.sqlitetutorial.net/sqlite-insert/)
 1. [UPDATE](http://www.sqlitetutorial.net/sqlite-update/)
 1. [Boxing for fun and profit](https://fsharpforfunandprofit.com/posts/cli-types/#boxing-and-unboxing)
+

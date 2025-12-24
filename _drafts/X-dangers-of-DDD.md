@@ -1,3 +1,7 @@
+---
+topics: []
+keywords: []
+---
 - implementing without strategic patterns
 - implementing on too simple a domain
 - learning on a critical domain

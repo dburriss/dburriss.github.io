@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/yoda-bg.jpg"
 social-img: "img/posts/2018/rubiks-500.jpg"
 published: true
+topics: [engineering-practices]
+keywords: [Agile, Extreme Programming, General]
 ---
 With some topics, you reliably get experienced software developers arguing on both sides of said topic. When this occurs frequently for a particular topic, I believe that it is that both sides are simultaneously right and wrong. This idea can be generalized but let's take the principle of YAGNI.
 How can both sides be right and wrong? Well, because it depends.

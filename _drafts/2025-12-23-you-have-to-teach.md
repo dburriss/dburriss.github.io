@@ -10,8 +10,9 @@ comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
 published: false
+topics: [ai-agentic-systems]
+keywords: [Tools, AI, Agentic, Context Engineering]
 ---
-
 I often hear people compare LLM tools to junior developers. This comparison is not only incorrect, it is holding you back. If you have an incorrect mental model of the tool, you will constantly be surprised by the results. In this post I'll share 3 techniques that can drastically improve the quality of your agentic helper.
 
 <!--more-->
@@ -34,3 +35,4 @@ I use Obsidian as my digital notebook. I have daily notes with a scratchpad sect
 - error -> go fix NO What should you know not to make that mistake?
 - Proactive retrieval and context priming
 - Keep it small
+

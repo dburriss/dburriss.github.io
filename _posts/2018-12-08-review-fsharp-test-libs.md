@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/silhouette-bg.jpg"
 social-img: "img/posts/2018/frame-500.jpg"
 published: true
+topics: [engineering-practices, platforms-runtime]
+keywords: [Software Development, F#, Testing, TDD, FsAdvent]
 ---
 In this post I go through a few of the available assertion libraries and 2 test runners. We will look at running options, assertion style, and the clarity of the error messages.
 <!--more-->

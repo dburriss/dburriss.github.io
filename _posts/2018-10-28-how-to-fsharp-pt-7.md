@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/books-bg.jpg"
 social-img: "img/posts/2018/books-500.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, F#, .NET]
 ---
 So after much threatening in past posts, we will finally be diving a little deeper into collections in F#. We will look at a few of the most commonly used functions on the collection modules by manipulating a `list` of people that we randomly generate.
 <!--more-->

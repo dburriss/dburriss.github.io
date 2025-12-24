@@ -9,8 +9,9 @@ comments: true
 permalink: developer-quest-getting-started
 excerpt_separator: <!--more-->
 published: true
+topics: [notes-reflections]
+keywords: [Software Development, Programming, Learning c#, Tutorial]
 ---
-
 ## Getting Started
 
 The first thing you are going to need as a developer is an Integrated Development Environment (IDE). Technically this is not necessary, you could use a text editor and the compiler in command line but trust me, you don't want to go that route.

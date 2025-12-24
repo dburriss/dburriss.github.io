@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/todo-bg.jpg"
 social-img: "img/posts/2017/apple.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, F#, .NET]
 ---
 Over the last few weeks I have been showing various people with different levels of programming experience how to use F#. This post is the first in a series on the basics of programming with F#. In this one we cover assigning values and the different types those values can take on.
 

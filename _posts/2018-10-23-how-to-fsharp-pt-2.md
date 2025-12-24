@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
 social-img: "img/posts/2018/footprint-500.jpg"
 published: true
+topics: [platforms-runtime]
+keywords: [Software Development, Functional, F#, .NET]
 ---
 In the [previous post](/how-to-fsharp-pt-1) we looked at assigning values and the different types that those values could be. In this second installment we will be looking at functional programmings namesake: *functions*.
 
