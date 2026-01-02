@@ -98,6 +98,7 @@ module Renderer =
               Url = url
               Tags = meta.Tags
               Categories = meta.Categories
+              Topics = meta.Topics
               Related = []
               Previous = None
               Next = None
@@ -171,10 +172,18 @@ module Renderer =
             |> List.map (fun (tag, items) -> (tag, items |> List.map snd))
             |> Map.ofList
 
+        let topics =
+            postsWithNav
+            |> List.collect (fun p -> p.PageMeta.Topics |> List.map (fun t -> (t, p)))
+            |> List.groupBy fst
+            |> List.map (fun (topic, items) -> (topic, items |> List.map snd))
+            |> Map.ofList
+
         { Posts = postsWithNav
           Pages = pages
           Categories = categories
-          Tags = tags }
+          Tags = tags
+          Topics = topics }
 
     let private categoryCounts (index: SiteIndex) : (string * int) list =
         index.Categories
@@ -187,6 +196,109 @@ module Renderer =
         |> Map.toList
         |> List.map (fun (tag, posts) -> (tag, posts.Length))
         |> List.sortBy fst
+
+    let private tryMapCategoryToTopic (site: SiteConfig) (category: string) : string option =
+        site.Topics
+        |> List.tryFind (fun t ->
+            t.LegacyCategory
+            |> Option.map (fun c -> String.Equals(c, category, StringComparison.OrdinalIgnoreCase))
+            |> Option.defaultValue false)
+        |> Option.map (fun t -> t.Id)
+
+    let private tryMapTagToTopic (site: SiteConfig) (tag: string) : string option =
+        site.Topics
+        |> List.tryFind (fun t ->
+            t.LegacyTags
+            |> List.exists (fun lt -> String.Equals(lt, tag, StringComparison.OrdinalIgnoreCase)))
+        |> Option.map (fun t -> t.Id)
+
+    let private redirectHtml (target: string) =
+        // Minimal HTML document with meta refresh
+        sprintf
+            "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url='%s'\" /></head><body><p>Redirecting to <a href=\"%s\">%s</a>…</p></body></html>"
+            target
+            target
+            target
+
+    let renderTopicsOverviewPage (ctx: RenderContext) : RenderedPage =
+        let pageMeta =
+            { Title = "Topics"
+              Subtitle = None
+              Description = Some "Browse by topic"
+              Author = None
+              Date = None
+              HeaderImage = None
+              SocialImage = None
+              Url = "topics/"
+              Tags = []
+              Categories = []
+              Topics = []
+              Related = []
+              Previous = None
+              Next = None
+              CommentsEnabled = false
+              Layout = "page" }
+
+        let topicNodes =
+            ctx.Config.Topics
+            |> List.map (fun t ->
+                li
+                    []
+                    [ a
+                          [ _href (Parsing.combineUrl ctx.Config.BaseUrl (sprintf "topics/%s/" t.Id))
+                            _title t.Description ]
+                          [ str t.Name ];
+                      p [] [ str t.Description ] ])
+
+        let cats = categoryCounts ctx.Index
+        let tags = tagCounts ctx.Index
+
+        let html =
+            RenderView.AsString.htmlNodes [ h2 [] [ str "Topics" ]; ul [] topicNodes ]
+
+        let doc = Layouts.pageDocument ctx.Config pageMeta html cats tags
+
+        { OutputPath = "topics/index.html"
+          Content = RenderView.AsString.htmlDocument doc }
+
+    let renderTopicPage (ctx: RenderContext) (topicId: string) (posts: ContentItem list) : RenderedPage =
+        let topicOpt = ctx.Config.Topics |> List.tryFind (fun t -> t.Id = topicId)
+
+        let title, desc =
+            match topicOpt with
+            | Some t -> sprintf "Topic: %s" t.Name, Some t.Description
+            | None -> sprintf "Topic: %s" topicId, None
+
+        let page =
+            { Title = title
+              Subtitle = None
+              Description = desc
+              Author = None
+              Date = None
+              HeaderImage = None
+              SocialImage = None
+              Url = sprintf "topics/%s/" topicId
+              Tags = []
+              Categories = []
+              Topics = []
+              Related = []
+              Previous = None
+              Next = None
+              CommentsEnabled = false
+              Layout = "topics" }
+
+        let postLinks =
+            posts
+            |> List.map (fun p ->
+                li [] [ a [ _href (Parsing.combineUrl ctx.Config.BaseUrl p.PageMeta.Url) ] [ str p.PageMeta.Title ] ])
+
+        let cats = categoryCounts ctx.Index
+        let tags = tagCounts ctx.Index
+        let html = RenderView.AsString.htmlNodes [ h2 [] [ str title ]; ul [] postLinks ]
+        let doc = Layouts.pageDocument ctx.Config page html cats tags
+
+        { OutputPath = sprintf "topics/%s/index.html" topicId
+          Content = RenderView.AsString.htmlDocument doc }
 
     let renderPost (ctx: RenderContext) (post: ContentItem) : RenderedPage =
         let cats = categoryCounts ctx.Index
@@ -231,6 +343,7 @@ module Renderer =
               Url = if pageNumber = 1 then "" else sprintf "page/%d/" pageNumber
               Tags = []
               Categories = []
+              Topics = []
               Related = []
               Previous = None
               Next = None
@@ -249,23 +362,35 @@ module Renderer =
         { OutputPath = outputPath
           Content = RenderView.AsString.htmlDocument doc }
 
-    let renderCategoryPage (ctx: RenderContext) (category: string) (posts: ContentItem list) : RenderedPage =
-        let cats = categoryCounts ctx.Index
-        let tags = tagCounts ctx.Index
-        let doc = Layouts.categoryDocument ctx.Config category posts cats tags
+    let renderCategoryPage (ctx: RenderContext) (category: string) (_posts: ContentItem list) : RenderedPage =
+        let mapped = tryMapCategoryToTopic ctx.Config category
+
+        let target =
+            match mapped with
+            | Some topicId -> sprintf "topics/%s/" (Parsing.slugify topicId)
+            | None -> "topics/"
+
         let slug = Parsing.slugify category
+        let outputPath = sprintf "category/%s/index.html" slug
+        let targetUrl = Parsing.combineUrl ctx.Config.BaseUrl target
 
-        { OutputPath = sprintf "category/%s/index.html" slug
-          Content = RenderView.AsString.htmlDocument doc }
+        { OutputPath = outputPath
+          Content = redirectHtml targetUrl }
 
-    let renderTagPage (ctx: RenderContext) (tag: string) (posts: ContentItem list) : RenderedPage =
-        let cats = categoryCounts ctx.Index
-        let tags = tagCounts ctx.Index
-        let doc = Layouts.tagDocument ctx.Config tag posts cats tags
+    let renderTagPage (ctx: RenderContext) (tag: string) (_posts: ContentItem list) : RenderedPage =
+        let mapped = tryMapTagToTopic ctx.Config tag
+
+        let target =
+            match mapped with
+            | Some topicId -> sprintf "topics/%s/" (Parsing.slugify topicId)
+            | None -> "topics/"
+
         let slug = Parsing.slugify tag
+        let outputPath = sprintf "tag/%s/index.html" slug
+        let targetUrl = Parsing.combineUrl ctx.Config.BaseUrl target
 
-        { OutputPath = sprintf "tag/%s/index.html" slug
-          Content = RenderView.AsString.htmlDocument doc }
+        { OutputPath = outputPath
+          Content = redirectHtml targetUrl }
 
     let renderFeeds (ctx: RenderContext) : RenderedPage list =
         let posts = ctx.Index.Posts |> List.truncate 20
@@ -286,6 +411,13 @@ module Renderer =
             [ 1..totalIndexPages ]
             |> List.map (fun page -> renderIndex ctx page postsPerPage defaultSocialImg)
 
+        let topicPages =
+            ctx.Index.Topics
+            |> Map.toList
+            |> List.map (fun (tid, posts) -> renderTopicPage ctx tid posts)
+
+        let topicsOverview = [ renderTopicsOverviewPage ctx ]
+
         let categoryPages =
             ctx.Index.Categories
             |> Map.toList
@@ -298,7 +430,14 @@ module Renderer =
 
         let feeds = renderFeeds ctx
 
-        postPages @ pagePages @ indexPages @ categoryPages @ tagPages @ feeds
+        postPages
+        @ pagePages
+        @ indexPages
+        @ topicPages
+        @ topicsOverview
+        @ categoryPages
+        @ tagPages
+        @ feeds
 
     let writeOutput (outputRoot: string) (pages: RenderedPage list) =
         pages

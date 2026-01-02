@@ -382,20 +382,30 @@ module Layouts =
                                                 [ str "Posted by "
                                                   span [ attr "itemprop" "name" ] [ str author ]
                                                   str (sprintf " on %s" dateStr) ]
-                                            if not (List.isEmpty page.Tags) then
+                                            if not (List.isEmpty page.Topics) then
                                                 fragment
                                                     []
                                                     [ hr []
                                                       yield!
-                                                          (page.Tags
-                                                           |> List.map (fun tag ->
+                                                          (page.Topics
+                                                           |> List.map (fun id ->
+                                                               let topicOpt =
+                                                                   site.Topics |> List.tryFind (fun t -> t.Id = id)
+
+                                                               let name =
+                                                                   topicOpt
+                                                                   |> Option.map (fun t -> t.Name)
+                                                                   |> Option.defaultValue id
+
+                                                               let desc =
+                                                                   topicOpt
+                                                                   |> Option.map (fun t -> t.Description)
+                                                                   |> Option.defaultValue ""
+
                                                                a
-                                                                   [ _href (
-                                                                         assetUrl
-                                                                             site
-                                                                             (sprintf "tag/%s" (Parsing.slugify tag))
-                                                                     ) ]
-                                                                   [ span [ _class "label label-default" ] [ str tag ] ])) ]
+                                                                   [ _href (assetUrl site (sprintf "topics/%s/" id))
+                                                                     _title desc ]
+                                                                   [ span [ _class "label label-default" ] [ str name ] ])) ]
                                             else
                                                 rawText ""
                                             div [] [] ] ] ] ] ] ]
@@ -440,9 +450,26 @@ module Layouts =
 
     let private postBody (htmlContent: string) = rawText htmlContent
 
-    let private sidebar (site: SiteConfig) (categories: (string * int) list) (tags: (string * int) list) includeAbout =
-        let blocks =
-            [ socialNode site; categoryWidget site categories; tagWidget site tags ]
+    let private topicsWidget (site: SiteConfig) =
+        let toLink (t: TopicDef) =
+            a
+                [ _class "badge badge-info"
+                  _href (assetUrl site (sprintf "topics/%s/" (t.Id)))
+                  _title t.Description ]
+                [ span [ _class "site-topic" ] [ str t.Name ] ]
+
+        fragment
+            []
+            ([ h2 [] [ i [ _class "glyphicon glyphicon-th-list" ] []; str "  Topics" ] ]
+             @ (site.Topics |> List.map toLink))
+
+    let private sidebar
+        (site: SiteConfig)
+        (_categories: (string * int) list)
+        (_tags: (string * int) list)
+        includeAbout
+        =
+        let blocks = [ socialNode site; topicsWidget site ]
 
         let blocks =
             if includeAbout then
@@ -558,11 +585,15 @@ module Layouts =
               | None -> rawText ""
               p [ _class "post-meta" ] [ str (sprintf "Posted by %s on %s" author dateStr) ]
               yield!
-                  (post.PageMeta.Tags
-                   |> List.map (fun tag ->
+                  (post.PageMeta.Topics
+                   |> List.map (fun id ->
+                       let topicOpt = site.Topics |> List.tryFind (fun t -> t.Id = id)
+                       let name = topicOpt |> Option.map (fun t -> t.Name) |> Option.defaultValue id
+                       let desc = topicOpt |> Option.map (fun t -> t.Description) |> Option.defaultValue ""
+
                        a
-                           [ _href (assetUrl site (sprintf "tag/%s" (Parsing.slugify tag))) ]
-                           [ span [ _class "label label-default" ] [ str tag ] ]))
+                           [ _href (assetUrl site (sprintf "topics/%s/" id)); _title desc ]
+                           [ span [ _class "label label-default" ] [ str name ] ]))
               match socialImgUrl with
               | Some imgUrl ->
                   img
@@ -615,11 +646,15 @@ module Layouts =
                     | None -> rawText "" ]
               p [ _class "post-meta" ] [ str (sprintf "Posted by %s on %s" author dateStr) ]
               yield!
-                  (post.PageMeta.Tags
-                   |> List.map (fun tag ->
+                  (post.PageMeta.Topics
+                   |> List.map (fun id ->
+                       let topicOpt = site.Topics |> List.tryFind (fun t -> t.Id = id)
+                       let name = topicOpt |> Option.map (fun t -> t.Name) |> Option.defaultValue id
+                       let desc = topicOpt |> Option.map (fun t -> t.Description) |> Option.defaultValue ""
+
                        a
-                           [ _href (assetUrl site (sprintf "tag/%s" (Parsing.slugify tag))) ]
-                           [ span [ _class "label label-default" ] [ str tag ] ])) ]
+                           [ _href (assetUrl site (sprintf "topics/%s/" id)); _title desc ]
+                           [ span [ _class "label label-default" ] [ str name ] ])) ]
 
     let private indexPager (site: SiteConfig) (olderUrl: string option) (newerUrl: string option) =
         ul
@@ -734,6 +769,7 @@ module Layouts =
               Url = sprintf "category/%s/" (Parsing.slugify categoryName)
               Tags = []
               Categories = []
+              Topics = []
               Related = []
               Previous = None
               Next = None
@@ -779,6 +815,7 @@ module Layouts =
               Url = sprintf "tag/%s/" (Parsing.slugify tagName)
               Tags = []
               Categories = []
+              Topics = []
               Related = []
               Previous = None
               Next = None

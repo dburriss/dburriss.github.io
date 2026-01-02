@@ -84,6 +84,35 @@ module Parsing =
         let root = loadYamlMapping text
         let get = tryGetScalar root
 
+        let topics =
+            let keyNode = YamlScalarNode("topics")
+
+            if root.Children.ContainsKey keyNode then
+                match root.Children.[keyNode] with
+                | :? YamlSequenceNode as seqNode ->
+                    seqNode.Children
+                    |> Seq.choose (fun node ->
+                        match node with
+                        | :? YamlMappingNode as m ->
+                            let gt = tryGetScalar m
+                            let id = gt "id" |> Option.defaultValue ""
+                            let name = gt "name" |> Option.defaultValue id
+                            let desc = gt "description" |> Option.defaultValue ""
+                            let legacyCat = gt "legacy_category"
+                            let legacyTags = tryGetSequence m "legacy_tags" |> List.map (fun s -> s.Trim())
+
+                            Some
+                                { Id = id
+                                  Name = name
+                                  Description = desc
+                                  LegacyCategory = legacyCat
+                                  LegacyTags = legacyTags }
+                        | _ -> None)
+                    |> Seq.toList
+                | _ -> []
+            else
+                []
+
         { Title = get "title" |> Option.defaultValue ""
           Description = get "description" |> Option.defaultValue ""
           Author = get "author" |> Option.defaultValue ""
@@ -102,7 +131,8 @@ module Parsing =
             match get "is_production" with
             | Some v when v.Equals("true", StringComparison.OrdinalIgnoreCase) -> true
             | _ -> false
-          Include = tryGetSequence root "include" }
+          Include = tryGetSequence root "include"
+          Topics = topics }
 
     let private splitFrontMatter (content: string) =
         if content.StartsWith("---") then
@@ -133,6 +163,8 @@ module Parsing =
               SocialImage = None
               Tags = []
               Categories = []
+              Topics = []
+              Keywords = []
               Date = None
               Comments = None
               Published = None }
@@ -158,6 +190,9 @@ module Parsing =
                     | Some value -> [ value ]
                     | None -> []
 
+            let topics = tryGetSequence mapping "topics"
+            let keywords = tryGetSequence mapping "keywords"
+
             { Layout = get "layout"
               Title = get "title"
               Subtitle = get "subtitle"
@@ -180,6 +215,8 @@ module Parsing =
                 | None -> get "social_img"
               Tags = normalizeList tags
               Categories = normalizeList categories
+              Topics = normalizeList topics
+              Keywords = normalizeList keywords
               Date = parseDate (get "date")
               Comments = parseBool (get "comments")
               Published = parseBool (get "published") }

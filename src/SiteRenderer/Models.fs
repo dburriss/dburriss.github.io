@@ -3,6 +3,14 @@ namespace SiteRenderer
 open System
 
 [<CLIMutable>]
+type TopicDef =
+    { Id: string
+      Name: string
+      Description: string
+      LegacyCategory: string option
+      LegacyTags: string list }
+
+[<CLIMutable>]
 type SiteConfig =
     { Title: string
       Description: string
@@ -19,7 +27,8 @@ type SiteConfig =
       GoogleTrackingId: string option
       CopyrightName: string option
       IsProduction: bool
-      Include: string list }
+      Include: string list
+      Topics: TopicDef list }
 
 [<CLIMutable>]
 type FrontMatter =
@@ -33,6 +42,8 @@ type FrontMatter =
       SocialImage: string option
       Tags: string list
       Categories: string list
+      Topics: string list
+      Keywords: string list
       Date: DateTime option
       Comments: bool option
       Published: bool option }
@@ -49,6 +60,7 @@ type PageMeta =
       Url: string
       Tags: string list
       Categories: string list
+      Topics: string list
       Related: PostSummary list
       Previous: PostSummary option
       Next: PostSummary option
@@ -78,7 +90,8 @@ type SiteIndex =
     { Posts: ContentItem list
       Pages: ContentItem list
       Categories: Map<string, ContentItem list>
-      Tags: Map<string, ContentItem list> }
+      Tags: Map<string, ContentItem list>
+      Topics: Map<string, ContentItem list> }
 
 [<CLIMutable>]
 type RenderContext =

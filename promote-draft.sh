@@ -57,6 +57,22 @@ print_info() {
     echo -e "${BLUE}INFO: $1${NC}"
 }
 
+# Check front matter has non-empty flow sequence for given key
+has_non_empty_flow_seq() {
+    local file="$1"
+    local key="$2"
+    local line=$(sed -n '/^---/,/^---/p' "$file" | grep -E "^${key}:")
+    if [[ -z "$line" ]]; then
+        return 1
+    fi
+    # Must contain [ ... ] with at least one value
+    if echo "$line" | grep -Eq "\[[^]]+\]"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # Function to validate date format
 validate_date() {
     local date="$1"
@@ -290,6 +306,16 @@ main() {
     # Validate draft has front matter
     if ! has_front_matter "$selected_draft"; then
         print_warning "Draft does not have valid front matter. A new front matter will be created."
+    fi
+
+    # Require topics and keywords
+    if ! has_non_empty_flow_seq "$selected_draft" "topics"; then
+        print_error "Draft is missing required 'topics' (non-empty). Update front matter and try again."
+        exit 1
+    fi
+    if ! has_non_empty_flow_seq "$selected_draft" "keywords"; then
+        print_error "Draft is missing required 'keywords' (non-empty). Update front matter and try again."
+        exit 1
     fi
     
     # Generate target filename
