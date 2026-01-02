@@ -5,8 +5,6 @@ subtitle: "Making functional programming more productive"
 description: "A review of some language features like immutability and algebraic data types that work well in a functional style of programming."
 permalink: useful-fp-language-features
 author: "Devon Burriss"
-category: Software Development
-tags: [F#,Functional,Programming]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/superman-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/hammer-500.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, F#, Functional, Programming]
+---
+
 ---
 In a [previous post](/what-is-fp) we looked at the big ideas of functional programming. In this post we will look at some features that are often associated with functional programming but that I do not think are core to it.
 <!--more-->
@@ -170,3 +170,4 @@ If working with `Option` or `Result` sounds interesting to you, I suggest checki
 ## Conclusion
 
 In this post we covered a few language features that are nice to have for making you development experience using functional programming productive. These support the ideas of FP and make it faster to write code that is bug free. This post was mostly about addressing things that where not in the [previous post](/what-is-fp). Finally, monads, etc. were not covered at all, since I consider them patterns. Although they are intimately connected with FP, I do not think they are strictly necessary to say you are writing code using the principles of FP. 
+

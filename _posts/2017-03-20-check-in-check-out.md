@@ -3,14 +3,14 @@ layout: post
 title: "Check-in and Check-out"
 subtitle: "Measuring the perceived effectiveness of a retrospective"
 author: "Devon Burriss"
-category: Agile
-tags: [Agile]
 comments: true
 permalink: check-in-check-out
 excerpt_separator: <!--more-->
 published: true
 topics: [engineering-practices]
 keywords: [Agile]
+---
+
 ---
 Someone must have thought of this before but I have not read this anywhere so I thought I would jot it down. I recently ran a retrospective that I thought went really well, and apparently so did everyone else...
 
@@ -26,3 +26,4 @@ if you don't measure something how can you know if it improving? It is a staple 
 Easy!
 
 <img src="/img/posts/2017/check-in-out.jpg" alt="Check-in-Check-out" class="img-thumbnail">
+

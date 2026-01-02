@@ -5,8 +5,6 @@ subtitle: "7 tips for keeping code as simple as possible"
 description: "7 tips to address some common anti-patterns in code that hide intent"
 permalink: managing-code-complexity
 author: "Devon Burriss"
-category: Software Development
-tags: [Clean Code, DDD, Design Patterns, Functional]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/yarn-500.jpg"
 published: true
 topics: [engineering-practices, platforms-runtime, software-design]
 keywords: [Software Development, Clean Code, DDD, Design Patterns, Functional]
+---
+
 ---
 When we write code it is often easy to get caught up in the implementation details. Communicating intent is imperative to making code understandable, and keeping code understandable is important for handling complexity.
 
@@ -101,4 +101,5 @@ Create types to represent things like entity identity. [There is a whole series 
 ## And we are done
 
 I hope you find some of these tips useful. If you did, I would love to hear about it. If you have questions, feel free to leave a comment. If you think I am 100% wrong, I would love to hear your reasons. Above all, let's keep learning together and happy coding!
+
 

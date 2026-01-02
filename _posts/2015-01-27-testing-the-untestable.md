@@ -3,14 +3,14 @@ layout: post
 title: "Testing the Untestable"
 subtitle: "Testing after the fact testing hurts"
 author: "Devon Burriss"
-category: Software Development
-tags: [Testing,Programming, Unit Testing , TDD]
 comments: true
 permalink: testing-the-untestable
 excerpt_separator: <!--more-->
 published: true
 topics: [engineering-practices]
 keywords: [Software Development, Testing, Programming, Unit Testing, TDD]
+---
+
 ---
 If you have ever tried written unit tests for existing code you know it can be quite challenging. Not only is finding what to test difficult, the code usually just wont be testable. If it is code that you have written and you are at liberty to make some sweeping changes, then you can refactor toward testability. If not I still go through a technique at the end of this article for providing testable classes.
 
@@ -193,5 +193,6 @@ So we went through some steps you could take to make your classes more testable.
 > NOTE: A quick note on DateTime. It is a very sneaky static that leaks into code often. Try make it team policy to not use DateTime and instead use something like this suggested by [Ayenda Rahien](http://ayende.com/blog/3408/dealing-with-time-in-tests)
 
 Happy testing!
+
 
 

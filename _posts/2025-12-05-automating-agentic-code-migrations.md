@@ -4,8 +4,6 @@ title: "Automating Agentic Code Migrations"
 subtitle: "Managing agents at scale with GitHub"
 permalink: automating-agentic-code-migrations
 author: "Devon Burriss"
-category: Tools
-tags: [Automation,AI,Agentic]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
@@ -13,6 +11,8 @@ social-img: "img/posts/2018/rubiks-500.jpg"
 published: true
 topics: [ai-agentic-systems]
 keywords: [Tools, Automation, AI, Agentic]
+---
+
 ---
 One of the promises of AI is freedom from the drudgery of boring work. At work I have had some success in using Copilot to migrate some AWS Lambdas off of some deprecated observability tooling. In this post I will go over how I am using agentic workflows and leave some tips at the end.
 
@@ -160,4 +160,5 @@ It is important to remember that these agents have no mental model of the world,
 ### Conclusion
 
 Being able to now automate this type of work easily and effectively means we should be doing so. This will give teams back hours and even days of tedious work. This time can then be spent adding features that add value to a company.
+
 

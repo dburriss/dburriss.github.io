@@ -5,8 +5,6 @@ subtitle: "The epic saga of client-side IDs and true idempotency"
 description: "A better idempotency implementation using client-generated IDs."
 permalink: reliable-apis-part-3
 author: "Devon Burriss"
-category: Software Development
-tags: [Distributed Systems,API Design,Reliability,Idempotent,Client-generated ID]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2019/target-500.jpg"
 published: true
 topics: [reliability-observability, software-design]
 keywords: [Software Development, Distributed Systems, API Design, Reliability, Idempotent, Client-generated ID]
+---
+
 ---
 The [previous post](/reliable-apis-part-2) showed how things can go wrong when not thinking through edge cases carefully, especially where concurrency comes into play. In this post we will look at a truly idempotent endpoint design as well as discuss some alternative designs.
 <!--more-->
@@ -129,3 +129,4 @@ Finally, this design was really optimizing for resilience and eventual consisten
 - [A very basic discussion of client vs. server IDs](https://www.techyourchance.com/client-generated-ids-vs-server-generated-ids/)
 - [Flexible design for outbox like saga](https://devonburriss.me/reliability-with-intents/)
 - [Interesting discussion of what happens when you can't use client side IDs](https://tech.trello.com/sync-two-id-problem/)
+

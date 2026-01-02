@@ -5,8 +5,6 @@ subtitle: "My path to embracing functional programming"
 description: "A short overview of my ongoing efforts to learn functional programming, specifically F#"
 permalink: why-i-got-hooked-on-fsharp
 author: "Devon Burriss"
-category: Software Development
-tags: [Functional,F#]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/tree-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2017/footprint.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, Functional, F#]
+---
+
 ---
 I have been asked a few times "how I got started with F#?" as more than a few people have found it difficult. I myself had a few false starts with it. It looked weird, I didn't know where or how to start, it was too different to OO with C style languages, and the tooling just was not as slick. I honestly think a better question is "Why did I start using F#?"
 <!--more-->
@@ -72,4 +72,5 @@ This December I posted [my first F# themed blog post](/argument-for-fp/) as part
 ## Credits
 
 1. Header photo by [John Mark Arnold](https://unsplash.com/@johnmarkarnold)
+
 

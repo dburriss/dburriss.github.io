@@ -5,8 +5,6 @@ subtitle: "Using Idempotency-Key and a response cache"
 description: "An example of a bad resilience implementation and discussion of the failure modes."
 permalink: reliable-apis-part-2
 author: "Devon Burriss"
-category: Software Development
-tags: [Distributed Systems,API Design,Reliability,Idempotent]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2019/target-500.jpg"
 published: true
 topics: [reliability-observability, software-design]
 keywords: [Software Development, Distributed Systems, API Design, Reliability, Idempotent]
+---
+
 ---
 In the [previous post](/reliable-apis-part-1) we saw how you can end up with duplicates if using a retry-policy on a call to a non-idempotent endpoint. In this post, we will look at correcting this and see a subtle way that this can go wrong.
 <!--more-->
@@ -98,3 +98,4 @@ This design of cache that is not transactional with state change within the serv
 
 - [Stripe blog on Idempotency](https://stripe.com/blog/idempotency)
 - [Intro to Idempotency-Key header](https://repl.ca/what-is-the-idempotency-key-header/)
+

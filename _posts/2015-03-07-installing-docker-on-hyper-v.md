@@ -3,14 +3,14 @@ layout: post
 title: "Installing Docker on Hyper-V"
 description: "Installing Docker on Windows"
 author: "Devon Burriss"
-category: DevOps
-tags: [Hyper-V, Ubuntu]
 comments: true
 permalink: installing-docker-on-hyper-v
 excerpt_separator: <!--more-->
 published: true
 topics: []
 keywords: [DevOps, Hyper-V, Ubuntu]
+---
+
 ---
 To be clear, currently Docker containers do not run on Windows. Microsoft is working with Docker to release something with feature parity but we will be lucky if we see that in 2015 ([Blogged by Scott Gu](http://weblogs.asp.net/scottgu/docker-and-microsoft-integrating-docker-with-windows-server-and-microsoft-azure)). So although there is a client for Windows for managing Docker containers, we will need an Ubuntu install. [Installing Ubuntu on Hyper-V](http://devonburriss.me/installing-ubuntu-on-hyper-v/)
 
@@ -75,5 +75,6 @@ The `-t` is to assign a terminal and `-i` is so the connection is interactive.
 Once it is running a terminal prompt will be available. Type `echo 'Hi'`. The Ubuntu container willl say hi back :)
 
 So thats it. You have Docker running on a Hyper-V guest.
+
 
 

@@ -4,14 +4,14 @@ title: "A Clean Architecture Solution"
 subtitle: "dotnet new starter template for Clean Architecture"
 permalink: clean-architecture-solution.md
 author: "Devon Burriss"
-category: Programming
-tags: [Architecture, Clean Code]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
 published: false
 topics: [engineering-practices, software-design]
 keywords: [Programming, Architecture, Clean Code]
+---
+
 ---
 Clean Architecture is largely about making sure your dependencies are pointing in the right direction. 
 <!--more-->
@@ -32,4 +32,5 @@ If you are using a statically typed language you want the compiler to enforce th
 
 1. http://jeffreypalermo.com/blog/the-onion-architecture-part-1/
 1. http://alistair.cockburn.us/Hexagonal+architecture
+
 

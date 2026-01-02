@@ -3,14 +3,14 @@ layout: post
 title: "Agile is a Characteristic"
 subtitle: "When did the label become more important than the characteristic?"
 author: "Devon Burriss"
-category: Agile
-tags: [Agile]
 comments: true
 permalink: agile-is-a-characteristic
 excerpt_separator: <!--more-->
 published: true
 topics: [engineering-practices]
 keywords: [Agile]
+---
+
 ---
 > [Agile is dead](https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html)  
 
@@ -45,4 +45,5 @@ So why do I believe agile will never die? At it's core, agility is a characteris
 
  - [Agile Manifesto](http://agilemanifesto.org/)
  - [Challenges and success factors for large-scale agile transformations: A systematic literature review](http://www.sciencedirect.com/science/article/pii/S0164121216300826)
+
 

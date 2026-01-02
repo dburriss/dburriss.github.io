@@ -5,8 +5,6 @@ subtitle: "Putting the function in Functional Programming"
 description: "In part 2 of this series we will look at what gives functional programming its name, functions"
 permalink: how-to-fsharp-pt-2
 author: "Devon Burriss"
-category: Software Development
-tags: [Functional,F#,.NET]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/footprint-500.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, Functional, F#, .NET]
+---
+
 ---
 In the [previous post](/how-to-fsharp-pt-1) we looked at assigning values and the different types that those values could be. In this second installment we will be looking at functional programmings namesake: *functions*.
 
@@ -118,3 +118,4 @@ In the next post we will dive deeper into [Working with Functions and getting th
 1. [Mathematics functions](https://en.wikipedia.org/wiki/Function_(mathematics))
 1. [Programming paradigms](https://en.wikipedia.org/wiki/Programming_paradigm)
 1. [Function signature](https://fsharpforfunandprofit.com/posts/function-signatures/)
+

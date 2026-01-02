@@ -5,8 +5,6 @@ subtitle: "Looking at the parts and functions of various automated test types"
 description: "Comparing structure and function of various test types to tease out what we really care to verify"
 permalink: anatomy-of-automated-testing
 author: "Devon Burriss"
-category: Software Development
-tags: [Testing,ATDD,BDD,TDD]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/pyramids-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/pyramid-500.jpg"
 published: true
 topics: [engineering-practices]
 keywords: [Software Development, Testing, ATDD, BDD, TDD]
+---
+
 ---
 Unit, integration, end-to-end, acceptance, UI tests, and more. With so many types of automated tests is it no wonder that we so often disagree on whether something is an acceptance test or an integration test? Or maybe an end-to-end test? What if instead of thinking about the structure of the test, what it tested, we instead considered the question that the test is answering...
 <!--more-->
@@ -84,3 +84,4 @@ I hope you found this useful. If so I would love to hear your thoughts on the di
 
 - Background photo by [Stijn te Strake](https://unsplash.com/@stijntestrake)
 - Social photo by [Jeremy Bishop](https://unsplash.com/@tentides)
+

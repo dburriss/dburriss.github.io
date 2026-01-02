@@ -3,14 +3,14 @@ layout: post
 title: "Big Agile Teams"
 subtitle: "Ideas on dealing with larger teams in an agile way"
 author: "Devon Burriss"
-category: Agile
-tags: [Agile]
 comments: true
 permalink: big-agile-teams
 excerpt_separator: <!--more-->
 published: true
 topics: [engineering-practices]
 keywords: [Agile]
+---
+
 ---
 As a team grows it becomes more difficult to apply some agile practices effectively. SCRUM meetings like standup and retrospectives become drawn out, the number of stories becomes hard to manage, and the communication within the team can easily break down.  
 Currently I have a team of 10 and I am experimenting with ways of tackling these issues. Hopefully this will turn into a loose series of posts surrounding my experiences with a larger team. I won't go into the why suffice to say it is a project rather than a product but we don't want to go waterfall.
@@ -52,3 +52,4 @@ Getting the team to bond is even more important when it is bigger. Lunching toge
 ## Conclusion
 
 I hope some of these suggestions are helpful and if you have any of your own please let me know in the comments below. These are all a work in progress and I will hopefully report back in a later post.
+

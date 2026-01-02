@@ -5,8 +5,6 @@ subtitle: "Working with Functions and getting them to work for you"
 description: "In part 3 we will dive deeper into functions exploring different techniques for working with them"
 permalink: how-to-fsharp-pt-3
 author: "Devon Burriss"
-category: Software Development
-tags: [Functional,F#,.NET]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/vents-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/hammer-500.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, Functional, F#, .NET]
+---
+
 ---
 [Previously](/how-to-fsharp-pt-2) we began exploring some theory behind functions. In this post we will look at practical techniques for working with functions.
 
@@ -165,3 +165,4 @@ In the next article we look at [Control Flow](/how-to-fsharp-pt-4).
 ## Credits
 
 1. Social image by [Markus Spiske](https://unsplash.com/@markusspiske)
+

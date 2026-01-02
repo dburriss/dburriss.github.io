@@ -5,8 +5,6 @@ subtitle: "Encountering the supernatural or just your own mind?"
 description: "Thoughts on my experiences in charismatic churches and the stillness of my own mind."
 permalink: touched-by-god
 author: "Devon Burriss"
-category: Life
-tags: [General, Meditation, Mindfulness, Science]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/star-watch-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2017/touched-by-god-flame.jpg"
 published: true
 topics: [notes-reflections]
 keywords: [Life, General, Meditation, Mindfulness, Science]
+---
+
 ---
 In science and life, sometimes things happen that we cannot explain. Just a few hundred years ago most of what could not be explained was attributed to the supernatural. Thankfully a lot of that mystery has been peeled back, opening us up to bigger and more fundamental questions about the universe. Compared to areas like cosmology and particle physics, things like the human mind and consciousness remain relatively unexplored by science. This leaves some questions unanswered about our place in this expanding universe. In this post I explore and contrast some of my early religious spiritual experiences to my recent self-observations in mindfulness.
 
@@ -64,3 +64,4 @@ If your interest was piqued by this post I highly recommend you read [Waking Up]
 - Header photo by [Greg Rakozy](https://unsplash.com/@grakozy)
 - Social photo by [Vinicius Amano](https://unsplash.com/@viniciusamano)
 - Content photo [Kunj Parekh](https://unsplash.com/@kunjparekh)
+

@@ -3,14 +3,14 @@ layout: post
 title: "Single Responsibility Principle"
 subtitle: "The S in SOLID."
 author: "Devon Burriss"
-category: Software Development
-tags: [Programming, SOLID, OOP]
 comments: true
 permalink: single-respon
 excerpt_separator: <!--more-->
 published: true
 topics: [engineering-practices, platforms-runtime]
 keywords: [Software Development, Programming, SOLID, OOP]
+---
+
 ---
 > The **S** in **SOLID**.
 
@@ -264,4 +264,5 @@ Lets take a quick look at what running code metrics on this in Visual Studio 201
 
 ### Resources
 [http://www.objectmentor.com/resources/articles/srp.pdf](http://www.objectmentor.com/resources/articles/srp.pdf)
+
 

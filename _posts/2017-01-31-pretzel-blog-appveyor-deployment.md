@@ -3,8 +3,6 @@ layout: post
 title: "Deploying a Pretzel generated static site to Github Pages using Appveyor"
 subtitle: "Dynamic continuous delivery of static content."
 author: "Devon Burriss"
-category: Tools
-tags: [Git, Github Pages, CI, AppVeyor, Pretzel]
 comments: true
 permalink: pretezel-blog-appveyor-deployment
 excerpt_separator: <!--more-->
@@ -12,6 +10,8 @@ header-img: "img/backgrounds/vents-bg.jpg"
 published: true
 topics: [tooling-automation]
 keywords: [Tools, Git, Github Pages, CI, AppVeyor, Pretzel]
+---
+
 ---
 # Background
 
@@ -132,3 +132,4 @@ And there we have it! We can commit to **source** and the generated changes are 
 Feel free to copy my blog at https://github.com/dburriss/dburriss.github.io
 
 Please leave a comment if you found this useful or have any improvements.
+

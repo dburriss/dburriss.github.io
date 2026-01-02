@@ -5,8 +5,6 @@ subtitle: "A look at some of the non-obvious points to consider"
 description: "When looking at a telemetry platform we will often look at support for a cloud provider, specific technologies supported, or maybe price. Something often not considered is usability."
 permalink: choosing-a-telemetry-platform
 author: "Devon Burriss"
-category: DevOps
-tags: [Datadog,Observability]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2019/target-500.jpg"
 published: true
 topics: [reliability-observability]
 keywords: [DevOps, Datadog, Observability]
+---
+
 ---
 Recently we decided to make the switch from using Azure Application Insights as our primary telemetry monitoring tool, to [Datadog](https://docs.datadoghq.com/). I wanted to drop a few thoughts on why this was a good choice so anyone else looking to make this decision could take a few more aspects into consideration.
 <!--more-->
@@ -87,3 +87,4 @@ Alerts follow the same trend.
 ## Conclusion
 
 I am in no way affiliated with Datadog. I am clearly a fan of the product though. I have seen it succeed many times in raising the level of monitoring in a company. I think this is in no small part due to its excellent UI and the way it lets a user explore what is possible. One great thing not mentioned is that the types of products available in the Datadog suite is ever growing and the integration that they have with each other is great. This does also bring up one point to keep in mind. With Datadog becoming a 1 stop shop for metrics, APM, logging, security, etc. it can be overwhelming. I suggest starting with one or two and expanding slowly. So do you find yourself in the position where you wish you had a better handle on not only the errors in your system but also what normal behaviour looks like? Maybe you need to ask whether your tooling is holding you back...
+

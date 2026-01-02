@@ -5,8 +5,6 @@ subtitle: "Working with collections"
 description: "Diving into the super helpful collection functions available to manipulate collections in F#"
 permalink: how-to-fsharp-pt-7
 author: "Devon Burriss"
-category: Software Development
-tags: [Functional,F#,.NET]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/books-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/books-500.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, Functional, F#, .NET]
+---
+
 ---
 So after much threatening in past posts, we will finally be diving a little deeper into collections in F#. We will look at a few of the most commonly used functions on the collection modules by manipulating a `list` of people that we randomly generate.
 <!--more-->
@@ -267,3 +267,4 @@ In a coming post we will be dealing with error handling.
 
 1. Background image by [Jack Reichert](https://unsplash.com/@jackreichert)
 1. Social image by [Patrik Göthe](https://unsplash.com/@p)
+

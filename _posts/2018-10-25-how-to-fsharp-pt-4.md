@@ -5,8 +5,6 @@ subtitle: "Making decisions with control flow"
 description: "In part 4 we look at how we make decisions in our code to do one thing or another and how to loop over collections"
 permalink: how-to-fsharp-pt-4
 author: "Devon Burriss"
-category: Software Development
-tags: [Functional,F#,.NET]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/pipes-500.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, Functional, F#, .NET]
+---
+
 ---
 In the [last post](/how-to-fsharp-pt-3) we finished off our dive into functions. In this post we will look at control flow. How do we make a branching decision? How do we loop through something until some condition is met?
 <!--more-->
@@ -215,3 +215,4 @@ In this post we looked at ways to represent branching logic and ways to iterate 
 ## Credits
 
 1. [Crystal Kwok](https://unsplash.com/@spacexuan)
+

@@ -3,14 +3,14 @@ layout: post
 title: "Visual Studio Code Tasks"
 subtitle: "Examples of some slightly different ones"
 author: "Devon Burriss"
-category: Tools
-tags: [VS Code, Java, Maven, Pascal, Powershell, Pretzel]
 comments: true
 permalink: vscode-tasks
 excerpt_separator: <!--more-->
 published: true
 topics: [platforms-runtime, tooling-automation]
 keywords: [Tools, VS Code, Java, Maven, Pascal, Powershell, Pretzel]
+---
+
 ---
 I tend to try use [Visual Studio Code](https://code.visualstudio.com/) for tasks and languages I don't currently use on a day to day basis. Over the last few weeks that has included Java and Delphi. Then today I was trying to launch my blog from VS Code and ran into an issue because Pretzel listens for a console key. The only fix I could find for this was to launch a new Powershell window. I thought this as good a time as any to post a few of these tasks.
 
@@ -165,3 +165,4 @@ Start-Process powershell ".\pretzel.ps1 -target Taste -Wait"
 # Conclusion
 
 Visual Studio Code is a great editor and has plenty of extension points. If you have any great tips I would love to hear about them in the comments.
+

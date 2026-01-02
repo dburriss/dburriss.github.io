@@ -5,8 +5,6 @@ subtitle: "Some thoughts on why people would follow certain styles of leadership
 description: "A description of three archetypes of leaders with some pros and cons of styles"
 permalink: leader-archetypes
 author: "Devon Burriss"
-category: Leadership
-tags: [General, Life, Team Lead]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/lion-500.jpg"
 published: true
 topics: [leadership-teams, notes-reflections]
 keywords: [Leadership, General, Life, Team Lead]
+---
+
 ---
 Why do we follow people? Why only some people? Character, situation, and value-alignment seem to jump out as obvious factors but what configuration of these allows us to suspend our own self-absorption to work toward a common goal? Are there archetypes that represent what leaders do to get people to follow them?
 <!--more-->
@@ -57,3 +57,4 @@ And one final time: This is not my area of expertise...but I have run these arch
 1. Social image [Jean Wimmerlin](https://unsplash.com/@jwimmerli)
 1. Napoleon and MLK Jr photo from [Pixabay](https://pixabay.com/)
 1. Bow and Arrow photo by [Zoltan Tasi](https://unsplash.com/@zoltantasi)
+

@@ -5,8 +5,6 @@ subtitle: "A tour of areas that can be improved by skillful application of medit
 description: "By combining different traditions of meditation skillfully we can improve our contentment and treat others with kindness"
 permalink: meaning-of-meditation
 author: "Devon Burriss"
-category: Life
-tags: [Meditation, Mindfulness, Morality]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/tree-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2020/tree.jpg"
 published: true
 topics: [notes-reflections]
 keywords: [Life, Meditation, Mindfulness, Morality]
+---
+
 ---
 ## Skills of meditation
 
@@ -102,3 +102,4 @@ Once you have control, only then can you decide where to go.
 To get started easily there are many apps like Waking Up, Head Space, and 10 Percent Happier that will take you through guided meditations.
 
 <span>Photo by <a href="https://unsplash.com/@fcornish?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Faye Cornish</a> on <a href="https://unsplash.com/s/photos/wisdom?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+

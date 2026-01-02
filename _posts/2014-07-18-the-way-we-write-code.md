@@ -3,14 +3,14 @@ layout: post
 title: "The way we write code…and how we talk about it"
 subtitle: "The true challenge in writing good software."
 author: "Devon Burriss"
-category: Software Development
-tags: [Clean Code, Agile, Design Patterns, TDD, DDD]
 comments: true
 permalink: the-way-we-write-code
 excerpt_separator: <!--more-->
 published: true
 topics: [engineering-practices, software-design]
 keywords: [Software Development, Clean Code, Agile, Design Patterns, TDD, DDD]
+---
+
 ---
 
 > The true challenge in writing good software.
@@ -47,4 +47,5 @@ Although the lines tend to blur, I have tried to categorise as best I can.
 ### Methodologies 
 
 * Agile
+
 

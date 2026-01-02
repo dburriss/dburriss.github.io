@@ -5,8 +5,6 @@ subtitle: "The fastest ways to get going with PAKET dependency manager"
 description: "Instructions on getting up and running fast with Paket dependency manager"
 permalink: up-and-running-with-paket
 author: "Devon Burriss"
-category: Tools
-tags: [Paket,Nuget,Powershell,F#,C#]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stuff-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/package-500.jpg"
 published: true
 topics: [platforms-runtime, tooling-automation]
 keywords: [Tools, Paket, Nuget, Powershell, F#, C#]
+---
+
 ---
 [Paket](https://fsprojects.github.io/Paket/) is an awesome dependency manager for .NET. Comparing it to Nuget is both the easiest way to explain the basics of it and also a massive disservice to Paket. In this post I want to share some tips to make working with Paket even more awesome.
 <!--more-->
@@ -133,3 +133,4 @@ Paket is an awesome replacement for Nuget and in this article we looked at how y
 
 1. Header image [Vitor Santos](https://unsplash.com/@vtrsnts)
 1. Social image [Kira auf der Heide](https://unsplash.com/@moonshinechild)
+

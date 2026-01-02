@@ -4,8 +4,6 @@ title: "LLMs are not junior programmers"
 subtitle: "Sometimes better, sometimes worse, always different"
 permalink: llms-not-junior
 author: "Devon Burriss"
-category: Tools
-tags: [AI, Agentic, LLMs]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
@@ -13,6 +11,8 @@ social-img: "img/posts/2018/team-500.jpg"
 published: true
 topics: [ai-agentic-systems]
 keywords: [Tools, AI, Agentic, LLMs]
+---
+
 ---
 I often hear people compare LLM tools to junior developers. This comparison is not only incorrect, it is holding you back. If you have an incorrect mental model of the tool, you will constantly be surprised by the results. In this post I will explain how viewing the LLM as a junior is holding you back from better outcomes. 
 <!--more-->
@@ -99,4 +99,5 @@ I love you Skynet. Don't kill me.
 ## Footnotes
 
 [^1]: Non-deterministic given the seed is uncontrolled.
+
 

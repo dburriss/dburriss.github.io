@@ -5,8 +5,6 @@ subtitle: "Musings about what it takes to keep talent"
 description: "What is it about a company culture that attracts and keeps talent?"
 permalink: employees-are-like-cars-not-petrol
 author: "Devon Burriss"
-category: Leadership
-tags: [General, Life, Team Lead]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/car-dashboard-500.jpg"
 published: true
 topics: [leadership-teams, notes-reflections]
 keywords: [Leadership, General, Life, Team Lead]
+---
+
 ---
 You may have had the experience before that the company you work for sees you as a resource. A number on a spreadsheet. Did you feel motivated to work there? Did you stay there for a long time? Did you feel loyalty? Probably not...
 
@@ -66,3 +66,4 @@ Do you have your own DOs or DON'Ts for building or tearing down company culture?
 
 1. Social image by [Alex Reed](https://unsplash.com/@alexread)
 1. Header by [Igor Ovsyannykov](https://unsplash.com/@igorovsyannykov)
+

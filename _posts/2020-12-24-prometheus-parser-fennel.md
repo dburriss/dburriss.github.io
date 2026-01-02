@@ -5,8 +5,6 @@ subtitle: "A quick tour of using FParsec to write a Prometheus parser"
 description: "This post shows some of the results both in text parsing and end Promethean result of creating a parser."
 permalink: prometheus-parser-fennel
 author: "Devon Burriss"
-category: Software Development
-tags: [F#,Prometheus,Fennel,FsAdvent]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2020/flame-500.jpg"
 published: true
 topics: [platforms-runtime, reliability-observability]
 keywords: [Software Development, F#, Prometheus, Fennel, FsAdvent]
+---
+
 ---
 A year back I ran into the need for a library that provided a model for creating valid Prometheus log lines. The libraries I looked at sent these metrics for export rather than giving me access to the model or allowing me to create the corresponding log string. I had been wanting to play around with FParsec for a while so this seemed like a perfect opportunity to give it a try.
 <!--more-->
@@ -155,3 +155,4 @@ Do you have plenty of experience with it? What can I improve?
 Leave a comment or create an issue or PR on the repo.
 
 <span>Photo by <a href="https://unsplash.com/@_ggleee?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Gleb Lukomets</a> on <a href="https://unsplash.com/s/photos/flame?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+

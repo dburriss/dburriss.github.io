@@ -5,8 +5,6 @@ subtitle: "Assigning values and getting to know types"
 description: "In part 1 of this series we will look at assigning values and at some of the common types used when programming"
 permalink: how-to-fsharp-pt-1
 author: "Devon Burriss"
-category: Software Development
-tags: [Functional,F#,.NET]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/todo-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2017/apple.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, Functional, F#, .NET]
+---
+
 ---
 Over the last few weeks I have been showing various people with different levels of programming experience how to use F#. This post is the first in a series on the basics of programming with F#. In this one we cover assigning values and the different types those values can take on.
 
@@ -167,3 +167,4 @@ So that is the end of the first entry into how to use F# We covered how to assig
 1. [Cheatsheet](http://dungpa.github.io/fsharp-cheatsheet/)
 1. [fsharp for fun and profit](https://fsharpforfunandprofit.com/posts/list-module-functions/)
 1. [Algebraic data types](https://en.wikipedia.org/wiki/Algebraic_data_type)
+

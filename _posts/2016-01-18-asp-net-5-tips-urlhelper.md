@@ -3,8 +3,6 @@ layout: post
 title: "ASP.NET 5 Tips: UrlHelper"
 subtitle: "ASPNET Core TagHelpers."
 author: "Devon Burriss"
-category: Software Development
-tags: [ASP.NET 5, MVC 6, DNX]
 comments: true
 permalink: asp-net-5-tips-urlhelper
 excerpt_separator: <!--more-->
@@ -12,6 +10,8 @@ header-img: "img/backgrounds/bulb-bg.jpg"
 published: true
 topics: []
 keywords: [Software Development, ASP.NET 5, MVC 6, DNX]
+---
+
 ---
 > Note that this is specific to the upcoming RC 2 using the dotnet CLI. Currently in RC 1 this is not an issue.
 
@@ -53,3 +53,4 @@ public class EmailTagHelper : TagHelper
 
 I am guessing that this article will only be useful next month when RC 2 hits but it was great to see what is coming. I am quite liking the new CLI and with a bit of digging I have managed to get most things working, so the team seems to be making great progress toward RC 2.
 Please let me know below if you found this useful... or if things change :)
+

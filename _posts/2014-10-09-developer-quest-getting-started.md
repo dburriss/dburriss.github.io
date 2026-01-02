@@ -3,14 +3,14 @@ layout: post
 title: "Developer Quest I - Getting started with C#"
 subtitle: "So you want to be a C# developer?"
 author: "Devon Burriss"
-category: Software Development
-tags: [Programming, Learning c#, Tutorial]
 comments: true
 permalink: developer-quest-getting-started
 excerpt_separator: <!--more-->
 published: true
 topics: [notes-reflections]
 keywords: [Software Development, Programming, Learning c#, Tutorial]
+---
+
 ---
 ## Getting Started
 
@@ -56,3 +56,4 @@ Now hit **F5** again to build and run the application. The console application s
 Next we will be looking at how you can capture input from the console application so you can interact with it.
 If you have any questions or suggestions, please don't hesitate to leave a comment below. Happy coding!
 [The adventure continues here.](http://devonburriss.me/developer-quest-variables/)
+

@@ -3,14 +3,14 @@ layout: post
 title: "Developer Quest II - Variables"
 subtitle: "Trial by reference"
 author: "Devon Burriss"
-category: Software Development
-tags: [Programming, Learning c#, Tutorial]
 comments: true
 permalink: developer-quest-variables
 excerpt_separator: <!--more-->
 published: true
 topics: [notes-reflections]
 keywords: [Software Development, Programming, Learning c#, Tutorial]
+---
+
 ---
 > Hold this for me.
 
@@ -197,3 +197,4 @@ In this tutorial we explored the Type categories you get in C# and how to create
 
 * http://msdn.microsoft.com/en-us/library/s1ax56ch.aspx
 * http://www.albahari.com/valuevsreftypes.aspx
+

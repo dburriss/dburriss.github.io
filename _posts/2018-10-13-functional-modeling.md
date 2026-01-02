@@ -5,8 +5,6 @@ subtitle: "The benefits of focusing on function rather than state"
 description: "As OOP developers it is often far too easy for us to try create a model that captures every state. This is almost always a poor abstraction. What if instead of trying to model every possible state at rest we modeled the change of state over time? This article explores what that might look like."
 permalink: functional-modeling
 author: "Devon Burriss"
-category: Software Development
-tags: [DDD,OOP,Functional Modeling,Architecture, Modeling, Temporal Modeling]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/functional-model-500.jpg"
 published: true
 topics: [platforms-runtime, software-design]
 keywords: [Software Development, DDD, OOP, Functional Modeling, Architecture, Modeling, Temporal Modeling]
+---
+
 ---
 In my [previous post](/functional-structural-impedance-mismatch) I introduced the idea of a structural model in the code that closely matches what a use-case should do functionally. Just as an ubiquitous language helps us tie concepts in our code, so a functional model helps us capture the functioning of a use-case. In this post I will go into this idea in a little more detail, giving some tips on how to get started.
 <!--more-->
@@ -88,3 +88,4 @@ What do you think? If you have any ideas please leave a comment or reach out on 
 ## Resources
 
 1. [Function model](https://en.wikipedia.org/wiki/Function_model)
+

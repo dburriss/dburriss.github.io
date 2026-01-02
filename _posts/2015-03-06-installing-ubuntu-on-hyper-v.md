@@ -3,14 +3,14 @@ layout: post
 title: "Installing Ubuntu on Hyper-V"
 subtitle: "Creating a Generation 2 Virtual Machine"
 author: "Devon Burriss"
-category: DevOps
-tags: [Hyper-V, Ubuntu]
 comments: true
 permalink: installing-ubuntu-on-hyper-v
 excerpt_separator: <!--more-->
 published: true
 topics: []
 keywords: [DevOps, Hyper-V, Ubuntu]
+---
+
 ---
 The reason for this post is just to remind me of a few little things you need to do if you want to create a Generation 2 Ubuntu Virtual Machine on Hyper-V. When setting up the virtual machine in Hyper-V and you select Generation 2.
 <!--more-->
@@ -59,3 +59,4 @@ I managed to get past this by adding the following line at the bottom of /etc/de
 #### Setup:
 
 > This setup is valid as of Windows 8.1 running Hyper-V and installing Ubuntu 14.10 as the guest OS.
+

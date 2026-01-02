@@ -5,8 +5,6 @@ subtitle: "Some tips to keep your telemetry data and code clean"
 description: "When getting started with a new telemetry platform you may not know what conventions you need to set and follow for metrics, logs, code, etc.. Even if you do, how do you get the rest of the team to follow them too."
 permalink: telemetry-tips
 author: "Devon Burriss"
-category: DevOps
-tags: [Datadog,Observability]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/star-watch-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/pipes-500.jpg"
 published: true
 topics: [reliability-observability]
 keywords: [DevOps, Datadog, Observability]
+---
+
 ---
 When getting started with a new telemetry platform you may not know what conventions you need to set and follow. Even if you do, how do you get the rest of the team to follow them too. In this post I will give some tips for making sure the data hitting your telemetry tool is clean and organised so you can make the most of it, while not compromising the readability of your application code.
 <!--more-->
@@ -154,3 +154,4 @@ I touched on a few ways you can set a team up for success when using a telemetry
 - [Azure naming and tagging](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging)
 - [Open metrics](https://opentelemetry.io/docs/reference/specification/metrics/semantic_conventions/)
 - [OpenTelemetry attribute](https://opentelemetry.io/docs/reference/specification/common/attribute-naming/)
+

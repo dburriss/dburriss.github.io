@@ -5,8 +5,6 @@ subtitle: "Exploring running F# from a fsx script file"
 description: "Start exploring code faster by running F# as a fsx script file"
 permalink: fsharp-scripting
 author: "Devon Burriss"
-category: Software Development
-tags: [F#,FSX]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/vents-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/script-500.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, F#, FSX]
+---
+
 ---
 Using F# scripts is something I only started doing after dabbling in F# for quite a while. This is unfortunate because they are a really fast and easy way of throwing some code together and thus a really good way to learn F#. This post is for anyone getting started with F# scripting.
 <!--more-->
@@ -152,3 +152,4 @@ You can reference DLLs using `#r "path/to/file.dll"`. If you want to pull down D
 ## Credits
 
 1. Social Image by [yifei chen](https://unsplash.com/@0628fromchina)
+

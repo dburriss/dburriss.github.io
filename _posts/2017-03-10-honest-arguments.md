@@ -3,8 +3,6 @@ layout: post
 title: "Honest Arguments"
 subtitle: "Part 1 of Designing clear method signatures"
 author: "Devon Burriss"
-category: Software Development
-tags: [Clean Code, OOP]
 comments: true
 permalink: honest-arguments
 excerpt_separator: <!--more-->
@@ -12,6 +10,8 @@ published: true
 series: "Honest Types"
 topics: [engineering-practices, platforms-runtime]
 keywords: [Software Development, Clean Code, OOP]
+---
+
 ---
 One of the benefits of statically typed languages is that we can rely on more than the method and parameter names for information on what is expected and what is returned. A well designed method should be about more than naming. Too often we give up on this type safety and expressiveness for the ease of instantiating primitives and `string`.
 
@@ -121,3 +121,4 @@ If you are modelling your domain (like with DDD) which is likely the case if you
 ## Recommended Reading
 
 [Functional C#: Primitive obsession](http://enterprisecraftsmanship.com/2015/03/07/functional-c-primitive-obsession/)
+

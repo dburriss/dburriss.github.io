@@ -5,8 +5,6 @@ subtitle: "The bare minimum needed to get Canopy up and running"
 description: "Examples of running Canopy Selenium automation in a F# fsx script file"
 permalink: canopy-from-fsx
 author: "Devon Burriss"
-category: Software Development
-tags: [Canopy,Functional,F#,Testing,Selenium]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/explore-590.jpg"
 published: true
 topics: [engineering-practices, platforms-runtime]
 keywords: [Software Development, Canopy, Functional, F#, Testing, Selenium]
+---
+
 ---
 Recently I found myself doing a very repetitive task that entailed copying values one at a time off a page, navigating to the next page, then repeat. I would spend 2 hours automating 1 hour of work if said work is sufficiently boring, even if I may never need the automation again. I enjoy coding, I do not enjoy copy-pasting. So I wondered if it was even possible to run Canopy in an F# FSX script file. It turns out it is.
 <!--more-->
@@ -84,3 +84,4 @@ And that is how easy it is to start using Canopy from a FSX file. This is a grea
 1. [Canopy](https://lefthandedgoat.github.io/canopy/)
 1. [FSI Reference](https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/fsharp-interactive/)
 1. [Selenium Download](https://www.seleniumhq.org/download/)
+

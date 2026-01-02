@@ -5,8 +5,6 @@ subtitle: "Self experimentation and subjective observations on morality"
 description: "This is an initial hypothesis and description of a commitment I have made to moral integrity in my work and personal life."
 permalink: moral-behavior-is-rewarded
 author: "Devon Burriss"
-category: Life
-tags: [General, Morality, Science]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2017/path-split.jpg"
 published: true
 topics: [notes-reflections]
 keywords: [Life, General, Morality, Science]
+---
+
 ---
 I don't consider myself an immoral person. Unless you count those days when I thought there was an all seeing being in the sky watching that I didn't break the archaic rules laid out by men thousands of years ago who also thought it was ok to own slaves and commit genocide. Since then I have not given too much thought to morality other than my general rule of "Don't be a dick". A few weeks back I made a commitment to hold myself to a higher moral standard. Not only that but I laid out some experimental guidelines of rules that I would follow and a hypothesis of what I expect. Finally, I would tell people about it so they could hold me to my commitments.
 
@@ -90,3 +90,4 @@ I will see if I can get some data on this from friends and coworkers. It would b
 
 - [Sam Harris](https://www.samharris.org/)
 - Photo by Jens Lelie on [Unsplash](https://unsplash.com/photos/u0vgcIOQG08)
+

@@ -5,8 +5,6 @@ subtitle: "You ain't gonna notice it"
 description: "Is YAGNI a principle that should always be followed? No. Principles are guides, you still need to think."
 permalink: yagnyagni
 author: "Devon Burriss"
-category: Agile
-tags: [Extreme Programming,Agile,General]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/yoda-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/rubiks-500.jpg"
 published: true
 topics: [engineering-practices]
 keywords: [Agile, Extreme Programming, General]
+---
+
 ---
 With some topics, you reliably get experienced software developers arguing on both sides of said topic. When this occurs frequently for a particular topic, I believe that it is that both sides are simultaneously right and wrong. This idea can be generalized but let's take the principle of YAGNI.
 How can both sides be right and wrong? Well, because it depends.
@@ -39,3 +39,4 @@ So why am I talking about architecture in a YAGNI post? When developers are argu
 
 Striving for a straightforward system architecture is a worthy goal. Sometimes sacrifices are made to provide future opportunities. At the level of code design, YAGNI becomes a far more compelling principle.
 The above is illustrative of how people can disagree about something because they are talking about something in different contexts. So the next time you are involved in a disagreement, check your interlocutor's context. You might find you both actually agree when you get specific.
+

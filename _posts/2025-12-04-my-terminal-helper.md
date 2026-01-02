@@ -4,8 +4,6 @@ title: "My Terminal Helper"
 subtitle: "Asking for help without leaving the terminal"
 permalink: my-terminal-helper
 author: "Devon Burriss"
-category: Tools
-tags: [Automation,Agents,OpenCode]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
@@ -13,6 +11,8 @@ social-img: "img/posts/2018/bulb-500.jpg"
 published: true
 topics: [ai-agentic-systems]
 keywords: [Tools, Automation, Agents, OpenCode]
+---
+
 ---
 As a long time user of [Warp Terminal](https://www.warp.dev/), I enjoyed the convenience of being able to do `> #How do I create a new worktree branch again?` and get the command straight in my terminal. A potential issue for you may be that Warp does not allow you to choose your model provider. So I created a little function to fill the gap.
 
@@ -150,4 +150,5 @@ Unfortunately, this is quite a bit slower than the responses from Warp, so manag
 A word of warning. You are executing commands being returned over the wire from a non-deterministic LLM. Use whatever caution you think that warrants. At the very least, check the command before you execute it.
 
 Enjoy.
+
 

@@ -5,8 +5,6 @@ subtitle: "Exploring reties, retry implications, and the failure modes they are 
 description: "Takes a look at using retry policies to increase the reliability of calls to APIs as well as the endpoint internals. This post looks at how retry-policies can go wrong and walks through analysing for proper use."
 permalink: reliable-apis-part-1
 author: "Devon Burriss"
-category: Software Development
-tags: [Distributed Systems,API Design,Reliability]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2019/target-500.jpg"
 published: true
 topics: [reliability-observability, software-design]
 keywords: [Software Development, Distributed Systems, API Design, Reliability]
+---
+
 ---
 Resiliency is more than just slapping a retry policy on a client and hoping it can handle transient errors. It is building systems that handle operations that always end in a valid state across the whole system. This does not mean that all operations WILL BE successful. Just that they are always handled in an expected way, every time.
 <!--more-->
@@ -126,3 +126,4 @@ I hope this discussion was insightful. If you think I missed anything important 
 
 - [POST method](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3)
 - [Error Codes](https://datatracker.ietf.org/doc/html/rfc7231#section-6.6)
+

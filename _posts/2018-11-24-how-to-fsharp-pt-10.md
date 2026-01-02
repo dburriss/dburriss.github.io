@@ -5,8 +5,6 @@ subtitle: "Writing your first F# application"
 description: "Writing your first command line application using F# and .NET Core"
 permalink: how-to-fsharp-pt-10
 author: "Devon Burriss"
-category: Software Development
-tags: [Functional,F#,.NET,.NET Core,Tutorial]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/fsharpapp-500.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, Functional, F#, .NET, .NET Core, Tutorial]
+---
+
 ---
 In this final post in the series we are going to create a fully functioning F# application. Along the way we will discuss the .NET SDK, SQLite, and how to organize your code. If you follow along (which I recommend you do), you will have a working F# console application that accepts input and communicates with a database.
 <!--more-->
@@ -521,3 +521,4 @@ What are some ways of furthering your learnings in F#?
 
 1. [MSBuild project SDKs](https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-use-project-sdk)
 1. [MSBuild for .NET Core](https://docs.microsoft.com/en-us/dotnet/core/tools/csproj)
+

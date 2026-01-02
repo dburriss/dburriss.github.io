@@ -5,8 +5,6 @@ subtitle: "Handling Errors Elegantly"
 description: "Elegant exception handling in F#"
 permalink: how-to-fsharp-pt-8
 author: "Devon Burriss"
-category: Software Development
-tags: [Functional,F#,.NET]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/broken-500.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, Functional, F#, .NET]
+---
+
 ---
 Even with all the pure functions we could ask for, eventually our applications are going to have to interact with the unpredictable outside world. Also, sometimes we just mess up. In this post we look at ways of dealing with errors in our applications.
 <!--more-->
@@ -184,3 +184,4 @@ Next in the series we will be looking at a common occurrence in software develop
 ## Credits
 
 1. Social image by [Chuttersnap](https://unsplash.com/@chuttersnap)
+

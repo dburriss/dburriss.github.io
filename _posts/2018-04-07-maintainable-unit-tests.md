@@ -5,8 +5,6 @@ subtitle: "Avoid having to fix dozens of tests every time you make a significant
 description: "Highlights some tips for making tests more resilient by focusing on behavior rather than structure. By testing from the outside we are free to change implementation details."
 permalink: maintainable-unit-tests
 author: "Devon Burriss"
-category: Software Development
-tags: [Clean Code,TDD,Testing]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/vents-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/bridge-cables-500.jpg"
 published: true
 topics: [engineering-practices]
 keywords: [Software Development, Clean Code, TDD, Testing]
+---
+
 ---
 Although having a good collection of unit tests makes you feel safe and free to refactor, a bad collection of tests can make you scared to refactor. How so? A single change to application code can cause a cascade of failing tests. Here are some tips for avoiding (or fighting back) from that situation.
 <!--more-->
@@ -351,3 +351,4 @@ public class PersonBuilder
 ## Wrapping up
 
 So those are my 3 tips for making your tests more maintainable. I encourage you to give them a try. Without investing in the maintainability of your tests they can quickly become a burden rather than a boon. I have seen the practices above improve things not only in my teams but other colleagues have converged on similar learnings with the same positive results. Let me know if you find this helpful, or even if there are any points you strongly disagree with. I would love to discuss in the comments. Happy coding!
+

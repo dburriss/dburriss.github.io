@@ -3,8 +3,6 @@ layout: post
 title: "Better error handling"
 subtitle: "Part 3 of Designing clear method signatures"
 author: "Devon Burriss"
-category: Software Development
-tags: [Clean Code, OOP, Functional]
 comments: true
 permalink: better-error-handling
 excerpt_separator: <!--more-->
@@ -12,6 +10,8 @@ published: true
 series: "Honest Types"
 topics: [engineering-practices, platforms-runtime]
 keywords: [Software Development, Clean Code, OOP, Functional]
+---
+
 ---
 In my [previous post](/honest-return-types) I discussed handling `null` and `Exception` in the return type. In this post I will discuss returning logic errors.
 
@@ -256,3 +256,4 @@ And there you have some neat validation logic. If you have any comments or sugge
 
 1. [Elevated world](https://fsharpforfunandprofit.com/posts/elevated-world/)
 2. [Railway oriented programming](https://fsharpforfunandprofit.com/rop/)
+

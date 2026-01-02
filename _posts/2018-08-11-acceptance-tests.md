@@ -5,8 +5,6 @@ subtitle: "A story about getting Acceptance tests just right"
 description: "Tips and examples on improving the readability of your acceptance/behavior tests"
 permalink: acceptance-tests
 author: "Devon Burriss"
-category: Software Development
-tags: [Testing,ATDD,BDD,TDD]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/cottage-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/forest-girl-500.jpg"
 published: true
 topics: [engineering-practices]
 keywords: [Software Development, Testing, ATDD, BDD, TDD]
+---
+
 ---
 Acceptance tests can be a great way of making sure you are building the right thing. When used in in a way that uses natural language it also serves as a collaboration tool with stakeholders to define what should be built before it is built. This can save a great deal of development time in making sure you don't build the wrong thing and also has the added benefit of growing a developers domain knowledge as he or she collaborates with a stakeholder in fleshing out and verifying the acceptance tests. Recently we invested a fair amount of time in a team here at work iterating on the style of the acceptance tests. We figured if the goal is to allow developers and stakeholders to collaborate, then making sure the tests makes sense to both parties is important. In this post I will share some of the experiences I have gained over the years, more specifically showing how we applied this to improving our acceptance tests in my current domain. As always though this was a collaborative effort within the team.
 
@@ -188,3 +188,4 @@ I hope you found this useful. If you have any thoughts on Acceptance testing, BD
 
 1. Background image by [Peter Kleinau](https://unsplash.com/@nepumuk)
 2. Social image by [Hanna Postova](https://unsplash.com/@annapostovaya)
+

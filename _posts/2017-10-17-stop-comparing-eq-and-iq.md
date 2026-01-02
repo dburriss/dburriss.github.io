@@ -5,8 +5,6 @@ subtitle: "Reality is a little more uncomfortable"
 description: "EQ is dependent on mental facilities correlated to IQ such as verbal comprehension, working memory, perceptual organization, & processing speed."
 permalink: stop-comparing-eq-and-iq
 author: "Devon Burriss"
-category: Life
-tags: [General, Productivity, Science]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2017/eq-vs-iq-280.jpg"
 published: true
 topics: [notes-reflections]
 keywords: [Life, General, Productivity, Science]
+---
+
 ---
 I see this comparison come up online and at work a lot. The implication being that if we want success we look for people with good EQ skills and if they have weak technical skills we can teach them. Sure. These are both skills but if everyone is good at communicating but rubbish at the technical stuff, guess what the quality is like... 
 <!--more-->
@@ -66,3 +66,4 @@ As a software developer though, stop telling me I don't need to work with smart 
 * [researchgate.net](https://www.researchgate.net/publication/307874653_The_relationship_between_cognitive_ability_and_chess_skill_A_comprehensive_meta-analysis)
 * [sciencedirect.com](http://www.sciencedirect.com/science/article/pii/S1877042813017096)
 * [memory-key.com](http://www.memory-key.com/research/news/correlation-between-emotional-intelligence-and-iq)
+

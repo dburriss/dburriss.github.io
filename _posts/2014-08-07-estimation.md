@@ -3,8 +3,6 @@ layout: post
 title: "Estimation"
 subtitle: "Tackling the uncertainty of software estimation."
 author: "Devon Burriss"
-category: Project Management
-tags: [Agile]
 comments: true
 permalink: estimation
 excerpt_separator: <!--more-->
@@ -12,6 +10,8 @@ social-img: "/img/posts/2014/old-clock-800.jpg"
 published: true
 topics: [engineering-practices, leadership-teams]
 keywords: [Project Management, Agile]
+---
+
 ---
 > Tackling the uncertainty of software estimation.
 
@@ -86,5 +86,6 @@ So let's schedule this for a 4.5 days.
 ### Conclusion 
 
 So knowing our failings, and bearing in mind the goals of management, we can mitigate potential disaster by using the techniques outlined here. Estimation is never going to be an exact science but we can go a long way in making our estimates more accurate. Hope this helps. Good luck with your next project.
+
 
 

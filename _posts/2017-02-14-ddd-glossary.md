@@ -3,8 +3,6 @@ layout: post
 title: "Domain-Driven Design Glossary"
 subtitle: "Summary of the main terms in Domain-Driven Design"
 author: "Devon Burriss"
-category: Software Development
-tags: [DDD, Modeling]
 comments: true
 permalink: ddd-glossary
 excerpt_separator: <!--more-->
@@ -12,6 +10,8 @@ header-img: "img/backgrounds/hole-bg.jpg"
 published: true
 topics: [software-design]
 keywords: [Software Development, DDD, Modeling]
+---
+
 ---
 <div class="row">
   <div class="col-xs-6 col-md-3">
@@ -169,3 +169,4 @@ This is not really a term from the *Blue Book* (that I remember) but I find it u
 4. [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=as_sl_pc_tf_mfw?&linkCode=wey&tag=wwwnervstucoz-20)
 5. [Implementing Domain-Driven Design](https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577/ref=pd_bxgy_14_img_2?_encoding=UTF8&pd_rd_i=0321834577&pd_rd_r=P6PNCC27GC5B7Q513JJ4&pd_rd_w=6neVY&pd_rd_wg=Rn8gy&psc=1&refRID=P6PNCC27GC5B7Q513JJ4)  
 6. [Applying Domain-Driven Design Patterns Examples](https://www.amazon.com/Applying-Domain-Driven-Design-Patterns-Examples/dp/0321268202/ref=as_sl_pc_tf_mfw?&linkCode=wey&tag=wwwnervstucoz-20) 
+

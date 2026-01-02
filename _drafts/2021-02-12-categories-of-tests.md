@@ -5,8 +5,6 @@ subtitle: "Unit, Integration, UI, Acceptance, etc. Are these useful categorizati
 description: ""
 permalink: categories-of-tests
 author: "Devon Burriss"
-category: Software Development
-tags: [Testing,ATDD,BDD,TDD]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/path-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2019/target-500.jpg"
 published: true
 topics: [engineering-practices]
 keywords: [Software Development, Testing, ATDD, BDD, TDD]
+---
+
 ---
 There are many types of tests, and when the categorization depends on the properties of said tests, questions get asked such as: 
 - "Does the test exercise a single method?"
@@ -144,3 +144,4 @@ TODO:
 - ABC
 - diagrams
 - Explain coupling to structure
+

@@ -3,8 +3,6 @@ layout: post
 title: "Honest Return Types"
 subtitle: "Part 2 of Designing clear method signatures"
 author: "Devon Burriss"
-category: Software Development
-tags: [Clean Code, OOP, Functional]
 comments: true
 permalink: honest-return-types
 excerpt_separator: <!--more-->
@@ -12,6 +10,8 @@ published: true
 series: "Honest Types"
 topics: [engineering-practices, platforms-runtime]
 keywords: [Software Development, Clean Code, OOP, Functional]
+---
+
 ---
 In [Part 1](/honest-arguments) we looked at ways of making your code more descriptive by using custom types instead of simple types like `string`. In this article we will look at what your return type can tell you about a method.
 
@@ -215,3 +215,4 @@ In my following post I will discuss [error handling](/better-error-handling) and
 
 1. [Elevated world](https://fsharpforfunandprofit.com/posts/elevated-world/)
 2. [Railway oriented programming](https://fsharpforfunandprofit.com/rop/)
+

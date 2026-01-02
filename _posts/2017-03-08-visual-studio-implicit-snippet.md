@@ -3,14 +3,14 @@ layout: post
 title: "Visual Studio Implicit Snippet"
 subtitle: "Quickly create implicit class for a simple type"
 author: "Devon Burriss"
-category: Tools
-tags: [Visual Studio]
 comments: true
 permalink: visual-studio-implicit-snippet
 excerpt_separator: <!--more-->
 published: true
 topics: [tooling-automation]
 keywords: [Tools, Visual Studio]
+---
+
 ---
 Sometimes you want to create a [descriptive type](/honest-arguments) to better represent a concept such as an email (rather than a `string`) but what stops you is the effort in creating this type. Here is a quick snippet to allow you to quickly generate these types reliably.
 
@@ -153,3 +153,4 @@ If you find yourself creating repetitive classes, or avoiding to create classes 
 - [How to](https://msdn.microsoft.com/en-us/library/ms165396.aspx)
 - [Snippet functions](https://msdn.microsoft.com/en-us/library/ms242312.aspx)
 - [Schema Reference](https://msdn.microsoft.com/en-us/library/ms171418.aspx)
+

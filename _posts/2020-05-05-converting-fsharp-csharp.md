@@ -5,8 +5,6 @@ subtitle: "Breaking down conversions between C# and F# collections and functions
 description: "In this post we look at converting between F# collections like Seq, List, Array and common C# collections and interfaces."
 permalink: converting-fsharp-csharp
 author: "Devon Burriss"
-category: Software Development
-tags: [F#,C#, Collections]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stuff-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2020/fsharp512sharp.png"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, F#, C#, Collections]
+---
+
 ---
 Every now and again in F# you run into needing to convert a `Seq` to something like `IList<>`. Depending on how often you do this, and if you are like me, you will need to search for this or try different things for longer than you would care to admit. So if nothing else, here I am capturing for myself how to tackle some of these conversions.
 <!--more-->
@@ -348,3 +348,4 @@ let f = fun () -> csharp.FuncProp.Invoke()
 ## Conclusion
 
 So that is my potted run through of converting between F# and C# types. This was meant to be more of a reference than a post that teaches or tells a story so I hope the lack of continuity was not too off-putting.
+

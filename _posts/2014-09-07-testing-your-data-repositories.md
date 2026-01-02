@@ -3,13 +3,13 @@ layout: post
 title: "Testing your data repositories"
 subtitle: "Avoiding dependency on a data layer."
 author: "Devon Burriss"
-category: Software Development
-tags: [Testing, Programming, SOLID, OOP, Java, TDD]
 comments: true
 permalink: testing-your-data-repositories
 published: true
 topics: [engineering-practices, platforms-runtime]
 keywords: [Software Development, Testing, Programming, SOLID, OOP, Java, TDD]
+---
+
 ---
 > Avoiding dependency on a data layer.
 
@@ -298,5 +298,6 @@ public class CommandQueue implements Command {
 {% endhighlight %}
 
 Let me know if you found this useful, or if you have a better way for testing your data persistence...
+
 
 

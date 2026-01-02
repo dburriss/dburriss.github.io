@@ -3,8 +3,6 @@ layout: post
 title: "Productivity Tips"
 subtitle: "Some productivity tips in 2017"
 author: "Devon Burriss"
-category: Life
-tags: [Productivity, Morality, Meditation, Mindfulness]
 comments: true
 permalink: productivity-tips-1
 excerpt_separator: <!--more-->
@@ -12,6 +10,8 @@ header-img: "img/backgrounds/todo-bg.jpg"
 published: true
 topics: [notes-reflections]
 keywords: [Life, Productivity, Morality, Meditation, Mindfulness]
+---
+
 ---
 > “Do. Or do not. There is no try.” - Yoda
 
@@ -84,3 +84,4 @@ Another little tip is to not accept meetings until you have been furnished with 
 ## Conclusion
 
 Although I stated productivity comes down to focus, we explored how to increase it from multiple prongs. Techniques and tips, training, and tools. Use what works for you but please try give all of them an honest try. I would love to hear what you use to keep focused. Please let me know in the comments below.
+

@@ -5,8 +5,6 @@ subtitle: "Convincing your boss to let you use fsharp at work"
 description: "Arguments in favour of multiple programming languages, functional languages to be more specific, and fsharp in particular"
 permalink: argument-for-fp
 author: "Devon Burriss"
-category: Software Development
-tags: [Functional, OOP, F#, FsAdvent]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/stairwell-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2017/apple.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, Functional, OOP, F#, FsAdvent]
+---
+
 ---
 Have you ever thought you have the perfect tool for the job at work but it is not on the allowed list of languages or frameworks? At this stage you have a decision to make. Are you going to just move on and pick something that will meet less resistance or are you going to do the work to drive some change? In this post I make my case for functional programming in enterprise development, specifically **F#** if your current team expertise is .NET. The same arguments could be leveled for JVM based languages like Scala if your experience is in Java.
 
@@ -170,3 +170,4 @@ So I covered reasons why you should consider more languages, why one of those sh
 1. Social photo by [Michał Grosicki](https://unsplash.com/@groosheck)
 1. Scrolls photo by [Sindre Aalberg](https://unsplash.com/@sindreaalberg)
 1. Eye photo by [Amanda Dalbjörn](https://unsplash.com/@amandadalbjorn)
+

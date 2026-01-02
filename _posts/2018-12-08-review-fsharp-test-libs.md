@@ -5,8 +5,6 @@ subtitle: "A review of XUnit, FsUnit, Unquote, and Expecto"
 description: "A review of XUnit, FsUnit, Unquote, and Expecto as unit testing libraries"
 permalink: review-fsharp-test-libs
 author: "Devon Burriss"
-category: Software Development
-tags: [F#,Testing,TDD, FsAdvent]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/silhouette-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/frame-500.jpg"
 published: true
 topics: [engineering-practices, platforms-runtime]
 keywords: [Software Development, F#, Testing, TDD, FsAdvent]
+---
+
 ---
 In this post I go through a few of the available assertion libraries and 2 test runners. We will look at running options, assertion style, and the clarity of the error messages.
 <!--more-->
@@ -398,3 +398,4 @@ So that is our review of a few of the testing libraries available in the F# ecos
 1. [Filtering tests](https://docs.microsoft.com/en-us/dotnet/core/testing/selective-unit-tests#xunit)
 1. [Property-based testing with FsCheck](https://fscheck.github.io/FsCheck/)
 1. [Foq for Mocking (personally I don't recommend using mock frameworks much)](https://github.com/fsprojects/Foq/wiki)
+

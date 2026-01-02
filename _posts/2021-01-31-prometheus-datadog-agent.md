@@ -5,8 +5,6 @@ subtitle: "Setting up a Datadog agent to pull from a Prometheus endpoint"
 description: "In this post we configure a Datadog agent to scrape metrics from a Prometheus metrics endpoint."
 permalink: prometheus-datadog-agent
 author: "Devon Burriss"
-category: DevOps
-tags: [Prometheus,Datadog,Observability]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2021/DDlogo.jpg"
 published: true
 topics: [reliability-observability]
 keywords: [DevOps, Prometheus, Datadog, Observability]
+---
+
 ---
 In the [previous post](/local-prometheus-setup) we looked at setting up a local Prometheus container to scrape metrics to test the observability setup of an application locally. A lot of companies I have worked with in recent years are using hosted observability solutions like Datadog. Although Datadog is typically a push based collector, a little known feature is that the agent can scrape from a Prometheus endpoint. In this post we will look at a simple setup for this locally.
 <!--more-->
@@ -61,3 +61,4 @@ Once values are flowing to Datadog, you can go and view them in Datadog.
 ## Conclusion
 
 Datadog allows you to have a mix of push and pull metrics if you have applications that were built with different strategies. This is a really nice touch rather than having different places where applications are monitored. In my next post I will be showing how you can use this to monitor custom events in Azure Functions from Datadog.
+

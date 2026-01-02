@@ -5,8 +5,6 @@ subtitle: ""
 description: ""
 permalink: 2018-10-18-fsharp-in-15-min.md
 author: "Devon Burriss"
-category: 2018-10-18-fsharp-in-15-min.md
-tags: [Functional]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/bulb-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/explore-590.jpg"
 published: false
 topics: [platforms-runtime]
 keywords: [2018-10-18-fsharp-in-15-min.md, Functional]
+---
+
 ---
 ## Understanding FSharp
 
@@ -202,4 +202,5 @@ printInt 200 // An integer 200
 ```
 
 So we were able to create a new more specialized function `printInt` by currying `print` with `intFormatter`.
+
 

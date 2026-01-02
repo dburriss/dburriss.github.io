@@ -3,14 +3,14 @@ layout: post
 title: "Building a Cake Script"
 subtitle: "Verifying syntax for Cake scripts by just building"
 author: "Devon Burriss"
-category: Tools
-tags: [VS Code, Powershell, Cake]
 comments: true
 permalink: cake-build
 excerpt_separator: <!--more-->
 published: true
 topics: [tooling-automation]
 keywords: [Tools, VS Code, Powershell, Cake]
+---
+
 ---
 [CAKE](http://cakebuild.net/) is a great automation DSL that uses C#. Not only is it comfortable for C# developers to script automation tasks in, it has a stack of built in functionality and a great ecosystem of addins that give you a great jumpstart for just about anything you would like to automate.
 
@@ -44,3 +44,4 @@ In the example above the `isBuildCommand` is set to **true** so that **Ctrl+Shif
 ## Conclusion
 
 Automating your builds, testing and deployment is important but don't stop there. Making sure your workspace feedback cycle is fast can also be a great way to increase productivity and decrease frustration. Hope this quick tip helps someone. Leave a comment if you have any of your own Cake tips.
+

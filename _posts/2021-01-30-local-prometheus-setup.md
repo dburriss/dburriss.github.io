@@ -5,8 +5,6 @@ subtitle: "Setting up Prometheus locally with Docker"
 description: "Using docker to run a local Prometheus instance for testing."
 permalink: local-prometheus-setup
 author: "Devon Burriss"
-category: DevOps
-tags: [Prometheus,Docker,Observability]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/dashboard-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2020/flame-500.jpg"
 published: true
 topics: [reliability-observability, tooling-automation]
 keywords: [DevOps, Prometheus, Docker, Observability]
+---
+
 ---
 It is useful to have a local Prometheus instance running to test the instrumentation of your application. If you are running the application on your machine, you need to make sure the Prometheus container can talk to the host machine. This is a short post detailing this setup.
 <!--more-->
@@ -60,3 +60,4 @@ Prometheus should now be up and running and if your application is emitting metr
 I will be making use of this in an upcoming post I plan to release soon. In my [next post](/prometheus-datadog-agent) though I will look at using Datadog instead of a Prometheus server. I hope you find this useful.
 
 <span>Photo by <a href="https://unsplash.com/@_ggleee?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Gleb Lukomets</a> on <a href="https://unsplash.com/s/photos/flame?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+

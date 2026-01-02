@@ -5,8 +5,6 @@ subtitle: "Handling data that is not there"
 description: "In Part 6 we explore ways of handling cases where data is not there with Maybe, and how to wrap null into this way of working with data"
 permalink: how-to-fsharp-pt-6
 author: "Devon Burriss"
-category: Software Development
-tags: [Functional,F#,.NET]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/hole-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/frame-500.jpg"
 published: true
 topics: [platforms-runtime]
 keywords: [Software Development, Functional, F#, .NET]
+---
+
 ---
 Sometimes when dealing with data, the value you are expecting does not exist. Functional programming has a common abstraction for dealing with this called **Maybe**. In F# this abstraction is known as `option`.
 <!--more-->
@@ -130,3 +130,4 @@ Next up we will finally be [diving into collections](/how-to-fsharp-pt-7).
 
 1. [Null Values](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/values/null-values)
 1. [Option](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/options)
+

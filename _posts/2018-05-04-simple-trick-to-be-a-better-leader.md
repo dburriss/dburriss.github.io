@@ -5,8 +5,6 @@ subtitle: "Learn how to be a better leader by applying this one thing"
 description: "Leadership requires many ingredients but applying this one thing can increase loyalty, trust, as well as increase your calmness under pressure."
 permalink: simple-trick-to-be-a-better-leader
 author: "Devon Burriss"
-category: Leadership
-tags: [General, Life, Meditation, Mindfulness, Morality, Team Lead]
 comments: true
 excerpt_separator: <!--more-->
 header-img: "img/backgrounds/superman-bg.jpg"
@@ -14,6 +12,8 @@ social-img: "img/posts/2018/team-500.jpg"
 published: true
 topics: [leadership-teams, notes-reflections]
 keywords: [Leadership, General, Life, Meditation, Mindfulness, Morality, Team Lead]
+---
+
 ---
 If you are a leader, many things are expected from you. Skill. Vision. Charisma. There are other characteristics that don't always come to mind when thinking of leadership. Loyalty inspires loyalty. Calmness under pressure. Trust inspires trust. Many of the characteristics are quite hard to quantify and difficult to learn. Some people just seem to be born with them and others grow into it, being shaped by their experiences.
 <!--more-->
@@ -66,3 +66,4 @@ One disclaimer: I am not sure what the results of this are without a correspondi
 One last thing. Despite the title of this post, this is not a cheap trick to apply. It will take time and discipline to cultivate. The effects will be gradual and only be noticeable when you look back months or years on how you viewed the people around you.
 
 I really hope you will give this a chance. Over time the benefits can be great and meaningful.
+

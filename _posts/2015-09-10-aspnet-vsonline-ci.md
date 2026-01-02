@@ -3,14 +3,14 @@ layout: post
 title: "ASP.NET 5 CI from Git to Azure without Visual Studio"
 subtitle: "Using Visual Studio Online Build Services"
 author: "Devon Burriss"
-category: DevOps
-tags: [OSX, Powershell, Azure, ASP.NET 5, MVC 6, DNX, CI, Visual Studio Online, Git, VS Code]
 comments: true
 permalink: aspnet-vsonline-ci
 excerpt_separator: <!--more-->
 published: true
 topics: [tooling-automation]
 keywords: [DevOps, OSX, Powershell, Azure, ASP.NET 5, MVC 6, DNX, CI, Visual Studio Online, Git, VS Code]
+---
+
 ---
 > Using Visual Studio Online Build Services for a MSBuild/xproj free deployment.
 
@@ -98,3 +98,4 @@ Now you can either hit **Queue build...** or if you setup CI do a push to the tr
 
 Thats it for deploying to Azure with a solution developed on OSX (or Linux). Just 2 scripts really.
 I hope this helps someone and please leave a comment below if you have any questions or suggestions. Or just want to say it helped :)
+
