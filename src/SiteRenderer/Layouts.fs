@@ -126,7 +126,7 @@ module Layouts =
             [ _class "site-header" ]
             [ nav
                   [ _class "site-nav" ]
-                  [ a [ _class "site-title"; _href home ] [ str site.Title ]
+                  [ // a [ _class "site-title"; _href home ] [ str site.Title ]
                     ul
                         [ _class "site-links" ]
                         [ li [] [ a [ _href home ] [ str "Home" ] ]
