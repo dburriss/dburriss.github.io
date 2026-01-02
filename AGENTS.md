@@ -22,6 +22,7 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 - Prefer simplicity
 - Work in small steps
 - After making code changes, build and test to verify
+- When creating or updating script files (fsx/sh/ps1) always but a description and usage comment block at the top
 
 ## Stack
 
