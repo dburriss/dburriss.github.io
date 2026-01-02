@@ -2,12 +2,83 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/" />
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml" />
-  <updated>2025-12-09T08:24:57Z</updated>
+  <updated>2026-01-02T11:11:50Z</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
     <email></email>
   </author>
+  <entry>
+    <id>https://devonburriss.me/llms-not-junior/</id>
+    <link type="text/html" rel="alternate" href="https://devonburriss.me/llms-not-junior/" />
+    <title>LLMs are not junior programmers</title>
+    <updated>2025-12-21T23:00:00Z</updated>
+    <author>
+      <name>Devon Burriss</name>
+      <uri>https://devonburriss.me/llms-not-junior/</uri>
+    </author>
+    <summary type="html">&lt;p&gt;I often hear people compare LLM tools to junior developers. This comparison is not only incorrect, it is holding you back. If you have an incorrect mental model of the tool, you will constantly be surprised by the results. In this post I will explain how viewing the LLM as a junior is holding you back from better outcomes.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;It should be no surprise that a large language model (LLM) is not like a human. The marketing hype has been pushing the Artificial Intelligence narrative for years now though. As social primates, language is integral for how we communicate with other humans, so it is only natural that we anthropomorphise these machines that are so adept at language.&lt;/p&gt;
+&lt;p&gt;It is important to know what you are dealing with. I summarise it as:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The LLM is a stateless, stochastic function: &lt;code&gt;(parameters, prompt, runtime config) → output&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So what does this mean?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Stateless: It does not remember. The output is based on the input.&lt;/li&gt;
+&lt;li&gt;Stochastic: The next generated token is based on a probability distribution of what has come before in the text. Effectively, it is non-deterministic.&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Function: It generates the next token based on what has come before. The output is the result of a sequence of next most likely tokens.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hopefully, this is a useful grounding as we go through the precise ways that a coding assistant is not like a junior programmer.&lt;/p&gt;
+&lt;h2 id="a-junior-learns"&gt;1. A junior learns&lt;/h2&gt;
+&lt;p&gt;A junior is responsible for learning from their experience. As they work and are mentored, they gain knowledge and skills that they bring into their next task. They improve.&lt;/p&gt;
+&lt;p&gt;The agentic tools like Claude, OpenCode, or Copilot do not learn. They are stateless. All context that will determine a high or low quality output needs to be supplied by you or your tooling.&lt;/p&gt;
+&lt;p&gt;Knowing this as the operator of the agentic coding tool, it is your responsibility to &amp;quot;teach&amp;quot; the agent as you go. The trick is that you need to teach it with every input. I have heard this phrased as &amp;quot;A highly skilled programmer with amnesia&amp;quot;.&lt;/p&gt;
+&lt;p&gt;There are many techniques for giving these agents memory but the two easiest and most commonly used are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://agents.md/"&gt;AGENTS.md&lt;/a&gt; - read by most agentic tools by default&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lexler.github.io/augmented-coding-patterns/patterns/extract-knowledge/"&gt;Extract Knowledge&lt;/a&gt; - as you converse with the agent you extract correct knowledge into documents on specific topics for later use&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The important meta technique to takeaway here is that these are continuous exercises that you are doing. If you only correct the agent in your current session, the learning will be lost. You need to capture the learning somewhere if you want your agent to improve like a junior would.&lt;/p&gt;
+&lt;h2 id="depth-of-knowledge"&gt;2. Depth of knowledge&lt;/h2&gt;
+&lt;p&gt;The next way that these models diverge from our typical junior programmer is in their depth of &amp;quot;knowledge&amp;quot;. The &lt;code&gt;parameters&lt;/code&gt; part of our stateless function can be thought of as a compression of all of the model's training data. These parameters are arrays of numbers that encode the syntax, semantics, knowledge, and biases of the training data and fine-tuning that went into the model's creation.&lt;/p&gt;
+&lt;p&gt;It is important to know that the knowledge is not stored &amp;quot;as-is&amp;quot; for recall. It is encoded in a &amp;quot;lossy&amp;quot; way in these parameters. These are used to generate responses based on that knowledge that was in the training data.&lt;/p&gt;
+&lt;p&gt;Functionally, the model has access to more knowledge than any human would be able to consume in a lifetime. This is very different from our junior fresh out of university, college, or a coding bootcamp.&lt;/p&gt;
+&lt;p&gt;This means we can bounce architecture ideas off our agent and then swap over to asking for tips on UX, then testing, then performance optimisations. When giving it tasks, it will do most far better than a junior would, given the correct guidance.&lt;/p&gt;
+&lt;p&gt;Remember though, that the &amp;quot;knowledge&amp;quot; captured in the parameters for a model is based on its training data. So if your task requires specialised knowledge, you are going to have to feed that knowledge to the model EVERY SINGLE TIME it is needed (see point 1).&lt;/p&gt;
+&lt;h2 id="speed-of-execution"&gt;3. Speed of execution&lt;/h2&gt;
+&lt;p&gt;I am not going to spend much time on this. If you have used these tools, you know that they can complete a task faster (and usually cheaper unless something goes wrong) than any human can.&lt;/p&gt;
+&lt;p&gt;This has an important implication. If you are not learning how these tools work, and when they work well, you will be outperformed by those that do. In the future it will be expected that certain classes of tasks are not done by hand. Conversely, given sufficient proficiency, you should probably not give certain tasks to a coding agent. Learning which is the newest in a long line of things developers are expected to know.&lt;/p&gt;
+&lt;h2 id="world-model"&gt;4. World model&lt;/h2&gt;
+&lt;p&gt;Returning to output generation. We already covered that the &amp;quot;knowledge&amp;quot; is encoded in a &amp;quot;lossy&amp;quot; way using the arrays of numbers in the parameters. These weighting numbers combined with the runtime configuration of things like &lt;em&gt;temperature&lt;/em&gt; determine the next token generated until the full output is returned.&lt;/p&gt;
+&lt;p&gt;It is important to notice that this stochastic model contains nothing that represents a model of the real world, other than that the training data was created in the real world. The LLM has no way of testing its output with reality, because it &lt;em&gt;understands neither its output nor the real world&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;When there is a mismatch, this is referred to as hallucinating. &lt;em&gt;Hallucination is perception in the absence of stimulus&lt;/em&gt;. These models have no stimulus. They have no model of the real world to test their output on. For example, it does not know that &lt;code&gt;if&lt;/code&gt; is followed by a condition; just that something containing &lt;code&gt;==&lt;/code&gt; or &lt;code&gt;&amp;gt;=&lt;/code&gt; is statistically likely.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;LLMs are hallucinating 100% of the time. They happen to match reality well enough, often enough, to be useful.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So our junior programmer is different to these models in a useful way. They can reality test and reason in a way that the coding assistant cannot.&lt;/p&gt;
+&lt;h2 id="context-switching"&gt;5. Context switching&lt;/h2&gt;
+&lt;p&gt;As a human developer, you sometimes need to complete little sub-tasks on your way to your main task. These tasks can add up as you &lt;a href="https://www.hanselman.com/blog/yak-shaving-defined-ill-get-that-done-as-soon-as-i-shave-this-yak"&gt;shave the yak&lt;/a&gt;. For us this can be natural as we follow the chain of steps and get them done, and move on. This is &lt;a href="https://lexler.github.io/augmented-coding-patterns/obstacles/limited-focus/"&gt;terrible for coding assistants&lt;/a&gt; as their &lt;a href="https://lexler.github.io/augmented-coding-patterns/obstacles/context-rot/"&gt;context rots&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The implication is that, for best results, as you work you should constantly manage your context by capturing knowledge and then refreshing your context by starting a new session.&lt;/p&gt;
+&lt;h2 id="task-explosion"&gt;6. Task explosion&lt;/h2&gt;
+&lt;p&gt;These coding assistants and our junior programmer have one annoying tendency in common. Given a task, they will happily charge forward and implement the given task in one massive 2k line pull request.&lt;/p&gt;
+&lt;p&gt;For best results, especially for more complex tasks, it is best to be explicit about breaking it down into smaller tasks. These agents will often break down larger tasks into smaller tasks but in my experience it is best to give them small focused tasks to begin with.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Comparison with junior or even senior developers does more harm than good, as I see it. It distracts from how this tool works and holds us back from making the most of it. I suggest that everyone learn a little about how these tools work under the hood, to gain some mechanical sympathy. Then use them regularly to gain hands on experience.&lt;/p&gt;
+&lt;p&gt;So remember: They are token generators, not social primates.&lt;/p&gt;
+&lt;p&gt;I love you Skynet. Don't kill me.&lt;/p&gt;
+&lt;h2 id="footnotes"&gt;Footnotes&lt;/h2&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Non-deterministic given the seed is uncontrolled.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</summary>
+  </entry>
   <entry>
     <id>https://devonburriss.me/automating-agentic-code-migrations/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/automating-agentic-code-migrations/" />
@@ -109,6 +180,9 @@ issue:
 &lt;li&gt;standards that need to be followed&lt;/li&gt;
 &lt;li&gt;for more complex codebases, point to an ARCHITECTURE.md file or similar to help the agent with the structure&lt;/li&gt;
 &lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This tip and the previous 2 makeup a workflow that I recommend for migrations. See &lt;a href="https://github.com/dburriss/orca/tree/main/example"&gt;here&lt;/a&gt; for more.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id="have-a-rollback-plan"&gt;Have a rollback plan&lt;/h3&gt;
 &lt;p&gt;Even if you move slowly, once you scale out you might run into unknowns that were not accounted for in your prompt or preparation. I suggest 2 things:&lt;/p&gt;
 &lt;ol&gt;
@@ -486,16 +560,5 @@ What happens in these cases? One of 2 things. The platform team needs to drop wh
       <uri>https://devonburriss.me/converting-fsharp-csharp/</uri>
     </author>
     <summary type="html">In this post we look at converting between F# collections like Seq, List, Array and common C# collections and interfaces.</summary>
-  </entry>
-  <entry>
-    <id>https://devonburriss.me/reliability-with-intents/</id>
-    <link type="text/html" rel="alternate" href="https://devonburriss.me/reliability-with-intents/" />
-    <title>Reliability with Intents</title>
-    <updated>2019-12-04T23:00:00Z</updated>
-    <author>
-      <name>Devon Burriss</name>
-      <uri>https://devonburriss.me/reliability-with-intents/</uri>
-    </author>
-    <summary type="html">In this post I explore a solution for sending messages across process boundaries where the notification needs to be transactional with state change</summary>
   </entry>
 </feed>

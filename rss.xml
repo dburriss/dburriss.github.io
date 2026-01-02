@@ -5,8 +5,16 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Tue, 09 Dec 2025 08:24:57 GMT</pubDate>
-    <lastBuildDate>Tue, 09 Dec 2025 08:24:57 GMT</lastBuildDate>
+    <pubDate>Fri, 02 Jan 2026 11:11:50 GMT</pubDate>
+    <lastBuildDate>Fri, 02 Jan 2026 11:11:50 GMT</lastBuildDate>
+    <item>
+      <title>LLMs are not junior programmers</title>
+      <link>https://devonburriss.me/llms-not-junior/</link>
+      <pubDate>Sun, 21 Dec 2025 23:00:00 GMT</pubDate>
+      <author>Devon Burriss</author>
+      <guid>https://devonburriss.me/llms-not-junior/</guid>
+      <description>Sometimes better, sometimes worse, always different</description>
+    </item>
     <item>
       <title>Automating Agentic Code Migrations</title>
       <link>https://devonburriss.me/automating-agentic-code-migrations/</link>
@@ -158,14 +166,6 @@
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/converting-fsharp-csharp/</guid>
       <description>In this post we look at converting between F# collections like Seq, List, Array and common C# collections and interfaces.</description>
-    </item>
-    <item>
-      <title>Reliability with Intents</title>
-      <link>https://devonburriss.me/reliability-with-intents/</link>
-      <pubDate>Wed, 04 Dec 2019 23:00:00 GMT</pubDate>
-      <author>Devon Burriss</author>
-      <guid>https://devonburriss.me/reliability-with-intents/</guid>
-      <description>In this post I explore a solution for sending messages across process boundaries where the notification needs to be transactional with state change</description>
     </item>
   </channel>
 </rss>
