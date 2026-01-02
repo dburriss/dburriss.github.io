@@ -3,6 +3,7 @@ namespace SiteRenderer
 open System
 open System.IO
 open System.Text.RegularExpressions
+open System.Collections.Generic
 open Giraffe.ViewEngine
 open Microsoft.Extensions.FileSystemGlobbing
 
@@ -212,6 +213,23 @@ module Renderer =
             |> List.exists (fun lt -> String.Equals(lt, tag, StringComparison.OrdinalIgnoreCase)))
         |> Option.map (fun t -> t.Id)
 
+    let private distinctIgnoreCase (values: string list) : string list =
+        let seen = HashSet<string>(StringComparer.OrdinalIgnoreCase)
+
+        values
+        |> List.choose (fun v ->
+            let trimmed = v.Trim()
+
+            if String.IsNullOrWhiteSpace trimmed then None
+            else if seen.Add trimmed then Some trimmed
+            else None)
+
+    let private configuredLegacyCategories (site: SiteConfig) : string list =
+        site.Topics |> List.choose (fun t -> t.LegacyCategory) |> distinctIgnoreCase
+
+    let private configuredLegacyTags (site: SiteConfig) : string list =
+        site.Topics |> List.collect (fun t -> t.LegacyTags) |> distinctIgnoreCase
+
     let private redirectHtml (target: string) =
         // Minimal HTML document with meta refresh
         sprintf
@@ -247,7 +265,7 @@ module Renderer =
                     [ a
                           [ _href (Parsing.combineUrl ctx.Config.BaseUrl (sprintf "topics/%s/" t.Id))
                             _title t.Description ]
-                          [ str t.Name ];
+                          [ str t.Name ]
                       p [] [ str t.Description ] ])
 
         let cats = categoryCounts ctx.Index
@@ -418,15 +436,19 @@ module Renderer =
 
         let topicsOverview = [ renderTopicsOverviewPage ctx ]
 
-        let categoryPages =
-            ctx.Index.Categories
-            |> Map.toList
-            |> List.map (fun (cat, posts) -> renderCategoryPage ctx cat posts)
+        let categoryNames =
+            configuredLegacyCategories ctx.Config
+            @ (ctx.Index.Categories |> Map.toList |> List.map fst)
+            |> distinctIgnoreCase
 
-        let tagPages =
-            ctx.Index.Tags
-            |> Map.toList
-            |> List.map (fun (tag, posts) -> renderTagPage ctx tag posts)
+        let categoryPages =
+            categoryNames |> List.map (fun cat -> renderCategoryPage ctx cat [])
+
+        let tagNames =
+            configuredLegacyTags ctx.Config @ (ctx.Index.Tags |> Map.toList |> List.map fst)
+            |> distinctIgnoreCase
+
+        let tagPages = tagNames |> List.map (fun tag -> renderTagPage ctx tag [])
 
         let feeds = renderFeeds ctx
 
