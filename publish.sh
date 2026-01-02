@@ -61,11 +61,6 @@ if [ -n "$GITHUB_ACTIONS" ]; then
     fi
 fi
 
-# Ensure we're on master branch for the commit
-# Submodule may be in detached HEAD state after clone, so checkout or create master
-if ! git checkout master 2>/dev/null; then
-    git checkout -b master origin/master 2>/dev/null || git checkout -b master
-fi
 
 if [ "$DRY_RUN" = true ]; then
     echo "=== DRY RUN ==="
@@ -88,7 +83,7 @@ else
     git commit -m "$MESSAGE"
 
     echo "Pushing to master branch..."
-    git push origin master -f
+    git push origin HEAD:master -f
 
     echo "Site published successfully!"
 fi
