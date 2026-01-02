@@ -31,34 +31,42 @@ topics:
   - id: software-design
     name: Software Design
     description: Architecture, design, modeling, and distributed systems.
+    legacy_category: Software Development
     legacy_tags: [Architecture, DDD, C4, Modeling, Design Patterns, Distributed Systems, Temporal Modeling, Functional Modeling]
   - id: engineering-practices
     name: Engineering Practices
     description: How we build, test, and validate software.
+    legacy_category: Software Development
     legacy_tags: [TDD, BDD, ATDD, Clean Code, SOLID, Testing, Unit Testing, Extreme Programming, Agile]
   - id: platforms-runtime
     name: Platforms & Runtime
     description: Runtimes and execution environments (not frameworks).
+    legacy_category: Software Development
     legacy_tags: [.NET, .NET Core, ASP.NET, Java, F#, Messaging, OOP, Functional]
   - id: tooling-automation
     name: Tooling & Automation
     description: Build tooling, CI/CD, editors, and developer automation.
+    legacy_category: Tools
     legacy_tags: [Docker, Git, AppVeyor, Cake, Maven, Paket, Powershell, VS Code, Visual Studio, Github Pages]
   - id: reliability-observability
     name: Reliability & Observability
     description: Monitoring, metrics, reliability, and failure modes.
+    legacy_category: DevOps
     legacy_tags: [Observability, Datadog, Prometheus, Reliability, Idempotent]
   - id: ai-agentic-systems
     name: AI & Agentic Systems
     description: AI, LLMs, and agentic workflows.
+    legacy_category: Software Development
     legacy_tags: [AI, LLMs, Agents, Agentic, OpenCode]
   - id: leadership-teams
     name: Leadership & Teams
     description: Human systems around software development.
+    legacy_category: Leadership
     legacy_tags: [Leadership, Team Lead, Project Management, Product]
   - id: notes-reflections
     name: Notes & Reflections
     description: Learning, career, ethics, and life-adjacent thinking.
+    legacy_category: Life
     legacy_tags: [Life, Learning C#, Meditation, Mindfulness, Morality, Science, Productivity]
 
 # Related posts configuration (used by F# SiteRenderer)
