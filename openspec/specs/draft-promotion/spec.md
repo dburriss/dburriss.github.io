@@ -4,7 +4,7 @@
 TBD - created by archiving change 2025-12-03-add-promote-draft-script. Update Purpose after archive.
 ## Requirements
 ### Requirement: Draft Promotion Scripts
-The project SHALL provide `promote-draft.ps1` (PowerShell) and `promote-draft.sh` (Bash) scripts that automate moving draft posts to publication.
+The project SHALL provide `promote-draft.ps1` (PowerShell) and `promote-draft.sh` (Bash) scripts that automate moving draft posts to publication and validate required front matter fields including topics and keywords.
 
 #### Scenario: Interactive draft selection and promotion
 - **WHEN** an author executes `./promote-draft.sh` or `./promote-draft.ps1`
@@ -20,6 +20,7 @@ The project SHALL provide `promote-draft.ps1` (PowerShell) and `promote-draft.sh
 #### Scenario: Front matter validation and update
 - **WHEN** a draft is promoted
 - **THEN** the script parses the YAML front matter
+- **AND** verifies `topics` and `keywords` exist and are non-empty lists/values
 - **AND** updates `published: false` to `published: true`
 - **AND** preserves all other front matter fields unchanged
 - **AND** validates the resulting front matter is properly formatted
@@ -38,5 +39,9 @@ The project SHALL provide `promote-draft.ps1` (PowerShell) and `promote-draft.sh
 #### Scenario: Help and usage documentation
 - **WHEN** an author executes the script with `--help` or `-h` parameter
 - **THEN** the script displays usage instructions, examples, and available options
-- **AND** explains the promotion workflow and requirements
+- **AND** explains the promotion workflow and requirements for `topics` and `keywords`
+
+#### Scenario: Legacy category/tags not required during promotion
+- **WHEN** promoting a draft lacking `category` or `tags`
+- **THEN** the script proceeds as long as `topics` and `keywords` are present
 
