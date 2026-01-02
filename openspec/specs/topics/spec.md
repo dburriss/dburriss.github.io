@@ -4,7 +4,7 @@
 TBD - created by archiving change add-topics-preparation. Update Purpose after archive.
 ## Requirements
 ### Requirement: Topic Catalog in Configuration
-The project SHALL define a topic catalog in `_config.yml` under a top-level `topics` key. Each topic entry SHALL include `id`, `name`, `description`, and `legacy_tags`.
+The project SHALL define a topic catalog in `_config.yml` under a top-level `topics` key. Each topic entry SHALL include `id`, `name`, `description`, `legacy_category` and `legacy_tags`.
 
 #### Scenario: Config defines stable topic IDs and metadata
 - **WHEN** an author opens `_config.yml`
