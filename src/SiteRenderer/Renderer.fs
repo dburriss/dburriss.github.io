@@ -1,6 +1,7 @@
 namespace SiteRenderer
 
 open System
+open System.Globalization
 open System.IO
 open System.Text.RegularExpressions
 open System.Collections.Generic
@@ -263,7 +264,8 @@ module Renderer =
                 li
                     []
                     [ a
-                          [ _href (Parsing.combineUrl ctx.Config.BaseUrl (sprintf "topics/%s/" t.Id))
+                          [ _class "topic-pill"
+                            _href (Parsing.combineUrl ctx.Config.BaseUrl (sprintf "topics/%s/" t.Id))
                             _title t.Description ]
                           [ str t.Name ]
                       p [] [ str t.Description ] ])
@@ -271,8 +273,7 @@ module Renderer =
         let cats = categoryCounts ctx.Index
         let tags = tagCounts ctx.Index
 
-        let html =
-            RenderView.AsString.htmlNodes [ h2 [] [ str "Topics" ]; ul [] topicNodes ]
+        let html = RenderView.AsString.htmlNodes [ ul [] topicNodes ]
 
         let doc = Layouts.pageDocument ctx.Config pageMeta html cats tags
 
@@ -305,14 +306,22 @@ module Renderer =
               CommentsEnabled = false
               Layout = "topics" }
 
+        let formatDate (date: DateTime option) =
+            match date with
+            | Some d -> d.ToString("MMM dd, yyyy", CultureInfo.InvariantCulture)
+            | None -> ""
+
         let postLinks =
             posts
             |> List.map (fun p ->
-                li [] [ a [ _href (Parsing.combineUrl ctx.Config.BaseUrl p.PageMeta.Url) ] [ str p.PageMeta.Title ] ])
+                li
+                    []
+                    [ a [ _href (Parsing.combineUrl ctx.Config.BaseUrl p.PageMeta.Url) ] [ str p.PageMeta.Title ]
+                      span [ _class "post-date" ] [ str (formatDate p.PageMeta.Date) ] ])
 
         let cats = categoryCounts ctx.Index
         let tags = tagCounts ctx.Index
-        let html = RenderView.AsString.htmlNodes [ h2 [] [ str title ]; ul [] postLinks ]
+        let html = RenderView.AsString.htmlNodes [ ul [ _class "post-list" ] postLinks ]
         let doc = Layouts.pageDocument ctx.Config page html cats tags
 
         { OutputPath = sprintf "topics/%s/index.html" topicId

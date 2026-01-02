@@ -11,18 +11,10 @@ module Layouts =
     let private _itemprop value = attr "itemprop" value
 
     // Helper for fragment - just returns a div with no visible wrapper
-    // In Giraffe.ViewEngine we use a span or div with empty styling, or just inline the children
     let private fragment (_attrs: XmlAttribute list) (children: XmlNode list) : XmlNode =
-        // Return a parent node that groups children (using span which is inline)
         span [ attr "style" "display:contents" ] children
 
-    // Helper for HTML5 doctype - creates html element with doctype prefix
-    let private doctypeHtml (attrs: XmlAttribute list) (children: XmlNode list) : XmlNode =
-        // Create the structure: DOCTYPE + html element
-        // The DOCTYPE will be added when rendering with RenderView.AsString.htmlDocument
-        html attrs children
-
-    let private htmlEncode value = WebUtility.HtmlEncode(value)
+    let private doctypeHtml (attrs: XmlAttribute list) (children: XmlNode list) : XmlNode = html attrs children
 
     let private joinUrl (root: string) (path: string) =
         let normalizedRoot =
@@ -40,6 +32,10 @@ module Layouts =
     let private assetUrl (site: SiteConfig) (relative: string) = joinUrl site.BaseUrl relative
 
     let private absoluteUrl (site: SiteConfig) (relative: string) = joinUrl site.Url relative
+
+    let private themeInitScript =
+        // Apply stored theme early to avoid a flash.
+        "(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();"
 
     let private headNode (site: SiteConfig) (page: PageMeta) =
         let pageTitle =
@@ -80,13 +76,16 @@ module Layouts =
 
         head
             []
-            ([ rawText "<!-- META -->"
-               meta [ _charset "utf-8" ]
+            ([ meta [ _charset "utf-8" ]
                meta [ _httpEquiv "X-UA-Compatible"; _content "IE=edge" ]
                meta [ _name "viewport"; _content "width=device-width, initial-scale=1" ]
+               meta [ _name "color-scheme"; _content "dark light" ]
                title [] [ str pageTitle ]
                meta [ _name "description"; _content description ]
                meta [ _name "author"; _content site.Author ]
+               meta [ _itemprop "name"; _content pageTitle ]
+               meta [ _itemprop "description"; _content description ]
+               meta [ _itemprop "image"; _content imageUrl ]
                yield! canonicalNodes
                link
                    [ _rel "icon"
@@ -98,9 +97,6 @@ module Layouts =
                      _type "image/png"
                      _href (assetUrl site "img/favicon32.png")
                      attr "sizes" "32x32" ]
-               meta [ _itemprop "name"; _content pageTitle ]
-               meta [ _itemprop "description"; _content description ]
-               meta [ _itemprop "image"; _content imageUrl ]
                meta [ _name "twitter:card"; _content "summary_large_image" ]
                meta
                    [ _name "twitter:site"
@@ -117,144 +113,51 @@ module Layouts =
                meta [ _property "og:image"; _content imageUrl ]
                meta [ _property "og:description"; _content description ]
                meta [ _property "og:site_name"; _content site.Title ]
-               link [ _rel "stylesheet"; _href (assetUrl site "css/bootstrap.min.css") ]
-               link [ _rel "stylesheet"; _href (assetUrl site "css/clean-blog.css") ]
-               link
-                   [ _rel "stylesheet"
-                     attr "charset" "UTF-8"
-                     _href (assetUrl site "css/highlight/atom-one-light.css") ]
-               link
-                   [ _href "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                     _rel "stylesheet"
-                     attr "type" "text/css" ]
-               link
-                   [ _href "//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-                     _rel "stylesheet"
-                     attr "type" "text/css" ]
-               link
-                   [ _href
-                         "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-                     _rel "stylesheet"
-                     attr "type" "text/css" ]
-               rawText
-                   "<!--[if lt IE 9]>\n        <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"></script>\n        <script src=\"https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js\"></script>\n    <![endif]-->" ])
+               link [ _rel "stylesheet"; _href (assetUrl site "css/site.css") ]
+               link [ _rel "stylesheet"; _href (assetUrl site "css/highlight/atom-one-dark.css") ]
+               // Theme init happens before styles load.
+               script [] [ rawText themeInitScript ]
+               script [ _src (assetUrl site "js/theme.js"); attr "defer" "defer" ] [] ])
 
     let private navNode (site: SiteConfig) =
         let home = assetUrl site ""
 
-        nav
-            [ _class "navbar navbar-default navbar-custom navbar-fixed-top" ]
-            [ div
-                  [ _class "container-fluid" ]
-                  [ div
-                        [ _class "navbar-header page-scroll" ]
-                        [ button
-                              [ _type "button"
-                                _class "navbar-toggle"
-                                attr "data-toggle" "collapse"
-                                attr "data-target" "#bs-example-navbar-collapse-1" ]
-                              [ span [ _class "sr-only" ] [ str "Toggle navigation" ]
-                                span [ _class "icon-bar" ] []
-                                span [ _class "icon-bar" ] []
-                                span [ _class "icon-bar" ] [] ]
-                          a [ _class "navbar-brand"; _href home ] [ str site.Title ] ]
-                    div
-                        [ _class "collapse navbar-collapse"; _id "bs-example-navbar-collapse-1" ]
-                        [ ul
-                              [ _class "nav navbar-nav navbar-right" ]
-                              [ li [] [ a [ _href home ] [ str "Home" ] ]
-                                li
-                                    []
-                                    [ a
-                                          [ _href (assetUrl site "recommended-reading.html") ]
-                                          [ str "Recommended Reading" ] ]
-                                li
-                                    []
-                                    [ a
-                                          [ _href (assetUrl site "rss.xml") ]
-                                          [ span [ _class "fa-stack fa-lg" ] [ i [ _class "fa fa-rss fa-stack-1x" ] [] ] ] ] ] ] ] ]
-
-    let private socialNode (site: SiteConfig) =
-        let link icon background url =
-            li
-                []
-                [ a
-                      [ _href url ]
-                      [ span [ _class "fa-stack fa-lg" ] [ i [ _class background ] []; i [ _class icon ] [] ] ] ]
-
-        [ li
-              []
-              [ a
-                    [ _href (assetUrl site "rss.xml") ]
-                    [ span
-                          [ _class "fa-stack fa-lg" ]
-                          [ i [ _class "fa fa-square fa-stack-2x" ] []
-                            i [ _class "fa fa-rss fa-stack-1x fa-inverse" ] [] ] ] ]
-          li
-              []
-              [ a
-                    [ _href (assetUrl site "atom.xml") ]
-                    [ span
-                          [ _class "fa-stack fa-lg" ]
-                          [ i [ _class "fa fa-circle fa-stack-2x" ] []
-                            i [ _class "fa fa-rss fa-stack-1x fa-inverse" ] [] ] ] ]
-          match site.TwitterUsername with
-          | Some handle ->
-              link
-                  "fa fa-twitter fa-stack-1x fa-inverse"
-                  "fa fa-circle fa-stack-2x"
-                  (sprintf "https://twitter.com/%s" handle)
-          | None -> rawText ""
-          match site.FacebookUsername with
-          | Some name ->
-              link
-                  "fa fa-facebook fa-stack-1x fa-inverse"
-                  "fa fa-circle fa-stack-2x"
-                  (sprintf "https://www.facebook.com/%s" name)
-          | None -> rawText ""
-          match site.GithubUsername with
-          | Some user ->
-              link
-                  "fa fa-github fa-stack-1x fa-inverse"
-                  "fa fa-circle fa-stack-2x"
-                  (sprintf "https://github.com/%s" user)
-          | None -> rawText ""
-          match site.EmailUsername with
-          | Some email ->
-              link "fa fa-envelope fa-stack-1x fa-inverse" "fa fa-circle fa-stack-2x" (sprintf "mailto:%s" email)
-          | None -> rawText "" ]
-        |> fun items -> ul [ _class "list-inline text-center" ] items
+        header
+            [ _class "site-header" ]
+            [ nav
+                  [ _class "site-nav" ]
+                  [ a [ _class "site-title"; _href home ] [ str site.Title ]
+                    ul
+                        [ _class "site-links" ]
+                        [ li [] [ a [ _href home ] [ str "Home" ] ]
+                          li [] [ a [ _href (assetUrl site "topics/") ] [ str "Topics" ] ]
+                          li [] [ a [ _href (assetUrl site "recommended-reading.html") ] [ str "Reading" ] ]
+                          li [] [ a [ _href (assetUrl site "about/") ] [ str "About" ] ]
+                          li [] [ a [ _href (assetUrl site "rss.xml") ] [ str "RSS" ] ] ]
+                    button
+                        [ _type "button"
+                          _class "theme-toggle"
+                          _id "theme-toggle"
+                          attr "aria-label" "Toggle light/dark theme" ]
+                        [ str "Theme" ] ] ]
 
     let private footerNode (site: SiteConfig) =
         let copyright = site.CopyrightName |> Option.defaultValue site.Title
 
-        fragment
-            []
-            [ footer
+        footer
+            [ _class "site-footer" ]
+            [ p
                   []
-                  [ div
-                        [ _class "container" ]
-                        [ div
-                              [ _class "row" ]
-                              [ div
-                                    [ _class "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" ]
-                                    [ p
-                                          [ _class "copyright text-muted" ]
-                                          [ str "Copyright © "
-                                            a [ _href (assetUrl site "about.html") ] [ str copyright ]
-                                            str (sprintf " %d" DateTime.UtcNow.Year) ] ] ] ] ]
-              script [ _src (assetUrl site "js/jquery.min.js") ] []
-              script [ _src (assetUrl site "js/bootstrap.min.js") ] []
-              script [ _src (assetUrl site "js/clean-blog.min.js") ] []
-              script [ _src (assetUrl site "js/highlight.pack.js") ] []
-              script [] [ rawText "hljs.initHighlightingOnLoad();" ] ]
+                  [ str "Copyright © "
+                    a [ _href (assetUrl site "about/") ] [ str copyright ]
+                    str (sprintf " %d" DateTime.UtcNow.Year) ] ]
 
     let private commentsNode (site: SiteConfig) (page: PageMeta) =
         if site.IsProduction && page.CommentsEnabled then
             let disqus = site.DisqusUsername |> Option.defaultValue ""
 
             div
-                [ _class "container-fluid" ]
+                [ _class "comments" ]
                 [ div [ _id "disqus_thread" ] []
                   script
                       [ _type "text/javascript" ]
@@ -281,134 +184,79 @@ module Layouts =
                   rawText "ga('send', 'pageview');" ]
         | _ -> rawText ""
 
-    let private categoryWidget (site: SiteConfig) (categories: (string * int) list) =
-        let links =
-            categories
-            |> List.map (fun (name, _) ->
-                a
-                    [ _class "badge badge-info"
-                      _href (assetUrl site (sprintf "category/%s" (Parsing.slugify name))) ]
-                    [ str name ])
-
-        fragment
-            []
-            [ h2 [] [ i [ _class "glyphicon glyphicon-folder-open" ] []; str "  Categories" ]
-              yield! links ]
-
-    let private tagWidget (site: SiteConfig) (tags: (string * int) list) =
-        let maxCount =
-            tags
-            |> List.map snd
-            |> function
-                | [] -> 1
-                | xs -> xs |> List.max
-
-        let renderTag (name: string, count: int) =
-            let font = 80 + (count * 4)
-
-            a
-                [ _class "badge badge-info"
-                  attr "style" (sprintf "font-size: %d%%" font)
-                  _href (assetUrl site (sprintf "tag/%s/" (Parsing.slugify name))) ]
-                [ span [ _class "site-tag" ] [ str (name.Replace("-", " ")) ] ]
-
-        fragment
-            []
-            [ h2 [] [ i [ _class "glyphicon glyphicon-tags" ] []; str "  Tags" ]
-              div [ _class "well" ] (tags |> List.map renderTag) ]
-
-    let private aboutWidget (site: SiteConfig) =
-        fragment
-            []
-            [ h3 [] [ str "About me" ]
-              div
+    let private layoutDocument (site: SiteConfig) (page: PageMeta) (mainNodes: XmlNode list) (includeComments: bool) =
+        doctypeHtml
+            [ attr "lang" "en" ]
+            [ headNode site page
+              body
                   []
-                  [ div
-                        [ attr "itemprop" "publisher"
-                          attr "itemscope" ""
-                          attr "itemtype" "https://schema.org/Organization" ]
-                        [ div
-                              [ attr "itemprop" "logo"
-                                attr "itemscope" ""
-                                attr "itemtype" "https://schema.org/ImageObject" ]
-                              [ img
-                                    [ _class "img-rounded pull-right"
-                                      _src (assetUrl site "img/avatar.jpg")
-                                      attr "width" "33%"
-                                      attr "style" "margin-left: 1em;" ]
-                                meta [ attr "itemprop" "url"; _content (assetUrl site "img/avatar.jpg") ] ]
-                          meta [ attr "itemprop" "name"; _content site.Author ] ]
-                    p
-                        [ attr "align" "justify" ]
-                        [ str
-                              "A South African living in Rotterdam, Netherlands. Software development, clean code, functional programming, Domain-Driven Design, TDD, other acronyms. Basically I just like learning new things and want to get better at what I love doing. Occassionally I write about what I learn here." ] ] ]
+                  [ navNode site
+                    main [ _class "site-main" ] mainNodes
+                    footerNode site
+                    if includeComments then
+                        commentsNode site page
+                    else
+                        rawText ""
+                    script [ _src (assetUrl site "js/highlight.pack.js") ] []
+                    script [] [ rawText "hljs.initHighlightingOnLoad();" ]
+                    analyticsNode site ] ]
+
+    let private formatDate (date: DateTime option) =
+        match date with
+        | Some d -> d.ToString("MMM dd, yyyy", CultureInfo.InvariantCulture)
+        | None -> ""
+
+    let private topicLinks (site: SiteConfig) (topicIds: string list) =
+        if List.isEmpty topicIds then
+            rawText ""
+        else
+            let toLink id =
+                let topicOpt = site.Topics |> List.tryFind (fun t -> t.Id = id)
+
+                let name = topicOpt |> Option.map (fun t -> t.Name) |> Option.defaultValue id
+
+                let desc = topicOpt |> Option.map (fun t -> t.Description) |> Option.defaultValue ""
+
+                a
+                    [ _class "topic-pill"
+                      _href (assetUrl site (sprintf "topics/%s/" id))
+                      _title desc ]
+                    [ str name ]
+
+            div [ _class "topic-pills" ] (topicIds |> List.map toLink)
+
+    let private pageHeader
+        (title: string)
+        (subtitle: string option)
+        (description: string option)
+        (meta: XmlNode option)
+        =
+        header
+            [ _class "page-header" ]
+            [ h1 [] [ str title ]
+              match subtitle with
+              | Some sub -> p [ _class "page-subtitle" ] [ str sub ]
+              | None -> rawText ""
+              match description with
+              | Some desc when not (String.IsNullOrWhiteSpace desc) -> p [ _class "page-description" ] [ str desc ]
+              | _ -> rawText ""
+              meta |> Option.defaultValue (rawText "") ]
 
     let private postHeader (site: SiteConfig) (page: PageMeta) =
-        let headerImage =
-            match page.HeaderImage, site.HeaderImage with
-            | Some img, _ -> assetUrl site img
-            | None, Some img -> assetUrl site img
-            | _ -> assetUrl site "img/backgrounds/explore-bg.jpg"
-
         let author = page.Author |> Option.defaultValue site.Title
+        let dateStr = formatDate page.Date
 
-        let dateStr =
-            match page.Date with
-            | Some d -> d.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)
-            | None -> ""
+        let metaNode =
+            if String.IsNullOrWhiteSpace dateStr then
+                Some(p [ _class "post-meta" ] [ str author ])
+            else
+                Some(p [ _class "post-meta" ] [ str (sprintf "%s · %s" author dateStr) ])
 
-        header
-            [ _class "intro-header"
-              attr "style" (sprintf "background-image: url('%s')" headerImage) ]
-            [ div
-                  [ _class "container-fluid" ]
-                  [ div
-                        [ _class "row" ]
-                        [ div
-                              [ _class "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" ]
-                              [ div
-                                    [ _class "post-heading" ]
-                                    [ div
-                                          [ _class "frame" ]
-                                          [ h1 [] [ str page.Title ]
-                                            match page.Subtitle with
-                                            | Some sub -> h2 [ _class "subheading" ] [ str sub ]
-                                            | None -> rawText ""
-                                            span
-                                                [ _class "meta"
-                                                  attr "itemprop" "author"
-                                                  attr "itemscope" ""
-                                                  attr "itemtype" "https://schema.org/Person" ]
-                                                [ str "Posted by "
-                                                  span [ attr "itemprop" "name" ] [ str author ]
-                                                  str (sprintf " on %s" dateStr) ]
-                                            if not (List.isEmpty page.Topics) then
-                                                fragment
-                                                    []
-                                                    [ hr []
-                                                      yield!
-                                                          (page.Topics
-                                                           |> List.map (fun id ->
-                                                               let topicOpt =
-                                                                   site.Topics |> List.tryFind (fun t -> t.Id = id)
-
-                                                               let name =
-                                                                   topicOpt
-                                                                   |> Option.map (fun t -> t.Name)
-                                                                   |> Option.defaultValue id
-
-                                                               let desc =
-                                                                   topicOpt
-                                                                   |> Option.map (fun t -> t.Description)
-                                                                   |> Option.defaultValue ""
-
-                                                               a
-                                                                   [ _href (assetUrl site (sprintf "topics/%s/" id))
-                                                                     _title desc ]
-                                                                   [ span [ _class "label label-default" ] [ str name ] ])) ]
-                                            else
-                                                rawText ""
-                                            div [] [] ] ] ] ] ] ]
+        fragment
+            []
+            [ pageHeader page.Title page.Subtitle None metaNode
+              topicLinks site page.Topics
+              hr [] ]
 
     let private relatedSection (site: SiteConfig) (related: PostSummary list) =
         if List.isEmpty related then
@@ -416,258 +264,115 @@ module Layouts =
         else
             section
                 [ _class "related" ]
-                [ h4 [] [ str "You may be interested in" ]
+                [ h2 [] [ str "Related" ]
                   ul
-                      []
+                      [ _class "link-list" ]
                       (related
                        |> List.map (fun rp -> li [] [ a [ _href (assetUrl site rp.Url) ] [ str rp.Title ] ])) ]
 
     let private pagerLinks (site: SiteConfig) (prev: PostSummary option) (next: PostSummary option) =
-        ul
-            [ _class "pager" ]
-            [ match prev with
-              | Some p ->
-                  li
-                      [ _class "previous" ]
-                      [ a
-                            [ _href (assetUrl site p.Url)
-                              attr "data-toggle" "tooltip"
-                              attr "data-placement" "top"
-                              _title p.Title ]
-                            [ rawText "&larr; Previous Post" ] ]
-              | None -> rawText ""
-              match next with
-              | Some n ->
-                  li
-                      [ _class "next" ]
-                      [ a
-                            [ _href (assetUrl site n.Url)
-                              attr "data-toggle" "tooltip"
-                              attr "data-placement" "top"
-                              _title n.Title ]
-                            [ rawText "Next Post &rarr;" ] ]
-              | None -> rawText "" ]
+        let linkItem label (post: PostSummary) =
+            li [] [ a [ _href (assetUrl site post.Url); _title post.Title ] [ str label ] ]
 
-    let private postBody (htmlContent: string) = rawText htmlContent
+        let items =
+            [ prev |> Option.map (linkItem "← Previous")
+              next |> Option.map (linkItem "Next →") ]
+            |> List.choose id
 
-    let private topicsWidget (site: SiteConfig) =
-        let toLink (t: TopicDef) =
-            a
-                [ _class "badge badge-info"
-                  _href (assetUrl site (sprintf "topics/%s/" (t.Id)))
-                  _title t.Description ]
-                [ span [ _class "site-topic" ] [ str t.Name ] ]
-
-        fragment
-            []
-            ([ h2 [] [ i [ _class "glyphicon glyphicon-th-list" ] []; str "  Topics" ] ]
-             @ (site.Topics |> List.map toLink))
-
-    let private sidebar
-        (site: SiteConfig)
-        (_categories: (string * int) list)
-        (_tags: (string * int) list)
-        includeAbout
-        =
-        let blocks = [ socialNode site; topicsWidget site ]
-
-        let blocks =
-            if includeAbout then
-                blocks @ [ aboutWidget site ]
-            else
-                blocks
-
-        blocks
+        if List.isEmpty items then
+            rawText ""
+        else
+            nav [ _class "pager" ] [ ul [ _class "pager-links" ] items ]
 
     let postDocument
         (site: SiteConfig)
         (page: PageMeta)
         (htmlContent: string)
         (related: PostSummary list)
-        (categories: (string * int) list)
-        (tags: (string * int) list)
+        (_categories: (string * int) list)
+        (_tags: (string * int) list)
         =
-        doctypeHtml
-            []
-            [ headNode site page
-              body
-                  []
-                  [ navNode site
-                    postHeader site page
-                    article
-                        []
-                        [ div
-                              [ _class "container-fluid" ]
-                              [ div
-                                    [ _class "row" ]
-                                    [ div
-                                          [ _class "col-lg-8" ]
-                                          [ postBody htmlContent
-                                            hr []
-                                            relatedSection site related
-                                            pagerLinks site page.Previous page.Next ]
-                                      div [ _class "col-lg-4 widget-column" ] (sidebar site categories tags false) ] ]
-                          hr [] ]
-                    footerNode site
-                    analyticsNode site
-                    commentsNode site page ] ]
+        let contentNodes =
+            [ postHeader site page
+              article [ _class "prose" ] [ rawText htmlContent ]
+              hr []
+              relatedSection site related
+              pagerLinks site page.Previous page.Next ]
+
+        layoutDocument site page contentNodes true
 
     let pageDocument
         (site: SiteConfig)
         (page: PageMeta)
         (htmlContent: string)
-        (categories: (string * int) list)
-        (tags: (string * int) list)
+        (_categories: (string * int) list)
+        (_tags: (string * int) list)
         =
-        let headerImage =
-            match page.HeaderImage, site.HeaderImage with
-            | Some img, _ -> assetUrl site img
-            | None, Some img -> assetUrl site img
-            | _ -> assetUrl site "img/backgrounds/explore-bg.jpg"
+        let contentNodes =
+            [ pageHeader page.Title page.Subtitle page.Description None
+              article [ _class "prose" ] [ rawText htmlContent ] ]
 
-        doctypeHtml
-            []
-            [ headNode site page
-              body
-                  []
-                  [ navNode site
-                    header
-                        [ _class "intro-header"
-                          attr "style" (sprintf "background-image: url('%s')" headerImage) ]
-                        [ div
-                              [ _class "container-fluid" ]
-                              [ div
-                                    [ _class "row" ]
-                                    [ div
-                                          [ _class "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" ]
-                                          [ div
-                                                [ _class "site-heading" ]
-                                                [ div
-                                                      [ _class "frame" ]
-                                                      [ h1 [] [ str page.Title ]
-                                                        hr [ _class "small" ]
-                                                        span
-                                                            [ _class "subheading" ]
-                                                            [ str (
-                                                                  page.Description
-                                                                  |> Option.defaultValue site.Description
-                                                              ) ] ] ] ] ] ] ]
-                    div
-                        [ _class "container-fluid" ]
-                        [ div
-                              [ _class "row" ]
-                              [ div [ _class "col-lg-9" ] [ rawText htmlContent ]
-                                div [ _class "col-lg-3 widget-column" ] (sidebar site categories tags true) ] ]
-                    footerNode site
-                    analyticsNode site ] ]
+        layoutDocument site page contentNodes false
 
     let simpleDocument (site: SiteConfig) (page: PageMeta) (htmlContent: string) =
-        doctypeHtml
-            []
-            [ headNode site page
-              body [] [ navNode site; rawText htmlContent; footerNode site; analyticsNode site ] ]
+        layoutDocument site page [ rawText htmlContent ] false
 
-    let private featuredPostPreview (site: SiteConfig) (post: ContentItem) =
-        let author = post.Meta.Author |> Option.defaultValue site.Title
+    let private topicButtons (site: SiteConfig) =
+        if List.isEmpty site.Topics then
+            rawText ""
+        else
+            section
+                [ _class "home-section" ]
+                [ h2 [] [ str "Topics" ]
+                  div
+                      [ _class "topic-grid" ]
+                      (site.Topics
+                       |> List.map (fun t ->
+                           a
+                               [ _class "topic-pill"
+                                 _href (assetUrl site (sprintf "topics/%s/" t.Id))
+                                 _title t.Description ]
+                               [ str t.Name ])) ]
 
-        let dateStr =
-            match post.PageMeta.Date with
-            | Some d -> d.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)
-            | None -> ""
+    let private recentPosts
+        (site: SiteConfig)
+        (posts: ContentItem list)
+        (pageNumber: int)
+        (olderUrl: string option)
+        (newerUrl: string option)
+        =
+        let title =
+            if pageNumber = 1 then
+                "Recent Posts"
+            else
+                sprintf "Posts (page %d)" pageNumber
 
-        let socialImgUrl = post.Meta.SocialImage |> Option.map (assetUrl site)
+        let postItems =
+            posts
+            |> List.map (fun post ->
+                let dateStr = formatDate post.PageMeta.Date
 
-        div
-            [ _class "post-preview jumbotron" ]
-            [ h1 [ _class "post-title" ] [ a [ _href (assetUrl site post.PageMeta.Url) ] [ str post.PageMeta.Title ] ]
-              match post.PageMeta.Subtitle with
-              | Some sub -> em [ _class "post-subtitle" ] [ str sub ]
-              | None -> rawText ""
-              p [ _class "post-meta" ] [ str (sprintf "Posted by %s on %s" author dateStr) ]
-              yield!
-                  (post.PageMeta.Topics
-                   |> List.map (fun id ->
-                       let topicOpt = site.Topics |> List.tryFind (fun t -> t.Id = id)
-                       let name = topicOpt |> Option.map (fun t -> t.Name) |> Option.defaultValue id
-                       let desc = topicOpt |> Option.map (fun t -> t.Description) |> Option.defaultValue ""
+                li
+                    []
+                    [ a [ _href (assetUrl site post.PageMeta.Url) ] [ str post.PageMeta.Title ]
+                      span [ _class "post-date" ] [ str dateStr ] ])
 
-                       a
-                           [ _href (assetUrl site (sprintf "topics/%s/" id)); _title desc ]
-                           [ span [ _class "label label-default" ] [ str name ] ]))
-              match socialImgUrl with
-              | Some imgUrl ->
-                  img
-                      [ _src imgUrl
-                        _alt "Social image"
-                        _class "img-rounded pull-right"
-                        attr "width" "280"
-                        attr "style" "margin-left: 1em;" ]
-              | None -> rawText ""
-              match post.ExcerptHtml with
-              | Some excerpt -> p [ attr "align" "justify" ] [ rawText excerpt ]
-              | None -> rawText ""
-              p
-                  [ _class "text-left" ]
-                  [ a
-                        [ _class "btn btn-primary btn-lg"
-                          _href (assetUrl site post.PageMeta.Url)
-                          attr "role" "button" ]
-                        [ str "Read more" ] ]
-              div [ _class "clearfix" ] []
-              hr [] ]
+        let pagerItem label url =
+            a [ _class "pager-link"; _href (assetUrl site url) ] [ str label ]
 
-    let private postListItem (site: SiteConfig) (post: ContentItem) (defaultSocialImg: string option) =
-        let author = post.Meta.Author |> Option.defaultValue site.Title
+        let pagerNodes =
+            [ newerUrl |> Option.map (pagerItem "Newer")
+              olderUrl |> Option.map (pagerItem "Older") ]
+            |> List.choose id
 
-        let dateStr =
-            match post.PageMeta.Date with
-            | Some d -> d.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)
-            | None -> ""
-
-        let socialImg =
-            post.Meta.SocialImage
-            |> Option.orElse defaultSocialImg
-            |> Option.map (assetUrl site)
-            |> Option.defaultValue (assetUrl site "img/explore-590.jpg")
-
-        div
-            [ _class "post-preview" ]
-            [ img
-                  [ _src socialImg
-                    _alt "Social image"
-                    _class "img-rounded pull-left"
-                    attr "width" "110"
-                    attr "style" "margin-right: 1em;" ]
-              a
-                  [ _href (assetUrl site post.PageMeta.Url) ]
-                  [ h2 [ _class "post-title" ] [ str post.PageMeta.Title ]
-                    match post.PageMeta.Subtitle with
-                    | Some sub -> h3 [ _class "post-subtitle" ] [ str sub ]
-                    | None -> rawText "" ]
-              p [ _class "post-meta" ] [ str (sprintf "Posted by %s on %s" author dateStr) ]
-              yield!
-                  (post.PageMeta.Topics
-                   |> List.map (fun id ->
-                       let topicOpt = site.Topics |> List.tryFind (fun t -> t.Id = id)
-                       let name = topicOpt |> Option.map (fun t -> t.Name) |> Option.defaultValue id
-                       let desc = topicOpt |> Option.map (fun t -> t.Description) |> Option.defaultValue ""
-
-                       a
-                           [ _href (assetUrl site (sprintf "topics/%s/" id)); _title desc ]
-                           [ span [ _class "label label-default" ] [ str name ] ])) ]
-
-    let private indexPager (site: SiteConfig) (olderUrl: string option) (newerUrl: string option) =
-        ul
-            [ _class "pager" ]
-            [ match olderUrl with
-              | Some url -> li [ _class "previous" ] [ a [ _href (assetUrl site url) ] [ rawText "&larr; Older" ] ]
-              | None -> rawText ""
-              match newerUrl with
-              | Some url ->
-                  li
-                      [ _class "next" ]
-                      [ a [ _class "pagination-item newer"; _href (assetUrl site url) ] [ rawText "Newer &rarr;" ] ]
-              | None -> rawText "" ]
+        section
+            [ _class "home-section" ]
+            [ h2 [] [ str title ]
+              ul [ _class "post-list" ] postItems
+              if List.isEmpty pagerNodes then
+                  rawText ""
+              else
+                  div [ _class "pager" ] pagerNodes ]
 
     let indexDocument
         (site: SiteConfig)
@@ -675,18 +380,10 @@ module Layouts =
         (posts: ContentItem list)
         (pageNumber: int)
         (totalPages: int)
-        (defaultSocialImg: string option)
-        (categories: (string * int) list)
-        (tags: (string * int) list)
+        (_defaultSocialImg: string option)
+        (_categories: (string * int) list)
+        (_tags: (string * int) list)
         =
-        let headerImage =
-            match page.HeaderImage, site.HeaderImage with
-            | Some img, _ -> assetUrl site img
-            | None, Some img -> assetUrl site img
-            | _ -> assetUrl site "img/backgrounds/explore-bg.jpg"
-
-        let isFirstPage = pageNumber = 1
-
         let olderUrl =
             if pageNumber < totalPages then
                 Some(sprintf "page/%d/" (pageNumber + 1))
@@ -701,55 +398,23 @@ module Layouts =
             else
                 None
 
-        let headerNode =
-            if isFirstPage then
-                header
-                    [ _class "intro-header"
-                      attr "style" (sprintf "background-image: url('%s')" headerImage) ]
-                    [ div
-                          [ _class "container-fluid" ]
-                          [ div
-                                [ _class "row" ]
-                                [ div
-                                      [ _class "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" ]
-                                      [ div
-                                            [ _class "site-heading" ]
-                                            [ div
-                                                  [ _class "frame" ]
-                                                  [ h1 [] [ str page.Title ]
-                                                    hr [ _class "small" ]
-                                                    span
-                                                        [ _class "subheading" ]
-                                                        [ str (page.Description |> Option.defaultValue site.Description) ] ] ] ] ] ] ]
+        let hero =
+            if pageNumber = 1 then
+                Some(
+                    header
+                        [ _class "home-hero" ]
+                        [ h1 [] [ str site.Title ]
+                          p [ _class "home-tagline" ] [ str site.Description ]
+                          hr [] ]
+                )
             else
-                header
-                    [ _class "intro-header header-sliver"
-                      attr "style" "background-image: url('/img/backgrounds/blog-sliver.jpg')" ]
-                    []
+                None
 
-        let content =
-            match posts with
-            | [] -> []
-            | featured :: rest when isFirstPage ->
-                [ featuredPostPreview site featured
-                  yield! (rest |> List.collect (fun p -> [ postListItem site p defaultSocialImg; hr [] ])) ]
-            | _ -> posts |> List.collect (fun p -> [ postListItem site p defaultSocialImg; hr [] ])
+        let contentNodes =
+            [ hero |> Option.defaultValue (rawText "")
+              div [ _class "home-grid" ] [ topicButtons site; recentPosts site posts pageNumber olderUrl newerUrl ] ]
 
-        doctypeHtml
-            []
-            [ headNode site page
-              body
-                  []
-                  [ navNode site
-                    headerNode
-                    div
-                        [ _class "container-fluid" ]
-                        [ div
-                              [ _class "row" ]
-                              [ div [ _class "col-lg-9" ] (content @ [ indexPager site olderUrl newerUrl ])
-                                div [ _class "col-lg-3 widget-column" ] (sidebar site categories tags true) ] ]
-                    footerNode site
-                    analyticsNode site ] ]
+        layoutDocument site page contentNodes false
 
     let categoryDocument
         (site: SiteConfig)
@@ -782,20 +447,9 @@ module Layouts =
                 li
                     []
                     [ a [ _href (assetUrl site p.PageMeta.Url) ] [ str p.PageMeta.Title ]
-                      str (
-                          sprintf
-                              " - %s"
-                              (match p.PageMeta.Date with
-                               | Some d -> d.ToString("MMM dd, yyyy")
-                               | None -> "")
-                      ) ])
+                      span [ _class "post-date" ] [ str (formatDate p.PageMeta.Date) ] ])
 
-        pageDocument
-            site
-            page
-            (RenderView.AsString.htmlNodes [ h2 [] [ str categoryName ]; ul [] postLinks ])
-            categories
-            tags
+        pageDocument site page (RenderView.AsString.htmlNodes [ ul [ _class "post-list" ] postLinks ]) categories tags
 
     let tagDocument
         (site: SiteConfig)
@@ -828,17 +482,6 @@ module Layouts =
                 li
                     []
                     [ a [ _href (assetUrl site p.PageMeta.Url) ] [ str p.PageMeta.Title ]
-                      str (
-                          sprintf
-                              " - %s"
-                              (match p.PageMeta.Date with
-                               | Some d -> d.ToString("MMM dd, yyyy")
-                               | None -> "")
-                      ) ])
+                      span [ _class "post-date" ] [ str (formatDate p.PageMeta.Date) ] ])
 
-        pageDocument
-            site
-            page
-            (RenderView.AsString.htmlNodes [ h2 [] [ str tagName ]; ul [] postLinks ])
-            categories
-            tags
+        pageDocument site page (RenderView.AsString.htmlNodes [ ul [ _class "post-list" ] postLinks ]) categories tags
