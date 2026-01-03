@@ -84,7 +84,7 @@ q() {
     local out
 
     # Ask the agent
-    out=$(opencode run --agent terminal "$prompt")
+    out=$(opencode run --agent plan "Use @terminal to lookup and format the following question, then return the raw result as is: $prompt")
     printf "%s\n" "$out"
 
     # Extract command starting with "CMD:"
