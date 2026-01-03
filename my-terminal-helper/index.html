@@ -54,7 +54,7 @@ q() {
     local out
 
     # Ask the agent
-    out=$(opencode run --agent terminal &quot;$prompt&quot;)
+    out=$(opencode run --agent plan &quot;Use @terminal to lookup and format the following question, then return the raw result as is: $prompt&quot;)
     printf &quot;%s\n&quot; &quot;$out&quot;
 
     # Extract command starting with &quot;CMD:&quot;

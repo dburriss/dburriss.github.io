@@ -2,7 +2,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/" />
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml" />
-  <updated>2026-01-03T10:40:46Z</updated>
+  <updated>2026-01-03T11:04:35Z</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -262,7 +262,7 @@ q() {
     local out
 
     # Ask the agent
-    out=$(opencode run --agent terminal &amp;quot;$prompt&amp;quot;)
+    out=$(opencode run --agent plan &amp;quot;Use @terminal to lookup and format the following question, then return the raw result as is: $prompt&amp;quot;)
     printf &amp;quot;%s\n&amp;quot; &amp;quot;$out&amp;quot;
 
     # Extract command starting with &amp;quot;CMD:&amp;quot;
