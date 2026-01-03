@@ -25,6 +25,9 @@ dotnet tool install dotnet-serve
 
 # Build in debug mode and serve on a custom port
 ./run.sh --serve --debug --port 5000
+
+# Run in watch mode (rebuilds on changes)
+./run.sh --watch
 ```
 
 ### Windows (PowerShell)
@@ -38,6 +41,9 @@ dotnet tool install dotnet-serve
 
 # Build in debug mode and serve on a custom port
 ./run.ps1 -Serve -Debug -Port 5000
+
+# Run in watch mode (rebuilds on changes)
+./run.ps1 -Watch
 ```
 
 ## Project Structure
@@ -97,6 +103,26 @@ To skip opening the editor, use:
 ./new-draft.sh --no-editor
 # or
 ./new-draft.ps1 -NoEditor
+```
+
+### Promoting Drafts
+
+When a draft is ready for publication, use the `promote-draft` script to move it to `_posts/` and set `published: true`.
+
+#### Linux/macOS
+
+```bash
+./promote-draft.sh
+# or with a custom date
+./promote-draft.sh --date 2025-12-25
+```
+
+#### Windows (PowerShell)
+
+```powershell
+./promote-draft.ps1
+# or with a custom date
+./promote-draft.ps1 -Date 2025-12-25
 ```
 
 ### Front Matter
@@ -172,10 +198,36 @@ The SiteRenderer supports these command-line options:
 
 ## Development
 
-### Building the Renderer
+### Building and Rendering
+
+You can use the helper scripts for individual steps of the process:
+
+#### Build Project
 
 ```bash
-dotnet build ./src/SiteRenderer/SiteRenderer.fsproj
+# Linux/macOS
+./build.sh          # Release mode
+./build.sh --debug  # Debug mode
+```
+
+```powershell
+# Windows
+./build.ps1
+./build.ps1 -Debug
+```
+
+#### Render Site
+
+To regenerate the site content without rebuilding the binary:
+
+```bash
+# Linux/macOS
+./render.sh
+```
+
+```powershell
+# Windows
+./render.ps1
 ```
 
 ### Formatting Code
