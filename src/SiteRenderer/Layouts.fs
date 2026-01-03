@@ -357,12 +357,12 @@ module Layouts =
                     [ a [ _href (assetUrl site post.PageMeta.Url) ] [ str post.PageMeta.Title ]
                       span [ _class "post-date" ] [ str dateStr ] ])
 
-        let pagerItem label url =
-            a [ _class "pager-link"; _href (assetUrl site url) ] [ str label ]
+        let pagerItem cls label url =
+            a [ _class (sprintf "pager-link %s" cls); _href (assetUrl site url) ] [ str label ]
 
         let pagerNodes =
-            [ newerUrl |> Option.map (pagerItem "Newer")
-              olderUrl |> Option.map (pagerItem "Older") ]
+            [ olderUrl |> Option.map (pagerItem "pager-older" "< Older")
+              newerUrl |> Option.map (pagerItem "pager-newer" "Newer >") ]
             |> List.choose id
 
         section
