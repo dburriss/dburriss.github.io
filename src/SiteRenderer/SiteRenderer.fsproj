@@ -22,4 +22,8 @@
     <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="9.0.0" />
     <PackageReference Include="YamlDotNet" Version="15.1.2" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Watch Include="../../css/site.css;../../js/theme.js" Exclude="bin/**/*;obj/**/*" />
+  </ItemGroup>
 </Project>
