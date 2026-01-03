@@ -4,11 +4,12 @@
 TBD - created by archiving change migrate-blog-to-fsharp-renderer. Update Purpose after archive.
 ## Requirements
 ### Requirement: F# Rendering Pipeline
-The site SHALL render Markdown content using F# scripts with Giraffe.ViewEngine components, producing HTML that matches current layouts, metadata, and URLs.
+The site SHALL render Markdown content using F# scripts with Giraffe.ViewEngine components, producing HTML that preserves current URLs, metadata, and feed structure. The visual layout and styling MAY evolve over time as governed by the active theme specifications.
 
 #### Scenario: Posts rendered with preserved permalinks
 - **WHEN** the renderer processes an existing Markdown post with front matter
-- **THEN** it emits HTML whose permalink, canonical URL, and metadata match the current Pretzel output.
+- **THEN** it emits HTML whose permalink and canonical URL remain stable
+- **AND** it preserves essential metadata (title, description, author, date)
 
 ### Requirement: Layouts converted to F# components
 The F# Giraffe components SHALL render post and page layouts using topics for navigation and labeling instead of categories/tags.
@@ -34,11 +35,11 @@ The project SHALL provide documented commands for authors to run the F# renderer
 
 #### Scenario: Local build command available
 - **WHEN** a developer executes `./run.ps1` or `./run.sh`
-- **THEN** the renderer outputs the full static site to `_site/` ready for review with the same layout and feed structure.
+- **THEN** the renderer outputs the full static site to `_site/` ready for review
 
 #### Scenario: Local preview with serve option
 - **WHEN** a developer executes `./run.ps1 -Serve` or `./run.sh --serve`
-- **THEN** the site is built and served locally for browser preview.
+- **THEN** the site is built and served locally for browser preview
 
 ### Requirement: Draft creation script available
 The new-draft scripts SHALL prompt for and require `topics` (list of topic IDs) and `keywords` in front matter; legacy `category`/`tags` SHALL NOT be required.
