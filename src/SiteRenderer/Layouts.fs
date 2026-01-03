@@ -358,7 +358,7 @@ module Layouts =
                       span [ _class "post-date" ] [ str dateStr ] ])
 
         let pagerItem cls label url =
-            a [ _class (sprintf "pager-link %s" cls); _href (assetUrl site url) ] [ str label ]
+            a [ _class (sprintf "pager-link %s" cls); _href (assetUrl site url + "#posts") ] [ str label ]
 
         let pagerNodes =
             [ olderUrl |> Option.map (pagerItem "pager-older" "< Older")
@@ -366,7 +366,7 @@ module Layouts =
             |> List.choose id
 
         section
-            [ _class "home-section" ]
+            [ _class "home-section"; _id "posts" ]
             [ h2 [] [ str title ]
               ul [ _class "post-list" ] postItems
               if List.isEmpty pagerNodes then
@@ -399,16 +399,13 @@ module Layouts =
                 None
 
         let hero =
-            if pageNumber = 1 then
-                Some(
-                    header
-                        [ _class "home-hero" ]
-                        [ h1 [] [ str site.Title ]
-                          p [ _class "home-tagline" ] [ str site.Description ]
-                          hr [] ]
-                )
-            else
-                None
+            Some(
+                header
+                    [ _class "home-hero" ]
+                    [ h1 [] [ str site.Title ]
+                      p [ _class "home-tagline" ] [ str site.Description ]
+                      hr [] ]
+            )
 
         let contentNodes =
             [ hero |> Option.defaultValue (rawText "")
