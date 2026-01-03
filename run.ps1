@@ -10,6 +10,9 @@
 .PARAMETER Serve
     If specified, serves the generated site locally after building.
 
+.PARAMETER Watch
+    If specified, runs the project in watch mode (dotnet watch run).
+
 .PARAMETER Debug
     If specified, builds in Debug configuration instead of Release.
 
@@ -25,6 +28,10 @@
     Builds and serves the site locally.
 
 .EXAMPLE
+    ./build.ps1 -Watch
+    Runs the site generation in watch mode.
+
+.EXAMPLE
     ./build.ps1 -Serve -Debug -Port 5000
     Builds in Debug mode and serves on port 5000.
 #>
@@ -32,6 +39,7 @@
 [CmdletBinding()]
 param(
     [switch]$Serve,
+    [switch]$Watch,
     [switch]$Debug,
     [int]$Port = 8080
 )
@@ -41,6 +49,12 @@ $ErrorActionPreference = "Stop"
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $Project = Join-Path $ScriptDir "src/SiteRenderer/SiteRenderer.fsproj"
 $OutputDir = Join-Path $ScriptDir "_site"
+
+if ($Watch) {
+    Write-Host "Starting SiteRenderer in watch mode..." -ForegroundColor Cyan
+    dotnet watch --project $Project run -- --source $ScriptDir --output $OutputDir
+    return
+}
 
 $Configuration = if ($Debug) { "Debug" } else { "Release" }
 
