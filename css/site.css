@@ -16,7 +16,7 @@
   --link-hover: #7b9669;
 
   --max-width: 68rem;
-  --radius: 6px;
+  --radius: 0px;
   --line: 1.65;
 
   --code-bg: #f4f4f4;
@@ -56,7 +56,10 @@ html[data-theme="light"] {
 }
 
 html[data-theme="dark"] {
-  --bg: #404e3b;
+ /*
+  * #404E3B
+  */
+  --bg: #242c21;
   --bg-accent: #6c8480;
   --fg: #e6e6e6;
   --muted: #bac8b1;
@@ -212,7 +215,7 @@ hr {
   display: inline-block;
   text-decoration: none;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 0px;
   padding: 0.25rem 0.6rem;
 }
 
