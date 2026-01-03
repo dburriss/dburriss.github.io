@@ -1,4 +1,23 @@
 #!/bin/bash
+
+# publish.sh - Publishes the site to GitHub Pages
+#
+# DESCRIPTION:
+#   This script commits the contents of _site (a git submodule) and force-pushes
+#   to the master branch. It can be run locally for testing or called by CI.
+#
+# USAGE:
+#   ./publish.sh [OPTIONS]
+#
+# OPTIONS:
+#   -n, --dry-run       Show what would be committed without making changes
+#   -m, --message MSG   Custom commit message (default: "Deploy site [skip ci]")
+#
+# EXAMPLES:
+#   ./publish.sh
+#   ./publish.sh --dry-run
+#   ./publish.sh --message "New blog post"
+
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

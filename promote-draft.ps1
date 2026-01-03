@@ -1,4 +1,28 @@
-# promote-draft.ps1 - Interactive script to promote draft posts to publication
+#!/usr/bin/env pwsh
+<#
+.SYNOPSIS
+    Interactive script to promote draft posts to publication.
+
+.DESCRIPTION
+    This script lists available drafts in the _drafts/ directory and allows
+    you to select one for promotion. The selected draft will be moved to
+    _posts/ with a proper date prefix and its front matter will be updated
+    to set published: true.
+
+.PARAMETER Date
+    Custom publish date (YYYY-MM-DD format). If not provided, uses today's date.
+
+.PARAMETER Help
+    Shows the internal help message (deprecated, use Get-Help).
+
+.EXAMPLE
+    ./promote-draft.ps1
+    Promote a draft with today's date.
+
+.EXAMPLE
+    ./promote-draft.ps1 -Date 2025-12-25
+    Promote a draft with a custom date.
+#>
 
 param(
     [string]$Date = "",

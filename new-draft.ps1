@@ -1,4 +1,24 @@
-# new-draft.ps1 - Interactive script to create new blog draft posts
+#!/usr/bin/env pwsh
+<#
+.SYNOPSIS
+    Interactive script to create new blog draft posts.
+
+.DESCRIPTION
+    Creates a new Markdown draft in `_drafts/` with required `topics` and
+    `keywords` front matter. Prompts the user for title, subtitle, category,
+    tags, and header image.
+
+.PARAMETER NoEditor
+    If specified, skips opening the created file in an editor.
+
+.EXAMPLE
+    ./new-draft.ps1
+    Runs the interactive wizard.
+
+.EXAMPLE
+    ./new-draft.ps1 -NoEditor
+    Runs the wizard but does not open the editor.
+#>
 
 param(
     [switch]$NoEditor

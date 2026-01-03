@@ -1,6 +1,23 @@
 #!/bin/bash
 
 # promote-draft.sh - Interactive script to promote draft posts to publication
+#
+# DESCRIPTION:
+#   This script lists available drafts in the _drafts/ directory and allows
+#   you to select one for promotion. The selected draft will be moved to
+#   _posts/ with a proper date prefix and its front matter will be updated
+#   to set published: true.
+#
+# USAGE:
+#   ./promote-draft.sh [OPTIONS]
+#
+# OPTIONS:
+#   -d, --date DATE     Custom publish date (YYYY-MM-DD format)
+#   -h, --help          Show help message
+#
+# EXAMPLES:
+#   ./promote-draft.sh                    # Promote with today's date
+#   ./promote-draft.sh -d 2025-12-25      # Promote with custom date
 
 set -e
 

@@ -50,6 +50,11 @@ $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $Project = Join-Path $ScriptDir "src/SiteRenderer/SiteRenderer.fsproj"
 $OutputDir = Join-Path $ScriptDir "_site"
 
+if ($Serve -and $Watch) {
+    Write-Error "Cannot use -Serve and -Watch together."
+    exit 1
+}
+
 if ($Watch) {
     Write-Host "Starting SiteRenderer in watch mode..." -ForegroundColor Cyan
     dotnet watch --project $Project run -- --source $ScriptDir --output $OutputDir

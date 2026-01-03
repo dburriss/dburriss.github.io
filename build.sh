@@ -1,4 +1,20 @@
 #!/bin/bash
+
+# build.sh - Builds the F# SiteRenderer solution
+#
+# DESCRIPTION:
+#   This script builds the F# SiteRenderer project in the specified configuration.
+#
+# USAGE:
+#   ./build.sh [OPTIONS]
+#
+# OPTIONS:
+#   -d, --debug         Build in Debug configuration (default: Release)
+#
+# EXAMPLES:
+#   ./build.sh          # Build in Release mode
+#   ./build.sh --debug  # Build in Debug mode
+
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

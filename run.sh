@@ -1,4 +1,26 @@
 #!/bin/bash
+
+# run.sh - Builds and optionally serves the blog site
+#
+# DESCRIPTION:
+#   This script builds the F# SiteRenderer project, generates the static site,
+#   and optionally serves it locally for preview.
+#
+# USAGE:
+#   ./run.sh [OPTIONS]
+#
+# OPTIONS:
+#   -s, --serve         Serve the generated site locally after building
+#   -w, --watch         Run in watch mode (rebuilds on changes)
+#   -d, --debug         Build in Debug configuration (default: Release)
+#   -p, --port PORT     Port number for the local server (default: 8080)
+#
+# EXAMPLES:
+#   ./run.sh                    # Build and generate site
+#   ./run.sh --serve            # Build, generate, and serve
+#   ./run.sh --watch            # Run in watch mode
+#   ./run.sh --serve --port 9000 # Serve on port 9000
+
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -36,6 +58,11 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
+
+if [ "$SERVE" = true ] && [ "$WATCH" = true ]; then
+    echo "Error: Cannot use --serve and --watch together."
+    exit 1
+fi
 
 if [ "$WATCH" = true ]; then
     echo "Starting SiteRenderer in watch mode..."
