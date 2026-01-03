@@ -78,6 +78,9 @@ dotnet build "$PROJECT" -c "$CONFIGURATION"
 echo "Generating site..."
 dotnet run --project "$PROJECT" -c "$CONFIGURATION" --no-build -- --source "$SCRIPT_DIR" --output "$OUTPUT_DIR"
 
+echo "Building search index..."
+bun run scripts/build-search-index.ts
+
 echo "Site generated at $OUTPUT_DIR"
 
 # Optionally serve the generated site

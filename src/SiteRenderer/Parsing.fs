@@ -233,6 +233,9 @@ module Parsing =
     let markdownToHtml (markdown: string) =
         Markdown.ToHtml(markdown, markdownPipeline)
 
+    let markdownToPlainText (markdown: string) =
+        Markdown.ToPlainText(markdown, markdownPipeline)
+
     let readAllMarkdown (root: string) (pattern: string) =
         Directory.GetFiles(root, pattern, SearchOption.AllDirectories) |> Array.toList
 

@@ -77,6 +77,13 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
+Write-Host "Building search index..." -ForegroundColor Cyan
+bun run scripts/build-search-index.ts
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Search index build failed"
+    exit 1
+}
+
 Write-Host "Site generated at $OutputDir" -ForegroundColor Green
 
 if ($Serve) {

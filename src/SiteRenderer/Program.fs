@@ -119,6 +119,16 @@ module Program =
                 Renderer.writeOutput outputDir rendered
                 printfn "Wrote output to %s" outputDir
 
+                // Generate search docs
+                let searchDir = Path.Combine(outputDir, "search")
+
+                if not (Directory.Exists(searchDir)) then
+                    Directory.CreateDirectory(searchDir) |> ignore
+
+                let searchDocsPath = Path.Combine(searchDir, "docs.json")
+                Search.generateDocs config.BaseUrl posts searchDocsPath
+                printfn "Generated search docs at %s" searchDocsPath
+
                 Renderer.copyStaticAssets sourceDir outputDir config.Include
                 printfn "Copied static assets"
 

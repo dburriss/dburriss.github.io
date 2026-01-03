@@ -117,7 +117,8 @@ module Layouts =
                link [ _rel "stylesheet"; _href (assetUrl site "css/highlight/atom-one-dark.css") ]
                // Theme init happens before styles load.
                script [] [ rawText themeInitScript ]
-               script [ _src (assetUrl site "js/theme.js"); attr "defer" "defer" ] [] ])
+               script [ _src (assetUrl site "js/theme.js"); attr "defer" "defer" ] []
+               script [ _type "module"; _src (assetUrl site "js/search-ui.js") ] [] ])
 
     let private navNode (site: SiteConfig) =
         let home = assetUrl site ""
@@ -126,7 +127,7 @@ module Layouts =
             [ _class "site-header" ]
             [ nav
                   [ _class "site-nav" ]
-                  [ // a [ _class "site-title"; _href home ] [ str site.Title ]
+                  [ a [ _class "site-title nav-badge"; _href home ] [ str "DEVON BURRISS" ]
                     ul
                         [ _class "site-links" ]
                         [ li [] [ a [ _href home ] [ str "Home" ] ]
@@ -402,8 +403,10 @@ module Layouts =
             Some(
                 header
                     [ _class "home-hero" ]
-                    [ h1 [] [ str site.Title ]
-                      p [ _class "home-tagline" ] [ str site.Description ]
+                    [ div
+                          [ _class "search-container" ]
+                          [ input [ _type "text"; _id "search-input"; _placeholder "Search posts..." ]
+                            div [ _id "search-results"; _class "search-results" ] [] ]
                       hr [] ]
             )
 

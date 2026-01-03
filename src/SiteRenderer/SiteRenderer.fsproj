@@ -12,6 +12,7 @@
     <Compile Include="Parsing.fs" />
     <Compile Include="Layouts.fs" />
     <Compile Include="Feeds.fs" />
+    <Compile Include="Search.fs" />
     <Compile Include="Renderer.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

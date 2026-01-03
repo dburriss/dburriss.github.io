@@ -101,3 +101,14 @@ type RenderContext =
 
 [<CLIMutable>]
 type RenderedPage = { OutputPath: string; Content: string }
+
+[<CLIMutable>]
+type SearchDoc =
+    { id: string
+      url: string
+      title: string
+      body: string
+      excerpt: string option
+      date: string option
+      keywords: string list
+      topics: string list }
