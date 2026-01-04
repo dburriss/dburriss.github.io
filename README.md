@@ -5,6 +5,7 @@ A personal blog built with F# and Giraffe.ViewEngine.
 ## Prerequisites
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
+- [Bun](https://bun.sh/) (for search index generation)
 - [dotnet-serve](https://github.com/natemcmaster/dotnet-serve) (for local preview)
 
 Install dotnet-serve:
@@ -59,8 +60,10 @@ dotnet tool install dotnet-serve
 │   ├── Parsing.fs    # Markdown and YAML parsing
 │   ├── Layouts.fs    # HTML templates using Giraffe.ViewEngine
 │   ├── Feeds.fs      # RSS and Atom feed generation
+│   ├── Search.fs     # Search document generation
 │   ├── Renderer.fs   # Site rendering pipeline
 │   └── Program.fs    # CLI entry point
+├── scripts/          # Helper scripts (search indexer)
 ├── css/              # Stylesheets
 ├── js/               # JavaScript files
 ├── img/              # Images
