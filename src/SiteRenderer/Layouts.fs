@@ -132,6 +132,7 @@ module Layouts =
                         [ _class "site-links" ]
                         [ li [] [ a [ _href home ] [ str "Home" ] ]
                           li [] [ a [ _href (assetUrl site "topics/") ] [ str "Topics" ] ]
+                          li [] [ a [ _href (assetUrl site "notes/") ] [ str "Notes" ] ]
                           li [] [ a [ _href (assetUrl site "recommended-reading.html") ] [ str "Reading" ] ]
                           li [] [ a [ _href (assetUrl site "about/") ] [ str "About" ] ]
                           li [] [ a [ _href (assetUrl site "rss.xml") ] [ str "RSS" ] ] ]
@@ -301,6 +302,55 @@ module Layouts =
               pagerLinks site page.Previous page.Next ]
 
         layoutDocument site page contentNodes true
+
+    let private backlinksSection (site: SiteConfig) (backlinks: string list) (allContent: ContentItem list) =
+        if List.isEmpty backlinks then
+            rawText ""
+        else
+            let contentMap =
+                allContent |> List.map (fun item -> (item.PageMeta.Url, item)) |> Map.ofList
+
+            let backlinkNodes =
+                backlinks
+                |> List.choose (fun url ->
+                    Map.tryFind url contentMap
+                    |> Option.map (fun item ->
+                        li [] [ a [ _href (assetUrl site item.PageMeta.Url) ] [ str item.PageMeta.Title ] ]))
+
+            section [ _class "backlinks" ] [ h2 [] [ str "Linked from" ]; ul [ _class "link-list" ] backlinkNodes ]
+
+    let noteDocument
+        (site: SiteConfig)
+        (page: PageMeta)
+        (htmlContent: string)
+        (status: string option)
+        (backlinks: string list)
+        (allContent: ContentItem list)
+        (_categories: (string * int) list)
+        (_tags: (string * int) list)
+        =
+        let statusBadge =
+            match status with
+            | Some s when not (String.IsNullOrWhiteSpace s) ->
+                Some(span [ _class (sprintf "note-status status-%s" (s.ToLowerInvariant())) ] [ str s ])
+            | _ -> None
+
+        let metaNode =
+            match statusBadge with
+            | Some badge -> Some(p [ _class "note-meta" ] [ badge ])
+            | None -> None
+
+        let contentNodes =
+            [ fragment
+                  []
+                  [ pageHeader page.Title page.Subtitle None metaNode
+                    topicLinks site page.Topics
+                    hr [] ]
+              article [ _class "prose" ] [ rawText htmlContent ]
+              hr []
+              backlinksSection site backlinks allContent ]
+
+        layoutDocument site page contentNodes false
 
     let pageDocument
         (site: SiteConfig)

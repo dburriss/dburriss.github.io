@@ -102,7 +102,34 @@ module Program =
                 let pages = Renderer.loadPages sourceDir
                 printfn "Loaded %d pages" pages.Length
 
-                let index = Renderer.buildSiteIndex posts pages
+                let notesDir = Path.Combine(sourceDir, "notes")
+                let notes = Renderer.loadNotes notesDir
+                printfn "Loaded %d notes" notes.Length
+
+                let initialIndex = Renderer.buildSiteIndex posts pages notes
+                let index, linkWarnings = Renderer.resolveWikiLinks initialIndex
+
+                // Print link resolution warnings
+                if linkWarnings.Length > 0 then
+                    printfn ""
+                    printfn "Link resolution warnings:"
+
+                    for warning in linkWarnings do
+                        printfn "  - %s" warning
+
+                    printfn ""
+
+                // Detect and report orphaned notes
+                let orphanedNotes = Renderer.detectOrphanedNotes index
+
+                if orphanedNotes.Length > 0 then
+                    printfn ""
+                    printfn "Orphaned notes detected:"
+
+                    for orphan in orphanedNotes do
+                        printfn "  - %s" orphan
+
+                    printfn ""
 
                 let ctx =
                     { Config = config
@@ -126,7 +153,7 @@ module Program =
                     Directory.CreateDirectory(searchDir) |> ignore
 
                 let searchDocsPath = Path.Combine(searchDir, "docs.json")
-                Search.generateDocs config.BaseUrl posts searchDocsPath
+                Search.generateDocs config.BaseUrl posts (index.Notes) searchDocsPath
                 printfn "Generated search docs at %s" searchDocsPath
 
                 Renderer.copyStaticAssets sourceDir outputDir config.Include

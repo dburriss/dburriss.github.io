@@ -34,6 +34,11 @@ module Renderer =
         else
             sprintf "%s.html" fileName
 
+    let private noteUrlFromPath (sourcePath: string) =
+        let fileName = Path.GetFileNameWithoutExtension(sourcePath)
+        let slug = Parsing.slugify fileName
+        sprintf "notes/%s/" slug
+
     let private buildPostSummary (item: ContentItem) : PostSummary =
         { Title = item.PageMeta.Title
           Url = item.PageMeta.Url
@@ -70,10 +75,10 @@ module Renderer =
             match meta.Permalink with
             | Some p -> p.TrimStart('/').TrimEnd('/') + "/"
             | None ->
-                if kind = "post" then
-                    postUrlFromPath sourcePath date
-                else
-                    pageUrlFromPath sourcePath
+                match kind with
+                | "post" -> postUrlFromPath sourcePath date
+                | "note" -> noteUrlFromPath sourcePath
+                | _ -> pageUrlFromPath sourcePath
 
         let outputPath =
             if url.EndsWith("/") then url + "index.html"
@@ -82,7 +87,13 @@ module Renderer =
             else url + "/index.html"
 
         let layout =
-            meta.Layout |> Option.defaultValue (if kind = "post" then "post" else "page")
+            meta.Layout
+            |> Option.defaultValue (
+                match kind with
+                | "post" -> "post"
+                | "note" -> "note"
+                | _ -> "page"
+            )
 
         let commentsEnabled =
             match meta.Comments with
@@ -138,6 +149,14 @@ module Renderer =
             not (fileName.StartsWith("_")))
         |> List.map (fun path -> loadContentItem path "page")
 
+    let loadNotes (notesDir: string) : ContentItem list =
+        if Directory.Exists(notesDir) then
+            Parsing.readAllMarkdown notesDir "*.md"
+            |> List.map (fun path -> loadContentItem path "note")
+            |> List.sortBy (fun item -> item.PageMeta.Title)
+        else
+            []
+
     let private assignPreviousNext (posts: ContentItem list) : ContentItem list =
         let indexed = posts |> List.mapi (fun i p -> (i, p))
 
@@ -157,8 +176,11 @@ module Renderer =
                         Previous = prev
                         Next = next } })
 
-    let buildSiteIndex (posts: ContentItem list) (pages: ContentItem list) : SiteIndex =
+    let buildSiteIndex (posts: ContentItem list) (pages: ContentItem list) (notes: ContentItem list) : SiteIndex =
         let postsWithNav = assignPreviousNext posts
+
+        // Combine posts and notes for topic indexing
+        let allContent = postsWithNav @ notes
 
         let categories =
             postsWithNav
@@ -175,7 +197,7 @@ module Renderer =
             |> Map.ofList
 
         let topics =
-            postsWithNav
+            allContent
             |> List.collect (fun p -> p.PageMeta.Topics |> List.map (fun t -> (t, p)))
             |> List.groupBy fst
             |> List.map (fun (topic, items) -> (topic, items |> List.map snd))
@@ -183,9 +205,126 @@ module Renderer =
 
         { Posts = postsWithNav
           Pages = pages
+          Notes = notes
           Categories = categories
           Tags = tags
-          Topics = topics }
+          Topics = topics
+          LinkGraph = Map.empty }
+
+    /// Build a lookup map from normalized titles to content items (notes and posts)
+    let private buildTitleLookup (allContent: ContentItem list) : Map<string, ContentItem list> =
+        allContent
+        |> List.groupBy (fun item -> Parsing.normalizeWikiLabel item.PageMeta.Title)
+        |> Map.ofList
+
+    /// Resolve wiki links in all content and build the link graph
+    let resolveWikiLinks (index: SiteIndex) : SiteIndex * string list =
+        let allContent = index.Posts @ index.Notes
+        let titleLookup = buildTitleLookup allContent
+
+        let mutable warnings = []
+
+        // For each content item, extract wiki links from its markdown and resolve them
+        let linkGraph =
+            allContent
+            |> List.map (fun item ->
+                match item.Markdown with
+                | Some markdown ->
+                    let wikiLinkLabels = Parsing.extractWikiLinks markdown
+
+                    let outboundLinks =
+                        wikiLinkLabels
+                        |> List.map (fun label ->
+                            let normalizedLabel = Parsing.normalizeWikiLabel label
+
+                            match Map.tryFind normalizedLabel titleLookup with
+                            | Some targets ->
+                                match targets with
+                                | [ target ] ->
+                                    // Exactly one match - resolved
+                                    { SourceUrl = item.PageMeta.Url
+                                      TargetLabel = label
+                                      ResolvedUrl = Some target.PageMeta.Url
+                                      IsResolved = true }
+                                | _ :: _ ->
+                                    // Multiple matches - ambiguous
+                                    warnings <-
+                                        (sprintf
+                                            "Ambiguous wiki link [[%s]] in %s (matches %d items)"
+                                            label
+                                            item.PageMeta.Url
+                                            targets.Length)
+                                        :: warnings
+
+                                    { SourceUrl = item.PageMeta.Url
+                                      TargetLabel = label
+                                      ResolvedUrl = None
+                                      IsResolved = false }
+                                | [] ->
+                                    // Empty list - unresolved
+                                    warnings <-
+                                        (sprintf "Unresolved wiki link [[%s]] in %s" label item.PageMeta.Url)
+                                        :: warnings
+
+                                    { SourceUrl = item.PageMeta.Url
+                                      TargetLabel = label
+                                      ResolvedUrl = None
+                                      IsResolved = false }
+                            | None ->
+                                // No match - unresolved
+                                warnings <-
+                                    (sprintf "Unresolved wiki link [[%s]] in %s" label item.PageMeta.Url)
+                                    :: warnings
+
+                                { SourceUrl = item.PageMeta.Url
+                                  TargetLabel = label
+                                  ResolvedUrl = None
+                                  IsResolved = false })
+
+                    (item.PageMeta.Url,
+                     { OutboundLinks = outboundLinks
+                       InboundLinks = [] })
+                | None ->
+                    (item.PageMeta.Url,
+                     { OutboundLinks = []
+                       InboundLinks = [] }))
+            |> Map.ofList
+
+        // Build inbound links by inverting the outbound links
+        let linkGraphWithBacklinks =
+            linkGraph
+            |> Map.map (fun sourceUrl metadata ->
+                let inboundLinks =
+                    linkGraph
+                    |> Map.toList
+                    |> List.collect (fun (otherUrl, otherMetadata) ->
+                        otherMetadata.OutboundLinks
+                        |> List.choose (fun link ->
+                            if link.IsResolved && link.ResolvedUrl = Some sourceUrl && otherUrl <> sourceUrl then
+                                Some otherUrl
+                            else
+                                None))
+
+                { metadata with
+                    InboundLinks = inboundLinks })
+
+        ({ index with
+            LinkGraph = linkGraphWithBacklinks },
+         warnings)
+
+    /// Detect orphaned notes (notes with no inbound links and not in navigation)
+    let detectOrphanedNotes (index: SiteIndex) : string list =
+        index.Notes
+        |> List.filter (fun note ->
+            // Only consider published notes
+            match note.Meta.Published with
+            | Some false -> false
+            | _ ->
+                // Check if the note has any inbound links
+                match Map.tryFind note.PageMeta.Url index.LinkGraph with
+                | Some metadata -> List.isEmpty metadata.InboundLinks
+                | None -> true)
+        |> List.map (fun note -> sprintf "Orphaned note: %s (%s)" note.PageMeta.Title note.PageMeta.Url)
 
     let private categoryCounts (index: SiteIndex) : (string * int) list =
         index.Categories
@@ -311,17 +450,34 @@ module Renderer =
             | Some d -> d.ToString("MMM dd, yyyy", CultureInfo.InvariantCulture)
             | None -> ""
 
+        // Separate posts and notes
+        let postItems = posts |> List.filter (fun p -> p.Kind = "post")
+        let noteItems = posts |> List.filter (fun p -> p.Kind = "note")
+
         let postLinks =
-            posts
+            postItems
             |> List.map (fun p ->
                 li
                     []
                     [ a [ _href (Parsing.combineUrl ctx.Config.BaseUrl p.PageMeta.Url) ] [ str p.PageMeta.Title ]
                       span [ _class "post-date" ] [ str (formatDate p.PageMeta.Date) ] ])
 
+        let noteLinks =
+            noteItems
+            |> List.map (fun n ->
+                li [] [ a [ _href (Parsing.combineUrl ctx.Config.BaseUrl n.PageMeta.Url) ] [ str n.PageMeta.Title ] ])
+
+        let htmlContent =
+            [ if not (List.isEmpty postItems) then
+                  h2 [] [ str "Posts" ]
+                  ul [ _class "post-list" ] postLinks
+              if not (List.isEmpty noteItems) then
+                  h2 [] [ str "Notes" ]
+                  ul [ _class "note-list" ] noteLinks ]
+
         let cats = categoryCounts ctx.Index
         let tags = tagCounts ctx.Index
-        let html = RenderView.AsString.htmlNodes [ ul [ _class "post-list" ] postLinks ]
+        let html = RenderView.AsString.htmlNodes htmlContent
         let doc = Layouts.pageDocument ctx.Config page html cats tags
 
         { OutputPath = sprintf "topics/%s/index.html" topicId
@@ -344,6 +500,79 @@ module Renderer =
         let doc = Layouts.pageDocument ctx.Config page.PageMeta page.HtmlContent cats tags
 
         { OutputPath = page.OutputPath
+          Content = RenderView.AsString.htmlDocument doc }
+
+    let renderNote (ctx: RenderContext) (note: ContentItem) : RenderedPage =
+        let cats = categoryCounts ctx.Index
+        let tags = tagCounts ctx.Index
+
+        // Get backlinks for this note
+        let backlinks =
+            match Map.tryFind note.PageMeta.Url ctx.Index.LinkGraph with
+            | Some metadata -> metadata.InboundLinks
+            | None -> []
+
+        // Get all content for backlinks section
+        let allContent = ctx.Index.Posts @ ctx.Index.Notes
+
+        let doc =
+            Layouts.noteDocument
+                ctx.Config
+                note.PageMeta
+                note.HtmlContent
+                note.Meta.Status
+                backlinks
+                allContent
+                cats
+                tags
+
+        { OutputPath = note.OutputPath
+          Content = RenderView.AsString.htmlDocument doc }
+
+    let renderNotesIndex (ctx: RenderContext) : RenderedPage =
+        let pageMeta =
+            { Title = "Notes"
+              Subtitle = None
+              Description = Some "A collection of evolving notes and thoughts"
+              Author = None
+              Date = None
+              HeaderImage = None
+              SocialImage = None
+              Url = "notes/"
+              Tags = []
+              Categories = []
+              Topics = []
+              Related = []
+              Previous = None
+              Next = None
+              CommentsEnabled = false
+              Layout = "page" }
+
+        // Only show published notes in the index
+        let publishedNotes =
+            ctx.Index.Notes
+            |> List.filter (fun note ->
+                match note.Meta.Published with
+                | Some false -> false
+                | _ -> true)
+
+        let noteLinks =
+            publishedNotes
+            |> List.map (fun n ->
+                li
+                    []
+                    [ a [ _href (Parsing.combineUrl ctx.Config.BaseUrl n.PageMeta.Url) ] [ str n.PageMeta.Title ]
+                      match n.Meta.Status with
+                      | Some status when not (String.IsNullOrWhiteSpace status) ->
+                          span [ _class "note-status-badge" ] [ str status ]
+                      | _ -> rawText "" ])
+
+        let cats = categoryCounts ctx.Index
+        let tags = tagCounts ctx.Index
+        let html = RenderView.AsString.htmlNodes [ ul [ _class "note-list" ] noteLinks ]
+        let doc = Layouts.pageDocument ctx.Config pageMeta html cats tags
+
+        { OutputPath = "notes/index.html"
           Content = RenderView.AsString.htmlDocument doc }
 
     let renderIndex
@@ -430,6 +659,8 @@ module Renderer =
     let renderSite (ctx: RenderContext) (postsPerPage: int) (defaultSocialImg: string option) : RenderedPage list =
         let postPages = ctx.Index.Posts |> List.map (renderPost ctx)
         let pagePages = ctx.Index.Pages |> List.map (renderPage ctx)
+        let notePages = ctx.Index.Notes |> List.map (renderNote ctx)
+        let notesIndexPage = [ renderNotesIndex ctx ]
 
         let totalPosts = ctx.Index.Posts.Length
         let totalIndexPages = (totalPosts + postsPerPage - 1) / postsPerPage
@@ -463,6 +694,8 @@ module Renderer =
 
         postPages
         @ pagePages
+        @ notePages
+        @ notesIndexPage
         @ indexPages
         @ topicPages
         @ topicsOverview

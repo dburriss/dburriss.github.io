@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Compile Include="Models.fs" />
+    <Compile Include="WikiLinkExtension.fs" />
     <Compile Include="Parsing.fs" />
     <Compile Include="Layouts.fs" />
     <Compile Include="Feeds.fs" />

@@ -167,7 +167,8 @@ module Parsing =
               Keywords = []
               Date = None
               Comments = None
-              Published = None }
+              Published = None
+              Status = None }
         else
             let mapping = loadYamlMapping frontMatter
             let get = tryGetScalar mapping
@@ -219,7 +220,8 @@ module Parsing =
               Keywords = normalizeList keywords
               Date = parseDate (get "date")
               Comments = parseBool (get "comments")
-              Published = parseBool (get "published") }
+              Published = parseBool (get "published")
+              Status = get "status" }
 
     let private excerptSeparator = "<!--more-->"
 
@@ -228,7 +230,7 @@ module Parsing =
         if idx >= 0 then Some(html.Substring(0, idx)) else None
 
     let markdownPipeline =
-        MarkdownPipelineBuilder().UseAdvancedExtensions().UsePipeTables().UseYamlFrontMatter().Build()
+        MarkdownPipelineBuilder().UseAdvancedExtensions().UsePipeTables().UseYamlFrontMatter().UseWikiLinks().Build()
 
     let markdownToHtml (markdown: string) =
         Markdown.ToHtml(markdown, markdownPipeline)
@@ -250,3 +252,14 @@ module Parsing =
         let trimmedBase = if baseUrl.EndsWith("/") then baseUrl else baseUrl + "/"
         let trimmed = relative.TrimStart('/')
         trimmedBase + trimmed
+
+    /// Extract wiki-style [[links]] from markdown text
+    let extractWikiLinks (markdown: string) : string list =
+        let pattern = @"\[\[([^\]]+)\]\]"
+        let matches = Regex.Matches(markdown, pattern)
+
+        [ for m in matches -> m.Groups.[1].Value.Trim() ]
+
+    /// Normalize a wiki link label for matching (trim, normalize spaces, case-insensitive)
+    let normalizeWikiLabel (label: string) : string =
+        label.Trim().Replace("  ", " ").ToLowerInvariant()

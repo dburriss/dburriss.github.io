@@ -46,7 +46,8 @@ type FrontMatter =
       Keywords: string list
       Date: DateTime option
       Comments: bool option
-      Published: bool option }
+      Published: bool option
+      Status: string option }
 
 [<CLIMutable>]
 type PageMeta =
@@ -86,12 +87,26 @@ type ContentItem =
       Kind: string }
 
 [<CLIMutable>]
+type WikiLink =
+    { SourceUrl: string
+      TargetLabel: string
+      ResolvedUrl: string option
+      IsResolved: bool }
+
+[<CLIMutable>]
+type LinkMetadata =
+    { OutboundLinks: WikiLink list
+      InboundLinks: string list }
+
+[<CLIMutable>]
 type SiteIndex =
     { Posts: ContentItem list
       Pages: ContentItem list
+      Notes: ContentItem list
       Categories: Map<string, ContentItem list>
       Tags: Map<string, ContentItem list>
-      Topics: Map<string, ContentItem list> }
+      Topics: Map<string, ContentItem list>
+      LinkGraph: Map<string, LinkMetadata> }
 
 [<CLIMutable>]
 type RenderContext =

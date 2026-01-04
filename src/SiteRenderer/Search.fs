@@ -8,9 +8,19 @@ open System.Text.RegularExpressions
 
 module Search =
 
-    let generateDocs (baseUrl: string) (posts: ContentItem list) (outputPath: string) =
+    let generateDocs (baseUrl: string) (posts: ContentItem list) (notes: ContentItem list) (outputPath: string) =
+        // Only include published notes
+        let publishedNotes =
+            notes
+            |> List.filter (fun note ->
+                match note.Meta.Published with
+                | Some false -> false
+                | _ -> true)
+
+        let allContent = posts @ publishedNotes
+
         let docs =
-            posts
+            allContent
             |> List.map (fun post ->
                 let plainText =
                     post.Markdown
