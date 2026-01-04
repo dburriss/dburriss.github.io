@@ -39,13 +39,6 @@ The site MUST NOT depend on Bootstrap or the existing “Clean Blog” styling.
 - **THEN** the HTML does not reference `bootstrap.css`/`bootstrap.min.css` or `bootstrap.js`/`bootstrap.min.js`
 - **AND** the HTML does not reference `clean-blog.css` or `clean-blog.js`
 
-### Requirement: No search UI introduced
-This change MUST NOT add a search bar UI or search behavior.
-
-#### Scenario: Homepage contains no search bar
-- **WHEN** a reader visits the homepage
-- **THEN** no search input is rendered
-
 ### Requirement: Theme selection, toggle, and persistence
 The site SHALL support both light and dark themes. The site SHALL select the initial theme using `prefers-color-scheme` unless an explicit reader preference has been persisted. The site SHALL provide a theme toggle control that allows the reader to switch themes, and SHALL persist that preference for future visits.
 
@@ -68,4 +61,31 @@ The site SHALL support both light and dark themes. The site SHALL select the ini
 - **WHEN** a reader navigates using keyboard-only controls
 - **THEN** the theme toggle can be focused and activated
 - **AND** it has an accessible label describing its purpose
+
+### Requirement: Homepage header provides search input
+The homepage header area SHALL present a search input as the primary call-to-action.
+
+#### Scenario: Homepage hero is replaced by search
+- **WHEN** a reader visits the homepage
+- **THEN** the header area contains a search input
+- **AND** the previous "Devon Burriss' Blog" header title/tagline content is not rendered in that location
+
+### Requirement: Navigation includes DEVON BURRISS badge
+The top navigation SHALL include a right-aligned badge with the text "DEVON BURRISS".
+
+#### Scenario: Badge appears on larger viewports
+- **WHEN** a reader views the site at a larger viewport width
+- **THEN** the top navigation displays the "DEVON BURRISS" badge to the right side of the navigation menu
+
+#### Scenario: Badge is hidden on smaller viewports
+- **WHEN** a reader views the site at a smaller viewport width
+- **THEN** the badge is hidden via a CSS media query
+
+### Requirement: Use existing navigation structure
+The implementation SHALL use the existing navigation structure and the currently commented-out navigation element as the insertion point for the badge.
+
+#### Scenario: Navigation remains consistent
+- **WHEN** a reader navigates between pages
+- **THEN** the navigation links and theme toggle remain present and functional
+- **AND** the badge is implemented within the existing nav structure
 
