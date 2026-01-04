@@ -253,12 +253,39 @@ module Parsing =
         let trimmed = relative.TrimStart('/')
         trimmedBase + trimmed
 
-    /// Extract wiki-style [[links]] from markdown text
+    /// Check if a wiki link label should be ignored (not treated as a wiki link)
+    let isWikiLinkIgnored (label: string) : bool =
+        let trimmed = label.Trim()
+
+        // Ignore common bash regex patterns and sed expressions
+        let ignorePatterns = [
+            "^:space:$"      // [[:space:]]
+            "^:alnum:$"      // [[:alnum:]]
+            "^:alpha:$"      // [[:alpha:]]
+            "^:digit:$"      // [[:digit:]]
+            "^:upper:$"      // [[:upper:]]
+            "^:lower:$"      // [[:lower:]]
+            "^:blank:$"      // [[:blank:]]
+            "^:cntrl:$"      // [[:cntrl:]]
+            "^:graph:$"      // [[:graph:]]
+            "^:print:$"      // [[:print:]]
+            "^:punct:$"      // [[:punct:]]
+            "^:xdigit:$"     // [[:xdigit:]]
+        ]
+
+        ignorePatterns |> List.exists (fun pattern -> Regex.IsMatch(trimmed, pattern))
+
+    /// Extract wiki-style [[links]] from markdown text, excluding certain patterns
     let extractWikiLinks (markdown: string) : string list =
         let pattern = @"\[\[([^\]]+)\]\]"
         let matches = Regex.Matches(markdown, pattern)
 
-        [ for m in matches -> m.Groups.[1].Value.Trim() ]
+        [ for m in matches do
+            let label = m.Groups.[1].Value.Trim()
+
+            // Skip wiki links that match ignore patterns
+            if not (isWikiLinkIgnored label) then
+                label ]
 
     /// Normalize a wiki link label for matching (trim, normalize spaces, case-insensitive)
     let normalizeWikiLabel (label: string) : string =

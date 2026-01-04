@@ -51,6 +51,7 @@ This note references [[Another Note]] and [[Some Post Title]].
 
 ### Link Resolution
 - Links are resolved at build time by matching against note/post titles
+- **Ignored patterns**: Certain patterns like `[[:space:]]` (bash regex character classes) are automatically ignored and not treated as wiki links
 - **Warnings** are generated for:
   - Unresolved links (no matching note/post found)
   - Ambiguous links (multiple notes/posts with the same title)
