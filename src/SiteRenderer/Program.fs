@@ -13,7 +13,7 @@ module Program =
         printfn "Options:"
 
         printfn
-            "  --source <path>    Source directory containing _posts, _config.yml, etc. (default: current directory)"
+            "  --source <path>    Source directory containing _posts, _notes, _config.yml, etc. (default: current directory)"
 
         printfn "  --output <path>    Output directory for generated site (default: _site)"
         printfn "  --config <path>    Path to _config.yml (default: <source>/_config.yml)"
@@ -102,7 +102,7 @@ module Program =
                 let pages = Renderer.loadPages sourceDir
                 printfn "Loaded %d pages" pages.Length
 
-                let notesDir = Path.Combine(sourceDir, "notes")
+                let notesDir = Path.Combine(sourceDir, "_notes")
                 let notes = Renderer.loadNotes notesDir
                 printfn "Loaded %d notes" notes.Length
 

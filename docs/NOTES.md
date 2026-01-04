@@ -6,7 +6,7 @@ Notes are a first-class content type in this blog, designed for shorter, evolvin
 
 ## Creating a Note
 
-1. Create a Markdown file in the `notes/` directory
+1. Create a Markdown file in the `_notes/` directory
 2. Add YAML front matter with required and optional fields
 3. Write your content using standard Markdown
 
@@ -74,7 +74,7 @@ Published notes (`published: true` or not specified) are automatically included 
 ## URLs
 
 Notes use a deterministic URL structure:
-- Source file: `notes/my-note-title.md`
+- Source file: `_notes/my-note-title.md`
 - Generated URL: `/notes/my-note-title/`
 - URL is derived from the filename using slugification (lowercase, hyphens, no special characters)
 

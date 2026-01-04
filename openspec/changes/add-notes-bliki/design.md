@@ -11,7 +11,7 @@ The existing blog is optimized for dated, long-form posts. There is no first-cla
 
 ## Content model changes (types, metadata)
 - Introduce a `Note` content type distinct from `Post`.
-- Store notes under a dedicated source directory (e.g. `notes/` at repo root).
+- Store notes under a dedicated source directory (e.g. `_notes/` at repo root).
 - Define minimal YAML front matter for notes:
   - `title` (required)
   - `published` (boolean; controls search/navigation/listing visibility but not whether the note is built)
@@ -64,7 +64,7 @@ The existing blog is optimized for dated, long-form posts. There is no first-cla
 
 ## URL and routing rules
 - Notes live under a dedicated URL prefix: `/notes/`.
-- Source files reside in a dedicated folder (e.g. `notes/`), but URLs are derived from slugs, not file extensions.
+- Source files reside in a dedicated folder (e.g. `_notes/`), but URLs are derived from slugs, not file extensions.
 - Slug generation for notes MUST be deterministic and stable over time:
   - Derived from the file name or title using the same slugification rules as posts.
   - Independent of note status.
@@ -87,7 +87,7 @@ The existing blog is optimized for dated, long-form posts. There is no first-cla
 
 ## Migration and backward compatibility
 - Existing posts and pages remain unchanged; there is no requirement to convert posts into notes.
-- Search and navigation remain functional even when no notes exist (empty `notes/` directory).
+- Search and navigation remain functional even when no notes exist (empty `_notes/` directory).
 - The initial implementation can be introduced behind a feature flag or configuration switch that enables note discovery.
 - No changes to existing RSS/Atom feeds in v1; notes are excluded from feeds by default.
 

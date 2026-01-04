@@ -1,7 +1,7 @@
 ## 1. Notes Content Model and Routing
 - [x] 1.1 Introduce `Note` domain type and front matter parsing
 - [x] 1.2 Implement deterministic note slug and URL generation (`/notes/...`)
-- [x] 1.3 Add notes directory discovery and loading from the repository (e.g. `notes/`)
+- [x] 1.3 Add notes directory discovery and loading from the repository (e.g. `_notes/`)
 
 ## 2. Markdown and Linking Extensions
 - [x] 2.1 Extend Markdown pipeline to recognize and parse `[[Note Title]]` wiki links
