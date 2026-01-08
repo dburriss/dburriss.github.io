@@ -27,4 +27,4 @@
 ## 6. Hardening and Documentation
 - [x] 6.1 Add build-time tests or scripts to validate link resolution and orphan detection
 - [x] 6.2 Update authoring documentation to cover notes front matter, wiki links, and expectations
-- [ ] 6.3 Run `openspec validate add-notes-bliki --strict` and keep specs synced during implementation
+- [x] 6.3 Run `openspec validate add-notes-bliki --strict` and keep specs synced during implementation
