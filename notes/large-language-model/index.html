@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>Large-Language Model</title><meta name="description" content="Mostly explorations in code"><meta name="author" content="Devon Burriss"><meta itemprop="name" content="Large-Language Model"><meta itemprop="description" content="Mostly explorations in code"><meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg"><link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16"><link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@DevonBurriss"><meta name="twitter:title" content="Large-Language Model"><meta name="twitter:description" content="Mostly explorations in code"><meta name="twitter:creator" content="@DevonBurriss"><meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:title" content="Large-Language Model"><meta property="og:type" content="article"><meta property="og:url" content="https://devonburriss.me/notes/large-language-model/"><meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:description" content="Mostly explorations in code"><meta property="og:site_name" content="Devon Burriss&#39; Blog"><link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/highlight/atom-one-dark.css"><script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();</script><script src="/js/theme.js" defer="defer"></script><script type="module" src="/js/search-ui.js"></script></head><body><header class="site-header"><nav class="site-nav"><a class="site-title nav-badge" href="/">DEVON BURRISS</a><ul class="site-links"><li><a href="/">Home</a></li><li><a href="/topics/">Topics</a></li><li><a href="/notes/">Notes</a></li><li><a href="/recommended-reading.html">Reading</a></li><li><a href="/about/">About</a></li><li><a href="/rss.xml">RSS</a></li></ul><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">Theme</button></nav></header><main class="site-main"><span style="display:contents"><header class="page-header"><h1>Large-Language Model</h1><p class="note-meta"><span class="note-status status-draft">draft</span></p></header><div class="topic-pills"><a class="topic-pill" href="/topics/ai-agentic-systems/" title="AI, LLMs, and agentic workflows.">AI &amp; Agentic Systems</a></div><hr></span><article class="prose"><p>A Large-language model (model) is a [[Neural Network]] trained on a large corpus of text to predict the next [[Token]], based on the previous tokens in the input.</p>
+<p>The LLM functions like a probabilistic [[Pure Function]] that predicts the response based on the input and [[Sampling Parameters]].</p>
+<p>This input is known as the [[Context|Context]] and has a fixed size known as the [[Context]]. This size is the maximum size of the input, over that will be dropped or ignored. Since performance drops off way before this maximum size, [[Context Management|Context Engineering]] has emerged as a core skill in working with [[Agentic workflows]].</p>
+<p>It is important to understand that LLMs do not contain the original training data, or even a summary of it. What they use to predict the next token are [[Model Weights]], often also called [[Model Weights|Model Parameters]]. These are matrices of floating point numbers that encode the patterns in text, not actual summaries of the data. Also important for the model is that the training data has a cutoff date, after which nothing of that data is encoded. Lastly on the topic of parameters, the effectiveness of a model is largely a function of the size and quality of the data it was trained on, although [[Fine tuning]] can have a large effect on it's behaviour.</p>
+<p>Examples:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Context Window</th>
+<th>Output Tokens (approx)</th>
+<th>Parameters (weights)</th>
+<th>Estimated Training Tokens*</th>
+<th>Input Cost / 1M tokens</th>
+<th>Output Cost / 1M tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GPT-4o (OpenAI)</strong></td>
+<td>128 K tokens</td>
+<td>~16 K</td>
+<td><em>Not public</em></td>
+<td><em>Not public</em></td>
+<td>~$2.50–$5</td>
+<td>~$10–$20</td>
+</tr>
+<tr>
+<td><strong>GPT-5 (OpenAI)</strong></td>
+<td>~128 K (typical API)</td>
+<td>~16 K</td>
+<td><em>Not public</em></td>
+<td><em>Not public</em></td>
+<td>~$1.25</td>
+<td>~$10</td>
+</tr>
+<tr>
+<td><strong>Anthropic Claude 3.7 Sonnet</strong></td>
+<td>200 K</td>
+<td>~128 K</td>
+<td><em>Not public</em></td>
+<td><em>Not public</em></td>
+<td>~$3.00</td>
+<td>~$15</td>
+</tr>
+<tr>
+<td><strong>Anthropic Claude 3 Opus</strong></td>
+<td>200 K</td>
+<td>~128 K</td>
+<td><em>Not public</em></td>
+<td><em>Not public</em></td>
+<td>~$15.00</td>
+<td>~$75</td>
+</tr>
+<tr>
+<td><strong>Google Gemini 2.5 Pro</strong></td>
+<td>~1 M tokens</td>
+<td>~8 K</td>
+<td><em>Not public</em></td>
+<td><em>Not public</em></td>
+<td>~$1.25–$2.50</td>
+<td>~$10–$15</td>
+</tr>
+<tr>
+<td><strong>Meta LLaMA 3.1 / 3.2 (70B)</strong></td>
+<td>~128 K</td>
+<td>~4 K</td>
+<td>70.6 B</td>
+<td>~15 T tokens (Llama 3 pretraining)</td>
+<td>Free/Open</td>
+<td>Free/Open</td>
+</tr>
+<tr>
+<td><strong>LLaMA 4 Maverick (Meta)</strong></td>
+<td>~1 M tokens</td>
+<td>~8 K</td>
+<td>~400 B total (17 B active)</td>
+<td>~30 T+ tokens (est)</td>
+<td>Free/Open</td>
+<td>Free/Open</td>
+</tr>
+<tr>
+<td><strong>Mistral Large</strong></td>
+<td>~131 K</td>
+<td>~4 K</td>
+<td>~123 B</td>
+<td><em>Not public</em></td>
+<td>~$2.00</td>
+<td>~$6.00</td>
+</tr>
+<tr>
+<td><strong>Grok-3 (xAI)</strong></td>
+<td>~131 K</td>
+<td>~8 K</td>
+<td>~314 B (Grok-1 base)**</td>
+<td><em>Not public</em></td>
+<td>~$3.00</td>
+<td>~$15.00</td>
+</tr>
+<tr>
+<td><strong>DeepSeek-V3</strong></td>
+<td>~64–128 K</td>
+<td>~4 K</td>
+<td>~671 B</td>
+<td>~14.8 T tokens</td>
+<td>~$0.27</td>
+<td>~$1.10</td>
+</tr>
+<tr>
+<td><strong>Qwen 3 / Qwen-2.5 (Alibaba)</strong></td>
+<td>~64–128 K</td>
+<td>~8 K</td>
+<td>~72 B (Qwen-2.5 max)</td>
+<td>~18 T tokens</td>
+<td>~$0.40</td>
+<td>~$0.80</td>
+</tr>
+</tbody>
+</table>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">[1hr Talk] Intro to Large Language Models</a></li>
+</ul>
+</article><hr></main><footer class="site-footer"><p>Copyright &#169; <a href="/about/">Devon Burriss</a> 2026</p></footer><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-45750611-2', 'auto');ga('send', 'pageview');</script></body></html>
