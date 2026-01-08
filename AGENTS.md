@@ -24,6 +24,14 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 - After making code changes, build and test to verify
 - When creating or updating script files (fsx/sh/ps1) always but a description and usage comment block at the top
 
+## OpenSpec
+
+- Check before making changes without a spec if I would rather create a spec for the change.
+- Do not implement the spec unless I use the /openspec-apply command
+- Check if existing specs need to be modified when running /openspec-proposal
+- Use checklists for tasks.md with `- [ ]` for tasks to be implemented
+- Mark the checkbox off with `- [x]` as each task is implemented
+
 ## Stack
 
 - F# 10
