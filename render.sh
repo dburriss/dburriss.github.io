@@ -11,10 +11,13 @@
 #
 # OPTIONS:
 #   -d, --debug         Run in Debug configuration (default: Release)
+#   --test             Run wiki link validation tests after generation
+#   --test-only        Only run tests, skip site generation
 #
 # EXAMPLES:
 #   ./render.sh         # Generate site in Release mode
 #   ./render.sh --debug # Generate site in Debug mode
+#   ./render.sh --test  # Generate site and run validation tests
 
 set -e
 
@@ -24,6 +27,8 @@ OUTPUT_DIR="$SCRIPT_DIR/_site"
 
 # Parse arguments
 CONFIGURATION="Release"
+RUN_TESTS=false
+TEST_ONLY=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -31,13 +36,42 @@ while [[ $# -gt 0 ]]; do
             CONFIGURATION="Debug"
             shift
             ;;
+        --test)
+            RUN_TESTS=true
+            shift
+            ;;
+        --test-only)
+            TEST_ONLY=true
+            shift
+            ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: $0 [--debug|-d]"
+            echo "Usage: $0 [--debug|-d] [--test] [--test-only]"
             exit 1
             ;;
     esac
 done
+
+# Run tests only if requested
+if [[ "$TEST_ONLY" == "true" ]]; then
+    echo "Running wiki link tests only..."
+    echo "================================"
+    
+    echo "Running unit tests..."
+    dotnet fsi test-wiki-links.fsx || {
+        echo "❌ Unit tests failed"
+        exit 1
+    }
+    
+    echo "Running site validation tests..."
+    dotnet fsi test-site-validation.fsx || {
+        echo "❌ Site validation tests failed"
+        exit 1
+    }
+    
+    echo "✅ All wiki link tests passed!"
+    exit 0
+fi
 
 # Run the site renderer to generate the site
 echo "Generating site..."
@@ -47,3 +81,17 @@ echo "Building search index..."
 bun run scripts/build-search-index.ts
 
 echo "Site generated at $OUTPUT_DIR"
+
+# Run tests if requested
+if [[ "$RUN_TESTS" == "true" ]]; then
+    echo ""
+    echo "Running wiki link validation tests..."
+    echo "====================================="
+    
+    dotnet fsi test-site-validation.fsx || {
+        echo "❌ Wiki link validation failed"
+        exit 1
+    }
+    
+    echo "✅ Wiki link validation passed!"
+fi
