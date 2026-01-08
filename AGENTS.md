@@ -38,6 +38,12 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 - .NET 10
 - [Giraffe.ViewEngine](https://giraffe.wiki/view-engine)
 
+## Coding (F#)
+
+- After making F# changes or creating new files run `fantomas` to format the code.
+- After code changes always run `dotnet build` and `dotnet test`
+- F# script files with .fsx extensions can be run with `dotnet fsi script.fsx`
+
 ## Commands
 
 Build the renderer project with:
@@ -53,7 +59,15 @@ Format with [Fantomas](https://fsprojects.github.io/fantomas/docs/end-users/Gett
 dotnet fantomas ./src/SiteRenderer/
 ```
 
+Render the contents to _site with:
+
+```bash
+./render.sh
+```
+
 Serve the site the [dotnet serve](https://github.com/natemcmaster/dotnet-serve) tool:
 ```bash
 dotnet serve -o -d ./_site/
 ```
+
+Or simply use `./run.sh --serve`
