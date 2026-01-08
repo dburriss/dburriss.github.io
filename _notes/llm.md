@@ -1,5 +1,5 @@
 ---
-title: Large-Language Model
+title: LLM
 published: true
 keywords: [ai, llm, model]
 topics: [ai-agentic-systems]
