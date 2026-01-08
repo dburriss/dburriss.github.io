@@ -258,34 +258,42 @@ module Parsing =
         let trimmed = label.Trim()
 
         // Ignore common bash regex patterns and sed expressions
-        let ignorePatterns = [
-            "^:space:$"      // [[:space:]]
-            "^:alnum:$"      // [[:alnum:]]
-            "^:alpha:$"      // [[:alpha:]]
-            "^:digit:$"      // [[:digit:]]
-            "^:upper:$"      // [[:upper:]]
-            "^:lower:$"      // [[:lower:]]
-            "^:blank:$"      // [[:blank:]]
-            "^:cntrl:$"      // [[:cntrl:]]
-            "^:graph:$"      // [[:graph:]]
-            "^:print:$"      // [[:print:]]
-            "^:punct:$"      // [[:punct:]]
-            "^:xdigit:$"     // [[:xdigit:]]
-        ]
+        let ignorePatterns =
+            [ "^:space:$" // [[:space:]]
+              "^:alnum:$" // [[:alnum:]]
+              "^:alpha:$" // [[:alpha:]]
+              "^:digit:$" // [[:digit:]]
+              "^:upper:$" // [[:upper:]]
+              "^:lower:$" // [[:lower:]]
+              "^:blank:$" // [[:blank:]]
+              "^:cntrl:$" // [[:cntrl:]]
+              "^:graph:$" // [[:graph:]]
+              "^:print:$" // [[:print:]]
+              "^:punct:$" // [[:punct:]]
+              "^:xdigit:$" ] // [[:xdigit:]]
 
         ignorePatterns |> List.exists (fun pattern -> Regex.IsMatch(trimmed, pattern))
 
-    /// Extract wiki-style [[links]] from markdown text, excluding certain patterns
-    let extractWikiLinks (markdown: string) : string list =
+    /// Extract wiki-style [[links]] from markdown text, returning title and display text tuples
+    let extractWikiLinks (markdown: string) : (string * string option) list =
         let pattern = @"\[\[([^\]]+)\]\]"
         let matches = Regex.Matches(markdown, pattern)
 
         [ for m in matches do
-            let label = m.Groups.[1].Value.Trim()
+              let content = m.Groups.[1].Value.Trim()
+              let parts = content.Split([| '|' |], 2, StringSplitOptions.None)
 
-            // Skip wiki links that match ignore patterns
-            if not (isWikiLinkIgnored label) then
-                label ]
+              let title = parts.[0].Trim()
+
+              let displayText =
+                  if parts.Length > 1 && not (String.IsNullOrWhiteSpace(parts.[1])) then
+                      Some(parts.[1].Trim())
+                  else
+                      None
+
+              // Skip wiki links that match ignore patterns (using title for checking)
+              if not (isWikiLinkIgnored title) then
+                  (title, displayText) ]
 
     /// Normalize a wiki link label for matching (trim, normalize spaces, case-insensitive)
     let normalizeWikiLabel (label: string) : string =

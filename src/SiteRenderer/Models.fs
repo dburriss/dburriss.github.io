@@ -89,7 +89,8 @@ type ContentItem =
 [<CLIMutable>]
 type WikiLink =
     { SourceUrl: string
-      TargetLabel: string
+      TargetTitle: string // Used for resolution
+      TargetDisplayText: string option // Used for display
       ResolvedUrl: string option
       IsResolved: bool }
 

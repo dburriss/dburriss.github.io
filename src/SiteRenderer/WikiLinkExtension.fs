@@ -11,14 +11,23 @@ open Markdig.Syntax
 open Markdig.Syntax.Inlines
 
 /// Represents a wiki-style [[link]] inline element
-type WikiLinkInline(label: string) =
+type WikiLinkInline(title: string, displayText: string option) =
     inherit LeafInline()
-    member val Label = label with get, set
+    member val Title = title with get, set
+    member val DisplayText = displayText with get, set
     member val ResolvedUrl: string option = None with get, set
+
+    // Convenience property for backward compatibility
+    member this.Label =
+        match this.DisplayText with
+        | Some display -> display
+        | None -> this.Title
 
 /// Parser for wiki links [[Page Name]]
 type WikiLinkParser() =
     inherit InlineParser()
+
+    do base.OpeningCharacters <- [| '[' |]
 
     override this.Match(processor: InlineProcessor, slice: StringSlice byref) =
         let current = slice.CurrentChar
@@ -37,10 +46,21 @@ type WikiLinkParser() =
                 i <- i + 1
 
             if endPosition > startPosition + 2 then
-                // Extract the label
-                let label = slice.Text.Substring(startPosition + 2, endPosition - startPosition - 2)
+                // Extract the content between [[...]]
+                let content =
+                    slice.Text.Substring(startPosition + 2, endPosition - startPosition - 2)
 
-                let wikiLink = WikiLinkInline(label.Trim())
+                let parts = content.Split([| '|' |], 2, StringSplitOptions.None)
+
+                let title = parts.[0].Trim()
+
+                let displayText =
+                    if parts.Length > 1 && not (String.IsNullOrWhiteSpace(parts.[1])) then
+                        Some(parts.[1].Trim())
+                    else
+                        None
+
+                let wikiLink = WikiLinkInline(title, displayText)
                 wikiLink.Span <- SourceSpan(startPosition, endPosition + 1)
 
                 processor.Inline <- wikiLink
@@ -56,17 +76,22 @@ type WikiLinkHtmlRenderer() =
     inherit HtmlObjectRenderer<WikiLinkInline>()
 
     override this.Write(renderer: HtmlRenderer, link: WikiLinkInline) =
+        let displayText =
+            match link.DisplayText with
+            | Some display -> display
+            | None -> link.Title
+
         match link.ResolvedUrl with
         | Some url ->
             renderer.Write("<a href=\"") |> ignore
             renderer.WriteEscapeUrl(url) |> ignore
             renderer.Write("\">") |> ignore
-            renderer.WriteEscape(link.Label) |> ignore
+            renderer.WriteEscape(displayText) |> ignore
             renderer.Write("</a>") |> ignore
         | None ->
             // Unresolved link - render as plain text with a marker
             renderer.Write("<span class=\"unresolved-link\">") |> ignore
-            renderer.WriteEscape(link.Label) |> ignore
+            renderer.WriteEscape(displayText) |> ignore
             renderer.Write("</span>") |> ignore
 
 /// Markdig extension for wiki links

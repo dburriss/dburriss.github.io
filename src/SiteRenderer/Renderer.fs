@@ -230,54 +230,81 @@ module Renderer =
             |> List.map (fun item ->
                 match item.Markdown with
                 | Some markdown ->
-                    let wikiLinkLabels = Parsing.extractWikiLinks markdown
+                    let wikiLinkTuples = Parsing.extractWikiLinks markdown
 
                     let outboundLinks =
-                        wikiLinkLabels
-                        |> List.map (fun label ->
-                            let normalizedLabel = Parsing.normalizeWikiLabel label
+                        wikiLinkTuples
+                        |> List.map (fun (title, displayText) ->
+                            let normalizedTitle = Parsing.normalizeWikiLabel title
 
-                            match Map.tryFind normalizedLabel titleLookup with
+                            match Map.tryFind normalizedTitle titleLookup with
                             | Some targets ->
                                 match targets with
                                 | [ target ] ->
                                     // Exactly one match - resolved
                                     { SourceUrl = item.PageMeta.Url
-                                      TargetLabel = label
+                                      TargetTitle = title
+                                      TargetDisplayText = displayText
                                       ResolvedUrl = Some target.PageMeta.Url
                                       IsResolved = true }
                                 | _ :: _ ->
-                                    // Multiple matches - ambiguous
-                                    warnings <-
-                                        (sprintf
-                                            "Ambiguous wiki link [[%s]] in %s (matches %d items)"
-                                            label
-                                            item.PageMeta.Url
-                                            targets.Length)
-                                        :: warnings
+                                    // Multiple matches - ambiguous, prioritize notes over posts
+                                    let notes = targets |> List.filter (fun t -> t.Kind = "note")
 
-                                    { SourceUrl = item.PageMeta.Url
-                                      TargetLabel = label
-                                      ResolvedUrl = None
-                                      IsResolved = false }
+                                    let resolvedTarget =
+                                        match notes with
+                                        | [ singleNote ] ->
+                                            warnings <-
+                                                (sprintf
+                                                    "Wiki link [[%s]] in %s is ambiguous but resolved to note (over post)"
+                                                    title
+                                                    item.PageMeta.Url)
+                                                :: warnings
+
+                                            Some singleNote
+                                        | _ -> None
+
+                                    match resolvedTarget with
+                                    | Some target ->
+                                        { SourceUrl = item.PageMeta.Url
+                                          TargetTitle = title
+                                          TargetDisplayText = displayText
+                                          ResolvedUrl = Some target.PageMeta.Url
+                                          IsResolved = true }
+                                    | None ->
+                                        warnings <-
+                                            (sprintf
+                                                "Ambiguous wiki link [[%s]] in %s (matches %d items)"
+                                                title
+                                                item.PageMeta.Url
+                                                targets.Length)
+                                            :: warnings
+
+                                        { SourceUrl = item.PageMeta.Url
+                                          TargetTitle = title
+                                          TargetDisplayText = displayText
+                                          ResolvedUrl = None
+                                          IsResolved = false }
                                 | [] ->
                                     // Empty list - unresolved
                                     warnings <-
-                                        (sprintf "Unresolved wiki link [[%s]] in %s" label item.PageMeta.Url)
+                                        (sprintf "Unresolved wiki link [[%s]] in %s" title item.PageMeta.Url)
                                         :: warnings
 
                                     { SourceUrl = item.PageMeta.Url
-                                      TargetLabel = label
+                                      TargetTitle = title
+                                      TargetDisplayText = displayText
                                       ResolvedUrl = None
                                       IsResolved = false }
                             | None ->
                                 // No match - unresolved
                                 warnings <-
-                                    (sprintf "Unresolved wiki link [[%s]] in %s" label item.PageMeta.Url)
+                                    (sprintf "Unresolved wiki link [[%s]] in %s" title item.PageMeta.Url)
                                     :: warnings
 
                                 { SourceUrl = item.PageMeta.Url
-                                  TargetLabel = label
+                                  TargetTitle = title
+                                  TargetDisplayText = displayText
                                   ResolvedUrl = None
                                   IsResolved = false })
 

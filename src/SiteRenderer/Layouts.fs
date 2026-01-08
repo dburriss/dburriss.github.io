@@ -312,6 +312,7 @@ module Layouts =
 
             let backlinkNodes =
                 backlinks
+                |> List.distinct
                 |> List.choose (fun url ->
                     Map.tryFind url contentMap
                     |> Option.map (fun item ->
