@@ -69,6 +69,37 @@ The resolution logic correctly identifies links and targets but has no way to in
 
 **Implementation Estimate**: ~100 lines of changes across 2-3 files
 
+#### Option 1 Flow Diagram
+```
+Program.fs main():
+┌─────────────────────────────────────────────────────────────┐
+│ 1. loadPosts/loadPages/loadNotes                            │
+│    └─> loadContentItem (MODIFIED)                          │
+│        └─> Store RAW MARKDOWN ──┐                          │
+│                                  │ NO HTML generation yet   │
+├─────────────────────────────────────────────────────────────┤
+│ 2. buildSiteIndex                │                          │
+├─────────────────────────────────────────────────────────────┤
+│ 3. resolveWikiLinks              │                          │
+│    (builds resolution lookup)    │                          │
+│                                  │                          │
+├─────────────────────────────────────────────────────────────┤
+│ 4. SECOND PASS: generateHtml ←───┘                          │
+│    ├─> For each ContentItem:                               │
+│    │   └─> Parsing.markdownToHtml(content, resolutionMap)  │
+│    │       └─> WikiLinkExtension uses resolutionMap ──┐    │
+│    │                                                   │    │
+│    └─> Update ContentItem.html ←─────────────────────────┘    │
+├─────────────────────────────────────────────────────────────┤
+│ 5. renderSite                                              │
+│    (uses HTML with RESOLVED links)                         │
+└─────────────────────────────────────────────────────────────┘
+
+Performance Impact: 2x HTML generation
+Timing Fix: Resolution data available BEFORE HTML generation (pass 2)
+Key Change: loadContentItem stores markdown, HTML generated after resolution
+```
+
 ---
 
 ### Option 2: Context-Aware Markdig Pipeline (Medium Architectural Changes)
@@ -92,6 +123,38 @@ The resolution logic correctly identifies links and targets but has no way to in
 
 **Implementation Estimate**: ~200 lines of changes across 4-5 files
 
+#### Option 2 Flow Diagram
+```
+Program.fs main():
+┌─────────────────────────────────────────────────────────────┐
+│ 1. PRE-SCAN: extractMetadata(posts/pages/notes)             │
+│    └─> Build content index (titles, paths, slugs)          │
+│        └─> Create WikiLinkContext ──┐                      │
+│                                      │                      │
+├─────────────────────────────────────────────────────────────┤
+│ 2. loadPosts/loadPages/loadNotes     │                      │
+│    └─> loadContentItem              │                      │
+│        └─> Parsing.markdownToHtml(content, wikiContext) ───┘
+│            └─> WikiLinkExtension.Setup(wikiContext)         │
+│                └─> REAL-TIME resolution during parsing      │
+│                    ├─> [[Token]] → check wikiContext       │
+│                    ├─> Found: emit <a href="/notes/token/"> │
+│                    └─> Not found: emit <span unresolved>    │
+├─────────────────────────────────────────────────────────────┤
+│ 3. buildSiteIndex                                          │
+├─────────────────────────────────────────────────────────────┤
+│ 4. renderSite                                              │
+│    (uses HTML with ALREADY RESOLVED links)                 │
+└─────────────────────────────────────────────────────────────┘
+
+Performance Impact: Single HTML generation + fast metadata pre-scan
+Timing Fix: WikiLinkContext available DURING HTML generation
+Key Change: Extension has resolution context at render time
+Decision Points:
+  ┌─> [[Token]] found in context → <a href="/notes/token/">Token</a>
+  └─> [[Unknown]] not found → <span class="unresolved-link">Unknown</span>
+```
+
 ---
 
 ### Option 3: Deferred HTML Generation (Major Architectural Changes)
@@ -114,6 +177,58 @@ The resolution logic correctly identifies links and targets but has no way to in
 - Significant testing required across all content types
 
 **Implementation Estimate**: ~500+ lines across 10+ files
+
+#### Option 3 Flow Diagram
+```
+Program.fs main():
+┌─────────────────────────────────────────────────────────────┐
+│ 1. loadPosts/loadPages/loadNotes (RESTRUCTURED)             │
+│    └─> loadContentItem                                     │
+│        ├─> Parse frontmatter                               │
+│        ├─> Store RAW MARKDOWN                              │
+│        └─> Build ContentItem { metadata, rawMarkdown }    │
+│                                                            │
+├─────────────────────────────────────────────────────────────┤
+│ 2. buildSiteIndex                                          │
+│    └─> Index all metadata (titles, paths, relationships)   │
+├─────────────────────────────────────────────────────────────┤
+│ 3. buildResolutionContext                                  │
+│    ├─> Analyze all cross-references                        │
+│    ├─> Build comprehensive lookup tables                   │
+│    └─> Handle complex dependencies                         │
+│        ├─> Circular references                            │
+│        ├─> Multi-hop relationships                        │
+│        └─> Tag-based connections                          │
+├─────────────────────────────────────────────────────────────┤
+│ 4. FINAL RENDER PHASE:                                     │
+│    └─> For each ContentItem:                              │
+│        ├─> Parsing.markdownToHtml(rawMarkdown, fullContext)│
+│        │   └─> All extensions have complete context       │
+│        │       ├─> WikiLinkExtension resolves [[links]]   │
+│        │       ├─> TagExtension resolves #tags            │
+│        │       └─> BacklinkExtension generates reverse    │
+│        └─> Store final HTML in ContentItem                │
+├─────────────────────────────────────────────────────────────┤
+│ 5. renderSite                                              │
+│    (uses HTML with FULLY RESOLVED everything)              │
+└─────────────────────────────────────────────────────────────┘
+
+Performance Impact: Single HTML generation + comprehensive context building
+Timing Fix: ALL resolution data available BEFORE any HTML generation
+Key Change: Complete separation of content loading and rendering phases
+
+Data Flow Evolution:
+┌─ Phase 1 ─┐  ┌─ Phase 2 ─┐  ┌─ Phase 3 ─┐  ┌─ Phase 4 ─┐
+│ Raw Data  │→ │ Metadata  │→ │ Context   │→ │ Final HTML │
+│ Loading   │  │ Indexing  │  │ Building  │  │ Generation │
+└───────────┘  └───────────┘  └───────────┘  └────────────┘
+
+Future Capabilities Enabled:
+- Complex cross-content dependencies
+- Bidirectional link resolution  
+- Tag-based content networks
+- Advanced content relationship analysis
+```
 
 ## Files Involved
 
