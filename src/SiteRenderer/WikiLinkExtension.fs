@@ -10,6 +10,11 @@ open Markdig.Renderers.Html
 open Markdig.Syntax
 open Markdig.Syntax.Inlines
 
+// Helper function to avoid circular dependency
+module private WikiLinkHelpers =
+    let normalizeWikiLabel (label: string) : string =
+        label.Trim().Replace("  ", " ").ToLowerInvariant()
+
 /// Represents a wiki-style [[link]] inline element
 type WikiLinkInline(title: string, displayText: string option) =
     inherit LeafInline()
@@ -35,20 +40,16 @@ type WikiLinkParser() =
         // Check if we're at the start of a potential wiki link
         if current = '[' && slice.PeekChar(1) = '[' then
             let startPosition = slice.Start
-            let mutable endPosition = -1
-            let mutable i = startPosition + 2
-
-            // Find the closing ]]
-            while i < slice.End - 1 && endPosition = -1 do
-                if slice.[i] = ']' && slice.[i + 1] = ']' then
-                    endPosition <- i
-
-                i <- i + 1
-
-            if endPosition > startPosition + 2 then
+            
+            // Find the closing ]] using IndexOf for reliability
+            let fullText = slice.Text
+            let searchStart = startPosition + 2  // After [[
+            let closingIndex = fullText.IndexOf("]]", searchStart)
+            
+            if closingIndex >= 0 && closingIndex > startPosition + 2 then
                 // Extract the content between [[...]]
                 let content =
-                    slice.Text.Substring(startPosition + 2, endPosition - startPosition - 2)
+                    slice.Text.Substring(startPosition + 2, closingIndex - startPosition - 2)
 
                 let parts = content.Split([| '|' |], 2, StringSplitOptions.None)
 
@@ -61,19 +62,21 @@ type WikiLinkParser() =
                         None
 
                 let wikiLink = WikiLinkInline(title, displayText)
-                wikiLink.Span <- SourceSpan(startPosition, endPosition + 1)
+                wikiLink.Span <- SourceSpan(startPosition, closingIndex + 1)
 
                 processor.Inline <- wikiLink
-                slice.Start <- endPosition + 2
+                slice.Start <- closingIndex + 2
                 true
             else
                 false
         else
             false
 
-/// Renderer for wiki links
-type WikiLinkHtmlRenderer() =
+/// Renderer for wiki links with optional resolution context
+type WikiLinkHtmlRenderer(resolutionContext: ResolutionContext option) =
     inherit HtmlObjectRenderer<WikiLinkInline>()
+
+    new() = WikiLinkHtmlRenderer(None)
 
     override this.Write(renderer: HtmlRenderer, link: WikiLinkInline) =
         let displayText =
@@ -81,7 +84,15 @@ type WikiLinkHtmlRenderer() =
             | Some display -> display
             | None -> link.Title
 
-        match link.ResolvedUrl with
+        // Try to resolve the link using the resolution context
+        let resolvedUrl = 
+            match resolutionContext with
+            | Some context ->
+                let normalizedTitle = WikiLinkHelpers.normalizeWikiLabel link.Title
+                Map.tryFind normalizedTitle context.PathLookup
+            | None -> link.ResolvedUrl
+
+        match resolvedUrl with
         | Some url ->
             renderer.Write("<a href=\"") |> ignore
             renderer.WriteEscapeUrl(url) |> ignore
@@ -94,8 +105,11 @@ type WikiLinkHtmlRenderer() =
             renderer.WriteEscape(displayText) |> ignore
             renderer.Write("</span>") |> ignore
 
-/// Markdig extension for wiki links
-type WikiLinkExtension() =
+/// Markdig extension for wiki links with optional resolution context
+type WikiLinkExtension(resolutionContext: ResolutionContext option) =
+    
+    new() = WikiLinkExtension(None)
+    
     interface IMarkdownExtension with
         member this.Setup(pipeline: MarkdownPipelineBuilder) =
             if not (pipeline.InlineParsers.Contains<WikiLinkParser>()) then
@@ -106,7 +120,7 @@ type WikiLinkExtension() =
             match renderer with
             | :? HtmlRenderer as htmlRenderer ->
                 if not (htmlRenderer.ObjectRenderers.Contains<WikiLinkHtmlRenderer>()) then
-                    htmlRenderer.ObjectRenderers.Insert(0, WikiLinkHtmlRenderer())
+                    htmlRenderer.ObjectRenderers.Insert(0, WikiLinkHtmlRenderer(resolutionContext))
             | _ -> ()
 
 /// Extension method for pipeline builder
@@ -116,4 +130,14 @@ module WikiLinkExtensions =
 
         member this.UseWikiLinks() =
             this.Extensions.AddIfNotAlready<WikiLinkExtension>()
+            this
+            
+        member this.UseWikiLinks(resolutionContext: ResolutionContext) =
+            // Remove any existing WikiLinkExtension first
+            let existing = this.Extensions |> Seq.tryFind (fun ext -> ext :? WikiLinkExtension)
+            match existing with
+            | Some ext -> this.Extensions.Remove(ext) |> ignore
+            | None -> ()
+            
+            this.Extensions.Add(WikiLinkExtension(Some resolutionContext))
             this

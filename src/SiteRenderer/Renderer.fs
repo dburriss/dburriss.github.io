@@ -108,7 +108,7 @@ module Renderer =
               Date = date
               HeaderImage = meta.HeaderImage
               SocialImage = meta.SocialImage
-              Url = url
+              Url = "/" + url
               Tags = meta.Tags
               Categories = meta.Categories
               Topics = meta.Topics
@@ -769,3 +769,153 @@ module Renderer =
                 Directory.CreateDirectory(targetDir) |> ignore
 
             File.Copy(sourcePath, targetPath, true))
+
+    // Option 3: Deferred HTML Generation Functions
+    
+    /// Build resolution context from raw content items for wiki link resolution
+    let buildResolutionContext (rawContentItems: RawContentItem list) : ResolutionContext =
+        let titleLookupPairs =
+            rawContentItems
+            |> List.choose (fun item ->
+                match item.Meta.Title with
+                | Some title ->
+                    let normalizedTitle = Parsing.normalizeWikiLabel title
+                    Some (normalizedTitle, item)
+                | None -> None)
+            |> List.groupBy fst
+            |> List.map (fun (normalizedTitle, items) -> (normalizedTitle, items |> List.map snd))
+        
+        let pathLookupPairs =
+            rawContentItems
+            |> List.choose (fun item ->
+                match item.Meta.Title with
+                | Some title ->
+                    let normalizedTitle = Parsing.normalizeWikiLabel title
+                    let outputPath = 
+                        match item.Kind with
+                        | "note" -> 
+                            let slug = Parsing.slugify title
+                            sprintf "notes/%s/" slug
+                        | "post" -> 
+                            let date = item.Meta.Date
+                            postUrlFromPath item.SourcePath date  
+                        | "page" -> pageUrlFromPath item.SourcePath
+                        | _ -> sprintf "%s/" (Path.GetFileNameWithoutExtension item.SourcePath)
+                    Some (normalizedTitle, "/" + outputPath)
+                | None -> None)
+        
+        { TitleLookup = Map.ofList titleLookupPairs
+          PathLookup = Map.ofList pathLookupPairs }
+    
+    /// Render a raw content item to a fully rendered content item using resolution context
+    let renderContentItem (rawItem: RawContentItem) (resolutionContext: ResolutionContext) : RenderedContentItem =
+        // Generate HTML with resolution context
+        let htmlContent = Parsing.markdownToHtmlWithContext rawItem.Markdown (Some resolutionContext)
+        
+        // Build PageMeta (similar to existing loadContentItem logic)
+        let url = 
+            match rawItem.Meta.Permalink with
+            | Some p -> p.TrimStart('/').TrimEnd('/') + "/"
+            | None ->
+                match rawItem.Kind with
+                | "note" -> 
+                    let title = Option.defaultValue "untitled" rawItem.Meta.Title
+                    let slug = Parsing.slugify title
+                    sprintf "notes/%s/" slug
+                | "post" -> 
+                    let date = rawItem.Meta.Date
+                    postUrlFromPath rawItem.SourcePath date  
+                | "page" -> pageUrlFromPath rawItem.SourcePath
+                | _ -> sprintf "%s/" (Path.GetFileNameWithoutExtension rawItem.SourcePath)
+        
+        let outputPath =
+            if url.EndsWith("/") then url + "index.html"
+            elif url.EndsWith(".html") then url
+            elif url = "" then "index.html"
+            else url + "/index.html"
+            
+        let fullUrl = "/" + url.TrimStart('/')
+        
+        let pageMeta = {
+            Title = Option.defaultValue "Untitled" rawItem.Meta.Title
+            Subtitle = rawItem.Meta.Subtitle
+            Description = rawItem.Meta.Description
+            Author = rawItem.Meta.Author
+            Date = rawItem.Meta.Date
+            HeaderImage = rawItem.Meta.HeaderImage
+            SocialImage = rawItem.Meta.SocialImage
+            Url = fullUrl
+            Tags = rawItem.Meta.Tags
+            Categories = rawItem.Meta.Categories
+            Topics = rawItem.Meta.Topics
+            Related = [] // TODO: Implement related posts logic
+            Previous = None // TODO: Implement previous/next logic
+            Next = None
+            CommentsEnabled = Option.defaultValue false rawItem.Meta.Comments
+            Layout = Option.defaultValue "default" rawItem.Meta.Layout
+        }
+        
+        // Generate excerpt (simplified for now)
+        let excerptHtml = 
+            let excerptText = htmlContent.Substring(0, min 200 htmlContent.Length) + "..."
+            Some excerptText
+        
+        {
+            SourcePath = rawItem.SourcePath
+            OutputPath = outputPath
+            HtmlContent = htmlContent
+            ExcerptHtml = excerptHtml
+            Meta = rawItem.Meta
+            PageMeta = pageMeta
+            Kind = rawItem.Kind
+        }
+
+    // Raw content loading functions for Option 3
+    
+    let private loadRawContentItem (sourcePath: string) (kind: string) : RawContentItem =
+        let frontMatter, body = Parsing.parseMarkdownFile sourcePath
+        let meta = Parsing.parseFrontMatter frontMatter
+        
+        {
+            SourcePath = sourcePath
+            Markdown = body
+            Meta = meta
+            Kind = kind
+        }
+
+    let loadRawPosts (directory: string) =
+        if Directory.Exists(directory) then
+            Directory.GetFiles(directory, "*.md", SearchOption.AllDirectories)
+            |> Array.map (fun path -> loadRawContentItem path "post")
+            |> Array.toList
+        else
+            []
+
+    let loadRawPages (directory: string) =
+        if Directory.Exists(directory) then
+            Directory.GetFiles(directory, "*.md", SearchOption.TopDirectoryOnly)
+            |> Array.map (fun path -> loadRawContentItem path "page")
+            |> Array.toList
+        else
+            []
+
+    let loadRawNotes (directory: string) =
+        if Directory.Exists(directory) then
+            Directory.GetFiles(directory, "*.md", SearchOption.AllDirectories)
+            |> Array.map (fun path -> loadRawContentItem path "note")
+            |> Array.toList
+        else
+            []
+
+    /// Convert rendered content items back to ContentItem format for compatibility
+    let renderedContentItemToContentItem (rendered: RenderedContentItem) : ContentItem =
+        {
+            SourcePath = rendered.SourcePath
+            OutputPath = rendered.OutputPath
+            Markdown = None // Don't store markdown in final ContentItem
+            HtmlContent = rendered.HtmlContent
+            ExcerptHtml = rendered.ExcerptHtml
+            Meta = rendered.Meta
+            PageMeta = rendered.PageMeta
+            Kind = rendered.Kind
+        }

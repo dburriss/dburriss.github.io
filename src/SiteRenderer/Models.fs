@@ -128,3 +128,27 @@ type SearchDoc =
       date: string option
       keywords: string list
       topics: string list }
+
+// Option 3 Data Models for Deferred HTML Generation
+
+[<CLIMutable>]
+type RawContentItem =
+    { SourcePath: string
+      Markdown: string
+      Meta: FrontMatter
+      Kind: string }
+
+[<CLIMutable>]
+type ResolutionContext =
+    { TitleLookup: Map<string, RawContentItem list>  // normalized title -> content items
+      PathLookup: Map<string, string> }              // normalized title -> output path
+
+[<CLIMutable>]
+type RenderedContentItem =
+    { SourcePath: string
+      OutputPath: string
+      HtmlContent: string
+      ExcerptHtml: string option
+      Meta: FrontMatter
+      PageMeta: PageMeta
+      Kind: string }

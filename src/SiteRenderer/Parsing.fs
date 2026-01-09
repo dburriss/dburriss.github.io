@@ -232,8 +232,42 @@ module Parsing =
     let markdownPipeline =
         MarkdownPipelineBuilder().UseAdvancedExtensions().UsePipeTables().UseYamlFrontMatter().UseWikiLinks().Build()
 
+    /// Create a context-aware markdown pipeline with wiki link resolution
+    let createContextAwarePipeline (resolutionContext: ResolutionContext option) =
+        match resolutionContext with
+        | Some context ->
+            // Build pipeline with specific extensions to avoid conflicts
+            MarkdownPipelineBuilder()
+                .UsePipeTables()
+                .UseYamlFrontMatter()
+                .UseWikiLinks(context)
+                .UseEmphasisExtras()
+                .UseListExtras()
+                .UseAutoIdentifiers()
+                .UseCitations()
+                .UseCustomContainers()
+                .UseDefinitionLists()
+                .UseEmojiAndSmiley()
+                .UseFigures()
+                .UseFooters()
+                .UseFootnotes()
+                .UseGridTables()
+                .UseMathematics()
+                .UseMediaLinks()
+                .UseSmartyPants()
+                .UseSoftlineBreakAsHardlineBreak()
+                .UseTaskLists()
+                .Build()
+        | None ->
+            // Use default pipeline
+            markdownPipeline
+
+    let markdownToHtmlWithContext (markdown: string) (resolutionContext: ResolutionContext option) =
+        let pipeline = createContextAwarePipeline resolutionContext
+        Markdown.ToHtml(markdown, pipeline)
+
     let markdownToHtml (markdown: string) =
-        Markdown.ToHtml(markdown, markdownPipeline)
+        markdownToHtmlWithContext markdown None
 
     let markdownToPlainText (markdown: string) =
         Markdown.ToPlainText(markdown, markdownPipeline)
