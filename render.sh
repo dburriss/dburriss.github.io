@@ -4,20 +4,19 @@
 #
 # DESCRIPTION:
 #   This script runs the F# SiteRenderer to generate the static site content
-#   to the _site directory.
+#   to the _site directory and runs validation tests by default.
 #
 # USAGE:
 #   ./render.sh [OPTIONS]
 #
 # OPTIONS:
 #   -d, --debug         Run in Debug configuration (default: Release)
-#   --test             Run wiki link validation tests after generation
-#   --test-only        Only run tests, skip site generation
+#   --skip-tests        Skip validation tests after generation
 #
 # EXAMPLES:
-#   ./render.sh         # Generate site in Release mode
-#   ./render.sh --debug # Generate site in Debug mode
-#   ./render.sh --test  # Generate site and run validation tests
+#   ./render.sh              # Generate site and run tests
+#   ./render.sh --debug      # Generate site in Debug mode and run tests
+#   ./render.sh --skip-tests # Generate site without running tests
 
 set -e
 
@@ -27,8 +26,7 @@ OUTPUT_DIR="$SCRIPT_DIR/_site"
 
 # Parse arguments
 CONFIGURATION="Release"
-RUN_TESTS=false
-TEST_ONLY=false
+SKIP_TESTS=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -36,42 +34,17 @@ while [[ $# -gt 0 ]]; do
             CONFIGURATION="Debug"
             shift
             ;;
-        --test)
-            RUN_TESTS=true
-            shift
-            ;;
-        --test-only)
-            TEST_ONLY=true
+        --skip-tests)
+            SKIP_TESTS=true
             shift
             ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: $0 [--debug|-d] [--test] [--test-only]"
+            echo "Usage: $0 [--debug|-d] [--skip-tests]"
             exit 1
             ;;
     esac
 done
-
-# Run tests only if requested
-if [[ "$TEST_ONLY" == "true" ]]; then
-    echo "Running wiki link tests only..."
-    echo "================================"
-    
-    echo "Running unit tests..."
-    dotnet fsi test-wiki-links.fsx || {
-        echo "❌ Unit tests failed"
-        exit 1
-    }
-    
-    echo "Running site validation tests..."
-    dotnet fsi test-site-validation.fsx || {
-        echo "❌ Site validation tests failed"
-        exit 1
-    }
-    
-    echo "✅ All wiki link tests passed!"
-    exit 0
-fi
 
 # Run the site renderer to generate the site
 echo "Generating site..."
@@ -82,16 +55,23 @@ bun run scripts/build-search-index.ts
 
 echo "Site generated at $OUTPUT_DIR"
 
-# Run tests if requested
-if [[ "$RUN_TESTS" == "true" ]]; then
+# Run tests by default (unless skipped)
+if [[ "$SKIP_TESTS" == "false" ]]; then
     echo ""
-    echo "Running wiki link validation tests..."
-    echo "====================================="
+    echo "Running validation tests..."
+    echo "=========================="
     
-    dotnet fsi test-site-validation.fsx || {
-        echo "❌ Wiki link validation failed"
+    echo "Running unit tests..."
+    dotnet test src/SiteRenderer.Tests/ || {
+        echo "❌ Unit tests failed"
         exit 1
     }
     
-    echo "✅ Wiki link validation passed!"
+    echo "Running site validation..."
+    dotnet fsi scripts/validate-site.fsx || {
+        echo "❌ Site validation failed"
+        exit 1
+    }
+    
+    echo "✅ All tests passed!"
 fi

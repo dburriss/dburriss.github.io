@@ -4,35 +4,32 @@
     Generates the site content using the F# SiteRenderer.
 
 .DESCRIPTION
-    This script runs the F# SiteRenderer to generate the static site content to the _site directory.
+    This script runs the F# SiteRenderer to generate the static site content to the _site directory
+    and runs validation tests by default.
 
 .PARAMETER Debug
     If specified, runs in Debug configuration instead of Release.
 
-.PARAMETER Test
-    If specified, runs wiki link validation tests after generation.
-
-.PARAMETER TestOnly
-    If specified, only runs tests and skips site generation.
+.PARAMETER SkipTests
+    If specified, skips validation tests after generation.
 
 .EXAMPLE
     ./render.ps1
-    Generates the site in Release mode.
+    Generates the site and runs tests.
 
 .EXAMPLE
     ./render.ps1 -Debug
-    Generates the site in Debug mode.
+    Generates the site in Debug mode and runs tests.
 
 .EXAMPLE
-    ./render.ps1 -Test
-    Generates the site and runs validation tests.
+    ./render.ps1 -SkipTests
+    Generates the site without running tests.
 #>
 
 [CmdletBinding()]
 param(
     [switch]$Debug,
-    [switch]$Test,
-    [switch]$TestOnly
+    [switch]$SkipTests
 )
 
 $ErrorActionPreference = "Stop"
@@ -42,29 +39,6 @@ $Project = Join-Path $ScriptDir "src/SiteRenderer/SiteRenderer.fsproj"
 $OutputDir = Join-Path $ScriptDir "_site"
 
 $Configuration = if ($Debug) { "Debug" } else { "Release" }
-
-# Run tests only if requested
-if ($TestOnly) {
-    Write-Host "Running wiki link tests only..." -ForegroundColor Cyan
-    Write-Host "================================" -ForegroundColor Cyan
-    
-    Write-Host "Running unit tests..." -ForegroundColor Yellow
-    dotnet fsi test-wiki-links.fsx
-    if ($LASTEXITCODE -ne 0) {
-        Write-Error "❌ Unit tests failed"
-        exit 1
-    }
-    
-    Write-Host "Running site validation tests..." -ForegroundColor Yellow  
-    dotnet fsi test-site-validation.fsx
-    if ($LASTEXITCODE -ne 0) {
-        Write-Error "❌ Site validation tests failed"
-        exit 1
-    }
-    
-    Write-Host "✅ All wiki link tests passed!" -ForegroundColor Green
-    exit 0
-}
 
 Write-Host "Generating site..." -ForegroundColor Cyan
 dotnet run --project $Project -c $Configuration --no-build -- --source $ScriptDir --output $OutputDir
@@ -81,17 +55,25 @@ if ($LASTEXITCODE -ne 0) {
 
 Write-Host "Site generated at $OutputDir" -ForegroundColor Green
 
-# Run tests if requested
-if ($Test) {
+# Run tests by default (unless skipped)
+if (-not $SkipTests) {
     Write-Host ""
-    Write-Host "Running wiki link validation tests..." -ForegroundColor Cyan
-    Write-Host "=====================================" -ForegroundColor Cyan
+    Write-Host "Running validation tests..." -ForegroundColor Cyan
+    Write-Host "==========================" -ForegroundColor Cyan
     
-    dotnet fsi test-site-validation.fsx
+    Write-Host "Running unit tests..." -ForegroundColor Yellow
+    dotnet test src/SiteRenderer.Tests/
     if ($LASTEXITCODE -ne 0) {
-        Write-Error "❌ Wiki link validation failed"
+        Write-Error "❌ Unit tests failed"
         exit 1
     }
     
-    Write-Host "✅ Wiki link validation passed!" -ForegroundColor Green
+    Write-Host "Running site validation..." -ForegroundColor Yellow  
+    dotnet fsi scripts/validate-site.fsx
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "❌ Site validation failed"
+        exit 1
+    }
+    
+    Write-Host "✅ All tests passed!" -ForegroundColor Green
 }
