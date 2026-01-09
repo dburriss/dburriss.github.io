@@ -12,8 +12,8 @@
   --accent: #7b9669;
   --border: #bac8b1;
 
-  --link: #404e3b;
-  --link-hover: #7b9669;
+  --link: #7b9669;
+  --link-hover: #404e3b;
 
   --max-width: 68rem;
   --radius: 0px;
@@ -32,8 +32,8 @@
     --accent: #7b9669;
     --border: rgba(230, 230, 230, 0.25);
 
-    --link: #e6e6e6;
-    --link-hover: #bac8b1;
+    --link: #bac8b1;
+    --link-hover: #7b9669;
 
     --code-bg: rgba(0, 0, 0, 0.25);
     --code-fg: #e6e6e6;
@@ -48,8 +48,8 @@ html[data-theme="light"] {
   --accent: #7b9669;
   --border: #bac8b1;
 
-  --link: #404e3b;
-  --link-hover: #7b9669;
+  --link: #7b9669;
+  --link-hover: #404e3b;
 
   --code-bg: #f4f4f4;
   --code-fg: #1a1a1a;
@@ -66,8 +66,8 @@ html[data-theme="dark"] {
   --accent: #7b9669;
   --border: rgba(230, 230, 230, 0.25);
 
-  --link: #e6e6e6;
-  --link-hover: #bac8b1;
+  --link: #bac8b1;
+  --link-hover: #7b9669;
 
   --code-bg: rgba(0, 0, 0, 0.25);
   --code-fg: #e6e6e6;
@@ -94,8 +94,6 @@ body {
 a {
   color: var(--link);
   text-decoration: none;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
 }
 
 a:hover,
@@ -322,6 +320,38 @@ hr {
   padding: 0;
 }
 
+.prose a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-color: color-mix(in oklab, var(--link) 50%, transparent);
+}
+
+.prose a:hover,
+.prose a:focus {
+  color: var(--link-hover);
+  text-decoration-color: var(--link-hover);
+  text-decoration-thickness: 2px;
+}
+
+/* Override enhanced link styling for listing pages */
+.prose .post-list a,
+.prose .note-list a,
+.prose .topic-pills a {
+  text-decoration: none;
+}
+
+.prose .post-list a:hover,
+.prose .post-list a:focus,
+.prose .note-list a:hover,
+.prose .note-list a:focus,
+.prose .topic-pills a:hover,
+.prose .topic-pills a:focus {
+  text-decoration: none;
+  color: var(--link-hover);
+}
+
 .link-list {
   margin: 0;
   padding-left: 1rem;
@@ -337,4 +367,129 @@ hr {
 
 .site-footer a {
   color: var(--muted);
+}
+
+/* Search UI */
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+#search-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  border-radius: var(--radius);
+  outline: none;
+  font-family: inherit;
+}
+
+#search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--bg-accent);
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  max-height: 20rem;
+  overflow-y: auto;
+  z-index: 100;
+  display: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.search-result {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-result:last-child {
+  border-bottom: none;
+}
+
+.search-result a {
+  display: block;
+  text-decoration: none;
+}
+
+.search-result h4 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  color: var(--link);
+}
+
+.search-result p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-result:hover {
+  background: var(--code-bg);
+}
+
+.search-no-results {
+  padding: 1rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Tables */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.prose thead {
+  background: color-mix(in oklab, var(--bg-accent) 25%, transparent);
+  border-bottom: 2px solid var(--border);
+}
+
+.prose th,
+.prose td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose th {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose tbody tr:hover {
+  background: color-mix(in oklab, var(--bg-accent) 10%, transparent);
+}
+
+/* Nav Badge */
+.nav-badge {
+    display: none;
+    order: -1;
+}
+
+@media (min-width: 600px) {
+    .nav-badge {
+        display: block;
+    }
 }

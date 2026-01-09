@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>Developer Quest II - Variables</title><meta name="description" content="Trial by reference"><meta name="author" content="Devon Burriss"><meta itemprop="name" content="Developer Quest II - Variables"><meta itemprop="description" content="Trial by reference"><meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg"><link rel="canonical" href="https://devonburriss.me/developer-quest-variables/"><meta itemprop="datePublished" content="2014-10-12" id="date"><meta itemprop="dateModified" content="2014-10-12" id="mdate"><meta itemprop="headline" content="Developer Quest II - Variables - Trial by reference"><meta itemprop="mainEntityOfPage" content="https://devonburriss.me/developer-quest-variables/"><meta name="headline" content="Developer Quest II - Variables - Trial by reference"><link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16"><link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@DevonBurriss"><meta name="twitter:title" content="Developer Quest II - Variables"><meta name="twitter:description" content="Trial by reference"><meta name="twitter:creator" content="@DevonBurriss"><meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:title" content="Developer Quest II - Variables"><meta property="og:type" content="article"><meta property="og:url" content="https://devonburriss.me/developer-quest-variables/"><meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:description" content="Trial by reference"><meta property="og:site_name" content="Devon Burriss&#39; Blog"><link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/highlight/atom-one-dark.css"><script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();</script><script src="/js/theme.js" defer="defer"></script></head><body><header class="site-header"><nav class="site-nav"><ul class="site-links"><li><a href="/">Home</a></li><li><a href="/topics/">Topics</a></li><li><a href="/recommended-reading.html">Reading</a></li><li><a href="/about/">About</a></li><li><a href="/rss.xml">RSS</a></li></ul><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">Theme</button></nav></header><main class="site-main"><span style="display:contents"><header class="page-header"><h1>Developer Quest II - Variables</h1><p class="page-subtitle">Trial by reference</p><p class="post-meta">Devon Burriss &#183; Oct 12, 2014</p></header><div class="topic-pills"><a class="topic-pill" href="/topics/notes-reflections/" title="Learning, career, ethics, and life-adjacent thinking.">Notes &amp; Reflections</a></div><hr></span><article class="prose"><blockquote>
+<html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>Developer Quest II - Variables</title><meta name="description" content="Trial by reference"><meta name="author" content="Devon Burriss"><meta itemprop="name" content="Developer Quest II - Variables"><meta itemprop="description" content="Trial by reference"><meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg"><link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16"><link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@DevonBurriss"><meta name="twitter:title" content="Developer Quest II - Variables"><meta name="twitter:description" content="Trial by reference"><meta name="twitter:creator" content="@DevonBurriss"><meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:title" content="Developer Quest II - Variables"><meta property="og:type" content="article"><meta property="og:url" content="https://devonburriss.me/developer-quest-variables/"><meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:description" content="Trial by reference"><meta property="og:site_name" content="Devon Burriss&#39; Blog"><link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/highlight/atom-one-dark.css"><script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();</script><script src="/js/theme.js" defer="defer"></script><script type="module" src="/js/search-ui.js"></script></head><body><header class="site-header"><nav class="site-nav"><a class="site-title nav-badge" href="/">DEVON BURRISS</a><ul class="site-links"><li><a href="/">Home</a></li><li><a href="/topics/">Topics</a></li><li><a href="/notes/">Notes</a></li><li><a href="/recommended-reading.html">Reading</a></li><li><a href="/about/">About</a></li><li><a href="/rss.xml">RSS</a></li></ul><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">Theme</button></nav></header><main class="site-main"><span style="display:contents"><header class="page-header"><h1>Developer Quest II - Variables</h1><p class="page-subtitle">Trial by reference</p><p class="post-meta">Devon Burriss</p></header><div class="topic-pills"><a class="topic-pill" href="/topics/notes-reflections/" title="Learning, career, ethics, and life-adjacent thinking.">Notes &amp; Reflections</a></div><hr></span><article class="prose"><blockquote>
 <p>Hold this for me.</p>
 </blockquote>
 <h2 id="the-story-so-far">The story so far</h2>
-<p>Lets go over what we have so far from <a href="http://devonburriss.me/developer-quest-getting-started/">Part 1</a> and touch on some terminology. We have a <strong>namespace</strong> called DeveloperQuest1. Namespaces are a way of grouping an application or parts of it. Specifically its used in the grouping of the Types that make up an application.
+<p>Lets go over what we have so far from <a href="http://devonburriss.me/developer-quest-getting-started/">Part 1</a> and touch on some terminology. We have a <strong>namespace</strong> called DeveloperQuest1. Namespaces are a way of grouping an application or parts of it. Specifically its used in the grouping of the Types that make up an application.<br />
 Then we have a <strong>class</strong> called <strong>Program</strong>. <strong>class</strong> is the keyword used to define a Reference Type in C#. We will explore it in more detail later in this tutorial. Then we have the first <em>member</em> of Program. <em>Main</em> is the <strong>method</strong> that is run when a console application starts. Methods are ways of grouping behaviour in a program that can be executed.</p>
 <p><img src="/img/posts/2014/gfs_36744_2_2.jpg" alt="hero enters town" /></p>
 <!--more-->
 <h2 id="variables">Variables</h2>
-<p>Writing things to the screen is great but to make programming useful we need to be able to take input from somewhere, store it, manipulate it and possible then show it or save it.
-You can think of variables as the buckets that we store values in while we are using them in the program.
+<p>Writing things to the screen is great but to make programming useful we need to be able to take input from somewhere, store it, manipulate it and possible then show it or save it.<br />
+You can think of variables as the buckets that we store values in while we are using them in the program.<br />
 We get 2 main categories of variables. <strong>Value Types</strong> and <strong>Reference Types</strong>. So every variable has a unique <strong>Type</strong> that falls into one of these 2 categories but is always a <strong>Type</strong>.</p>
 <h3 id="value-types">Value Types</h3>
 <p>Value types fall into 2 main sub-categories :</p>
@@ -23,25 +23,25 @@ We get 2 main categories of variables. <strong>Value Types</strong> and <strong>
 <li>boolean</li>
 <li>user-defined</li>
 </ul>
-<p>I just mention this so you are aware of it when we go through examples. If it doesn't make much sense right now, don't worry about it.
+<p>I just mention this so you are aware of it when we go through examples. If it doesn't make much sense right now, don't worry about it.<br />
 So let's see an example of using a numeric value type</p>
-<p>{% highlight csharp %}
-int myNumber = 1;
+<p>{% highlight csharp %}<br />
+int myNumber = 1;<br />
 {% endhighlight %}</p>
-<p>This assigns the number <em>1</em> to the 'bucket' named <em>myNumber</em>. The default for an <em>int</em> is zero.
-There are numerous types of numeric value types that vary in terms of the size of the number they can hold as well as the precision.
+<p>This assigns the number <em>1</em> to the &lsquo;bucket&rsquo; named <em>myNumber</em>. The default for an <em>int</em> is zero.<br />
+There are numerous types of numeric value types that vary in terms of the size of the number they can hold as well as the precision.<br />
 Next are boolean values. The valid options here are either true or false. The default being <em>false</em>.</p>
-<p>{% highlight csharp %}
-bool isHero = true;
+<p>{% highlight csharp %}<br />
+bool isHero = true;<br />
 {% endhighlight %}</p>
-<p>For the full list see here: <a href="http://msdn.microsoft.com/en-us/library/bfft1t3c.aspx">http://msdn.microsoft.com/en-us/library/bfft1t3c.aspx</a></p>
+<p>For the full list see here: http://msdn.microsoft.com/en-us/library/bfft1t3c.aspx</p>
 <p>Finally a <strong>struct</strong>. Structs are complex values. These can be used to store groups of values together logically. You will see that these seem a lot like reference types but differ in how they are handled in the program.</p>
 <ul>
 <li>In the Solution Explorer <strong>Right-click</strong> on the C# Console Project DeveloperQuest1</li>
 <li>Expand <strong>Add</strong></li>
-<li>Click <strong>Class...</strong></li>
+<li>Click <strong>Class&hellip;</strong></li>
 <li>Name the class <strong>Hero</strong></li>
-<li>Click <strong>Ok</strong>
+<li>Click <strong>Ok</strong><br />
 <img src="/images/posts/2014/code-change2.jpg" alt="new class image" /></li>
 </ul>
 <p>This will create a new <strong>class</strong> (will discuss later).</p>
@@ -49,31 +49,31 @@ bool isHero = true;
 <li>Change the <strong>class</strong> keyword to a <strong>struct</strong> and add the folowing 2 <em>fields</em>.</li>
 <li>Save the changes</li>
 </ul>
-<p>It should look like this now:
-{% highlight csharp %}
-public struct Hero
-{
-public int Health;
-public string Name;
-}
+<p>It should look like this now:<br />
+{% highlight csharp %}<br />
+public struct Hero<br />
+{<br />
+public int Health;<br />
+public string Name;<br />
+}<br />
 {% endhighlight %}</p>
 <blockquote>
 <p><strong>string</strong> is used to store text. It is a reference type but is handled in a special way.</p>
 </blockquote>
 <p><img src="/img/posts/2014/so-far-1.jpg" alt="structure of application" /></p>
-<p>You will see shortly when we explore reference types how similar they look to a <strong>struct</strong>.
-The key characteristic to understand about value types is that they always point to their own 'bucket'.
-This can be demonstrated with the following example.
-Change your Main <em>method</em> to match the code below.
+<p>You will see shortly when we explore reference types how similar they look to a <strong>struct</strong>.<br />
+The key characteristic to understand about value types is that they always point to their own &lsquo;bucket&rsquo;.<br />
+This can be demonstrated with the following example.<br />
+Change your Main <em>method</em> to match the code below.<br />
 Notice the <strong>using</strong> statement at the top now. This is the <em>System</em> namespace and allows us to remove <em>System</em> from in front of <strong>Console</strong>. This is because <strong>Console</strong> is a <strong>class</strong> in the <em>System</em> namepspace. This makes your code simpler to work with.</p>
-<p>{% highlight csharp %}
-using System;
-namespace DeveloperQuest1
-{
-class Program
-{
-static void Main(string[] args)
-{
+<p>{% highlight csharp %}<br />
+using System;<br />
+namespace DeveloperQuest1<br />
+{<br />
+class Program<br />
+{<br />
+static void Main(string[] args)<br />
+{<br />
 System.Console.WriteLine(&quot;So you want to be a C# developer?&quot;);</p>
 <pre><code>        Hero hero1 = new Hero(){
             Health = 10,
@@ -93,7 +93,7 @@ System.Console.WriteLine(&quot;So you want to be a C# developer?&quot;);</p>
     }
 }
 </code></pre>
-<p>}
+<p>}<br />
 {% endhighlight %}</p>
 <p>Run the application by hitting <strong>F5</strong>.</p>
 <h4 id="output-should-be">Output should be:</h4>
@@ -104,7 +104,7 @@ System.Console.WriteLine(&quot;So you want to be a C# developer?&quot;);</p>
 </code></pre>
 <p>So <em>hero1</em> and <em>hero2</em> represent 2 unique values. Changing one does not effect the other.</p>
 <h3 id="reference-types">Reference Types</h3>
-<p>Reference types, as the name alludes to, can reference the same 'bucket'.
+<p>Reference types, as the name alludes to, can reference the same &lsquo;bucket&rsquo;.<br />
 Rather than the <em>struct</em> keyword, a reference Type uses <em>class</em>. Usually you will create a <strong>class</strong> and the <em>members</em> of the <strong>class</strong> are comprised of value and reference types. <strong>Members</strong> can be <em>fields</em>, <em>properties</em>, or <em>methods</em> on a Type. <em>Name</em> and <em>Health</em> on <strong>Hero</strong> above are examples of <em>fields</em>.</p>
 <p>Let's change the Hero Type from a <em>value</em> type to a <em>reference</em> type.</p>
 <ul>
@@ -119,22 +119,22 @@ Rather than the <em>struct</em> keyword, a reference Type uses <em>class</em>. U
 		Type is Hero
 		Is value type: False
 </code></pre>
-<p>So <em>hero1</em> and <em>hero2</em> both point to the same 'bucket' now. Changing one will change the other. Because <em>hero2</em> points at <em>hero1</em>, when we changed 2, 1 was also changed because they are the same thing actually. This is the essential difference between a reference type and a value type. Hopefully the names make sense now?</p>
+<p>So <em>hero1</em> and <em>hero2</em> both point to the same &lsquo;bucket&rsquo; now. Changing one will change the other. Because <em>hero2</em> points at <em>hero1</em>, when we changed 2, 1 was also changed because they are the same thing actually. This is the essential difference between a reference type and a value type. Hopefully the names make sense now?</p>
 <h3 id="using-our-new-found-knowledge">Using our new found knowledge</h3>
-<p>We have a reference type that represents our hero. Let's add functionality to the program so we can give our hero a name.
+<p>We have a reference type that represents our hero. Let's add functionality to the program so we can give our hero a name.<br />
 Change the program to match the following.</p>
-<p>{% highlight csharp %}
-using System;
-namespace DeveloperQuest1
-{
-class Program
-{
-static void Main(string[] args)
-{
-Hero hero = new Hero();
-hero.Health = 10;
-Console.WriteLine(&quot;So you want to be a C# developer?&quot;);
-Console.WriteLine(&quot;What is your hero's name?&quot;);
+<p>{% highlight csharp %}<br />
+using System;<br />
+namespace DeveloperQuest1<br />
+{<br />
+class Program<br />
+{<br />
+static void Main(string[] args)<br />
+{<br />
+Hero hero = new Hero();<br />
+hero.Health = 10;<br />
+Console.WriteLine(&quot;So you want to be a C# developer?&quot;);<br />
+Console.WriteLine(&quot;What is your hero's name?&quot;);<br />
 hero.Name = Console.ReadLine();</p>
 <pre><code>        Console.WriteLine(&quot;Your adventure begins &quot; + hero.Name);
 		//to pause program
@@ -142,23 +142,23 @@ hero.Name = Console.ReadLine();</p>
     }
 }
 </code></pre>
-<p>}
+<p>}<br />
 {% endhighlight %}</p>
-<p>So on line 1 we have the <em>using</em> statement that imports the <em>System</em> namespace to we can use it throughout our code without explicitly referencing it all the time.
-Our program is in the <em>DeveloperQuest1</em> namespace.
-It contains a <strong>Type</strong> called <strong>Program</strong> (which uses the <strong>class</strong> keyword and is such a reference type).
-It contains a <em>method</em> called <strong>Main</strong> which is run by default by a console application. We will explore the arguments passed in as <strong>args</strong> in a later tutorial.
-The 1st statement in the Main method declares a new <strong>Hero</strong> using the <strong>new</strong> keyword.
-We then assign a value of 10 to the hero's <strong>Health</strong> <em>field</em>.
-We then write to the Console asking for the hero's name and read it into the <strong>Name</strong> <em>field</em> on the hero. This is done using a <em>method</em> on <strong>Console</strong> called <em>ReadLine</em> which reads everything you type in until you hit <em>Enter</em>.
-We then write out to the console the name we stored on the hero.
-Lastly we still have the <em>ReadKey</em> call which pauses the application. Above it I show the use of comments. These are ignored by the program but can be used by you to leave instructional text. Use only when something is unclear.
+<p>So on line 1 we have the <em>using</em> statement that imports the <em>System</em> namespace to we can use it throughout our code without explicitly referencing it all the time.<br />
+Our program is in the <em>DeveloperQuest1</em> namespace.<br />
+It contains a <strong>Type</strong> called <strong>Program</strong> (which uses the <strong>class</strong> keyword and is such a reference type).<br />
+It contains a <em>method</em> called <strong>Main</strong> which is run by default by a console application. We will explore the arguments passed in as <strong>args</strong> in a later tutorial.<br />
+The 1st statement in the Main method declares a new <strong>Hero</strong> using the <strong>new</strong> keyword.<br />
+We then assign a value of 10 to the hero's <strong>Health</strong> <em>field</em>.<br />
+We then write to the Console asking for the hero's name and read it into the <strong>Name</strong> <em>field</em> on the hero. This is done using a <em>method</em> on <strong>Console</strong> called <em>ReadLine</em> which reads everything you type in until you hit <em>Enter</em>.<br />
+We then write out to the console the name we stored on the hero.<br />
+Lastly we still have the <em>ReadKey</em> call which pauses the application. Above it I show the use of comments. These are ignored by the program but can be used by you to leave instructional text. Use only when something is unclear.<br />
 Hit <strong>F5</strong> to run it.</p>
 <h2 id="summary">Summary</h2>
 <p>In this tutorial we explored the Type categories you get in C# and how to create and use them. In the following tutorial we will dive into <em>classes</em> and the various <em>members</em> you can have on them.</p>
 <h3 id="further-reading-and-references">Further Reading and References</h3>
 <ul>
-<li><a href="http://msdn.microsoft.com/en-us/library/s1ax56ch.aspx">http://msdn.microsoft.com/en-us/library/s1ax56ch.aspx</a></li>
-<li><a href="http://www.albahari.com/valuevsreftypes.aspx">http://www.albahari.com/valuevsreftypes.aspx</a></li>
+<li>http://msdn.microsoft.com/en-us/library/s1ax56ch.aspx</li>
+<li>http://www.albahari.com/valuevsreftypes.aspx</li>
 </ul>
-</article><hr><nav class="pager"><ul class="pager-links"><li><a href="/developer-quest-getting-started/" title="Developer Quest I - Getting started with C#">← Previous</a></li><li><a href="/testing-the-untestable/" title="Testing the Untestable">Next →</a></li></ul></nav></main><footer class="site-footer"><p>Copyright &#169; <a href="/about/">Devon Burriss</a> 2026</p></footer><div class="comments"><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'devonburriss';(function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = 'https://devonburriss.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript></div><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-45750611-2', 'auto');ga('send', 'pageview');</script></body></html>
+</article><hr><nav class="pager"><ul class="pager-links"><li><a href="/installing-ubuntu-on-hyper-v/" title="Installing Ubuntu on Hyper-V">← Previous</a></li><li><a href="/developer-quest-getting-started/" title="Developer Quest I - Getting started with C#">Next →</a></li></ul></nav></main><footer class="site-footer"><p>Copyright &#169; <a href="/about/">Devon Burriss</a> 2026</p></footer><div class="comments"><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'devonburriss';(function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = 'https://devonburriss.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript></div><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-45750611-2', 'auto');ga('send', 'pageview');</script></body></html>

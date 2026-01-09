@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>Single Responsibility Principle</title><meta name="description" content="The S in SOLID."><meta name="author" content="Devon Burriss"><meta itemprop="name" content="Single Responsibility Principle"><meta itemprop="description" content="The S in SOLID."><meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg"><link rel="canonical" href="https://devonburriss.me/single-respon/"><meta itemprop="datePublished" content="2014-09-05" id="date"><meta itemprop="dateModified" content="2014-09-05" id="mdate"><meta itemprop="headline" content="Single Responsibility Principle - The S in SOLID."><meta itemprop="mainEntityOfPage" content="https://devonburriss.me/single-respon/"><meta name="headline" content="Single Responsibility Principle - The S in SOLID."><link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16"><link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@DevonBurriss"><meta name="twitter:title" content="Single Responsibility Principle"><meta name="twitter:description" content="The S in SOLID."><meta name="twitter:creator" content="@DevonBurriss"><meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:title" content="Single Responsibility Principle"><meta property="og:type" content="article"><meta property="og:url" content="https://devonburriss.me/single-respon/"><meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:description" content="The S in SOLID."><meta property="og:site_name" content="Devon Burriss&#39; Blog"><link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/highlight/atom-one-dark.css"><script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();</script><script src="/js/theme.js" defer="defer"></script></head><body><header class="site-header"><nav class="site-nav"><ul class="site-links"><li><a href="/">Home</a></li><li><a href="/topics/">Topics</a></li><li><a href="/recommended-reading.html">Reading</a></li><li><a href="/about/">About</a></li><li><a href="/rss.xml">RSS</a></li></ul><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">Theme</button></nav></header><main class="site-main"><span style="display:contents"><header class="page-header"><h1>Single Responsibility Principle</h1><p class="page-subtitle">The S in SOLID.</p><p class="post-meta">Devon Burriss &#183; Sep 05, 2014</p></header><div class="topic-pills"><a class="topic-pill" href="/topics/engineering-practices/" title="How we build, test, and validate software.">Engineering Practices</a><a class="topic-pill" href="/topics/platforms-runtime/" title="Runtimes and execution environments (not frameworks).">Platforms &amp; Runtime</a></div><hr></span><article class="prose"><blockquote>
+<html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>Single Responsibility Principle</title><meta name="description" content="The S in SOLID."><meta name="author" content="Devon Burriss"><meta itemprop="name" content="Single Responsibility Principle"><meta itemprop="description" content="The S in SOLID."><meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg"><link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16"><link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@DevonBurriss"><meta name="twitter:title" content="Single Responsibility Principle"><meta name="twitter:description" content="The S in SOLID."><meta name="twitter:creator" content="@DevonBurriss"><meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:title" content="Single Responsibility Principle"><meta property="og:type" content="article"><meta property="og:url" content="https://devonburriss.me/single-respon/"><meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:description" content="The S in SOLID."><meta property="og:site_name" content="Devon Burriss&#39; Blog"><link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/highlight/atom-one-dark.css"><script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();</script><script src="/js/theme.js" defer="defer"></script><script type="module" src="/js/search-ui.js"></script></head><body><header class="site-header"><nav class="site-nav"><a class="site-title nav-badge" href="/">DEVON BURRISS</a><ul class="site-links"><li><a href="/">Home</a></li><li><a href="/topics/">Topics</a></li><li><a href="/notes/">Notes</a></li><li><a href="/recommended-reading.html">Reading</a></li><li><a href="/about/">About</a></li><li><a href="/rss.xml">RSS</a></li></ul><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">Theme</button></nav></header><main class="site-main"><span style="display:contents"><header class="page-header"><h1>Single Responsibility Principle</h1><p class="page-subtitle">The S in SOLID.</p><p class="post-meta">Devon Burriss</p></header><div class="topic-pills"><a class="topic-pill" href="/topics/engineering-practices/" title="How we build, test, and validate software.">Engineering Practices</a><a class="topic-pill" href="/topics/platforms-runtime/" title="Runtimes and execution environments (not frameworks).">Platforms &amp; Runtime</a></div><hr></span><article class="prose"><blockquote>
 <p>The <strong>S</strong> in <strong>SOLID</strong>.</p>
 </blockquote>
 <p>If I had to pick one principle that had to be enforced strongly on a code base, this would be it. Most techniques for writing elegant code fall by the wayside if this principle is not followed.</p>
@@ -10,27 +10,27 @@
 <p>It has been a long time but I do remember a time when I was averse to lots of files in a development project. When I had god classes that contained demi-god functions. I am not sure if it is related but it may have been a side effect of programming in a dynamic language but to blame it on a language would be naïve. Besides, I learned the basics of programming in C++ and Java. I also remember a time when every little change I made in my projects broke a chain of other parts, some expected, and way too many completely unexpected. And it was exactly those circumstances that made me question how I was doing things. Enter SRP.</p>
 <!--more-->
 <h2 id="definition">Definition</h2>
-<p>Since it is a principle, rather than a rule; it doesn’t have one clear definition but as far as I can tell Robert C. Martin (<a href="http://www.objectmentor.com/omTeam/martin_r.html">http://www.objectmentor.com/omTeam/martin_r.html</a>) coined the term and so his definition will be used:</p>
+<p>Since it is a principle, rather than a rule; it doesn’t have one clear definition but as far as I can tell Robert C. Martin (http://www.objectmentor.com/omTeam/martin_r.html) coined the term and so his definition will be used:</p>
 <blockquote>
 <p>THERE SHOULD NEVER BE MORE THAN ONE REASON FOR A CLASS TO CHANGE.</p>
 </blockquote>
 <p>This is a very simple statement but one that is quite hard to get right in practice. It takes discipline to think carefully about where each piece of code is placed to make sure it belongs there.</p>
 <p><img src="/img/posts/2014/train-track-800-slim.jpg" alt="trainline into the distance" /></p>
 <h2 id="class-cohesion">Class Cohesion</h2>
-<p>A discussion of SRP would not be complete without mention of cohesion (<a href="http://en.wikipedia.org/wiki/Cohesion_(computer_science)">http://en.wikipedia.org/wiki/Cohesion_(computer_science)</a>). Cohesion is the measure of how well the members of a class group together. An easy tell to look for when looking for classes with low cohesion is to look for fields that are used in separate functions. If you find a field that is used in some functions, and another field that is used in others, it is likely that you need 2 classes rather than 1 for the behaviour. We will see an example of this later.</p>
+<p>A discussion of SRP would not be complete without mention of cohesion (http://en.wikipedia.org/wiki/Cohesion_(computer_science)). Cohesion is the measure of how well the members of a class group together. An easy tell to look for when looking for classes with low cohesion is to look for fields that are used in separate functions. If you find a field that is used in some functions, and another field that is used in others, it is likely that you need 2 classes rather than 1 for the behaviour. We will see an example of this later.</p>
 <h2 id="example">Example</h2>
-<p>Ok. Enough talk (or writing rather…). Lets look at an example of a class that does not follow SRP and refactor it towards one that does.
+<p>Ok. Enough talk (or writing rather…). Lets look at an example of a class that does not follow SRP and refactor it towards one that does.<br />
 The example I use is a service that processes a customer’s order.</p>
-<p>{% highlight csharp %}
-public class OrderServiceBefore : IDisposable
-{
-private const string connection = @&quot;c:\Example.mdf&quot;;
-private readonly DataContext db;
-private SmtpClient emailClient;
-public OrderServiceBefore()
-{
-this.db = new DataContext(connection);
-this.emailClient = new SmtpClient();
+<p>{% highlight csharp %}<br />
+public class OrderServiceBefore : IDisposable<br />
+{<br />
+private const string connection = @&ldquo;c:\Example.mdf&rdquo;;<br />
+private readonly DataContext db;<br />
+private SmtpClient emailClient;<br />
+public OrderServiceBefore()<br />
+{<br />
+this.db = new DataContext(connection);<br />
+this.emailClient = new SmtpClient();<br />
 }</p>
 <pre><code>public void Process(Order order)
 {
@@ -65,15 +65,15 @@ public void Dispose()
         this.emailClient.Dispose();
 }
 </code></pre>
-<p>}
+<p>}<br />
 {% endhighlight %}</p>
-<p>Looking at the code you can see that the Process method does more than 1 thing. It checks the validity of the order, persists it to the database, and then emails sales with the order details.
+<p>Looking at the code you can see that the Process method does more than 1 thing. It checks the validity of the order, persists it to the database, and then emails sales with the order details.<br />
 Lets start refactoring this toward a cleaner implementation…</p>
-<p>{% highlight csharp %}
-public class OrderServiceIntermediate : IDisposable
-{
-private const string connection = @&quot;c:\Example.mdf&quot;;
-private readonly DataContext db;
+<p>{% highlight csharp %}<br />
+public class OrderServiceIntermediate : IDisposable<br />
+{<br />
+private const string connection = @&ldquo;c:\Example.mdf&rdquo;;<br />
+private readonly DataContext db;<br />
 private SmtpClient emailClient;</p>
 <pre><code>    public OrderServiceIntermediate()
     {
@@ -125,25 +125,25 @@ private SmtpClient emailClient;</p>
 }
 </code></pre>
 <p>{% endhighlight %}</p>
-<p>Here all I did was extract the different activities being performed into methods. This does little else other than make the intent of the Process method clearer, which in turn highlights that this class contains implementation details outside of it’s responsibility.
+<p>Here all I did was extract the different activities being performed into methods. This does little else other than make the intent of the Process method clearer, which in turn highlights that this class contains implementation details outside of it’s responsibility.<br />
 So lets extract these methods into classes that are responsible for the needed functionality. We will interface each of these so we can inject the abstraction in rather than the concrete implementation.</p>
-<p>{% highlight csharp %}
-public class OrderRepository : IOrderRepository
-{
-private const string connection = @&quot;c:\Northwnd.mdf&quot;;
-private readonly DataContext db;
-public OrderRepository()
-{
-this.db = new DataContext(connection);
-}
-public void SaveOrder(Order order)
-{
-db.GetTable<Order>().Attach(order);
-db.SubmitChanges();
-}
-public void Dispose()
-{
-if (this.db != null)
+<p>{% highlight csharp %}<br />
+public class OrderRepository : IOrderRepository<br />
+{<br />
+private const string connection = @&ldquo;c:\Northwnd.mdf&rdquo;;<br />
+private readonly DataContext db;<br />
+public OrderRepository()<br />
+{<br />
+this.db = new DataContext(connection);<br />
+}<br />
+public void SaveOrder(Order order)<br />
+{<br />
+db.GetTable<Order>().Attach(order);<br />
+db.SubmitChanges();<br />
+}<br />
+public void Dispose()<br />
+{<br />
+if (this.db != null)<br />
 this.db.Dispose();</p>
 <pre><code>    }
 }
@@ -184,43 +184,47 @@ public class EmailService : IEmailService {
 </code></pre>
 <p>{% endhighlight %}</p>
 <p>With these new classes extracted we can now make use of them in our OrderService class.</p>
-<p>{% highlight csharp %}
-public class OrderServiceAfter : IDisposable
-{
-private readonly IOrderRepository orderRepository;
-private readonly IEmailService emailService;
-public OrderServiceAfter(IOrderRepository orderRepository, IEmailService emailService)
-public void Process(Order order)
-{
-OrderProcessGaurd(order);
-orderRepository.SaveOrder(order);
-emailService.SendOrderToSales(order);
-}
-private void OrderProcessGaurd(Order order)
-{
-if (order == null)
-throw new ArgumentNullException(&quot;order&quot;);
-if (order.Customer == null)
-throw new ArgumentException(&quot;Customer cannot be null.&quot;);
-if (order.OrderLines.Count &lt; 1)
-throw new InvalidOperationException(&quot;Cannot process an order with no lineitems.&quot;);
-}
-public void Dispose()
-{
-if (orderRepository != null)
-orderRepository.Dispose();
-if (emailService != null)
-emailService.Dispose();
-}
-}
+<p>{% highlight csharp %}<br />
+public class OrderServiceAfter : IDisposable<br />
+{<br />
+private readonly IOrderRepository orderRepository;<br />
+private readonly IEmailService emailService;<br />
+public OrderServiceAfter(IOrderRepository orderRepository, IEmailService emailService)<br />
+{<br />
+this.orderRepository = orderRepository;<br />
+this.emailService = emailService;<br />
+}<br />
+public void Process(Order order)<br />
+{<br />
+OrderProcessGaurd(order);<br />
+orderRepository.SaveOrder(order);<br />
+emailService.SendOrderToSales(order);<br />
+}<br />
+private void OrderProcessGaurd(Order order)<br />
+{<br />
+if (order == null)<br />
+throw new ArgumentNullException(&ldquo;order&rdquo;);<br />
+if (order.Customer == null)<br />
+throw new ArgumentException(&quot;Customer cannot be null.&quot;);<br />
+if (order.OrderLines.Count &lt; 1)<br />
+throw new InvalidOperationException(&quot;Cannot process an order with no lineitems.&quot;);<br />
+}<br />
+public void Dispose()<br />
+{<br />
+if (orderRepository != null)<br />
+orderRepository.Dispose();<br />
+if (emailService != null)<br />
+emailService.Dispose();<br />
+}<br />
+}<br />
 {% endhighlight %}</p>
 <h3 id="analysis">Analysis</h3>
-<p>Lets take a quick look at what running code metrics on this in Visual Studio 2013 looks like (Analyze &gt; Calculate Code Metrics for Selected Projects).
+<p>Lets take a quick look at what running code metrics on this in Visual Studio 2013 looks like (Analyze &gt; Calculate Code Metrics for Selected Projects).<br />
 <img src="/img/posts/2014/Code-Metrics-SRP.png" alt="" /></p>
 <p><strong>Maintainability Index</strong> – Here we see a nice gain just separating out into functions, with a 1 point drop when separating out into classes. I guess Microsoft see it as less maintainable with the logic in different classes. Marginally. The gains on the other criteria more than make up for the 1 point drop though. See: <a href="http://blogs.msdn.com/b/zainnab/archive/2011/05/26/code-metrics-maintainability-index.aspx">http://blogs.msdn.com/b/zainnab/archive/2011/05/26/code-metrics-maintainability-index.aspx</a></p>
 <p><a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><strong>Cyclomatic Complexity</strong></a> – This basically highlights the paths through the code. It is a good measure of how complex the code is. This dropped so marginally. Typically we can see much better gains here when applying SRP on more complex problems. See: <a href="http://blogs.msdn.com/b/zainnab/archive/2011/05/17/code-metrics-cyclomatic-complexity.aspx">http://blogs.msdn.com/b/zainnab/archive/2011/05/17/code-metrics-cyclomatic-complexity.aspx</a></p>
-<p><strong>Depth of Inheritance</strong> – We are not using inheritance to solve this problem so not going to touch on this. See: [http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code-metrics-depth-of-inheritance-dit.aspx](<a href="http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code-">http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code-</a> metrics-depth-of-inheritance-dit.aspx)</p>
+<p><strong>Depth of Inheritance</strong> – We are not using inheritance to solve this problem so not going to touch on this. See: [http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code-metrics-depth-of-inheritance-dit.aspx](http://blogs.msdn.com/b/zainnab/archive/2011/05/19/code- metrics-depth-of-inheritance-dit.aspx)</p>
 <p><a href="http://en.wikipedia.org/wiki/Coupling_(computer_programming)"><strong>Class Coupling</strong></a> – We dropped the coupling to other classes quite substantially. This is a very good thing. The less dependencies you class has, the less likely that it breaks due to a change elsewhere in the codebase. See: <a href="http://blogs.msdn.com/b/zainnab/archive/2014/02/22/10168042.aspx">http://blogs.msdn.com/b/zainnab/archive/2014/02/22/10168042.aspx</a></p>
 <h3 id="resources">Resources</h3>
 <p><a href="http://www.objectmentor.com/resources/articles/srp.pdf">http://www.objectmentor.com/resources/articles/srp.pdf</a></p>
-</article><hr><nav class="pager"><ul class="pager-links"><li><a href="/estimation/" title="Estimation">← Previous</a></li><li><a href="/testing-your-data-repositories/" title="Testing your data repositories">Next →</a></li></ul></nav></main><footer class="site-footer"><p>Copyright &#169; <a href="/about/">Devon Burriss</a> 2026</p></footer><div class="comments"><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'devonburriss';(function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = 'https://devonburriss.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript></div><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-45750611-2', 'auto');ga('send', 'pageview');</script></body></html>
+</article><hr><nav class="pager"><ul class="pager-links"><li><a href="/testing-your-data-repositories/" title="Testing your data repositories">← Previous</a></li><li><a href="/estimation/" title="Estimation">Next →</a></li></ul></nav></main><footer class="site-footer"><p>Copyright &#169; <a href="/about/">Devon Burriss</a> 2026</p></footer><div class="comments"><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'devonburriss';(function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = 'https://devonburriss.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript></div><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-45750611-2', 'auto');ga('send', 'pageview');</script></body></html>

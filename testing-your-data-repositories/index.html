@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>Testing your data repositories</title><meta name="description" content="Avoiding dependency on a data layer."><meta name="author" content="Devon Burriss"><meta itemprop="name" content="Testing your data repositories"><meta itemprop="description" content="Avoiding dependency on a data layer."><meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg"><link rel="canonical" href="https://devonburriss.me/testing-your-data-repositories/"><meta itemprop="datePublished" content="2014-09-07" id="date"><meta itemprop="dateModified" content="2014-09-07" id="mdate"><meta itemprop="headline" content="Testing your data repositories - Avoiding dependency on a data layer."><meta itemprop="mainEntityOfPage" content="https://devonburriss.me/testing-your-data-repositories/"><meta name="headline" content="Testing your data repositories - Avoiding dependency on a data layer."><link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16"><link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@DevonBurriss"><meta name="twitter:title" content="Testing your data repositories"><meta name="twitter:description" content="Avoiding dependency on a data layer."><meta name="twitter:creator" content="@DevonBurriss"><meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:title" content="Testing your data repositories"><meta property="og:type" content="article"><meta property="og:url" content="https://devonburriss.me/testing-your-data-repositories/"><meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:description" content="Avoiding dependency on a data layer."><meta property="og:site_name" content="Devon Burriss&#39; Blog"><link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/highlight/atom-one-dark.css"><script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();</script><script src="/js/theme.js" defer="defer"></script></head><body><header class="site-header"><nav class="site-nav"><ul class="site-links"><li><a href="/">Home</a></li><li><a href="/topics/">Topics</a></li><li><a href="/recommended-reading.html">Reading</a></li><li><a href="/about/">About</a></li><li><a href="/rss.xml">RSS</a></li></ul><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">Theme</button></nav></header><main class="site-main"><span style="display:contents"><header class="page-header"><h1>Testing your data repositories</h1><p class="page-subtitle">Avoiding dependency on a data layer.</p><p class="post-meta">Devon Burriss &#183; Sep 07, 2014</p></header><div class="topic-pills"><a class="topic-pill" href="/topics/engineering-practices/" title="How we build, test, and validate software.">Engineering Practices</a><a class="topic-pill" href="/topics/platforms-runtime/" title="Runtimes and execution environments (not frameworks).">Platforms &amp; Runtime</a></div><hr></span><article class="prose"><blockquote>
+<html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>Testing your data repositories</title><meta name="description" content="Avoiding dependency on a data layer."><meta name="author" content="Devon Burriss"><meta itemprop="name" content="Testing your data repositories"><meta itemprop="description" content="Avoiding dependency on a data layer."><meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg"><link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16"><link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@DevonBurriss"><meta name="twitter:title" content="Testing your data repositories"><meta name="twitter:description" content="Avoiding dependency on a data layer."><meta name="twitter:creator" content="@DevonBurriss"><meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:title" content="Testing your data repositories"><meta property="og:type" content="article"><meta property="og:url" content="https://devonburriss.me/testing-your-data-repositories/"><meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:description" content="Avoiding dependency on a data layer."><meta property="og:site_name" content="Devon Burriss&#39; Blog"><link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/highlight/atom-one-dark.css"><script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();</script><script src="/js/theme.js" defer="defer"></script><script type="module" src="/js/search-ui.js"></script></head><body><header class="site-header"><nav class="site-nav"><a class="site-title nav-badge" href="/">DEVON BURRISS</a><ul class="site-links"><li><a href="/">Home</a></li><li><a href="/topics/">Topics</a></li><li><a href="/notes/">Notes</a></li><li><a href="/recommended-reading.html">Reading</a></li><li><a href="/about/">About</a></li><li><a href="/rss.xml">RSS</a></li></ul><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">Theme</button></nav></header><main class="site-main"><span style="display:contents"><header class="page-header"><h1>Testing your data repositories</h1><p class="page-subtitle">Avoiding dependency on a data layer.</p><p class="post-meta">Devon Burriss</p></header><div class="topic-pills"><a class="topic-pill" href="/topics/engineering-practices/" title="How we build, test, and validate software.">Engineering Practices</a><a class="topic-pill" href="/topics/platforms-runtime/" title="Runtimes and execution environments (not frameworks).">Platforms &amp; Runtime</a></div><hr></span><article class="prose"><blockquote>
 <p>Avoiding dependency on a data layer.</p>
 </blockquote>
-<p>My solution was to use an in-memory H2 database (<a href="http://www.h2database.com/html/main.html">http://www.h2database.com/html/main.html</a>) which can be created and dropped on a per test basis. To do this I used the Command Pattern (<a href="http://en.wikipedia.org/wiki/Command_pattern">http://en.wikipedia.org/wiki/Command_pattern</a>) to create and then drop the table for each test. In case you are not familiar with the command pattern:</p>
+<p>My solution was to use an in-memory H2 database (http://www.h2database.com/html/main.html) which can be created and dropped on a per test basis. To do this I used the Command Pattern (http://en.wikipedia.org/wiki/Command_pattern) to create and then drop the table for each test. In case you are not familiar with the command pattern:</p>
 <p><img src="/img/posts/2014/books-800-medium.jpg" alt="library" /></p>
 <h2 id="command-pattern">Command Pattern</h2>
 <p>The command pattern is pretty simple. You define an interface with the method that will be called to execute some functionality.</p>
-<p>{% highlight java %}
-public interface Command {
-void execute() throws Exception;
-}
+<p>{% highlight java %}<br />
+public interface Command {<br />
+void execute() throws Exception;<br />
+}<br />
 {% endhighlight %}</p>
 <h2 id="the-solution">The Solution</h2>
 <p>So this is what the end result looks like. How you execute you commands is up to you but in case you are looking for the details I have included them further down in the article.</p>
-<p>{% highlight java %}
+<p>{% highlight java %}<br />
 public class CommitteeTableCommandTest {<br />
-private String connectionString = &quot;jdbc:h2:~/test&quot;;</p>
+private String connectionString = &ldquo;jdbc:h2:~/test&rdquo;;</p>
 <pre><code>@Test    
 public void create_NewCommitteeRecord_PersistsToDb() throws Exception {                 
 	try(Database database = new H2DatabaseImpl(connectionString, &quot;&quot;, &quot;&quot;)){
@@ -35,12 +35,12 @@ public void create_NewCommitteeRecord_PersistsToDb() throws Exception {
 	Assert.assertTrue(true);    	
 } 
 </code></pre>
-<p>}
+<p>}<br />
 {% endhighlight %}</p>
 <h3 id="the-details">The Details</h3>
-<p>For the creation and dropping of the table I created a generic abstract base class for each. I am using OrmLite (<a href="http://ormlite.com/">http://ormlite.com/</a>) (the Java library, not C# one – which is unrelated) for my Object Relational Mapper. This gives me a database agnostic way for handling the mundane database tasks without mixing my Java and SQL. You could quite easily write SQL for this, as long as you take any differences in database providers into consideration. On to the solution…</p>
-<p><em>Base create command</em>
-{% highlight java %}
+<p>For the creation and dropping of the table I created a generic abstract base class for each. I am using OrmLite (http://ormlite.com/) (the Java library, not C# one – which is unrelated) for my Object Relational Mapper. This gives me a database agnostic way for handling the mundane database tasks without mixing my Java and SQL. You could quite easily write SQL for this, as long as you take any differences in database providers into consideration. On to the solution…</p>
+<p><em>Base create command</em><br />
+{% highlight java %}<br />
 public abstract class BaseCreateTableCommand<T> implements Command {</p>
 <pre><code>private Database database;    
 private Class&lt;T&gt; typeOfT;
@@ -67,10 +67,10 @@ public void execute() throws Exception {
 	this.createTableIfNotExists();    
 } 
 </code></pre>
-<p>}
+<p>}<br />
 {% endhighlight %}</p>
-<p><em>Base drop command</em>
-{% highlight java %}
+<p><em>Base drop command</em><br />
+{% highlight java %}<br />
 public abstract class BaseDropTableCommand<T> implements Command {<br />
 private Database database;<br />
 private Class<T> typeOfT;</p>
@@ -92,29 +92,29 @@ public void execute() throws Exception {
 	this.dropTable(true);    
 } 
 </code></pre>
-<p>}
+<p>}<br />
 {% endhighlight %}</p>
-<p>Next, we inherit from these two classes to flesh out the create and drop commands.
-<em>Create command implementation</em>
-{% highlight java %}
+<p>Next, we inherit from these two classes to flesh out the create and drop commands.<br />
+<em>Create command implementation</em><br />
+{% highlight java %}<br />
 public class CreateCommitteeTableCommand extends BaseCreateTableCommand<CommitteeEntity> {<br />
-public CreateCommitteeTableCommand(Database database) {
+public CreateCommitteeTableCommand(Database database) {<br />
 super(database);<br />
-}
-}
+}<br />
+}<br />
 {% endhighlight %}</p>
-<p><em>Drop command implementation</em>
-{% highlight java %}
+<p><em>Drop command implementation</em><br />
+{% highlight java %}<br />
 public class DropCommitteeTableCommand extends BaseDropTableCommand<CommitteeEntity> {<br />
-public DropCommitteeTableCommand(Database database){
-super(database);
-}
-}
+public DropCommitteeTableCommand(Database database){<br />
+super(database);<br />
+}<br />
+}<br />
 {% endhighlight %}</p>
-<p>The only other piece is the Database abstraction, which I have my doubts about so I would
-not recommend copying :)</p>
-<p><em>Database abstraction</em>
-{% highlight java %}
+<p>The only other piece is the Database abstraction, which I have my doubts about so I would<br />
+not recommend copying 😃</p>
+<p><em>Database abstraction</em><br />
+{% highlight java %}<br />
 public abstract class Database implements AutoCloseable {</p>
 <pre><code>private static final int MAX_CONNECTIONS_PER_PARTITION = 2;
 
@@ -201,10 +201,10 @@ private void setupConnectionPool(String connectionUri, String username,	String p
 	connectionPool = new BoneCP(config);
 }
 </code></pre>
-<p>}
+<p>}<br />
 {% endhighlight %}</p>
-<p><em>H2 implementation</em>
-{% highlight java %}
+<p><em>H2 implementation</em><br />
+{% highlight java %}<br />
 public class H2DatabaseImpl extends Database {</p>
 <pre><code>private final String driver = &quot;org.h2.Driver&quot;;
 
@@ -218,11 +218,11 @@ public String getDriver() {
 	return driver;
 }
 </code></pre>
-<p>}
+<p>}<br />
 {% endhighlight %}</p>
-<p><em>Just for kicks...</em></p>
+<p><em>Just for kicks&hellip;</em></p>
 <p>I created a command queue, which itself is a command to enumerate through and execute a list of commands. Here just because its useful, not for purposes of this example. You can chain your inserts and then your drops into two commands using this.</p>
-<p>{% highlight java %}
+<p>{% highlight java %}<br />
 public class CommandQueue implements Command {<br />
 private List<Command> commands;<br />
 private Boolean breakOnError = true;</p>
@@ -264,7 +264,7 @@ private int executeImpl(int pos) throws Exception {
 	return pos;    
 } 
 </code></pre>
-<p>}
+<p>}<br />
 {% endhighlight %}</p>
-<p>Let me know if you found this useful, or if you have a better way for testing your data persistence...</p>
-</article><hr><nav class="pager"><ul class="pager-links"><li><a href="/single-respon/" title="Single Responsibility Principle">← Previous</a></li><li><a href="/software-development-is-like-a-piece-of-string/" title="Software development is like a piece of string">Next →</a></li></ul></nav></main><footer class="site-footer"><p>Copyright &#169; <a href="/about/">Devon Burriss</a> 2026</p></footer><div class="comments"><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'devonburriss';(function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = 'https://devonburriss.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript></div><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-45750611-2', 'auto');ga('send', 'pageview');</script></body></html>
+<p>Let me know if you found this useful, or if you have a better way for testing your data persistence&hellip;</p>
+</article><hr><nav class="pager"><ul class="pager-links"><li><a href="/software-development-is-like-a-piece-of-string/" title="Software development is like a piece of string">← Previous</a></li><li><a href="/single-respon/" title="Single Responsibility Principle">Next →</a></li></ul></nav></main><footer class="site-footer"><p>Copyright &#169; <a href="/about/">Devon Burriss</a> 2026</p></footer><div class="comments"><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'devonburriss';(function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = 'https://devonburriss.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript></div><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-45750611-2', 'auto');ga('send', 'pageview');</script></body></html>

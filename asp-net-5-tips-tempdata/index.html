@@ -1,61 +1,66 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>ASP.NET 5 Tips: TempData</title><meta name="description" content="Just hold this."><meta name="author" content="Devon Burriss"><meta itemprop="name" content="ASP.NET 5 Tips: TempData"><meta itemprop="description" content="Just hold this."><meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg"><link rel="canonical" href="https://devonburriss.me/asp-net-5-tips-tempdata/"><meta itemprop="datePublished" content="2016-01-17" id="date"><meta itemprop="dateModified" content="2016-01-17" id="mdate"><meta itemprop="headline" content="ASP.NET 5 Tips: TempData - Just hold this."><meta itemprop="mainEntityOfPage" content="https://devonburriss.me/asp-net-5-tips-tempdata/"><meta name="headline" content="ASP.NET 5 Tips: TempData - Just hold this."><link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16"><link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@DevonBurriss"><meta name="twitter:title" content="ASP.NET 5 Tips: TempData"><meta name="twitter:description" content="Just hold this."><meta name="twitter:creator" content="@DevonBurriss"><meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:title" content="ASP.NET 5 Tips: TempData"><meta property="og:type" content="article"><meta property="og:url" content="https://devonburriss.me/asp-net-5-tips-tempdata/"><meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:description" content="Just hold this."><meta property="og:site_name" content="Devon Burriss&#39; Blog"><link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/highlight/atom-one-dark.css"><script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();</script><script src="/js/theme.js" defer="defer"></script></head><body><header class="site-header"><nav class="site-nav"><ul class="site-links"><li><a href="/">Home</a></li><li><a href="/topics/">Topics</a></li><li><a href="/recommended-reading.html">Reading</a></li><li><a href="/about/">About</a></li><li><a href="/rss.xml">RSS</a></li></ul><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">Theme</button></nav></header><main class="site-main"><span style="display:contents"><header class="page-header"><h1>ASP.NET 5 Tips: TempData</h1><p class="page-subtitle">Just hold this.</p><p class="post-meta">Devon Burriss &#183; Jan 17, 2016</p></header><hr></span><article class="prose"><blockquote>
+<html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>ASP.NET 5 Tips: TempData</title><meta name="description" content="Just hold this."><meta name="author" content="Devon Burriss"><meta itemprop="name" content="ASP.NET 5 Tips: TempData"><meta itemprop="description" content="Just hold this."><meta itemprop="image" content="https://devonburriss.me/img/explore-590.jpg"><link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16"><link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@DevonBurriss"><meta name="twitter:title" content="ASP.NET 5 Tips: TempData"><meta name="twitter:description" content="Just hold this."><meta name="twitter:creator" content="@DevonBurriss"><meta name="twitter:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:title" content="ASP.NET 5 Tips: TempData"><meta property="og:type" content="article"><meta property="og:url" content="https://devonburriss.me/asp-net-5-tips-tempdata/"><meta property="og:image" content="https://devonburriss.me/img/explore-590.jpg"><meta property="og:description" content="Just hold this."><meta property="og:site_name" content="Devon Burriss&#39; Blog"><link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/highlight/atom-one-dark.css"><script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();</script><script src="/js/theme.js" defer="defer"></script><script type="module" src="/js/search-ui.js"></script></head><body><header class="site-header"><nav class="site-nav"><a class="site-title nav-badge" href="/">DEVON BURRISS</a><ul class="site-links"><li><a href="/">Home</a></li><li><a href="/topics/">Topics</a></li><li><a href="/notes/">Notes</a></li><li><a href="/recommended-reading.html">Reading</a></li><li><a href="/about/">About</a></li><li><a href="/rss.xml">RSS</a></li></ul><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">Theme</button></nav></header><main class="site-main"><span style="display:contents"><header class="page-header"><h1>ASP.NET 5 Tips: TempData</h1><p class="page-subtitle">Just hold this.</p><p class="post-meta">Devon Burriss</p></header><hr></span><article class="prose"><blockquote>
 <p>NOTE: Handling TempData and Session is made easy with extension methods in the <a href="https://www.nuget.org/packages/BetterSession.AspNet.Mvc/">BetterSession</a> Nuget package.</p>
 </blockquote>
 <p>ASPNET 5 is designed to be configurable. It starts out with almost nothing and you choose what you need. In previous versions of MVC we got TempData out the box. Not so with the new iteration.</p>
 <p><img src="/img/posts/2016/footprint-resized.jpg" alt="bridge cables" /></p>
 <!--more-->
-<p>So to enable TempData for MVC you need sessions.
+<p>So to enable TempData for MVC you need sessions.<br />
 In <strong>project.json</strong> add the following lines to <em>dependencies</em></p>
-<p>{% highlight csharp %}
-&quot;Microsoft.AspNet.Session&quot;: &quot;1.0.0-<em>&quot;,
-&quot;Microsoft.Extensions.Caching.Memory&quot;: &quot;1.0.0-</em>&quot;
+<p>{% highlight csharp %}<br />
+&ldquo;Microsoft.AspNet.Session&rdquo;: &quot;1.0.0-<em>&quot;,<br />
+&ldquo;Microsoft.Extensions.Caching.Memory&rdquo;: &ldquo;1.0.0-</em>&rdquo;<br />
 {% endhighlight %}</p>
 <p>In <strong>Startup.cs</strong> the configuration of your services will need the following:</p>
-<p>{% highlight csharp %}
-public void ConfigureServices(IServiceCollection services)
-{
-services.AddCaching();
-//this is the NB line for this post
-services.AddSession(o =&gt;
-);
-services.AddMvc();
-}
+<p>{% highlight csharp %}<br />
+public void ConfigureServices(IServiceCollection services)<br />
+{<br />
+services.AddCaching();<br />
+//this is the NB line for this post<br />
+services.AddSession(o ⇒<br />
+{<br />
+o.IdleTimeout = TimeSpan.FromSeconds(3600);<br />
+});<br />
+services.AddMvc();<br />
+}<br />
 {% endhighlight %}</p>
 <p>While the app builder configuration will be something like so:</p>
-<p>{% highlight csharp %}
-public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
-{
-loggerFactory.AddConsole(Configuration.GetSection(&quot;Logging&quot;));
-loggerFactory.AddDebug();
-//this is the NB line for this post
-app.UseSession();
-app.UseIISPlatformHandler();
-app.UseStaticFiles();
-app.UseMvc();
-}
+<p>{% highlight csharp %}<br />
+public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)<br />
+{<br />
+loggerFactory.AddConsole(Configuration.GetSection(&ldquo;Logging&rdquo;));<br />
+loggerFactory.AddDebug();<br />
+//this is the NB line for this post<br />
+app.UseSession();<br />
+app.UseIISPlatformHandler();<br />
+app.UseStaticFiles();<br />
+app.UseMvc();<br />
+}<br />
 {% endhighlight %}</p>
 <p>Then accessing TempData is done through the dependency injection/service locator:</p>
-<p>{% highlight csharp %}
-public class TempController : Controller
-{
-private const string key = &quot;name&quot;;
+<p>{% highlight csharp %}<br />
+public class TempController : Controller<br />
+{<br />
+private const string key = &ldquo;name&rdquo;;<br />
 private readonly ITempDataDictionary _tempData;</p>
-<p>public TempController(ITempDataDictionary tempData)</p>
-<p>public IActionResult Index()
-{
-_tempData[key] = &quot;Devon&quot;;
-return RedirectToAction(&quot;Carry&quot;);
+<p>public TempController(ITempDataDictionary tempData)<br />
+{<br />
+this._tempData = tempData;<br />
 }</p>
-<p>public IActionResult Carry()
-{
-return View(&quot;Index&quot;, _tempData[key]);
-}
-}
+<p>public IActionResult Index()<br />
+{<br />
+_tempData[key] = &ldquo;Devon&rdquo;;<br />
+return RedirectToAction(&ldquo;Carry&rdquo;);<br />
+}</p>
+<p>public IActionResult Carry()<br />
+{<br />
+return View(&ldquo;Index&rdquo;, _tempData[key]);<br />
+}<br />
+}<br />
 {% endhighlight %}</p>
 <p>OR</p>
-<p>{% highlight csharp %}
-var tempData = HttpContext.RequestServices.GetRequiredService<ITempDataDictionary>();
+<p>{% highlight csharp %}<br />
+var tempData = HttpContext.RequestServices.GetRequiredService<ITempDataDictionary>();<br />
 {% endhighlight %}</p>
 <blockquote>
 <p>NOTE 1: When using ITempDataDictionary in a custom <strong>ActionResult</strong> I needed to mark the class with <strong>IKeepTempDataResult</strong> for it to work.</p>
@@ -63,16 +68,16 @@ var tempData = HttpContext.RequestServices.GetRequiredService<ITempDataDictionar
 <blockquote>
 <p>NOTE 2: I am not sure if this is going to change but currently the implementation for ITempDataDictionary only accepts primitive values (and string). I got around this by serializing to and from json. If you want to do this, you might find these extension methods useful.</p>
 </blockquote>
-<p>{% highlight csharp %}
-public static void SetAsJson<T>(this ITempDataDictionary tempData, string key, T data)
-{
-var sData = JsonConvert.SerializeObject(data);
-tempData[key] = sData;
+<p>{% highlight csharp %}<br />
+public static void SetAsJson<T>(this ITempDataDictionary tempData, string key, T data)<br />
+{<br />
+var sData = JsonConvert.SerializeObject(data);<br />
+tempData[key] = sData;<br />
 }</p>
-<p>public static T GetFromJson<T>(this ITempDataDictionary tempData, string key)
-{
-if(tempData.ContainsKey(key))
-{
+<p>public static T GetFromJson<T>(this ITempDataDictionary tempData, string key)<br />
+{<br />
+if(tempData.ContainsKey(key))<br />
+{<br />
 var v = tempData[key];</p>
 <pre><code>if(v is T)
 {
@@ -85,9 +90,9 @@ if(v is string &amp;&amp; typeof(T) != typeof(string))
   return obj;
 }
 </code></pre>
-<p>}
-return default(T);
-}
+<p>}<br />
+return default(T);<br />
+}<br />
 {% endhighlight %}</p>
 <p>So hope you and future me finds this post useful. I am going to try blog little things like this as I work more with ASP.NET 5. Please let me know in the comments below if you did find it useful or if I missed anything. Also let me know if there are other topics you want me to cover.</p>
-</article><hr><nav class="pager"><ul class="pager-links"><li><a href="/aspnet-vsonline-ci/" title="ASP.NET 5 CI from Git to Azure without Visual Studio">← Previous</a></li><li><a href="/asp-net-5-tips-urlhelper/" title="ASP.NET 5 Tips: UrlHelper">Next →</a></li></ul></nav></main><footer class="site-footer"><p>Copyright &#169; <a href="/about/">Devon Burriss</a> 2026</p></footer><div class="comments"><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'devonburriss';(function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = 'https://devonburriss.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript></div><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-45750611-2', 'auto');ga('send', 'pageview');</script></body></html>
+</article><hr><nav class="pager"><ul class="pager-links"><li><a href="/asp-net-5-tips-urlhelper/" title="ASP.NET 5 Tips: UrlHelper">← Previous</a></li><li><a href="/installing-docker-on-hyper-v/" title="Installing Docker on Hyper-V">Next →</a></li></ul></nav></main><footer class="site-footer"><p>Copyright &#169; <a href="/about/">Devon Burriss</a> 2026</p></footer><div class="comments"><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'devonburriss';(function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = 'https://devonburriss.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript></div><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-45750611-2', 'auto');ga('send', 'pageview');</script></body></html>
