@@ -249,6 +249,139 @@ Comprehensive test coverage created:
 
 These tests clearly expose the current failures and can validate any architectural fix.
 
+## Memory Usage Analysis
+
+### Memory Consumption by Option
+
+Each architecture option has different memory characteristics that should be considered:
+
+#### Option 1: Two-Pass Approach
+**Memory Profile**: Similar to current system with temporary spike
+
+```
+Memory Usage During Processing:
+┌─────────────────────────────────────────────────────────────┐
+│ Phase 1: Load raw markdown (temporary storage)             │  ▲
+│ Peak: Current content + all raw markdown                   │  │ Memory
+├─────────────────────────────────────────────────────────────┤  │
+│ Phase 2: Generate HTML (with resolution)                   │  │
+│ Peak: Raw markdown + generated HTML + resolution maps      │  │
+└─────────────────────────────────────────────────────────────┘  ▼
+
+Estimated Peak Memory:
+- Small site (100 notes): ~2-4MB (manageable)
+- Medium site (1,000 notes): ~20-40MB (acceptable) 
+- Large site (10,000 notes): ~200-400MB (caution)
+```
+
+**Memory Characteristics**:
+- **Temporary spike**: During HTML generation phase
+- **Quick release**: Raw markdown freed after HTML generation
+- **Predictable**: Similar pattern to current architecture
+
+#### Option 2: Context-Aware Pipeline  
+**Memory Profile**: Minimal overhead, streaming architecture maintained
+
+```
+Memory Usage During Processing:
+┌─────────────────────────────────────────────────────────────┐
+│ Pre-scan: Extract metadata (lightweight)                   │  ▲
+│ Peak: Metadata index + WikiLinkContext                     │  │ Memory
+├─────────────────────────────────────────────────────────────┤  │
+│ Streaming: Process one item at a time                      │  │
+│ Peak per item: Single content + context + HTML             │  │
+└─────────────────────────────────────────────────────────────┘  ▼
+
+Estimated Peak Memory:
+- Any size site: ~1-5MB for context + largest single item
+- Metadata index: ~0.5KB per content item
+- WikiLinkContext: ~0.1KB per resolvable link
+```
+
+**Memory Characteristics**:
+- **Flat profile**: No significant spikes
+- **Context overhead**: Small, proportional to content count
+- **Streaming**: Individual items processed and released
+- **Scalable**: Memory usage doesn't grow with total content size
+
+#### Option 3: Deferred HTML Generation
+**Memory Profile**: Largest memory footprint, all content in memory
+
+```
+Memory Usage During Processing:
+┌─────────────────────────────────────────────────────────────┐
+│ Phase 1: Load ALL raw markdown                             │  ▲
+├─────────────────────────────────────────────────────────────┤  │
+│ Phase 2: Build complete indexes                            │  │ Memory
+├─────────────────────────────────────────────────────────────┤  │
+│ Phase 3: Build resolution context                          │  │
+├─────────────────────────────────────────────────────────────┤  │
+│ Phase 4: Generate ALL HTML (PEAK MEMORY)                   │  │
+│ Peak: All markdown + all HTML + all indexes                │  │
+└─────────────────────────────────────────────────────────────┘  ▼
+
+Estimated Peak Memory:
+- Small site (100 notes): ~3-6MB
+- Medium site (1,000 notes): ~30-60MB  
+- Large site (10,000 notes): ~300-600MB
+- Very large site (50,000 notes): ~1.5-3GB (problematic)
+```
+
+**Memory Characteristics**:
+- **Highest peak**: All content simultaneously in memory
+- **Sustained usage**: Memory held throughout entire pipeline
+- **Resolution complexity**: Additional overhead for cross-references
+- **Risk**: May hit memory limits on large sites or constrained environments
+
+### Memory Usage Breakdown
+
+**Typical content sizes**:
+- Raw Markdown: 1-5KB per note/post
+- Generated HTML: 2-10KB per item (2-3x markdown size)
+- Metadata: 0.5KB per item (title, path, frontmatter)
+- Resolution maps: 0.1KB per resolvable link
+- Indexes: 0.2KB per item
+
+### Memory Recommendations
+
+**Choose Option 1 if**:
+- Medium-sized sites (100-2,000 items)
+- Acceptable temporary memory spikes
+- Want minimal architectural changes
+
+**Choose Option 2 if**:
+- Any size site with memory constraints
+- Prefer consistent memory usage
+- Want optimal performance without risk
+
+**Choose Option 3 if**:
+- Small-medium sites (under 5,000 items)
+- Have sufficient memory headroom (>1GB available)
+- Need advanced cross-content features
+- Running on modern development/server hardware
+
+### Mitigation Strategies for Option 3
+
+If choosing Option 3 for a large site, consider these optimizations:
+
+1. **Chunked Processing**: Process content in batches within each phase
+2. **Streaming Generation**: Generate and write HTML immediately rather than accumulating
+3. **Memory Monitoring**: Add runtime checks to prevent OOM conditions
+4. **Lazy Loading**: Load content on-demand during HTML generation
+5. **Disk Caching**: Use temporary files for intermediate data
+
+### Memory Testing
+
+Add memory profiling to the test suite:
+```fsharp
+// test-memory-usage.fsx - Memory profiling during processing
+let measureMemoryUsage() =
+    let beforeMb = GC.GetTotalMemory(true) / 1024L / 1024L
+    // Run processing...
+    let afterMb = GC.GetTotalMemory(true) / 1024L / 1024L
+    printfn $"Memory used: {afterMb - beforeMb}MB"
+```
+
 ## Status
 
-Issue confirmed and analyzed. Awaiting decision on which architectural approach to pursue based on project priorities around complexity, performance, and risk tolerance.
+Issue confirmed and analyzed. Awaiting decision on which architectural approach to pursue based on project priorities around complexity, performance, memory usage, and risk tolerance.
