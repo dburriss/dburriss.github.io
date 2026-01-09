@@ -595,8 +595,7 @@ module Renderer =
         let noteLinks =
             publishedNotes
             |> List.map (fun n ->
-                let displayTitle = Layouts.formatTitleWithStatus n.PageMeta
-                li [] [ a [ _href (Parsing.combineUrl ctx.Config.BaseUrl n.PageMeta.Url) ] [ str displayTitle ] ])
+                li [] [ a [ _href (Parsing.combineUrl ctx.Config.BaseUrl n.PageMeta.Url) ] [ str n.PageMeta.Title ] ])
 
         let cats = categoryCounts ctx.Index
         let tags = tagCounts ctx.Index
