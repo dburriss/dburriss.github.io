@@ -266,8 +266,7 @@ module Parsing =
         let pipeline = createContextAwarePipeline resolutionContext
         Markdown.ToHtml(markdown, pipeline)
 
-    let markdownToHtml (markdown: string) =
-        markdownToHtmlWithContext markdown None
+    let markdownToHtml (markdown: string) = markdownToHtmlWithContext markdown None
 
     let markdownToPlainText (markdown: string) =
         Markdown.ToPlainText(markdown, markdownPipeline)

@@ -40,12 +40,12 @@ type WikiLinkParser() =
         // Check if we're at the start of a potential wiki link
         if current = '[' && slice.PeekChar(1) = '[' then
             let startPosition = slice.Start
-            
+
             // Find the closing ]] using IndexOf for reliability
             let fullText = slice.Text
-            let searchStart = startPosition + 2  // After [[
+            let searchStart = startPosition + 2 // After [[
             let closingIndex = fullText.IndexOf("]]", searchStart)
-            
+
             if closingIndex >= 0 && closingIndex > startPosition + 2 then
                 // Extract the content between [[...]]
                 let content =
@@ -85,7 +85,7 @@ type WikiLinkHtmlRenderer(resolutionContext: ResolutionContext option) =
             | None -> link.Title
 
         // Try to resolve the link using the resolution context
-        let resolvedUrl = 
+        let resolvedUrl =
             match resolutionContext with
             | Some context ->
                 let normalizedTitle = WikiLinkHelpers.normalizeWikiLabel link.Title
@@ -107,9 +107,9 @@ type WikiLinkHtmlRenderer(resolutionContext: ResolutionContext option) =
 
 /// Markdig extension for wiki links with optional resolution context
 type WikiLinkExtension(resolutionContext: ResolutionContext option) =
-    
+
     new() = WikiLinkExtension(None)
-    
+
     interface IMarkdownExtension with
         member this.Setup(pipeline: MarkdownPipelineBuilder) =
             if not (pipeline.InlineParsers.Contains<WikiLinkParser>()) then
@@ -131,13 +131,14 @@ module WikiLinkExtensions =
         member this.UseWikiLinks() =
             this.Extensions.AddIfNotAlready<WikiLinkExtension>()
             this
-            
+
         member this.UseWikiLinks(resolutionContext: ResolutionContext) =
             // Remove any existing WikiLinkExtension first
             let existing = this.Extensions |> Seq.tryFind (fun ext -> ext :? WikiLinkExtension)
+
             match existing with
             | Some ext -> this.Extensions.Remove(ext) |> ignore
             | None -> ()
-            
+
             this.Extensions.Add(WikiLinkExtension(Some resolutionContext))
             this

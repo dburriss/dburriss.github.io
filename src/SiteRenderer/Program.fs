@@ -97,7 +97,7 @@ module Program =
 
                 // Option 3: Deferred HTML Generation Architecture
                 printfn "Using Option 3: Deferred HTML Generation for improved wiki link resolution"
-                
+
                 // Phase 1: Load raw content (no HTML generation yet)
                 let postsDir = Path.Combine(sourceDir, "_posts")
                 let rawPosts = Renderer.loadRawPosts postsDir
@@ -116,24 +116,33 @@ module Program =
                 printfn "Built resolution context with %d title mappings" resolutionContext.TitleLookup.Count
 
                 // Phase 3: Render HTML with full resolution context available
-                let posts = rawPosts |> List.map (fun raw -> 
-                    Renderer.renderContentItem raw resolutionContext 
-                    |> Renderer.renderedContentItemToContentItem)
+                let posts =
+                    rawPosts
+                    |> List.map (fun raw ->
+                        Renderer.renderContentItem raw resolutionContext
+                        |> Renderer.renderedContentItemToContentItem)
+
                 printfn "Rendered %d posts with wiki link resolution" posts.Length
 
-                let pages = rawPages |> List.map (fun raw ->
-                    Renderer.renderContentItem raw resolutionContext 
-                    |> Renderer.renderedContentItemToContentItem)
+                let pages =
+                    rawPages
+                    |> List.map (fun raw ->
+                        Renderer.renderContentItem raw resolutionContext
+                        |> Renderer.renderedContentItemToContentItem)
+
                 printfn "Rendered %d pages with wiki link resolution" pages.Length
 
-                let notes = rawNotes |> List.map (fun raw ->
-                    Renderer.renderContentItem raw resolutionContext 
-                    |> Renderer.renderedContentItemToContentItem)
+                let notes =
+                    rawNotes
+                    |> List.map (fun raw ->
+                        Renderer.renderContentItem raw resolutionContext
+                        |> Renderer.renderedContentItemToContentItem)
+
                 printfn "Rendered %d notes with wiki link resolution" notes.Length
 
                 // Phase 4: Build site index from rendered content (for compatibility with existing code)
                 let initialIndex = Renderer.buildSiteIndex posts pages notes
-                
+
                 // Note: resolveWikiLinks is no longer needed since resolution happened during HTML generation
                 // But we still call it for compatibility and to get any remaining warnings
                 let index, linkWarnings = Renderer.resolveWikiLinks initialIndex

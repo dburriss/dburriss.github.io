@@ -140,8 +140,8 @@ type RawContentItem =
 
 [<CLIMutable>]
 type ResolutionContext =
-    { TitleLookup: Map<string, RawContentItem list>  // normalized title -> content items
-      PathLookup: Map<string, string> }              // normalized title -> output path
+    { TitleLookup: Map<string, RawContentItem list> // normalized title -> content items
+      PathLookup: Map<string, string> } // normalized title -> output path
 
 [<CLIMutable>]
 type RenderedContentItem =
