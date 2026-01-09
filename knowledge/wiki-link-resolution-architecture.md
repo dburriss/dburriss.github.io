@@ -241,13 +241,51 @@ Key files that would need modification:
 
 ## Testing Strategy
 
-Comprehensive test coverage created:
-- `test-wiki-links.fsx` - Unit tests for parsing and rendering
-- `test-site-validation.fsx` - Integration tests for generated site
-- `test-wiki-link-resolution.fsx` - Specific resolution failure detection
-- Updated `render.sh --test` to run all validation
+The testing architecture has been cleaned up and consolidated:
 
-These tests clearly expose the current failures and can validate any architectural fix.
+### Current Testing Structure
+- **`src/SiteRenderer.Tests/Tests.fs`** - xUnit unit tests for wiki link parsing and rendering components
+  - **⚠️ Implementation Coupling**: These tests are strongly coupled to the current implementation
+  - **TDD Opportunity**: Consider deleting these tests and following a TDD approach during architectural changes
+  - **Testing Philosophy**: The new architecture will create an in-memory pipeline where input/output testing can be more effective than testing internal implementation details
+- **`scripts/validate-site.fsx`** - Comprehensive site validation script covering:
+  - Wiki link resolution validation
+  - Asset inclusion validation (css, js, img, fonts, tkd, CNAME, sitemap.xml)
+  - Content count validation (posts vs generated pages)
+  - Site structure integrity checks
+
+### Test Integration
+The `render.sh` script includes automatic test execution:
+- **Unit tests**: `dotnet test src/SiteRenderer.Tests/` - Tests parsing logic in isolation
+- **Site validation**: `dotnet fsi scripts/validate-site.fsx` - Tests generated site integrity
+- **Options**: Use `--skip-tests` to bypass validation during development
+
+### Test Coverage
+This testing setup clearly exposes the current wiki link resolution failures:
+- 13 resolution failures across 5 note files
+- Links that should resolve to existing notes but render as unresolved spans
+- Comprehensive validation ensures any architectural fix maintains site integrity
+
+### Testing Strategy for Architectural Changes
+
+The current unit tests are tightly coupled to implementation details (testing specific classes like `WikiLinkInline`, `WikiLinkExtension`, etc.) which may become obstacles during refactoring. 
+
+**TDD Approach Recommendation**:
+1. **Delete existing unit tests** if they impede architectural changes
+2. **Start with failing integration tests** from `scripts/validate-site.fsx` (which clearly show current resolution failures)
+3. **Build testable pipeline architecture** that enables clean input/output testing
+4. **Write new tests** that focus on behavior rather than implementation:
+   - Input: Markdown content + metadata
+   - Output: Correctly resolved HTML
+   - Benefits: Tests the pipeline end-to-end without coupling to internal structure
+
+**Benefits of New Testing Architecture**:
+- **In-memory pipeline**: All content loaded before processing enables comprehensive test scenarios  
+- **Input/Output clarity**: Test "given this content, expect this HTML" rather than "given this class, expect this method call"
+- **Architectural flexibility**: Tests survive refactoring of internal implementation details
+- **Better coverage**: Can test complex cross-content scenarios and resolution edge cases
+
+The site validation tests serve as both failure detection and regression prevention for any architectural changes.
 
 ## Memory Usage Analysis
 
