@@ -12,8 +12,8 @@
   --accent: #7b9669;
   --border: #bac8b1;
 
-  --link: #404e3b;
-  --link-hover: #7b9669;
+  --link: #7b9669;
+  --link-hover: #404e3b;
 
   --max-width: 68rem;
   --radius: 0px;
@@ -32,8 +32,8 @@
     --accent: #7b9669;
     --border: rgba(230, 230, 230, 0.25);
 
-    --link: #e6e6e6;
-    --link-hover: #bac8b1;
+    --link: #bac8b1;
+    --link-hover: #7b9669;
 
     --code-bg: rgba(0, 0, 0, 0.25);
     --code-fg: #e6e6e6;
@@ -48,8 +48,8 @@ html[data-theme="light"] {
   --accent: #7b9669;
   --border: #bac8b1;
 
-  --link: #404e3b;
-  --link-hover: #7b9669;
+  --link: #7b9669;
+  --link-hover: #404e3b;
 
   --code-bg: #f4f4f4;
   --code-fg: #1a1a1a;
@@ -66,8 +66,8 @@ html[data-theme="dark"] {
   --accent: #7b9669;
   --border: rgba(230, 230, 230, 0.25);
 
-  --link: #e6e6e6;
-  --link-hover: #bac8b1;
+  --link: #bac8b1;
+  --link-hover: #7b9669;
 
   --code-bg: rgba(0, 0, 0, 0.25);
   --code-fg: #e6e6e6;
@@ -94,8 +94,6 @@ body {
 a {
   color: var(--link);
   text-decoration: none;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
 }
 
 a:hover,
@@ -320,6 +318,38 @@ hr {
 .prose pre code {
   background: transparent;
   padding: 0;
+}
+
+.prose a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-color: color-mix(in oklab, var(--link) 50%, transparent);
+}
+
+.prose a:hover,
+.prose a:focus {
+  color: var(--link-hover);
+  text-decoration-color: var(--link-hover);
+  text-decoration-thickness: 2px;
+}
+
+/* Override enhanced link styling for listing pages */
+.prose .post-list a,
+.prose .note-list a,
+.prose .topic-pills a {
+  text-decoration: none;
+}
+
+.prose .post-list a:hover,
+.prose .post-list a:focus,
+.prose .note-list a:hover,
+.prose .note-list a:focus,
+.prose .topic-pills a:hover,
+.prose .topic-pills a:focus {
+  text-decoration: none;
+  color: var(--link-hover);
 }
 
 .link-list {
