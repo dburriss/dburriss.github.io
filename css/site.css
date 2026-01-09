@@ -449,6 +449,39 @@ hr {
   text-align: center;
 }
 
+/* Tables */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.prose thead {
+  background: color-mix(in oklab, var(--bg-accent) 25%, transparent);
+  border-bottom: 2px solid var(--border);
+}
+
+.prose th,
+.prose td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose th {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose tbody tr:hover {
+  background: color-mix(in oklab, var(--bg-accent) 10%, transparent);
+}
+
 /* Nav Badge */
 .nav-badge {
     display: none;
