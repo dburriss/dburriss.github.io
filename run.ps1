@@ -6,6 +6,7 @@
 .DESCRIPTION
     This script builds the F# SiteRenderer project, generates the static site,
     and optionally serves it locally for preview.
+    By default, it cleans generated content before building.
 
 .PARAMETER Serve
     If specified, serves the generated site locally after building.
@@ -19,21 +20,28 @@
 .PARAMETER Port
     Port number for the local server (default: 8080).
 
-.EXAMPLE
-    ./build.ps1
-    Builds the site in Release mode.
+.PARAMETER SkipClean
+    If specified, skips cleaning before building.
 
 .EXAMPLE
-    ./build.ps1 -Serve
-    Builds and serves the site locally.
+    ./run.ps1
+    Cleans, builds the site in Release mode.
 
 .EXAMPLE
-    ./build.ps1 -Watch
+    ./run.ps1 -Serve
+    Cleans, builds and serves the site locally.
+
+.EXAMPLE
+    ./run.ps1 -Watch
     Runs the site generation in watch mode.
 
 .EXAMPLE
-    ./build.ps1 -Serve -Debug -Port 5000
-    Builds in Debug mode and serves on port 5000.
+    ./run.ps1 -Serve -Debug -Port 5000
+    Cleans, builds in Debug mode and serves on port 5000.
+
+.EXAMPLE
+    ./run.ps1 -SkipClean
+    Builds without cleaning first.
 #>
 
 [CmdletBinding()]
@@ -41,7 +49,8 @@ param(
     [switch]$Serve,
     [switch]$Watch,
     [switch]$Debug,
-    [int]$Port = 8080
+    [int]$Port = 8080,
+    [switch]$SkipClean
 )
 
 $ErrorActionPreference = "Stop"
@@ -59,6 +68,17 @@ if ($Watch) {
     Write-Host "Starting SiteRenderer in watch mode..." -ForegroundColor Cyan
     dotnet watch --project $Project run -- --source $ScriptDir --output $OutputDir
     return
+}
+
+# Clean before building (unless skipped)
+if (-not $SkipClean) {
+    Write-Host "Cleaning previous build..." -ForegroundColor Cyan
+    & "$ScriptDir/clean.ps1"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "❌ Clean failed"
+        exit 1
+    }
+    Write-Host ""
 }
 
 $Configuration = if ($Debug) { "Debug" } else { "Release" }

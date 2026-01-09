@@ -5,7 +5,7 @@
 
 .DESCRIPTION
     This script runs the F# SiteRenderer to generate the static site content to the _site directory
-    and runs validation tests by default.
+    and runs validation tests by default. By default, it cleans generated content before rendering.
 
 .PARAMETER Debug
     If specified, runs in Debug configuration instead of Release.
@@ -13,23 +13,31 @@
 .PARAMETER SkipTests
     If specified, skips validation tests after generation.
 
+.PARAMETER SkipClean
+    If specified, skips cleaning before rendering.
+
 .EXAMPLE
     ./render.ps1
-    Generates the site and runs tests.
+    Cleans, generates the site, and runs tests.
 
 .EXAMPLE
     ./render.ps1 -Debug
-    Generates the site in Debug mode and runs tests.
+    Cleans, generates the site in Debug mode, and runs tests.
 
 .EXAMPLE
     ./render.ps1 -SkipTests
-    Generates the site without running tests.
+    Cleans and generates the site without running tests.
+
+.EXAMPLE
+    ./render.ps1 -SkipClean
+    Generates the site without cleaning first.
 #>
 
 [CmdletBinding()]
 param(
     [switch]$Debug,
-    [switch]$SkipTests
+    [switch]$SkipTests,
+    [switch]$SkipClean
 )
 
 $ErrorActionPreference = "Stop"
@@ -39,6 +47,17 @@ $Project = Join-Path $ScriptDir "src/SiteRenderer/SiteRenderer.fsproj"
 $OutputDir = Join-Path $ScriptDir "_site"
 
 $Configuration = if ($Debug) { "Debug" } else { "Release" }
+
+# Clean before rendering (unless skipped)
+if (-not $SkipClean) {
+    Write-Host "Cleaning previous build..." -ForegroundColor Cyan
+    & "$ScriptDir/clean.ps1"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "❌ Clean failed"
+        exit 1
+    }
+    Write-Host ""
+}
 
 Write-Host "Generating site..." -ForegroundColor Cyan
 dotnet run --project $Project -c $Configuration --no-build -- --source $ScriptDir --output $OutputDir

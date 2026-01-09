@@ -5,6 +5,7 @@
 # DESCRIPTION:
 #   This script runs the F# SiteRenderer to generate the static site content
 #   to the _site directory and runs validation tests by default.
+#   By default, it cleans generated content before rendering.
 #
 # USAGE:
 #   ./render.sh [OPTIONS]
@@ -12,11 +13,13 @@
 # OPTIONS:
 #   -d, --debug         Run in Debug configuration (default: Release)
 #   --skip-tests        Skip validation tests after generation
+#   --skip-clean        Skip cleaning before rendering
 #
 # EXAMPLES:
-#   ./render.sh              # Generate site and run tests
-#   ./render.sh --debug      # Generate site in Debug mode and run tests
-#   ./render.sh --skip-tests # Generate site without running tests
+#   ./render.sh              # Clean, generate site, and run tests
+#   ./render.sh --debug      # Clean, generate site in Debug mode, and run tests
+#   ./render.sh --skip-tests # Clean and generate site without running tests
+#   ./render.sh --skip-clean # Generate site without cleaning first
 
 set -e
 
@@ -27,6 +30,7 @@ OUTPUT_DIR="$SCRIPT_DIR/_site"
 # Parse arguments
 CONFIGURATION="Release"
 SKIP_TESTS=false
+SKIP_CLEAN=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -38,13 +42,27 @@ while [[ $# -gt 0 ]]; do
             SKIP_TESTS=true
             shift
             ;;
+        --skip-clean)
+            SKIP_CLEAN=true
+            shift
+            ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: $0 [--debug|-d] [--skip-tests]"
+            echo "Usage: $0 [--debug|-d] [--skip-tests] [--skip-clean]"
             exit 1
             ;;
     esac
 done
+
+# Clean before rendering (unless skipped)
+if [[ "$SKIP_CLEAN" == "false" ]]; then
+    echo "Cleaning previous build..."
+    "$SCRIPT_DIR/clean.sh" || {
+        echo "❌ Clean failed"
+        exit 1
+    }
+    echo ""
+fi
 
 # Run the site renderer to generate the site
 echo "Generating site..."

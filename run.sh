@@ -5,6 +5,7 @@
 # DESCRIPTION:
 #   This script builds the F# SiteRenderer project, generates the static site,
 #   and optionally serves it locally for preview.
+#   By default, it cleans generated content before building.
 #
 # USAGE:
 #   ./run.sh [OPTIONS]
@@ -14,12 +15,14 @@
 #   -w, --watch         Run in watch mode (rebuilds on changes)
 #   -d, --debug         Build in Debug configuration (default: Release)
 #   -p, --port PORT     Port number for the local server (default: 8080)
+#   --skip-clean        Skip cleaning before building
 #
 # EXAMPLES:
-#   ./run.sh                    # Build and generate site
-#   ./run.sh --serve            # Build, generate, and serve
+#   ./run.sh                    # Clean, build, and generate site
+#   ./run.sh --serve            # Clean, build, generate, and serve
 #   ./run.sh --watch            # Run in watch mode
 #   ./run.sh --serve --port 9000 # Serve on port 9000
+#   ./run.sh --skip-clean       # Build without cleaning first
 
 set -e
 
@@ -32,6 +35,7 @@ SERVE=false
 WATCH=false
 CONFIGURATION="Release"
 PORT=8080
+SKIP_CLEAN=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -51,9 +55,13 @@ while [[ $# -gt 0 ]]; do
             PORT="$2"
             shift 2
             ;;
+        --skip-clean)
+            SKIP_CLEAN=true
+            shift
+            ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: $0 [--serve|-s] [--watch|-w] [--debug|-d] [--port|-p PORT]"
+            echo "Usage: $0 [--serve|-s] [--watch|-w] [--debug|-d] [--port|-p PORT] [--skip-clean]"
             exit 1
             ;;
     esac
@@ -68,6 +76,16 @@ if [ "$WATCH" = true ]; then
     echo "Starting SiteRenderer in watch mode..."
     dotnet watch --project "$PROJECT" run -- --source "$SCRIPT_DIR" --output "$OUTPUT_DIR"
     exit 0
+fi
+
+# Clean before building (unless skipped)
+if [ "$SKIP_CLEAN" = false ]; then
+    echo "Cleaning previous build..."
+    "$SCRIPT_DIR/clean.sh" || {
+        echo "❌ Clean failed"
+        exit 1
+    }
+    echo ""
 fi
 
 # Build the site renderer
