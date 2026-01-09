@@ -10,6 +10,14 @@ module Layouts =
     // Helper for custom attributes not in Giraffe.ViewEngine
     let private _itemprop value = attr "itemprop" value
 
+    // Helper functions for formatting titles with metadata
+    let formatTitleWithStatus (page: PageMeta) =
+        match page.Status with
+        | Some "draft" -> sprintf "%s (draft)" page.Title
+        | _ -> page.Title
+
+    let formatContentTitleWithStatus (content: ContentItem) = formatTitleWithStatus content.PageMeta
+
     // Helper for fragment - just returns a div with no visible wrapper
     let private fragment (_attrs: XmlAttribute list) (children: XmlNode list) : XmlNode =
         span [ attr "style" "display:contents" ] children
@@ -324,14 +332,13 @@ module Layouts =
         (site: SiteConfig)
         (page: PageMeta)
         (htmlContent: string)
-        (status: string option)
         (backlinks: string list)
         (allContent: ContentItem list)
         (_categories: (string * int) list)
         (_tags: (string * int) list)
         =
         let statusBadge =
-            match status with
+            match page.Status with
             | Some s when not (String.IsNullOrWhiteSpace s) ->
                 Some(span [ _class (sprintf "note-status status-%s" (s.ToLowerInvariant())) ] [ str s ])
             | _ -> None
@@ -490,7 +497,11 @@ module Layouts =
               Previous = None
               Next = None
               CommentsEnabled = false
-              Layout = "categories" }
+              Layout = "categories"
+              Status = None
+              Published = None
+              Keywords = []
+              Permalink = None }
 
         let postLinks =
             posts
@@ -525,7 +536,11 @@ module Layouts =
               Previous = None
               Next = None
               CommentsEnabled = false
-              Layout = "tags" }
+              Layout = "tags"
+              Status = None
+              Published = None
+              Keywords = []
+              Permalink = None }
 
         let postLinks =
             posts

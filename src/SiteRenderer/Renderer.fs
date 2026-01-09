@@ -116,7 +116,12 @@ module Renderer =
               Previous = None
               Next = None
               CommentsEnabled = commentsEnabled
-              Layout = layout }
+              Layout = layout
+              // Additional metadata fields
+              Status = meta.Status
+              Published = meta.Published
+              Keywords = meta.Keywords
+              Permalink = meta.Permalink }
 
         { SourcePath = sourcePath
           OutputPath = outputPath
@@ -344,7 +349,7 @@ module Renderer =
         index.Notes
         |> List.filter (fun note ->
             // Only consider published notes
-            match note.Meta.Published with
+            match note.PageMeta.Published with
             | Some false -> false
             | _ ->
                 // Check if the note has any inbound links
@@ -422,7 +427,11 @@ module Renderer =
               Previous = None
               Next = None
               CommentsEnabled = false
-              Layout = "page" }
+              Layout = "page"
+              Status = None
+              Published = None
+              Keywords = []
+              Permalink = None }
 
         let topicNodes =
             ctx.Config.Topics
@@ -470,7 +479,11 @@ module Renderer =
               Previous = None
               Next = None
               CommentsEnabled = false
-              Layout = "topics" }
+              Layout = "topics"
+              Status = None
+              Published = None
+              Keywords = []
+              Permalink = None }
 
         let formatDate (date: DateTime option) =
             match date with
@@ -543,15 +556,7 @@ module Renderer =
         let allContent = ctx.Index.Posts @ ctx.Index.Notes
 
         let doc =
-            Layouts.noteDocument
-                ctx.Config
-                note.PageMeta
-                note.HtmlContent
-                note.Meta.Status
-                backlinks
-                allContent
-                cats
-                tags
+            Layouts.noteDocument ctx.Config note.PageMeta note.HtmlContent backlinks allContent cats tags
 
         { OutputPath = note.OutputPath
           Content = RenderView.AsString.htmlDocument doc }
@@ -573,24 +578,24 @@ module Renderer =
               Previous = None
               Next = None
               CommentsEnabled = false
-              Layout = "page" }
+              Layout = "page"
+              Status = None
+              Published = None
+              Keywords = []
+              Permalink = None }
 
         // Only show published notes in the index
         let publishedNotes =
             ctx.Index.Notes
             |> List.filter (fun note ->
-                match note.Meta.Published with
+                match note.PageMeta.Published with
                 | Some false -> false
                 | _ -> true)
 
         let noteLinks =
             publishedNotes
             |> List.map (fun n ->
-                let displayTitle =
-                    match n.Meta.Status with
-                    | Some "draft" -> sprintf "%s (draft)" n.PageMeta.Title
-                    | _ -> n.PageMeta.Title
-
+                let displayTitle = Layouts.formatTitleWithStatus n.PageMeta
                 li [] [ a [ _href (Parsing.combineUrl ctx.Config.BaseUrl n.PageMeta.Url) ] [ str displayTitle ] ])
 
         let cats = categoryCounts ctx.Index
@@ -630,7 +635,11 @@ module Renderer =
               Previous = None
               Next = None
               CommentsEnabled = false
-              Layout = "page" }
+              Layout = "page"
+              Status = None
+              Published = None
+              Keywords = []
+              Permalink = None }
 
         let doc =
             Layouts.indexDocument ctx.Config pageMeta pagePosts pageNumber totalPages defaultSocialImg cats tags
@@ -854,7 +863,12 @@ module Renderer =
               Previous = None // TODO: Implement previous/next logic
               Next = None
               CommentsEnabled = Option.defaultValue false rawItem.Meta.Comments
-              Layout = Option.defaultValue "default" rawItem.Meta.Layout }
+              Layout = Option.defaultValue "default" rawItem.Meta.Layout
+              // Additional metadata fields
+              Status = rawItem.Meta.Status
+              Published = rawItem.Meta.Published
+              Keywords = rawItem.Meta.Keywords
+              Permalink = rawItem.Meta.Permalink }
 
         // Generate excerpt (simplified for now)
         let excerptHtml =

@@ -66,7 +66,12 @@ type PageMeta =
       Previous: PostSummary option
       Next: PostSummary option
       CommentsEnabled: bool
-      Layout: string }
+      Layout: string
+      // Additional metadata fields from FrontMatter
+      Status: string option
+      Published: bool option
+      Keywords: string list
+      Permalink: string option }
 
 and PostSummary =
     { Title: string
