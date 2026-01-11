@@ -9,6 +9,28 @@ A Large-language model (model) is a [[Neural Network]] trained on a large corpus
 
 The LLM functions like a probabilistic [[Pure Function]] that predicts the response based on the input and [[Sampling Parameters]].
 
+```mermaid
+stateDiagram
+	nn: Neural Network
+	sp: Sampling Parameters
+	mp: Model Parameters
+	cw: Context Window
+    direction TB
+    [*] --> LLM : input (prompt, sampling parameters)
+    state LLM {
+      direction LR
+      input --> Tokenizer : text
+      Tokenizer --> nn : context
+      sp --> nn
+      state nn {
+        cw
+	    mp
+      }
+      nn --> output : inference
+    }
+    LLM --> [*] : output
+```
+
 This input is known as the [[Context|Context]] and has a fixed size known as the [[Context]]. This size is the maximum size of the input, over that will be dropped or ignored. Since performance drops off way before this maximum size, [[Context Management|Context Engineering]] has emerged as a core skill in working with [[Agentic workflows]].
 
 It is important to understand that LLMs do not contain the original training data, or even a summary of it. What they use to predict the next token are [[Model Weights]], often also called [[Model Weights|Model Parameters]]. These are matrices of floating point numbers that encode the patterns in text, not actual summaries of the data. Also important for the model is that the training data has a cutoff date, after which nothing of that data is encoded. Lastly on the topic of parameters, the effectiveness of a model is largely a function of the size and quality of the data it was trained on, although [[Fine tuning]] can have a large effect on it's behaviour.
