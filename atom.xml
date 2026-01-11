@@ -2,7 +2,7 @@
   <title>Devon Burriss' Blog</title>
   <link href="https://devonburriss.me/" />
   <link type="application/atom+xml" rel="self" href="https://devonburriss.me/atom.xml" />
-  <updated>2026-01-09T15:59:04Z</updated>
+  <updated>2026-01-11T16:54:30Z</updated>
   <id>https://devonburriss.me/</id>
   <author>
     <name>Devon Burriss</name>
@@ -12,7 +12,7 @@
     <id>https://devonburriss.me/developer-quest-getting-started/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/developer-quest-getting-started/" />
     <title>Developer Quest I - Getting started with C#</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/developer-quest-getting-started/</uri>
@@ -64,7 +64,7 @@ If you have any questions or suggestions, please don't hesitate to leave a comme
     <id>https://devonburriss.me/developer-quest-variables/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/developer-quest-variables/" />
     <title>Developer Quest II - Variables</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/developer-quest-variables/</uri>
@@ -237,7 +237,7 @@ Hit &lt;strong&gt;F5&lt;/strong&gt; to run it.&lt;/p&gt;
     <id>https://devonburriss.me/installing-ubuntu-on-hyper-v/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/installing-ubuntu-on-hyper-v/" />
     <title>Installing Ubuntu on Hyper-V</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/installing-ubuntu-on-hyper-v/</uri>
@@ -289,7 +289,7 @@ I managed to get past this by adding the following line at the bottom of /etc/de
     <id>https://devonburriss.me/installing-docker-on-hyper-v/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/installing-docker-on-hyper-v/" />
     <title>Installing Docker on Hyper-V</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/installing-docker-on-hyper-v/</uri>
@@ -300,7 +300,7 @@ I managed to get past this by adding the following line at the bottom of /etc/de
     <id>https://devonburriss.me/asp-net-5-tips-tempdata/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/asp-net-5-tips-tempdata/" />
     <title>ASP.NET 5 Tips: TempData</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/asp-net-5-tips-tempdata/</uri>
@@ -407,7 +407,7 @@ return default(T);&lt;br /&gt;
     <id>https://devonburriss.me/asp-net-5-tips-urlhelper/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/asp-net-5-tips-urlhelper/" />
     <title>ASP.NET 5 Tips: UrlHelper</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/asp-net-5-tips-urlhelper/</uri>
@@ -450,7 +450,7 @@ Please let me know below if you found this useful&amp;hellip; or if things chang
     <id>https://devonburriss.me/automation-heuristics/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/automation-heuristics/" />
     <title>Automation Heuristics</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/automation-heuristics/</uri>
@@ -513,7 +513,7 @@ What happens in these cases? One of 2 things. The platform team needs to drop wh
     <id>https://devonburriss.me/estimation/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/estimation/" />
     <title>Estimation</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/estimation/</uri>
@@ -567,7 +567,7 @@ This was for the most likely time. For the best case you get 1 day and worst cas
     <id>https://devonburriss.me/single-respon/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/single-respon/" />
     <title>Single Responsibility Principle</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/single-respon/</uri>
@@ -806,7 +806,7 @@ emailService.Dispose();&lt;br /&gt;
     <id>https://devonburriss.me/testing-your-data-repositories/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/testing-your-data-repositories/" />
     <title>Testing your data repositories</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/testing-your-data-repositories/</uri>
@@ -1085,7 +1085,7 @@ private int executeImpl(int pos) throws Exception {
     <id>https://devonburriss.me/software-development-is-like-a-piece-of-string/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/software-development-is-like-a-piece-of-string/" />
     <title>Software development is like a piece of string</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/software-development-is-like-a-piece-of-string/</uri>
@@ -1096,7 +1096,7 @@ private int executeImpl(int pos) throws Exception {
     <id>https://devonburriss.me/testing-the-untestable/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/testing-the-untestable/" />
     <title>Testing the Untestable</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/testing-the-untestable/</uri>
@@ -1278,7 +1278,7 @@ Assert.AreEqual(2, sut.ScaredChildren.Count);
     <id>https://devonburriss.me/aspnet-vsonline-ci/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/aspnet-vsonline-ci/" />
     <title>ASP.NET 5 CI from Git to Azure without Visual Studio</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/aspnet-vsonline-ci/</uri>
@@ -1351,7 +1351,7 @@ I hope this helps someone and please leave a comment below if you have any quest
     <id>https://devonburriss.me/pretezel-blog-appveyor-deployment/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/pretezel-blog-appveyor-deployment/" />
     <title>Deploying a Pretzel generated static site to Github Pages using Appveyor</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/pretezel-blog-appveyor-deployment/</uri>
@@ -1452,7 +1452,7 @@ Feel free to copy my blog at https://github.com/dburriss/dburriss.github.io&lt;/
     <id>https://devonburriss.me/vscode-tasks/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/vscode-tasks/" />
     <title>Visual Studio Code Tasks</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/vscode-tasks/</uri>
@@ -1586,7 +1586,7 @@ This only compiles a single unit, not a complete project. Not needed for this to
     <id>https://devonburriss.me/ddd-glossary/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/ddd-glossary/" />
     <title>Domain-Driven Design Glossary</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/ddd-glossary/</uri>
@@ -1709,7 +1709,7 @@ Why would we want to set a boundary rather than just reference any object needed
     <id>https://devonburriss.me/cake-build/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/cake-build/" />
     <title>Building a Cake Script</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/cake-build/</uri>
@@ -1741,7 +1741,7 @@ In the example above the &lt;code&gt;isBuildCommand&lt;/code&gt; is set to &lt;s
     <id>https://devonburriss.me/visual-studio-implicit-snippet/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/visual-studio-implicit-snippet/" />
     <title>Visual Studio Implicit Snippet</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/visual-studio-implicit-snippet/</uri>
@@ -1876,7 +1876,7 @@ In the example above the &lt;code&gt;isBuildCommand&lt;/code&gt; is set to &lt;s
     <id>https://devonburriss.me/honest-arguments/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/honest-arguments/" />
     <title>Honest Arguments</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/honest-arguments/</uri>
@@ -1970,7 +1970,7 @@ string emailAsString = (string)email;
     <id>https://devonburriss.me/honest-return-types/</id>
     <link type="text/html" rel="alternate" href="https://devonburriss.me/honest-return-types/" />
     <title>Honest Return Types</title>
-    <updated>2026-01-09T15:59:04Z</updated>
+    <updated>2026-01-11T16:54:30Z</updated>
     <author>
       <name>Devon Burriss</name>
       <uri>https://devonburriss.me/honest-return-types/</uri>

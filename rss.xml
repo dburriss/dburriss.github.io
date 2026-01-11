@@ -5,12 +5,12 @@
     <atom:link href="https://devonburriss.me/rss.xml" rel="self" type="application/rss+xml" />
     <description>Mostly explorations in code</description>
     <language>en-gb</language>
-    <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
-    <lastBuildDate>Fri, 09 Jan 2026 15:59:04 GMT</lastBuildDate>
+    <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
+    <lastBuildDate>Sun, 11 Jan 2026 16:54:30 GMT</lastBuildDate>
     <item>
       <title>Developer Quest I - Getting started with C#</title>
       <link>https://devonburriss.me/developer-quest-getting-started/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/developer-quest-getting-started/</guid>
       <description>So you want to be a C# developer?</description>
@@ -18,7 +18,7 @@
     <item>
       <title>Developer Quest II - Variables</title>
       <link>https://devonburriss.me/developer-quest-variables/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/developer-quest-variables/</guid>
       <description>Trial by reference</description>
@@ -26,7 +26,7 @@
     <item>
       <title>Installing Ubuntu on Hyper-V</title>
       <link>https://devonburriss.me/installing-ubuntu-on-hyper-v/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/installing-ubuntu-on-hyper-v/</guid>
       <description>Creating a Generation 2 Virtual Machine</description>
@@ -34,7 +34,7 @@
     <item>
       <title>Installing Docker on Hyper-V</title>
       <link>https://devonburriss.me/installing-docker-on-hyper-v/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/installing-docker-on-hyper-v/</guid>
       <description>Installing Docker on Windows</description>
@@ -42,7 +42,7 @@
     <item>
       <title>ASP.NET 5 Tips: TempData</title>
       <link>https://devonburriss.me/asp-net-5-tips-tempdata/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/asp-net-5-tips-tempdata/</guid>
       <description>Just hold this.</description>
@@ -50,7 +50,7 @@
     <item>
       <title>ASP.NET 5 Tips: UrlHelper</title>
       <link>https://devonburriss.me/asp-net-5-tips-urlhelper/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/asp-net-5-tips-urlhelper/</guid>
       <description>ASPNET Core TagHelpers.</description>
@@ -58,7 +58,7 @@
     <item>
       <title>Automation Heuristics</title>
       <link>https://devonburriss.me/automation-heuristics/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/automation-heuristics/</guid>
       <description>Some rules of thumb for automation</description>
@@ -66,7 +66,7 @@
     <item>
       <title>Estimation</title>
       <link>https://devonburriss.me/estimation/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/estimation/</guid>
       <description>Tackling the uncertainty of software estimation.</description>
@@ -74,7 +74,7 @@
     <item>
       <title>Single Responsibility Principle</title>
       <link>https://devonburriss.me/single-respon/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/single-respon/</guid>
       <description>The S in SOLID.</description>
@@ -82,7 +82,7 @@
     <item>
       <title>Testing your data repositories</title>
       <link>https://devonburriss.me/testing-your-data-repositories/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/testing-your-data-repositories/</guid>
       <description>Avoiding dependency on a data layer.</description>
@@ -90,7 +90,7 @@
     <item>
       <title>Software development is like a piece of string</title>
       <link>https://devonburriss.me/software-development-is-like-a-piece-of-string/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/software-development-is-like-a-piece-of-string/</guid>
       <description>With knots.</description>
@@ -98,7 +98,7 @@
     <item>
       <title>Testing the Untestable</title>
       <link>https://devonburriss.me/testing-the-untestable/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/testing-the-untestable/</guid>
       <description>Testing after the fact testing hurts</description>
@@ -106,7 +106,7 @@
     <item>
       <title>ASP.NET 5 CI from Git to Azure without Visual Studio</title>
       <link>https://devonburriss.me/aspnet-vsonline-ci/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/aspnet-vsonline-ci/</guid>
       <description>Using Visual Studio Online Build Services</description>
@@ -114,7 +114,7 @@
     <item>
       <title>Deploying a Pretzel generated static site to Github Pages using Appveyor</title>
       <link>https://devonburriss.me/pretezel-blog-appveyor-deployment/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/pretezel-blog-appveyor-deployment/</guid>
       <description>Dynamic continuous delivery of static content.</description>
@@ -122,7 +122,7 @@
     <item>
       <title>Visual Studio Code Tasks</title>
       <link>https://devonburriss.me/vscode-tasks/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/vscode-tasks/</guid>
       <description>Examples of some slightly different ones</description>
@@ -130,7 +130,7 @@
     <item>
       <title>Domain-Driven Design Glossary</title>
       <link>https://devonburriss.me/ddd-glossary/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/ddd-glossary/</guid>
       <description>Summary of the main terms in Domain-Driven Design</description>
@@ -138,7 +138,7 @@
     <item>
       <title>Building a Cake Script</title>
       <link>https://devonburriss.me/cake-build/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/cake-build/</guid>
       <description>Verifying syntax for Cake scripts by just building</description>
@@ -146,7 +146,7 @@
     <item>
       <title>Visual Studio Implicit Snippet</title>
       <link>https://devonburriss.me/visual-studio-implicit-snippet/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/visual-studio-implicit-snippet/</guid>
       <description>Quickly create implicit class for a simple type</description>
@@ -154,7 +154,7 @@
     <item>
       <title>Honest Arguments</title>
       <link>https://devonburriss.me/honest-arguments/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/honest-arguments/</guid>
       <description>Part 1 of Designing clear method signatures</description>
@@ -162,7 +162,7 @@
     <item>
       <title>Honest Return Types</title>
       <link>https://devonburriss.me/honest-return-types/</link>
-      <pubDate>Fri, 09 Jan 2026 15:59:04 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 16:54:30 GMT</pubDate>
       <author>Devon Burriss</author>
       <guid>https://devonburriss.me/honest-return-types/</guid>
       <description>Part 2 of Designing clear method signatures</description>
