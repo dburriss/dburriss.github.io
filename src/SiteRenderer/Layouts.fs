@@ -181,6 +181,11 @@ module Layouts =
         else
             rawText ""
 
+    /// Check if HTML content contains mermaid diagrams
+    let private hasMermaidDiagrams (htmlContent: XmlNode list) =
+        let htmlStr = RenderView.AsString.htmlNodes htmlContent
+        htmlStr.Contains("class=\"mermaid\"")
+
     let private analyticsNode (site: SiteConfig) =
         match site.IsProduction, site.GoogleTrackingId with
         | true, Some tracking when not (String.IsNullOrWhiteSpace tracking) ->
@@ -195,6 +200,7 @@ module Layouts =
         | _ -> rawText ""
 
     let private layoutDocument (site: SiteConfig) (page: PageMeta) (mainNodes: XmlNode list) (includeComments: bool) =
+        let hasDiagrams = hasMermaidDiagrams mainNodes
         doctypeHtml
             [ attr "lang" "en" ]
             [ headNode site page
@@ -209,6 +215,13 @@ module Layouts =
                         rawText ""
                     script [ _src (assetUrl site "js/highlight.pack.js") ] []
                     script [] [ rawText "hljs.initHighlightingOnLoad();" ]
+                    if hasDiagrams then
+                        fragment [] [
+                            script [ _src (assetUrl site "js/vendor/mermaid.min.js"); attr "defer" "defer" ] []
+                            script [ _src (assetUrl site "js/mermaid-init.js"); attr "defer" "defer" ] []
+                        ]
+                    else
+                        rawText ""
                     analyticsNode site ] ]
 
     let private formatDate (date: DateTime option) =

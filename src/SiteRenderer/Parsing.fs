@@ -230,7 +230,7 @@ module Parsing =
         if idx >= 0 then Some(html.Substring(0, idx)) else None
 
     let markdownPipeline =
-        MarkdownPipelineBuilder().UseAdvancedExtensions().UsePipeTables().UseYamlFrontMatter().UseWikiLinks().Build()
+        MarkdownPipelineBuilder().UseAdvancedExtensions().UsePipeTables().UseYamlFrontMatter().UseWikiLinks().UseDiagrams().Build()
 
     /// Create a context-aware markdown pipeline with wiki link resolution
     let createContextAwarePipeline (resolutionContext: ResolutionContext option) =
@@ -257,6 +257,7 @@ module Parsing =
                 .UseSmartyPants()
                 .UseSoftlineBreakAsHardlineBreak()
                 .UseTaskLists()
+                .UseDiagrams()
                 .Build()
         | None ->
             // Use default pipeline
