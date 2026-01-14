@@ -5,22 +5,23 @@ keywords: [ai, llm, model]
 topics: [ai-agentic-systems]
 status: draft
 ---
-A Large-language model (model) is a [[Neural Network]] trained on a large corpus of text to predict the next [[Token]], based on the previous tokens in the input.
+A Large language model (or just model) is a [[Neural Network]] trained on a large corpus of text to predict the next [[Token]], based on the previous tokens in the input.
 
-The LLM functions like a probabilistic [[Pure Function]] that predicts the response based on the input and [[Sampling Parameters]].
+The LLM functions like a probabilistic [[Pure Function]] that predicts the response based on the input and [[Sampling Parameters]]. Good to note that an [[Agent Harness]] can add [[Tool Calling]] and no control over the seed, meaning that in practice these do not resemble a pure function.
 
 ```mermaid
-stateDiagram
+stateDiagram-v2
 	nn: Neural Network
 	sp: Sampling Parameters
 	mp: Model Parameters
 	cw: Context Window
-    direction TB
+	direction TB
+    
     [*] --> LLM : input (prompt, sampling parameters)
     state LLM {
       direction LR
       input --> Tokenizer : text
-      Tokenizer --> nn : context
+      Tokenizer --> nn : token ids
       sp --> nn
       state nn {
         cw
@@ -30,10 +31,13 @@ stateDiagram
     }
     LLM --> [*] : output
 ```
+This new family of large language models represent a key new capability that we have access to programmatically, namely the generation and "understanding of" text.
 
-This input is known as the [[Context|Context]] and has a fixed size known as the [[Context]]. This size is the maximum size of the input, over that will be dropped or ignored. Since performance drops off way before this maximum size, [[Context Management|Context Engineering]] has emerged as a core skill in working with [[Agentic workflows]].
+This input is known as the [[Context|Context]] and has a fixed size known as the [[Context|Context Window]]. This size is the maximum size of the input, over that will be truncated, ignored, or rejected. Since performance drops off way before this maximum size, [[Context Engineering|Context Engineering]] has emerged as a core skill in working with [[Agentic workflows]].
 
-It is important to understand that LLMs do not contain the original training data, or even a summary of it. What they use to predict the next token are [[Model Weights]], often also called [[Model Weights|Model Parameters]]. These are matrices of floating point numbers that encode the patterns in text, not actual summaries of the data. Also important for the model is that the training data has a cutoff date, after which nothing of that data is encoded. Lastly on the topic of parameters, the effectiveness of a model is largely a function of the size and quality of the data it was trained on, although [[Fine tuning]] can have a large effect on it's behaviour.
+It is important to understand that LLMs do not contain the original training data, or even a summary of it. What they use to predict the next token are [[Model Weights]], often also called [[Model Weights|Model Parameters]]. These are matrices of floating point numbers that encode the patterns in text, not actual summaries of the data. Also important for the model is that the training data has a cutoff date, after which nothing of that data is encoded. The training does of course generalise, and the factual information always needs checking, since it is using inference, not recall.
+
+Lastly on the topic of parameters, the effectiveness of a model is largely a function of the size and quality of the data it was trained on, although [[Fine tuning]] can have a large effect on it's behaviour.
 
 Examples:
 

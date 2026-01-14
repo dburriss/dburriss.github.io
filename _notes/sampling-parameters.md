@@ -5,28 +5,66 @@ keywords: [ai, llm, model, parameters]
 topics: [ai-agentic-systems]
 status: draft
 ---
-Also known as Inference Parameters.
+Sampling parameters, also known as Inference Parameters, are a collection of input parameters for completions (inference) that can be used to control the output of a [[LLM]]. 
+These parameters affect decoding only and do not change the model’s internal representations or weights.
+The sampling parameters operate on the [[Logit]]s that come out of the [[Neural Network]]. These parameters give control over the transformation of logits to probability distributions before the [[Sampling]] into output tokens.
 
-Sampling parameters are a collection of input parameters for completions (inference) that can be used to control the output of a [[LLM]]. 
+```mermaid
+flowchart TB
+    A[Input tokens and context] --> B[Neural network forward pass]
+    B --> C[Final hidden state]
+    C --> D[Linear projection]
+    D --> E[Logits per token]
 
-Temperature is the most commonly used parameter to control "creativity".
+    E --> F[Logit adjustments]
 
-| Parameter                  | Common default | What it does                                                                                                              | When to use / trade-offs                                                                                                                                   |
-| -------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **temperature**            | 0.7            | Scales the logits before sampling. Higher = flatter distribution (more randomness). Lower = sharper (more deterministic). | Use low (0–0.3) for factual, repeatable outputs. Use medium (0.5–0.8) for general writing. High (>1.0) increases creativity but raises hallucination risk. |
-| **top_p** (nucleus)        | 0.9            | Samples from the smallest set of tokens whose cumulative probability ≥ *p*.                                               | Prefer over top_k for adaptive diversity. Lower (0.8–0.9) for control; higher for more variation. Often paired with low temperature.                       |
-| **top_k**                  | 40             | Limits sampling to the *k* most likely tokens.                                                                            | Useful for hard caps on randomness. Can degrade fluency if too low. Often redundant if using top_p.                                                        |
-| **min_p**                  | 0.05           | Drops tokens whose probability is below a fraction of the max-prob token.                                                 | Stabilizes output while allowing diversity. Alternative to top_k/top_p in some stacks.                                                                     |
-| **presence_penalty**       | 0.0            | Penalizes tokens that have appeared anywhere in the output. Encourages topic diversity.                                   | Use for brainstorming or long outputs that tend to loop. Can hurt coherence if too high.                                                                   |
-| **frequency_penalty**      | 0.0            | Penalizes tokens proportional to how often they appear. Reduces repetition.                                               | Use for verbose outputs that repeat phrases. Safer than presence_penalty for prose.                                                                        |
-| **repetition_penalty**     | 1.0            | Multiplies logits of previously generated tokens (<1 penalizes repetition).                                               | Common in open-source models. Set ~1.1–1.2 to reduce loops; too high harms grammar.                                                                        |
-| **max_tokens**             | Model-specific | Hard cap on generated tokens.                                                                                             | Always set explicitly in production to control cost and runaway outputs.                                                                                   |
-| **stop_sequences**         | none           | Terminates generation when a token sequence is emitted.                                                                   | Use to enforce structure (e.g. JSON, sections). Fragile if model paraphrases.                                                                              |
-| **seed**                   | random         | Fixes RNG seed for reproducible sampling.                                                                                 | Use for tests, evals, and diff-based comparisons. Reduces diversity.                                                                                       |
-| **logit_bias**             | none           | Adds or subtracts bias for specific tokens.                                                                               | Use to ban tokens or strongly steer output. High risk of brittle behavior.                                                                                 |
-| **beam_width / num_beams** | 1              | Searches multiple continuations and picks highest-scoring sequence.                                                       | Deterministic, low diversity. Good for short, exact outputs; poor for creative text.                                                                       |
-| **length_penalty**         | 1.0            | Adjusts preference for longer vs shorter beams.                                                                           | Only relevant with beam search. Tune to avoid overly short answers.                                                                                        |
+    F --> G[Distribution shaping]
+    G --> I[Normalized probability distribution]
 
+    I --> K[Sampling step]
+    K --> L[Next token selected]
+
+    subgraph Adjustments
+        F1[Logit bias]
+        F2[Repetition / frequency penalties]
+        F3[Temperature scaling]
+    end
+
+    F --> F1
+    F --> F2
+    F --> F3
+
+    subgraph DistributionShaping[Distribution shaping]
+        G1[Softmax]
+        G2[Top-k]
+        G3[Top-p]
+        G4[Typical sampling]
+        G5[Renormalization]
+    end
+
+    G --> G1
+    G --> G2
+    G --> G3
+    G --> G4
+    G --> G5
+
+```
+
+Sampling parameters matter because they control the trade-off between determinism, diversity, and failure modes such as repetition or hallucination, without changing the underlying model.
+
+|Parameter|Common default|What change is applied|When to use|Resulting behavior|
+|---|---|---|---|---|
+|Temperature|1.0|Divide all logits by T|Control randomness globally|Lower sharpens, higher flattens probability mass|
+|Top-k|Disabled or 40|Keep k highest logits, mask rest|Cut off long tail|More focus, possible brittleness|
+|Top-p|1.0 or 0.9|Keep tokens until cumulative probability ≥ p|Adaptive truncation|Stable diversity across contexts|
+|Min-p|Disabled or 0.05|Drop tokens below fixed probability|Avoid extremely unlikely tokens|Prevents rare noise, risk of collapse|
+|Typical sampling|Disabled or 0.2|Penalize entropy outliers|Reduce dull or erratic output|More natural phrasing|
+|Repetition penalty|1.0|Scale down logits of repeated tokens|Prevent loops|Less repetition, weaker emphasis|
+|Frequency penalty|0.0|Subtract proportional to token count|Reduce word reuse|Increased lexical diversity|
+|Presence penalty|0.0|Subtract once if token appeared|Encourage topic shift|More exploration|
+|Logit bias|0|Add fixed per-token offsets|Enforce constraints|Hard steering|
+|Greedy decoding|Off|Select max logit only|Deterministic tasks|No diversity|
+|Beam search|Off or 5 beams|Track top sequences|Structured generation|Higher likelihood, dull text|
 
 ## Resources
 - https://simonwillison.net/2025/May/4/llm-sampling/
