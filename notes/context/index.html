@@ -6,11 +6,12 @@ Order matters since preceding tokens in the context influence the tokens that ar
 <p>Example allocations of what might be in the context:</p>
 <div class="mermaid">erDiagram
     Context {
+        _1k_tokens System_prompt
         _1k_tokens Tool_definitions
-        _1k_tokens Agent_harness_instructions
+        _10k_tokens MCP_definitions
         _1k_tokens AGENTS_md
-        _4k_tokens Codebase_summary
         _400_tokens Prompt
+        _4k_tokens Codebase_summary
         _1k_tokens Prompt_response
         _600_tokens Fix_request
         _2k_tokens Fix_response

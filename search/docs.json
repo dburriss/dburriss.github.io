@@ -939,6 +939,23 @@
     ]
   },
   {
+    "id": "/notes/prompt-structure/",
+    "url": "/notes/prompt-structure/",
+    "title": "Prompt Structure",
+    "body": "",
+    "excerpt": null,
+    "date": null,
+    "keywords": [
+      "agents",
+      "ai",
+      "prompt",
+      "context"
+    ],
+    "topics": [
+      "ai-agentic-systems"
+    ]
+  },
+  {
     "id": "/notes/prompt/",
     "url": "/notes/prompt/",
     "title": "Prompt",
