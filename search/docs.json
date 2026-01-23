@@ -889,6 +889,21 @@
     ]
   },
   {
+    "id": "/notes/grounding/",
+    "url": "/notes/grounding/",
+    "title": "Grounding",
+    "body": "",
+    "excerpt": null,
+    "date": null,
+    "keywords": [
+      "agents",
+      "ai"
+    ],
+    "topics": [
+      "ai-agentic-systems"
+    ]
+  },
+  {
     "id": "/notes/instruction-file/",
     "url": "/notes/instruction-file/",
     "title": "Instruction File",
@@ -966,6 +981,21 @@
       "ai",
       "prompt",
       "context"
+    ],
+    "topics": [
+      "ai-agentic-systems"
+    ]
+  },
+  {
+    "id": "/notes/retrieval/",
+    "url": "/notes/retrieval/",
+    "title": "Retrieval",
+    "body": "",
+    "excerpt": null,
+    "date": null,
+    "keywords": [
+      "agents",
+      "ai"
     ],
     "topics": [
       "ai-agentic-systems"
