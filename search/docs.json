@@ -1019,6 +1019,22 @@
     ]
   },
   {
+    "id": "/notes/sensing/",
+    "url": "/notes/sensing/",
+    "title": "Sensing",
+    "body": "",
+    "excerpt": null,
+    "date": null,
+    "keywords": [
+      "agentic",
+      "agents",
+      "ai"
+    ],
+    "topics": [
+      "ai-agentic-systems"
+    ]
+  },
+  {
     "id": "/notes/token/",
     "url": "/notes/token/",
     "title": "Token",
